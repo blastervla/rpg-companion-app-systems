@@ -1,0 +1,60 @@
+{
+  "id": "armor",
+  "name": "Armor",
+  "plural": "Armors",
+  "core": true,
+  "color": "#FFA000",
+  "indexed_stats": [
+    "name",
+    "is_core",
+    "properties",
+    "armor_class",
+    "required_strength_summary",
+    "source",
+    "type",
+    "requires_attunement",
+    "rarity"
+  ],
+  "search_filters": [
+    {
+      "name": "Type",
+      "stat": "type",
+      "options": "armor_types"
+    },
+    {
+      "name": "Core only?",
+      "stat": "is_core",
+      "true_name": "Core only",
+      "false_name": "Non-core only"
+    },
+    {
+      "name": "Attunement need",
+      "stat": "requires_attunement",
+      "true_name": "Requires attunement",
+      "false_name": "No attunement"
+    },
+    {
+      "name": "Source",
+      "stat": "source",
+      "options": "source",
+      "options_display_stat": "abbreviation"
+    },
+    {
+      "name": "Rarity",
+      "stat": "rarity",
+      "options": "item_rarity"
+    }
+  ],
+  "sort_options": [
+    {
+      "name": "by type",
+      "stat": "type",
+      "options": "armor_types"
+    },
+    {
+      "name": "by rarity",
+      "stat": "rarity",
+      "options": "item_rarity"
+    }
+  ]
+}

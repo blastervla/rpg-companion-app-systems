@@ -1,0 +1,280 @@
+{
+  "id": "background_display",
+  "type": "list",
+  "padding": 16,
+  "alignment": "start",
+  "subviews": [
+    {
+      "id": "background_display_source",
+      "type": "text",
+      "style": "caption",
+      "margin_left": 16,
+      "resource_id": "source",
+      "resource_instance_ids_stat": "source",
+      "resource_display_stat": "abbreviation"
+    },
+    {
+      "id": "background_display_gold_pieces_composite",
+      "type": "composite",
+      "margin_top": 8,
+      "subviews": [
+        {
+          "id": "background_display_gold_pieces_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Gold Pieces: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "background_display_gold_pieces_label",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "gold_pieces"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "background_display_features_collapsible",
+      "type": "collapsible",
+      "title": {
+        "type": "constant",
+        "value": "Features",
+        "value_type": "string"
+      },
+      "start_expanded": true,
+      "subviews": [
+        {
+          "id": "background_display_features",
+          "type": "resourceSection",
+          "resource_stat": "features",
+          "resource_id": "feat",
+          "contentItemMinWidth": 1,
+          "read_only": true
+        }
+      ]
+    },
+    {
+      "id": "background_display_equipment_choices_collapsible",
+      "type": "collapsible",
+      "title": {
+        "type": "constant",
+        "value": "Starting equipment choices",
+        "value_type": "string"
+      },
+      "start_expanded": false,
+      "subviews": [
+        {
+          "id": "background_display_selectable_armors",
+          "type": "resourceArray",
+          "resource_id": "selectable_armors",
+          "stat": "selectable_armors",
+          "view_type": "display"
+        },
+        {
+          "id": "background_display_selectable_weapons",
+          "type": "resourceArray",
+          "resource_id": "selectable_weapons",
+          "stat": "selectable_weapons",
+          "view_type": "display"
+        },
+        {
+          "id": "background_display_selectable_items",
+          "type": "resourceArray",
+          "resource_id": "selectable_items",
+          "stat": "selectable_equipments",
+          "view_type": "display"
+        }
+      ],
+      "is_visible": {
+        "type": "and",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "not",
+              "components": {
+                "type": "isEmpty",
+                "components": {
+                  "type": "stat",
+                  "stat": "selectable_armors"
+                }
+              }
+            },
+            {
+              "type": "not",
+              "components": {
+                "type": "isEmpty",
+                "components": {
+                  "type": "stat",
+                  "stat": "selectable_weapons"
+                }
+              }
+            },
+            {
+              "type": "not",
+              "components": {
+                "type": "isEmpty",
+                "components": {
+                  "type": "stat",
+                  "stat": "selectable_equipments"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "background_display_languages_collapsible",
+      "type": "collapsible",
+      "title": {
+        "type": "constant",
+        "value": "Languages (per lvl)",
+        "value_type": "string"
+      },
+      "start_expanded": false,
+      "subviews": [
+        {
+          "id": "background_display_languages",
+          "type": "resourceArray",
+          "resource_id": "levelled_choice_text",
+          "stat": "language_proficiencies",
+          "view_type": "display"
+        }
+      ],
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "language_proficiencies"
+          }
+        }
+      }
+    },
+    {
+      "id": "background_display_skills_collapsible",
+      "type": "collapsible",
+      "title": {
+        "type": "constant",
+        "value": "Skill proficiencies (per lvl)",
+        "value_type": "string"
+      },
+      "start_expanded": false,
+      "subviews": [
+        {
+          "id": "background_display_skills",
+          "type": "resourceArray",
+          "resource_id": "levelled_skill_proficiency",
+          "stat": "skill_proficiencies",
+          "view_type": "display"
+        }
+      ],
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "skill_proficiencies"
+          }
+        }
+      }
+    },
+    {
+      "id": "background_display_armor_proficiencies_collapsible",
+      "type": "collapsible",
+      "title": {
+        "type": "constant",
+        "value": "Armor proficiencies (per lvl)",
+        "value_type": "string"
+      },
+      "start_expanded": false,
+      "subviews": [
+        {
+          "id": "background_display_armor_proficiencies",
+          "type": "resourceArray",
+          "resource_id": "levelled_armor_proficiency",
+          "stat": "armor_proficiencies",
+          "view_type": "display"
+        }
+      ],
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "armor_proficiencies"
+          }
+        }
+      }
+    },
+    {
+      "id": "background_display_weapon_proficiencies_collapsible",
+      "type": "collapsible",
+      "title": {
+        "type": "constant",
+        "value": "Weapon proficiencies (per lvl)",
+        "value_type": "string"
+      },
+      "start_expanded": false,
+      "subviews": [
+        {
+          "id": "background_display_weapon_proficiencies",
+          "type": "resourceArray",
+          "resource_id": "levelled_weapon_proficiency",
+          "stat": "weapon_proficiencies",
+          "view_type": "display"
+        }
+      ],
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "weapon_proficiencies"
+          }
+        }
+      }
+    },
+    {
+      "id": "background_display_tool_proficiencies_collapsible",
+      "type": "collapsible",
+      "title": {
+        "type": "constant",
+        "value": "Tool proficiencies (per lvl)",
+        "value_type": "string"
+      },
+      "start_expanded": false,
+      "subviews": [
+        {
+          "id": "background_display_tool_proficiencies",
+          "type": "resourceArray",
+          "resource_id": "levelled_choice_text",
+          "stat": "tool_proficiencies",
+          "view_type": "display"
+        }
+      ],
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "tool_proficiencies"
+          }
+        }
+      }
+    }
+  ]
+}

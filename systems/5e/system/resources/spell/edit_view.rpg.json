@@ -1,0 +1,307 @@
+{
+  "id": "spell_edit",
+  "type": "list",
+  "padding": 32,
+  "subviews": [
+    {
+      "id": "spell_edit_name",
+      "type": "text",
+      "edit_stat": "name",
+      "style": "text",
+      "label": {
+        "type": "constant",
+        "value": "Name",
+        "value_type": "string"
+      },
+      "max_length": 140,
+      "validation_message": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "isEmpty",
+              "components": {
+                "type": "stat",
+                "stat": "$view.spell_edit_name"
+              }
+            },
+            "components": {
+              "type": "constant",
+              "value": "Please add a name to your spell",
+              "value_type": "string"
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "spell_edit_source",
+      "margin_top": 4,
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "spell_edit_source_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Source: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "spell_edit_source_select",
+          "type": "select",
+          "options": "source",
+          "options_display_stat": "abbreviation",
+          "stat": "source"
+        }
+      ]
+    },
+    {
+      "id": "spell_edit_level_school",
+      "type": "composite",
+      "margin_top": 4,
+      "subviews": [
+        {
+          "id": "spell_edit_level_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Level: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "spell_edit_level",
+          "type": "select",
+          "options": "spell_level",
+          "stat": "level"
+        },
+        {
+          "id": "spell_edit_school_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "School: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "spell_edit_school",
+          "type": "select",
+          "options": "spell_school",
+          "stat": "school"
+        }
+      ]
+    },
+    {
+      "id": "spell_edit_vsm",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "spell_edit_ritual",
+          "type": "checkbox",
+          "stat": "ritual",
+          "label": {
+            "type": "constant",
+            "value": "Ritual",
+            "value_type": "string"
+          },
+          "label_alignment": "right"
+        },
+        {
+          "id": "spell_edit_verbal",
+          "type": "checkbox",
+          "stat": "verbal",
+          "label": {
+            "type": "constant",
+            "value": "V",
+            "value_type": "string"
+          },
+          "label_alignment": "right"
+        },
+        {
+          "id": "spell_edit_somatic",
+          "type": "checkbox",
+          "stat": "somatic",
+          "label": {
+            "type": "constant",
+            "value": "S",
+            "value_type": "string"
+          },
+          "label_alignment": "right"
+        },
+        {
+          "id": "spell_edit_material",
+          "type": "checkbox",
+          "stat": "material",
+          "label": {
+            "type": "constant",
+            "value": "M",
+            "value_type": "string"
+          },
+          "label_alignment": "right"
+        }
+      ]
+    },
+    {
+      "id": "spell_edit_casting_time_range",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "spell_edit_casting_time",
+          "type": "text",
+          "edit_stat": "casting_time",
+          "style": "text",
+          "label": {
+            "type": "constant",
+            "value": "Casting time",
+            "value_type": "string"
+          },
+          "max_length": 140
+        },
+        {
+          "id": "spell_edit_range",
+          "type": "text",
+          "edit_stat": "range",
+          "style": "text",
+          "label": {
+            "type": "constant",
+            "value": "Range",
+            "value_type": "string"
+          },
+          "max_length": 80
+        },
+        {
+          "id": "spell_edit_duration",
+          "type": "text",
+          "edit_stat": "duration",
+          "style": "text",
+          "label": {
+            "type": "constant",
+            "value": "Duration",
+            "value_type": "string"
+          },
+          "max_length": 140
+        }
+      ]
+    },
+    {
+      "id": "spell_edit_components",
+      "type": "text",
+      "edit_stat": "components",
+      "style": "text",
+      "label": {
+        "type": "constant",
+        "value": "Components",
+        "value_type": "string"
+      },
+      "is_visible": {
+        "type": "stat",
+        "stat": "$view.spell_edit_material"
+      },
+      "max_length": 300
+    },
+    {
+      "id": "spell_edit_description",
+      "type": "text",
+      "edit_stat": "description",
+      "label": {
+        "type": "constant",
+        "value": "Description",
+        "value_type": "string"
+      },
+      "style": "text"
+    },
+    {
+      "id": "spell_edit_higher_level_description",
+      "type": "text",
+      "edit_stat": "higher_level_description",
+      "label": {
+        "type": "constant",
+        "value": "Higher levels description",
+        "value_type": "string"
+      },
+      "style": "text"
+    },
+    {
+      "id": "spell_edit_classes",
+      "margin_top": 4,
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "spell_edit_classes_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Classes: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "spell_edit_classes",
+          "type": "select",
+          "options": "class",
+          "options_display_stat": "name",
+          "stat": "classes",
+          "multi_select": true
+        }
+      ]
+    },
+    {
+      "id": "spell_edit_levelled_damage_dice",
+      "type": "resourceArray",
+      "resource_id": "levelled_damage_dice",
+      "view_type": "edit",
+      "left_view": {
+        "id": "spell_edit_levelled_damage_dice_label",
+        "type": "text",
+        "text": {
+          "type": "constant",
+          "value": "Damage dice (per lvl): ",
+          "value_type": "string"
+        },
+        "style": "text"
+      },
+      "stat": "dice"
+    },
+    {
+      "id": "spell_edit_effects",
+      "type": "resourceArray",
+      "resource_id": "effect",
+      "view_type": "edit",
+      "stat": "effects",
+      "pop_up_type": "bottomSheet",
+      "pop_up_button_text": {
+        "type": "stat",
+        "stat": "edit_display_name"
+      },
+      "left_view": {
+        "id": "spell_edit_effects_label",
+        "type": "text",
+        "text": {
+          "type": "constant",
+          "value": "Effects: ",
+          "value_type": "string"
+        },
+        "style": "text"
+      }
+    }
+  ]
+}

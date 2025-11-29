@@ -1,0 +1,50 @@
+{
+  "id": "skill_tap",
+  "event_names": "skillTap",
+  "effects": {
+    "type": "when",
+    "clauses": [
+      {
+        "condition": {
+          "type": "stat",
+          "stat": "$edit_mode"
+        },
+        "effect": {
+          "type": "forwardEvent",
+          "new_event_names": {
+            "type": "list",
+            "components": [
+              {
+                "type": "constant",
+                "value": "editSkillProficiency",
+                "value_type": "string"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "type": "not",
+          "components": {
+            "type": "stat",
+            "stat": "$edit_mode"
+          }
+        },
+        "effect": {
+          "type": "forwardEvent",
+          "new_event_names": {
+            "type": "list",
+            "components": [
+              {
+                "type": "constant",
+                "value": "rollStat",
+                "value_type": "string"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

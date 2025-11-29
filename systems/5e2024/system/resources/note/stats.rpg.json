@@ -1,0 +1,52 @@
+[
+  {
+    "id": "title",
+    "name": "Title",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "text",
+    "name": "Text",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "display_title",
+    "name": "Display title",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "isEmpty",
+            "components": {
+              "type": "stat",
+              "stat": "title"
+            }
+          },
+          "components": {
+            "type": "constant",
+            "value": "Untitled note",
+            "value_type": "string"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "stat",
+            "stat": "title"
+          }
+        }
+      ]
+    }
+  }
+]

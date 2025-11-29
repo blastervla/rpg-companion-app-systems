@@ -1,0 +1,127 @@
+{
+  "id": "visual_trait_edit",
+  "type": "list",
+  "padding": 16,
+  "alignment": "start",
+  "subviews": [
+    {
+      "id": "visual_trait_edit_name",
+      "type": "text",
+      "edit_stat": "name",
+      "style": "text",
+      "max_length": 80,
+      "label": {
+        "type": "constant",
+        "value": "Name",
+        "value_type": "string"
+      },
+      "validation_message": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "isEmpty",
+              "components": {
+                "type": "stat",
+                "stat": "$view.visual_trait_edit_name"
+              }
+            },
+            "components": {
+              "type": "constant",
+              "value": "Please give a name to your visual trait",
+              "value_type": "string"
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "visual_trait_edit_importance_composite",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "visual_trait_edit_importance_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Importance",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "visual_trait_edit_importance",
+          "type": "text",
+          "edit_stat": "importance",
+          "style": "text",
+          "max_length": 1,
+          "hint": {
+            "type": "constant",
+            "value": "0",
+            "value_type": "string"
+          }
+        }
+      ]
+    },
+    {
+      "id": "visual_trait_edit_options",
+      "type": "resourceArray",
+      "resource_id": "visual_trait_option",
+      "stat": "options",
+      "view_type": "edit",
+      "left_view": {
+        "id": "visual_trait_edit_options_label",
+        "type": "text",
+        "text": {
+          "type": "constant",
+          "value": "Options: ",
+          "value_type": "string"
+        },
+        "style": "text"
+      },
+      "validation_message": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "isEmpty",
+              "components": {
+                "type": "stat",
+                "stat": "$view.visual_trait_edit_options"
+              }
+            },
+            "components": {
+              "type": "constant",
+              "value": "Please make sure to add at least one option",
+              "value_type": "string"
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "id": "damage_variant_edit",
+  "type": "list",
+  "padding": 16,
+  "subviews": [
+    {
+      "id": "damage_variant_edit_name",
+      "type": "text",
+      "edit_stat": "variant_name",
+      "style": "text",
+      "label": {
+        "type": "constant",
+        "value": "Name",
+        "value_type": "string"
+      },
+      "max_length": 140,
+      "validation_message": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "isEmpty",
+              "components": {
+                "type": "stat",
+                "stat": "$view.damage_variant_edit_name"
+              }
+            },
+            "components": {
+              "type": "constant",
+              "value": "Please add a name to the damage variant",
+              "value_type": "string"
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "damage_variant_edit_dice",
+      "type": "resourceArray",
+      "resource_id": "damage_dice",
+      "stat": "variant_damage_dice",
+      "view_type": "edit",
+      "pop_up_type": "bottomSheet",
+      "pop_up_button_text": {
+        "type": "stat",
+        "stat": "display_description"
+      }
+    }
+  ]
+}

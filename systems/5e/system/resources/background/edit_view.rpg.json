@@ -1,0 +1,369 @@
+{
+  "id": "background_edit",
+  "type": "viewPager",
+  "names": {
+    "type": "list",
+    "components": [
+      {
+        "type": "constant",
+        "value": "Basic information",
+        "value_type": "string"
+      },
+      {
+        "type": "constant",
+        "value": "Proficiencies",
+        "value_type": "string"
+      }
+    ]
+  },
+  "color": {
+    "type": "constant",
+    "value": "#2D6C2F",
+    "value_type": "string"
+  },
+  "subviews": [
+    {
+      "id": "background_edit_basics",
+      "type": "list",
+      "padding": 16,
+      "subviews": [
+        {
+          "id": "background_edit_name",
+          "type": "text",
+          "edit_stat": "name",
+          "style": "text",
+          "label": {
+            "type": "constant",
+            "value": "Name",
+            "value_type": "string"
+          },
+          "max_length": 140,
+          "validation_message": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "isEmpty",
+                  "components": {
+                    "type": "stat",
+                    "stat": "$view.background_edit_name"
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "Please add a name to your background",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "background_edit_source",
+          "margin_top": 4,
+          "type": "composite",
+          "subviews": [
+            {
+              "id": "background_edit_source_label",
+              "type": "text",
+              "text": {
+                "type": "constant",
+                "value": "Source: ",
+                "value_type": "string"
+              },
+              "style": "text"
+            },
+            {
+              "id": "background_edit_source_select",
+              "type": "select",
+              "options": "source",
+              "options_display_stat": "abbreviation",
+              "stat": "source"
+            }
+          ]
+        },
+        {
+          "id": "background_edit_gold_pieces_composite",
+          "type": "composite",
+          "margin_top": 4,
+          "subviews": [
+            {
+              "id": "background_edit_gold_pieces_label",
+              "type": "text",
+              "text": {
+                "type": "constant",
+                "value": "Gold Pieces: ",
+                "value_type": "string"
+              },
+              "style": "text",
+              "bold": true
+            },
+            {
+              "id": "background_edit_gold_pieces",
+              "type": "text",
+              "edit_stat": "gold_pieces",
+              "style": "text",
+              "max_length": 2,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "10",
+                "value_type": "string"
+              }
+            }
+          ]
+        },
+        {
+          "id": "background_edit_features",
+          "type": "resourceArray",
+          "resource_id": "feat",
+          "stat": "features",
+          "view_type": "edit",
+          "left_view": {
+            "id": "background_edit_features_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Features: ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          },
+          "pop_up_type": "bottomSheet",
+          "pop_up_button_text": {
+            "type": "stat",
+            "stat": "levelled_description"
+          }
+        },
+        {
+          "id": "background_edit_selectable_armors",
+          "type": "resourceArray",
+          "resource_id": "selectable_armors",
+          "stat": "selectable_armors",
+          "view_type": "edit",
+          "left_view": {
+            "id": "background_edit_selectable_armors_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Armor choices: ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          },
+          "pop_up_type": "bottomSheet",
+          "pop_up_button_text": {
+            "type": "stat",
+            "stat": "display_description"
+          }
+        },
+        {
+          "id": "background_edit_selectable_weapons",
+          "type": "resourceArray",
+          "resource_id": "selectable_weapons",
+          "stat": "selectable_weapons",
+          "view_type": "edit",
+          "left_view": {
+            "id": "background_edit_selectable_weapons_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Weapon choices: ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          },
+          "pop_up_type": "bottomSheet",
+          "pop_up_button_text": {
+            "type": "stat",
+            "stat": "display_description"
+          }
+        },
+        {
+          "id": "background_edit_selectable_equipments",
+          "type": "resourceArray",
+          "resource_id": "selectable_items",
+          "stat": "selectable_equipments",
+          "view_type": "edit",
+          "left_view": {
+            "id": "background_edit_selectable_equipments_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Equipment choices: ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          },
+          "pop_up_type": "bottomSheet",
+          "pop_up_button_text": {
+            "type": "stat",
+            "stat": "display_description"
+          }
+        }
+      ]
+    },
+    {
+      "id": "background_edit_proficiencies",
+      "type": "list",
+      "padding": 16,
+      "subviews": [
+        {
+          "id": "background_edit_language_proficiencies",
+          "type": "resourceArray",
+          "resource_id": "levelled_choice_text",
+          "stat": "language_proficiencies",
+          "view_type": "edit",
+          "left_view": {
+            "id": "background_edit_language_proficiencies_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Language proficiency choices (per lvl): ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          }
+        },
+        {
+          "id": "background_edit_skill_proficiencies",
+          "type": "resourceArray",
+          "resource_id": "levelled_skill_proficiency",
+          "stat": "skill_proficiencies",
+          "view_type": "edit",
+          "left_view": {
+            "id": "background_edit_skill_proficiencies_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Skill proficiency choices (per lvl): ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          },
+          "pop_up_type": "bottomSheet",
+          "pop_up_button_text": {
+            "type": "stat",
+            "stat": "description"
+          },
+          "validation_message": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "isEmpty",
+                    "components": {
+                      "type": "filter",
+                      "components": {
+                        "type": "stat",
+                        "stat": "$view.background_edit_skill_proficiencies"
+                      },
+                      "filter": {
+                        "type": "isEmpty",
+                        "components": {
+                          "type": "stat",
+                          "stat": "$filterValue.options"
+                        }
+                      }
+                    }
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "You have empty levelled skill proficiencies. Please add some skills to them or remove them.",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "background_edit_armor_proficiencies",
+          "type": "resourceArray",
+          "resource_id": "levelled_armor_proficiency",
+          "stat": "armor_proficiencies",
+          "view_type": "edit",
+          "left_view": {
+            "id": "background_edit_armor_proficiencies_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Armor proficiency choices (per lvl): ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          }
+        },
+        {
+          "id": "background_edit_weapon_proficiencies",
+          "type": "resourceArray",
+          "resource_id": "levelled_weapon_proficiency",
+          "stat": "weapon_proficiencies",
+          "view_type": "edit",
+          "left_view": {
+            "id": "background_edit_weapon_proficiencies_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Weapon proficiency choices (per lvl): ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          }
+        },
+        {
+          "id": "background_edit_tool_proficiencies",
+          "type": "resourceArray",
+          "resource_id": "levelled_choice_text",
+          "stat": "tool_proficiencies",
+          "view_type": "edit",
+          "left_view": {
+            "id": "background_edit_tool_proficiencies_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Tool proficiency choices (per lvl): ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          }
+        }
+      ]
+    }
+  ]
+}

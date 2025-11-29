@@ -1,0 +1,1134 @@
+{
+  "id": "monster_edit",
+  "type": "viewPager",
+  "names": {
+    "type": "list",
+    "components": [
+      {
+        "type": "constant",
+        "value": "Basic information",
+        "value_type": "string"
+      },
+      {
+        "type": "constant",
+        "value": "Traits & Actions",
+        "value_type": "string"
+      },
+      {
+        "type": "constant",
+        "value": "Extra information",
+        "value_type": "string"
+      }
+    ]
+  },
+  "color": {
+    "type": "constant",
+    "value": "#311B66",
+    "value_type": "string"
+  },
+  "subviews": [
+    {
+      "id": "monster_edit_basics",
+      "type": "list",
+      "padding": 16,
+      "subviews": [
+        {
+          "id": "monster_edit_basics_name_photo",
+          "type": "composite",
+          "alignment": "center",
+          "subviews": [
+            {
+              "id": "monster_edit_basics_photo",
+              "type": "avatar",
+              "photo_stat": "photo",
+              "name_stat": "name",
+              "size": "medium",
+              "interactable": true
+            },
+            {
+              "id": "monster_edit_name",
+              "type": "text",
+              "edit_stat": "name",
+              "style": "text",
+              "label": {
+                "type": "constant",
+                "value": "Name",
+                "value_type": "string"
+              },
+              "max_length": 140,
+              "validation_message": {
+                "type": "when",
+                "clauses": [
+                  {
+                    "condition": {
+                      "type": "isEmpty",
+                      "components": {
+                        "type": "stat",
+                        "stat": "$view.monster_edit_name"
+                      }
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": "Please add a name to your monster",
+                      "value_type": "string"
+                    }
+                  },
+                  {
+                    "condition": {
+                      "type": "constant",
+                      "value": true,
+                      "value_type": "bool"
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": null,
+                      "value_type": "string"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "monster_edit_source",
+          "margin_top": 4,
+          "type": "composite",
+          "subviews": [
+            {
+              "id": "monster_edit_source_label",
+              "type": "text",
+              "text": {
+                "type": "constant",
+                "value": "Source: ",
+                "value_type": "string"
+              },
+              "style": "text"
+            },
+            {
+              "id": "monster_edit_source_select",
+              "type": "select",
+              "options": "source",
+              "options_display_stat": "abbreviation",
+              "stat": "source"
+            }
+          ]
+        },
+        {
+          "id": "monster_edit_basics_size_type",
+          "type": "composite",
+          "margin_top": 4,
+          "subviews": [
+            {
+              "id": "monster_edit_basics_size",
+              "type": "select",
+              "stat": "size",
+              "options": "monster_sizes"
+            },
+            {
+              "id": "monster_edit_basics_type",
+              "type": "select",
+              "stat": "type",
+              "options": "monster_types"
+            },
+            {
+              "id": "monster_edit_basics_alignment",
+              "type": "select",
+              "stat": "alignment",
+              "options": "monster_alignments"
+            }
+          ]
+        },
+        {
+          "id": "monster_edit_basics_tag_alignment",
+          "type": "composite",
+          "margin_top": 4,
+          "subviews": [
+            {
+              "id": "monster_edit_basics_tag",
+              "type": "text",
+              "edit_stat": "tag",
+              "style": "text",
+              "max_length": 14,
+              "hint": {
+                "type": "constant",
+                "value": "(tag)",
+                "value_type": "string"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monster_edit_basics_cr_xp",
+          "type": "composite",
+          "margin_top": 4,
+          "subviews": [
+            {
+              "id": "monster_edit_basics_cr",
+              "type": "select",
+              "stat": "cr",
+              "options": "monster_cr_types",
+              "margin_right": 4
+            },
+            {
+              "id": "monster_edit_basics_xp_label",
+              "type": "text",
+              "text": {
+                "type": "constant",
+                "value": "XP: ",
+                "value_type": "string"
+              },
+              "style": "text",
+              "bold": true
+            },
+            {
+              "id": "monster_edit_basics_xp_label",
+              "type": "text",
+              "edit_stat": "xp",
+              "style": "text",
+              "max_length": 8
+            }
+          ]
+        },
+        {
+          "id": "monster_edit_basics_habitat",
+          "type": "composite",
+          "margin_top": 4,
+          "subviews": [
+            {
+              "id": "monster_edit_basics_habitat_label",
+              "type": "text",
+              "text": {
+                "type": "constant",
+                "value": "Habitat: ",
+                "value_type": "string"
+              },
+              "style": "text",
+              "bold": true
+            },
+            {
+              "id": "monster_edit_basics_habitat_select",
+              "type": "select",
+              "stat": "habitat",
+              "multi_select": true,
+              "options": "monster_habitats"
+            }
+          ]
+        },
+        {
+          "id": "monster_edit_basics_divider_1",
+          "type": "divider"
+        },
+        {
+          "id": "monster_edit_basics_armor_class",
+          "type": "composite",
+          "subviews": [
+            {
+              "id": "monster_edit_basics_armor_class_label",
+              "type": "text",
+              "text": {
+                "type": "constant",
+                "value": "Armor class: ",
+                "value_type": "string"
+              },
+              "style": "text",
+              "bold": true
+            },
+            {
+              "id": "monster_edit_basics_armor_class_text",
+              "type": "text",
+              "edit_stat": "armor_class",
+              "style": "text",
+              "max_length": 2
+            }
+          ]
+        },
+        {
+          "id": "monster_edit_basics_hit_points",
+          "type": "composite",
+          "margin_top": 4,
+          "subviews": [
+            {
+              "id": "monster_edit_basics_hit_points_label",
+              "type": "text",
+              "text": {
+                "type": "constant",
+                "value": "Hit points: ",
+                "value_type": "string"
+              },
+              "style": "text",
+              "bold": true
+            },
+            {
+              "id": "monster_edit_basics_hit_points_res",
+              "type": "resource",
+              "view_type": "edit",
+              "resource_id": "dice_roll",
+              "stat": "hit_points",
+              "create_if_empty": true
+            }
+          ]
+        },
+        {
+          "id": "monster_edit_basics_initiative",
+          "type": "composite",
+          "subviews": [
+            {
+              "id": "monster_edit_basics_initiative_label",
+              "type": "text",
+              "text": {
+                "type": "constant",
+                "value": "Initiative: ",
+                "value_type": "string"
+              },
+              "style": "text",
+              "bold": true
+            },
+            {
+              "id": "monster_edit_basics_initiative_text",
+              "type": "text",
+              "edit_stat": "initiative",
+              "style": "text",
+              "signed": true,
+              "max_length": 3
+            }
+          ]
+        },
+        {
+          "id": "monster_edit_basics_speed_composite",
+          "type": "composite",
+          "alignment": "center",
+          "subviews": [
+            {
+              "id": "monster_edit_basics_speed",
+              "type": "text",
+              "edit_stat": "speed",
+              "style": "text",
+              "max_length": 2,
+              "margin_right": 4,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "0",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "Normal",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "monster_edit_basics_burrow_speed",
+              "type": "text",
+              "edit_stat": "burrow_speed",
+              "style": "text",
+              "max_length": 2,
+              "margin_left": 4,
+              "margin_right": 4,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "0",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "Burrow",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "monster_edit_basics_climb_speed",
+              "type": "text",
+              "edit_stat": "climb_speed",
+              "style": "text",
+              "max_length": 2,
+              "margin_left": 4,
+              "margin_right": 4,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "0",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "Climb",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "monster_edit_basics_fly_speed",
+              "type": "text",
+              "edit_stat": "fly_speed",
+              "style": "text",
+              "max_length": 2,
+              "margin_left": 4,
+              "margin_right": 4,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "0",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "Fly",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "monster_edit_basics_swim_speed",
+              "type": "text",
+              "edit_stat": "swim_speed",
+              "style": "text",
+              "max_length": 2,
+              "margin_left": 4,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "0",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "Swim",
+                "value_type": "string"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monster_edit_basics_divider_1",
+          "type": "divider"
+        },
+        {
+          "id": "monster_edit_basics_ability_scores_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Ability scores:",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "edit_character_basics_ability_scores_composite",
+          "type": "composite",
+          "alignment": "center",
+          "subviews": [
+            {
+              "id": "edit_character_basics_ability_scores_str",
+              "type": "text",
+              "edit_stat": "strength_score",
+              "style": "text",
+              "max_length": 2,
+              "margin_right": 4,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "8",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "STR",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "edit_character_basics_ability_scores_dex",
+              "type": "text",
+              "edit_stat": "dexterity_score",
+              "style": "text",
+              "max_length": 2,
+              "margin_right": 4,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "8",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "DEX",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "edit_character_basics_ability_scores_con",
+              "type": "text",
+              "edit_stat": "constitution_score",
+              "style": "text",
+              "max_length": 2,
+              "margin_right": 4,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "8",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "CON",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "edit_character_basics_ability_scores_int",
+              "type": "text",
+              "edit_stat": "intelligence_score",
+              "style": "text",
+              "max_length": 2,
+              "margin_right": 4,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "8",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "INT",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "edit_character_basics_ability_scores_wis",
+              "type": "text",
+              "edit_stat": "wisdom_score",
+              "style": "text",
+              "max_length": 2,
+              "margin_right": 4,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "8",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "WIS",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "edit_character_basics_ability_scores_cha",
+              "type": "text",
+              "edit_stat": "charisma_score",
+              "style": "text",
+              "max_length": 2,
+              "margin_right": 4,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "8",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "CHA",
+                "value_type": "string"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monster_edit_basics_saving_throws_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Saving throw modifiers:",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true,
+          "margin_top": 4
+        },
+        {
+          "id": "edit_character_basics_saving_throws_composite",
+          "type": "composite",
+          "alignment": "center",
+          "subviews": [
+            {
+              "id": "edit_character_basics_saving_throws_str",
+              "type": "text",
+              "edit_stat": "strength_saving_throw_modifier",
+              "style": "text",
+              "max_length": 3,
+              "margin_right": 4,
+              "signed": true,
+              "hint": {
+                "type": "constant",
+                "value": "8",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "STR",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "edit_character_basics_saving_throws_dex",
+              "type": "text",
+              "edit_stat": "dexterity_saving_throw_modifier",
+              "style": "text",
+              "max_length": 3,
+              "margin_right": 4,
+              "signed": true,
+              "hint": {
+                "type": "constant",
+                "value": "8",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "DEX",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "edit_character_basics_saving_throws_con",
+              "type": "text",
+              "edit_stat": "constitution_saving_throw_modifier",
+              "style": "text",
+              "max_length": 3,
+              "margin_right": 4,
+              "signed": true,
+              "hint": {
+                "type": "constant",
+                "value": "8",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "CON",
+                "value_type": "string"
+              }
+            }
+          ]
+        },
+        {
+          "id": "edit_character_basics_saving_throws_composite_2",
+          "type": "composite",
+          "alignment": "center",
+          "subviews": [
+            {
+              "id": "edit_character_basics_saving_throws_int",
+              "type": "text",
+              "edit_stat": "intelligence_saving_throw_modifier",
+              "style": "text",
+              "max_length": 3,
+              "margin_right": 4,
+              "signed": true,
+              "hint": {
+                "type": "constant",
+                "value": "8",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "INT",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "edit_character_basics_saving_throws_wis",
+              "type": "text",
+              "edit_stat": "wisdom_saving_throw_modifier",
+              "style": "text",
+              "max_length": 3,
+              "margin_right": 4,
+              "signed": true,
+              "hint": {
+                "type": "constant",
+                "value": "8",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "WIS",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "edit_character_basics_saving_throws_cha",
+              "type": "text",
+              "edit_stat": "charisma_saving_throw_modifier",
+              "style": "text",
+              "max_length": 2,
+              "margin_right": 4,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "8",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "CHA",
+                "value_type": "string"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monster_edit_traits_and_actions",
+      "type": "list",
+      "padding": 16,
+      "subviews": [
+        {
+          "id": "monster_edit_traits",
+          "type": "resourceArray",
+          "resource_id": "monster_trait",
+          "stat": "traits",
+          "view_type": "edit",
+          "left_view": {
+            "id": "monster_edit_traits_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Traits: ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          },
+          "pop_up_type": "bottomSheet",
+          "pop_up_button_text": {
+            "type": "stat",
+            "stat": "trait_name"
+          },
+          "validation_message": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "isEmpty",
+                    "components": {
+                      "type": "filter",
+                      "components": {
+                        "type": "stat",
+                        "stat": "$view.monster_edit_traits"
+                      },
+                      "filter": {
+                        "type": "isEmpty",
+                        "components": {
+                          "type": "stat",
+                          "stat": "$filterValue.trait_name"
+                        }
+                      }
+                    }
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "You have empty traits. Please add some content to them or remove them.",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "monster_edit_actions",
+          "type": "resourceArray",
+          "resource_id": "monster_action",
+          "stat": "actions",
+          "view_type": "edit",
+          "left_view": {
+            "id": "monster_edit_actions_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Actions: ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          },
+          "pop_up_type": "bottomSheet",
+          "pop_up_button_text": {
+            "type": "stat",
+            "stat": "action_name"
+          },
+          "validation_message": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "isEmpty",
+                    "components": {
+                      "type": "filter",
+                      "components": {
+                        "type": "stat",
+                        "stat": "$view.monster_edit_actions"
+                      },
+                      "filter": {
+                        "type": "isEmpty",
+                        "components": {
+                          "type": "stat",
+                          "stat": "$filterValue.action_name"
+                        }
+                      }
+                    }
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "You have empty actions. Please add some content to them or remove them.",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "monster_edit_bonus_actions",
+          "type": "resourceArray",
+          "resource_id": "monster_action",
+          "stat": "bonus_actions",
+          "view_type": "edit",
+          "left_view": {
+            "id": "monster_edit_actions_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Bonus actions: ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          },
+          "pop_up_type": "bottomSheet",
+          "pop_up_button_text": {
+            "type": "stat",
+            "stat": "action_name"
+          },
+          "validation_message": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "isEmpty",
+                    "components": {
+                      "type": "filter",
+                      "components": {
+                        "type": "stat",
+                        "stat": "$view.monster_edit_bonus_actions"
+                      },
+                      "filter": {
+                        "type": "isEmpty",
+                        "components": {
+                          "type": "stat",
+                          "stat": "$filterValue.action_name"
+                        }
+                      }
+                    }
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "You have empty bonus actions. Please add some content to them or remove them.",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "monster_edit_reactions",
+          "type": "resourceArray",
+          "resource_id": "monster_action",
+          "stat": "reactions",
+          "view_type": "edit",
+          "left_view": {
+            "id": "monster_edit_actions_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Rections: ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          },
+          "pop_up_type": "bottomSheet",
+          "pop_up_button_text": {
+            "type": "stat",
+            "stat": "action_name"
+          },
+          "validation_message": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "isEmpty",
+                    "components": {
+                      "type": "filter",
+                      "components": {
+                        "type": "stat",
+                        "stat": "$view.monster_edit_reactions"
+                      },
+                      "filter": {
+                        "type": "isEmpty",
+                        "components": {
+                          "type": "stat",
+                          "stat": "$filterValue.action_name"
+                        }
+                      }
+                    }
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "You have empty reactions. Please add some content to them or remove them.",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "monster_edit_legendary_actions",
+          "type": "resourceArray",
+          "resource_id": "monster_action",
+          "stat": "legendary_actions",
+          "view_type": "edit",
+          "left_view": {
+            "id": "monster_edit_actions_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Legendary actions: ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          },
+          "pop_up_type": "bottomSheet",
+          "pop_up_button_text": {
+            "type": "stat",
+            "stat": "action_name"
+          },
+          "validation_message": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "isEmpty",
+                    "components": {
+                      "type": "filter",
+                      "components": {
+                        "type": "stat",
+                        "stat": "$view.monster_edit_legendary_actions"
+                      },
+                      "filter": {
+                        "type": "isEmpty",
+                        "components": {
+                          "type": "stat",
+                          "stat": "$filterValue.action_name"
+                        }
+                      }
+                    }
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "You have empty legendary actions. Please add some content to them or remove them.",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "monster_edit_spells",
+          "type": "resourceSection",
+          "resource_stat": "spells",
+          "resource_id": "spell",
+          "header_view": {
+            "id": "monster_edit_spells_comp",
+            "type": "composite",
+            "subviews": [
+              {
+                "id": "monster_edit_spells_label",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value": "Spells: ",
+                  "value_type": "string"
+                },
+                "style": "text",
+                "bold": true
+              },
+              {
+                "id": "monster_edit_spells_add_spell",
+                "type": "selectResources",
+                "stat": "spells",
+                "resource_id": "spell",
+                "view_type": "icon",
+                "should_append": true,
+                "should_save_on_selection": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "monster_edit_basics",
+      "type": "list",
+      "padding": 16,
+      "subviews": [
+        {
+          "id": "monster_edit_skills",
+          "type": "text",
+          "edit_stat": "skills",
+          "style": "text",
+          "label": {
+            "type": "constant",
+            "value": "Skills",
+            "value_type": "string"
+          },
+          "max_length": 140
+        },
+        {
+          "id": "monster_edit_vulnerabilities",
+          "type": "text",
+          "edit_stat": "vulnerabilities",
+          "style": "text",
+          "label": {
+            "type": "constant",
+            "value": "Vulnerabilities",
+            "value_type": "string"
+          },
+          "max_length": 140
+        },
+        {
+          "id": "monster_edit_immunities",
+          "type": "text",
+          "edit_stat": "immunities",
+          "style": "text",
+          "label": {
+            "type": "constant",
+            "value": "Immunities",
+            "value_type": "string"
+          },
+          "max_length": 140
+        },
+        {
+          "id": "monster_edit_resistances",
+          "type": "text",
+          "edit_stat": "resistances",
+          "style": "text",
+          "label": {
+            "type": "constant",
+            "value": "Resistances",
+            "value_type": "string"
+          },
+          "max_length": 140
+        },
+        {
+          "id": "monster_edit_senses",
+          "type": "text",
+          "edit_stat": "senses",
+          "style": "text",
+          "label": {
+            "type": "constant",
+            "value": "Senses",
+            "value_type": "string"
+          },
+          "max_length": 140
+        },
+        {
+          "id": "monster_edit_languages",
+          "type": "text",
+          "edit_stat": "languages",
+          "style": "text",
+          "label": {
+            "type": "constant",
+            "value": "Languages",
+            "value_type": "string"
+          },
+          "max_length": 140
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "id": "armor_equip",
+  "event_names": "toggle_equip",
+  "effects": {
+    "type": "when",
+    "clauses": [
+      {
+        "condition": {
+          "type": "stat",
+          "stat": "is_equipped"
+        },
+        "effect": {
+          "type": "setStat",
+          "meta_stat": {
+            "type": "stat",
+            "stat": "equip_stat_name"
+          },
+          "new_value": {
+            "type": "constant",
+            "value": "",
+            "value_type": "string"
+          },
+          "aggregation_type": "set"
+        }
+      },
+      {
+        "condition": {
+          "type": "constant",
+          "value": true,
+          "value_type": "bool"
+        },
+        "effect": {
+          "type": "setStat",
+          "meta_stat": {
+            "type": "stat",
+            "stat": "equip_stat_name"
+          },
+          "new_value": {
+            "type": "stat",
+            "stat": "id"
+          },
+          "aggregation_type": "set"
+        }
+      }
+    ]
+  }
+}

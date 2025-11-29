@@ -1,0 +1,57 @@
+{
+  "id": "operand_edit",
+  "type": "composite",
+  "subviews": [
+    {
+      "id": "operand_edit_operator",
+      "type": "select",
+      "stat": "operator",
+      "options": "plus_minus"
+    },
+    {
+      "id": "operand_edit_stat",
+      "type": "select",
+      "stat": "stat",
+      "options": "effect_character_stats_plus_mods_and_constant"
+    },
+    {
+      "id": "operand_edit_linker",
+      "type": "text",
+      "text": {
+        "type": "constant",
+        "value": " x ",
+        "value_type": "string"
+      },
+      "style": "text",
+      "is_visible": {
+        "type": "notEquals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$view.operand_edit_stat"
+            },
+            {
+              "type": "constant",
+              "value": "constant",
+              "value_type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "operand_edit_constant",
+      "type": "text",
+      "edit_stat": "constant",
+      "style": "text",
+      "max_length": 3,
+      "hint": {
+        "type": "constant",
+        "value": "1",
+        "value_type": "string"
+      }
+    }
+  ]
+}

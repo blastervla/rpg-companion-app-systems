@@ -1,0 +1,144 @@
+{
+  "id": "levelled_skill_proficiency_display",
+  "type": "list",
+  "subviews": [
+    {
+      "id": "levelled_skill_proficiency_display_out_of_character",
+      "type": "text",
+      "margin_left": 4,
+      "text": {
+        "type": "stat",
+        "stat": "description"
+      },
+      "style": "text",
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "defaultIfNull",
+          "components": {
+            "type": "stat",
+            "stat": "$character?.should_show_controls_for_choices"
+          },
+          "default_components": {
+            "type": "constant",
+            "value": false,
+            "value_type": "bool"
+          }
+        }
+      }
+    },
+    {
+      "id": "levelled_skill_proficiency_display_in_character",
+      "type": "select",
+      "stat": "selected_option",
+      "options": "skill_types",
+      "allowed_options": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "defaultIfNull",
+              "components": {
+                "type": "stat",
+                "stat": "$character?.currently_levelling_up?"
+              },
+              "default_components": {
+                "type": "constant",
+                "value": false,
+                "value_type": "bool"
+              }
+            },
+            "components": {
+              "type": "filter",
+              "components": {
+                "type": "stat",
+                "stat": "options"
+              },
+              "filter": {
+                "type": "equals",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "metaStat",
+                      "potential_stat_values": [
+                        "$character.acrobatics_proficiency",
+                        "$character.animal_handling_proficiency",
+                        "$character.arcana_proficiency",
+                        "$character.athletics_proficiency",
+                        "$character.deception_proficiency",
+                        "$character.history_proficiency",
+                        "$character.insight_proficiency",
+                        "$character.intimidation_proficiency",
+                        "$character.investigation_proficiency",
+                        "$character.medicine_proficiency",
+                        "$character.nature_proficiency",
+                        "$character.perception_proficiency",
+                        "$character.performance_proficiency",
+                        "$character.persuasion_proficiency",
+                        "$character.religion_proficiency",
+                        "$character.sleight_of_hand_proficiency",
+                        "$character.stealth_proficiency",
+                        "$character.survival_proficiency"
+                      ],
+                      "meta_stat": {
+                        "type": "concat",
+                        "components": {
+                          "type": "list",
+                          "components": [
+                            {
+                              "type": "constant",
+                              "value": "$character.",
+                              "value_type": "string"
+                            },
+                            {
+                              "type": "stat",
+                              "stat": "$filterValue"
+                            },
+                            {
+                              "type": "constant",
+                              "value": "_proficiency",
+                              "value_type": "string"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "type": "constant",
+                      "value": "none",
+                      "value_type": "string"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "stat",
+              "stat": "options"
+            }
+          }
+        ]
+      },
+      "is_visible": {
+        "type": "defaultIfNull",
+        "components": {
+          "type": "stat",
+          "stat": "$character?.should_show_controls_for_choices"
+        },
+        "default_components": {
+          "type": "constant",
+          "value": false,
+          "value_type": "bool"
+        }
+      }
+    }
+  ]
+}

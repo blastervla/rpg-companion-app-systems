@@ -1,0 +1,82 @@
+{
+  "id": "weapons",
+  "view": {
+    "id": "weapons_section",
+    "type": "section",
+    "show_divider": true,
+    "content_item_min_width": 1,
+    "collapsible": true,
+    "header": [
+      {
+        "id": "weapons_section_icon",
+        "type": "icon",
+        "name": "ic_weapon",
+        "size": "medium",
+        "margin_left": 16
+      },
+      {
+        "id": "weapons_section_title",
+        "type": "text",
+        "margin_right": 16,
+        "margin_left": 16,
+        "text": {
+          "type": "constant",
+          "value": "Weapons",
+          "value_type": "string"
+        },
+        "style": "title"
+      },
+      {
+        "id": "weapons_section_header_spacer",
+        "type": "spacer"
+      },
+      {
+        "id": "weapons_section_add_weapon",
+        "type": "selectResources",
+        "stat": "weapons",
+        "resource_id": "weapon",
+        "view_type": "icon",
+        "should_append": true,
+        "should_save_on_selection": true
+      }
+    ],
+    "content": [
+      {
+        "id": "weapons_list",
+        "type": "resourceSection",
+        "resource_stat": "all_weapons",
+        "resource_set_stat": "weapons",
+        "resource_id": "weapon",
+        "header_view": {
+          "id": "weapons_list_attacks_per_action_composite",
+          "type": "composite",
+          "margin_left": 16,
+          "margin_bottom": 16,
+          "subviews": [
+            {
+              "id": "weapons_list_attacks_per_action_label",
+              "type": "text",
+              "text": {
+                "type": "constant",
+                "value": "Attacks per action: ",
+                "value_type": "string"
+              },
+              "style": "text",
+              "bold": true
+            },
+            {
+              "id": "weapons_list_attacks_per_action",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "attacks_per_action"
+              },
+              "style": "text",
+              "bold": true
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

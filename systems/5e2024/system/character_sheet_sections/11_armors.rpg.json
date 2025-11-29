@@ -1,0 +1,52 @@
+{
+  "id": "armors",
+  "view": {
+    "id": "armors_section",
+    "type": "section",
+    "show_divider": true,
+    "content_item_min_width": 1,
+    "collapsible": true,
+    "header": [
+      {
+        "id": "armors_section_icon",
+        "type": "icon",
+        "name": "ic_armor",
+        "size": "medium",
+        "margin_left": 16
+      },
+      {
+        "id": "armors_section_title",
+        "type": "text",
+        "margin_right": 16,
+        "margin_left": 16,
+        "text": {
+          "type": "constant",
+          "value": "Armor",
+          "value_type": "string"
+        },
+        "style": "title"
+      },
+      {
+        "id": "armors_section_header_spacer",
+        "type": "spacer"
+      },
+      {
+        "id": "armors_section_add_armor",
+        "type": "selectResources",
+        "stat": "armors",
+        "resource_id": "armor",
+        "view_type": "icon",
+        "should_append": true,
+        "should_save_on_selection": true
+      }
+    ],
+    "content": [
+      {
+        "id": "armors_list",
+        "type": "resourceSection",
+        "resource_stat": "armors",
+        "resource_id": "armor"
+      }
+    ]
+  }
+}

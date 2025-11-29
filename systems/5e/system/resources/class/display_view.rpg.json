@@ -1,0 +1,597 @@
+{
+  "id": "class_display",
+  "type": "list",
+  "padding": 16,
+  "alignment": "start",
+  "subviews": [
+    {
+      "id": "class_display_source",
+      "type": "text",
+      "style": "caption",
+      "margin_left": 16,
+      "resource_id": "source",
+      "resource_instance_ids_stat": "source",
+      "resource_display_stat": "abbreviation"
+    },
+    {
+      "id": "class_display_hit_die_composite",
+      "type": "composite",
+      "margin_top": 8,
+      "subviews": [
+        {
+          "id": "class_display_hit_die_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "HP: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "class_display_hit_die_label",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_hp"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "class_display_armor_class_composite",
+      "type": "composite",
+      "margin_top": 8,
+      "subviews": [
+        {
+          "id": "class_display_armor_class_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Armor class: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "class_display_armor_class_label",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_armor_class"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "class_display_saving_throws",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "class_display_saving_throws_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Saving throws: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "class_display_saving_throws_text",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_saving_throws"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "class_display_features_collapsible",
+      "type": "collapsible",
+      "title": {
+        "type": "constant",
+        "value": "Features",
+        "value_type": "string"
+      },
+      "start_expanded": false,
+      "subviews": [
+        {
+          "id": "class_display_features",
+          "type": "resourceSection",
+          "resource_stat": "features",
+          "resource_id": "feat",
+          "contentItemMinWidth": 1,
+          "read_only": true
+        }
+      ]
+    },
+    {
+      "id": "class_display_spellcasting_ability_composite",
+      "type": "composite",
+      "margin_top": 8,
+      "subviews": [
+        {
+          "id": "class_display_spellcasting_ability_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Spellcasting ability: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "class_display_spellcasting_ability_label",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_spellcasting_ability"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "class_display_caster_level_composite",
+      "type": "composite",
+      "margin_top": 8,
+      "subviews": [
+        {
+          "id": "class_display_caster_level_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Caster level: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "class_display_caster_level_label",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_caster_level"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "class_display_spells_collapsible",
+      "type": "collapsible",
+      "title": {
+        "type": "constant",
+        "value": "Spells (per lvl)",
+        "value_type": "string"
+      },
+      "start_expanded": false,
+      "subviews": [
+        {
+          "id": "class_display_spells",
+          "type": "resourceSection",
+          "resource_stat": "spells",
+          "resource_id": "levelled_spell",
+          "contentItemMinWidth": 1,
+          "read_only": true
+        }
+      ],
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "spells"
+          }
+        }
+      }
+    },
+    {
+      "id": "class_display_weapon",
+      "type": "composite",
+      "margin_top": 8,
+      "subviews": [
+        {
+          "id": "class_display_weapon_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Weapon: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "class_display_weapon_text",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_weapon"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "class_display_attacks_per_action_per_level",
+      "type": "resourceArray",
+      "resource_id": "levelled_amount",
+      "stat": "attacks_per_action_per_level",
+      "view_type": "display",
+      "left_view": {
+        "id": "class_display_armor_class_label",
+        "type": "text",
+        "text": {
+          "type": "constant",
+          "value": "Attacks per action (per level): ",
+          "value_type": "string"
+        },
+        "style": "text",
+        "bold": true
+      },
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "attacks_per_action_per_level"
+          }
+        }
+      }
+    },
+    {
+      "id": "class_display_equipment_choices_collapsible",
+      "type": "collapsible",
+      "title": {
+        "type": "constant",
+        "value": "Starting equipment choices",
+        "value_type": "string"
+      },
+      "start_expanded": false,
+      "subviews": [
+        {
+          "id": "class_display_selectable_armors",
+          "type": "resourceArray",
+          "resource_id": "selectable_armors",
+          "stat": "selectable_armors",
+          "view_type": "display"
+        },
+        {
+          "id": "class_display_selectable_weapons",
+          "type": "resourceArray",
+          "resource_id": "selectable_weapons",
+          "stat": "selectable_weapons",
+          "view_type": "display"
+        },
+        {
+          "id": "class_display_selectable_items",
+          "type": "resourceArray",
+          "resource_id": "selectable_items",
+          "stat": "selectable_equipments",
+          "view_type": "display"
+        }
+      ],
+      "is_visible": {
+        "type": "and",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "not",
+              "components": {
+                "type": "isEmpty",
+                "components": {
+                  "type": "stat",
+                  "stat": "selectable_armors"
+                }
+              }
+            },
+            {
+              "type": "not",
+              "components": {
+                "type": "isEmpty",
+                "components": {
+                  "type": "stat",
+                  "stat": "selectable_weapons"
+                }
+              }
+            },
+            {
+              "type": "not",
+              "components": {
+                "type": "isEmpty",
+                "components": {
+                  "type": "stat",
+                  "stat": "selectable_equipments"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "class_display_languages_collapsible",
+      "type": "collapsible",
+      "title": {
+        "type": "constant",
+        "value": "Languages (per lvl)",
+        "value_type": "string"
+      },
+      "start_expanded": false,
+      "subviews": [
+        {
+          "id": "class_display_languages",
+          "type": "resourceArray",
+          "resource_id": "levelled_choice_text",
+          "stat": "language_proficiencies",
+          "view_type": "display"
+        }
+      ],
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "language_proficiencies"
+          }
+        }
+      }
+    },
+    {
+      "id": "class_display_skills_collapsible",
+      "type": "collapsible",
+      "title": {
+        "type": "constant",
+        "value": "Skill proficiencies (per lvl)",
+        "value_type": "string"
+      },
+      "start_expanded": false,
+      "subviews": [
+        {
+          "id": "class_display_skills",
+          "type": "resourceArray",
+          "resource_id": "levelled_skill_proficiency",
+          "stat": "skill_proficiencies",
+          "view_type": "display",
+          "left_view": {
+            "id": "class_display_skills_multiclassable",
+            "type": "checkbox",
+            "stat": "account_for_skill_proficiencies_on_multiclass",
+            "label": {
+              "type": "constant",
+              "value": "Available on multiclass",
+              "value_type": "string"
+            },
+            "enabled": {
+              "type": "constant",
+              "value": false,
+              "value_type": "bool"
+            },
+            "label_alignment": "right",
+            "style": "checkbox"
+          }
+        }
+      ],
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "skill_proficiencies"
+          }
+        }
+      }
+    },
+    {
+      "id": "class_display_armor_proficiencies_collapsible",
+      "type": "collapsible",
+      "title": {
+        "type": "constant",
+        "value": "Armor proficiencies (per lvl)",
+        "value_type": "string"
+      },
+      "start_expanded": false,
+      "subviews": [
+        {
+          "id": "class_display_armor_proficiencies",
+          "type": "resourceArray",
+          "resource_id": "levelled_armor_proficiency",
+          "stat": "armor_proficiencies",
+          "view_type": "display",
+          "left_view": {
+            "id": "class_display_armor_proficiencies_multiclassable",
+            "type": "checkbox",
+            "stat": "account_for_armor_proficiencies_on_multiclass",
+            "label": {
+              "type": "constant",
+              "value": "Available on multiclass",
+              "value_type": "string"
+            },
+            "enabled": {
+              "type": "constant",
+              "value": false,
+              "value_type": "bool"
+            },
+            "label_alignment": "right",
+            "style": "checkbox"
+          }
+        }
+      ],
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "armor_proficiencies"
+          }
+        }
+      }
+    },
+    {
+      "id": "class_display_weapon_proficiencies_collapsible",
+      "type": "collapsible",
+      "title": {
+        "type": "constant",
+        "value": "Weapon proficiencies (per lvl)",
+        "value_type": "string"
+      },
+      "start_expanded": false,
+      "subviews": [
+        {
+          "id": "class_display_weapon_proficiencies",
+          "type": "resourceArray",
+          "resource_id": "levelled_weapon_proficiency",
+          "stat": "weapon_proficiencies",
+          "view_type": "display",
+          "left_view": {
+            "id": "class_display_weapon_proficiencies_multiclassable",
+            "type": "checkbox",
+            "stat": "account_for_weapon_proficiencies_on_multiclass",
+            "label": {
+              "type": "constant",
+              "value": "Available on multiclass",
+              "value_type": "string"
+            },
+            "enabled": {
+              "type": "constant",
+              "value": false,
+              "value_type": "bool"
+            },
+            "label_alignment": "right",
+            "style": "checkbox"
+          }
+        }
+      ],
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "weapon_proficiencies"
+          }
+        }
+      }
+    },
+    {
+      "id": "class_display_tool_proficiencies_collapsible",
+      "type": "collapsible",
+      "title": {
+        "type": "constant",
+        "value": "Tool proficiencies (per lvl)",
+        "value_type": "string"
+      },
+      "start_expanded": false,
+      "subviews": [
+        {
+          "id": "class_display_tool_proficiencies",
+          "type": "resourceArray",
+          "resource_id": "levelled_choice_text",
+          "stat": "tool_proficiencies",
+          "view_type": "display",
+          "left_view": {
+            "id": "class_display_tool_proficiencies_multiclassable",
+            "type": "checkbox",
+            "stat": "account_for_tool_proficiencies_on_multiclass",
+            "label": {
+              "type": "constant",
+              "value": "Available on multiclass",
+              "value_type": "string"
+            },
+            "enabled": {
+              "type": "constant",
+              "value": false,
+              "value_type": "bool"
+            },
+            "label_alignment": "right",
+            "style": "checkbox"
+          }
+        }
+      ],
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "tool_proficiencies"
+          }
+        }
+      }
+    },
+    {
+      "id": "class_display_archetypes_collapsible",
+      "type": "collapsible",
+      "title": {
+        "type": "constant",
+        "value": "Archetypes",
+        "value_type": "string"
+      },
+      "start_expanded": false,
+      "subviews": [
+        {
+          "id": "class_display_archetypes",
+          "type": "resourceSection",
+          "resource_stat": "archetypes",
+          "resource_id": "class",
+          "contentItemMinWidth": 1,
+          "read_only": true,
+          "header_view": {
+            "id": "class_display_archetype_selection_level_composite",
+            "type": "composite",
+            "margin_top": 8,
+            "subviews": [
+              {
+                "id": "class_display_archetype_selection_level_label",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value": "Selection level: ",
+                  "value_type": "string"
+                },
+                "style": "text",
+                "bold": true
+              },
+              {
+                "id": "class_display_archetype_selection_level_label",
+                "type": "text",
+                "text": {
+                  "type": "stat",
+                  "stat": "archetype_selection_level"
+                },
+                "style": "text"
+              }
+            ]
+          }
+        }
+      ],
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "archetypes"
+          }
+        }
+      }
+    }
+  ]
+}

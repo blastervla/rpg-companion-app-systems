@@ -1,0 +1,226 @@
+{
+  "id": "class_details_edit",
+  "type": "composite",
+  "alignment": "end",
+  "margin_bottom": 4,
+  "subviews": [
+    {
+      "id": "edit_character_basics_see_class_button",
+      "type": "popUpButton",
+      "text": {
+        "type": "constant",
+        "value": "SEE DETAILS",
+        "value_type": "string"
+      },
+      "pop_up_view": {
+        "id": "edit_character_basics_see_class_bottom_sheet",
+        "type": "resource",
+        "view_type": "display",
+        "resource_id": "class",
+        "stat": "$view.class_details_edit_class_select"
+      },
+      "pop_up_title": {
+        "type": "defaultIfNull",
+        "components": {
+          "type": "stat",
+          "stat": "$view?.class_details_edit_class_select?.name"
+        },
+        "default_components": {
+          "type": "constant",
+          "value": "Class",
+          "value_type": "string"
+        }
+      },
+      "display_cancel_button": true,
+      "cancel_text": {
+        "type": "constant",
+        "value": "OK",
+        "value_type": "string"
+      },
+      "is_visible": {
+        "type": "notNull",
+        "components": {
+          "type": "stat",
+          "stat": "$view?.class_details_edit_class_select?"
+        }
+      }
+    },
+    {
+      "id": "class_details_edit_class_select",
+      "type": "selectResources",
+      "stat": "class",
+      "resource_id": "class",
+      "validation_message": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "isNull",
+              "components": {
+                "type": "stat",
+                "stat": "$view.class_details_edit_class_select"
+              }
+            },
+            "components": {
+              "type": "constant",
+              "value": "You have an unselected class. Select a class or remove it.",
+              "value_type": "string"
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "class_details_edit_archetype_select",
+      "type": "select",
+      "stat": "archetype_id",
+      "margin_left": 4,
+      "resource_options": {
+        "type": "defaultIfNull",
+        "components": {
+          "type": "stat",
+          "stat": "$view.class_details_edit_class_select?.archetypes"
+        },
+        "default_components": {
+          "type": "list",
+          "components": []
+        }
+      },
+      "options_display_stat": "name",
+      "is_visible": {
+        "type": "and",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "not",
+              "components": {
+                "type": "isEmpty",
+                "components": {
+                  "type": "defaultIfNull",
+                  "components": {
+                    "type": "stat",
+                    "stat": "$view.class_details_edit_class_select?.archetypes"
+                  },
+                  "default_components": {
+                    "type": "list",
+                    "components": []
+                  }
+                }
+              }
+            },
+            {
+              "type": "greaterThanEquals",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "defaultIfNull",
+                    "components": {
+                      "type": "stat",
+                      "stat": "$view.class_details_edit_class_level?"
+                    },
+                    "default_components": {
+                      "type": "constant",
+                      "value": 1,
+                      "value_type": "integer"
+                    }
+                  },
+                  {
+                    "type": "defaultIfNull",
+                    "components": {
+                      "type": "stat",
+                      "stat": "$view.class_details_edit_class_select?.archetype_selection_level"
+                    },
+                    "default_components": {
+                      "type": "constant",
+                      "value": 0,
+                      "value_type": "integer"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "class_details_edit_class_level",
+      "type": "text",
+      "edit_stat": "class_level",
+      "style": "text",
+      "margin_left": 4,
+      "max_length": 3,
+      "hint": {
+        "type": "constant",
+        "value": "Lvl",
+        "value_type": "string"
+      },
+      "validation_message": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "stat",
+              "stat": "should_show_level_up_disclaimer"
+            },
+            "components": {
+              "type": "constant",
+              "value": "To level up, please use the EXP / LEVEL UP button at the top-center of the character sheet",
+              "value_type": "string"
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            }
+          }
+        ]
+      },
+      "is_visible": {
+        "type": "defined",
+        "stat": "$parent.$is_new"
+      }
+    },
+    {
+      "id": "class_details_edit_class_level_too_low_error_label",
+      "type": "text",
+      "text": {
+        "type": "constant",
+        "value": "To level up, please use the EXP / LEVEL UP button at the top-center of the character sheet.",
+        "value_type": "string"
+      },
+      "style": "text",
+      "bold": true,
+      "color": {
+        "type": "constant",
+        "value": "#F44336",
+        "value_type": "string"
+      },
+      "is_visible": {
+        "type": "stat",
+        "stat": "should_show_level_up_disclaimer"
+      }
+    }
+  ]
+}

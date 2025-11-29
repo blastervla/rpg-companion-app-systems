@@ -1,0 +1,47 @@
+[
+  {
+    "id": "value",
+    "name": "Value",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "unit",
+    "name": "Unit",
+    "type": "base",
+    "value_type": "string",
+    "default_value": "copper"
+  },
+  {
+    "id": "description",
+    "name": "Display description",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "stat",
+            "stat": "value"
+          },
+          {
+            "type": "constant",
+            "value": " ",
+            "value_type": "string"
+          },
+          {
+            "type": "enumeratedName",
+            "enumerated_type": "currencies",
+            "id": {
+              "type": "stat",
+              "stat": "unit"
+            }
+          }
+        ]
+      }
+    }
+  }
+]

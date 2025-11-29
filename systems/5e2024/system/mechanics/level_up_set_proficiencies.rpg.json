@@ -1,0 +1,197 @@
+{
+  "id": "level_up_set_proficiencies",
+  "event_names": "level_up_set_proficiencies",
+  "effects": {
+    "type": "sequence",
+    "effects": [
+      {
+        "type": "setStat",
+        "stat": "language_proficiencies",
+        "new_value": {
+          "type": "flatAppend",
+          "treat_as_set": true,
+          "components": [
+            {
+              "type": "stat",
+              "stat": "language_proficiencies"
+            },
+            {
+              "type": "map",
+              "components": {
+                "type": "flatMap",
+                "components": {
+                  "type": "stat",
+                  "stat": "$view.level_up_select_proficiencies_languages"
+                },
+                "mapper": {
+                  "type": "split",
+                  "separator": "\\\\s*,\\\\s*",
+                  "components": {
+                    "type": "stat",
+                    "stat": "$mapValue.$view.levelled_choice_text_display_in_character"
+                  }
+                }
+              },
+              "mapper": {
+                "type": "trim",
+                "components": {
+                  "type": "stat",
+                  "stat": "$mapValue"
+                }
+              }
+            }
+          ]
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "armor_proficiencies",
+        "new_value": {
+          "type": "flatAppend",
+          "treat_as_set": true,
+          "components": [
+            {
+              "type": "stat",
+              "stat": "armor_proficiencies"
+            },
+            {
+              "type": "map",
+              "components": {
+                "type": "stat",
+                "stat": "$view.level_up_select_proficiencies_armors"
+              },
+              "mapper": {
+                "type": "stat",
+                "stat": "$mapValue.$view.levelled_armor_proficiency_display_in_character"
+              }
+            }
+          ]
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "forEach",
+        "components": {
+          "type": "stat",
+          "stat": "$view.level_up_select_proficiencies_skills"
+        },
+        "apply": {
+          "type": "setStat",
+          "meta_stat": {
+            "type": "concat",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$forEachValue.$view.levelled_skill_proficiency_display_in_character"
+                },
+                {
+                  "type": "constant",
+                  "value": "_proficiency",
+                  "value_type": "string"
+                }
+              ]
+            }
+          },
+          "new_value": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "$forEachValue.is_expertise"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "expert",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "proficient",
+                  "value_type": "string"
+                }
+              }
+            ]
+          },
+          "aggregation_type": "set"
+        }
+      },
+      {
+        "type": "setStat",
+        "stat": "weapon_proficiencies",
+        "new_value": {
+          "type": "flatAppend",
+          "treat_as_set": true,
+          "components": [
+            {
+              "type": "stat",
+              "stat": "weapon_proficiencies"
+            },
+            {
+              "type": "map",
+              "components": {
+                "type": "stat",
+                "stat": "$view.level_up_select_proficiencies_weapons"
+              },
+              "mapper": {
+                "type": "stat",
+                "stat": "$mapValue.$view.levelled_weapon_proficiency_display_in_character"
+              }
+            }
+          ]
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "tool_proficiencies",
+        "new_value": {
+          "type": "flatAppend",
+          "treat_as_set": true,
+          "components": [
+            {
+              "type": "stat",
+              "stat": "tool_proficiencies"
+            },
+            {
+              "type": "map",
+              "components": {
+                "type": "flatMap",
+                "components": {
+                  "type": "stat",
+                  "stat": "$view.level_up_select_proficiencies_tools"
+                },
+                "mapper": {
+                  "type": "split",
+                  "separator": "\\\\s*,\\\\s*",
+                  "components": {
+                    "type": "stat",
+                    "stat": "$mapValue.$view.levelled_choice_text_display_in_character"
+                  }
+                }
+              },
+              "mapper": {
+                "type": "trim",
+                "components": {
+                  "type": "stat",
+                  "stat": "$mapValue"
+                }
+              }
+            }
+          ]
+        },
+        "aggregation_type": "set"
+      }
+    ]
+  }
+}

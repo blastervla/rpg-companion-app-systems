@@ -1,0 +1,53 @@
+{
+  "id": "edit_skill_proficiency",
+  "event_names": "editSkillProficiency",
+  "effects": {
+    "type": "showPopUp",
+    "pop_up_view": {
+      "id": "edit_skill_proficiency_select",
+      "type": "select",
+      "meta_stat": {
+        "type": "concat",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "defaultIfNull",
+              "components": {
+                "type": "stat",
+                "stat": "$show_pop_up_event?.stat?"
+              },
+              "default_components": {
+                "type": "constant",
+                "value": "",
+                "value_type": "string"
+              }
+            },
+            {
+              "type": "constant",
+              "value": "_proficiency",
+              "value_type": "string"
+            }
+          ]
+        }
+      },
+      "options": "skill_proficiency_types",
+      "style": "list"
+    },
+    "pop_up_title": {
+      "type": "defaultIfNull",
+      "components": {
+        "type": "stat",
+        "stat": "$show_pop_up_event?.statName?"
+      },
+      "default_components": {
+        "type": "constant",
+        "value": "",
+        "value_type": "string"
+      }
+    },
+    "display_cancel_button": true,
+    "display_save_button": true,
+    "should_persist_on_save": true
+  }
+}

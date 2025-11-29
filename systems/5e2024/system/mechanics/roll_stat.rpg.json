@@ -1,0 +1,132 @@
+{
+  "id": "roll_stat",
+  "event_names": "rollStat",
+  "effects": {
+    "type": "roll",
+    "rolls": {
+      "type": "list",
+      "components": [
+        {
+          "type": "rollable",
+          "formulas": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "contains",
+                  "haystack": {
+                    "type": "stat",
+                    "stat": "advantages"
+                  },
+                  "needle": {
+                    "type": "stat",
+                    "stat": "$event.stat"
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "concat",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "constant",
+                            "value": "max(2d20) + ",
+                            "value_type": "string"
+                          },
+                          {
+                            "type": "metaStat",
+                            "meta_stat": {
+                              "type": "stat",
+                              "stat": "$event.stat"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "contains",
+                  "haystack": {
+                    "type": "stat",
+                    "stat": "all_disadvantages"
+                  },
+                  "needle": {
+                    "type": "stat",
+                    "stat": "$event.stat"
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "concat",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "constant",
+                            "value": "min(2d20) + ",
+                            "value_type": "string"
+                          },
+                          {
+                            "type": "metaStat",
+                            "meta_stat": {
+                              "type": "stat",
+                              "stat": "$event.stat"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "concat",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "constant",
+                            "value": "1d20 + ",
+                            "value_type": "string"
+                          },
+                          {
+                            "type": "metaStat",
+                            "meta_stat": {
+                              "type": "stat",
+                              "stat": "$event.stat"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "text": {
+            "type": "stat",
+            "stat": "$event.statName"
+          }
+        }
+      ]
+    }
+  }
+}

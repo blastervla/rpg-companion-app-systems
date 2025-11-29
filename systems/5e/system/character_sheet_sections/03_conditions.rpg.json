@@ -1,0 +1,621 @@
+{
+  "id": "conditions",
+  "view": {
+    "id": "conditions",
+    "type": "section",
+    "header": [
+      {
+        "id": "conditions_section_icon",
+        "type": "icon",
+        "name": "ic_conditions",
+        "size": "medium",
+        "color": "accent",
+        "margin_top": 8,
+        "margin_right": 8,
+        "margin_left": 16
+      },
+      {
+        "id": "conditions_section_title",
+        "type": "text",
+        "margin_right": 16,
+        "margin_left": 16,
+        "text": {
+          "type": "constant",
+          "value": "Conditions",
+          "value_type": "string"
+        },
+        "style": "title"
+      },
+      {
+        "id": "conditions_header_spacer",
+        "type": "spacer"
+      },
+      {
+        "id": "conditions_edit_button",
+        "type": "popUpButton",
+        "margin_right": 8,
+        "icon": {
+          "id": "conditions_edit_icon",
+          "type": "icon",
+          "name": "ic_edit",
+          "size": "small",
+          "color": "text"
+        },
+        "pop_up_view": {
+          "id": "conditions_edit_bottom_sheet",
+          "type": "section",
+          "header": [],
+          "content": [
+            {
+              "id": "blinded_check",
+              "type": "checkbox",
+              "stat": "blinded",
+              "label": {
+                "type": "constant",
+                "value": "Blinded",
+                "value_type": "string"
+              },
+              "label_alignment": "right",
+              "style": "checkbox"
+            },
+            {
+              "id": "charmed_check",
+              "type": "checkbox",
+              "stat": "charmed",
+              "label": {
+                "type": "constant",
+                "value": "Charmed",
+                "value_type": "string"
+              },
+              "label_alignment": "right",
+              "style": "checkbox"
+            },
+            {
+              "id": "deafened_check",
+              "type": "checkbox",
+              "stat": "deafened",
+              "label": {
+                "type": "constant",
+                "value": "Deafened",
+                "value_type": "string"
+              },
+              "label_alignment": "right",
+              "style": "checkbox"
+            },
+            {
+              "id": "frightened_check",
+              "type": "checkbox",
+              "stat": "frightened",
+              "label": {
+                "type": "constant",
+                "value": "Frightened",
+                "value_type": "string"
+              },
+              "label_alignment": "right",
+              "style": "checkbox"
+            },
+            {
+              "id": "grappled_check",
+              "type": "checkbox",
+              "stat": "grappled",
+              "label": {
+                "type": "constant",
+                "value": "Grappled",
+                "value_type": "string"
+              },
+              "label_alignment": "right",
+              "style": "checkbox"
+            },
+            {
+              "id": "incapacitated_check",
+              "type": "checkbox",
+              "stat": "incapacitated",
+              "label": {
+                "type": "constant",
+                "value": "Incapacitated",
+                "value_type": "string"
+              },
+              "label_alignment": "right",
+              "style": "checkbox"
+            },
+            {
+              "id": "invisible_check",
+              "type": "checkbox",
+              "stat": "invisible",
+              "label": {
+                "type": "constant",
+                "value": "Invisible",
+                "value_type": "string"
+              },
+              "label_alignment": "right",
+              "style": "checkbox"
+            },
+            {
+              "id": "paralyzed_check",
+              "type": "checkbox",
+              "stat": "paralyzed",
+              "label": {
+                "type": "constant",
+                "value": "Paralyzed",
+                "value_type": "string"
+              },
+              "label_alignment": "right",
+              "style": "checkbox"
+            },
+            {
+              "id": "petrified_check",
+              "type": "checkbox",
+              "stat": "petrified",
+              "label": {
+                "type": "constant",
+                "value": "Petrified",
+                "value_type": "string"
+              },
+              "label_alignment": "right",
+              "style": "checkbox"
+            },
+            {
+              "id": "poisoned_check",
+              "type": "checkbox",
+              "stat": "poisoned",
+              "label": {
+                "type": "constant",
+                "value": "Poisoned",
+                "value_type": "string"
+              },
+              "label_alignment": "right",
+              "style": "checkbox"
+            },
+            {
+              "id": "prone_check",
+              "type": "checkbox",
+              "stat": "prone",
+              "label": {
+                "type": "constant",
+                "value": "Prone",
+                "value_type": "string"
+              },
+              "label_alignment": "right",
+              "style": "checkbox"
+            },
+            {
+              "id": "restrained_check",
+              "type": "checkbox",
+              "stat": "restrained",
+              "label": {
+                "type": "constant",
+                "value": "Restrained",
+                "value_type": "string"
+              },
+              "label_alignment": "right",
+              "style": "checkbox"
+            },
+            {
+              "id": "stunned_check",
+              "type": "checkbox",
+              "stat": "stunned",
+              "label": {
+                "type": "constant",
+                "value": "Stunned",
+                "value_type": "string"
+              },
+              "label_alignment": "right",
+              "style": "checkbox"
+            },
+            {
+              "id": "unconscious_check",
+              "type": "checkbox",
+              "stat": "unconscious",
+              "label": {
+                "type": "constant",
+                "value": "Unconscious",
+                "value_type": "string"
+              },
+              "label_alignment": "right",
+              "style": "checkbox"
+            },
+            {
+              "id": "exhausted_check",
+              "type": "checkbox",
+              "stat": "exhausted",
+              "label": {
+                "type": "constant",
+                "value": "Exhausted",
+                "value_type": "string"
+              },
+              "label_alignment": "right",
+              "style": "checkbox"
+            },
+            {
+              "id": "conditions_extra_view",
+              "type": "text",
+              "text": {
+                "type": "constant",
+                "value": "",
+                "value_type": "string"
+              },
+              "style": "text"
+            }
+          ],
+          "show_divider": false,
+          "content_item_min_width": 0.5
+        },
+        "pop_up_title": {
+          "type": "constant",
+          "value": "Manage conditions",
+          "value_type": "string"
+        },
+        "display_cancel_button": true,
+        "display_save_button": true,
+        "should_persist_on_save": true,
+        "alignment": "left"
+      }
+    ],
+    "content": [
+      {
+        "id": "blinded_chip",
+        "type": "chip",
+        "margin_top": 6,
+        "margin_bottom": 6,
+        "margin_left": 4,
+        "margin_right": 4,
+        "text": {
+          "type": "constant",
+          "value": "Blinded",
+          "value_type": "string"
+        },
+        "on_tap_event": {
+          "name": "remove_condition",
+          "payload": {
+            "condition": "blinded"
+          }
+        },
+        "background_color": "buttonSurface",
+        "is_visible": {
+          "type": "stat",
+          "stat": "blinded"
+        }
+      },
+      {
+        "id": "charmed_chip",
+        "type": "chip",
+        "margin_top": 6,
+        "margin_bottom": 6,
+        "margin_left": 4,
+        "margin_right": 4,
+        "text": {
+          "type": "constant",
+          "value": "Charmed",
+          "value_type": "string"
+        },
+        "on_tap_event": {
+          "name": "remove_condition",
+          "payload": {
+            "condition": "charmed"
+          }
+        },
+        "background_color": "buttonSurface",
+        "is_visible": {
+          "type": "stat",
+          "stat": "charmed"
+        }
+      },
+      {
+        "id": "deafened_chip",
+        "type": "chip",
+        "margin_top": 6,
+        "margin_bottom": 6,
+        "margin_left": 4,
+        "margin_right": 4,
+        "text": {
+          "type": "constant",
+          "value": "Deafened",
+          "value_type": "string"
+        },
+        "on_tap_event": {
+          "name": "remove_condition",
+          "payload": {
+            "condition": "deafened"
+          }
+        },
+        "background_color": "buttonSurface",
+        "is_visible": {
+          "type": "stat",
+          "stat": "deafened"
+        }
+      },
+      {
+        "id": "frightened_chip",
+        "type": "chip",
+        "margin_top": 6,
+        "margin_bottom": 6,
+        "margin_left": 4,
+        "margin_right": 4,
+        "text": {
+          "type": "constant",
+          "value": "Frightened",
+          "value_type": "string"
+        },
+        "on_tap_event": {
+          "name": "remove_condition",
+          "payload": {
+            "condition": "frightened"
+          }
+        },
+        "background_color": "buttonSurface",
+        "is_visible": {
+          "type": "stat",
+          "stat": "frightened"
+        }
+      },
+      {
+        "id": "grappled_chip",
+        "type": "chip",
+        "margin_top": 6,
+        "margin_bottom": 6,
+        "margin_left": 4,
+        "margin_right": 4,
+        "text": {
+          "type": "constant",
+          "value": "Grappled",
+          "value_type": "string"
+        },
+        "on_tap_event": {
+          "name": "remove_condition",
+          "payload": {
+            "condition": "grappled"
+          }
+        },
+        "background_color": "buttonSurface",
+        "is_visible": {
+          "type": "stat",
+          "stat": "grappled"
+        }
+      },
+      {
+        "id": "incapacitated_chip",
+        "type": "chip",
+        "margin_top": 6,
+        "margin_bottom": 6,
+        "margin_left": 4,
+        "margin_right": 4,
+        "text": {
+          "type": "constant",
+          "value": "Incapacitated",
+          "value_type": "string"
+        },
+        "on_tap_event": {
+          "name": "remove_condition",
+          "payload": {
+            "condition": "incapacitated"
+          }
+        },
+        "background_color": "buttonSurface",
+        "is_visible": {
+          "type": "stat",
+          "stat": "incapacitated"
+        }
+      },
+      {
+        "id": "invisible_chip",
+        "type": "chip",
+        "margin_top": 6,
+        "margin_bottom": 6,
+        "margin_left": 4,
+        "margin_right": 4,
+        "text": {
+          "type": "constant",
+          "value": "Invisible",
+          "value_type": "string"
+        },
+        "on_tap_event": {
+          "name": "remove_condition",
+          "payload": {
+            "condition": "invisible"
+          }
+        },
+        "background_color": "buttonSurface",
+        "is_visible": {
+          "type": "stat",
+          "stat": "invisible"
+        }
+      },
+      {
+        "id": "paralyzed_chip",
+        "type": "chip",
+        "margin_top": 6,
+        "margin_bottom": 6,
+        "margin_left": 4,
+        "margin_right": 4,
+        "text": {
+          "type": "constant",
+          "value": "Paralyzed",
+          "value_type": "string"
+        },
+        "on_tap_event": {
+          "name": "remove_condition",
+          "payload": {
+            "condition": "paralyzed"
+          }
+        },
+        "background_color": "buttonSurface",
+        "is_visible": {
+          "type": "stat",
+          "stat": "paralyzed"
+        }
+      },
+      {
+        "id": "petrified_chip",
+        "type": "chip",
+        "margin_top": 6,
+        "margin_bottom": 6,
+        "margin_left": 4,
+        "margin_right": 4,
+        "text": {
+          "type": "constant",
+          "value": "Petrified",
+          "value_type": "string"
+        },
+        "on_tap_event": {
+          "name": "remove_condition",
+          "payload": {
+            "condition": "petrified"
+          }
+        },
+        "background_color": "buttonSurface",
+        "is_visible": {
+          "type": "stat",
+          "stat": "petrified"
+        }
+      },
+      {
+        "id": "poisoned_chip",
+        "type": "chip",
+        "margin_top": 6,
+        "margin_bottom": 6,
+        "margin_left": 4,
+        "margin_right": 4,
+        "text": {
+          "type": "constant",
+          "value": "Poisoned",
+          "value_type": "string"
+        },
+        "on_tap_event": {
+          "name": "remove_condition",
+          "payload": {
+            "condition": "poisoned"
+          }
+        },
+        "background_color": "buttonSurface",
+        "is_visible": {
+          "type": "stat",
+          "stat": "poisoned"
+        }
+      },
+      {
+        "id": "prone_chip",
+        "type": "chip",
+        "margin_top": 6,
+        "margin_bottom": 6,
+        "margin_left": 4,
+        "margin_right": 4,
+        "text": {
+          "type": "constant",
+          "value": "Prone",
+          "value_type": "string"
+        },
+        "on_tap_event": {
+          "name": "remove_condition",
+          "payload": {
+            "condition": "prone"
+          }
+        },
+        "background_color": "buttonSurface",
+        "is_visible": {
+          "type": "stat",
+          "stat": "prone"
+        }
+      },
+      {
+        "id": "restrained_chip",
+        "type": "chip",
+        "margin_top": 6,
+        "margin_bottom": 6,
+        "margin_left": 4,
+        "margin_right": 4,
+        "text": {
+          "type": "constant",
+          "value": "Restrained",
+          "value_type": "string"
+        },
+        "on_tap_event": {
+          "name": "remove_condition",
+          "payload": {
+            "condition": "restrained"
+          }
+        },
+        "background_color": "buttonSurface",
+        "is_visible": {
+          "type": "stat",
+          "stat": "restrained"
+        }
+      },
+      {
+        "id": "stunned_chip",
+        "type": "chip",
+        "margin_top": 6,
+        "margin_bottom": 6,
+        "margin_left": 4,
+        "margin_right": 4,
+        "text": {
+          "type": "constant",
+          "value": "Stunned",
+          "value_type": "string"
+        },
+        "on_tap_event": {
+          "name": "remove_condition",
+          "payload": {
+            "condition": "stunned"
+          }
+        },
+        "background_color": "buttonSurface",
+        "is_visible": {
+          "type": "stat",
+          "stat": "stunned"
+        }
+      },
+      {
+        "id": "unconscious_chip",
+        "type": "chip",
+        "margin_top": 6,
+        "margin_bottom": 6,
+        "margin_left": 4,
+        "margin_right": 4,
+        "text": {
+          "type": "constant",
+          "value": "Unconscious",
+          "value_type": "string"
+        },
+        "on_tap_event": {
+          "name": "remove_condition",
+          "payload": {
+            "condition": "unconscious"
+          }
+        },
+        "background_color": "buttonSurface",
+        "is_visible": {
+          "type": "stat",
+          "stat": "unconscious"
+        }
+      },
+      {
+        "id": "exhausted_chip",
+        "type": "chip",
+        "margin_top": 6,
+        "margin_bottom": 6,
+        "margin_left": 4,
+        "margin_right": 4,
+        "text": {
+          "type": "constant",
+          "value": "Exhausted",
+          "value_type": "string"
+        },
+        "on_tap_event": {
+          "name": "remove_condition",
+          "payload": {
+            "condition": "exhausted"
+          }
+        },
+        "background_color": "buttonSurface",
+        "is_visible": {
+          "type": "stat",
+          "stat": "exhausted"
+        }
+      }
+    ],
+    "show_divider": true,
+    "collapsible": true,
+    "start_collapsed": false,
+    "alignment": "start"
+  }
+}

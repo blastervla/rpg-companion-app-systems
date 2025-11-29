@@ -1,0 +1,194 @@
+{
+  "id": "armor_list",
+  "type": "listItem",
+  "title": {
+    "type": "stat",
+    "stat": "name"
+  },
+  "subtitle": {
+    "type": "stat",
+    "stat": "properties"
+  },
+  "first_line_extra": {
+    "type": "stat",
+    "stat": "armor_class"
+  },
+  "first_line_extra_color": {
+    "type": "when",
+    "clauses": [
+      {
+        "condition": {
+          "type": "defined",
+          "stat": "$character"
+        },
+        "components": {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "stat",
+                "stat": "is_proficient"
+              },
+              "components": {
+                "type": "constant",
+                "value": "accent",
+                "value_type": "string"
+              }
+            },
+            {
+              "condition": {
+                "type": "constant",
+                "value": true,
+                "value_type": "bool"
+              },
+              "components": {
+                "type": "constant",
+                "value": "text",
+                "value_type": "string"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "condition": {
+          "type": "constant",
+          "value": true,
+          "value_type": "bool"
+        },
+        "components": {
+          "type": "constant",
+          "value": "text",
+          "value_type": "string"
+        }
+      }
+    ]
+  },
+  "second_line_extra": {
+    "type": "stat",
+    "stat": "required_strength_summary"
+  },
+  "chips": {
+    "type": "flatAppend",
+    "components": [
+      {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "equals",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "constant",
+                    "value": true,
+                    "value_type": "bool"
+                  },
+                  {
+                    "type": "stat",
+                    "stat": "is_equipped"
+                  }
+                ]
+              }
+            },
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "createChip",
+                  "id": "equipped_chip",
+                  "text": {
+                    "type": "constant",
+                    "value": "EQUIPPED",
+                    "value_type": "string"
+                  },
+                  "background_color": {
+                    "type": "constant",
+                    "value": "#4caf50",
+                    "value_type": "string"
+                  },
+                  "style": {
+                    "type": "constant",
+                    "value": "compact",
+                    "value_type": "string"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "list",
+              "components": []
+            }
+          }
+        ]
+      },
+      {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "equals",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "constant",
+                    "value": true,
+                    "value_type": "bool"
+                  },
+                  {
+                    "type": "stat",
+                    "stat": "is_attuned"
+                  }
+                ]
+              }
+            },
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "createChip",
+                  "id": "attuned_chip",
+                  "text": {
+                    "type": "constant",
+                    "value": "ATTUNED",
+                    "value_type": "string"
+                  },
+                  "background_color": {
+                    "type": "constant",
+                    "value": "#4caf50",
+                    "value_type": "string"
+                  },
+                  "style": {
+                    "type": "constant",
+                    "value": "compact",
+                    "value_type": "string"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "list",
+              "components": []
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "item_with_amount_display",
+  "type": "list",
+  "subviews": [
+    {
+      "id": "item_with_amount_display_out_of_character",
+      "type": "text",
+      "margin_left": 4,
+      "text": {
+        "type": "stat",
+        "stat": "display_description"
+      },
+      "style": "text",
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "defined",
+          "stat": "$character"
+        }
+      }
+    },
+    {
+      "id": "item_with_amount_display_in_character",
+      "type": "checkbox",
+      "stat": "selected",
+      "label": {
+        "type": "stat",
+        "stat": "display_description"
+      },
+      "enabled": {
+        "type": "stat",
+        "stat": "can_toggle_selection"
+      },
+      "label_alignment": "right",
+      "style": "checkbox",
+      "is_visible": {
+        "type": "defined",
+        "stat": "$character"
+      }
+    }
+  ]
+}

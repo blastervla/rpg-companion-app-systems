@@ -1,0 +1,293 @@
+{
+  "id": "item_edit",
+  "type": "list",
+  "padding": 32,
+  "subviews": [
+    {
+      "id": "item_edit_name",
+      "type": "text",
+      "edit_stat": "name",
+      "style": "text",
+      "label": {
+        "type": "constant",
+        "value": "Name",
+        "value_type": "string"
+      },
+      "max_length": 140,
+      "validation_message": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "isEmpty",
+              "components": {
+                "type": "stat",
+                "stat": "$view.item_edit_name"
+              }
+            },
+            "components": {
+              "type": "constant",
+              "value": "Please add a name to your item",
+              "value_type": "string"
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "item_edit_source",
+      "margin_top": 4,
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "item_edit_source_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Source: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "item_edit_source_select",
+          "type": "select",
+          "options": "source",
+          "options_display_stat": "abbreviation",
+          "stat": "source"
+        }
+      ]
+    },
+    {
+      "id": "item_edit_description",
+      "type": "text",
+      "edit_stat": "description",
+      "label": {
+        "type": "constant",
+        "value": "Description",
+        "value_type": "string"
+      },
+      "style": "text"
+    },
+    {
+      "id": "item_edit_type_ammunition_type_composite",
+      "type": "composite",
+      "margin_top": 4,
+      "subviews": [
+        {
+          "id": "item_edit_type_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Type: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "item_edit_type",
+          "type": "select",
+          "options": "item_types",
+          "stat": "type"
+        },
+        {
+          "id": "item_edit_ammunition_type",
+          "type": "select",
+          "options": "ammunition_types",
+          "stat": "ammunition_type",
+          "is_visible": {
+            "type": "equals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$view.item_edit_type"
+                },
+                {
+                  "type": "constant",
+                  "value": "ammunition",
+                  "value_type": "string"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "item_edit_weight_cost_composite",
+      "type": "composite",
+      "margin_top": 4,
+      "subviews": [
+        {
+          "id": "item_edit_price_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Price: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "item_edit_price",
+          "type": "resource",
+          "view_type": "edit",
+          "resource_id": "cost",
+          "stat": "cost",
+          "create_if_empty": true
+        },
+        {
+          "id": "item_edit_weight_label",
+          "type": "text",
+          "margin_left": 4,
+          "text": {
+            "type": "constant",
+            "value": "Weight: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "item_edit_weight",
+          "type": "resource",
+          "view_type": "edit",
+          "resource_id": "weight",
+          "stat": "weight",
+          "create_if_empty": true
+        }
+      ]
+    },
+    {
+      "id": "item_edit_rarity_is_magic",
+      "type": "composite",
+      "margin_top": 4,
+      "subviews": [
+        {
+          "id": "item_edit_rarity_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Rarity: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "item_edit_rarity",
+          "type": "select",
+          "options": "item_rarity",
+          "stat": "rarity"
+        },
+        {
+          "id": "item_edit_is_magic",
+          "type": "checkbox",
+          "stat": "is_magic",
+          "label": {
+            "type": "constant",
+            "value": "Magic",
+            "value_type": "string"
+          },
+          "label_alignment": "right"
+        }
+      ]
+    },
+    {
+      "id": "item_edit_properties_composite",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "item_edit_requires_attunement",
+          "type": "checkbox",
+          "stat": "requires_attunement",
+          "label": {
+            "type": "constant",
+            "value": "Requires attunement",
+            "value_type": "string"
+          },
+          "label_alignment": "right",
+          "is_visible": {
+            "type": "stat",
+            "stat": "$view.item_edit_is_magic"
+          }
+        },
+        {
+          "id": "item_edit_is_cursed",
+          "type": "checkbox",
+          "stat": "is_cursed",
+          "label": {
+            "type": "constant",
+            "value": "Cursed",
+            "value_type": "string"
+          },
+          "label_alignment": "right",
+          "is_visible": {
+            "type": "stat",
+            "stat": "$view.item_edit_is_magic"
+          }
+        },
+        {
+          "id": "item_edit_is_intelligent",
+          "type": "checkbox",
+          "stat": "is_intelligent",
+          "label": {
+            "type": "constant",
+            "value": "Intelligent",
+            "value_type": "string"
+          },
+          "label_alignment": "right",
+          "is_visible": {
+            "type": "stat",
+            "stat": "$view.item_edit_is_magic"
+          }
+        },
+        {
+          "id": "item_edit_is_spellcasting_focus",
+          "type": "checkbox",
+          "stat": "is_spellcasting_focus",
+          "label": {
+            "type": "constant",
+            "value": "Spellcasting focus",
+            "value_type": "string"
+          },
+          "label_alignment": "right"
+        }
+      ]
+    },
+    {
+      "id": "item_edit_effects",
+      "type": "resourceArray",
+      "resource_id": "effect",
+      "view_type": "edit",
+      "stat": "effects",
+      "pop_up_type": "bottomSheet",
+      "pop_up_button_text": {
+        "type": "stat",
+        "stat": "edit_display_name"
+      },
+      "left_view": {
+        "id": "item_edit_effects_label",
+        "type": "text",
+        "text": {
+          "type": "constant",
+          "value": "Effects: ",
+          "value_type": "string"
+        },
+        "style": "text"
+      }
+    }
+  ]
+}

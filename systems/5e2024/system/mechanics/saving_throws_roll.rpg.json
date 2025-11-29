@@ -1,0 +1,351 @@
+{
+  "id": "saving_throws_roll",
+  "event_names": "death_saves_roll",
+  "effects": {
+    "type": "roll",
+    "rolls": {
+      "type": "list",
+      "components": [
+        {
+          "type": "rollable",
+          "formulas": {
+            "type": "list",
+            "components": [
+              {
+                "type": "constant",
+                "value": "1d20",
+                "value_type": "string"
+              }
+            ]
+          },
+          "text": {
+            "type": "constant",
+            "value": "death save",
+            "value_type": "string"
+          }
+        }
+      ]
+    },
+    "on_result_effect": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "equals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$event.result"
+                },
+                {
+                  "type": "constant",
+                  "value": 20,
+                  "value_type": "integer"
+                }
+              ]
+            }
+          },
+          "effect": {
+            "type": "fireEvent",
+            "event": {
+              "name": "death_saves_stabilize",
+              "payload": {}
+            }
+          }
+        },
+        {
+          "condition": {
+            "type": "equals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$event.result"
+                },
+                {
+                  "type": "constant",
+                  "value": 1,
+                  "value_type": "integer"
+                }
+              ]
+            }
+          },
+          "effect": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "stat",
+                    "stat": "death_saving_throws_failure_1"
+                  }
+                },
+                "effect": {
+                  "type": "sequence",
+                  "effects": [
+                    {
+                      "type": "setStat",
+                      "stat": "death_saving_throws_failure_1",
+                      "new_value": {
+                        "type": "constant",
+                        "value": true,
+                        "value_type": "bool"
+                      },
+                      "aggregation_type": "set"
+                    },
+                    {
+                      "type": "setStat",
+                      "stat": "death_saving_throws_failure_2",
+                      "new_value": {
+                        "type": "constant",
+                        "value": true,
+                        "value_type": "bool"
+                      },
+                      "aggregation_type": "set"
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "stat",
+                    "stat": "death_saving_throws_failure_2"
+                  }
+                },
+                "effect": {
+                  "type": "sequence",
+                  "effects": [
+                    {
+                      "type": "setStat",
+                      "stat": "death_saving_throws_failure_2",
+                      "new_value": {
+                        "type": "constant",
+                        "value": true,
+                        "value_type": "bool"
+                      },
+                      "aggregation_type": "set"
+                    },
+                    {
+                      "type": "setStat",
+                      "stat": "death_saving_throws_failure_3",
+                      "new_value": {
+                        "type": "constant",
+                        "value": true,
+                        "value_type": "bool"
+                      },
+                      "aggregation_type": "set"
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "stat",
+                    "stat": "death_saving_throws_failure_3"
+                  }
+                },
+                "effect": {
+                  "type": "sequence",
+                  "effects": [
+                    {
+                      "type": "setStat",
+                      "stat": "death_saving_throws_failure_3",
+                      "new_value": {
+                        "type": "constant",
+                        "value": true,
+                        "value_type": "bool"
+                      },
+                      "aggregation_type": "set"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "condition": {
+            "type": "greaterThanEquals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$event.result"
+                },
+                {
+                  "type": "constant",
+                  "value": 10,
+                  "value_type": "integer"
+                }
+              ]
+            }
+          },
+          "effect": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "stat",
+                    "stat": "death_saving_throws_success_1"
+                  }
+                },
+                "effect": {
+                  "type": "setStat",
+                  "stat": "death_saving_throws_success_1",
+                  "new_value": {
+                    "type": "constant",
+                    "value": true,
+                    "value_type": "bool"
+                  },
+                  "aggregation_type": "set"
+                }
+              },
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "stat",
+                    "stat": "death_saving_throws_success_2"
+                  }
+                },
+                "effect": {
+                  "type": "setStat",
+                  "stat": "death_saving_throws_success_2",
+                  "new_value": {
+                    "type": "constant",
+                    "value": true,
+                    "value_type": "bool"
+                  },
+                  "aggregation_type": "set"
+                }
+              },
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "stat",
+                    "stat": "death_saving_throws_success_3"
+                  }
+                },
+                "effect": {
+                  "type": "sequence",
+                  "effects": [
+                    {
+                      "type": "setStat",
+                      "stat": "death_saving_throws_success_3",
+                      "new_value": {
+                        "type": "constant",
+                        "value": true,
+                        "value_type": "bool"
+                      },
+                      "aggregation_type": "set"
+                    },
+                    {
+                      "type": "fireEvent",
+                      "event": {
+                        "name": "death_saves_stabilize",
+                        "payload": {}
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "condition": {
+            "type": "lessThan",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$event.result"
+                },
+                {
+                  "type": "constant",
+                  "value": 10,
+                  "value_type": "integer"
+                }
+              ]
+            }
+          },
+          "effect": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "stat",
+                    "stat": "death_saving_throws_failure_1"
+                  }
+                },
+                "effect": {
+                  "type": "setStat",
+                  "stat": "death_saving_throws_failure_1",
+                  "new_value": {
+                    "type": "constant",
+                    "value": true,
+                    "value_type": "bool"
+                  },
+                  "aggregation_type": "set"
+                }
+              },
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "stat",
+                    "stat": "death_saving_throws_failure_2"
+                  }
+                },
+                "effect": {
+                  "type": "setStat",
+                  "stat": "death_saving_throws_failure_2",
+                  "new_value": {
+                    "type": "constant",
+                    "value": true,
+                    "value_type": "bool"
+                  },
+                  "aggregation_type": "set"
+                }
+              },
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "stat",
+                    "stat": "death_saving_throws_failure_3"
+                  }
+                },
+                "effect": {
+                  "type": "setStat",
+                  "stat": "death_saving_throws_failure_3",
+                  "new_value": {
+                    "type": "constant",
+                    "value": true,
+                    "value_type": "bool"
+                  },
+                  "aggregation_type": "set"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

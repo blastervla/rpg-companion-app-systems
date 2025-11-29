@@ -1,0 +1,38 @@
+{
+  "id": "saving_throws",
+  "event_names": "rpg_onUpdate",
+  "effects": {
+    "type": "when",
+    "clauses": [
+      {
+        "condition": {
+          "type": "and",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "death_saving_throws_success_1"
+              },
+              {
+                "type": "stat",
+                "stat": "death_saving_throws_success_2"
+              },
+              {
+                "type": "stat",
+                "stat": "death_saving_throws_success_3"
+              }
+            ]
+          }
+        },
+        "effect": {
+          "type": "fireEvent",
+          "event": {
+            "name": "death_saves_stabilize",
+            "payload": {}
+          }
+        }
+      }
+    ]
+  }
+}

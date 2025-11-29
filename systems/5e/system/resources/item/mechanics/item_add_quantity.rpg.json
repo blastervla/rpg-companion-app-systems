@@ -1,0 +1,25 @@
+{
+  "id": "item_add_quantity",
+  "event_names": "add_quantity",
+  "effects": {
+    "type": "sequence",
+    "effects": [
+      {
+        "type": "addToStat",
+        "stat": "quantity",
+        "value": {
+          "type": "stat",
+          "stat": "$view.item_quantity"
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "delayed",
+        "millis": 500,
+        "effect": {
+          "type": "dismissResource"
+        }
+      }
+    ]
+  }
+}

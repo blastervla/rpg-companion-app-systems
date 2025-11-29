@@ -1,0 +1,217 @@
+{
+  "title": {
+    "id": "edit_starting_equipment_title",
+    "name": "Starting equipment"
+  },
+  "view": {
+    "id": "edit_character_starting_equipment",
+    "type": "list",
+    "padding": 32,
+    "subviews": [
+      {
+        "id": "edit_character_starting_equipment_subheader",
+        "type": "text",
+        "text": {
+          "type": "constant",
+          "value": "Select your starting equipment",
+          "value_type": "string"
+        },
+        "style": "subhead"
+      },
+      {
+        "id": "edit_character_starting_equipment_equipment",
+        "type": "resourceArray",
+        "resource_id": "selectable_items",
+        "stat": "creator_starting_equipment_choices",
+        "view_type": "display"
+      },
+      {
+        "id": "edit_character_starting_equipment_armor",
+        "type": "resourceArray",
+        "resource_id": "selectable_armors",
+        "stat": "creator_starting_armor_choices",
+        "view_type": "display"
+      },
+      {
+        "id": "edit_character_starting_equipment_weapon",
+        "type": "resourceArray",
+        "resource_id": "selectable_weapons",
+        "stat": "creator_starting_weapon_choices",
+        "view_type": "display"
+      }
+    ]
+  },
+  "on_page_open": {
+    "type": "setStat",
+    "stat": "selecting",
+    "new_value": {
+      "type": "constant",
+      "value": true,
+      "value_type": "bool"
+    },
+    "aggregation_type": "set"
+  },
+  "on_page_close": {
+    "type": "setStat",
+    "stat": "selecting",
+    "new_value": {
+      "type": "constant",
+      "value": false,
+      "value_type": "bool"
+    },
+    "aggregation_type": "set"
+  },
+  "post_edit": {
+    "type": "sequence",
+    "effects": [
+      {
+        "type": "forEach",
+        "components": {
+          "type": "flatMap",
+          "components": {
+            "type": "stat",
+            "stat": "creator_starting_equipment_choices"
+          },
+          "mapper": {
+            "type": "stat",
+            "stat": "$mapValue.selected_options"
+          }
+        },
+        "apply": {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "notNull",
+                "components": {
+                  "type": "stat",
+                  "stat": "$forEachValue.item"
+                }
+              },
+              "effect": {
+                "type": "setStat",
+                "stat": "$forEachValue.item.quantity",
+                "new_value": {
+                  "type": "stat",
+                  "stat": "$forEachValue.amount"
+                },
+                "aggregation_type": "set"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "addToStat",
+        "stat": "equipment",
+        "value": {
+          "type": "filter",
+          "components": {
+            "type": "map",
+            "components": {
+              "type": "flatMap",
+              "components": {
+                "type": "stat",
+                "stat": "creator_starting_equipment_choices"
+              },
+              "mapper": {
+                "type": "stat",
+                "stat": "$mapValue.selected_options"
+              }
+            },
+            "mapper": {
+              "type": "copyResource",
+              "preserve_ids": false,
+              "components": {
+                "type": "stat",
+                "stat": "$mapValue.item"
+              }
+            }
+          },
+          "filter": {
+            "type": "notNull",
+            "components": {
+              "type": "stat",
+              "stat": "$filterValue"
+            }
+          }
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "addToStat",
+        "stat": "armors",
+        "value": {
+          "type": "filter",
+          "components": {
+            "type": "map",
+            "components": {
+              "type": "flatMap",
+              "components": {
+                "type": "stat",
+                "stat": "creator_starting_armor_choices"
+              },
+              "mapper": {
+                "type": "stat",
+                "stat": "$mapValue.selected_options"
+              }
+            },
+            "mapper": {
+              "type": "copyResource",
+              "preserve_ids": false,
+              "components": {
+                "type": "stat",
+                "stat": "$mapValue.armor"
+              }
+            }
+          },
+          "filter": {
+            "type": "notNull",
+            "components": {
+              "type": "stat",
+              "stat": "$filterValue"
+            }
+          }
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "addToStat",
+        "stat": "weapons",
+        "value": {
+          "type": "filter",
+          "components": {
+            "type": "map",
+            "components": {
+              "type": "flatMap",
+              "components": {
+                "type": "stat",
+                "stat": "creator_starting_weapon_choices"
+              },
+              "mapper": {
+                "type": "stat",
+                "stat": "$mapValue.selected_options"
+              }
+            },
+            "mapper": {
+              "type": "copyResource",
+              "preserve_ids": false,
+              "components": {
+                "type": "stat",
+                "stat": "$mapValue.weapon"
+              }
+            }
+          },
+          "filter": {
+            "type": "notNull",
+            "components": {
+              "type": "stat",
+              "stat": "$filterValue"
+            }
+          }
+        },
+        "aggregation_type": "set"
+      }
+    ]
+  }
+}

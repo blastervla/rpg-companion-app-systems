@@ -1,0 +1,766 @@
+{
+  "id": "monster_display",
+  "type": "list",
+  "padding": 16,
+  "alignment": "start",
+  "subviews": [
+    {
+      "id": "monster_display_source_type_info",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "monster_display_source",
+          "type": "text",
+          "style": "caption",
+          "margin_left": 16,
+          "margin_right": 4,
+          "resource_id": "source",
+          "resource_instance_ids_stat": "source",
+          "resource_display_stat": "abbreviation"
+        },
+        {
+          "id": "monster_display_type_info",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "type_info"
+          },
+          "style": "caption"
+        }
+      ]
+    },
+    {
+      "id": "monster_display_photo_comp",
+      "type": "composite",
+      "alignment": "end",
+      "subviews": [
+        {
+          "id": "monster_display_photo",
+          "type": "avatar",
+          "photo_stat": "photo",
+          "name_stat": "name",
+          "size": "medium",
+          "interactable": false,
+          "preview_enabled": true
+        }
+      ]
+    },
+    {
+      "id": "monster_display_ac_hp_speed",
+      "type": "composite",
+      "alignment": "center",
+      "subviews": [
+        {
+          "id": "monster_display_ac_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "AC: ",
+            "value_type": "string"
+          },
+          "style": "subhead",
+          "bold": true
+        },
+        {
+          "id": "monster_display_ac",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "armor_class"
+          },
+          "style": "text",
+          "margin_right": 16
+        },
+        {
+          "id": "monster_display_hp_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "HP: ",
+            "value_type": "string"
+          },
+          "style": "subhead",
+          "bold": true
+        },
+        {
+          "id": "monster_display_hp",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "hit_points_formatted"
+          },
+          "style": "text",
+          "margin_right": 16
+        },
+        {
+          "id": "monster_display_hp",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_speeds"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "monster_display_initiative",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "monster_display_initiative_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Initiative: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "monster_display_initiative",
+          "type": "text",
+          "text": {
+            "type": "toSignedString",
+            "components": {
+              "type": "stat",
+              "stat": "initiative"
+            }
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "monster_display_ability_scores_label",
+      "type": "text",
+      "text": {
+        "type": "constant",
+        "value": "Abilities:",
+        "value_type": "string"
+      },
+      "style": "text",
+      "bold": true,
+      "margin_top": 4
+    },
+    {
+      "id": "monster_display_ability_scores_1",
+      "type": "composite",
+      "alignment": "center",
+      "subviews": [
+        {
+          "id": "monster_display_strength_score",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_strength_with_mod"
+          },
+          "style": "text",
+          "margin_right": 16
+        },
+        {
+          "id": "monster_display_dexterity_score",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_dexterity_with_mod"
+          },
+          "style": "text",
+          "margin_right": 16
+        },
+        {
+          "id": "monster_display_constitution_score",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_constitution_with_mod"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "monster_display_ability_scores_2",
+      "type": "composite",
+      "alignment": "center",
+      "margin_top": 8,
+      "subviews": [
+        {
+          "id": "monster_display_intelligence_score",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_intelligence_with_mod"
+          },
+          "style": "text",
+          "margin_right": 16
+        },
+        {
+          "id": "monster_display_wisdom_score",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_wisdom_with_mod"
+          },
+          "style": "text",
+          "margin_right": 16
+        },
+        {
+          "id": "monster_display_charisma_score",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_charisma_with_mod"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "monster_display_saves_label",
+      "type": "text",
+      "text": {
+        "type": "constant",
+        "value": "Saves:",
+        "value_type": "string"
+      },
+      "style": "text",
+      "bold": true
+    },
+    {
+      "id": "monster_display_saves",
+      "type": "composite",
+      "alignment": "center",
+      "subviews": [
+        {
+          "id": "monster_display_strength_save",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_strength_save"
+          },
+          "style": "text",
+          "margin_right": 8
+        },
+        {
+          "id": "monster_display_dexterity_save",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_dexterity_save"
+          },
+          "style": "text",
+          "margin_right": 8
+        },
+        {
+          "id": "monster_display_constitution_save",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_constitution_save"
+          },
+          "style": "text",
+          "margin_right": 8
+        },
+        {
+          "id": "monster_display_intelligence_save",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_intelligence_save"
+          },
+          "style": "text",
+          "margin_right": 8
+        },
+        {
+          "id": "monster_display_wisdom_save",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_wisdom_save"
+          },
+          "style": "text",
+          "margin_right": 8
+        },
+        {
+          "id": "monster_display_charisma_save",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_charisma_save"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "monster_display_stats_senses_divider",
+      "type": "divider",
+      "margin_bottom": 8
+    },
+    {
+      "id": "monster_display_skills_comp",
+      "type": "composite",
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "skills"
+          }
+        }
+      },
+      "subviews": [
+        {
+          "id": "monster_display_skills_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Skills: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "monster_display_skills",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "skills"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "monster_display_vulnerabilities_comp",
+      "type": "composite",
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "vulnerabilities"
+          }
+        }
+      },
+      "subviews": [
+        {
+          "id": "monster_display_vulnerabilities_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Vulnerabilities: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "monster_display_vulnerabilities",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "vulnerabilities"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "monster_display_immunities_comp",
+      "type": "composite",
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "immunities"
+          }
+        }
+      },
+      "subviews": [
+        {
+          "id": "monster_display_immunities_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Immunities: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "monster_display_immunities",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "immunities"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "monster_display_resistances_comp",
+      "type": "composite",
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "resistances"
+          }
+        }
+      },
+      "subviews": [
+        {
+          "id": "monster_display_resistances_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Resistances: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "monster_display_resistances",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "resistances"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "monster_display_senses_comp",
+      "type": "composite",
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "senses"
+          }
+        }
+      },
+      "subviews": [
+        {
+          "id": "monster_display_senses_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Senses: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "monster_display_senses",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "senses"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "monster_display_languages_comp",
+      "type": "composite",
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "languages"
+          }
+        }
+      },
+      "subviews": [
+        {
+          "id": "monster_display_languages_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Languages: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "monster_display_languages",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "languages"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "monster_display_cr_xp",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "monster_display_cr_xp_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Challenge: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "monster_display_cr_xp",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "cr_xp"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "monster_display_traits_divider",
+      "type": "divider"
+    },
+    {
+      "id": "monster_display_traits",
+      "type": "resourceArray",
+      "resource_id": "monster_trait",
+      "stat": "traits",
+      "view_type": "list",
+      "hide_line": true,
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "traits"
+          }
+        }
+      }
+    },
+    {
+      "id": "monster_display_actions_divider",
+      "type": "divider",
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "traits"
+          }
+        }
+      }
+    },
+    {
+      "id": "monster_display_actions",
+      "type": "resourceArray",
+      "resource_id": "monster_action",
+      "stat": "actions",
+      "view_type": "list",
+      "hide_line": true,
+      "left_view": {
+        "id": "monster_display_actions_label",
+        "type": "text",
+        "text": {
+          "type": "constant",
+          "value": "Actions",
+          "value_type": "string"
+        },
+        "style": "text",
+        "bold": true
+      },
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "actions"
+          }
+        }
+      }
+    },
+    {
+      "id": "monster_display_bonus_actions_divider",
+      "type": "divider",
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "actions"
+          }
+        }
+      }
+    },
+    {
+      "id": "monster_display_bonus_actions",
+      "type": "resourceArray",
+      "resource_id": "monster_action",
+      "stat": "bonus_actions",
+      "view_type": "list",
+      "hide_line": true,
+      "left_view": {
+        "id": "monster_display_actions_label",
+        "type": "text",
+        "text": {
+          "type": "constant",
+          "value": "Bonus actions",
+          "value_type": "string"
+        },
+        "style": "text",
+        "bold": true
+      },
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "bonus_actions"
+          }
+        }
+      }
+    },
+    {
+      "id": "monster_display_reactions_divider",
+      "type": "divider",
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "bonus_actions"
+          }
+        }
+      }
+    },
+    {
+      "id": "monster_display_reactions",
+      "type": "resourceArray",
+      "resource_id": "monster_action",
+      "stat": "reactions",
+      "view_type": "list",
+      "hide_line": true,
+      "left_view": {
+        "id": "monster_display_reactions_label",
+        "type": "text",
+        "text": {
+          "type": "constant",
+          "value": "Reactions",
+          "value_type": "string"
+        },
+        "style": "text",
+        "bold": true
+      },
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "reactions"
+          }
+        }
+      }
+    },
+    {
+      "id": "monster_display_legendary_actions_divider",
+      "type": "divider",
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "reactions"
+          }
+        }
+      }
+    },
+    {
+      "id": "monster_display_legendary_actions",
+      "type": "resourceArray",
+      "resource_id": "monster_action",
+      "stat": "legendary_actions",
+      "view_type": "list",
+      "hide_line": true,
+      "left_view": {
+        "id": "monster_display_actions_label",
+        "type": "text",
+        "text": {
+          "type": "constant",
+          "value": "Legendary actions",
+          "value_type": "string"
+        },
+        "style": "text",
+        "bold": true
+      },
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "legendary_actions"
+          }
+        }
+      }
+    },
+    {
+      "id": "monster_display_habitat",
+      "type": "composite",
+      "margin_top": 12,
+      "subviews": [
+        {
+          "id": "monster_display_habitat_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Habitat: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "monster_display_habitat",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "formatted_habitats"
+          },
+          "style": "text"
+        }
+      ]
+    }
+  ]
+}

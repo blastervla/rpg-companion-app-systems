@@ -1,0 +1,48 @@
+{
+  "id": "value_calculator_edit",
+  "type": "resourceArray",
+  "resource_id": "operand",
+  "stat": "operands",
+  "view_type": "edit",
+  "left_view": {
+    "id": "value_calculator_edit_label",
+    "type": "text",
+    "text": {
+      "type": "constant",
+      "value": "Operands: ",
+      "value_type": "string"
+    },
+    "style": "text"
+  },
+  "validation_message": {
+    "type": "when",
+    "clauses": [
+      {
+        "condition": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "$view.value_calculator_edit"
+          }
+        },
+        "components": {
+          "type": "constant",
+          "value": "You have a calculator with empty operands. Please add operands to it or remove it.",
+          "value_type": "string"
+        }
+      },
+      {
+        "condition": {
+          "type": "constant",
+          "value": true,
+          "value_type": "bool"
+        },
+        "components": {
+          "type": "constant",
+          "value": null,
+          "value_type": "string"
+        }
+      }
+    ]
+  }
+}

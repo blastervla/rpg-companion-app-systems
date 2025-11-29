@@ -1,0 +1,188 @@
+[
+  {
+    "id": "action_name",
+    "name": "Name",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "action_description",
+    "name": "Description",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "action_type",
+    "name": "Type",
+    "type": "base",
+    "value_type": "string",
+    "default_value": "none"
+  },
+  {
+    "id": "action_attack_bonus",
+    "name": "Attack bonus",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "action_damage_variants",
+    "name": "Damage variants",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "damage_variant",
+    "default_value": []
+  },
+  {
+    "id": "action_display_description",
+    "name": "Display description",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "flatAppend",
+        "components": [
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "equals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "action_type"
+                      },
+                      {
+                        "type": "constant",
+                        "value": "none",
+                        "value_type": "string"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "enumeratedName",
+                      "enumerated_type": "monster_action_types",
+                      "id": {
+                        "type": "stat",
+                        "stat": "action_type"
+                      }
+                    },
+                    {
+                      "type": "constant",
+                      "value": " ",
+                      "value_type": "string"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "and",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "equals",
+                        "components": {
+                          "type": "list",
+                          "components": [
+                            {
+                              "type": "stat",
+                              "stat": "action_type"
+                            },
+                            {
+                              "type": "constant",
+                              "value": "none",
+                              "value_type": "string"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "equals",
+                        "components": {
+                          "type": "list",
+                          "components": [
+                            {
+                              "type": "stat",
+                              "stat": "action_attack_bonus"
+                            },
+                            {
+                              "type": "constant",
+                              "value": 0,
+                              "value_type": "integer"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "constant",
+                      "value": "Attack: ",
+                      "value_type": "string"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "components": [
+              {
+                "type": "trim",
+                "components": {
+                  "type": "stat",
+                  "stat": "action_description"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

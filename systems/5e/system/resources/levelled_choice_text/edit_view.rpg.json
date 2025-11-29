@@ -1,0 +1,66 @@
+{
+  "id": "levelled_choice_text_edit",
+  "type": "composite",
+  "subviews": [
+    {
+      "id": "levelled_choice_text_edit_level",
+      "type": "text",
+      "edit_stat": "level",
+      "style": "text",
+      "hint": {
+        "type": "constant",
+        "value": "Lvl",
+        "value_type": "string"
+      },
+      "max_length": 3
+    },
+    {
+      "id": "levelled_choice_text_edit_options",
+      "type": "text",
+      "edit_stat": "options",
+      "style": "text",
+      "max_length": 140,
+      "hint": {
+        "type": "constant",
+        "value": "Separate by , (e.g: option1, option2)",
+        "value_type": "string"
+      },
+      "label": {
+        "type": "constant",
+        "value": "Options",
+        "value_type": "string"
+      },
+      "validation_message": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "isEmpty",
+              "components": {
+                "type": "stat",
+                "stat": "$view.levelled_choice_text_edit_options"
+              }
+            },
+            "components": {
+              "type": "constant",
+              "value": "You have an empty levelled options box. Please complete it or remove it",
+              "value_type": "string"
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

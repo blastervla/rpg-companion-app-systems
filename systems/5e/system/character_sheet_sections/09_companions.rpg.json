@@ -1,0 +1,57 @@
+{
+  "id": "companions",
+  "view": {
+    "id": "companions_section",
+    "type": "section",
+    "show_divider": true,
+    "content_item_min_width": 1,
+    "collapsible": true,
+    "header": [
+      {
+        "id": "companions_section_icon",
+        "type": "icon",
+        "name": "ic_pets",
+        "color": "#b3591d",
+        "size": "medium",
+        "margin_top": 8,
+        "margin_right": 8,
+        "margin_left": 16
+      },
+      {
+        "id": "companions_section_title",
+        "type": "text",
+        "margin_right": 16,
+        "margin_left": 16,
+        "text": {
+          "type": "stat",
+          "stat": "companion_section_title"
+        },
+        "style": "title"
+      },
+      {
+        "id": "companions_section_header_spacer",
+        "type": "spacer"
+      },
+      {
+        "id": "companions_section_add_weapon",
+        "type": "selectResources",
+        "stat": "companions",
+        "resource_id": "companion",
+        "view_type": "icon",
+        "should_append": true,
+        "should_save_on_selection": true,
+        "create_in_place": true,
+        "creation_pop_up_type": "bottomSheet"
+      }
+    ],
+    "content": [
+      {
+        "id": "companions_list",
+        "type": "resourceSection",
+        "resource_stat": "companions",
+        "resource_id": "companion",
+        "tap_displays_resource": false
+      }
+    ]
+  }
+}

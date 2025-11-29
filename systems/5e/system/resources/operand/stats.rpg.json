@@ -1,0 +1,297 @@
+[
+  {
+    "id": "stat",
+    "name": "Stat",
+    "type": "base",
+    "value_type": "string",
+    "default_value": "constant"
+  },
+  {
+    "id": "constant",
+    "name": "Constant",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 1
+  },
+  {
+    "id": "operator",
+    "name": "Operator",
+    "type": "base",
+    "value_type": "string",
+    "default_value": "plus"
+  },
+  {
+    "id": "absolute_calculated_value",
+    "name": "Absolute calculated value (not accounting operator)",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "defined",
+            "stat": "$character"
+          },
+          "components": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "equals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "stat"
+                      },
+                      {
+                        "type": "constant",
+                        "value": "constant",
+                        "value_type": "string"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "stat",
+                  "stat": "constant"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "multiply",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "constant"
+                      },
+                      {
+                        "type": "metaStat",
+                        "stat_enumerated_type": "effect_character_stats_plus_mods_and_constant",
+                        "meta_stat": {
+                          "type": "stat",
+                          "stat": "stat"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "constant",
+            "value": 0,
+            "value_type": "integer"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "calculated_value",
+    "name": "Calculated value",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "multiply",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "stat",
+            "stat": "absolute_calculated_value"
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "equals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "operator"
+                      },
+                      {
+                        "type": "constant",
+                        "value": "plus",
+                        "value_type": "string"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": 1,
+                  "value_type": "integer"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": -1,
+                  "value_type": "integer"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "description",
+    "name": "Display description",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "enumeratedName",
+            "enumerated_type": "plus_minus",
+            "id": {
+              "type": "stat",
+              "stat": "operator"
+            }
+          },
+          {
+            "type": "constant",
+            "value": " ",
+            "value_type": "string"
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "equals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "stat"
+                      },
+                      {
+                        "type": "constant",
+                        "value": "constant",
+                        "value_type": "string"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "stat",
+                  "stat": "constant"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "concat",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "enumeratedName",
+                        "enumerated_type": "effect_character_stats_plus_mods_and_constant",
+                        "id": {
+                          "type": "stat",
+                          "stat": "stat"
+                        }
+                      },
+                      {
+                        "type": "when",
+                        "clauses": [
+                          {
+                            "condition": {
+                              "type": "notEquals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "stat",
+                                    "stat": "constant"
+                                  },
+                                  {
+                                    "type": "constant",
+                                    "value": 1,
+                                    "value_type": "integer"
+                                  }
+                                ]
+                              }
+                            },
+                            "components": {
+                              "type": "concat",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "constant",
+                                    "value": " x ",
+                                    "value_type": "string"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "constant"
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "condition": {
+                              "type": "constant",
+                              "value": true,
+                              "value_type": "bool"
+                            },
+                            "components": {
+                              "type": "constant",
+                              "value": "",
+                              "value_type": "string"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

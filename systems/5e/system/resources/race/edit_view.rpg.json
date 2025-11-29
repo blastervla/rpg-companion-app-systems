@@ -1,0 +1,949 @@
+{
+  "id": "race_edit",
+  "type": "viewPager",
+  "names": {
+    "type": "list",
+    "components": [
+      {
+        "type": "constant",
+        "value": "Basic information",
+        "value_type": "string"
+      },
+      {
+        "type": "constant",
+        "value": "Weapon & Spells",
+        "value_type": "string"
+      },
+      {
+        "type": "constant",
+        "value": "Proficiencies",
+        "value_type": "string"
+      },
+      {
+        "type": "constant",
+        "value": "Visual traits",
+        "value_type": "string"
+      },
+      {
+        "type": "constant",
+        "value": "Subraces",
+        "value_type": "string"
+      }
+    ]
+  },
+  "color": {
+    "type": "constant",
+    "value": "#A33715",
+    "value_type": "string"
+  },
+  "subviews": [
+    {
+      "id": "race_edit_basics",
+      "type": "list",
+      "padding": 16,
+      "subviews": [
+        {
+          "id": "race_edit_name",
+          "type": "text",
+          "edit_stat": "name",
+          "style": "text",
+          "label": {
+            "type": "constant",
+            "value": "Name",
+            "value_type": "string"
+          },
+          "max_length": 140,
+          "validation_message": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "isEmpty",
+                  "components": {
+                    "type": "stat",
+                    "stat": "$view.race_edit_name"
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "Please add a name to your race",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "race_edit_source",
+          "margin_top": 4,
+          "type": "composite",
+          "subviews": [
+            {
+              "id": "race_edit_source_label",
+              "type": "text",
+              "text": {
+                "type": "constant",
+                "value": "Source: ",
+                "value_type": "string"
+              },
+              "style": "text"
+            },
+            {
+              "id": "race_edit_source_select",
+              "type": "select",
+              "options": "source",
+              "options_display_stat": "abbreviation",
+              "stat": "source"
+            }
+          ]
+        },
+        {
+          "id": "race_edit_has_same_ac",
+          "type": "checkbox",
+          "stat": "same_ac_as_parent",
+          "label": {
+            "type": "constant",
+            "value": "Has same AC as race",
+            "value_type": "string"
+          },
+          "label_alignment": "right",
+          "is_visible": {
+            "type": "stat",
+            "stat": "is_subrace"
+          }
+        },
+        {
+          "id": "race_edit_armor_composite",
+          "type": "composite",
+          "margin_top": 4,
+          "is_visible": {
+            "type": "or",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "not",
+                  "components": {
+                    "type": "stat",
+                    "stat": "is_subrace"
+                  }
+                },
+                {
+                  "type": "not",
+                  "components": {
+                    "type": "defaultIfNull",
+                    "components": {
+                      "type": "stat",
+                      "stat": "$view?.race_edit_has_same_ac"
+                    },
+                    "default_components": {
+                      "type": "constant",
+                      "value": false,
+                      "value_type": "bool"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "subviews": [
+            {
+              "id": "race_edit_base_ac",
+              "type": "text",
+              "text": {
+                "type": "constant",
+                "value": "Base AC: ",
+                "value_type": "string"
+              },
+              "style": "text",
+              "bold": true
+            },
+            {
+              "id": "race_edit_base_ac",
+              "type": "text",
+              "edit_stat": "base_ac",
+              "style": "text",
+              "max_length": 2,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "0",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "race_edit_ac_modifiers",
+              "type": "select",
+              "stat": "ac_modifiers",
+              "options": "ability",
+              "multi_select": true,
+              "margin_left": 4
+            }
+          ]
+        },
+        {
+          "id": "race_edit_speed_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Speed:",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "race_edit_speed_composite",
+          "type": "composite",
+          "alignment": "center",
+          "subviews": [
+            {
+              "id": "race_edit_speed",
+              "type": "text",
+              "edit_stat": "speed",
+              "style": "text",
+              "max_length": 2,
+              "margin_right": 4,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "0",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "Normal",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "race_edit_burrow_speed",
+              "type": "text",
+              "edit_stat": "burrow_speed",
+              "style": "text",
+              "max_length": 2,
+              "margin_left": 4,
+              "margin_right": 4,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "0",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "Burrow",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "race_edit_climb_speed",
+              "type": "text",
+              "edit_stat": "climb_speed",
+              "style": "text",
+              "max_length": 2,
+              "margin_left": 4,
+              "margin_right": 4,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "0",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "Climb",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "race_edit_fly_speed",
+              "type": "text",
+              "edit_stat": "fly_speed",
+              "style": "text",
+              "max_length": 2,
+              "margin_left": 4,
+              "margin_right": 4,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "0",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "Fly",
+                "value_type": "string"
+              }
+            },
+            {
+              "id": "race_edit_swim_speed",
+              "type": "text",
+              "edit_stat": "swim_speed",
+              "style": "text",
+              "max_length": 2,
+              "margin_left": 4,
+              "signed": false,
+              "hint": {
+                "type": "constant",
+                "value": "0",
+                "value_type": "string"
+              },
+              "label": {
+                "type": "constant",
+                "value": "Swim",
+                "value_type": "string"
+              }
+            }
+          ]
+        },
+        {
+          "id": "race_edit_ability_score_increases",
+          "type": "resourceArray",
+          "resource_id": "ability_score_increase",
+          "stat": "ability_score_increases",
+          "view_type": "edit",
+          "left_view": {
+            "id": "race_edit_ability_scores_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Ability Scores: ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          },
+          "use_bottom_sheet": false
+        },
+        {
+          "id": "race_edit_traits",
+          "type": "resourceArray",
+          "resource_id": "feat",
+          "stat": "traits",
+          "view_type": "edit",
+          "left_view": {
+            "id": "race_edit_traits_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Traits: ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          },
+          "pop_up_type": "bottomSheet",
+          "pop_up_button_text": {
+            "type": "stat",
+            "stat": "levelled_description"
+          },
+          "validation_message": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "isEmpty",
+                    "components": {
+                      "type": "filter",
+                      "components": {
+                        "type": "stat",
+                        "stat": "$view.race_edit_traits"
+                      },
+                      "filter": {
+                        "type": "isEmpty",
+                        "components": {
+                          "type": "stat",
+                          "stat": "$filterValue.name"
+                        }
+                      }
+                    }
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "You have empty traits. Please add some content to them or remove them.",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "race_edit_spells_weapons",
+      "type": "list",
+      "padding": 16,
+      "subviews": [
+        {
+          "id": "race_edit_unarmed_strike",
+          "type": "resourceArray",
+          "resource_id": "levelled_weapon",
+          "stat": "unarmed_strike",
+          "view_type": "edit",
+          "left_view": {
+            "id": "race_edit_unarmed_strike_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Unarmed strike (per lvl): ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          },
+          "validation_message": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "isEmpty",
+                    "components": {
+                      "type": "filter",
+                      "components": {
+                        "type": "stat",
+                        "stat": "$view.race_edit_unarmed_strike"
+                      },
+                      "filter": {
+                        "type": "isNull",
+                        "components": {
+                          "type": "stat",
+                          "stat": "$filterValue.weapon"
+                        }
+                      }
+                    }
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "You have empty unarmed strikes. Please work on them or remove them.",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "race_edit_has_same_spellcasting_ability",
+          "type": "checkbox",
+          "stat": "same_spellcasting_ability_as_parent",
+          "label": {
+            "type": "constant",
+            "value": "Has same spellcasting ability as race",
+            "value_type": "string"
+          },
+          "label_alignment": "right",
+          "is_visible": {
+            "type": "stat",
+            "stat": "is_subrace"
+          }
+        },
+        {
+          "id": "race_edit_spellcasting_ability_composite",
+          "type": "composite",
+          "subviews": [
+            {
+              "id": "race_edit_spellcasting_ability_label",
+              "type": "text",
+              "text": {
+                "type": "constant",
+                "value": "Spellcasting Ability: ",
+                "value_type": "string"
+              },
+              "style": "text",
+              "bold": true
+            },
+            {
+              "id": "race_edit_spellcasting_ability_select",
+              "type": "select",
+              "stat": "spellcasting_ability",
+              "options": "ability"
+            }
+          ],
+          "is_visible": {
+            "type": "or",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "not",
+                  "components": {
+                    "type": "stat",
+                    "stat": "is_subrace"
+                  }
+                },
+                {
+                  "type": "not",
+                  "components": {
+                    "type": "defaultIfNull",
+                    "components": {
+                      "type": "stat",
+                      "stat": "$view?.race_edit_has_same_spellcasting_ability"
+                    },
+                    "default_components": {
+                      "type": "constant",
+                      "value": false,
+                      "value_type": "bool"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "race_edit_spells",
+          "type": "resourceArray",
+          "resource_id": "levelled_spell",
+          "stat": "spells",
+          "view_type": "edit",
+          "left_view": {
+            "id": "race_edit_spells_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Spells (per lvl): ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "race_edit_proficiencies",
+      "type": "list",
+      "padding": 16,
+      "subviews": [
+        {
+          "id": "race_edit_language_proficiencies",
+          "type": "resourceArray",
+          "resource_id": "levelled_choice_text",
+          "stat": "language_proficiencies",
+          "view_type": "edit",
+          "left_view": {
+            "id": "race_edit_language_proficiencies_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Language proficiency choices (per lvl): ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          }
+        },
+        {
+          "id": "race_edit_skill_proficiencies",
+          "type": "resourceArray",
+          "resource_id": "levelled_skill_proficiency",
+          "stat": "skill_proficiencies",
+          "view_type": "edit",
+          "left_view": {
+            "id": "race_edit_skill_proficiencies_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Skill proficiency choices (per lvl): ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          },
+          "pop_up_type": "bottomSheet",
+          "pop_up_button_text": {
+            "type": "stat",
+            "stat": "description"
+          },
+          "validation_message": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "isEmpty",
+                    "components": {
+                      "type": "filter",
+                      "components": {
+                        "type": "stat",
+                        "stat": "$view.race_edit_skill_proficiencies"
+                      },
+                      "filter": {
+                        "type": "isEmpty",
+                        "components": {
+                          "type": "stat",
+                          "stat": "$filterValue.options"
+                        }
+                      }
+                    }
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "You have empty levelled skill proficiencies. Please add some skills to them or remove them.",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "race_edit_armor_proficiencies",
+          "type": "resourceArray",
+          "resource_id": "levelled_armor_proficiency",
+          "stat": "armor_proficiencies",
+          "view_type": "edit",
+          "left_view": {
+            "id": "race_edit_armor_proficiencies_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Armor proficiency choices (per lvl): ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          }
+        },
+        {
+          "id": "race_edit_weapon_proficiencies",
+          "type": "resourceArray",
+          "resource_id": "levelled_weapon_proficiency",
+          "stat": "weapon_proficiencies",
+          "view_type": "edit",
+          "left_view": {
+            "id": "race_edit_weapon_proficiencies_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Weapon proficiency choices (per lvl): ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          },
+          "pop_up_type": "bottomSheet",
+          "pop_up_button_text": {
+            "type": "stat",
+            "stat": "description"
+          }
+        },
+        {
+          "id": "race_edit_tool_proficiencies",
+          "type": "resourceArray",
+          "resource_id": "levelled_choice_text",
+          "stat": "tool_proficiencies",
+          "view_type": "edit",
+          "left_view": {
+            "id": "race_edit_tool_proficiencies_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Tool proficiency choices (per lvl): ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "race_edit_visual_traits",
+      "type": "list",
+      "padding": 16,
+      "subviews": [
+        {
+          "id": "race_edit_visual_traits_selectable_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Selectable visual traits:",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "race_edit_visual_traits_comp",
+          "type": "composite",
+          "subviews": [
+            {
+              "id": "race_edit_visual_traits_allow_hair_color_selection",
+              "type": "checkbox",
+              "stat": "hair_color_selectable",
+              "label": {
+                "type": "constant",
+                "value": "Hair color",
+                "value_type": "string"
+              },
+              "label_alignment": "right"
+            },
+            {
+              "id": "race_edit_visual_traits_allow_eye_color_selection",
+              "type": "checkbox",
+              "stat": "eye_color_selectable",
+              "label": {
+                "type": "constant",
+                "value": "Eye color",
+                "value_type": "string"
+              },
+              "label_alignment": "right"
+            },
+            {
+              "id": "race_edit_visual_traits_allow_outfit_selection",
+              "type": "checkbox",
+              "stat": "outfit_selectable",
+              "label": {
+                "type": "constant",
+                "value": "Outfit",
+                "value_type": "string"
+              },
+              "label_alignment": "right"
+            },
+            {
+              "id": "race_edit_visual_traits_allow_weapon_selection",
+              "type": "checkbox",
+              "stat": "weapon_selectable",
+              "label": {
+                "type": "constant",
+                "value": "Weapon",
+                "value_type": "string"
+              },
+              "label_alignment": "right"
+            },
+            {
+              "id": "race_edit_visual_traits_allow_sex_selection",
+              "type": "checkbox",
+              "stat": "sex_selectable",
+              "label": {
+                "type": "constant",
+                "value": "Sex",
+                "value_type": "string"
+              },
+              "label_alignment": "right"
+            }
+          ]
+        },
+        {
+          "id": "race_edit_visual_traits_array",
+          "type": "resourceArray",
+          "resource_id": "visual_trait",
+          "stat": "visual_traits",
+          "view_type": "edit",
+          "left_view": {
+            "id": "race_edit_visual_traits_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Extra visual traits: ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          },
+          "pop_up_type": "bottomSheet",
+          "pop_up_button_text": {
+            "type": "stat",
+            "stat": "name"
+          },
+          "validation_message": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "isEmpty",
+                    "components": {
+                      "type": "filter",
+                      "components": {
+                        "type": "stat",
+                        "stat": "$view.race_edit_visual_traits_array"
+                      },
+                      "filter": {
+                        "type": "isEmpty",
+                        "components": {
+                          "type": "stat",
+                          "stat": "$filterValue.name"
+                        }
+                      }
+                    }
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "You have empty visual traits. Please edit them or delete them.",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "race_edit_subraces",
+      "type": "list",
+      "padding": 16,
+      "subviews": [
+        {
+          "id": "race_edit_subraces",
+          "type": "resourceArray",
+          "resource_id": "race",
+          "stat": "subraces",
+          "view_type": "edit",
+          "left_view": {
+            "id": "race_edit_subraces_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Subraces: ",
+              "value_type": "string"
+            },
+            "style": "text",
+            "bold": true
+          },
+          "pop_up_type": "window",
+          "pop_up_button_text": {
+            "type": "stat",
+            "stat": "name"
+          },
+          "is_visible": {
+            "type": "not",
+            "components": {
+              "type": "stat",
+              "stat": "is_subrace"
+            }
+          },
+          "validation_message": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "isEmpty",
+                    "components": {
+                      "type": "filter",
+                      "components": {
+                        "type": "stat",
+                        "stat": "$view.race_edit_subraces"
+                      },
+                      "filter": {
+                        "type": "isEmpty",
+                        "components": {
+                          "type": "stat",
+                          "stat": "$filterValue.name"
+                        }
+                      }
+                    }
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "You have empty subraces. Please edit them or delete them.",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "race_edit_subraces_no_subraces_message",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Subraces cannot have subraces!",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true,
+          "is_visible": {
+            "type": "stat",
+            "stat": "is_subrace"
+          }
+        }
+      ]
+    }
+  ]
+}

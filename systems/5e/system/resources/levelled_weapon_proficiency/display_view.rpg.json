@@ -1,0 +1,53 @@
+{
+  "id": "levelled_weapon_proficiency_display",
+  "type": "list",
+  "subviews": [
+    {
+      "id": "levelled_weapon_proficiency_display_out_of_character",
+      "type": "text",
+      "margin_left": 4,
+      "text": {
+        "type": "stat",
+        "stat": "description"
+      },
+      "style": "text",
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "defaultIfNull",
+          "components": {
+            "type": "stat",
+            "stat": "$character?.should_show_controls_for_choices"
+          },
+          "default_components": {
+            "type": "constant",
+            "value": false,
+            "value_type": "bool"
+          }
+        }
+      }
+    },
+    {
+      "id": "levelled_weapon_proficiency_display_in_character",
+      "type": "select",
+      "stat": "selected_option",
+      "options": "weapon_types_plus_all_types",
+      "allowed_options": {
+        "type": "stat",
+        "stat": "options"
+      },
+      "is_visible": {
+        "type": "defaultIfNull",
+        "components": {
+          "type": "stat",
+          "stat": "$character?.should_show_controls_for_choices"
+        },
+        "default_components": {
+          "type": "constant",
+          "value": false,
+          "value_type": "bool"
+        }
+      }
+    }
+  ]
+}

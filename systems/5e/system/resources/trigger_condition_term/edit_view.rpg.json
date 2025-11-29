@@ -1,0 +1,43 @@
+{
+  "id": "edit_trigger_condition_term",
+  "type": "composite",
+  "subviews": [
+    {
+      "id": "edit_trigger_condition_term_stat",
+      "type": "select",
+      "options": "effect_character_stats",
+      "stat": "stat"
+    },
+    {
+      "id": "edit_trigger_condition_term_condition",
+      "type": "select",
+      "options": "conditions",
+      "stat": "condition"
+    },
+    {
+      "id": "edit_trigger_condition_term_value",
+      "type": "text",
+      "edit_stat": "value",
+      "style": "text",
+      "max_length": 4,
+      "signed": true,
+      "hint": {
+        "type": "constant",
+        "value": "0",
+        "value_type": "string"
+      }
+    }
+  ],
+  "resource_id": "trigger_condition_and",
+  "left_view": {
+    "id": "edit_trigger_condition_label",
+    "type": "text",
+    "text": {
+      "type": "constant",
+      "value": "Trigger conditions (or)",
+      "value_type": "string"
+    },
+    "style": "text"
+  },
+  "stat": "terms"
+}

@@ -1,0 +1,1608 @@
+[
+  {
+    "id": "name",
+    "name": "Name",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "photo",
+    "name": "Photo",
+    "type": "base",
+    "value_type": "photo",
+    "default_value": null
+  },
+  {
+    "id": "source",
+    "name": "Source",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "tag",
+    "name": "Tag",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "armor_class",
+    "name": "Armor Class",
+    "abbreviation": "AC",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 10
+  },
+  {
+    "id": "hit_points",
+    "name": "hp",
+    "type": "base",
+    "value_type": "resource",
+    "resource_type": "dice_roll",
+    "default_value": null
+  },
+  {
+    "id": "average_hp",
+    "name": "Average HP",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "defaultIfNull",
+      "components": {
+        "type": "stat",
+        "stat": "hit_points?.average"
+      },
+      "default_components": {
+        "type": "constant",
+        "value": 1,
+        "value_type": "integer"
+      }
+    }
+  },
+  {
+    "id": "cr",
+    "name": "CR",
+    "type": "base",
+    "value_type": "string",
+    "default_value": "cr_0"
+  },
+  {
+    "id": "xp",
+    "name": "Experience",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "cr_xp",
+    "name": "CR (XP)",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "enumeratedName",
+            "enumerated_type": "monster_cr_types",
+            "id": {
+              "type": "stat",
+              "stat": "cr"
+            }
+          },
+          {
+            "type": "constant",
+            "value": " (",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "xp"
+          },
+          {
+            "type": "constant",
+            "value": ")",
+            "value_type": "string"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "initiative",
+    "name": "Initiative",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "speed",
+    "name": "Speed",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 30
+  },
+  {
+    "id": "burrow_speed",
+    "name": "Burrow",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "climb_speed",
+    "name": "Climb",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "fly_speed",
+    "name": "Fly",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "swim_speed",
+    "name": "Swim",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "display_speeds",
+    "name": "Display speeds",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "joinToString",
+      "separator": "\n",
+      "components": {
+        "type": "flatAppend",
+        "components": [
+          {
+            "type": "list",
+            "components": [
+              {
+                "type": "concat",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "constant",
+                      "value": "Speed ",
+                      "value_type": "string"
+                    },
+                    {
+                      "type": "stat",
+                      "stat": "speed"
+                    },
+                    {
+                      "type": "constant",
+                      "value": " ft.",
+                      "value_type": "string"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "greaterThan",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "burrow_speed"
+                      },
+                      {
+                        "type": "constant",
+                        "value": 0,
+                        "value_type": "integer"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "concat",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "constant",
+                            "value": "Burrow ",
+                            "value_type": "string"
+                          },
+                          {
+                            "type": "stat",
+                            "stat": "burrow_speed"
+                          },
+                          {
+                            "type": "constant",
+                            "value": " ft.",
+                            "value_type": "string"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "greaterThan",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "climb_speed"
+                      },
+                      {
+                        "type": "constant",
+                        "value": 0,
+                        "value_type": "integer"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "concat",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "constant",
+                            "value": "Climb ",
+                            "value_type": "string"
+                          },
+                          {
+                            "type": "stat",
+                            "stat": "climb_speed"
+                          },
+                          {
+                            "type": "constant",
+                            "value": " ft.",
+                            "value_type": "string"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "greaterThan",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "fly_speed"
+                      },
+                      {
+                        "type": "constant",
+                        "value": 0,
+                        "value_type": "integer"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "concat",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "constant",
+                            "value": "Fly ",
+                            "value_type": "string"
+                          },
+                          {
+                            "type": "stat",
+                            "stat": "fly_speed"
+                          },
+                          {
+                            "type": "constant",
+                            "value": " ft.",
+                            "value_type": "string"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "greaterThan",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "swim_speed"
+                      },
+                      {
+                        "type": "constant",
+                        "value": 0,
+                        "value_type": "integer"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "concat",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "constant",
+                            "value": "Swim ",
+                            "value_type": "string"
+                          },
+                          {
+                            "type": "stat",
+                            "stat": "swim_speed"
+                          },
+                          {
+                            "type": "constant",
+                            "value": " ft.",
+                            "value_type": "string"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "strength_score",
+    "name": "Strength",
+    "abbreviation": "STR",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 10
+  },
+  {
+    "id": "dexterity_score",
+    "name": "Dexterity",
+    "abbreviation": "DEX",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 10
+  },
+  {
+    "id": "constitution_score",
+    "name": "Constitution",
+    "abbreviation": "CON",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 10
+  },
+  {
+    "id": "intelligence_score",
+    "name": "Intelligence",
+    "abbreviation": "INT",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 10
+  },
+  {
+    "id": "wisdom_score",
+    "name": "Wisdom",
+    "abbreviation": "WIS",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 10
+  },
+  {
+    "id": "charisma_score",
+    "name": "Charisma",
+    "abbreviation": "CHA",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 10
+  },
+  {
+    "id": "strength_saving_throw_modifier",
+    "name": "Strength saving throw modifier",
+    "abbreviation": "STR",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "dexterity_saving_throw_modifier",
+    "name": "Dexterity saving throw modifier",
+    "abbreviation": "DEX",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "constitution_saving_throw_modifier",
+    "name": "Constitution saving throw modifier",
+    "abbreviation": "CON",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "intelligence_saving_throw_modifier",
+    "name": "Intelligence saving throw modifier",
+    "abbreviation": "INT",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "wisdom_saving_throw_modifier",
+    "name": "Wisdom saving throw modifier",
+    "abbreviation": "WIS",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "charisma_saving_throw_modifier",
+    "name": "Charisma saving throw modifier",
+    "abbreviation": "CHA",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "skills",
+    "name": "Skills",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "gear",
+    "name": "Gear",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "vulnerabilities",
+    "name": "Vulnerabilities",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "immunities",
+    "name": "Immunitites",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "resistances",
+    "name": "Resistances",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "senses",
+    "name": "Senses",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "languages",
+    "name": "Languages",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "size",
+    "name": "Size",
+    "type": "base",
+    "value_type": "string",
+    "default_value": "medium"
+  },
+  {
+    "id": "type",
+    "name": "Type",
+    "type": "base",
+    "value_type": "string",
+    "default_value": "aberration"
+  },
+  {
+    "id": "alignment",
+    "name": "Alignment",
+    "type": "base",
+    "value_type": "string",
+    "default_value": "true_neutral"
+  },
+  {
+    "id": "traits",
+    "name": "Traits",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "monster_trait",
+    "default_value": []
+  },
+  {
+    "id": "actions",
+    "name": "Actions",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "monster_action",
+    "default_value": []
+  },
+  {
+    "id": "bonus_actions",
+    "name": "Bonus actions",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "monster_action",
+    "default_value": []
+  },
+  {
+    "id": "reactions",
+    "name": "Reactions",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "monster_action",
+    "default_value": []
+  },
+  {
+    "id": "legendary_actions",
+    "name": "Legendary actions",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "monster_action",
+    "default_value": []
+  },
+  {
+    "id": "spells",
+    "name": "Spells",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "spell",
+    "default_value": []
+  },
+  {
+    "id": "habitat",
+    "name": "Habitat",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "string",
+    "default_value": []
+  },
+  {
+    "id": "treasure",
+    "name": "Treasure",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "string",
+    "default_value": []
+  },
+  {
+    "id": "formatted_type",
+    "name": "Formatted type",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "enumeratedName",
+      "enumerated_type": "monster_types",
+      "id": {
+        "type": "stat",
+        "stat": "type"
+      }
+    }
+  },
+  {
+    "id": "formatted_cr",
+    "name": "Formatted cr",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "enumeratedName",
+      "enumerated_type": "monster_cr_types",
+      "id": {
+        "type": "stat",
+        "stat": "cr"
+      }
+    }
+  },
+  {
+    "id": "formatted_xp",
+    "name": "Formatted xp",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "stat",
+            "stat": "xp"
+          },
+          {
+            "type": "constant",
+            "value": " XP",
+            "value_type": "string"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "type_info",
+    "name": "Type info",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "flatAppend",
+        "components": [
+          {
+            "type": "list",
+            "components": [
+              {
+                "type": "enumeratedName",
+                "enumerated_type": "monster_sizes",
+                "id": {
+                  "type": "stat",
+                  "stat": "size"
+                }
+              },
+              {
+                "type": "constant",
+                "value": " ",
+                "value_type": "string"
+              },
+              {
+                "type": "enumeratedName",
+                "enumerated_type": "monster_types",
+                "id": {
+                  "type": "stat",
+                  "stat": "type"
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "isEmpty",
+                  "components": {
+                    "type": "stat",
+                    "stat": "tag"
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "concat",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "constant",
+                            "value": " (",
+                            "value_type": "string"
+                          },
+                          {
+                            "type": "stat",
+                            "stat": "tag"
+                          },
+                          {
+                            "type": "constant",
+                            "value": ")",
+                            "value_type": "string"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "components": [
+              {
+                "type": "constant",
+                "value": ", ",
+                "value_type": "string"
+              },
+              {
+                "type": "enumeratedName",
+                "enumerated_type": "monster_alignments",
+                "id": {
+                  "type": "stat",
+                  "stat": "alignment"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "hit_points_formatted",
+    "name": "Formatted hit points",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "and",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "defined",
+                  "stat": "$parent.max_hp"
+                },
+                {
+                  "type": "defined",
+                  "stat": "$parent.hp"
+                }
+              ]
+            }
+          },
+          "components": {
+            "type": "concat",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$parent.hp"
+                },
+                {
+                  "type": "constant",
+                  "value": " / ",
+                  "value_type": "string"
+                },
+                {
+                  "type": "stat",
+                  "stat": "$parent.max_hp"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "concat",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "average_hp"
+                },
+                {
+                  "type": "constant",
+                  "value": " (",
+                  "value_type": "string"
+                },
+                {
+                  "type": "defaultIfNull",
+                  "components": {
+                    "type": "stat",
+                    "stat": "hit_points?.formula"
+                  },
+                  "default_components": {
+                    "type": "constant",
+                    "value": "0",
+                    "value_type": "string"
+                  }
+                },
+                {
+                  "type": "constant",
+                  "value": ")",
+                  "value_type": "string"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "strength_modifier",
+    "name": "Strength",
+    "abbreviation": "STR",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "divide",
+      "rounding_method": "down",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "add",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "strength_score"
+                },
+                {
+                  "type": "constant",
+                  "value": -10,
+                  "value_type": "integer"
+                }
+              ]
+            }
+          },
+          {
+            "type": "constant",
+            "value": 2,
+            "value_type": "integer"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "dexterity_modifier",
+    "name": "Dexterity",
+    "abbreviation": "DEX",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "divide",
+      "rounding_method": "down",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "add",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "dexterity_score"
+                },
+                {
+                  "type": "constant",
+                  "value": -10,
+                  "value_type": "integer"
+                }
+              ]
+            }
+          },
+          {
+            "type": "constant",
+            "value": 2,
+            "value_type": "integer"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "constitution_modifier",
+    "name": "Constitution",
+    "abbreviation": "CON",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "divide",
+      "rounding_method": "down",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "add",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "constitution_score"
+                },
+                {
+                  "type": "constant",
+                  "value": -10,
+                  "value_type": "integer"
+                }
+              ]
+            }
+          },
+          {
+            "type": "constant",
+            "value": 2,
+            "value_type": "integer"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "intelligence_modifier",
+    "name": "Intelligence",
+    "abbreviation": "INT",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "divide",
+      "rounding_method": "down",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "add",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "intelligence_score"
+                },
+                {
+                  "type": "constant",
+                  "value": -10,
+                  "value_type": "integer"
+                }
+              ]
+            }
+          },
+          {
+            "type": "constant",
+            "value": 2,
+            "value_type": "integer"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "wisdom_modifier",
+    "name": "Wisdom",
+    "abbreviation": "WIS",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "divide",
+      "rounding_method": "down",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "add",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "wisdom_score"
+                },
+                {
+                  "type": "constant",
+                  "value": -10,
+                  "value_type": "integer"
+                }
+              ]
+            }
+          },
+          {
+            "type": "constant",
+            "value": 2,
+            "value_type": "integer"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "charisma_modifier",
+    "name": "Charisma",
+    "abbreviation": "CHA",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "divide",
+      "rounding_method": "down",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "add",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "charisma_score"
+                },
+                {
+                  "type": "constant",
+                  "value": -10,
+                  "value_type": "integer"
+                }
+              ]
+            }
+          },
+          {
+            "type": "constant",
+            "value": 2,
+            "value_type": "integer"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "display_strength_with_mod",
+    "name": "Display strength with mod",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "STR: ",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "strength_score"
+          },
+          {
+            "type": "constant",
+            "value": " (",
+            "value_type": "string"
+          },
+          {
+            "type": "toSignedString",
+            "components": {
+              "type": "stat",
+              "stat": "strength_modifier"
+            }
+          },
+          {
+            "type": "constant",
+            "value": ")",
+            "value_type": "string"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "display_dexterity_with_mod",
+    "name": "Display dexterity with mod",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "DEX: ",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "dexterity_score"
+          },
+          {
+            "type": "constant",
+            "value": " (",
+            "value_type": "string"
+          },
+          {
+            "type": "toSignedString",
+            "components": {
+              "type": "stat",
+              "stat": "dexterity_modifier"
+            }
+          },
+          {
+            "type": "constant",
+            "value": ")",
+            "value_type": "string"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "display_constitution_with_mod",
+    "name": "Display constitution with mod",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "CON: ",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "constitution_score"
+          },
+          {
+            "type": "constant",
+            "value": " (",
+            "value_type": "string"
+          },
+          {
+            "type": "toSignedString",
+            "components": {
+              "type": "stat",
+              "stat": "constitution_modifier"
+            }
+          },
+          {
+            "type": "constant",
+            "value": ")",
+            "value_type": "string"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "display_intelligence_with_mod",
+    "name": "Display intelligence with mod",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "INT: ",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "intelligence_score"
+          },
+          {
+            "type": "constant",
+            "value": " (",
+            "value_type": "string"
+          },
+          {
+            "type": "toSignedString",
+            "components": {
+              "type": "stat",
+              "stat": "intelligence_modifier"
+            }
+          },
+          {
+            "type": "constant",
+            "value": ")",
+            "value_type": "string"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "display_wisdom_with_mod",
+    "name": "Display wisdom with mod",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "WIS: ",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "wisdom_score"
+          },
+          {
+            "type": "constant",
+            "value": " (",
+            "value_type": "string"
+          },
+          {
+            "type": "toSignedString",
+            "components": {
+              "type": "stat",
+              "stat": "wisdom_modifier"
+            }
+          },
+          {
+            "type": "constant",
+            "value": ")",
+            "value_type": "string"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "display_charisma_with_mod",
+    "name": "Display charisma with mod",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "CHA: ",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "charisma_score"
+          },
+          {
+            "type": "constant",
+            "value": " (",
+            "value_type": "string"
+          },
+          {
+            "type": "toSignedString",
+            "components": {
+              "type": "stat",
+              "stat": "charisma_modifier"
+            }
+          },
+          {
+            "type": "constant",
+            "value": ")",
+            "value_type": "string"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "display_strength_save",
+    "name": "Display strength save",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "STR: ",
+            "value_type": "string"
+          },
+          {
+            "type": "toSignedString",
+            "components": {
+              "type": "stat",
+              "stat": "strength_saving_throw_modifier"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "display_dexterity_save",
+    "name": "Display dexterity save",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "DEX: ",
+            "value_type": "string"
+          },
+          {
+            "type": "toSignedString",
+            "components": {
+              "type": "stat",
+              "stat": "dexterity_saving_throw_modifier"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "display_constitution_save",
+    "name": "Display constitution save",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "CON: ",
+            "value_type": "string"
+          },
+          {
+            "type": "toSignedString",
+            "components": {
+              "type": "stat",
+              "stat": "constitution_saving_throw_modifier"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "display_intelligence_save",
+    "name": "Display intelligence save",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "INT: ",
+            "value_type": "string"
+          },
+          {
+            "type": "toSignedString",
+            "components": {
+              "type": "stat",
+              "stat": "intelligence_saving_throw_modifier"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "display_wisdom_save",
+    "name": "Display wisdom save",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "WIS: ",
+            "value_type": "string"
+          },
+          {
+            "type": "toSignedString",
+            "components": {
+              "type": "stat",
+              "stat": "wisdom_saving_throw_modifier"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "display_charisma_save",
+    "name": "Display charisma save",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "CHA: ",
+            "value_type": "string"
+          },
+          {
+            "type": "toSignedString",
+            "components": {
+              "type": "stat",
+              "stat": "charisma_saving_throw_modifier"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "formatted_habitats",
+    "name": "Formatted habitats",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "joinToString",
+      "separator": ", ",
+      "components": {
+        "type": "map",
+        "components": {
+          "type": "stat",
+          "stat": "habitat"
+        },
+        "mapper": {
+          "type": "enumeratedName",
+          "enumerated_type": "monster_habitats",
+          "id": {
+            "type": "stat",
+            "stat": "$mapValue"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "formatted_treasure",
+    "name": "Formatted treasure",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "joinToString",
+      "separator": ", ",
+      "components": {
+        "type": "map",
+        "components": {
+          "type": "stat",
+          "stat": "treasure"
+        },
+        "mapper": {
+          "type": "enumeratedName",
+          "enumerated_type": "monster_treasure_themes",
+          "id": {
+            "type": "stat",
+            "stat": "$mapValue"
+          }
+        }
+      }
+    }
+  }
+]

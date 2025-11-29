@@ -1,0 +1,718 @@
+[
+  {
+    "id": "name",
+    "name": "Name",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "source",
+    "name": "Source",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "description",
+    "name": "Description",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "type",
+    "name": "Type",
+    "type": "base",
+    "value_type": "string",
+    "default_value": "adventuring_gear"
+  },
+  {
+    "id": "cost",
+    "name": "Cost",
+    "type": "base",
+    "value_type": "resource",
+    "default_value": null
+  },
+  {
+    "id": "weight",
+    "name": "Weight",
+    "type": "base",
+    "value_type": "resource",
+    "default_value": null
+  },
+  {
+    "id": "ammunition_type",
+    "name": "Ammunition type",
+    "type": "base",
+    "value_type": "string",
+    "default_value": "arrow"
+  },
+  {
+    "id": "rarity",
+    "name": "Rarity",
+    "type": "base",
+    "value_type": "string",
+    "default_value": "common"
+  },
+  {
+    "id": "is_magic",
+    "name": "Is magic",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "requires_attunement",
+    "name": "Requires attunement",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "is_cursed",
+    "name": "Is cursed",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "is_intelligent",
+    "name": "Is intelligent",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "is_spellcasting_focus",
+    "name": "Spellcasting Focus",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "should_load_effects",
+    "name": "Should load effects",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "defaultIfNull",
+      "components": {
+        "type": "stat",
+        "stat": "$parent?.should_load_effects?"
+      },
+      "default_components": {
+        "type": "constant",
+        "value": true,
+        "value_type": "bool"
+      }
+    }
+  },
+  {
+    "id": "effects",
+    "name": "Effects",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "effect",
+    "default_value": []
+  },
+  {
+    "id": "is_attuned",
+    "name": "Is attuned",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "is_equipped",
+    "name": "Is equipped",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "quantity",
+    "name": "Quantity",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 1
+  },
+  {
+    "id": "edit_quantity",
+    "name": "Edit quantity",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 1
+  },
+  {
+    "id": "requires_equipping",
+    "name": "Requires equipping to activate effects",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "or",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "equals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "type"
+                },
+                {
+                  "type": "constant",
+                  "value": "ring",
+                  "value_type": "string"
+                }
+              ]
+            }
+          },
+          {
+            "type": "equals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "type"
+                },
+                {
+                  "type": "constant",
+                  "value": "rod",
+                  "value_type": "string"
+                }
+              ]
+            }
+          },
+          {
+            "type": "equals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "type"
+                },
+                {
+                  "type": "constant",
+                  "value": "wand",
+                  "value_type": "string"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "properties",
+    "name": "Properties",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "notEquals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "rarity"
+                      },
+                      {
+                        "type": "constant",
+                        "value": "none",
+                        "value_type": "string"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "concat",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "enumeratedName",
+                        "enumerated_type": "item_rarity",
+                        "id": {
+                          "type": "stat",
+                          "stat": "rarity"
+                        }
+                      },
+                      {
+                        "type": "constant",
+                        "value": " ",
+                        "value_type": "string"
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "",
+                  "value_type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "is_magic"
+                },
+                "components": {
+                  "type": "concat",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "constant",
+                        "value": "magic ",
+                        "value_type": "string"
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "",
+                  "value_type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "type": "enumeratedName",
+            "enumerated_type": "item_types",
+            "id": {
+              "type": "stat",
+              "stat": "type"
+            }
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "requires_attunement"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": " (requires attunement)",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "",
+                  "value_type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "is_cursed"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": ", cursed",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "",
+                  "value_type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "is_intelligent"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": ", intelligent",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "",
+                  "value_type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "is_spellcasting_focus"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": ", spellcasting focus.",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "",
+                  "value_type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "and",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "equals",
+                        "components": {
+                          "type": "list",
+                          "components": [
+                            {
+                              "type": "stat",
+                              "stat": "type"
+                            },
+                            {
+                              "type": "constant",
+                              "value": "ammunition",
+                              "value_type": "string"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "notEquals",
+                        "components": {
+                          "type": "list",
+                          "components": [
+                            {
+                              "type": "stat",
+                              "stat": "ammunition_type"
+                            },
+                            {
+                              "type": "constant",
+                              "value": "none",
+                              "value_type": "string"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "concat",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "constant",
+                        "value": " (",
+                        "value_type": "string"
+                      },
+                      {
+                        "type": "enumeratedName",
+                        "enumerated_type": "ammunition_types",
+                        "id": {
+                          "type": "stat",
+                          "stat": "ammunition_type"
+                        }
+                      },
+                      {
+                        "type": "constant",
+                        "value": ")",
+                        "value_type": "string"
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "",
+                  "value_type": "string"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "price_and_weight",
+    "name": "Item price and weight",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "joinToString",
+      "separator": ", ",
+      "components": {
+        "type": "flatAppend",
+        "components": [
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "notEquals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "defaultIfNull",
+                        "components": {
+                          "type": "stat",
+                          "stat": "cost?.value"
+                        },
+                        "default_components": {
+                          "type": "constant",
+                          "value": 0,
+                          "value_type": "integer"
+                        }
+                      },
+                      {
+                        "type": "constant",
+                        "value": 0,
+                        "value_type": "integer"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "stat",
+                      "stat": "cost.description"
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "notEquals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "defaultIfNull",
+                        "components": {
+                          "type": "stat",
+                          "stat": "weight?.value"
+                        },
+                        "default_components": {
+                          "type": "constant",
+                          "value": 0,
+                          "value_type": "integer"
+                        }
+                      },
+                      {
+                        "type": "constant",
+                        "value": 0,
+                        "value_type": "integer"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "stat",
+                      "stat": "weight.description"
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "first_line_extra",
+    "name": "Item price and weight or quantity (when in character)",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "defined",
+            "stat": "$character"
+          },
+          "components": {
+            "type": "concat",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "quantity"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "stat",
+            "stat": "price_and_weight"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "name_with_amount",
+    "name": "Name with amount",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "stat",
+            "stat": "name"
+          },
+          {
+            "type": "constant",
+            "value": " (",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "quantity"
+          },
+          {
+            "type": "constant",
+            "value": ")",
+            "value_type": "string"
+          }
+        ]
+      }
+    }
+  }
+]

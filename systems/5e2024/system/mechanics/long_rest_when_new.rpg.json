@@ -1,0 +1,37 @@
+{
+  "id": "long_rest_when_new",
+  "event_names": "characterLoaded",
+  "effects": {
+    "type": "when",
+    "clauses": [
+      {
+        "condition": {
+          "type": "stat",
+          "stat": "is_new_and_should_long_rest"
+        },
+        "effect": {
+          "type": "sequence",
+          "effects": [
+            {
+              "type": "fireEvent",
+              "event": {
+                "name": "long_rest",
+                "payload": {}
+              }
+            },
+            {
+              "type": "setStat",
+              "stat": "is_new_and_should_long_rest",
+              "new_value": {
+                "type": "constant",
+                "value": false,
+                "value_type": "bool"
+              },
+              "aggregation_type": "set"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

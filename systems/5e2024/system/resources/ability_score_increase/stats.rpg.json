@@ -1,0 +1,192 @@
+[
+  {
+    "id": "value",
+    "name": "Value",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 1
+  },
+  {
+    "id": "modifier_options",
+    "name": "Modifier options",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "string",
+    "default_value": []
+  },
+  {
+    "id": "description",
+    "name": "Display description",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "isEmpty",
+            "components": {
+              "type": "stat",
+              "stat": "modifier_options"
+            }
+          },
+          "components": {
+            "type": "constant",
+            "value": "Nothing to assign",
+            "value_type": "string"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "concat",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "constant",
+                  "value": "Assign ",
+                  "value_type": "string"
+                },
+                {
+                  "type": "stat",
+                  "stat": "value"
+                },
+                {
+                  "type": "when",
+                  "clauses": [
+                    {
+                      "condition": {
+                        "type": "equals",
+                        "components": {
+                          "type": "list",
+                          "components": [
+                            {
+                              "type": "length",
+                              "components": {
+                                "type": "stat",
+                                "stat": "modifier_options"
+                              }
+                            },
+                            {
+                              "type": "constant",
+                              "value": 1,
+                              "value_type": "integer"
+                            }
+                          ]
+                        }
+                      },
+                      "components": {
+                        "type": "concat",
+                        "components": {
+                          "type": "list",
+                          "components": [
+                            {
+                              "type": "constant",
+                              "value": " to ",
+                              "value_type": "string"
+                            },
+                            {
+                              "type": "findFirst",
+                              "components": {
+                                "type": "stat",
+                                "stat": "modifier_options"
+                              },
+                              "filter": {
+                                "type": "constant",
+                                "value": true,
+                                "value_type": "bool"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "constant",
+                        "value": true,
+                        "value_type": "bool"
+                      },
+                      "components": {
+                        "type": "concat",
+                        "components": {
+                          "type": "list",
+                          "components": [
+                            {
+                              "type": "constant",
+                              "value": " to one of ",
+                              "value_type": "string"
+                            },
+                            {
+                              "type": "joinToString",
+                              "separator": ", ",
+                              "components": {
+                                "type": "map",
+                                "components": {
+                                  "type": "stat",
+                                  "stat": "modifier_options"
+                                },
+                                "mapper": {
+                                  "type": "enumeratedName",
+                                  "enumerated_type": "ability",
+                                  "id": {
+                                    "type": "stat",
+                                    "stat": "$mapValue"
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "assign_label_text",
+    "name": "Assign label text",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "Assign ",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "value"
+          },
+          {
+            "type": "constant",
+            "value": " to: ",
+            "value_type": "string"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "temp_selected_modifier",
+    "name": "Temporal variable to hold the selected modifier",
+    "type": "base",
+    "value_type": "string",
+    "default_value": "strength"
+  }
+]

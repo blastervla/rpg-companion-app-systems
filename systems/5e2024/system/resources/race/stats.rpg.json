@@ -1,0 +1,2303 @@
+[
+  {
+    "id": "name",
+    "name": "Name",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "source",
+    "name": "Source",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "base_ac",
+    "name": "Base AC",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 10
+  },
+  {
+    "id": "ac_modifiers",
+    "name": "AC Modifiers",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "string",
+    "default_value": [
+      "dexterity"
+    ]
+  },
+  {
+    "id": "actual_base_ac",
+    "name": "Actual base AC",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "and",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "notNull",
+                  "components": {
+                    "type": "stat",
+                    "stat": "selected_subrace"
+                  }
+                },
+                {
+                  "type": "not",
+                  "components": {
+                    "type": "defaultIfNull",
+                    "components": {
+                      "type": "stat",
+                      "stat": "selected_subrace?.same_ac_as_parent"
+                    },
+                    "default_components": {
+                      "type": "constant",
+                      "value": true,
+                      "value_type": "bool"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "components": {
+            "type": "stat",
+            "stat": "selected_subrace.base_ac"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "stat",
+            "stat": "base_ac"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "actual_ac_modifiers",
+    "name": "Actual AC modifiers",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "string",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "and",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "notNull",
+                  "components": {
+                    "type": "stat",
+                    "stat": "selected_subrace"
+                  }
+                },
+                {
+                  "type": "not",
+                  "components": {
+                    "type": "defaultIfNull",
+                    "components": {
+                      "type": "stat",
+                      "stat": "selected_subrace?.same_ac_as_parent"
+                    },
+                    "default_components": {
+                      "type": "constant",
+                      "value": true,
+                      "value_type": "bool"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "components": {
+            "type": "stat",
+            "stat": "selected_subrace.ac_modifiers"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "stat",
+            "stat": "ac_modifiers"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "same_ac_as_parent",
+    "name": "Same AC as parent",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": true
+  },
+  {
+    "id": "speed",
+    "name": "Speed",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 30
+  },
+  {
+    "id": "burrow_speed",
+    "name": "Burrow",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "climb_speed",
+    "name": "Climb",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "fly_speed",
+    "name": "Fly",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "swim_speed",
+    "name": "Swim",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "traits",
+    "name": "Trait",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "feat",
+    "default_value": []
+  },
+  {
+    "id": "unarmed_strike",
+    "name": "unarmed_strike",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_weapon",
+    "default_value": []
+  },
+  {
+    "id": "same_spellcasting_ability_as_parent",
+    "name": "Same spellcasting ability as parent",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": true
+  },
+  {
+    "id": "spellcasting_ability",
+    "name": "Spellcasting ability",
+    "type": "base",
+    "value_type": "string",
+    "default_value": "intelligence"
+  },
+  {
+    "id": "spells",
+    "name": "Spells",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "spell",
+    "default_value": []
+  },
+  {
+    "id": "language_proficiencies",
+    "name": "Language proficiencies",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_choice_text",
+    "default_value": []
+  },
+  {
+    "id": "skill_proficiencies",
+    "name": "Skill proficiencies",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_skill_proficiency",
+    "default_value": []
+  },
+  {
+    "id": "armor_proficiencies",
+    "name": "Armor proficiencies",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_armor_proficiency",
+    "default_value": []
+  },
+  {
+    "id": "weapon_proficiencies",
+    "name": "Weapon proficiencies",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_weapon_proficiency",
+    "default_value": []
+  },
+  {
+    "id": "tool_proficiencies",
+    "name": "Tool proficiencies",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_choice_text",
+    "default_value": []
+  },
+  {
+    "id": "visual_traits",
+    "name": "Visual traits",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "visual_trait",
+    "default_value": []
+  },
+  {
+    "id": "actual_visual_traits",
+    "name": "Actual visual_traits",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "visual_trait",
+    "components": {
+      "type": "defaultIfNull",
+      "components": {
+        "type": "stat",
+        "stat": "selected_subrace?.visual_traits"
+      },
+      "default_components": {
+        "type": "stat",
+        "stat": "visual_traits"
+      }
+    }
+  },
+  {
+    "id": "hair_color_selectable",
+    "name": "Hair color selectable",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "actual_hair_color_selectable",
+    "name": "Actual hair_color_selectable",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "defaultIfNull",
+      "components": {
+        "type": "stat",
+        "stat": "selected_subrace?.hair_color_selectable"
+      },
+      "default_components": {
+        "type": "stat",
+        "stat": "hair_color_selectable"
+      }
+    }
+  },
+  {
+    "id": "eye_color_selectable",
+    "name": "Eye color selectable",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "actual_eye_color_selectable",
+    "name": "Actual eye_color_selectable",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "defaultIfNull",
+      "components": {
+        "type": "stat",
+        "stat": "selected_subrace?.eye_color_selectable"
+      },
+      "default_components": {
+        "type": "stat",
+        "stat": "eye_color_selectable"
+      }
+    }
+  },
+  {
+    "id": "outfit_selectable",
+    "name": "Outfit selectable",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "actual_outfit_selectable",
+    "name": "Actual outfit_selectable",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "defaultIfNull",
+      "components": {
+        "type": "stat",
+        "stat": "selected_subrace?.outfit_selectable"
+      },
+      "default_components": {
+        "type": "stat",
+        "stat": "outfit_selectable"
+      }
+    }
+  },
+  {
+    "id": "weapon_selectable",
+    "name": "Weapon selectable",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "actual_appearance_weapon_selectable",
+    "name": "Actual weapon_selectable",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "defaultIfNull",
+      "components": {
+        "type": "stat",
+        "stat": "selected_subrace?.weapon_selectable"
+      },
+      "default_components": {
+        "type": "stat",
+        "stat": "weapon_selectable"
+      }
+    }
+  },
+  {
+    "id": "sex_selectable",
+    "name": "Sex selectable",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "actual_sex_selectable",
+    "name": "Actual sex_selectable",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "defaultIfNull",
+      "components": {
+        "type": "stat",
+        "stat": "selected_subrace?.sex_selectable"
+      },
+      "default_components": {
+        "type": "stat",
+        "stat": "sex_selectable"
+      }
+    }
+  },
+  {
+    "id": "subraces",
+    "name": "Ancestries",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "race",
+    "default_value": []
+  },
+  {
+    "id": "is_subrace",
+    "name": "Is subrace",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "defined",
+      "stat": "$parent.subraces"
+    }
+  },
+  {
+    "id": "subrace_names",
+    "name": "Subrace names",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "joinToString",
+      "separator": ", ",
+      "components": {
+        "type": "map",
+        "components": {
+          "type": "stat",
+          "stat": "subraces"
+        },
+        "mapper": {
+          "type": "stat",
+          "stat": "$mapValue.name"
+        }
+      }
+    }
+  },
+  {
+    "id": "selected_subrace",
+    "name": "Selected subrace",
+    "type": "calculated",
+    "value_type": "resource",
+    "resource_type": "race",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "defined",
+            "stat": "$character"
+          },
+          "components": {
+            "type": "findFirst",
+            "components": {
+              "type": "when",
+              "clauses": [
+                {
+                  "condition": {
+                    "type": "stat",
+                    "stat": "is_subrace"
+                  },
+                  "components": {
+                    "type": "stat",
+                    "stat": "$parent.subraces"
+                  }
+                },
+                {
+                  "condition": {
+                    "type": "constant",
+                    "value": true,
+                    "value_type": "bool"
+                  },
+                  "components": {
+                    "type": "stat",
+                    "stat": "subraces"
+                  }
+                }
+              ]
+            },
+            "filter": {
+              "type": "equals",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "stat",
+                    "stat": "$findFirstValue.id"
+                  },
+                  {
+                    "type": "stat",
+                    "stat": "$character.subrace_id"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "constant",
+            "value": null,
+            "value_type": "string"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "should_load_effects",
+    "name": "Should load effects",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "or",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "not",
+            "components": {
+              "type": "stat",
+              "stat": "is_subrace"
+            }
+          },
+          {
+            "type": "equals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$character?.subrace_id"
+                },
+                {
+                  "type": "stat",
+                  "stat": "id"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "current_speed",
+    "name": "Current speed",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "notEquals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "selected_subrace"
+                },
+                {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              ]
+            }
+          },
+          "components": {
+            "type": "stat",
+            "stat": "selected_subrace.speed"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "stat",
+            "stat": "speed"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "current_burrow_speed",
+    "name": "Current burrow speed",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "notEquals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "selected_subrace"
+                },
+                {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              ]
+            }
+          },
+          "components": {
+            "type": "stat",
+            "stat": "selected_subrace.burrow_speed"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "stat",
+            "stat": "burrow_speed"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "current_climb_speed",
+    "name": "Current climb speed",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "notEquals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "selected_subrace"
+                },
+                {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              ]
+            }
+          },
+          "components": {
+            "type": "stat",
+            "stat": "selected_subrace.climb_speed"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "stat",
+            "stat": "climb_speed"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "current_fly_speed",
+    "name": "Current fly speed",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "notEquals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "selected_subrace"
+                },
+                {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              ]
+            }
+          },
+          "components": {
+            "type": "stat",
+            "stat": "selected_subrace.fly_speed"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "stat",
+            "stat": "fly_speed"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "current_swim_speed",
+    "name": "Current swim speed",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "notEquals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "selected_subrace"
+                },
+                {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              ]
+            }
+          },
+          "components": {
+            "type": "stat",
+            "stat": "selected_subrace.swim_speed"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "stat",
+            "stat": "swim_speed"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "current_level_weapon",
+    "name": "Current level weapon",
+    "type": "calculated",
+    "value_type": "resource",
+    "resource_type": "levelled_weapon",
+    "components": {
+      "type": "findFirst",
+      "components": {
+        "type": "sortBy",
+        "order": "desc",
+        "components": {
+          "type": "stat",
+          "stat": "unarmed_strike"
+        },
+        "sort_by_selector": {
+          "type": "stat",
+          "stat": "$sortByValue.level"
+        }
+      },
+      "filter": {
+        "type": "lessThanEquals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$findFirstValue.level"
+            },
+            {
+              "type": "stat",
+              "stat": "$character.level"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "selected_subrace_has_weapon",
+    "name": "Selected subrace has weapon",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "notEquals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "selected_subrace"
+                },
+                {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              ]
+            }
+          },
+          "components": {
+            "type": "notEquals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "selected_subrace.current_level_weapon"
+                },
+                {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "constant",
+            "value": false,
+            "value_type": "bool"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "weapons",
+    "name": "Weapons",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "weapon",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "stat",
+            "stat": "selected_subrace_has_weapon"
+          },
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "selected_subrace.current_level_weapon.weapon"
+              }
+            ]
+          }
+        },
+        {
+          "condition": {
+            "type": "notEquals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "current_level_weapon"
+                },
+                {
+                  "type": "constant",
+                  "value": null,
+                  "value_type": "string"
+                }
+              ]
+            }
+          },
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "current_level_weapon.weapon"
+              }
+            ]
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "list",
+            "components": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "language_proficiencies_for_current_level",
+    "name": "Language proficiencies for current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_choice_text",
+    "components": {
+      "type": "flatAppend",
+      "components": [
+        {
+          "type": "filter",
+          "components": {
+            "type": "stat",
+            "stat": "language_proficiencies"
+          },
+          "filter": {
+            "type": "lessThanEquals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$filterValue.level"
+                },
+                {
+                  "type": "stat",
+                  "stat": "$character.level"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "not",
+                "components": {
+                  "type": "stat",
+                  "stat": "is_subrace"
+                }
+              },
+              "components": {
+                "type": "defaultIfNull",
+                "components": {
+                  "type": "stat",
+                  "stat": "selected_subrace?.language_proficiencies_for_current_level"
+                },
+                "default_components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "constant",
+                "value": true,
+                "value_type": "bool"
+              },
+              "components": {
+                "type": "list",
+                "components": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "skill_proficiencies_for_current_level",
+    "name": "Skill proficiencies for current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_skill_proficiency",
+    "components": {
+      "type": "flatAppend",
+      "components": [
+        {
+          "type": "filter",
+          "components": {
+            "type": "stat",
+            "stat": "skill_proficiencies"
+          },
+          "filter": {
+            "type": "lessThanEquals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$filterValue.level"
+                },
+                {
+                  "type": "stat",
+                  "stat": "$character.level"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "not",
+                "components": {
+                  "type": "stat",
+                  "stat": "is_subrace"
+                }
+              },
+              "components": {
+                "type": "defaultIfNull",
+                "components": {
+                  "type": "stat",
+                  "stat": "selected_subrace?.skill_proficiencies_for_current_level"
+                },
+                "default_components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "constant",
+                "value": true,
+                "value_type": "bool"
+              },
+              "components": {
+                "type": "list",
+                "components": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "armor_proficiencies_for_current_level",
+    "name": "Armor proficiencies for current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_armor_proficiency",
+    "components": {
+      "type": "flatAppend",
+      "components": [
+        {
+          "type": "filter",
+          "components": {
+            "type": "stat",
+            "stat": "armor_proficiencies"
+          },
+          "filter": {
+            "type": "lessThanEquals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$filterValue.level"
+                },
+                {
+                  "type": "stat",
+                  "stat": "$character.level"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "not",
+                "components": {
+                  "type": "stat",
+                  "stat": "is_subrace"
+                }
+              },
+              "components": {
+                "type": "defaultIfNull",
+                "components": {
+                  "type": "stat",
+                  "stat": "selected_subrace?.armor_proficiencies_for_current_level"
+                },
+                "default_components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "constant",
+                "value": true,
+                "value_type": "bool"
+              },
+              "components": {
+                "type": "list",
+                "components": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "weapon_proficiencies_for_current_level",
+    "name": "Weapon proficiencies for current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_weapon_proficiency",
+    "components": {
+      "type": "flatAppend",
+      "components": [
+        {
+          "type": "filter",
+          "components": {
+            "type": "stat",
+            "stat": "weapon_proficiencies"
+          },
+          "filter": {
+            "type": "lessThanEquals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$filterValue.level"
+                },
+                {
+                  "type": "stat",
+                  "stat": "$character.level"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "not",
+                "components": {
+                  "type": "stat",
+                  "stat": "is_subrace"
+                }
+              },
+              "components": {
+                "type": "defaultIfNull",
+                "components": {
+                  "type": "stat",
+                  "stat": "selected_subrace?.weapon_proficiencies_for_current_level"
+                },
+                "default_components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "constant",
+                "value": true,
+                "value_type": "bool"
+              },
+              "components": {
+                "type": "list",
+                "components": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "tool_proficiencies_for_current_level",
+    "name": "Tool proficiencies for current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_choice_text",
+    "components": {
+      "type": "flatAppend",
+      "components": [
+        {
+          "type": "filter",
+          "components": {
+            "type": "stat",
+            "stat": "tool_proficiencies"
+          },
+          "filter": {
+            "type": "lessThanEquals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$filterValue.level"
+                },
+                {
+                  "type": "stat",
+                  "stat": "$character.level"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "not",
+                "components": {
+                  "type": "stat",
+                  "stat": "is_subrace"
+                }
+              },
+              "components": {
+                "type": "defaultIfNull",
+                "components": {
+                  "type": "stat",
+                  "stat": "selected_subrace?.tool_proficiencies_for_current_level"
+                },
+                "default_components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "constant",
+                "value": true,
+                "value_type": "bool"
+              },
+              "components": {
+                "type": "list",
+                "components": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "language_proficiencies_choices_in_current_level",
+    "name": "Language proficiencies choices in current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_choice_text",
+    "components": {
+      "type": "flatAppend",
+      "components": [
+        {
+          "type": "filter",
+          "components": {
+            "type": "stat",
+            "stat": "language_proficiencies"
+          },
+          "filter": {
+            "type": "equals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$filterValue.level"
+                },
+                {
+                  "type": "stat",
+                  "stat": "$character.level"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "not",
+                "components": {
+                  "type": "stat",
+                  "stat": "is_subrace"
+                }
+              },
+              "components": {
+                "type": "defaultIfNull",
+                "components": {
+                  "type": "stat",
+                  "stat": "selected_subrace?.language_proficiencies_choices_in_current_level"
+                },
+                "default_components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "constant",
+                "value": true,
+                "value_type": "bool"
+              },
+              "components": {
+                "type": "list",
+                "components": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "skill_proficiencies_choices_in_current_level",
+    "name": "Skill proficiencies choices in current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_skill_proficiency",
+    "components": {
+      "type": "flatAppend",
+      "components": [
+        {
+          "type": "filter",
+          "components": {
+            "type": "stat",
+            "stat": "skill_proficiencies"
+          },
+          "filter": {
+            "type": "equals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$filterValue.level"
+                },
+                {
+                  "type": "stat",
+                  "stat": "$character.level"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "not",
+                "components": {
+                  "type": "stat",
+                  "stat": "is_subrace"
+                }
+              },
+              "components": {
+                "type": "defaultIfNull",
+                "components": {
+                  "type": "stat",
+                  "stat": "selected_subrace?.skill_proficiencies_choices_in_current_level"
+                },
+                "default_components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "constant",
+                "value": true,
+                "value_type": "bool"
+              },
+              "components": {
+                "type": "list",
+                "components": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "armor_proficiencies_choices_in_current_level",
+    "name": "Armor proficiencies choices in current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_armor_proficiency",
+    "components": {
+      "type": "flatAppend",
+      "components": [
+        {
+          "type": "filter",
+          "components": {
+            "type": "stat",
+            "stat": "armor_proficiencies"
+          },
+          "filter": {
+            "type": "equals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$filterValue.level"
+                },
+                {
+                  "type": "stat",
+                  "stat": "$character.level"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "not",
+                "components": {
+                  "type": "stat",
+                  "stat": "is_subrace"
+                }
+              },
+              "components": {
+                "type": "defaultIfNull",
+                "components": {
+                  "type": "stat",
+                  "stat": "selected_subrace?.armor_proficiencies_choices_in_current_level"
+                },
+                "default_components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "constant",
+                "value": true,
+                "value_type": "bool"
+              },
+              "components": {
+                "type": "list",
+                "components": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "weapon_proficiencies_choices_in_current_level",
+    "name": "Weapon proficiencies choices in current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_weapon_proficiency",
+    "components": {
+      "type": "flatAppend",
+      "components": [
+        {
+          "type": "filter",
+          "components": {
+            "type": "stat",
+            "stat": "weapon_proficiencies"
+          },
+          "filter": {
+            "type": "equals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$filterValue.level"
+                },
+                {
+                  "type": "stat",
+                  "stat": "$character.level"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "not",
+                "components": {
+                  "type": "stat",
+                  "stat": "is_subrace"
+                }
+              },
+              "components": {
+                "type": "defaultIfNull",
+                "components": {
+                  "type": "stat",
+                  "stat": "selected_subrace?.weapon_proficiencies_choices_in_current_level"
+                },
+                "default_components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "constant",
+                "value": true,
+                "value_type": "bool"
+              },
+              "components": {
+                "type": "list",
+                "components": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "tool_proficiencies_choices_in_current_level",
+    "name": "Tool proficiencies choices in current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_choice_text",
+    "components": {
+      "type": "flatAppend",
+      "components": [
+        {
+          "type": "filter",
+          "components": {
+            "type": "stat",
+            "stat": "tool_proficiencies"
+          },
+          "filter": {
+            "type": "equals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$filterValue.level"
+                },
+                {
+                  "type": "stat",
+                  "stat": "$character.level"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "not",
+                "components": {
+                  "type": "stat",
+                  "stat": "is_subrace"
+                }
+              },
+              "components": {
+                "type": "defaultIfNull",
+                "components": {
+                  "type": "stat",
+                  "stat": "selected_subrace?.tool_proficiencies_choices_in_current_level"
+                },
+                "default_components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "constant",
+                "value": true,
+                "value_type": "bool"
+              },
+              "components": {
+                "type": "list",
+                "components": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "all_traits",
+    "name": "All traits",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "feat",
+    "components": {
+      "type": "flatMap",
+      "components": {
+        "type": "flatAppend",
+        "components": [
+          {
+            "type": "stat",
+            "stat": "traits"
+          },
+          {
+            "type": "defaultIfNull",
+            "components": {
+              "type": "stat",
+              "stat": "selected_subrace?.traits"
+            },
+            "default_components": {
+              "type": "list",
+              "components": []
+            }
+          }
+        ]
+      },
+      "mapper": {
+        "type": "flatAppend",
+        "components": [
+          {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "$mapValue"
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "$mapValue.has_selectable_features"
+                },
+                "components": {
+                  "type": "filter",
+                  "components": {
+                    "type": "stat",
+                    "stat": "$mapValue.selectable_features"
+                  },
+                  "filter": {
+                    "type": "contains",
+                    "haystack": {
+                      "type": "stat",
+                      "stat": "selected_selectable_feature_ids"
+                    },
+                    "needle": {
+                      "type": "stat",
+                      "stat": "$filterValue.id"
+                    }
+                  }
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "selected_selectable_feature_ids",
+    "name": "Selected selectable feature ids",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "string",
+    "components": {
+      "type": "defaultIfNull",
+      "components": {
+        "type": "stat",
+        "stat": "$character?.selected_selectable_feature_ids"
+      },
+      "default_components": {
+        "type": "list",
+        "components": []
+      }
+    }
+  },
+  {
+    "id": "current_level_traits",
+    "name": "Current level traits",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "feat",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "defined",
+            "stat": "$character"
+          },
+          "components": {
+            "type": "filter",
+            "components": {
+              "type": "stat",
+              "stat": "all_traits"
+            },
+            "filter": {
+              "type": "lessThanEquals",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "stat",
+                    "stat": "$filterValue.min_level"
+                  },
+                  {
+                    "type": "stat",
+                    "stat": "$character.level"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "list",
+            "components": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "traits_with_updates_in_current_level",
+    "name": "Traits with updates in current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "feat",
+    "components": {
+      "type": "filter",
+      "components": {
+        "type": "stat",
+        "stat": "all_traits"
+      },
+      "filter_value_key": "$feat",
+      "filter": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "filter",
+            "components": {
+              "type": "stat",
+              "stat": "$feat.descriptions"
+            },
+            "filter": {
+              "type": "equals",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "stat",
+                    "stat": "$filterValue.level"
+                  },
+                  {
+                    "type": "stat",
+                    "stat": "$character.level"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "display_armor_class",
+    "name": "Display armor class",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "and",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "is_subrace"
+                },
+                {
+                  "type": "stat",
+                  "stat": "same_ac_as_parent"
+                }
+              ]
+            }
+          },
+          "components": {
+            "type": "stat",
+            "stat": "$parent.display_armor_class"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "joinToString",
+            "separator": " + ",
+            "components": {
+              "type": "flatAppend",
+              "components": [
+                {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "stat",
+                      "stat": "base_ac"
+                    }
+                  ]
+                },
+                {
+                  "type": "stat",
+                  "stat": "ac_modifiers"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "display_speeds",
+    "name": "Display speeds",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "joinToString",
+      "separator": ", ",
+      "components": {
+        "type": "flatAppend",
+        "components": [
+          {
+            "type": "list",
+            "components": [
+              {
+                "type": "concat",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "constant",
+                      "value": "normal ",
+                      "value_type": "string"
+                    },
+                    {
+                      "type": "stat",
+                      "stat": "speed"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "notEquals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "constant",
+                        "value": 0,
+                        "value_type": "integer"
+                      },
+                      {
+                        "type": "stat",
+                        "stat": "burrow_speed"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "concat",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "constant",
+                            "value": "burrow ",
+                            "value_type": "string"
+                          },
+                          {
+                            "type": "stat",
+                            "stat": "burrow_speed"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "notEquals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "constant",
+                        "value": 0,
+                        "value_type": "integer"
+                      },
+                      {
+                        "type": "stat",
+                        "stat": "climb_speed"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "concat",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "constant",
+                            "value": "climb ",
+                            "value_type": "string"
+                          },
+                          {
+                            "type": "stat",
+                            "stat": "climb_speed"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "notEquals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "constant",
+                        "value": 0,
+                        "value_type": "integer"
+                      },
+                      {
+                        "type": "stat",
+                        "stat": "fly_speed"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "concat",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "constant",
+                            "value": "fly ",
+                            "value_type": "string"
+                          },
+                          {
+                            "type": "stat",
+                            "stat": "fly_speed"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "notEquals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "constant",
+                        "value": 0,
+                        "value_type": "integer"
+                      },
+                      {
+                        "type": "stat",
+                        "stat": "swim_speed"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "concat",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "constant",
+                            "value": "swim ",
+                            "value_type": "string"
+                          },
+                          {
+                            "type": "stat",
+                            "stat": "swim_speed"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lowest_level_unarmed_strike",
+    "name": "Lowest level unarmed strike",
+    "type": "calculated",
+    "value_type": "resource",
+    "components": {
+      "type": "findFirst",
+      "components": {
+        "type": "sortBy",
+        "order": "asc",
+        "components": {
+          "type": "stat",
+          "stat": "unarmed_strike"
+        },
+        "sort_by_selector": {
+          "type": "stat",
+          "stat": "$sortByValue.level"
+        }
+      },
+      "filter": {
+        "type": "constant",
+        "value": true,
+        "value_type": "bool"
+      }
+    }
+  },
+  {
+    "id": "display_unarmed_strike",
+    "name": "Display unarmed strike",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "isEmpty",
+            "components": {
+              "type": "stat",
+              "stat": "unarmed_strike"
+            }
+          },
+          "components": {
+            "type": "constant",
+            "value": "None",
+            "value_type": "string"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "concat",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "lowest_level_unarmed_strike.weapon.name"
+                },
+                {
+                  "type": "constant",
+                  "value": ", ",
+                  "value_type": "string"
+                },
+                {
+                  "type": "stat",
+                  "stat": "lowest_level_unarmed_strike.weapon.damage_dice_display_description"
+                },
+                {
+                  "type": "constant",
+                  "value": " + ",
+                  "value_type": "string"
+                },
+                {
+                  "type": "stat",
+                  "stat": "lowest_level_unarmed_strike.weapon.attack_ability"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "id": "on_create",
+  "name": "On create",
+  "event_names": "rpg_onCreate",
+  "effects": {
+    "type": "sequence",
+    "effects": [
+      {
+        "type": "setStat",
+        "stat": "max_hp",
+        "new_value": {
+          "type": "stat",
+          "stat": "monster.average_hp"
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "hp",
+        "new_value": {
+          "type": "stat",
+          "stat": "max_hp"
+        },
+        "aggregation_type": "set"
+      }
+    ]
+  }
+}

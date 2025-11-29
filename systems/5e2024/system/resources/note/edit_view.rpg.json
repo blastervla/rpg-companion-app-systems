@@ -1,0 +1,81 @@
+{
+  "id": "note_edit",
+  "type": "list",
+  "padding": 16,
+  "subviews": [
+    {
+      "id": "note_edit_title",
+      "type": "text",
+      "edit_stat": "title",
+      "style": "text",
+      "max_length": 80,
+      "label": {
+        "type": "constant",
+        "value": "Note title",
+        "value_type": "string"
+      },
+      "validation_message": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "and",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "isEmpty",
+                    "components": {
+                      "type": "stat",
+                      "stat": "$view.note_edit_title"
+                    }
+                  },
+                  {
+                    "type": "isEmpty",
+                    "components": {
+                      "type": "stat",
+                      "stat": "$view.note_edit_text"
+                    }
+                  }
+                ]
+              }
+            },
+            "components": {
+              "type": "constant",
+              "value": "Looks like you're trying to save an empty note! Why don't you write something down?",
+              "value_type": "string"
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "note_edit_text",
+      "type": "text",
+      "edit_stat": "text",
+      "style": "text",
+      "label": {
+        "type": "constant",
+        "value": "Note",
+        "value_type": "string"
+      },
+      "hint": {
+        "type": "constant",
+        "value": "Jot something down...",
+        "value_type": "string"
+      }
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "selectable_weapons_edit",
+  "type": "list",
+  "subviews": [
+    {
+      "id": "selectable_weapons_edit_amount_composite",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "selectable_weapons_edit_amount_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Amount to choose: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "selectable_weapons_edit_amount",
+          "type": "text",
+          "edit_stat": "amount",
+          "style": "text",
+          "hint": {
+            "type": "constant",
+            "value": "1",
+            "value_type": "string"
+          },
+          "max_length": 2
+        }
+      ]
+    },
+    {
+      "id": "selectable_weapons_edit_options",
+      "type": "resourceArray",
+      "resource_id": "weapon_with_amount",
+      "stat": "options",
+      "view_type": "edit",
+      "left_view": {
+        "id": "selectable_weapons_edit_options_label",
+        "type": "text",
+        "text": {
+          "type": "constant",
+          "value": "Options: ",
+          "value_type": "string"
+        },
+        "style": "text"
+      },
+      "validation_message": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "isEmpty",
+              "components": {
+                "type": "stat",
+                "stat": "$view.selectable_weapons_edit_options"
+              }
+            },
+            "components": {
+              "type": "constant",
+              "value": "You have empty weapon options. Please select some weapons or remove it.",
+              "value_type": "string"
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

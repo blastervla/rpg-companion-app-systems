@@ -1,0 +1,757 @@
+[
+  {
+    "id": "name",
+    "name": "Name",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "source",
+    "name": "Source",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "is_core",
+    "name": "Core",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "description",
+    "name": "Description",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "cost",
+    "name": "Cost",
+    "type": "base",
+    "value_type": "resource",
+    "default_value": null
+  },
+  {
+    "id": "weight",
+    "name": "Weight",
+    "type": "base",
+    "value_type": "resource",
+    "default_value": null
+  },
+  {
+    "id": "type",
+    "name": "Type",
+    "type": "base",
+    "value_type": "string",
+    "default_value": "light"
+  },
+  {
+    "id": "rarity",
+    "name": "Rarity",
+    "type": "base",
+    "value_type": "string",
+    "default_value": "common"
+  },
+  {
+    "id": "impose_stealth_disadvantage",
+    "name": "Stealth disadvantage",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "base_ac",
+    "name": "Base AC",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "modifier",
+    "name": "Modifier",
+    "type": "base",
+    "value_type": "string",
+    "default_value": "none"
+  },
+  {
+    "id": "has_max_bonus",
+    "name": "Has max bonus",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "max_bonus",
+    "name": "Max bonus",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "required_strength",
+    "name": "Required strength",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "requires_attunement",
+    "name": "Requires attunement",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "should_load_effects",
+    "name": "Should load effects",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "defaultIfNull",
+      "components": {
+        "type": "stat",
+        "stat": "$parent?.should_load_effects?"
+      },
+      "default_components": {
+        "type": "constant",
+        "value": true,
+        "value_type": "bool"
+      }
+    }
+  },
+  {
+    "id": "effects",
+    "name": "Effects",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "effect",
+    "default_value": []
+  },
+  {
+    "id": "override_is_proficient",
+    "name": "Override is proficient",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "is_attuned",
+    "name": "Is attuned",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "equip_stat_name",
+    "name": "Equip stat name",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "equals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "type"
+                },
+                {
+                  "type": "constant",
+                  "value": "shield",
+                  "value_type": "string"
+                }
+              ]
+            }
+          },
+          "components": {
+            "type": "constant",
+            "value": "$character.equipped_shield_id",
+            "value_type": "string"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "constant",
+            "value": "$character.equipped_armor_id",
+            "value_type": "string"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "requires_equipping",
+    "name": "Requires equipping to activate effects",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": true
+  },
+  {
+    "id": "is_equipped",
+    "name": "Is equipped",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "defined",
+            "stat": "$character"
+          },
+          "components": {
+            "type": "equals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "metaStat",
+                  "potential_stat_values": [
+                    "$character.equipped_shield_id",
+                    "$character.equipped_armor_id"
+                  ],
+                  "meta_stat": {
+                    "type": "stat",
+                    "stat": "equip_stat_name"
+                  }
+                },
+                {
+                  "type": "stat",
+                  "stat": "id"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "constant",
+            "value": false,
+            "value_type": "bool"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "is_proficient",
+    "name": "Is proficient",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "or",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "stat",
+            "stat": "override_is_proficient"
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "defined",
+                  "stat": "$character"
+                },
+                "components": {
+                  "type": "contains",
+                  "haystack": {
+                    "type": "stat",
+                    "stat": "$character.armor_proficiencies"
+                  },
+                  "needle": {
+                    "type": "stat",
+                    "stat": "type"
+                  }
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": false,
+                  "value_type": "bool"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "properties",
+    "name": "Properties",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "joinToString",
+      "separator": ", ",
+      "components": {
+        "type": "flatAppend",
+        "components": [
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "notEquals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "rarity"
+                      },
+                      {
+                        "type": "constant",
+                        "value": "none",
+                        "value_type": "string"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "enumeratedName",
+                      "enumerated_type": "item_rarity",
+                      "id": {
+                        "type": "stat",
+                        "stat": "rarity"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "impose_stealth_disadvantage"
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "constant",
+                      "value": "Dis. on stealth",
+                      "value_type": "string"
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "requires_attunement"
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "constant",
+                      "value": "Req. attunement",
+                      "value_type": "string"
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "notEquals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "defaultIfNull",
+                        "components": {
+                          "type": "stat",
+                          "stat": "cost?.value"
+                        },
+                        "default_components": {
+                          "type": "constant",
+                          "value": 0,
+                          "value_type": "integer"
+                        }
+                      },
+                      {
+                        "type": "constant",
+                        "value": 0,
+                        "value_type": "integer"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "stat",
+                      "stat": "cost.description"
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "notEquals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "defaultIfNull",
+                        "components": {
+                          "type": "stat",
+                          "stat": "weight?.value"
+                        },
+                        "default_components": {
+                          "type": "constant",
+                          "value": 0,
+                          "value_type": "integer"
+                        }
+                      },
+                      {
+                        "type": "constant",
+                        "value": 0,
+                        "value_type": "integer"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "stat",
+                      "stat": "weight.description"
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "armor_class",
+    "name": "Armor class",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "equals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "type"
+                      },
+                      {
+                        "type": "constant",
+                        "value": "shield",
+                        "value_type": "string"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "+",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "",
+                  "value_type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "type": "stat",
+            "stat": "base_ac"
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "notEquals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "modifier"
+                      },
+                      {
+                        "type": "constant",
+                        "value": "none",
+                        "value_type": "string"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "concat",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "constant",
+                        "value": " + ",
+                        "value_type": "string"
+                      },
+                      {
+                        "type": "enumeratedName",
+                        "enumerated_type": "ability_plus_none",
+                        "id": {
+                          "type": "stat",
+                          "stat": "modifier"
+                        }
+                      },
+                      {
+                        "type": "when",
+                        "clauses": [
+                          {
+                            "condition": {
+                              "type": "stat",
+                              "stat": "has_max_bonus"
+                            },
+                            "components": {
+                              "type": "concat",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "constant",
+                                    "value": " (max ",
+                                    "value_type": "string"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "max_bonus"
+                                  },
+                                  {
+                                    "type": "constant",
+                                    "value": ")",
+                                    "value_type": "string"
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "condition": {
+                              "type": "constant",
+                              "value": true,
+                              "value_type": "bool"
+                            },
+                            "components": {
+                              "type": "constant",
+                              "value": "",
+                              "value_type": "string"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "",
+                  "value_type": "string"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "required_strength_summary",
+    "name": "Required strength summary",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "greaterThan",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "required_strength"
+                },
+                {
+                  "type": "constant",
+                  "value": 0,
+                  "value_type": "integer"
+                }
+              ]
+            }
+          },
+          "components": {
+            "type": "concat",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "constant",
+                  "value": "STR ",
+                  "value_type": "string"
+                },
+                {
+                  "type": "stat",
+                  "stat": "required_strength"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "constant",
+            "value": "",
+            "value_type": "string"
+          }
+        }
+      ]
+    }
+  }
+]

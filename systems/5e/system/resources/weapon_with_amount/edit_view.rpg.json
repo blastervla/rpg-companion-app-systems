@@ -1,0 +1,58 @@
+{
+  "id": "weapon_with_amount_edit",
+  "type": "composite",
+  "subviews": [
+    {
+      "id": "weapon_with_amount_edit_amount",
+      "type": "text",
+      "edit_stat": "amount",
+      "style": "text",
+      "hint": {
+        "type": "constant",
+        "value": "Amnt.",
+        "value_type": "string"
+      },
+      "max_length": 6
+    },
+    {
+      "id": "weapon_with_amount_edit_weapon",
+      "type": "selectResources",
+      "stat": "weapon",
+      "resource_id": "weapon",
+      "validation_message": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "not",
+              "components": {
+                "type": "notNull",
+                "components": {
+                  "type": "stat",
+                  "stat": "$view.weapon_with_amount_edit_weapon"
+                }
+              }
+            },
+            "components": {
+              "type": "constant",
+              "value": "You have an empty weapon. Please select an weapon or remove it.",
+              "value_type": "string"
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

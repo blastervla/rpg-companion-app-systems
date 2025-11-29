@@ -1,0 +1,3030 @@
+{
+  "id": "on_long_rest",
+  "event_names": "long_rest",
+  "effects": {
+    "type": "sequence",
+    "effects": [
+      {
+        "type": "showMessage",
+        "message": {
+          "type": "constant",
+          "value": "You're feeling well rested. Your HP, spell slots and appropriate hit dice have been restored.",
+          "value_type": "string"
+        },
+        "message_type": "info"
+      },
+      {
+        "type": "setStat",
+        "stat": "current_hp",
+        "new_value": {
+          "type": "stat",
+          "stat": "max_hp"
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "current_d4_hit_dice",
+        "new_value": {
+          "type": "min",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "max_d4_hit_dice"
+              },
+              {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "stat",
+                      "stat": "current_d4_hit_dice"
+                    },
+                    {
+                      "type": "max",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "divide",
+                            "rounding_method": "down",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "max_d4_hit_dice"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 2,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "constant",
+                            "value": 1,
+                            "value_type": "integer"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "current_d6_hit_dice",
+        "new_value": {
+          "type": "min",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "max_d6_hit_dice"
+              },
+              {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "stat",
+                      "stat": "current_d6_hit_dice"
+                    },
+                    {
+                      "type": "max",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "divide",
+                            "rounding_method": "down",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "max_d6_hit_dice"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 2,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "constant",
+                            "value": 1,
+                            "value_type": "integer"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "current_d8_hit_dice",
+        "new_value": {
+          "type": "min",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "max_d8_hit_dice"
+              },
+              {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "stat",
+                      "stat": "current_d8_hit_dice"
+                    },
+                    {
+                      "type": "max",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "divide",
+                            "rounding_method": "down",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "max_d8_hit_dice"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 2,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "constant",
+                            "value": 1,
+                            "value_type": "integer"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "current_d10_hit_dice",
+        "new_value": {
+          "type": "min",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "max_d10_hit_dice"
+              },
+              {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "stat",
+                      "stat": "current_d10_hit_dice"
+                    },
+                    {
+                      "type": "max",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "divide",
+                            "rounding_method": "down",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "max_d10_hit_dice"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 2,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "constant",
+                            "value": 1,
+                            "value_type": "integer"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "current_d12_hit_dice",
+        "new_value": {
+          "type": "min",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "max_d12_hit_dice"
+              },
+              {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "stat",
+                      "stat": "current_d12_hit_dice"
+                    },
+                    {
+                      "type": "max",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "divide",
+                            "rounding_method": "down",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "max_d12_hit_dice"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 2,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "constant",
+                            "value": 1,
+                            "value_type": "integer"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "current_d20_hit_dice",
+        "new_value": {
+          "type": "min",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "max_d20_hit_dice"
+              },
+              {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "stat",
+                      "stat": "current_d20_hit_dice"
+                    },
+                    {
+                      "type": "max",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "divide",
+                            "rounding_method": "down",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "max_d20_hit_dice"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 2,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "constant",
+                            "value": 1,
+                            "value_type": "integer"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "spell_slots_1",
+        "new_value": {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "stat",
+                "stat": "is_single_third_level_caster"
+              },
+              "components": {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "when",
+                      "clauses": [
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_third_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 2,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "equals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_third_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 3,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 2,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_third_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 6,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 3,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "constant",
+                            "value": true,
+                            "value_type": "bool"
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 4,
+                            "value_type": "integer"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "add",
+                      "components": {
+                        "type": "map",
+                        "components": {
+                          "type": "map",
+                          "map_value_key": "$class",
+                          "components": {
+                            "type": "stat",
+                            "stat": "custom_spell_slot_classes"
+                          },
+                          "mapper": {
+                            "type": "findFirst",
+                            "components": {
+                              "type": "sortBy",
+                              "order": "desc",
+                              "components": {
+                                "type": "stat",
+                                "stat": "$class.class.actual_spell_slots_level_1_per_level"
+                              },
+                              "sort_by_selector": {
+                                "type": "stat",
+                                "stat": "$sortByValue.level"
+                              }
+                            },
+                            "filter": {
+                              "type": "lessThanEquals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "stat",
+                                    "stat": "$findFirstValue.level"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "$class.class_level"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "mapper": {
+                          "type": "defaultIfNull",
+                          "components": {
+                            "type": "stat",
+                            "stat": "$mapValue?.amount"
+                          },
+                          "default_components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "stat",
+                      "stat": "max_spell_slots_1_bonus"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "stat",
+                "stat": "is_single_half_level_caster"
+              },
+              "components": {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "when",
+                      "clauses": [
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_half_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 1,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_half_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 2,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 2,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_half_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 4,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 3,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "constant",
+                            "value": true,
+                            "value_type": "bool"
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 4,
+                            "value_type": "integer"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "add",
+                      "components": {
+                        "type": "map",
+                        "components": {
+                          "type": "map",
+                          "map_value_key": "$class",
+                          "components": {
+                            "type": "stat",
+                            "stat": "custom_spell_slot_classes"
+                          },
+                          "mapper": {
+                            "type": "findFirst",
+                            "components": {
+                              "type": "sortBy",
+                              "order": "desc",
+                              "components": {
+                                "type": "stat",
+                                "stat": "$class.class.actual_spell_slots_level_1_per_level"
+                              },
+                              "sort_by_selector": {
+                                "type": "stat",
+                                "stat": "$sortByValue.level"
+                              }
+                            },
+                            "filter": {
+                              "type": "lessThanEquals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "stat",
+                                    "stat": "$findFirstValue.level"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "$class.class_level"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "mapper": {
+                          "type": "defaultIfNull",
+                          "components": {
+                            "type": "stat",
+                            "stat": "$mapValue?.amount"
+                          },
+                          "default_components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "stat",
+                      "stat": "max_spell_slots_1_bonus"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "constant",
+                "value": true,
+                "value_type": "bool"
+              },
+              "components": {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "when",
+                      "clauses": [
+                        {
+                          "condition": {
+                            "type": "equals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "spellcaster_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 0,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "equals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "spellcaster_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 1,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 2,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "equals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "spellcaster_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 2,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 3,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "constant",
+                            "value": true,
+                            "value_type": "bool"
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 4,
+                            "value_type": "integer"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "add",
+                      "components": {
+                        "type": "map",
+                        "components": {
+                          "type": "map",
+                          "map_value_key": "$class",
+                          "components": {
+                            "type": "stat",
+                            "stat": "custom_spell_slot_classes"
+                          },
+                          "mapper": {
+                            "type": "findFirst",
+                            "components": {
+                              "type": "sortBy",
+                              "order": "desc",
+                              "components": {
+                                "type": "stat",
+                                "stat": "$class.class.actual_spell_slots_level_1_per_level"
+                              },
+                              "sort_by_selector": {
+                                "type": "stat",
+                                "stat": "$sortByValue.level"
+                              }
+                            },
+                            "filter": {
+                              "type": "lessThanEquals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "stat",
+                                    "stat": "$findFirstValue.level"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "$class.class_level"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "mapper": {
+                          "type": "defaultIfNull",
+                          "components": {
+                            "type": "stat",
+                            "stat": "$mapValue?.amount"
+                          },
+                          "default_components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "stat",
+                      "stat": "max_spell_slots_1_bonus"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "spell_slots_2",
+        "new_value": {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "stat",
+                "stat": "is_single_third_level_caster"
+              },
+              "components": {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "when",
+                      "clauses": [
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_third_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 6,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_third_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 9,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 2,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "constant",
+                            "value": true,
+                            "value_type": "bool"
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 3,
+                            "value_type": "integer"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "add",
+                      "components": {
+                        "type": "map",
+                        "components": {
+                          "type": "map",
+                          "map_value_key": "$class",
+                          "components": {
+                            "type": "stat",
+                            "stat": "custom_spell_slot_classes"
+                          },
+                          "mapper": {
+                            "type": "findFirst",
+                            "components": {
+                              "type": "sortBy",
+                              "order": "desc",
+                              "components": {
+                                "type": "stat",
+                                "stat": "$class.class.actual_spell_slots_level_2_per_level"
+                              },
+                              "sort_by_selector": {
+                                "type": "stat",
+                                "stat": "$sortByValue.level"
+                              }
+                            },
+                            "filter": {
+                              "type": "lessThanEquals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "stat",
+                                    "stat": "$findFirstValue.level"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "$class.class_level"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "mapper": {
+                          "type": "defaultIfNull",
+                          "components": {
+                            "type": "stat",
+                            "stat": "$mapValue?.amount"
+                          },
+                          "default_components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "stat",
+                      "stat": "max_spell_slots_2_bonus"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "stat",
+                "stat": "is_single_half_level_caster"
+              },
+              "components": {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "when",
+                      "clauses": [
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_half_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 4,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_half_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 6,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 2,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "constant",
+                            "value": true,
+                            "value_type": "bool"
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 3,
+                            "value_type": "integer"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "add",
+                      "components": {
+                        "type": "map",
+                        "components": {
+                          "type": "map",
+                          "map_value_key": "$class",
+                          "components": {
+                            "type": "stat",
+                            "stat": "custom_spell_slot_classes"
+                          },
+                          "mapper": {
+                            "type": "findFirst",
+                            "components": {
+                              "type": "sortBy",
+                              "order": "desc",
+                              "components": {
+                                "type": "stat",
+                                "stat": "$class.class.actual_spell_slots_level_2_per_level"
+                              },
+                              "sort_by_selector": {
+                                "type": "stat",
+                                "stat": "$sortByValue.level"
+                              }
+                            },
+                            "filter": {
+                              "type": "lessThanEquals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "stat",
+                                    "stat": "$findFirstValue.level"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "$class.class_level"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "mapper": {
+                          "type": "defaultIfNull",
+                          "components": {
+                            "type": "stat",
+                            "stat": "$mapValue?.amount"
+                          },
+                          "default_components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "stat",
+                      "stat": "max_spell_slots_2_bonus"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "constant",
+                "value": true,
+                "value_type": "bool"
+              },
+              "components": {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "when",
+                      "clauses": [
+                        {
+                          "condition": {
+                            "type": "lessThan",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "spellcaster_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 3,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "equals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "spellcaster_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 3,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 2,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "constant",
+                            "value": true,
+                            "value_type": "bool"
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 3,
+                            "value_type": "integer"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "add",
+                      "components": {
+                        "type": "map",
+                        "components": {
+                          "type": "map",
+                          "map_value_key": "$class",
+                          "components": {
+                            "type": "stat",
+                            "stat": "custom_spell_slot_classes"
+                          },
+                          "mapper": {
+                            "type": "findFirst",
+                            "components": {
+                              "type": "sortBy",
+                              "order": "desc",
+                              "components": {
+                                "type": "stat",
+                                "stat": "$class.class.actual_spell_slots_level_2_per_level"
+                              },
+                              "sort_by_selector": {
+                                "type": "stat",
+                                "stat": "$sortByValue.level"
+                              }
+                            },
+                            "filter": {
+                              "type": "lessThanEquals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "stat",
+                                    "stat": "$findFirstValue.level"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "$class.class_level"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "mapper": {
+                          "type": "defaultIfNull",
+                          "components": {
+                            "type": "stat",
+                            "stat": "$mapValue?.amount"
+                          },
+                          "default_components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "stat",
+                      "stat": "max_spell_slots_2_bonus"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "spell_slots_3",
+        "new_value": {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "stat",
+                "stat": "is_single_third_level_caster"
+              },
+              "components": {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "when",
+                      "clauses": [
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_third_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 12,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_third_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 15,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 2,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "constant",
+                            "value": true,
+                            "value_type": "bool"
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 3,
+                            "value_type": "integer"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "add",
+                      "components": {
+                        "type": "map",
+                        "components": {
+                          "type": "map",
+                          "map_value_key": "$class",
+                          "components": {
+                            "type": "stat",
+                            "stat": "custom_spell_slot_classes"
+                          },
+                          "mapper": {
+                            "type": "findFirst",
+                            "components": {
+                              "type": "sortBy",
+                              "order": "desc",
+                              "components": {
+                                "type": "stat",
+                                "stat": "$class.class.actual_spell_slots_level_3_per_level"
+                              },
+                              "sort_by_selector": {
+                                "type": "stat",
+                                "stat": "$sortByValue.level"
+                              }
+                            },
+                            "filter": {
+                              "type": "lessThanEquals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "stat",
+                                    "stat": "$findFirstValue.level"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "$class.class_level"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "mapper": {
+                          "type": "defaultIfNull",
+                          "components": {
+                            "type": "stat",
+                            "stat": "$mapValue?.amount"
+                          },
+                          "default_components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "stat",
+                      "stat": "max_spell_slots_3_bonus"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "stat",
+                "stat": "is_single_half_level_caster"
+              },
+              "components": {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "when",
+                      "clauses": [
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_half_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 8,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_half_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 10,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 2,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "constant",
+                            "value": true,
+                            "value_type": "bool"
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 3,
+                            "value_type": "integer"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "add",
+                      "components": {
+                        "type": "map",
+                        "components": {
+                          "type": "map",
+                          "map_value_key": "$class",
+                          "components": {
+                            "type": "stat",
+                            "stat": "custom_spell_slot_classes"
+                          },
+                          "mapper": {
+                            "type": "findFirst",
+                            "components": {
+                              "type": "sortBy",
+                              "order": "desc",
+                              "components": {
+                                "type": "stat",
+                                "stat": "$class.class.actual_spell_slots_level_3_per_level"
+                              },
+                              "sort_by_selector": {
+                                "type": "stat",
+                                "stat": "$sortByValue.level"
+                              }
+                            },
+                            "filter": {
+                              "type": "lessThanEquals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "stat",
+                                    "stat": "$findFirstValue.level"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "$class.class_level"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "mapper": {
+                          "type": "defaultIfNull",
+                          "components": {
+                            "type": "stat",
+                            "stat": "$mapValue?.amount"
+                          },
+                          "default_components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "stat",
+                      "stat": "max_spell_slots_3_bonus"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "constant",
+                "value": true,
+                "value_type": "bool"
+              },
+              "components": {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "when",
+                      "clauses": [
+                        {
+                          "condition": {
+                            "type": "lessThan",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "spellcaster_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 5,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "equals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "spellcaster_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 5,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 2,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "constant",
+                            "value": true,
+                            "value_type": "bool"
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 3,
+                            "value_type": "integer"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "add",
+                      "components": {
+                        "type": "map",
+                        "components": {
+                          "type": "map",
+                          "map_value_key": "$class",
+                          "components": {
+                            "type": "stat",
+                            "stat": "custom_spell_slot_classes"
+                          },
+                          "mapper": {
+                            "type": "findFirst",
+                            "components": {
+                              "type": "sortBy",
+                              "order": "desc",
+                              "components": {
+                                "type": "stat",
+                                "stat": "$class.class.actual_spell_slots_level_3_per_level"
+                              },
+                              "sort_by_selector": {
+                                "type": "stat",
+                                "stat": "$sortByValue.level"
+                              }
+                            },
+                            "filter": {
+                              "type": "lessThanEquals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "stat",
+                                    "stat": "$findFirstValue.level"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "$class.class_level"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "mapper": {
+                          "type": "defaultIfNull",
+                          "components": {
+                            "type": "stat",
+                            "stat": "$mapValue?.amount"
+                          },
+                          "default_components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "stat",
+                      "stat": "max_spell_slots_3_bonus"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "spell_slots_4",
+        "new_value": {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "stat",
+                "stat": "is_single_third_level_caster"
+              },
+              "components": {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "when",
+                      "clauses": [
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_third_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 18,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "constant",
+                            "value": true,
+                            "value_type": "bool"
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 1,
+                            "value_type": "integer"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "add",
+                      "components": {
+                        "type": "map",
+                        "components": {
+                          "type": "map",
+                          "map_value_key": "$class",
+                          "components": {
+                            "type": "stat",
+                            "stat": "custom_spell_slot_classes"
+                          },
+                          "mapper": {
+                            "type": "findFirst",
+                            "components": {
+                              "type": "sortBy",
+                              "order": "desc",
+                              "components": {
+                                "type": "stat",
+                                "stat": "$class.class.actual_spell_slots_level_4_per_level"
+                              },
+                              "sort_by_selector": {
+                                "type": "stat",
+                                "stat": "$sortByValue.level"
+                              }
+                            },
+                            "filter": {
+                              "type": "lessThanEquals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "stat",
+                                    "stat": "$findFirstValue.level"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "$class.class_level"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "mapper": {
+                          "type": "defaultIfNull",
+                          "components": {
+                            "type": "stat",
+                            "stat": "$mapValue?.amount"
+                          },
+                          "default_components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "stat",
+                      "stat": "max_spell_slots_4_bonus"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "stat",
+                "stat": "is_single_half_level_caster"
+              },
+              "components": {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "when",
+                      "clauses": [
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_half_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 12,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_half_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 14,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 1,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_half_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 16,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 2,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "constant",
+                            "value": true,
+                            "value_type": "bool"
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 3,
+                            "value_type": "integer"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "add",
+                      "components": {
+                        "type": "map",
+                        "components": {
+                          "type": "map",
+                          "map_value_key": "$class",
+                          "components": {
+                            "type": "stat",
+                            "stat": "custom_spell_slot_classes"
+                          },
+                          "mapper": {
+                            "type": "findFirst",
+                            "components": {
+                              "type": "sortBy",
+                              "order": "desc",
+                              "components": {
+                                "type": "stat",
+                                "stat": "$class.class.actual_spell_slots_level_4_per_level"
+                              },
+                              "sort_by_selector": {
+                                "type": "stat",
+                                "stat": "$sortByValue.level"
+                              }
+                            },
+                            "filter": {
+                              "type": "lessThanEquals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "stat",
+                                    "stat": "$findFirstValue.level"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "$class.class_level"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "mapper": {
+                          "type": "defaultIfNull",
+                          "components": {
+                            "type": "stat",
+                            "stat": "$mapValue?.amount"
+                          },
+                          "default_components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "stat",
+                      "stat": "max_spell_slots_4_bonus"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "constant",
+                "value": true,
+                "value_type": "bool"
+              },
+              "components": {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "when",
+                      "clauses": [
+                        {
+                          "condition": {
+                            "type": "lessThan",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "spellcaster_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 7,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "equals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "spellcaster_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 7,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 1,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "equals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "spellcaster_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 8,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 2,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "constant",
+                            "value": true,
+                            "value_type": "bool"
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 3,
+                            "value_type": "integer"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "add",
+                      "components": {
+                        "type": "map",
+                        "components": {
+                          "type": "map",
+                          "map_value_key": "$class",
+                          "components": {
+                            "type": "stat",
+                            "stat": "custom_spell_slot_classes"
+                          },
+                          "mapper": {
+                            "type": "findFirst",
+                            "components": {
+                              "type": "sortBy",
+                              "order": "desc",
+                              "components": {
+                                "type": "stat",
+                                "stat": "$class.class.actual_spell_slots_level_4_per_level"
+                              },
+                              "sort_by_selector": {
+                                "type": "stat",
+                                "stat": "$sortByValue.level"
+                              }
+                            },
+                            "filter": {
+                              "type": "lessThanEquals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "stat",
+                                    "stat": "$findFirstValue.level"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "$class.class_level"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "mapper": {
+                          "type": "defaultIfNull",
+                          "components": {
+                            "type": "stat",
+                            "stat": "$mapValue?.amount"
+                          },
+                          "default_components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "stat",
+                      "stat": "max_spell_slots_4_bonus"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "spell_slots_5",
+        "new_value": {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "stat",
+                "stat": "is_single_half_level_caster"
+              },
+              "components": {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "when",
+                      "clauses": [
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_half_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 16,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "lessThanEquals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "first_half_level_caster_class.class_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 18,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 1,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "constant",
+                            "value": true,
+                            "value_type": "bool"
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 2,
+                            "value_type": "integer"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "add",
+                      "components": {
+                        "type": "map",
+                        "components": {
+                          "type": "map",
+                          "map_value_key": "$class",
+                          "components": {
+                            "type": "stat",
+                            "stat": "custom_spell_slot_classes"
+                          },
+                          "mapper": {
+                            "type": "findFirst",
+                            "components": {
+                              "type": "sortBy",
+                              "order": "desc",
+                              "components": {
+                                "type": "stat",
+                                "stat": "$class.class.actual_spell_slots_level_5_per_level"
+                              },
+                              "sort_by_selector": {
+                                "type": "stat",
+                                "stat": "$sortByValue.level"
+                              }
+                            },
+                            "filter": {
+                              "type": "lessThanEquals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "stat",
+                                    "stat": "$findFirstValue.level"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "$class.class_level"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "mapper": {
+                          "type": "defaultIfNull",
+                          "components": {
+                            "type": "stat",
+                            "stat": "$mapValue?.amount"
+                          },
+                          "default_components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "stat",
+                      "stat": "max_spell_slots_5_bonus"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "condition": {
+                "type": "constant",
+                "value": true,
+                "value_type": "bool"
+              },
+              "components": {
+                "type": "add",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "when",
+                      "clauses": [
+                        {
+                          "condition": {
+                            "type": "lessThan",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "spellcaster_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 9,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "equals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "spellcaster_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 9,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 1,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "lessThan",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "stat",
+                                  "stat": "spellcaster_level"
+                                },
+                                {
+                                  "type": "constant",
+                                  "value": 18,
+                                  "value_type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 2,
+                            "value_type": "integer"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "constant",
+                            "value": true,
+                            "value_type": "bool"
+                          },
+                          "components": {
+                            "type": "constant",
+                            "value": 3,
+                            "value_type": "integer"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "add",
+                      "components": {
+                        "type": "map",
+                        "components": {
+                          "type": "map",
+                          "map_value_key": "$class",
+                          "components": {
+                            "type": "stat",
+                            "stat": "custom_spell_slot_classes"
+                          },
+                          "mapper": {
+                            "type": "findFirst",
+                            "components": {
+                              "type": "sortBy",
+                              "order": "desc",
+                              "components": {
+                                "type": "stat",
+                                "stat": "$class.class.actual_spell_slots_level_5_per_level"
+                              },
+                              "sort_by_selector": {
+                                "type": "stat",
+                                "stat": "$sortByValue.level"
+                              }
+                            },
+                            "filter": {
+                              "type": "lessThanEquals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "stat",
+                                    "stat": "$findFirstValue.level"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "$class.class_level"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "mapper": {
+                          "type": "defaultIfNull",
+                          "components": {
+                            "type": "stat",
+                            "stat": "$mapValue?.amount"
+                          },
+                          "default_components": {
+                            "type": "constant",
+                            "value": 0,
+                            "value_type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "stat",
+                      "stat": "max_spell_slots_5_bonus"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "spell_slots_6",
+        "new_value": {
+          "type": "add",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "when",
+                "clauses": [
+                  {
+                    "condition": {
+                      "type": "lessThan",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "stat",
+                            "stat": "spellcaster_level"
+                          },
+                          {
+                            "type": "constant",
+                            "value": 11,
+                            "value_type": "integer"
+                          }
+                        ]
+                      }
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": 0,
+                      "value_type": "integer"
+                    }
+                  },
+                  {
+                    "condition": {
+                      "type": "lessThan",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "stat",
+                            "stat": "spellcaster_level"
+                          },
+                          {
+                            "type": "constant",
+                            "value": 19,
+                            "value_type": "integer"
+                          }
+                        ]
+                      }
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": 1,
+                      "value_type": "integer"
+                    }
+                  },
+                  {
+                    "condition": {
+                      "type": "constant",
+                      "value": true,
+                      "value_type": "bool"
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": 2,
+                      "value_type": "integer"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "add",
+                "components": {
+                  "type": "map",
+                  "components": {
+                    "type": "map",
+                    "map_value_key": "$class",
+                    "components": {
+                      "type": "stat",
+                      "stat": "custom_spell_slot_classes"
+                    },
+                    "mapper": {
+                      "type": "findFirst",
+                      "components": {
+                        "type": "sortBy",
+                        "order": "desc",
+                        "components": {
+                          "type": "stat",
+                          "stat": "$class.class.actual_spell_slots_level_6_per_level"
+                        },
+                        "sort_by_selector": {
+                          "type": "stat",
+                          "stat": "$sortByValue.level"
+                        }
+                      },
+                      "filter": {
+                        "type": "lessThanEquals",
+                        "components": {
+                          "type": "list",
+                          "components": [
+                            {
+                              "type": "stat",
+                              "stat": "$findFirstValue.level"
+                            },
+                            {
+                              "type": "stat",
+                              "stat": "$class.class_level"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "mapper": {
+                    "type": "defaultIfNull",
+                    "components": {
+                      "type": "stat",
+                      "stat": "$mapValue?.amount"
+                    },
+                    "default_components": {
+                      "type": "constant",
+                      "value": 0,
+                      "value_type": "integer"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "stat",
+                "stat": "max_spell_slots_6_bonus"
+              }
+            ]
+          }
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "spell_slots_7",
+        "new_value": {
+          "type": "add",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "when",
+                "clauses": [
+                  {
+                    "condition": {
+                      "type": "lessThan",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "stat",
+                            "stat": "spellcaster_level"
+                          },
+                          {
+                            "type": "constant",
+                            "value": 13,
+                            "value_type": "integer"
+                          }
+                        ]
+                      }
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": 0,
+                      "value_type": "integer"
+                    }
+                  },
+                  {
+                    "condition": {
+                      "type": "lessThan",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "stat",
+                            "stat": "spellcaster_level"
+                          },
+                          {
+                            "type": "constant",
+                            "value": 20,
+                            "value_type": "integer"
+                          }
+                        ]
+                      }
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": 1,
+                      "value_type": "integer"
+                    }
+                  },
+                  {
+                    "condition": {
+                      "type": "constant",
+                      "value": true,
+                      "value_type": "bool"
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": 2,
+                      "value_type": "integer"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "add",
+                "components": {
+                  "type": "map",
+                  "components": {
+                    "type": "map",
+                    "map_value_key": "$class",
+                    "components": {
+                      "type": "stat",
+                      "stat": "custom_spell_slot_classes"
+                    },
+                    "mapper": {
+                      "type": "findFirst",
+                      "components": {
+                        "type": "sortBy",
+                        "order": "desc",
+                        "components": {
+                          "type": "stat",
+                          "stat": "$class.class.actual_spell_slots_level_7_per_level"
+                        },
+                        "sort_by_selector": {
+                          "type": "stat",
+                          "stat": "$sortByValue.level"
+                        }
+                      },
+                      "filter": {
+                        "type": "lessThanEquals",
+                        "components": {
+                          "type": "list",
+                          "components": [
+                            {
+                              "type": "stat",
+                              "stat": "$findFirstValue.level"
+                            },
+                            {
+                              "type": "stat",
+                              "stat": "$class.class_level"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "mapper": {
+                    "type": "defaultIfNull",
+                    "components": {
+                      "type": "stat",
+                      "stat": "$mapValue?.amount"
+                    },
+                    "default_components": {
+                      "type": "constant",
+                      "value": 0,
+                      "value_type": "integer"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "stat",
+                "stat": "max_spell_slots_7_bonus"
+              }
+            ]
+          }
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "spell_slots_8",
+        "new_value": {
+          "type": "add",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "when",
+                "clauses": [
+                  {
+                    "condition": {
+                      "type": "lessThan",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "stat",
+                            "stat": "spellcaster_level"
+                          },
+                          {
+                            "type": "constant",
+                            "value": 15,
+                            "value_type": "integer"
+                          }
+                        ]
+                      }
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": 0,
+                      "value_type": "integer"
+                    }
+                  },
+                  {
+                    "condition": {
+                      "type": "constant",
+                      "value": true,
+                      "value_type": "bool"
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": 1,
+                      "value_type": "integer"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "add",
+                "components": {
+                  "type": "map",
+                  "components": {
+                    "type": "map",
+                    "map_value_key": "$class",
+                    "components": {
+                      "type": "stat",
+                      "stat": "custom_spell_slot_classes"
+                    },
+                    "mapper": {
+                      "type": "findFirst",
+                      "components": {
+                        "type": "sortBy",
+                        "order": "desc",
+                        "components": {
+                          "type": "stat",
+                          "stat": "$class.class.actual_spell_slots_level_8_per_level"
+                        },
+                        "sort_by_selector": {
+                          "type": "stat",
+                          "stat": "$sortByValue.level"
+                        }
+                      },
+                      "filter": {
+                        "type": "lessThanEquals",
+                        "components": {
+                          "type": "list",
+                          "components": [
+                            {
+                              "type": "stat",
+                              "stat": "$findFirstValue.level"
+                            },
+                            {
+                              "type": "stat",
+                              "stat": "$class.class_level"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "mapper": {
+                    "type": "defaultIfNull",
+                    "components": {
+                      "type": "stat",
+                      "stat": "$mapValue?.amount"
+                    },
+                    "default_components": {
+                      "type": "constant",
+                      "value": 0,
+                      "value_type": "integer"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "stat",
+                "stat": "max_spell_slots_8_bonus"
+              }
+            ]
+          }
+        },
+        "aggregation_type": "set"
+      },
+      {
+        "type": "setStat",
+        "stat": "spell_slots_9",
+        "new_value": {
+          "type": "add",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "when",
+                "clauses": [
+                  {
+                    "condition": {
+                      "type": "lessThan",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "stat",
+                            "stat": "spellcaster_level"
+                          },
+                          {
+                            "type": "constant",
+                            "value": 17,
+                            "value_type": "integer"
+                          }
+                        ]
+                      }
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": 0,
+                      "value_type": "integer"
+                    }
+                  },
+                  {
+                    "condition": {
+                      "type": "constant",
+                      "value": true,
+                      "value_type": "bool"
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": 1,
+                      "value_type": "integer"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "add",
+                "components": {
+                  "type": "map",
+                  "components": {
+                    "type": "map",
+                    "map_value_key": "$class",
+                    "components": {
+                      "type": "stat",
+                      "stat": "custom_spell_slot_classes"
+                    },
+                    "mapper": {
+                      "type": "findFirst",
+                      "components": {
+                        "type": "sortBy",
+                        "order": "desc",
+                        "components": {
+                          "type": "stat",
+                          "stat": "$class.class.actual_spell_slots_level_9_per_level"
+                        },
+                        "sort_by_selector": {
+                          "type": "stat",
+                          "stat": "$sortByValue.level"
+                        }
+                      },
+                      "filter": {
+                        "type": "lessThanEquals",
+                        "components": {
+                          "type": "list",
+                          "components": [
+                            {
+                              "type": "stat",
+                              "stat": "$findFirstValue.level"
+                            },
+                            {
+                              "type": "stat",
+                              "stat": "$class.class_level"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "mapper": {
+                    "type": "defaultIfNull",
+                    "components": {
+                      "type": "stat",
+                      "stat": "$mapValue?.amount"
+                    },
+                    "default_components": {
+                      "type": "constant",
+                      "value": 0,
+                      "value_type": "integer"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "stat",
+                "stat": "max_spell_slots_9_bonus"
+              }
+            ]
+          }
+        },
+        "aggregation_type": "set"
+      }
+    ]
+  }
+}

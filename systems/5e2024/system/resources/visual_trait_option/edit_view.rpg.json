@@ -1,0 +1,43 @@
+{
+  "id": "visual_trait_option_edit",
+  "type": "text",
+  "edit_stat": "text",
+  "style": "text",
+  "max_length": 80,
+  "hint": {
+    "type": "constant",
+    "value": "Option (no parenthesis). e.g: Blue Eyes",
+    "value_type": "string"
+  },
+  "validation_message": {
+    "type": "when",
+    "clauses": [
+      {
+        "condition": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "$view.visual_trait_option_edit"
+          }
+        },
+        "components": {
+          "type": "constant",
+          "value": "You have empty trait options. Please fill them or remove them.",
+          "value_type": "string"
+        }
+      },
+      {
+        "condition": {
+          "type": "constant",
+          "value": true,
+          "value_type": "bool"
+        },
+        "components": {
+          "type": "constant",
+          "value": null,
+          "value_type": "string"
+        }
+      }
+    ]
+  }
+}

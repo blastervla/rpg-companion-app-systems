@@ -1,0 +1,93 @@
+[
+  {
+    "id": "name",
+    "name": "Name",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "options",
+    "name": "Options",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "visual_trait_option",
+    "default_value": []
+  },
+  {
+    "id": "importance",
+    "name": "Importance",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "selected_option",
+    "name": "Selected option",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "name_for_select",
+    "name": "Name for select",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "stat",
+            "stat": "name"
+          },
+          {
+            "type": "constant",
+            "value": ": ",
+            "value_type": "string"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "display_text",
+    "name": "Display text",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "- ",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "name_for_select"
+          },
+          {
+            "type": "joinToString",
+            "separator": ", ",
+            "components": {
+              "type": "map",
+              "components": {
+                "type": "stat",
+                "stat": "options"
+              },
+              "mapper": {
+                "type": "stat",
+                "stat": "$mapValue.text"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+]

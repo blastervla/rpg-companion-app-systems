@@ -1,0 +1,372 @@
+{
+  "id": "armor_edit",
+  "type": "list",
+  "padding": 32,
+  "subviews": [
+    {
+      "id": "armor_edit_name",
+      "type": "text",
+      "edit_stat": "name",
+      "style": "text",
+      "label": {
+        "type": "constant",
+        "value": "Name",
+        "value_type": "string"
+      },
+      "max_length": 140,
+      "validation_message": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "isEmpty",
+              "components": {
+                "type": "stat",
+                "stat": "$view.armor_edit_name"
+              }
+            },
+            "components": {
+              "type": "constant",
+              "value": "Please add a name to your armor",
+              "value_type": "string"
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "armor_edit_source_core",
+      "type": "composite",
+      "margin_top": 4,
+      "subviews": [
+        {
+          "id": "armor_edit_source",
+          "type": "composite",
+          "subviews": [
+            {
+              "id": "armor_edit_source_label",
+              "type": "text",
+              "text": {
+                "type": "constant",
+                "value": "Source: ",
+                "value_type": "string"
+              },
+              "style": "text"
+            },
+            {
+              "id": "armor_edit_source_select",
+              "type": "select",
+              "options": "source",
+              "options_display_stat": "abbreviation",
+              "stat": "source"
+            }
+          ]
+        },
+        {
+          "id": "armor_edit_is_core",
+          "type": "checkbox",
+          "stat": "is_core",
+          "label": {
+            "type": "constant",
+            "value": "Core",
+            "value_type": "string"
+          },
+          "label_alignment": "right"
+        }
+      ]
+    },
+    {
+      "id": "armor_edit_description",
+      "type": "text",
+      "edit_stat": "description",
+      "label": {
+        "type": "constant",
+        "value": "Description",
+        "value_type": "string"
+      },
+      "style": "text"
+    },
+    {
+      "id": "armor_edit_weight_cost_composite",
+      "type": "composite",
+      "margin_top": 4,
+      "subviews": [
+        {
+          "id": "armor_edit_price_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Price: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "armor_edit_price",
+          "type": "resource",
+          "view_type": "edit",
+          "resource_id": "cost",
+          "stat": "cost",
+          "create_if_empty": true
+        },
+        {
+          "id": "armor_edit_weight_label",
+          "type": "text",
+          "margin_left": 4,
+          "text": {
+            "type": "constant",
+            "value": "Weight: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "armor_edit_weight",
+          "type": "resource",
+          "view_type": "edit",
+          "resource_id": "weight",
+          "stat": "weight",
+          "create_if_empty": true
+        }
+      ]
+    },
+    {
+      "id": "armor_edit_type_is_proficient_composite",
+      "type": "composite",
+      "margin_top": 4,
+      "subviews": [
+        {
+          "id": "armor_edit_type_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Type: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "armor_edit_type",
+          "type": "select",
+          "options": "armor_types",
+          "stat": "type"
+        },
+        {
+          "id": "armor_edit_is_proficient",
+          "type": "checkbox",
+          "stat": "override_is_proficient",
+          "label": {
+            "type": "constant",
+            "value": "Proficient",
+            "value_type": "string"
+          },
+          "label_alignment": "right",
+          "is_visible": {
+            "type": "defined",
+            "stat": "$character"
+          }
+        }
+      ]
+    },
+    {
+      "id": "armor_edit_rarity",
+      "type": "composite",
+      "margin_top": 4,
+      "subviews": [
+        {
+          "id": "armor_edit_rarity_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Rarity: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "armor_edit_rarity",
+          "type": "select",
+          "options": "item_rarity",
+          "stat": "rarity"
+        }
+      ]
+    },
+    {
+      "id": "armor_edit_stealth_disadvantage_override_requires_attunement_composite",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "armor_edit_stealth_disadvantage",
+          "type": "checkbox",
+          "stat": "impose_stealth_disadvantage",
+          "label": {
+            "type": "constant",
+            "value": "Stealth Disadv.",
+            "value_type": "string"
+          },
+          "label_alignment": "right"
+        },
+        {
+          "id": "armor_edit_requires_attunement",
+          "type": "checkbox",
+          "stat": "requires_attunement",
+          "label": {
+            "type": "constant",
+            "value": "Requires attunement",
+            "value_type": "string"
+          },
+          "label_alignment": "right"
+        }
+      ]
+    },
+    {
+      "id": "armor_edit_base_ac_composite",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "armor_edit_base_ac_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Base AC: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "armor_edit_base_ac",
+          "type": "text",
+          "edit_stat": "base_ac",
+          "style": "text",
+          "max_length": 2,
+          "signed": false,
+          "hint": {
+            "type": "constant",
+            "value": "0",
+            "value_type": "string"
+          }
+        }
+      ]
+    },
+    {
+      "id": "armor_edit_modifier_composite",
+      "type": "composite",
+      "margin_top": 4,
+      "subviews": [
+        {
+          "id": "armor_edit_modifier_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Modifier: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "armor_edit_modifier",
+          "type": "select",
+          "options": "ability_plus_none",
+          "stat": "modifier"
+        }
+      ]
+    },
+    {
+      "id": "armor_edit_max_bonus_composite",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "armor_edit_has_max_bonus",
+          "type": "checkbox",
+          "stat": "has_max_bonus",
+          "label": {
+            "type": "constant",
+            "value": "Has max bonus",
+            "value_type": "string"
+          },
+          "label_alignment": "right"
+        },
+        {
+          "id": "armor_edit_max_bonus",
+          "type": "text",
+          "edit_stat": "max_bonus",
+          "style": "text",
+          "max_length": 2,
+          "signed": false,
+          "hint": {
+            "type": "constant",
+            "value": "0",
+            "value_type": "string"
+          },
+          "is_visible": {
+            "type": "stat",
+            "stat": "$view.armor_edit_has_max_bonus"
+          }
+        }
+      ]
+    },
+    {
+      "id": "armor_edit_required_strength_composite",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "armor_edit_required_strength_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Required strength: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "armor_edit_required_strength",
+          "type": "text",
+          "edit_stat": "required_strength",
+          "style": "text",
+          "max_length": 2,
+          "signed": false,
+          "hint": {
+            "type": "constant",
+            "value": "0",
+            "value_type": "string"
+          }
+        }
+      ]
+    },
+    {
+      "id": "armor_edit_effects",
+      "type": "resourceArray",
+      "resource_id": "effect",
+      "view_type": "edit",
+      "stat": "effects",
+      "pop_up_type": "bottomSheet",
+      "pop_up_button_text": {
+        "type": "stat",
+        "stat": "edit_display_name"
+      },
+      "left_view": {
+        "id": "armor_edit_effects_label",
+        "type": "text",
+        "text": {
+          "type": "constant",
+          "value": "Effects: ",
+          "value_type": "string"
+        },
+        "style": "text"
+      }
+    }
+  ]
+}

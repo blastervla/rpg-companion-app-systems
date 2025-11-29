@@ -1,0 +1,38 @@
+{
+  "type": "composite",
+  "id": "dice_roll_edit",
+  "subviews": [
+    {
+      "id": "dice_roll_amount",
+      "type": "text",
+      "edit_stat": "dice_amount",
+      "style": "text",
+      "max_length": 3,
+      "signed": false
+    },
+    {
+      "id": "dice_roll_type",
+      "type": "select",
+      "stat": "dice_type",
+      "options": "dice"
+    },
+    {
+      "id": "dice_roll_linker",
+      "type": "text",
+      "text": {
+        "type": "constant",
+        "value": " + ",
+        "value_type": "string"
+      },
+      "style": "text"
+    },
+    {
+      "id": "dice_roll_constant",
+      "type": "text",
+      "edit_stat": "constant",
+      "style": "text",
+      "max_length": 4,
+      "signed": true
+    }
+  ]
+}

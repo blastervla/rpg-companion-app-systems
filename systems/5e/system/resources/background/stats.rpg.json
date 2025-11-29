@@ -1,0 +1,816 @@
+[
+  {
+    "id": "name",
+    "name": "Name",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "source",
+    "name": "Source",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "gold_pieces",
+    "name": "Gold pieces",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 10
+  },
+  {
+    "id": "features",
+    "name": "Features",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "feat",
+    "default_value": []
+  },
+  {
+    "id": "selectable_equipments",
+    "name": "Selectable equipment",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "selectable_items",
+    "default_value": []
+  },
+  {
+    "id": "selectable_armors",
+    "name": "Selectable armor",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "selectable_armors",
+    "default_value": []
+  },
+  {
+    "id": "selectable_weapons",
+    "name": "Selectable weapons",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "selectable_weapons",
+    "default_value": []
+  },
+  {
+    "id": "language_proficiencies",
+    "name": "Language proficiencies",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_choice_text",
+    "default_value": []
+  },
+  {
+    "id": "skill_proficiencies",
+    "name": "Skill proficiencies",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_skill_proficiency",
+    "default_value": []
+  },
+  {
+    "id": "armor_proficiencies",
+    "name": "Armor proficiencies",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_armor_proficiency",
+    "default_value": []
+  },
+  {
+    "id": "weapon_proficiencies",
+    "name": "Weapon proficiencies",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_weapon_proficiency",
+    "default_value": []
+  },
+  {
+    "id": "tool_proficiencies",
+    "name": "Tool proficiencies",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_choice_text",
+    "default_value": []
+  },
+  {
+    "id": "language_proficiencies_for_current_level",
+    "name": "Language proficiencies for current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_choice_text",
+    "components": {
+      "type": "filter",
+      "components": {
+        "type": "stat",
+        "stat": "language_proficiencies"
+      },
+      "filter": {
+        "type": "lessThanEquals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$filterValue.level"
+            },
+            {
+              "type": "defaultIfNull",
+              "components": {
+                "type": "stat",
+                "stat": "$character.level"
+              },
+              "default_components": {
+                "type": "constant",
+                "value": 1,
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "skill_proficiencies_for_current_level",
+    "name": "Skill proficiencies for current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_skill_proficiency",
+    "components": {
+      "type": "filter",
+      "components": {
+        "type": "stat",
+        "stat": "skill_proficiencies"
+      },
+      "filter": {
+        "type": "lessThanEquals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$filterValue.level"
+            },
+            {
+              "type": "defaultIfNull",
+              "components": {
+                "type": "stat",
+                "stat": "$character.level"
+              },
+              "default_components": {
+                "type": "constant",
+                "value": 1,
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "armor_proficiencies_for_current_level",
+    "name": "Armor proficiencies for current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_armor_proficiency",
+    "components": {
+      "type": "filter",
+      "components": {
+        "type": "stat",
+        "stat": "armor_proficiencies"
+      },
+      "filter": {
+        "type": "lessThanEquals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$filterValue.level"
+            },
+            {
+              "type": "defaultIfNull",
+              "components": {
+                "type": "stat",
+                "stat": "$character.level"
+              },
+              "default_components": {
+                "type": "constant",
+                "value": 1,
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "weapon_proficiencies_for_current_level",
+    "name": "Weapon proficiencies for current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_weapon_proficiency",
+    "components": {
+      "type": "filter",
+      "components": {
+        "type": "stat",
+        "stat": "weapon_proficiencies"
+      },
+      "filter": {
+        "type": "lessThanEquals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$filterValue.level"
+            },
+            {
+              "type": "defaultIfNull",
+              "components": {
+                "type": "stat",
+                "stat": "$character.level"
+              },
+              "default_components": {
+                "type": "constant",
+                "value": 1,
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "tool_proficiencies_for_current_level",
+    "name": "Tool proficiencies for current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_choice_text",
+    "components": {
+      "type": "filter",
+      "components": {
+        "type": "stat",
+        "stat": "tool_proficiencies"
+      },
+      "filter": {
+        "type": "lessThanEquals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$filterValue.level"
+            },
+            {
+              "type": "defaultIfNull",
+              "components": {
+                "type": "stat",
+                "stat": "$character.level"
+              },
+              "default_components": {
+                "type": "constant",
+                "value": 1,
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "language_proficiencies_choices_in_current_level",
+    "name": "Language proficiencies choices in current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_choice_text",
+    "components": {
+      "type": "filter",
+      "components": {
+        "type": "stat",
+        "stat": "language_proficiencies"
+      },
+      "filter": {
+        "type": "equals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$filterValue.level"
+            },
+            {
+              "type": "defaultIfNull",
+              "components": {
+                "type": "stat",
+                "stat": "$character.level"
+              },
+              "default_components": {
+                "type": "constant",
+                "value": 1,
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "skill_proficiencies_choices_in_current_level",
+    "name": "Skill proficiencies choices in current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_skill_proficiency",
+    "components": {
+      "type": "filter",
+      "components": {
+        "type": "stat",
+        "stat": "skill_proficiencies"
+      },
+      "filter": {
+        "type": "equals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$filterValue.level"
+            },
+            {
+              "type": "defaultIfNull",
+              "components": {
+                "type": "stat",
+                "stat": "$character.level"
+              },
+              "default_components": {
+                "type": "constant",
+                "value": 1,
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "armor_proficiencies_choices_in_current_level",
+    "name": "Armor proficiencies choices in current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_armor_proficiency",
+    "components": {
+      "type": "filter",
+      "components": {
+        "type": "stat",
+        "stat": "armor_proficiencies"
+      },
+      "filter": {
+        "type": "equals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$filterValue.level"
+            },
+            {
+              "type": "defaultIfNull",
+              "components": {
+                "type": "stat",
+                "stat": "$character.level"
+              },
+              "default_components": {
+                "type": "constant",
+                "value": 1,
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "weapon_proficiencies_choices_in_current_level",
+    "name": "Weapon proficiencies choices in current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_weapon_proficiency",
+    "components": {
+      "type": "filter",
+      "components": {
+        "type": "stat",
+        "stat": "weapon_proficiencies"
+      },
+      "filter": {
+        "type": "equals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$filterValue.level"
+            },
+            {
+              "type": "defaultIfNull",
+              "components": {
+                "type": "stat",
+                "stat": "$character.level"
+              },
+              "default_components": {
+                "type": "constant",
+                "value": 1,
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "tool_proficiencies_choices_in_current_level",
+    "name": "Tool proficiencies choices in current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_choice_text",
+    "components": {
+      "type": "filter",
+      "components": {
+        "type": "stat",
+        "stat": "tool_proficiencies"
+      },
+      "filter": {
+        "type": "equals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$filterValue.level"
+            },
+            {
+              "type": "defaultIfNull",
+              "components": {
+                "type": "stat",
+                "stat": "$character.level"
+              },
+              "default_components": {
+                "type": "constant",
+                "value": 1,
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "formatted_description",
+    "name": "Formatted description",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "stat",
+            "stat": "gold_pieces"
+          },
+          {
+            "type": "constant",
+            "value": " GP",
+            "value_type": "string"
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "isEmpty",
+                    "components": {
+                      "type": "stat",
+                      "stat": "language_proficiencies"
+                    }
+                  }
+                },
+                "components": {
+                  "type": "concat",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "constant",
+                        "value": ", ",
+                        "value_type": "string"
+                      },
+                      {
+                        "type": "joinToString",
+                        "separator": ", ",
+                        "components": {
+                          "type": "map",
+                          "components": {
+                            "type": "stat",
+                            "stat": "language_proficiencies"
+                          },
+                          "mapper": {
+                            "type": "stat",
+                            "stat": "$mapValue.options"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "",
+                  "value_type": "string"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "selected_selectable_feature_ids",
+    "name": "Selected selectable feature ids",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "string",
+    "components": {
+      "type": "defaultIfNull",
+      "components": {
+        "type": "stat",
+        "stat": "$character?.selected_selectable_feature_ids"
+      },
+      "default_components": {
+        "type": "list",
+        "components": []
+      }
+    }
+  },
+  {
+    "id": "current_level_features",
+    "name": "Current level features",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "feat",
+    "components": {
+      "type": "flatMap",
+      "components": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "defined",
+              "stat": "$character"
+            },
+            "components": {
+              "type": "filter",
+              "components": {
+                "type": "stat",
+                "stat": "features"
+              },
+              "filter": {
+                "type": "lessThanEquals",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "stat",
+                      "stat": "$filterValue.min_level"
+                    },
+                    {
+                      "type": "stat",
+                      "stat": "$character.level"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "list",
+              "components": []
+            }
+          }
+        ]
+      },
+      "mapper": {
+        "type": "flatAppend",
+        "components": [
+          {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "$mapValue"
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "$mapValue.has_selectable_features"
+                },
+                "components": {
+                  "type": "filter",
+                  "components": {
+                    "type": "stat",
+                    "stat": "$mapValue.selectable_features"
+                  },
+                  "filter": {
+                    "type": "contains",
+                    "haystack": {
+                      "type": "stat",
+                      "stat": "selected_selectable_feature_ids"
+                    },
+                    "needle": {
+                      "type": "stat",
+                      "stat": "$filterValue.id"
+                    }
+                  }
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "features_with_updates_in_current_level",
+    "name": "Features with updates in current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "feat",
+    "components": {
+      "type": "filter",
+      "components": {
+        "type": "stat",
+        "stat": "features"
+      },
+      "filter_value_key": "$feat",
+      "filter": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "filter",
+            "components": {
+              "type": "stat",
+              "stat": "$feat.descriptions"
+            },
+            "filter": {
+              "type": "equals",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "stat",
+                    "stat": "$filterValue.level"
+                  },
+                  {
+                    "type": "stat",
+                    "stat": "$character.level"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "all_features",
+    "name": "All features",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "feat",
+    "components": {
+      "type": "flatMap",
+      "components": {
+        "type": "stat",
+        "stat": "features"
+      },
+      "mapper": {
+        "type": "flatAppend",
+        "components": [
+          {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "$mapValue"
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "$mapValue.has_selectable_features"
+                },
+                "components": {
+                  "type": "filter",
+                  "components": {
+                    "type": "stat",
+                    "stat": "$mapValue.selectable_features"
+                  },
+                  "filter": {
+                    "type": "contains",
+                    "haystack": {
+                      "type": "stat",
+                      "stat": "selected_selectable_feature_ids"
+                    },
+                    "needle": {
+                      "type": "stat",
+                      "stat": "$filterValue.id"
+                    }
+                  }
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "list",
+                  "components": []
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

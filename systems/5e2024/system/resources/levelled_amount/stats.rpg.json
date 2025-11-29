@@ -1,0 +1,111 @@
+[
+  {
+    "id": "level",
+    "name": "Level",
+    "abbreviation": "Lvl",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 1
+  },
+  {
+    "id": "amount",
+    "name": "Description",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 0
+  },
+  {
+    "id": "display_description",
+    "name": "Display description",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "Lvl. ",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "level"
+          },
+          {
+            "type": "constant",
+            "value": ": ",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "amount"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "is_levelled",
+    "name": "Is levelled",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": true
+  },
+  {
+    "id": "can_be_used",
+    "name": "Can execute",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "greaterThanEquals",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "defined",
+                  "stat": "$parent.level"
+                },
+                "components": {
+                  "type": "stat",
+                  "stat": "$parent.level"
+                }
+              },
+              {
+                "condition": {
+                  "type": "defined",
+                  "stat": "$character.level"
+                },
+                "components": {
+                  "type": "stat",
+                  "stat": "$character.level"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": 1,
+                  "value_type": "integer"
+                }
+              }
+            ]
+          },
+          {
+            "type": "stat",
+            "stat": "level"
+          }
+        ]
+      }
+    }
+  }
+]

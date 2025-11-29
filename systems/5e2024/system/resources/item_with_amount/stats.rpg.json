@@ -1,0 +1,104 @@
+[
+  {
+    "id": "amount",
+    "name": "Amount",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 1
+  },
+  {
+    "id": "item",
+    "name": "Item",
+    "type": "base",
+    "value_type": "resource",
+    "resource_type": "item",
+    "default_value": null
+  },
+  {
+    "id": "display_description",
+    "name": "Display description",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "stat",
+            "stat": "amount"
+          },
+          {
+            "type": "constant",
+            "value": " ",
+            "value_type": "string"
+          },
+          {
+            "type": "defaultIfNull",
+            "components": {
+              "type": "stat",
+              "stat": "item?.name"
+            },
+            "default_components": {
+              "type": "constant",
+              "value": "nothing",
+              "value_type": "string"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "selected",
+    "name": "Is selected",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "can_toggle_selection",
+    "name": "Can toggle selection",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "or",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "defaultIfNull",
+            "components": {
+              "type": "stat",
+              "stat": "$parent?.can_select_more"
+            },
+            "default_components": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            }
+          },
+          {
+            "type": "defaultIfNull",
+            "components": {
+              "type": "stat",
+              "stat": "$view?.item_with_amount_display_in_character"
+            },
+            "default_components": {
+              "type": "constant",
+              "value": false,
+              "value_type": "bool"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "should_load_effects",
+    "name": "Should load effects",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  }
+]

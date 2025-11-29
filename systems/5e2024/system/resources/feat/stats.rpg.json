@@ -1,0 +1,1291 @@
+[
+  {
+    "id": "name",
+    "name": "Name",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "source",
+    "name": "Source",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "type",
+    "name": "Type",
+    "type": "base",
+    "value_type": "string",
+    "default_value": "general"
+  },
+  {
+    "id": "prerequisites",
+    "name": "Prerequisites",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "descriptions",
+    "name": "Descriptions",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_description",
+    "default_value": []
+  },
+  {
+    "id": "effects",
+    "name": "Effects",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_effect",
+    "default_value": []
+  },
+  {
+    "id": "selectable_feature_amount_per_level",
+    "name": "Selectable feature amount per level",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_amount",
+    "default_value": []
+  },
+  {
+    "id": "has_selectable_features",
+    "name": "Has selectable features",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": false
+  },
+  {
+    "id": "selectable_features",
+    "name": "Selectable features",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "feat",
+    "default_value": []
+  },
+  {
+    "id": "selectable_feature_ids",
+    "name": "Selectable feature ids",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "string",
+    "components": {
+      "type": "map",
+      "components": {
+        "type": "stat",
+        "stat": "selectable_features"
+      },
+      "mapper": {
+        "type": "stat",
+        "stat": "$mapValue.id"
+      }
+    }
+  },
+  {
+    "id": "selected_selectable_feature_ids",
+    "name": "Selected selectable feature ids",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "string",
+    "components": {
+      "type": "defaultIfNull",
+      "components": {
+        "type": "stat",
+        "stat": "$parent?.selected_selectable_feature_ids"
+      },
+      "default_components": {
+        "type": "list",
+        "components": []
+      }
+    }
+  },
+  {
+    "id": "selected",
+    "name": "Selected",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "contains",
+      "haystack": {
+        "type": "stat",
+        "stat": "selected_selectable_feature_ids"
+      },
+      "needle": {
+        "type": "stat",
+        "stat": "id"
+      }
+    }
+  },
+  {
+    "id": "can_have_selectable_features",
+    "name": "Can have selectable features?",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "not",
+      "components": {
+        "type": "stat",
+        "stat": "is_selectable_feature"
+      }
+    }
+  },
+  {
+    "id": "level",
+    "name": "Level to use for determining what effects to trigger",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "defined",
+            "stat": "$parent.level"
+          },
+          "components": {
+            "type": "stat",
+            "stat": "$parent.level"
+          }
+        },
+        {
+          "condition": {
+            "type": "defined",
+            "stat": "$character.level"
+          },
+          "components": {
+            "type": "stat",
+            "stat": "$character.level"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "constant",
+            "value": 1,
+            "value_type": "integer"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "levelled_description",
+    "name": "Levelled description",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "isEmpty",
+            "components": {
+              "type": "stat",
+              "stat": "descriptions"
+            }
+          },
+          "components": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "isEmpty",
+                  "components": {
+                    "type": "stat",
+                    "stat": "name"
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "Empty",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "stat",
+                  "stat": "name"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "isEmpty",
+                  "components": {
+                    "type": "stat",
+                    "stat": "name"
+                  }
+                },
+                "components": {
+                  "type": "defaultIfNull",
+                  "components": {
+                    "type": "stat",
+                    "stat": "lowest_level_description?.display_description"
+                  },
+                  "default_components": {
+                    "type": "constant",
+                    "value": "",
+                    "value_type": "string"
+                  }
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "concat",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "constant",
+                        "value": "Lvl. ",
+                        "value_type": "string"
+                      },
+                      {
+                        "type": "defaultIfNull",
+                        "components": {
+                          "type": "stat",
+                          "stat": "lowest_level_description?.level"
+                        },
+                        "default_components": {
+                          "type": "constant",
+                          "value": "1",
+                          "value_type": "string"
+                        }
+                      },
+                      {
+                        "type": "constant",
+                        "value": ": ",
+                        "value_type": "string"
+                      },
+                      {
+                        "type": "stat",
+                        "stat": "name"
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "min_level",
+    "name": "Minimum level for this feat",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "defaultIfNull",
+      "components": {
+        "type": "stat",
+        "stat": "lowest_level_description?.level"
+      },
+      "default_components": {
+        "type": "constant",
+        "value": 1,
+        "value_type": "integer"
+      }
+    }
+  },
+  {
+    "id": "lowest_level_description",
+    "name": "Lowest level description",
+    "type": "calculated",
+    "value_type": "resource",
+    "resource_type": "levelled_description",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "isEmpty",
+            "components": {
+              "type": "stat",
+              "stat": "descriptions"
+            }
+          },
+          "components": {
+            "type": "constant",
+            "value": null,
+            "value_type": "string"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "findFirst",
+            "components": {
+              "type": "stat",
+              "stat": "sorted_descriptions"
+            },
+            "filter": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "first_description_text",
+    "name": "First description text",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "isEmpty",
+            "components": {
+              "type": "stat",
+              "stat": "descriptions"
+            }
+          },
+          "components": {
+            "type": "constant",
+            "value": "No description",
+            "value_type": "string"
+          }
+        },
+        {
+          "condition": {
+            "type": "defined",
+            "stat": "$character"
+          },
+          "components": {
+            "type": "defaultIfNull",
+            "components": {
+              "type": "stat",
+              "stat": "current_level_levelled_description?.description"
+            },
+            "default_components": {
+              "type": "findFirst",
+              "components": {
+                "type": "map",
+                "components": {
+                  "type": "sortBy",
+                  "components": {
+                    "type": "stat",
+                    "stat": "descriptions"
+                  },
+                  "sort_by_selector": {
+                    "type": "stat",
+                    "stat": "$sortByValue.level"
+                  }
+                },
+                "mapper": {
+                  "type": "stat",
+                  "stat": "$mapValue.description"
+                }
+              },
+              "filter": {
+                "type": "constant",
+                "value": true,
+                "value_type": "bool"
+              }
+            }
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "findFirst",
+            "components": {
+              "type": "map",
+              "components": {
+                "type": "sortBy",
+                "components": {
+                  "type": "stat",
+                  "stat": "descriptions"
+                },
+                "sort_by_selector": {
+                  "type": "stat",
+                  "stat": "$sortByValue.level"
+                }
+              },
+              "mapper": {
+                "type": "stat",
+                "stat": "$mapValue.description"
+              }
+            },
+            "filter": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "list_view_description",
+    "name": "List view description",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "isEmpty",
+            "components": {
+              "type": "stat",
+              "stat": "prerequisites"
+            }
+          },
+          "components": {
+            "type": "stat",
+            "stat": "first_description_text"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "stat",
+            "stat": "prerequisites"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "previous_level_levelled_description",
+    "name": "Previous level levelled_description",
+    "type": "calculated",
+    "value_type": "resource",
+    "components": {
+      "type": "findFirst",
+      "components": {
+        "type": "sortBy",
+        "order": "desc",
+        "components": {
+          "type": "stat",
+          "stat": "descriptions"
+        },
+        "sort_by_selector": {
+          "type": "stat",
+          "stat": "$sortByValue.level"
+        }
+      },
+      "filter": {
+        "type": "lessThanEquals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$findFirstValue.level"
+            },
+            {
+              "type": "subtract",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "stat",
+                    "stat": "level"
+                  },
+                  {
+                    "type": "constant",
+                    "value": 1,
+                    "value_type": "integer"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "current_level_levelled_description",
+    "name": "Current level levelled_description",
+    "type": "calculated",
+    "value_type": "resource",
+    "components": {
+      "type": "findFirst",
+      "components": {
+        "type": "sortBy",
+        "order": "desc",
+        "components": {
+          "type": "stat",
+          "stat": "descriptions"
+        },
+        "sort_by_selector": {
+          "type": "stat",
+          "stat": "$sortByValue.level"
+        }
+      },
+      "filter": {
+        "type": "lessThanEquals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$findFirstValue.level"
+            },
+            {
+              "type": "stat",
+              "stat": "level"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "current_level_description",
+    "name": "Current level description",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "defined",
+            "stat": "$character"
+          },
+          "components": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "isEmpty",
+                  "components": {
+                    "type": "stat",
+                    "stat": "descriptions"
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "defaultIfNull",
+                  "components": {
+                    "type": "stat",
+                    "stat": "current_level_levelled_description?.description"
+                  },
+                  "default_components": {
+                    "type": "stat",
+                    "stat": "first_description_text"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "stat",
+            "stat": "first_description_text"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "min_required_level",
+    "name": "Minimum required level",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "isEmpty",
+            "components": {
+              "type": "stat",
+              "stat": "descriptions"
+            }
+          },
+          "components": {
+            "type": "constant",
+            "value": 999999,
+            "value_type": "integer"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "findFirst",
+            "components": {
+              "type": "map",
+              "components": {
+                "type": "sortBy",
+                "order": "asc",
+                "components": {
+                  "type": "stat",
+                  "stat": "descriptions"
+                },
+                "sort_by_selector": {
+                  "type": "stat",
+                  "stat": "$sortByValue.level"
+                }
+              },
+              "mapper": {
+                "type": "stat",
+                "stat": "$mapValue.level"
+              }
+            },
+            "filter": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "can_be_used",
+    "name": "Can be_used",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "greaterThanEquals",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "stat",
+            "stat": "level"
+          },
+          {
+            "type": "stat",
+            "stat": "min_required_level"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "available_effects_for_current_level",
+    "name": "Available effects for current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "effect",
+    "components": {
+      "type": "map",
+      "components": {
+        "type": "filter",
+        "components": {
+          "type": "sortBy",
+          "order": "asc",
+          "components": {
+            "type": "stat",
+            "stat": "effects"
+          },
+          "sort_by_selector": {
+            "type": "stat",
+            "stat": "$sortByValue.level"
+          }
+        },
+        "filter": {
+          "type": "lessThanEquals",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "$filterValue.level"
+              },
+              {
+                "type": "stat",
+                "stat": "level"
+              }
+            ]
+          }
+        }
+      },
+      "mapper": {
+        "type": "stat",
+        "stat": "$mapValue.effect"
+      }
+    }
+  },
+  {
+    "id": "active_or_charge_effects_for_current_level",
+    "name": "Active or charge-only effects for current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "effect",
+    "components": {
+      "type": "filter",
+      "components": {
+        "type": "stat",
+        "stat": "available_effects_for_current_level"
+      },
+      "filter": {
+        "type": "or",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "equals",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "stat",
+                    "stat": "$filterValue.trigger_type"
+                  },
+                  {
+                    "type": "constant",
+                    "value": "active",
+                    "value_type": "string"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "stat",
+              "stat": "$filterValue.has_charges"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "sorted_descriptions",
+    "name": "Sorted descriptions",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_description",
+    "components": {
+      "type": "sortBy",
+      "order": "asc",
+      "components": {
+        "type": "stat",
+        "stat": "descriptions"
+      },
+      "sort_by_selector": {
+        "type": "stat",
+        "stat": "$sortByValue.level"
+      }
+    }
+  },
+  {
+    "id": "sorted_effects",
+    "name": "Sorted effects",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_effect",
+    "components": {
+      "type": "sortBy",
+      "order": "asc",
+      "components": {
+        "type": "stat",
+        "stat": "effects"
+      },
+      "sort_by_selector": {
+        "type": "stat",
+        "stat": "$sortByValue.level"
+      }
+    }
+  },
+  {
+    "id": "sorted_selectable_feature_amount_per_level",
+    "name": "Sorted selectable feature amount per level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "levelled_amount",
+    "components": {
+      "type": "sortBy",
+      "order": "asc",
+      "components": {
+        "type": "stat",
+        "stat": "selectable_feature_amount_per_level"
+      },
+      "sort_by_selector": {
+        "type": "stat",
+        "stat": "$sortByValue.level"
+      }
+    }
+  },
+  {
+    "id": "current_levelled_amount_of_allowed_selectable_features",
+    "name": "Current levelled amount of allowed selectable features",
+    "type": "calculated",
+    "value_type": "resource",
+    "resource_type": "levelled_amount",
+    "components": {
+      "type": "findFirst",
+      "components": {
+        "type": "sortBy",
+        "order": "desc",
+        "components": {
+          "type": "stat",
+          "stat": "selectable_feature_amount_per_level"
+        },
+        "sort_by_selector": {
+          "type": "stat",
+          "stat": "$sortByValue.level"
+        }
+      },
+      "filter": {
+        "type": "lessThanEquals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$findFirstValue.level"
+            },
+            {
+              "type": "stat",
+              "stat": "level"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "current_allowed_amount_of_selectable_features",
+    "name": "Current allowed amount of selectable features",
+    "type": "calculated",
+    "value_type": "integer",
+    "components": {
+      "type": "defaultIfNull",
+      "components": {
+        "type": "stat",
+        "stat": "current_levelled_amount_of_allowed_selectable_features?.amount"
+      },
+      "default_components": {
+        "type": "constant",
+        "value": 0,
+        "value_type": "integer"
+      }
+    }
+  },
+  {
+    "id": "can_choose_new_selectable_features_in_current_level",
+    "name": "Can choose new selectable features in the current level",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "equals",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "stat",
+            "stat": "current_levelled_amount_of_allowed_selectable_features?.level"
+          },
+          {
+            "type": "stat",
+            "stat": "level"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sorted_selectable_features",
+    "name": "Sorted selectable features",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "feat",
+    "components": {
+      "type": "sortBy",
+      "order": "asc",
+      "components": {
+        "type": "stat",
+        "stat": "selectable_features"
+      },
+      "sort_by_selector": {
+        "type": "stat",
+        "stat": "$sortByValue.min_level"
+      }
+    }
+  },
+  {
+    "id": "available_selectable_features_for_current_level",
+    "name": "Available selectable features for current level",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "feat",
+    "components": {
+      "type": "filter",
+      "components": {
+        "type": "stat",
+        "stat": "sorted_selectable_features"
+      },
+      "filter": {
+        "type": "lessThanEquals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$filterValue.min_level"
+            },
+            {
+              "type": "stat",
+              "stat": "level"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "current_allowed_amount_of_selectable_features_label_text",
+    "name": "Current allowed amount of selectable features label text",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "Allowed selectable feature amount (for your level): ",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "current_allowed_amount_of_selectable_features"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "is_selectable_feature",
+    "name": "Is selectable feature",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "defined",
+      "stat": "$parent.selectable_features"
+    }
+  },
+  {
+    "id": "selected_selectable_feature_ids_stat_path",
+    "name": "Chosen selectable feature ids stat path",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "notNull",
+            "components": {
+              "type": "stat",
+              "stat": "$parent?.current_class_details?.selected_selectable_feature_ids?"
+            }
+          },
+          "components": {
+            "type": "constant",
+            "value": "$parent.current_class_details.selected_selectable_feature_ids",
+            "value_type": "string"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "constant",
+            "value": "$character.selected_selectable_feature_ids",
+            "value_type": "string"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "current_level_available_selectable_feature_ids",
+    "name": "Current level available selectable feature ids",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "string",
+    "components": {
+      "type": "map",
+      "components": {
+        "type": "stat",
+        "stat": "available_selectable_features_for_current_level"
+      },
+      "mapper": {
+        "type": "stat",
+        "stat": "$mapValue.id"
+      }
+    }
+  },
+  {
+    "id": "chosen_selectable_features",
+    "name": "Chosen selectable features",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "string",
+    "components": {
+      "type": "filter",
+      "components": {
+        "type": "stat",
+        "stat": "selected_selectable_feature_ids"
+      },
+      "filter": {
+        "type": "contains",
+        "haystack": {
+          "type": "stat",
+          "stat": "current_level_available_selectable_feature_ids"
+        },
+        "needle": {
+          "type": "stat",
+          "stat": "$filterValue"
+        }
+      }
+    }
+  },
+  {
+    "id": "is_selected_selectable_feature",
+    "name": "Is selected selectable feature",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "contains",
+      "haystack": {
+        "type": "stat",
+        "stat": "selected_selectable_feature_ids"
+      },
+      "needle": {
+        "type": "stat",
+        "stat": "id"
+      }
+    }
+  },
+  {
+    "id": "should_load_effects",
+    "name": "Should load effects",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "and",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "defaultIfNull",
+            "components": {
+              "type": "stat",
+              "stat": "$parent?.should_load_effects?"
+            },
+            "default_components": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            }
+          },
+          {
+            "type": "or",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "not",
+                  "components": {
+                    "type": "stat",
+                    "stat": "is_selectable_feature"
+                  }
+                },
+                {
+                  "type": "stat",
+                  "stat": "is_selected_selectable_feature"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "type_name",
+    "name": "Type name",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "enumeratedName",
+      "enumerated_type": "feat_types",
+      "id": {
+        "type": "stat",
+        "stat": "type"
+      }
+    }
+  },
+  {
+    "id": "list_name",
+    "name": "List view name",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "when",
+      "clauses": [
+        {
+          "condition": {
+            "type": "stat",
+            "stat": "show_level_in_name"
+          },
+          "components": {
+            "type": "stat",
+            "stat": "level_plus_name"
+          }
+        },
+        {
+          "condition": {
+            "type": "constant",
+            "value": true,
+            "value_type": "bool"
+          },
+          "components": {
+            "type": "stat",
+            "stat": "name"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "level_plus_name",
+    "name": "First level plus name",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "Lvl. ",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "min_level"
+          },
+          {
+            "type": "constant",
+            "value": ": ",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "name"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "show_level_in_name",
+    "name": "Show level in feat name",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "defaultIfNull",
+      "components": {
+        "type": "stat",
+        "stat": "$parent?.feat_show_level?"
+      },
+      "default_components": {
+        "type": "constant",
+        "value": false,
+        "value_type": "bool"
+      }
+    }
+  },
+  {
+    "id": "is_feat",
+    "name": "Is feat",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": true
+  }
+]

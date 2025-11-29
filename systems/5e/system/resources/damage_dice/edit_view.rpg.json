@@ -1,0 +1,65 @@
+{
+  "id": "damage_dice_edit",
+  "type": "resourceArray",
+  "resource_id": "dice_roll",
+  "stat": "dices",
+  "view_type": "edit",
+  "left_view": {
+    "id": "damage_dice_damage_type",
+    "type": "select",
+    "stat": "damage_type",
+    "options": "damage_types"
+  },
+  "validation_message": {
+    "type": "when",
+    "clauses": [
+      {
+        "condition": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "$view.damage_dice_edit"
+          }
+        },
+        "components": {
+          "type": "concat",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "constant",
+                "value": "It seems like you left the list of dice for ",
+                "value_type": "string"
+              },
+              {
+                "type": "enumeratedName",
+                "enumerated_type": "damage_types",
+                "id": {
+                  "type": "stat",
+                  "stat": "damage_type"
+                }
+              },
+              {
+                "type": "constant",
+                "value": " damage empty. Please remove it if you don't need it",
+                "value_type": "string"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "type": "constant",
+          "value": true,
+          "value_type": "bool"
+        },
+        "components": {
+          "type": "constant",
+          "value": null,
+          "value_type": "string"
+        }
+      }
+    ]
+  }
+}

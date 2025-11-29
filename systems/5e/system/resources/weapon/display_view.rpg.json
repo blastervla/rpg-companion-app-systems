@@ -1,0 +1,468 @@
+{
+  "id": "weapon_display",
+  "type": "list",
+  "padding": 16,
+  "subviews": [
+    {
+      "id": "weapon_display_info",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "weapon_display_source",
+          "type": "text",
+          "margin_left": 16,
+          "style": "caption",
+          "resource_id": "source",
+          "resource_instance_ids_stat": "source",
+          "resource_display_stat": "abbreviation"
+        },
+        {
+          "id": "weapon_display_source_separator",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": ", ",
+            "value_type": "string"
+          },
+          "style": "caption"
+        },
+        {
+          "id": "weapon_display_properties",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "properties"
+          },
+          "style": "caption",
+          "is_visible": {
+            "type": "not",
+            "components": {
+              "type": "isEmpty",
+              "components": {
+                "type": "stat",
+                "stat": "properties"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "weapon_display_character_properties",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "weapon_display_proficient",
+          "type": "text",
+          "margin_left": 16,
+          "text": {
+            "type": "constant",
+            "value": "Proficient",
+            "value_type": "string"
+          },
+          "style": "caption",
+          "color": {
+            "type": "constant",
+            "value": "accent",
+            "value_type": "string"
+          },
+          "is_visible": {
+            "type": "stat",
+            "stat": "is_proficient"
+          }
+        },
+        {
+          "id": "weapon_display_attuned",
+          "type": "text",
+          "margin_left": 16,
+          "text": {
+            "type": "constant",
+            "value": "Attuned",
+            "value_type": "string"
+          },
+          "style": "caption",
+          "color": {
+            "type": "constant",
+            "value": "#4CAF50",
+            "value_type": "string"
+          },
+          "is_visible": {
+            "type": "stat",
+            "stat": "is_attuned"
+          }
+        }
+      ],
+      "is_visible": {
+        "type": "defined",
+        "stat": "$character"
+      }
+    },
+    {
+      "id": "weapon_display_type_composite",
+      "type": "composite",
+      "margin_top": 16,
+      "subviews": [
+        {
+          "id": "weapon_display_type_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Type: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "weapon_display_type_label",
+          "type": "text",
+          "text": {
+            "type": "enumeratedName",
+            "enumerated_type": "weapon_types",
+            "id": {
+              "type": "stat",
+              "stat": "type"
+            }
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "weapon_display_attack_bonus_composite",
+      "type": "composite",
+      "margin_top": 8,
+      "is_visible": {
+        "type": "defined",
+        "stat": "$character"
+      },
+      "subviews": [
+        {
+          "id": "weapon_display_attack_bonus_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Attack Bonus: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "weapon_display_attack_bonus_label",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "display_attack_bonus"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "weapon_display_damage_composite",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "weapon_display_damage_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Damage: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "weapon_display_damage_label",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "damage_dice_display_description"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "weapon_display_versatile_damage_composite",
+      "type": "composite",
+      "is_visible": {
+        "type": "and",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "defined",
+              "stat": "$character"
+            },
+            {
+              "type": "stat",
+              "stat": "is_versatile"
+            }
+          ]
+        }
+      },
+      "subviews": [
+        {
+          "id": "weapon_display_damage_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Damage (two-handed): ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "weapon_display_damage_label",
+          "type": "text",
+          "text": {
+            "type": "stat",
+            "stat": "versatile_damage_dice_display_description"
+          },
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "id": "weapon_display_description",
+      "type": "text",
+      "margin_top": 16,
+      "text": {
+        "type": "stat",
+        "stat": "description"
+      },
+      "style": "text",
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "description"
+          }
+        }
+      }
+    },
+    {
+      "id": "weapon_display_effects_collapsible",
+      "type": "collapsible",
+      "margin_top": 8,
+      "title": {
+        "type": "constant",
+        "value": "Magic effects",
+        "value_type": "string"
+      },
+      "is_visible": {
+        "type": "not",
+        "components": {
+          "type": "isEmpty",
+          "components": {
+            "type": "stat",
+            "stat": "effects"
+          }
+        }
+      },
+      "subviews": [
+        {
+          "id": "weapon_display_effects",
+          "type": "resourceArray",
+          "resource_id": "effect",
+          "stat": "effects",
+          "view_type": "display"
+        }
+      ]
+    },
+    {
+      "id": "weapon_display_in_character_controls",
+      "type": "list",
+      "is_visible": {
+        "type": "defined",
+        "stat": "$character"
+      },
+      "subviews": [
+        {
+          "id": "weapon_versatile_toggle_composite",
+          "type": "composite",
+          "alignment": "end",
+          "subviews": [
+            {
+              "id": "weapon_versatile_toggle",
+              "type": "checkbox",
+              "stat": "currently_used_as_versatile",
+              "label": {
+                "type": "when",
+                "clauses": [
+                  {
+                    "condition": {
+                      "type": "defaultIfNull",
+                      "components": {
+                        "type": "stat",
+                        "stat": "$view?.weapon_versatile_toggle?"
+                      },
+                      "default_components": {
+                        "type": "constant",
+                        "value": false,
+                        "value_type": "bool"
+                      }
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": "Two-handed",
+                      "value_type": "string"
+                    }
+                  },
+                  {
+                    "condition": {
+                      "type": "constant",
+                      "value": true,
+                      "value_type": "bool"
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": "One-handed",
+                      "value_type": "string"
+                    }
+                  }
+                ]
+              },
+              "label_alignment": "right",
+              "style": "switcher",
+              "is_visible": {
+                "type": "stat",
+                "stat": "is_versatile"
+              }
+            }
+          ]
+        },
+        {
+          "id": "weapon_display_attune_advantage_composite",
+          "type": "composite",
+          "row_only": true,
+          "subviews": [
+            {
+              "id": "weapon_display_attune_button",
+              "type": "button",
+              "text": {
+                "type": "when",
+                "clauses": [
+                  {
+                    "condition": {
+                      "type": "stat",
+                      "stat": "is_attuned"
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": "UNATTUNE",
+                      "value_type": "string"
+                    }
+                  },
+                  {
+                    "condition": {
+                      "type": "constant",
+                      "value": true,
+                      "value_type": "bool"
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": "ATTUNE",
+                      "value_type": "string"
+                    }
+                  }
+                ]
+              },
+              "event": {
+                "name": "toggle_attunement"
+              },
+              "is_visible": {
+                "type": "stat",
+                "stat": "requires_attunement"
+              }
+            },
+            {
+              "id": "weapon_display_attune_advantage_spacer",
+              "type": "spacer"
+            },
+            {
+              "id": "weapon_display_advantage_disadvantage_select",
+              "type": "select",
+              "stat": "advantage_status",
+              "options": "advantage_status"
+            }
+          ]
+        },
+        {
+          "id": "weapon_display_ammunition_use_composite",
+          "type": "composite",
+          "alignment": "end",
+          "subviews": [
+            {
+              "id": "weapon_display_ammunition_select",
+              "type": "select",
+              "stat": "temp_shoot_ammo",
+              "resource_options": {
+                "type": "stat",
+                "stat": "ammunition_items"
+              },
+              "options_display_stat": "name_with_amount",
+              "is_visible": {
+                "type": "stat",
+                "stat": "has_ammunition"
+              }
+            },
+            {
+              "id": "weapon_display_attack_button",
+              "type": "button",
+              "text": {
+                "type": "when",
+                "clauses": [
+                  {
+                    "condition": {
+                      "type": "stat",
+                      "stat": "has_ammunition"
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": "SHOOT",
+                      "value_type": "string"
+                    }
+                  },
+                  {
+                    "condition": {
+                      "type": "constant",
+                      "value": true,
+                      "value_type": "bool"
+                    },
+                    "components": {
+                      "type": "constant",
+                      "value": "ATTACK",
+                      "value_type": "string"
+                    }
+                  }
+                ]
+              },
+              "event": {
+                "name": "attack"
+              }
+            },
+            {
+              "id": "weapon_display_attack_button",
+              "type": "button",
+              "text": {
+                "type": "constant",
+                "value": "DAMAGE",
+                "value_type": "string"
+              },
+              "event": {
+                "name": "damage"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

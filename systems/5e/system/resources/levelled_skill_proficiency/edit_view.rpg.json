@@ -1,0 +1,91 @@
+{
+  "id": "levelled_skill_proficiency_edit",
+  "type": "composite",
+  "subviews": [
+    {
+      "id": "levelled_skill_proficiency_edit_level",
+      "type": "text",
+      "edit_stat": "level",
+      "style": "text",
+      "hint": {
+        "type": "constant",
+        "value": "Lvl",
+        "value_type": "string"
+      },
+      "max_length": 3
+    },
+    {
+      "id": "levelled_skill_proficiency_edit_options",
+      "type": "select",
+      "stat": "options",
+      "options": "skill_types",
+      "multi_select": true,
+      "validation_message": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "isEmpty",
+              "components": {
+                "type": "stat",
+                "stat": "$view.levelled_skill_proficiency_edit_options"
+              }
+            },
+            "components": {
+              "type": "constant",
+              "value": "You have a box with empty skill proficiency options. Please add options to it or remove it",
+              "value_type": "string"
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "levelled_skill_proficiency_is_expertise",
+      "type": "checkbox",
+      "stat": "is_expertise",
+      "label": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "stat",
+              "stat": "$view.levelled_skill_proficiency_is_expertise"
+            },
+            "components": {
+              "type": "constant",
+              "value": "Expert",
+              "value_type": "string"
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "constant",
+              "value": "Regular",
+              "value_type": "string"
+            }
+          }
+        ]
+      },
+      "label_alignment": "right",
+      "style": "switcher"
+    }
+  ]
+}

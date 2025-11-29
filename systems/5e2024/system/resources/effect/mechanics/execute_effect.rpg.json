@@ -1,0 +1,109 @@
+{
+  "id": "execute_effect",
+  "calculated_event_names": {
+    "type": "stat",
+    "stat": "trigger_events"
+  },
+  "effects": {
+    "type": "when",
+    "clauses": [
+      {
+        "condition": {
+          "type": "stat",
+          "stat": "can_execute"
+        },
+        "effect": {
+          "type": "sequence",
+          "effects": [
+            {
+              "type": "when",
+              "clauses": [
+                {
+                  "condition": {
+                    "type": "and",
+                    "components": {
+                      "type": "list",
+                      "components": [
+                        {
+                          "type": "stat",
+                          "stat": "has_charges"
+                        },
+                        {
+                          "type": "greaterThan",
+                          "components": {
+                            "type": "list",
+                            "components": [
+                              {
+                                "type": "stat",
+                                "stat": "current_charges"
+                              },
+                              {
+                                "type": "constant",
+                                "value": 0,
+                                "value_type": "integer"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "effect": {
+                    "type": "addToStat",
+                    "stat": "current_charges",
+                    "value": {
+                      "type": "constant",
+                      "value": -1,
+                      "value_type": "integer"
+                    },
+                    "aggregation_type": "set"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "fireEvent",
+              "event": {
+                "name": "do_execute_effect",
+                "payload": {}
+              }
+            }
+          ]
+        }
+      },
+      {
+        "condition": {
+          "type": "and",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "is_passive"
+              },
+              {
+                "type": "defaultIfNull",
+                "components": {
+                  "type": "stat",
+                  "stat": "$parent?.should_load_effects?"
+                },
+                "default_components": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                }
+              }
+            ]
+          }
+        },
+        "effect": {
+          "type": "fireEvent",
+          "event": {
+            "name": "revert_effect_execution",
+            "payload": {}
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,134 @@
+[
+  {
+    "id": "level",
+    "name": "Level",
+    "abbreviation": "Lvl",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 1
+  },
+  {
+    "id": "options",
+    "name": "Options",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "string",
+    "default_value": []
+  },
+  {
+    "id": "selected_option",
+    "name": "Selected option",
+    "type": "base",
+    "value_type": "string",
+    "default_value": ""
+  },
+  {
+    "id": "is_levelled",
+    "name": "Is levelled",
+    "type": "base",
+    "value_type": "bool",
+    "default_value": true
+  },
+  {
+    "id": "can_be_used",
+    "name": "Can be used",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "greaterThanEquals",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "defined",
+                  "stat": "$parent.level"
+                },
+                "components": {
+                  "type": "stat",
+                  "stat": "$parent.level"
+                }
+              },
+              {
+                "condition": {
+                  "type": "defined",
+                  "stat": "$character.level"
+                },
+                "components": {
+                  "type": "stat",
+                  "stat": "$character.level"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": 1,
+                  "value_type": "integer"
+                }
+              }
+            ]
+          },
+          {
+            "type": "stat",
+            "stat": "level"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "description",
+    "name": "Display description",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "Lvl. ",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "level"
+          },
+          {
+            "type": "constant",
+            "value": ": ",
+            "value_type": "string"
+          },
+          {
+            "type": "joinToString",
+            "separator": ", ",
+            "components": {
+              "type": "map",
+              "components": {
+                "type": "stat",
+                "stat": "options"
+              },
+              "mapper": {
+                "type": "enumeratedName",
+                "enumerated_type": "weapon_types_plus_all_types",
+                "id": {
+                  "type": "stat",
+                  "stat": "$mapValue"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+]

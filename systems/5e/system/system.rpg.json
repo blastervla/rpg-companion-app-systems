@@ -1,0 +1,1140 @@
+{
+  "id": "5e",
+  "name": "5e",
+  "abbreviation": "5e",
+  "version": "0.5.2",
+  "min_app_version": "0.5.0",
+  "character_indexed_stats": [
+    "name",
+    "created_at_display",
+    "description"
+  ],
+  "progression_systems": {
+    "experience_levelling_system": {
+      "level_up_view_title": {
+        "type": "concat",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "constant",
+              "value": "Level Up to ",
+              "value_type": "string"
+            },
+            {
+              "type": "add",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "stat",
+                    "stat": "level"
+                  },
+                  {
+                    "type": "constant",
+                    "value": 1,
+                    "value_type": "integer"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "level_up_button_text": "Level Up",
+      "level_up_icon": "ic_progression",
+      "level_up_icon_color": "#FFB300",
+      "level_up_view": {
+        "id": "level_up",
+        "type": "list",
+        "padding": 16,
+        "subviews": [
+          {
+            "id": "level_up_as_comp",
+            "type": "composite",
+            "subviews": [
+              {
+                "id": "level_up_label",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value": "Level up as a ",
+                  "value_type": "string"
+                },
+                "style": "text"
+              },
+              {
+                "id": "level_up_select_class",
+                "type": "select",
+                "stat": "temp_level_up_class",
+                "resource_options": {
+                  "type": "map",
+                  "components": {
+                    "type": "stat",
+                    "stat": "classes"
+                  },
+                  "mapper": {
+                    "type": "stat",
+                    "stat": "$mapValue.class"
+                  }
+                },
+                "options_display_stat": "name"
+              },
+              {
+                "id": "level_up_select_archetype",
+                "type": "select",
+                "stat": "temp_level_up_archetype",
+                "resource_options": {
+                  "type": "stat",
+                  "stat": "level_up_available_archetypes"
+                },
+                "options_display_stat": "name",
+                "is_visible": {
+                  "type": "stat",
+                  "stat": "level_up_has_to_select_archetype"
+                }
+              }
+            ],
+            "is_visible": {
+              "type": "not",
+              "components": {
+                "type": "defaultIfNull",
+                "components": {
+                  "type": "stat",
+                  "stat": "$view?.level_up_multiclass_check?"
+                },
+                "default_components": {
+                  "type": "constant",
+                  "value": false,
+                  "value_type": "bool"
+                }
+              }
+            }
+          },
+          {
+            "id": "level_up_multiclass_check",
+            "type": "checkbox",
+            "stat": "temp_level_up_multiclass",
+            "label": {
+              "type": "constant",
+              "value": "I want to multiclass instead",
+              "value_type": "string"
+            },
+            "label_alignment": "right",
+            "style": "checkbox"
+          },
+          {
+            "id": "level_up_new_class",
+            "type": "resource",
+            "view_type": "edit",
+            "resource_id": "class_details",
+            "stat": "temp_level_up_new_class",
+            "create_if_empty": true,
+            "is_visible": {
+              "type": "defaultIfNull",
+              "components": {
+                "type": "stat",
+                "stat": "$view?.level_up_multiclass_check?"
+              },
+              "default_components": {
+                "type": "constant",
+                "value": false,
+                "value_type": "bool"
+              }
+            },
+            "validation_message": {
+              "type": "when",
+              "clauses": [
+                {
+                  "condition": {
+                    "type": "isNull",
+                    "components": {
+                      "type": "defaultIfNull",
+                      "components": {
+                        "type": "stat",
+                        "stat": "$view?.level_up_new_class?"
+                      },
+                      "default_components": {
+                        "type": "constant",
+                        "value": false,
+                        "value_type": "bool"
+                      }
+                    }
+                  },
+                  "components": {
+                    "type": "constant",
+                    "value": "It looks like you're trying to multiclass but haven't selected a new class to multiclass into",
+                    "value_type": "string"
+                  }
+                },
+                {
+                  "condition": {
+                    "type": "contains",
+                    "haystack": {
+                      "type": "map",
+                      "components": {
+                        "type": "stat",
+                        "stat": "classes"
+                      },
+                      "mapper": {
+                        "type": "stat",
+                        "stat": "$mapValue.class.name"
+                      }
+                    },
+                    "needle": {
+                      "type": "stat",
+                      "stat": "$view?.level_up_new_class?.$view?.class_details_edit_class_select?.name"
+                    }
+                  },
+                  "components": {
+                    "type": "constant",
+                    "value": "You seem to be trying to multiclass but you selected a class you already have levels in. You might want to uncheck the 'multiclass' box or select another class",
+                    "value_type": "string"
+                  }
+                },
+                {
+                  "condition": {
+                    "type": "constant",
+                    "value": true,
+                    "value_type": "bool"
+                  },
+                  "components": {
+                    "type": "constant",
+                    "value": null,
+                    "value_type": "string"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "on_level_up_confirm": {
+        "type": "sequence",
+        "effects": [
+          {
+            "type": "setStat",
+            "stat": "currently_levelling_up",
+            "new_value": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "aggregation_type": "set"
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "stat",
+                    "stat": "$view.level_up_multiclass_check"
+                  }
+                },
+                "effect": {
+                  "type": "setStat",
+                  "stat": "temp_last_level_up_class_id",
+                  "new_value": {
+                    "type": "stat",
+                    "stat": "level_up_selected_class_details.class.id"
+                  },
+                  "aggregation_type": "set"
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "stat",
+                    "stat": "$view.level_up_multiclass_check"
+                  }
+                },
+                "effect": {
+                  "type": "forEach",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "level_up_selected_class_details"
+                      }
+                    ]
+                  },
+                  "apply": {
+                    "type": "sequence",
+                    "effects": [
+                      {
+                        "type": "when",
+                        "clauses": [
+                          {
+                            "condition": {
+                              "type": "stat",
+                              "stat": "level_up_has_to_select_archetype"
+                            },
+                            "effect": {
+                              "type": "setStat",
+                              "stat": "$class_details.archetype_id",
+                              "new_value": {
+                                "type": "stat",
+                                "stat": "$view.level_up_select_archetype"
+                              },
+                              "aggregation_type": "set"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "addToStat",
+                        "stat": "$class_details.class_level",
+                        "value": {
+                          "type": "constant",
+                          "value": 1,
+                          "value_type": "integer"
+                        },
+                        "aggregation_type": "set"
+                      },
+                      {
+                        "type": "when",
+                        "clauses": [
+                          {
+                            "condition": {
+                              "type": "equals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "constant",
+                                    "value": "roll",
+                                    "value_type": "string"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "hit_point_mode"
+                                  }
+                                ]
+                              }
+                            },
+                            "effect": {
+                              "type": "addToStat",
+                              "stat": "base_hp",
+                              "value": {
+                                "type": "roll",
+                                "formula": {
+                                  "type": "concat",
+                                  "components": {
+                                    "type": "list",
+                                    "components": [
+                                      {
+                                        "type": "constant",
+                                        "value": "1",
+                                        "value_type": "string"
+                                      },
+                                      {
+                                        "type": "stat",
+                                        "stat": "$class_details.class.actual_hit_die"
+                                      }
+                                    ]
+                                  }
+                                }
+                              },
+                              "aggregation_type": "set"
+                            }
+                          },
+                          {
+                            "condition": {
+                              "type": "equals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "constant",
+                                    "value": "average",
+                                    "value_type": "string"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "hit_point_mode"
+                                  }
+                                ]
+                              }
+                            },
+                            "effect": {
+                              "type": "addToStat",
+                              "stat": "base_hp",
+                              "value": {
+                                "type": "stat",
+                                "stat": "$class_details.hit_die_average"
+                              },
+                              "aggregation_type": "set"
+                            }
+                          },
+                          {
+                            "condition": {
+                              "type": "equals",
+                              "components": {
+                                "type": "list",
+                                "components": [
+                                  {
+                                    "type": "constant",
+                                    "value": "max",
+                                    "value_type": "string"
+                                  },
+                                  {
+                                    "type": "stat",
+                                    "stat": "hit_point_mode"
+                                  }
+                                ]
+                              }
+                            },
+                            "effect": {
+                              "type": "addToStat",
+                              "stat": "base_hp",
+                              "value": {
+                                "type": "stat",
+                                "stat": "$class_details.hit_die_max"
+                              },
+                              "aggregation_type": "set"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "for_each_value_key": "$class_details"
+                }
+              },
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "$view.level_up_multiclass_check"
+                },
+                "effect": {
+                  "type": "sequence",
+                  "effects": [
+                    {
+                      "type": "forEach",
+                      "components": {
+                        "type": "list",
+                        "components": [
+                          {
+                            "type": "stat",
+                            "stat": "$view.level_up_new_class"
+                          }
+                        ]
+                      },
+                      "apply": {
+                        "type": "sequence",
+                        "effects": [
+                          {
+                            "type": "addToStat",
+                            "stat": "classes",
+                            "value": {
+                              "type": "stat",
+                              "stat": "$forEachValue"
+                            },
+                            "aggregation_type": "set"
+                          },
+                          {
+                            "type": "setStat",
+                            "stat": "temp_last_level_up_class_id",
+                            "new_value": {
+                              "type": "stat",
+                              "stat": "$forEachValue.class.id"
+                            },
+                            "aggregation_type": "set"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "when",
+                      "clauses": [
+                        {
+                          "condition": {
+                            "type": "equals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "constant",
+                                  "value": "roll",
+                                  "value_type": "string"
+                                },
+                                {
+                                  "type": "stat",
+                                  "stat": "hit_point_mode"
+                                }
+                              ]
+                            }
+                          },
+                          "effect": {
+                            "type": "addToStat",
+                            "stat": "base_hp",
+                            "value": {
+                              "type": "roll",
+                              "formula": {
+                                "type": "concat",
+                                "components": {
+                                  "type": "list",
+                                  "components": [
+                                    {
+                                      "type": "constant",
+                                      "value": "1",
+                                      "value_type": "string"
+                                    },
+                                    {
+                                      "type": "stat",
+                                      "stat": "last_level_up_class_details.class.actual_hit_die"
+                                    }
+                                  ]
+                                }
+                              }
+                            },
+                            "aggregation_type": "set"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "equals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "constant",
+                                  "value": "average",
+                                  "value_type": "string"
+                                },
+                                {
+                                  "type": "stat",
+                                  "stat": "hit_point_mode"
+                                }
+                              ]
+                            }
+                          },
+                          "effect": {
+                            "type": "addToStat",
+                            "stat": "base_hp",
+                            "value": {
+                              "type": "stat",
+                              "stat": "last_level_up_class_details.hit_die_average"
+                            },
+                            "aggregation_type": "set"
+                          }
+                        },
+                        {
+                          "condition": {
+                            "type": "equals",
+                            "components": {
+                              "type": "list",
+                              "components": [
+                                {
+                                  "type": "constant",
+                                  "value": "max",
+                                  "value_type": "string"
+                                },
+                                {
+                                  "type": "stat",
+                                  "stat": "hit_point_mode"
+                                }
+                              ]
+                            }
+                          },
+                          "effect": {
+                            "type": "addToStat",
+                            "stat": "base_hp",
+                            "value": {
+                              "type": "stat",
+                              "stat": "last_level_up_class_details.hit_die_max"
+                            },
+                            "aggregation_type": "set"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "setStat",
+            "stat": "temp_level_up_class",
+            "new_value": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            },
+            "aggregation_type": "set"
+          },
+          {
+            "type": "setStat",
+            "stat": "temp_level_up_archetype",
+            "new_value": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            },
+            "aggregation_type": "set"
+          },
+          {
+            "type": "setStat",
+            "stat": "temp_level_up_multiclass",
+            "new_value": {
+              "type": "constant",
+              "value": null,
+              "value_type": "bool"
+            },
+            "aggregation_type": "set"
+          },
+          {
+            "type": "setStat",
+            "stat": "temp_level_up_new_class",
+            "new_value": {
+              "type": "constant",
+              "value": null,
+              "value_type": "resource"
+            },
+            "aggregation_type": "set"
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "and",
+                    "components": {
+                      "type": "list",
+                      "components": [
+                        {
+                          "type": "isEmpty",
+                          "components": {
+                            "type": "stat",
+                            "stat": "level_up_language_proficiency_choices"
+                          }
+                        },
+                        {
+                          "type": "isEmpty",
+                          "components": {
+                            "type": "stat",
+                            "stat": "level_up_skill_proficiency_choices"
+                          }
+                        },
+                        {
+                          "type": "isEmpty",
+                          "components": {
+                            "type": "stat",
+                            "stat": "level_up_armor_proficiency_choices"
+                          }
+                        },
+                        {
+                          "type": "isEmpty",
+                          "components": {
+                            "type": "stat",
+                            "stat": "level_up_weapon_proficiency_choices"
+                          }
+                        },
+                        {
+                          "type": "isEmpty",
+                          "components": {
+                            "type": "stat",
+                            "stat": "level_up_tool_proficiency_choices"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "effect": {
+                  "type": "showPopUp",
+                  "pop_up_view": {
+                    "id": "level_up_select_proficiencies",
+                    "type": "list",
+                    "alignment": "start",
+                    "subviews": [
+                      {
+                        "id": "level_up_select_proficiencies_languages",
+                        "type": "resourceArray",
+                        "resource_id": "levelled_choice_text",
+                        "stat": "level_up_language_proficiency_choices",
+                        "view_type": "display",
+                        "left_view": {
+                          "id": "level_up_select_proficiencies_languages_label",
+                          "type": "text",
+                          "text": {
+                            "type": "constant",
+                            "value": "Languages proficiencies:",
+                            "value_type": "string"
+                          },
+                          "style": "text",
+                          "bold": true
+                        },
+                        "is_visible": {
+                          "type": "not",
+                          "components": {
+                            "type": "isEmpty",
+                            "components": {
+                              "type": "stat",
+                              "stat": "level_up_language_proficiency_choices"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "id": "level_up_select_proficiencies_skills",
+                        "type": "resourceArray",
+                        "resource_id": "levelled_skill_proficiency",
+                        "stat": "level_up_skill_proficiency_choices",
+                        "view_type": "display",
+                        "left_view": {
+                          "id": "level_up_select_proficiencies_skills_label",
+                          "type": "text",
+                          "text": {
+                            "type": "constant",
+                            "value": "Skill proficiencies:",
+                            "value_type": "string"
+                          },
+                          "style": "text",
+                          "bold": true
+                        },
+                        "is_visible": {
+                          "type": "not",
+                          "components": {
+                            "type": "isEmpty",
+                            "components": {
+                              "type": "stat",
+                              "stat": "level_up_skill_proficiency_choices"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "id": "level_up_select_proficiencies_armors",
+                        "type": "resourceArray",
+                        "resource_id": "levelled_armor_proficiency",
+                        "stat": "level_up_armor_proficiency_choices",
+                        "view_type": "display",
+                        "left_view": {
+                          "id": "level_up_select_proficiencies_armors_label",
+                          "type": "text",
+                          "text": {
+                            "type": "constant",
+                            "value": "Armor proficiencies:",
+                            "value_type": "string"
+                          },
+                          "style": "text",
+                          "bold": true
+                        },
+                        "is_visible": {
+                          "type": "not",
+                          "components": {
+                            "type": "isEmpty",
+                            "components": {
+                              "type": "stat",
+                              "stat": "level_up_armor_proficiency_choices"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "id": "level_up_select_proficiencies_weapons",
+                        "type": "resourceArray",
+                        "resource_id": "levelled_choice_text",
+                        "stat": "level_up_weapon_proficiency_choices",
+                        "view_type": "display",
+                        "left_view": {
+                          "id": "level_up_select_proficiencies_weapons_label",
+                          "type": "text",
+                          "text": {
+                            "type": "constant",
+                            "value": "Weapon proficiencies:",
+                            "value_type": "string"
+                          },
+                          "style": "text",
+                          "bold": true
+                        },
+                        "is_visible": {
+                          "type": "not",
+                          "components": {
+                            "type": "isEmpty",
+                            "components": {
+                              "type": "stat",
+                              "stat": "level_up_weapon_proficiency_choices"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "id": "level_up_select_proficiencies_tools",
+                        "type": "resourceArray",
+                        "resource_id": "levelled_choice_text",
+                        "stat": "level_up_tool_proficiency_choices",
+                        "view_type": "display",
+                        "left_view": {
+                          "id": "level_up_select_proficiencies_tools_label",
+                          "type": "text",
+                          "text": {
+                            "type": "constant",
+                            "value": "Tool proficiencies:",
+                            "value_type": "string"
+                          },
+                          "style": "text",
+                          "bold": true
+                        },
+                        "is_visible": {
+                          "type": "not",
+                          "components": {
+                            "type": "isEmpty",
+                            "components": {
+                              "type": "stat",
+                              "stat": "level_up_tool_proficiency_choices"
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "pop_up_title": {
+                    "type": "constant",
+                    "value": "Select additional proficiencies",
+                    "value_type": "string"
+                  },
+                  "pop_up_type": "alert",
+                  "dismissible": false,
+                  "display_cancel_button": false,
+                  "display_save_button": false,
+                  "should_persist_on_save": false,
+                  "extra_buttons": [
+                    {
+                      "text": {
+                        "type": "constant",
+                        "value": "SAVE",
+                        "value_type": "string"
+                      },
+                      "event": {
+                        "name": "level_up_set_proficiencies",
+                        "value": "level_up_set_proficiencies"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "should_show_asi"
+                },
+                "effect": {
+                  "type": "showPopUp",
+                  "pop_up_view": {
+                    "id": "asi_list",
+                    "type": "list",
+                    "subviews": [
+                      {
+                        "id": "asi_explanation",
+                        "type": "text",
+                        "text": {
+                          "type": "constant",
+                          "value": "Select two abilities to increase their score by +1 each (you can select the same one twice)",
+                          "value_type": "string"
+                        },
+                        "style": "text",
+                        "margin_bottom": 4
+                      },
+                      {
+                        "id": "asi_selections_comp",
+                        "type": "composite",
+                        "is_visible": {
+                          "type": "not",
+                          "components": {
+                            "type": "defaultIfNull",
+                            "components": {
+                              "type": "stat",
+                              "stat": "$view?.asi_choose_feat_check?"
+                            },
+                            "default_components": {
+                              "type": "constant",
+                              "value": false,
+                              "value_type": "bool"
+                            }
+                          }
+                        },
+                        "subviews": [
+                          {
+                            "id": "asi_selection_1",
+                            "type": "select",
+                            "stat": "temp_asi_selection_1",
+                            "options": "ability"
+                          },
+                          {
+                            "id": "asi_connector_label",
+                            "type": "text",
+                            "text": {
+                              "type": "constant",
+                              "value": " and ",
+                              "value_type": "string"
+                            },
+                            "style": "text"
+                          },
+                          {
+                            "id": "asi_selection_2",
+                            "type": "select",
+                            "stat": "temp_asi_selection_2",
+                            "options": "ability"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "asi_choose_feat_check",
+                        "type": "checkbox",
+                        "stat": "temp_asi_choose_feat",
+                        "label": {
+                          "type": "constant",
+                          "value": "I want to choose a feat instead",
+                          "value_type": "string"
+                        },
+                        "label_alignment": "right"
+                      },
+                      {
+                        "id": "asi_feat_selection_comp",
+                        "type": "composite",
+                        "is_visible": {
+                          "type": "defaultIfNull",
+                          "components": {
+                            "type": "stat",
+                            "stat": "$view?.asi_choose_feat_check?"
+                          },
+                          "default_components": {
+                            "type": "constant",
+                            "value": false,
+                            "value_type": "bool"
+                          }
+                        },
+                        "subviews": [
+                          {
+                            "id": "asi_feat_label",
+                            "type": "text",
+                            "text": {
+                              "type": "constant",
+                              "value": "Feat: ",
+                              "value_type": "string"
+                            },
+                            "style": "text"
+                          },
+                          {
+                            "id": "asi_feat_selection",
+                            "type": "selectResources",
+                            "stat": "temp_asi_feat_selection",
+                            "resource_id": "feat"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "pop_up_type": "alert",
+                  "dismissible": false,
+                  "pop_up_title": {
+                    "type": "constant",
+                    "value": "Ability score increase",
+                    "value_type": "string"
+                  },
+                  "display_cancel_button": false,
+                  "should_persist_on_save": false,
+                  "extra_buttons": [
+                    {
+                      "text": {
+                        "type": "constant",
+                        "value": "SAVE",
+                        "value_type": "string"
+                      },
+                      "event": {
+                        "name": "level_up_asi",
+                        "value": "level_up_asi"
+                      }
+                    }
+                  ],
+                  "in_edit_mode": true
+                }
+              }
+            ]
+          },
+          {
+            "type": "forEach",
+            "components": {
+              "type": "stat",
+              "stat": "features_with_new_descriptions_in_new_level"
+            },
+            "apply": {
+              "type": "showPopUp",
+              "pop_up_view": {
+                "id": "level_up_feature_diff_text",
+                "type": "diffText",
+                "margin_top": 8,
+                "original_text": {
+                  "type": "defaultIfNull",
+                  "components": {
+                    "type": "stat",
+                    "stat": "$feat.previous_level_levelled_description?.description?"
+                  },
+                  "default_components": {
+                    "type": "constant",
+                    "value": "",
+                    "value_type": "string"
+                  }
+                },
+                "new_text": {
+                  "type": "stat",
+                  "stat": "$feat.current_level_levelled_description.description"
+                }
+              },
+              "pop_up_type": "alert",
+              "pop_up_title": {
+                "type": "stat",
+                "stat": "$feat.name"
+              },
+              "cancel_text": {
+                "type": "constant",
+                "value": "OK",
+                "value_type": "string"
+              }
+            },
+            "for_each_value_key": "$feat"
+          },
+          {
+            "type": "forEach",
+            "components": {
+              "type": "stat",
+              "stat": "selectable_features_with_new_amounts_in_new_level"
+            },
+            "apply": {
+              "type": "showResource",
+              "resource": {
+                "type": "stat",
+                "stat": "$feat"
+              }
+            },
+            "for_each_value_key": "$feat"
+          },
+          {
+            "type": "setStat",
+            "stat": "currently_levelling_up",
+            "new_value": {
+              "type": "constant",
+              "value": false,
+              "value_type": "bool"
+            },
+            "aggregation_type": "set"
+          }
+        ]
+      },
+      "experience_name": "experience",
+      "experience_abbreviation": "exp",
+      "level_stat_name": "level",
+      "milestones_system_name": "Milestones",
+      "tables": [
+        {
+          "id": "default",
+          "name": "Default",
+          "experience_to_level_table": {
+            "-999999999": 1,
+            "0": 1,
+            "300": 2,
+            "900": 3,
+            "2700": 4,
+            "6500": 5,
+            "14000": 6,
+            "23000": 7,
+            "34000": 8,
+            "48000": 9,
+            "64000": 10,
+            "85000": 11,
+            "100000": 12,
+            "120000": 13,
+            "140000": 14,
+            "165000": 15,
+            "195000": 16,
+            "225000": 17,
+            "265000": 18,
+            "305000": 19,
+            "355000": 20
+          }
+        }
+      ]
+    }
+  },
+  "currencies": [
+    {
+      "id": "currencies_platinum_pieces",
+      "name": "Platinum Piece",
+      "plural": "Platinum Pieces",
+      "abbreviation": "PP",
+      "conversion": {
+        "currencies_gold_pieces": 10,
+        "currencies_electrum_pieces": 20,
+        "currencies_silver_pieces": 100,
+        "currencies_copper_pieces": 1000
+      }
+    },
+    {
+      "id": "currencies_gold_pieces",
+      "name": "Gold Piece",
+      "plural": "Gold Pieces",
+      "abbreviation": "GP",
+      "conversion": {
+        "currencies_platinum_pieces": 0.1,
+        "currencies_electrum_pieces": 2,
+        "currencies_silver_pieces": 10,
+        "currencies_copper_pieces": 100
+      }
+    },
+    {
+      "id": "currencies_electrum_pieces",
+      "name": "Electrum Piece",
+      "plural": "Electrum Pieces",
+      "abbreviation": "EP",
+      "conversion": {
+        "currencies_platinum_pieces": 0.05,
+        "currencies_gold_pieces": 0.5,
+        "currencies_silver_pieces": 5,
+        "currencies_copper_pieces": 50
+      }
+    },
+    {
+      "id": "currencies_silver_pieces",
+      "name": "Silver Piece",
+      "plural": "Silver Pieces",
+      "abbreviation": "SP",
+      "conversion": {
+        "currencies_platinum_pieces": 0.01,
+        "currencies_gold_pieces": 0.1,
+        "currencies_electrum_pieces": 0.2,
+        "currencies_copper_pieces": 10
+      }
+    },
+    {
+      "id": "currencies_copper_pieces",
+      "name": "Copper Piece",
+      "plural": "Copper Pieces",
+      "abbreviation": "CP",
+      "conversion": {
+        "currencies_platinum_pieces": 0.001,
+        "currencies_gold_pieces": 0.01,
+        "currencies_electrum_pieces": 0.02,
+        "currencies_silver_pieces": 0.1
+      }
+    }
+  ]
+}

@@ -1,0 +1,628 @@
+{
+  "id": "edit_effect",
+  "type": "list",
+  "padding": 16,
+  "subviews": [
+    {
+      "id": "edit_effect_name",
+      "type": "text",
+      "edit_stat": "name",
+      "style": "text",
+      "max_length": 80,
+      "label": {
+        "type": "constant",
+        "value": "Name",
+        "value_type": "string"
+      },
+      "validation_message": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "and",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "isEmpty",
+                    "components": {
+                      "type": "stat",
+                      "stat": "$view.edit_effect_name"
+                    }
+                  },
+                  {
+                    "type": "equals",
+                    "components": {
+                      "type": "list",
+                      "components": [
+                        {
+                          "type": "stat",
+                          "stat": "$view?.edit_effect_type_select?"
+                        },
+                        {
+                          "type": "constant",
+                          "value": "none",
+                          "value_type": "string"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "components": {
+              "type": "constant",
+              "value": "Please add a name to your effect",
+              "value_type": "string"
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "edit_effect_levelled_descriptions",
+      "type": "resourceArray",
+      "resource_id": "levelled_description",
+      "stat": "description",
+      "view_type": "edit",
+      "left_view": {
+        "id": "edit_effect_levelled_descriptions_label",
+        "type": "text",
+        "text": {
+          "type": "constant",
+          "value": "Descriptions (per lvl): ",
+          "value_type": "string"
+        },
+        "style": "text"
+      }
+    },
+    {
+      "id": "edit_effect_trigger_type_composite",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "edit_effect_trigger_type_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Type: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "edit_effect_trigger_type_select",
+          "type": "select",
+          "stat": "trigger_type",
+          "options": "effect_trigger_types"
+        },
+        {
+          "id": "edit_effect_clear_on_remove",
+          "type": "checkbox",
+          "stat": "clear_on_remove",
+          "margin_left": 4,
+          "label": {
+            "type": "constant",
+            "value": "Clear on remove",
+            "value_type": "string"
+          },
+          "label_alignment": "right"
+        }
+      ]
+    },
+    {
+      "id": "edit_effect_events",
+      "type": "text",
+      "edit_stat": "events",
+      "style": "text",
+      "hint": {
+        "type": "constant",
+        "value": "Separate by , (e.g: event1, event2)",
+        "value_type": "string"
+      },
+      "label": {
+        "type": "constant",
+        "value": "Triggering events",
+        "value_type": "string"
+      },
+      "is_visible": {
+        "type": "equals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$view.edit_effect_trigger_type_select"
+            },
+            {
+              "type": "constant",
+              "value": "event",
+              "value_type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "edit_effect_revert_events",
+      "type": "text",
+      "edit_stat": "revert_events",
+      "style": "text",
+      "hint": {
+        "type": "constant",
+        "value": "Separate by , (e.g: event1, event2)",
+        "value_type": "string"
+      },
+      "label": {
+        "type": "constant",
+        "value": "Revertion events",
+        "value_type": "string"
+      },
+      "is_visible": {
+        "type": "equals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$view.edit_effect_trigger_type_select"
+            },
+            {
+              "type": "constant",
+              "value": "event",
+              "value_type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "edit_effect_trigger_conditions",
+      "type": "resource",
+      "view_type": "edit",
+      "resource_id": "trigger_condition_or",
+      "stat": "trigger_condition",
+      "create_if_empty": true
+    },
+    {
+      "id": "edit_effect_has_charges_composite",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "edit_effect_has_charges",
+          "type": "checkbox",
+          "stat": "has_charges",
+          "label": {
+            "type": "constant",
+            "value": "Has charges",
+            "value_type": "string"
+          },
+          "label_alignment": "right"
+        },
+        {
+          "id": "edit_effect_charge_type",
+          "type": "select",
+          "stat": "charge_type",
+          "options": "charge_types",
+          "margin_left": 4,
+          "is_visible": {
+            "type": "stat",
+            "stat": "$view.edit_effect_has_charges"
+          }
+        },
+        {
+          "id": "edit_effect_max_charges_constant",
+          "type": "text",
+          "edit_stat": "max_charges_constant",
+          "style": "text",
+          "max_length": 4,
+          "signed": false,
+          "hint": {
+            "type": "constant",
+            "value": "0",
+            "value_type": "string"
+          },
+          "is_visible": {
+            "type": "and",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$view.edit_effect_has_charges"
+                },
+                {
+                  "type": "equals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "$view.edit_effect_charge_type"
+                      },
+                      {
+                        "type": "constant",
+                        "value": "constant",
+                        "value_type": "string"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "edit_effect_charge_formulas",
+      "type": "resourceArray",
+      "resource_id": "levelled_value_calculator",
+      "stat": "max_charges_levelled_formulas",
+      "view_type": "edit",
+      "left_view": {
+        "id": "edit_effect_charge_formulas_label",
+        "type": "text",
+        "text": {
+          "type": "constant",
+          "value": "Charges (per lvl)",
+          "value_type": "string"
+        },
+        "style": "text"
+      },
+      "pop_up_type": "bottomSheet",
+      "pop_up_button_text": {
+        "type": "stat",
+        "stat": "description"
+      },
+      "is_visible": {
+        "type": "and",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "stat",
+              "stat": "$view.edit_effect_has_charges"
+            },
+            {
+              "type": "equals",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "stat",
+                    "stat": "$view.edit_effect_charge_type"
+                  },
+                  {
+                    "type": "constant",
+                    "value": "calculated",
+                    "value_type": "string"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "edit_effect_recharges_composite",
+      "type": "composite",
+      "is_visible": {
+        "type": "stat",
+        "stat": "$view.edit_effect_has_charges"
+      },
+      "margin_top": 4,
+      "margin_bottom": 4,
+      "subviews": [
+        {
+          "id": "edit_effect_recharges_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Recharges ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "edit_effect_recharge_type",
+          "type": "select",
+          "stat": "recharge_type",
+          "options": "recharge_types"
+        },
+        {
+          "id": "edit_effect_recharges_dice",
+          "type": "resource",
+          "view_type": "edit",
+          "resource_id": "dice_roll",
+          "stat": "recharges",
+          "create_if_empty": true,
+          "is_visible": {
+            "type": "equals",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "$view.edit_effect_recharge_type"
+                },
+                {
+                  "type": "constant",
+                  "value": "formula",
+                  "value_type": "string"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "edit_effect_recharges_at_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": " at ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "edit_effect_recharges_event",
+          "type": "select",
+          "stat": "recharge_event",
+          "options": "lifecycle_events"
+        }
+      ]
+    },
+    {
+      "id": "edit_effect_type_composite",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "edit_effect_type_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Effect: ",
+            "value_type": "string"
+          },
+          "style": "text"
+        },
+        {
+          "id": "edit_effect_type_select",
+          "type": "select",
+          "stat": "type",
+          "options": "effect_types"
+        }
+      ]
+    },
+    {
+      "id": "edit_effect_effect_layout_composite",
+      "type": "composite",
+      "is_visible": {
+        "type": "notEquals",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "constant",
+              "value": "none",
+              "value_type": "string"
+            },
+            {
+              "type": "stat",
+              "stat": "$view?.edit_effect_type_select?"
+            }
+          ]
+        }
+      },
+      "subviews": [
+        {
+          "id": "edit_effect_stat_select",
+          "type": "select",
+          "stat": "stat",
+          "options": "effect_character_stats",
+          "is_visible": {
+            "type": "stat",
+            "stat": "is_set_or_add_to_stat"
+          }
+        },
+        {
+          "id": "edit_effect_advantage_stat_select",
+          "type": "select",
+          "stat": "advantage_stat",
+          "options": "effect_advantage_character_stats",
+          "is_visible": {
+            "type": "stat",
+            "stat": "is_advantage_or_disadvantage_type"
+          }
+        },
+        {
+          "id": "edit_effect_stat_linker_add",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": " + ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "is_visible": {
+            "type": "stat",
+            "stat": "is_add_to_stat"
+          }
+        },
+        {
+          "id": "edit_effect_stat_linker_set",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": " = ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "is_visible": {
+            "type": "stat",
+            "stat": "is_set_stat"
+          }
+        },
+        {
+          "id": "edit_effect_dice_roll",
+          "type": "resource",
+          "view_type": "edit",
+          "resource_id": "dice_roll",
+          "stat": "dice_roll",
+          "create_if_empty": true,
+          "is_visible": {
+            "type": "and",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "is_set_or_add_to_stat"
+                },
+                {
+                  "type": "notEquals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "$view.edit_effect_trigger_type_select"
+                      },
+                      {
+                        "type": "constant",
+                        "value": "passive",
+                        "value_type": "string"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "edit_effect_constant",
+          "type": "text",
+          "style": "text",
+          "edit_stat": "constant",
+          "max_length": 4,
+          "signed": true,
+          "hint": {
+            "type": "constant",
+            "value": "0",
+            "value_type": "string"
+          },
+          "is_visible": {
+            "type": "and",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "is_set_or_add_to_stat"
+                },
+                {
+                  "type": "equals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "$view.edit_effect_trigger_type_select"
+                      },
+                      {
+                        "type": "constant",
+                        "value": "passive",
+                        "value_type": "string"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "edit_effect_aggregation_type",
+          "type": "select",
+          "stat": "aggregation_type",
+          "options": "effect_aggregation_types",
+          "is_visible": {
+            "type": "stat",
+            "stat": "is_set_or_add_to_stat"
+          }
+        }
+      ]
+    },
+    {
+      "id": "edit_effect_select_spells",
+      "type": "selectResources",
+      "stat": "spell",
+      "resource_id": "spell",
+      "is_visible": {
+        "type": "stat",
+        "stat": "is_spell_type"
+      },
+      "validation_message": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "and",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "not",
+                    "components": {
+                      "type": "notNull",
+                      "components": {
+                        "type": "stat",
+                        "stat": "$view.edit_effect_select_spells"
+                      }
+                    }
+                  },
+                  {
+                    "type": "stat",
+                    "stat": "is_spell_type"
+                  }
+                ]
+              }
+            },
+            "components": {
+              "type": "constant",
+              "value": "Please add a name to your effect",
+              "value_type": "string"
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

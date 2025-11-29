@@ -1,0 +1,120 @@
+{
+  "id": "monster_action_edit",
+  "type": "list",
+  "padding": 16,
+  "subviews": [
+    {
+      "id": "monster_action_edit_name",
+      "type": "text",
+      "edit_stat": "action_name",
+      "style": "text",
+      "label": {
+        "type": "constant",
+        "value": "Name",
+        "value_type": "string"
+      },
+      "max_length": 140,
+      "validation_message": {
+        "type": "when",
+        "clauses": [
+          {
+            "condition": {
+              "type": "isEmpty",
+              "components": {
+                "type": "stat",
+                "stat": "$view.monster_action_edit_name"
+              }
+            },
+            "components": {
+              "type": "constant",
+              "value": "Please add a name to the action",
+              "value_type": "string"
+            }
+          },
+          {
+            "condition": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "components": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "monster_action_edit_type",
+      "type": "select",
+      "stat": "action_type",
+      "options": "monster_action_types"
+    },
+    {
+      "id": "monster_action_edit_description",
+      "type": "text",
+      "edit_stat": "action_description",
+      "label": {
+        "type": "constant",
+        "value": "Description",
+        "value_type": "string"
+      },
+      "style": "text"
+    },
+    {
+      "id": "monster_action_edit_attack_bonus",
+      "type": "composite",
+      "subviews": [
+        {
+          "id": "monster_action_edit_attack_bonus_label",
+          "type": "text",
+          "text": {
+            "type": "constant",
+            "value": "Attack bonus: ",
+            "value_type": "string"
+          },
+          "style": "text",
+          "bold": true
+        },
+        {
+          "id": "monster_action_edit_attack_bonus_text",
+          "type": "text",
+          "edit_stat": "action_attack_bonus",
+          "style": "text",
+          "max_length": 3,
+          "signed": true,
+          "hint": {
+            "type": "constant",
+            "value": "0",
+            "value_type": "string"
+          }
+        }
+      ]
+    },
+    {
+      "id": "monster_action_edit_damage_variants",
+      "type": "resourceArray",
+      "resource_id": "damage_variant",
+      "stat": "action_damage_variants",
+      "view_type": "edit",
+      "left_view": {
+        "id": "monster_action_edit_damage_variants_label",
+        "type": "text",
+        "text": {
+          "type": "constant",
+          "value": "Damage variants",
+          "value_type": "string"
+        },
+        "style": "text",
+        "bold": true
+      },
+      "pop_up_type": "bottomSheet",
+      "pop_up_button_text": {
+        "type": "stat",
+        "stat": "variant_description"
+      }
+    }
+  ]
+}

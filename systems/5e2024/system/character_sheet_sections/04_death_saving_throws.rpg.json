@@ -1,0 +1,233 @@
+{
+  "id": "death_saving_throws",
+  "view": {
+    "id": "death_saving_throws",
+    "type": "section",
+    "content_item_min_width": 1,
+    "is_visible": {
+      "type": "lessThanEquals",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "stat",
+            "stat": "current_hp"
+          },
+          {
+            "type": "constant",
+            "value": 0,
+            "value_type": "integer"
+          }
+        ]
+      }
+    },
+    "header": [
+      {
+        "id": "death_saving_throws_section_icon",
+        "type": "icon",
+        "name": "ic_death",
+        "size": "medium",
+        "color": "accent",
+        "margin_top": 8,
+        "margin_right": 8,
+        "margin_left": 16
+      },
+      {
+        "id": "death_saving_throws_section_title",
+        "type": "text",
+        "margin_right": 16,
+        "margin_left": 16,
+        "text": {
+          "type": "constant",
+          "value": "Death Saves",
+          "value_type": "string"
+        },
+        "style": "title"
+      },
+      {
+        "id": "death_saving_throws_header_spacer",
+        "type": "spacer"
+      },
+      {
+        "id": "death_saving_throws_menu_button",
+        "type": "menuButton",
+        "icon_name": "ic_more_vert",
+        "icon_size": "small",
+        "color": "text",
+        "options": "death_saves_menu"
+      }
+    ],
+    "content": [
+      {
+        "id": "death_saving_throws_successes_comp",
+        "type": "composite",
+        "subviews": [
+          {
+            "id": "death_saving_throws_success_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Successes",
+              "value_type": "string"
+            },
+            "margin_left": 32,
+            "margin_right": 32,
+            "style": "text"
+          },
+          {
+            "id": "death_saving_throws_success_1",
+            "type": "checkbox",
+            "stat": "death_saving_throws_success_1",
+            "should_auto_save": true,
+            "margin_right": 32
+          },
+          {
+            "id": "death_saving_throws_success_2",
+            "type": "checkbox",
+            "stat": "death_saving_throws_success_2",
+            "should_auto_save": true,
+            "margin_right": 32,
+            "is_visible": {
+              "type": "defaultIfNull",
+              "components": {
+                "type": "stat",
+                "stat": "$view?.death_saving_throws_success_1?"
+              },
+              "default_components": {
+                "type": "constant",
+                "value": false,
+                "value_type": "bool"
+              }
+            }
+          },
+          {
+            "id": "death_saving_throws_success_3",
+            "type": "checkbox",
+            "stat": "death_saving_throws_success_3",
+            "should_auto_save": true,
+            "margin_right": 32,
+            "is_visible": {
+              "type": "and",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "defaultIfNull",
+                    "components": {
+                      "type": "stat",
+                      "stat": "$view?.death_saving_throws_success_1?"
+                    },
+                    "default_components": {
+                      "type": "constant",
+                      "value": false,
+                      "value_type": "bool"
+                    }
+                  },
+                  {
+                    "type": "defaultIfNull",
+                    "components": {
+                      "type": "stat",
+                      "stat": "$view?.death_saving_throws_success_2?"
+                    },
+                    "default_components": {
+                      "type": "constant",
+                      "value": false,
+                      "value_type": "bool"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "death_saving_throws_failures_comp",
+        "type": "composite",
+        "subviews": [
+          {
+            "id": "death_saving_throws_failure_label",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value": "Failures",
+              "value_type": "string"
+            },
+            "margin_left": 50,
+            "margin_right": 32,
+            "style": "text"
+          },
+          {
+            "id": "death_saving_throws_failure_1",
+            "type": "checkbox",
+            "stat": "death_saving_throws_failure_1",
+            "should_auto_save": true,
+            "margin_right": 32
+          },
+          {
+            "id": "death_saving_throws_failure_2",
+            "type": "checkbox",
+            "stat": "death_saving_throws_failure_2",
+            "should_auto_save": true,
+            "margin_right": 32,
+            "is_visible": {
+              "type": "defaultIfNull",
+              "components": {
+                "type": "stat",
+                "stat": "$view?.death_saving_throws_failure_1?"
+              },
+              "default_components": {
+                "type": "constant",
+                "value": false,
+                "value_type": "bool"
+              }
+            }
+          },
+          {
+            "id": "death_saving_throws_failure_3",
+            "type": "checkbox",
+            "stat": "death_saving_throws_failure_3",
+            "should_auto_save": true,
+            "margin_right": 32,
+            "is_visible": {
+              "type": "and",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "defaultIfNull",
+                    "components": {
+                      "type": "stat",
+                      "stat": "$view?.death_saving_throws_failure_1?"
+                    },
+                    "default_components": {
+                      "type": "constant",
+                      "value": false,
+                      "value_type": "bool"
+                    }
+                  },
+                  {
+                    "type": "defaultIfNull",
+                    "components": {
+                      "type": "stat",
+                      "stat": "$view?.death_saving_throws_failure_2?"
+                    },
+                    "default_components": {
+                      "type": "constant",
+                      "value": false,
+                      "value_type": "bool"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "show_divider": true,
+    "collapsible": true,
+    "start_collapsed": false,
+    "alignment": "start"
+  }
+}

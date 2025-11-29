@@ -1,0 +1,149 @@
+[
+  {
+    "id": "amount",
+    "name": "Amount",
+    "type": "base",
+    "value_type": "integer",
+    "default_value": 1
+  },
+  {
+    "id": "options",
+    "name": "Options",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "item_with_amount",
+    "default_value": []
+  },
+  {
+    "id": "choose_label_text",
+    "name": "Choose label text",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "Choose ",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "amount"
+          },
+          {
+            "type": "constant",
+            "value": ": ",
+            "value_type": "string"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "display_description",
+    "name": "Display description",
+    "type": "calculated",
+    "value_type": "string",
+    "components": {
+      "type": "concat",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "constant",
+            "value": "Choose ",
+            "value_type": "string"
+          },
+          {
+            "type": "stat",
+            "stat": "amount"
+          },
+          {
+            "type": "constant",
+            "value": " from ",
+            "value_type": "string"
+          },
+          {
+            "type": "joinToString",
+            "separator": ", ",
+            "components": {
+              "type": "map",
+              "components": {
+                "type": "stat",
+                "stat": "options"
+              },
+              "mapper": {
+                "type": "stat",
+                "stat": "$mapValue.display_description"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "selected_options_string",
+    "name": "Selected options",
+    "type": "base",
+    "value_type": "array",
+    "sub_value_type": "string",
+    "resource_type": "item_with_amount",
+    "default_value": []
+  },
+  {
+    "id": "selected_options",
+    "name": "Selected options",
+    "type": "calculated",
+    "value_type": "array",
+    "sub_value_type": "resource",
+    "resource_type": "item_with_amount",
+    "components": {
+      "type": "filter",
+      "components": {
+        "type": "stat",
+        "stat": "options"
+      },
+      "filter": {
+        "type": "contains",
+        "haystack": {
+          "type": "stat",
+          "stat": "selected_options_string"
+        },
+        "needle": {
+          "type": "stat",
+          "stat": "$filterValue.id"
+        }
+      }
+    }
+  },
+  {
+    "id": "can_select_more",
+    "name": "Can select more",
+    "type": "calculated",
+    "value_type": "bool",
+    "components": {
+      "type": "lessThan",
+      "components": {
+        "type": "list",
+        "components": [
+          {
+            "type": "length",
+            "components": {
+              "type": "stat",
+              "stat": "selected_options"
+            }
+          },
+          {
+            "type": "stat",
+            "stat": "amount"
+          }
+        ]
+      }
+    }
+  }
+]

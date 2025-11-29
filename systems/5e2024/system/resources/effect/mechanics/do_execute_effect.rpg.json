@@ -1,0 +1,366 @@
+{
+  "id": "do_execute_effect",
+  "event_names": "do_execute_effect",
+  "revert_event_names": "revert_effect_execution",
+  "calculated_revert_event_names": {
+    "type": "stat",
+    "stat": "trigger_revert_events"
+  },
+  "revert_on_remove": {
+    "type": "stat",
+    "stat": "clear_on_remove"
+  },
+  "effects": {
+    "type": "when",
+    "clauses": [
+      {
+        "condition": {
+          "type": "equals",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "type"
+              },
+              {
+                "type": "constant",
+                "value": "add_to_stat",
+                "value_type": "string"
+              }
+            ]
+          }
+        },
+        "effect": {
+          "type": "addToStat",
+          "meta_stat": {
+            "type": "stat",
+            "stat": "stat"
+          },
+          "value": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "is_passive"
+                },
+                "components": {
+                  "type": "stat",
+                  "stat": "constant"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "roll",
+                  "formula": {
+                    "type": "stat",
+                    "stat": "dice_roll.formula"
+                  }
+                }
+              }
+            ]
+          },
+          "calculated_aggregation_type": {
+            "type": "stat",
+            "stat": "aggregation_type"
+          }
+        }
+      },
+      {
+        "condition": {
+          "type": "equals",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "type"
+              },
+              {
+                "type": "constant",
+                "value": "set_stat",
+                "value_type": "string"
+              }
+            ]
+          }
+        },
+        "effect": {
+          "type": "setStat",
+          "meta_stat": {
+            "type": "stat",
+            "stat": "stat"
+          },
+          "new_value": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "is_passive"
+                },
+                "components": {
+                  "type": "stat",
+                  "stat": "constant"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "roll",
+                  "formula": {
+                    "type": "stat",
+                    "stat": "dice_roll.formula"
+                  }
+                }
+              }
+            ]
+          },
+          "calculated_aggregation_type": {
+            "type": "stat",
+            "stat": "aggregation_type"
+          }
+        }
+      },
+      {
+        "condition": {
+          "type": "or",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "equals",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "stat",
+                      "stat": "type"
+                    },
+                    {
+                      "type": "constant",
+                      "value": "advantage",
+                      "value_type": "string"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "equals",
+                "components": {
+                  "type": "list",
+                  "components": [
+                    {
+                      "type": "stat",
+                      "stat": "type"
+                    },
+                    {
+                      "type": "constant",
+                      "value": "disadvantage",
+                      "value_type": "string"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "effect": {
+          "type": "addToStat",
+          "meta_stat": {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "equals",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "stat",
+                        "stat": "type"
+                      },
+                      {
+                        "type": "constant",
+                        "value": "advantage",
+                        "value_type": "string"
+                      }
+                    ]
+                  }
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "$character.advantages",
+                  "value_type": "string"
+                }
+              },
+              {
+                "condition": {
+                  "type": "constant",
+                  "value": true,
+                  "value_type": "bool"
+                },
+                "components": {
+                  "type": "constant",
+                  "value": "$character.disadvantages",
+                  "value_type": "string"
+                }
+              }
+            ]
+          },
+          "value": {
+            "type": "list",
+            "components": [
+              {
+                "type": "replace",
+                "string": {
+                  "type": "stat",
+                  "stat": "advantage_stat"
+                },
+                "occurrence": {
+                  "type": "constant",
+                  "value": "$character.",
+                  "value_type": "string"
+                },
+                "replace": {
+                  "type": "constant",
+                  "value": "",
+                  "value_type": "string"
+                }
+              }
+            ]
+          },
+          "aggregation_type": "sum"
+        }
+      },
+      {
+        "condition": {
+          "type": "equals",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "type"
+              },
+              {
+                "type": "constant",
+                "value": "add_spell",
+                "value_type": "string"
+              }
+            ]
+          }
+        },
+        "effect": {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "defined",
+                "stat": "spell"
+              },
+              "effect": {
+                "type": "setStat",
+                "stat": "$character.spells",
+                "new_value": {
+                  "type": "when",
+                  "clauses": [
+                    {
+                      "condition": {
+                        "type": "contains",
+                        "needle": {
+                          "type": "stat",
+                          "stat": "spell.name"
+                        },
+                        "haystack": {
+                          "type": "map",
+                          "mapper": {
+                            "type": "stat",
+                            "stat": "$mapValue.name"
+                          },
+                          "components": {
+                            "type": "stat",
+                            "stat": "$character.spells"
+                          }
+                        }
+                      },
+                      "components": {
+                        "type": "stat",
+                        "stat": "$character.spells"
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "constant",
+                        "value": true,
+                        "value_type": "bool"
+                      },
+                      "components": {
+                        "type": "append",
+                        "list": {
+                          "type": "stat",
+                          "stat": "$character.spells"
+                        },
+                        "item": {
+                          "type": "stat",
+                          "stat": "spell"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "aggregation_type": "set"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "condition": {
+          "type": "equals",
+          "components": {
+            "type": "list",
+            "components": [
+              {
+                "type": "stat",
+                "stat": "type"
+              },
+              {
+                "type": "constant",
+                "value": "use_spell",
+                "value_type": "string"
+              }
+            ]
+          }
+        },
+        "effect": {
+          "type": "when",
+          "clauses": [
+            {
+              "condition": {
+                "type": "defined",
+                "stat": "spell"
+              },
+              "effect": {
+                "type": "showResource",
+                "resource": {
+                  "type": "stat",
+                  "stat": "spell"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
