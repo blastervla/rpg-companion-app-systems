@@ -655,8 +655,16 @@
                   "value_type": "bool"
                 },
                 "components": {
-                  "type": "stat",
-                  "stat": "recharges.formula"
+                  "type": "defaultIfNull",
+                  "components": {
+                    "type": "stat",
+                    "stat": "recharges?.formula?"
+                  },
+                  "default_components": {
+                    "type": "constant",
+                    "value": "0",
+                    "value_type": "string"
+                  }
                 }
               }
             ]

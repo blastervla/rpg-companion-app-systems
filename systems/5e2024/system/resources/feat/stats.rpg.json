@@ -802,7 +802,7 @@
                 "components": [
                   {
                     "type": "stat",
-                    "stat": "$filterValue.trigger_type"
+                    "stat": "$filterValue?.trigger_type?"
                   },
                   {
                     "type": "constant",
@@ -813,8 +813,16 @@
               }
             },
             {
-              "type": "stat",
-              "stat": "$filterValue.has_charges"
+              "type": "defaultIfNull",
+              "components": {
+                "type": "stat",
+                "stat": "$filterValue?.has_charges?"
+              },
+              "default_components": {
+                "type": "constant",
+                "value": false,
+                "value_type": "bool"
+              }
             }
           ]
         }
