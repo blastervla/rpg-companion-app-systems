@@ -1,0 +1,83 @@
+base resource class(name = "Class") = null;
+
+base string archetype_id(name = "Archetype ID") = null;
+
+base integer class_level(name = "Class level") = 1;
+
+base string[] selected_selectable_feature_ids(name = "Selected selectable feature ids") =
+  [];
+
+base integer last_selection_level(name = "Last level in which the player selected proficiencies") =
+  0;
+
+calc bool should_select_on_level_up(name = "Should select new stuff on this level up") =
+  $character.temp_last_level_up_class_id == class.id;
+
+calc string class_name_with_archetype(name = "Class name with archetype") =
+  concat(
+    [
+      class.name,
+      (if notNull(class.selected_archetype)
+        then concat([" (", class.selected_archetype?.name, ")"])
+        else ""),
+    ],
+  );
+
+calc bool show_spellcasting_details(name = "Should show spellcasting details") =
+  class.actual_effective_caster_level != "zero";
+
+calc string class_name_with_spellcasting_ability(name = "Class name with spellcasting ability") =
+  concat(
+    [
+      class.name,
+      " (",
+      enumeratedAbbreviation(
+        enumerated_type = "ability",
+        id = class.actual_spellcasting_ability,
+      ),
+      ")",
+    ],
+  );
+
+calc integer spell_attack_bonus(name = "Spell attack bonus") =
+  metaStat(
+    meta_stat = concat(
+      [
+        "$character.",
+        class.actual_spellcasting_ability,
+        "_modifier",
+      ],
+    ),
+  ) + $character.proficiency_bonus + $character.spell_attack_extra_bonus;
+
+calc string spell_attack_bonus_text(name = "Spell attack bonus formatted") =
+  if spell_attack_bonus >= 0
+    then concat(["+", spell_attack_bonus])
+    else spell_attack_bonus;
+
+calc integer spell_save_dc(name = "Spell save DC") =
+  8 + metaStat(
+    meta_stat = concat(
+      [
+        "$character.",
+        class.actual_spellcasting_ability,
+        "_modifier",
+      ],
+    ),
+  ) + $character.proficiency_bonus + $character.spell_dc_extra_bonus;
+
+calc integer attacks_per_action(name = "Attacks per action") =
+  class.attacks_per_action_number_for_current_level;
+
+calc integer hit_die_max(name = "Hit die max") =
+  toNum(replace(string = class.actual_hit_die, occurrence = "d", replace = ""));
+
+calc integer hit_die_average(name = "Hit die average") =
+  divide([(1 + hit_die_max), 2], rounding_method = "up");
+
+calc bool should_show_level_up_disclaimer(name = "Should show level up disclaimer") =
+  !($character?.$is_new? ?? true)
+    && ($view?.class_details_edit_class_level? ?? 1) > class_level;
+
+calc resource<feat>[] features(name = "Features") =
+  sortBy(class.current_level_features, sort_by_selector = $sortByValue.min_level);

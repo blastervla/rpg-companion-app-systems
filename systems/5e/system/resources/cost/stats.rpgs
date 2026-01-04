@@ -1,0 +1,12 @@
+base integer value(name = "Value") = 0;
+
+base string unit(name = "Unit") = "copper";
+
+calc string description(name = "Display description") =
+  concat(
+    [
+      value,
+      " ",
+      enumeratedName(enumerated_type = "currencies", id = unit),
+    ],
+  );

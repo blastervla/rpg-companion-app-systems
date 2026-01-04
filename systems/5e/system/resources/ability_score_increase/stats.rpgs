@@ -1,0 +1,33 @@
+base integer value(name = "Value") = 1;
+
+base string[] modifier_options(name = "Modifier options") = [];
+
+calc string description(name = "Display description") =
+  if isEmpty(modifier_options)
+    then "Nothing to assign"
+    else concat(
+        [
+          "Assign ",
+          value,
+          (if length(modifier_options) == 1
+            then concat([" to ", findFirst(modifier_options, filter = true)])
+            else concat(
+                [
+                  " to one of ",
+                  joinToString(
+                    map(
+                      modifier_options,
+                      mapper = ($mapValue) => enumeratedName(enumerated_type = "ability", id = $mapValue),
+                    ),
+                    separator = ", ",
+                  ),
+                ],
+              )),
+        ],
+      );
+
+calc string assign_label_text(name = "Assign label text") =
+  concat(["Assign ", value, " to: "]);
+
+base string temp_selected_modifier(name = "Temporal variable to hold the selected modifier") =
+  "strength";

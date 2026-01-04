@@ -1,0 +1,30 @@
+base integer level(name = "Level", abbreviation = "Lvl") = 1;
+
+base string[] options(name = "Options") = [];
+
+base string selected_option(name = "Selected option") = "";
+
+base bool is_levelled(name = "Is levelled") = true;
+
+calc bool can_be_used(name = "Can be used") =
+  when {
+    defined(stat = "$parent.level") -> $parent.level,
+    defined(stat = "$character.level") -> $character.level,
+    else -> 1,
+  } >= level;
+
+calc string description(name = "Display description") =
+  concat(
+    [
+      "Lvl. ",
+      level,
+      ": ",
+      joinToString(
+        map(
+          options,
+          mapper = ($mapValue) => enumeratedName(enumerated_type = "armor_types", id = $mapValue),
+        ),
+        separator = ", ",
+      ),
+    ],
+  );

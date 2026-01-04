@@ -1,0 +1,32 @@
+base string stat(name = "Stat") = "constant";
+
+base integer constant(name = "Constant") = 1;
+
+base string operator(name = "Operator") = "plus";
+
+calc integer absolute_calculated_value(name = "Absolute calculated value (not accounting operator)") =
+  if defined(stat = "$character")
+    then (if stat == "constant" then constant else constant * metaStat(meta_stat = stat))
+    else 0;
+
+calc integer calculated_value(name = "Calculated value") =
+  absolute_calculated_value * (if operator == "plus" then 1 else -1);
+
+calc string description(name = "Display description") =
+  concat(
+    [
+      enumeratedName(enumerated_type = "plus_minus", id = operator),
+      " ",
+      (if stat == "constant"
+        then constant
+        else concat(
+            [
+              enumeratedName(
+                enumerated_type = "effect_character_stats_plus_mods_and_constant",
+                id = stat,
+              ),
+              (if constant != 1 then concat([" x ", constant]) else ""),
+            ],
+          )),
+    ],
+  );

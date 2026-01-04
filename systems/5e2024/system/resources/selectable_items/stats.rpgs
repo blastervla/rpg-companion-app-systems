@@ -1,0 +1,30 @@
+base integer amount(name = "Amount") = 1;
+
+base resource<item_with_amount>[] options(name = "Options") = [];
+
+calc string choose_label_text(name = "Choose label text") =
+  concat(["Choose ", amount, ": "]);
+
+calc string display_description(name = "Display description") =
+  concat(
+    [
+      "Choose ",
+      amount,
+      " from ",
+      joinToString(
+        map(options, mapper = ($mapValue) => $mapValue.display_description),
+        separator = ", ",
+      ),
+    ],
+  );
+
+base string[] selected_options_string(name = "Selected options") = [];
+
+calc resource<item_with_amount>[] selected_options(name = "Selected options") =
+  filter(
+    options,
+    filter = ($filterValue) => contains(haystack = selected_options_string, needle = $filterValue.id),
+  );
+
+calc bool can_select_more(name = "Can select more") =
+  length(selected_options) < amount;

@@ -1,0 +1,33 @@
+base integer level(name = "Level") = 1;
+
+base resource<value_calculator>[] calculators(name = "Calculators") = [];
+
+base string aggregation_type(name = "Aggregation type") = "max";
+
+base bool is_levelled(name = "Is levelled") = true;
+
+calc integer[] calculators_as_values(name = "Calculators as values") =
+  map(calculators, mapper = ($mapValue) => $mapValue.calculated_value);
+
+calc integer calculated_value(name = "Calculated value") =
+  when {
+    defined(stat = "$character") && aggregation_type == "max" -> max(calculators_as_values),
+    defined(stat = "$character") && aggregation_type == "min" -> min(calculators_as_values),
+    else -> 0,
+  };
+
+calc string description(name = "Display description") =
+  concat(
+    [
+      "Lvl. ",
+      level,
+      ": ",
+      aggregation_type,
+      "(",
+      joinToString(
+        map(calculators, mapper = ($mapValue) => $mapValue.description),
+        separator = ", ",
+      ),
+      ")",
+    ],
+  );

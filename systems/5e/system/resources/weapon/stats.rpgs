@@ -1,0 +1,241 @@
+base string name(name = "Name") = "";
+
+base string source(name = "Source") = "";
+
+base bool is_core(name = "Core") = false;
+
+base string description(name = "Description") = "";
+
+base resource cost(name = "Cost") = null;
+
+base resource weight(name = "Weight") = null;
+
+base string type(name = "Type") = "club";
+
+base string attack_ability(name = "Attack ability") = "strength";
+
+base string rarity(name = "Rarity") = "common";
+
+base bool requires_attunement(name = "Requires attunement") = false;
+
+calc string display_type(name = "Display type") =
+  when {
+    is_simple && is_range -> "simple_ranged",
+    is_simple && !is_range -> "simple_melee",
+    !is_simple && is_range -> "martial_ranged",
+    !is_simple && !is_range -> "martial_melee",
+  };
+
+base bool is_simple(name = "Is simple") = true;
+
+base bool is_two_handed(name = "Is two-handed") = false;
+
+base bool is_finesse(name = "Is finesse") = false;
+
+base bool is_silver(name = "Is silver") = false;
+
+base bool is_thrown(name = "Is thrown") = false;
+
+base string thrown_range(name = "Thrown range") = "80/320";
+
+base bool is_heavy(name = "Is heavy") = false;
+
+base bool is_light(name = "Is light") = false;
+
+base bool is_loading(name = "Is loading") = false;
+
+base bool is_reach(name = "Is reach") = false;
+
+base integer reach_range(name = "Reach range") = 5;
+
+base bool is_special(name = "Is special") = false;
+
+base bool is_improvised(name = "Is improvised") = false;
+
+base bool is_range(name = "Is range") = false;
+
+base string range(name = "Range") = "80/320";
+
+base string ammunition_type(name = "Ammunition type") = "none";
+
+base integer extra_attack_bonus(name = "Extra attack bonus") = 0;
+
+base resource<damage_dice>[] damage_dice(name = "Damage dice") = [];
+
+base bool is_versatile(name = "Is versatile") = false;
+
+base resource<damage_dice>[] versatile_damage_dice(name = "Versatile damage dice") =
+  [];
+
+calc bool should_load_effects(name = "Should not load effects") =
+  $parent?.should_load_effects? ?? true;
+
+base resource<effect>[] effects(name = "Effects") = [];
+
+base bool override_is_proficient(name = "Override is proficient") = false;
+
+base bool is_attuned(name = "Is attuned") = false;
+
+base bool currently_used_as_versatile(name = "Is it currently being used as versatile?") =
+  false;
+
+calc string advantage_status(name = "Advantage status") =
+  if $character?.is_not_wearing_inproficient_armor ?? true
+    || attack_ability != "strength" && attack_ability != "dexterity"
+    then "none"
+    else "disadvantage";
+
+calc bool has_ammunition(name = "Has ammunition") =
+  is_range && ammunition_type != "none";
+
+calc bool is_proficient(name = "Is proficient") =
+  override_is_proficient || (if defined(stat = "$character")
+    then contains(haystack = $character.weapon_proficiencies, needle = type) || contains(haystack = $character.weapon_proficiencies, needle = "all_martial")
+        && !is_simple || contains(haystack = $character.weapon_proficiencies, needle = "all_simple")
+        && is_simple
+    else false);
+
+calc string versatile_damage_dice_display_description(name = "Display versatile damage dice") =
+  if isEmpty(versatile_damage_dice)
+    then "no damage"
+    else concat(
+        flatAppend(
+          [
+            [
+              joinToString(
+                map(
+                  versatile_damage_dice,
+                  mapper = ($mapValue) => $mapValue.display_description,
+                ),
+                separator = " + ",
+              ),
+            ],
+            flatAppend(
+              [
+                when {
+                  damage_bonus > 0 -> [" + ", damage_bonus],
+                  damage_bonus < 0 -> [" - ", (damage_bonus * -1)],
+                  else -> [],
+                },
+              ],
+            ),
+          ],
+        ),
+      );
+
+calc string properties(name = "Properties") =
+  joinToString(
+    flatAppend(
+      [
+        (if rarity != "none"
+          then [
+              enumeratedName(enumerated_type = "item_rarity", id = rarity),
+            ]
+          else []),
+        (if is_two_handed then ["two-handed"] else []),
+        (if is_versatile then [concat(["versatile"])] else []),
+        (if is_silver then ["silver"] else []),
+        (if is_finesse then ["finesse"] else []),
+        (if is_thrown then [concat(["thrown (", thrown_range, ")"])] else []),
+        (if is_heavy then ["heavy"] else []),
+        (if is_light then ["light"] else []),
+        (if is_loading then ["loading"] else []),
+        (if is_special then ["special"] else []),
+        (if is_improvised then ["improvised"] else []),
+        (if is_range then [concat(["range (", range, ")"])] else []),
+        (if is_reach then [concat(["reach ", reach_range, " ft."])] else []),
+        (if requires_attunement then ["requires attunement"] else []),
+        (if (cost?.value ?? 0) != 0 then [cost.description] else []),
+        (if (weight?.value ?? 0) != 0 then [weight.description] else []),
+      ],
+    ),
+    separator = ", ",
+  );
+
+calc string attack_modifier_stat_id(name = "Attack modifier stat id") =
+  concat(["$character.", attack_ability, "_modifier"]);
+
+calc integer attack_bonus(name = "Attack bonus") =
+  max(
+    flatAppend(
+      [
+        [metaStat(meta_stat = attack_modifier_stat_id)],
+        (if is_finesse then [$character.dexterity_modifier] else []),
+      ],
+    ),
+  ) + (if is_proficient then $character.proficiency_bonus else 0) + extra_attack_bonus;
+
+calc integer damage_bonus(name = "Damage bonus") =
+  if defined(stat = "$character")
+    then max(
+        flatAppend(
+          [
+            [metaStat(meta_stat = attack_modifier_stat_id)],
+            (if is_finesse then [$character.dexterity_modifier] else []),
+          ],
+        ),
+      )
+    else 0;
+
+calc string display_attack_bonus(name = "Display attack bonus") =
+  if defined(stat = "$character")
+    then concat([(if attack_bonus >= 0 then "+" else ""), attack_bonus])
+    else "";
+
+calc string damage_dice_display_description(name = "Display versatile damage dice") =
+  if isEmpty(damage_dice)
+    then "no damage"
+    else concat(
+        flatAppend(
+          [
+            [
+              joinToString(
+                map(damage_dice, mapper = ($mapValue) => $mapValue.display_description),
+                separator = " + ",
+              ),
+            ],
+            flatAppend(
+              [
+                when {
+                  !defined(stat = "$character") -> [],
+                  damage_bonus > 0 -> [" + ", damage_bonus],
+                  damage_bonus < 0 -> [" - ", (damage_bonus * -1)],
+                  else -> [],
+                },
+              ],
+            ),
+          ],
+        ),
+      );
+
+calc string display_first_line_extra(name = "Display first line extra") =
+  if defined(stat = "$character")
+    then display_attack_bonus
+    else damage_dice_display_description;
+
+calc string display_second_line_extra(name = "Display second line extra") =
+  when {
+    defined(stat = "$character") -> damage_dice_display_description,
+    !isEmpty(effects) || requires_attunement -> "Magic",
+    else -> "",
+  };
+
+calc string second_line_extra_color(name = "Second line extra color") =
+  if !isEmpty(effects) then "accent" else "text";
+
+base string temp_shoot_ammo(name = "Temp ammo item being shot") = "";
+
+calc resource<item>[] ammunition_items(name = "Items that can be used as ammunition for this weapon") =
+  if defined(stat = "$character")
+    then filter(
+        $character.equipment,
+        filter = ($filterValue) => ($filterValue.type == "ammunition"
+          && $filterValue.ammunition_type == ammunition_type),
+      )
+    else [];
+
+calc resource<item> selected_item_to_shoot(name = "Selected item to shoot") =
+  findFirst(
+    ammunition_items,
+    filter = ($findFirstValue.id == $view?.weapon_display_ammunition_select?),
+  );

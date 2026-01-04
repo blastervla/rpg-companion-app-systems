@@ -1,0 +1,547 @@
+base string name(name = "Name") = "";
+
+base string source(name = "Source") = "";
+
+base string hit_die(name = "Hit die") = "d8";
+
+base string[] hp_modifiers(name = "HP Modifiers") = ["constitution"];
+
+calc string actual_hit_die(name = "Actual hit die") =
+  if notNull(selected_archetype) && !(selected_archetype?.same_hp_as_parent ?? true)
+    then selected_archetype.hit_die
+    else hit_die;
+
+calc string[] actual_hp_modifiers(name = "Actual HP modifiers") =
+  if notNull(selected_archetype) && !(selected_archetype?.same_hp_as_parent ?? true)
+    then selected_archetype.hp_modifiers
+    else hp_modifiers;
+
+base bool same_hp_as_parent(name = "Same HP as parent") = true;
+
+base integer base_ac(name = "Base AC") = 10;
+
+base string[] ac_modifiers(name = "AC Modifiers") = ["dexterity"];
+
+calc integer actual_base_ac(name = "Actual base AC") =
+  if notNull(selected_archetype) && !(selected_archetype?.same_ac_as_parent ?? true)
+    then selected_archetype.base_ac
+    else base_ac;
+
+calc string[] actual_ac_modifiers(name = "Actual AC modifiers") =
+  if notNull(selected_archetype) && !(selected_archetype?.same_ac_as_parent ?? true)
+    then selected_archetype.ac_modifiers
+    else ac_modifiers;
+
+base bool same_ac_as_parent(name = "Same AC as parent") = true;
+
+base bool strength_saving_throw_proficiency(name = "Strength saving throw proficiency") =
+  false;
+
+base bool dexterity_saving_throw_proficiency(name = "Dexterity saving throw proficiency") =
+  false;
+
+base bool constitution_saving_throw_proficiency(name = "Constitution saving throw proficiency") =
+  false;
+
+base bool intelligence_saving_throw_proficiency(name = "Intelligence saving throw proficiency") =
+  false;
+
+base bool wisdom_saving_throw_proficiency(name = "Wisdom saving throw proficiency") =
+  false;
+
+base bool charisma_saving_throw_proficiency(name = "Charisma saving throw proficiency") =
+  false;
+
+base resource<feat>[] features(name = "Features") = [];
+
+base bool same_spellcasting_ability_as_parent(name = "Same spellcasting ability as parent") =
+  true;
+
+base string spellcasting_ability(name = "Spellcasting ability") =
+  "intelligence";
+
+calc string actual_spellcasting_ability(name = "Actual spellcasting ability") =
+  if notNull(selected_archetype)
+    && !(selected_archetype?.same_spellcasting_ability_as_parent ?? true)
+    then selected_archetype.spellcasting_ability
+    else spellcasting_ability;
+
+base bool same_effective_caster_level_as_parent(name = "Same effective caster level as parent") =
+  true;
+
+base string effective_caster_level(name = "Effective caster level") = "zero";
+
+calc string actual_effective_caster_level(name = "Actual effective caster level") =
+  if notNull(selected_archetype)
+    && !(selected_archetype?.same_effective_caster_level_as_parent ?? true)
+    then selected_archetype.effective_caster_level
+    else effective_caster_level;
+
+base resource<spell>[] spells(name = "Spells") = [];
+
+base bool recharge_slots_on_short_rest(name = "Recharge slots on short rest") =
+  false;
+
+base resource<levelled_amount>[] spell_slots_level_1_per_level(name = "Spell slots level 1 (per level)") =
+  [];
+
+base resource<levelled_amount>[] spell_slots_level_2_per_level(name = "Spell slots level 2 (per level)") =
+  [];
+
+base resource<levelled_amount>[] spell_slots_level_3_per_level(name = "Spell slots level 3 (per level)") =
+  [];
+
+base resource<levelled_amount>[] spell_slots_level_4_per_level(name = "Spell slots level 4 (per level)") =
+  [];
+
+base resource<levelled_amount>[] spell_slots_level_5_per_level(name = "Spell slots level 5 (per level)") =
+  [];
+
+base resource<levelled_amount>[] spell_slots_level_6_per_level(name = "Spell slots level 6 (per level)") =
+  [];
+
+base resource<levelled_amount>[] spell_slots_level_7_per_level(name = "Spell slots level 7 (per level)") =
+  [];
+
+base resource<levelled_amount>[] spell_slots_level_8_per_level(name = "Spell slots level 8 (per level)") =
+  [];
+
+base resource<levelled_amount>[] spell_slots_level_9_per_level(name = "Spell slots level 9 (per level)") =
+  [];
+
+calc bool actual_recharge_slots_on_short_rest(name = "Actual recharge slots on short rest") =
+  if selected_archetype?.same_effective_caster_level_as_parent ?? true
+    then recharge_slots_on_short_rest
+    else selected_archetype.recharge_slots_on_short_rest;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_1_per_level(name = "Actual recharge slots on short rest") =
+  if selected_archetype?.same_effective_caster_level_as_parent ?? true
+    then spell_slots_level_1_per_level
+    else selected_archetype.spell_slots_level_1_per_level;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_2_per_level(name = "Actual recharge slots on short rest") =
+  if selected_archetype?.same_effective_caster_level_as_parent ?? true
+    then spell_slots_level_2_per_level
+    else selected_archetype.spell_slots_level_2_per_level;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_3_per_level(name = "Actual recharge slots on short rest") =
+  if selected_archetype?.same_effective_caster_level_as_parent ?? true
+    then spell_slots_level_3_per_level
+    else selected_archetype.spell_slots_level_3_per_level;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_4_per_level(name = "Actual recharge slots on short rest") =
+  if selected_archetype?.same_effective_caster_level_as_parent ?? true
+    then spell_slots_level_4_per_level
+    else selected_archetype.spell_slots_level_4_per_level;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_5_per_level(name = "Actual recharge slots on short rest") =
+  if selected_archetype?.same_effective_caster_level_as_parent ?? true
+    then spell_slots_level_5_per_level
+    else selected_archetype.spell_slots_level_5_per_level;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_6_per_level(name = "Actual recharge slots on short rest") =
+  if selected_archetype?.same_effective_caster_level_as_parent ?? true
+    then spell_slots_level_6_per_level
+    else selected_archetype.spell_slots_level_6_per_level;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_7_per_level(name = "Actual recharge slots on short rest") =
+  if selected_archetype?.same_effective_caster_level_as_parent ?? true
+    then spell_slots_level_7_per_level
+    else selected_archetype.spell_slots_level_7_per_level;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_8_per_level(name = "Actual recharge slots on short rest") =
+  if selected_archetype?.same_effective_caster_level_as_parent ?? true
+    then spell_slots_level_8_per_level
+    else selected_archetype.spell_slots_level_8_per_level;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_9_per_level(name = "Actual recharge slots on short rest") =
+  if selected_archetype?.same_effective_caster_level_as_parent ?? true
+    then spell_slots_level_9_per_level
+    else selected_archetype.spell_slots_level_9_per_level;
+
+base resource<levelled_weapon>[] weapon(name = "Weapon") = [];
+
+base resource<levelled_amount>[] attacks_per_action_per_level(name = "Attacks per action (by lvl)") =
+  [];
+
+base resource<levelled_choice_text>[] language_proficiencies(name = "Language proficiencies") =
+  [];
+
+base resource<levelled_skill_proficiency>[] skill_proficiencies(name = "Skill proficiencies") =
+  [];
+
+base bool account_for_skill_proficiencies_on_multiclass(name = "Account for skill proficiencies on multiclass") =
+  true;
+
+base resource<levelled_armor_proficiency>[] armor_proficiencies(name = "Armor proficiencies") =
+  [];
+
+base bool account_for_armor_proficiencies_on_multiclass(name = "Account for armor proficiencies on multiclass") =
+  true;
+
+base resource<levelled_weapon_proficiency>[] weapon_proficiencies(name = "Weapon proficiencies") =
+  [];
+
+base bool account_for_weapon_proficiencies_on_multiclass(name = "Account for weapon proficiencies on multiclass") =
+  true;
+
+base resource<levelled_choice_text>[] tool_proficiencies(name = "Tool proficiencies") =
+  [];
+
+base bool account_for_tool_proficiencies_on_multiclass(name = "Account for tool proficiencies on multiclass") =
+  true;
+
+base resource<selectable_items>[] selectable_equipments(name = "Selectable equipment") =
+  [];
+
+base resource<selectable_armors>[] selectable_armors(name = "Selectable armor") =
+  [];
+
+base resource<selectable_weapons>[] selectable_weapons(name = "Selectable weapons") =
+  [];
+
+base integer archetype_selection_level(name = "Archetype selection level") = 3;
+
+base resource<class>[] archetypes(name = "Archetypes") = [];
+
+calc bool is_archetype(name = "Is archetype") =
+  defined(stat = "$parent.archetypes");
+
+calc string archetype_names(name = "Archetype names") =
+  joinToString(
+    map(archetypes, mapper = ($mapValue) => $mapValue.name),
+    separator = ", ",
+  );
+
+calc resource<class_details> current_class_details(name = "Current class details") =
+  if is_archetype then $parent.current_class_details else $parent?;
+
+calc resource<class> selected_archetype(name = "Selected archetype") =
+  findFirst(
+    (if is_archetype then $parent.archetypes else archetypes),
+    filter = ($findFirstValue.id == current_class_details?.archetype_id?),
+  );
+
+calc resource<levelled_weapon> current_level_weapon(name = "Current level weapon") =
+  findFirst(
+    sortBy(weapon, order = "desc", sort_by_selector = $sortByValue.level),
+    filter = ($findFirstValue.level <= level),
+  );
+
+calc bool selected_archetype_has_weapon(name = "Selected archetype has weapon") =
+  notNull(selected_archetype?.current_level_weapon);
+
+calc bool should_load_effects(name = "Should load effects") =
+  !is_archetype || selected_archetype?.id == id;
+
+calc resource<weapon>[] weapons(name = "Weapons") =
+  when {
+    selected_archetype_has_weapon -> [selected_archetype.current_level_weapon.weapon],
+    notNull(current_level_weapon) -> [current_level_weapon.weapon],
+    else -> [],
+  };
+
+calc bool should_ask_for_effective_caster_level(name = "Should ask for effective caster level") =
+  !is_archetype || !($view?.class_edit_has_same_effective_caster_level? ?? false);
+
+calc bool should_fill_custom_spell_slots(name = "Should fill custom spell slots") =
+  $view?.class_edit_effective_caster_level? == "custom"
+    && should_ask_for_effective_caster_level;
+
+calc string attacks_per_action_text(name = "Attacks per action text") =
+  if is_archetype
+    then "Override attacks per action (by lvl): "
+    else "Attacks per action (by lvl): ";
+
+calc string saving_throws_text(name = "Saving throws text") =
+  if is_archetype then "Additional saving throws:" else "Saving throws:";
+
+calc integer level(name = "Current class level") =
+  current_class_details?.class_level? ?? 1;
+
+calc resource<levelled_choice_text>[] language_proficiencies_for_current_level(name = "Language proficiencies for current level") =
+  flatAppend(
+    [
+      filter(
+        language_proficiencies,
+        filter = ($filterValue) => ($filterValue.level <= level),
+      ),
+      (if !is_archetype
+        then selected_archetype?.language_proficiencies_for_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_skill_proficiency>[] skill_proficiencies_for_current_level(name = "Skill proficiencies for current level") =
+  flatAppend(
+    [
+      filter(
+        skill_proficiencies,
+        filter = ($filterValue) => ($filterValue.level <= level),
+      ),
+      (if !is_archetype
+        then selected_archetype?.skill_proficiencies_for_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_armor_proficiency>[] armor_proficiencies_for_current_level(name = "Armor proficiencies for current level") =
+  flatAppend(
+    [
+      filter(
+        armor_proficiencies,
+        filter = ($filterValue) => ($filterValue.level <= level),
+      ),
+      (if !is_archetype
+        then selected_archetype?.armor_proficiencies_for_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_weapon_proficiency>[] weapon_proficiencies_for_current_level(name = "Weapon proficiencies for current level") =
+  flatAppend(
+    [
+      filter(
+        weapon_proficiencies,
+        filter = ($filterValue) => ($filterValue.level <= level),
+      ),
+      (if !is_archetype
+        then selected_archetype?.weapon_proficiencies_for_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_choice_text>[] tool_proficiencies_for_current_level(name = "Tool proficiencies for current level") =
+  flatAppend(
+    [
+      filter(
+        tool_proficiencies,
+        filter = ($filterValue) => ($filterValue.level <= level),
+      ),
+      (if !is_archetype
+        then selected_archetype?.tool_proficiencies_for_current_level ?? []
+        else []),
+    ],
+  );
+
+calc bool is_primary_class(name = "Is primary class") =
+  if defined(stat = "$character")
+    then findFirst(
+        map($character.classes, mapper = ($mapValue) => $mapValue.class.id),
+        filter = true,
+      ) == id
+    else false;
+
+calc resource<levelled_choice_text>[] language_proficiencies_choices_in_current_level(name = "Language proficiencies choices in current level") =
+  flatAppend(
+    [
+      filter(
+        language_proficiencies,
+        filter = ($filterValue) => ($filterValue.level == level),
+      ),
+      (if !is_archetype
+        then selected_archetype?.language_proficiencies_choices_in_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_skill_proficiency>[] skill_proficiencies_choices_in_current_level(name = "Skill proficiencies choices in current level") =
+  flatAppend(
+    [
+      (if is_primary_class || account_for_skill_proficiencies_on_multiclass
+        then filter(
+            skill_proficiencies,
+            filter = ($filterValue) => ($filterValue.level == level),
+          )
+        else []),
+      (if !is_archetype
+        then selected_archetype?.skill_proficiencies_choices_in_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_armor_proficiency>[] armor_proficiencies_choices_in_current_level(name = "Armor proficiencies choices in current level") =
+  flatAppend(
+    [
+      (if is_primary_class || account_for_armor_proficiencies_on_multiclass
+        then filter(
+            armor_proficiencies,
+            filter = ($filterValue) => ($filterValue.level == level),
+          )
+        else []),
+      (if !is_archetype
+        then selected_archetype?.armor_proficiencies_choices_in_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_weapon_proficiency>[] weapon_proficiencies_choices_in_current_level(name = "Weapon proficiencies choices in current level") =
+  flatAppend(
+    [
+      (if is_primary_class || account_for_weapon_proficiencies_on_multiclass
+        then filter(
+            weapon_proficiencies,
+            filter = ($filterValue) => ($filterValue.level == level),
+          )
+        else []),
+      (if !is_archetype
+        then selected_archetype?.weapon_proficiencies_choices_in_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_choice_text>[] tool_proficiencies_choices_in_current_level(name = "Tool proficiencies choices in current level") =
+  flatAppend(
+    [
+      (if is_primary_class || account_for_tool_proficiencies_on_multiclass
+        then filter(
+            tool_proficiencies,
+            filter = ($filterValue) => ($filterValue.level == level),
+          )
+        else []),
+      (if !is_archetype
+        then selected_archetype?.tool_proficiencies_choices_in_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_amount>[] actual_attacks_per_action_per_level(name = "Actual attacks per action per level") =
+  if !isEmpty((selected_archetype?.attacks_per_action_per_level ?? []))
+    then selected_archetype?.attacks_per_action_per_level
+    else attacks_per_action_per_level;
+
+calc resource<levelled_amount> current_level_attacks_per_action(name = "Current level attacks per action resource") =
+  findFirst(
+    sortBy(
+      actual_attacks_per_action_per_level,
+      order = "desc",
+      sort_by_selector = $sortByValue.level,
+    ),
+    filter = ($findFirstValue.level <= level),
+  );
+
+calc integer attacks_per_action_number_for_current_level(name = "Attacks per action for current level") =
+  current_level_attacks_per_action?.amount ?? 1;
+
+calc bool has_strength_saving_throw_proficiency(name = "Has strength saving throw proficiency") =
+  selected_archetype?.strength_saving_throw_proficiency ?? false
+    || strength_saving_throw_proficiency;
+
+calc bool has_dexterity_saving_throw_proficiency(name = "Has dexterity saving throw proficiency") =
+  selected_archetype?.dexterity_saving_throw_proficiency ?? false
+    || dexterity_saving_throw_proficiency;
+
+calc bool has_constitution_saving_throw_proficiency(name = "Has constitution saving throw proficiency") =
+  selected_archetype?.constitution_saving_throw_proficiency ?? false
+    || constitution_saving_throw_proficiency;
+
+calc bool has_intelligence_saving_throw_proficiency(name = "Has intelligence saving throw proficiency") =
+  selected_archetype?.intelligence_saving_throw_proficiency ?? false
+    || intelligence_saving_throw_proficiency;
+
+calc bool has_wisdom_saving_throw_proficiency(name = "Has wisdom saving throw proficiency") =
+  selected_archetype?.wisdom_saving_throw_proficiency ?? false
+    || wisdom_saving_throw_proficiency;
+
+calc bool has_charisma_saving_throw_proficiency(name = "Has charisma saving throw proficiency") =
+  selected_archetype?.charisma_saving_throw_proficiency ?? false
+    || charisma_saving_throw_proficiency;
+
+calc string[] selected_selectable_feature_ids(name = "Selected selectable feature ids") =
+  current_class_details?.selected_selectable_feature_ids? ?? [];
+
+calc resource<feat>[] all_features(name = "All features") =
+  flatMap(
+    flatAppend([features, (selected_archetype?.features ?? [])]),
+    mapper = ($mapValue) => flatAppend(
+      [
+        [$mapValue],
+        (if $mapValue.has_selectable_features
+          then filter(
+              $mapValue.selectable_features,
+              filter = ($filterValue) => contains(haystack = selected_selectable_feature_ids, needle = $filterValue.id),
+            )
+          else []),
+      ],
+    ),
+  );
+
+calc resource<feat>[] current_level_features(name = "Current level features") =
+  filter(
+    all_features,
+    filter = ($filterValue) => ($filterValue.min_level <= level),
+  );
+
+calc resource<feat>[] features_with_updates_in_current_level(name = "Features with updates in current level") =
+  filter(
+    all_features,
+    filter = ($feat) => (!isEmpty(
+      filter(
+        $feat.descriptions,
+        filter = ($filterValue) => ($filterValue.level == level),
+      ),
+    )),
+  );
+
+calc string display_hp(name = "Display hp") =
+  if is_archetype && same_hp_as_parent
+    then $parent.display_hp
+    else joinToString(
+        flatAppend([[concat(["1", actual_hit_die])], actual_hp_modifiers]),
+        separator = " + ",
+      );
+
+calc string display_armor_class(name = "Display armor class") =
+  if is_archetype && same_ac_as_parent
+    then $parent.display_armor_class
+    else joinToString(flatAppend([[base_ac], ac_modifiers]), separator = " + ");
+
+calc string display_saving_throws(name = "Display saving throws") =
+  joinToString(
+    flatAppend(
+      [
+        (if strength_saving_throw_proficiency then ["strength"] else []),
+        (if dexterity_saving_throw_proficiency then ["dexterity"] else []),
+        (if constitution_saving_throw_proficiency then ["constitution"] else []),
+        (if intelligence_saving_throw_proficiency then ["intelligence"] else []),
+        (if wisdom_saving_throw_proficiency then ["wisdom"] else []),
+        (if charisma_saving_throw_proficiency then ["charisma"] else []),
+      ],
+    ),
+    separator = ", ",
+  );
+
+calc string display_spellcasting_ability(name = "Display spellcasting ability") =
+  if is_archetype && same_spellcasting_ability_as_parent
+    then $parent.display_spellcasting_ability
+    else spellcasting_ability;
+
+calc string display_caster_level(name = "Display caster level") =
+  if is_archetype && same_effective_caster_level_as_parent
+    then $parent.display_caster_level
+    else enumeratedName(
+        enumerated_type = "effective_caster_level_types",
+        id = effective_caster_level,
+      );
+
+calc resource lowest_level_weapon(name = "Lowest level weapon") =
+  findFirst(
+    sortBy(weapon, order = "asc", sort_by_selector = $sortByValue.level),
+    filter = true,
+  );
+
+calc string display_weapon(name = "Display weapon") =
+  if isEmpty(weapon)
+    then "None"
+    else concat(
+        [
+          lowest_level_weapon.weapon.name,
+          ", ",
+          lowest_level_weapon.weapon.damage_dice_display_description,
+          " + ",
+          lowest_level_weapon.weapon.attack_ability,
+        ],
+      );
+
+calc bool feat_show_level(name = "Show feat level") =
+  !defined(stat = "$character") || defined(stat = "$character.$is_new");

@@ -1,0 +1,9 @@
+base resource<operand>[] operands(name = "Operands") = [];
+
+calc integer calculated_value(name = "Calculated value") =
+  if defined(stat = "$character")
+    then add(map(operands, mapper = ($mapValue) => $mapValue.calculated_value))
+    else 0;
+
+calc string description(name = "Display description") =
+  concat(map(operands, mapper = ($mapValue) => $mapValue.description));

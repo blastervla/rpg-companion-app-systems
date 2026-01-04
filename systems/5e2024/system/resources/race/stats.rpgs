@@ -1,0 +1,346 @@
+base string name(name = "Name") = "";
+
+base string source(name = "Source") = "";
+
+base integer base_ac(name = "Base AC") = 10;
+
+base string[] ac_modifiers(name = "AC Modifiers") = ["dexterity"];
+
+calc integer actual_base_ac(name = "Actual base AC") =
+  if notNull(selected_subrace) && !(selected_subrace?.same_ac_as_parent ?? true)
+    then selected_subrace.base_ac
+    else base_ac;
+
+calc string[] actual_ac_modifiers(name = "Actual AC modifiers") =
+  if notNull(selected_subrace) && !(selected_subrace?.same_ac_as_parent ?? true)
+    then selected_subrace.ac_modifiers
+    else ac_modifiers;
+
+base bool same_ac_as_parent(name = "Same AC as parent") = true;
+
+base integer speed(name = "Speed") = 30;
+
+base integer burrow_speed(name = "Burrow") = 0;
+
+base integer climb_speed(name = "Climb") = 0;
+
+base integer fly_speed(name = "Fly") = 0;
+
+base integer swim_speed(name = "Swim") = 0;
+
+base resource<feat>[] traits(name = "Trait") = [];
+
+base resource<levelled_weapon>[] unarmed_strike(name = "unarmed_strike") = [];
+
+base bool same_spellcasting_ability_as_parent(name = "Same spellcasting ability as parent") =
+  true;
+
+base string spellcasting_ability(name = "Spellcasting ability") =
+  "intelligence";
+
+base resource<spell>[] spells(name = "Spells") = [];
+
+base resource<levelled_choice_text>[] language_proficiencies(name = "Language proficiencies") =
+  [];
+
+base resource<levelled_skill_proficiency>[] skill_proficiencies(name = "Skill proficiencies") =
+  [];
+
+base resource<levelled_armor_proficiency>[] armor_proficiencies(name = "Armor proficiencies") =
+  [];
+
+base resource<levelled_weapon_proficiency>[] weapon_proficiencies(name = "Weapon proficiencies") =
+  [];
+
+base resource<levelled_choice_text>[] tool_proficiencies(name = "Tool proficiencies") =
+  [];
+
+base resource<visual_trait>[] visual_traits(name = "Visual traits") = [];
+
+calc resource<visual_trait>[] actual_visual_traits(name = "Actual visual_traits") =
+  selected_subrace?.visual_traits ?? visual_traits;
+
+base bool hair_color_selectable(name = "Hair color selectable") = false;
+
+calc bool actual_hair_color_selectable(name = "Actual hair_color_selectable") =
+  selected_subrace?.hair_color_selectable ?? hair_color_selectable;
+
+base bool eye_color_selectable(name = "Eye color selectable") = false;
+
+calc bool actual_eye_color_selectable(name = "Actual eye_color_selectable") =
+  selected_subrace?.eye_color_selectable ?? eye_color_selectable;
+
+base bool outfit_selectable(name = "Outfit selectable") = false;
+
+calc bool actual_outfit_selectable(name = "Actual outfit_selectable") =
+  selected_subrace?.outfit_selectable ?? outfit_selectable;
+
+base bool weapon_selectable(name = "Weapon selectable") = false;
+
+calc bool actual_appearance_weapon_selectable(name = "Actual weapon_selectable") =
+  selected_subrace?.weapon_selectable ?? weapon_selectable;
+
+base bool sex_selectable(name = "Sex selectable") = false;
+
+calc bool actual_sex_selectable(name = "Actual sex_selectable") =
+  selected_subrace?.sex_selectable ?? sex_selectable;
+
+base resource<race>[] subraces(name = "Ancestries") = [];
+
+calc bool is_subrace(name = "Is subrace") = defined(stat = "$parent.subraces");
+
+calc string subrace_names(name = "Subrace names") =
+  joinToString(
+    map(subraces, mapper = ($mapValue) => $mapValue.name),
+    separator = ", ",
+  );
+
+calc resource<race> selected_subrace(name = "Selected subrace") =
+  if defined(stat = "$character")
+    then findFirst(
+        (if is_subrace then $parent.subraces else subraces),
+        filter = ($findFirstValue.id == $character.subrace_id),
+      )
+    else null;
+
+calc bool should_load_effects(name = "Should load effects") =
+  !is_subrace || $character?.subrace_id == id;
+
+calc integer current_speed(name = "Current speed") =
+  if selected_subrace != null then selected_subrace.speed else speed;
+
+calc integer current_burrow_speed(name = "Current burrow speed") =
+  if selected_subrace != null then selected_subrace.burrow_speed else burrow_speed;
+
+calc integer current_climb_speed(name = "Current climb speed") =
+  if selected_subrace != null then selected_subrace.climb_speed else climb_speed;
+
+calc integer current_fly_speed(name = "Current fly speed") =
+  if selected_subrace != null then selected_subrace.fly_speed else fly_speed;
+
+calc integer current_swim_speed(name = "Current swim speed") =
+  if selected_subrace != null then selected_subrace.swim_speed else swim_speed;
+
+calc resource<levelled_weapon> current_level_weapon(name = "Current level weapon") =
+  findFirst(
+    sortBy(unarmed_strike, order = "desc", sort_by_selector = $sortByValue.level),
+    filter = ($findFirstValue.level <= $character.level),
+  );
+
+calc bool selected_subrace_has_weapon(name = "Selected subrace has weapon") =
+  if selected_subrace != null
+    then selected_subrace.current_level_weapon != null
+    else false;
+
+calc resource<weapon>[] weapons(name = "Weapons") =
+  when {
+    selected_subrace_has_weapon -> [selected_subrace.current_level_weapon.weapon],
+    current_level_weapon != null -> [current_level_weapon.weapon],
+    else -> [],
+  };
+
+calc resource<levelled_choice_text>[] language_proficiencies_for_current_level(name = "Language proficiencies for current level") =
+  flatAppend(
+    [
+      filter(
+        language_proficiencies,
+        filter = ($filterValue) => ($filterValue.level <= $character.level),
+      ),
+      (if !is_subrace
+        then selected_subrace?.language_proficiencies_for_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_skill_proficiency>[] skill_proficiencies_for_current_level(name = "Skill proficiencies for current level") =
+  flatAppend(
+    [
+      filter(
+        skill_proficiencies,
+        filter = ($filterValue) => ($filterValue.level <= $character.level),
+      ),
+      (if !is_subrace
+        then selected_subrace?.skill_proficiencies_for_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_armor_proficiency>[] armor_proficiencies_for_current_level(name = "Armor proficiencies for current level") =
+  flatAppend(
+    [
+      filter(
+        armor_proficiencies,
+        filter = ($filterValue) => ($filterValue.level <= $character.level),
+      ),
+      (if !is_subrace
+        then selected_subrace?.armor_proficiencies_for_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_weapon_proficiency>[] weapon_proficiencies_for_current_level(name = "Weapon proficiencies for current level") =
+  flatAppend(
+    [
+      filter(
+        weapon_proficiencies,
+        filter = ($filterValue) => ($filterValue.level <= $character.level),
+      ),
+      (if !is_subrace
+        then selected_subrace?.weapon_proficiencies_for_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_choice_text>[] tool_proficiencies_for_current_level(name = "Tool proficiencies for current level") =
+  flatAppend(
+    [
+      filter(
+        tool_proficiencies,
+        filter = ($filterValue) => ($filterValue.level <= $character.level),
+      ),
+      (if !is_subrace
+        then selected_subrace?.tool_proficiencies_for_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_choice_text>[] language_proficiencies_choices_in_current_level(name = "Language proficiencies choices in current level") =
+  flatAppend(
+    [
+      filter(
+        language_proficiencies,
+        filter = ($filterValue) => ($filterValue.level == $character.level),
+      ),
+      (if !is_subrace
+        then selected_subrace?.language_proficiencies_choices_in_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_skill_proficiency>[] skill_proficiencies_choices_in_current_level(name = "Skill proficiencies choices in current level") =
+  flatAppend(
+    [
+      filter(
+        skill_proficiencies,
+        filter = ($filterValue) => ($filterValue.level == $character.level),
+      ),
+      (if !is_subrace
+        then selected_subrace?.skill_proficiencies_choices_in_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_armor_proficiency>[] armor_proficiencies_choices_in_current_level(name = "Armor proficiencies choices in current level") =
+  flatAppend(
+    [
+      filter(
+        armor_proficiencies,
+        filter = ($filterValue) => ($filterValue.level == $character.level),
+      ),
+      (if !is_subrace
+        then selected_subrace?.armor_proficiencies_choices_in_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_weapon_proficiency>[] weapon_proficiencies_choices_in_current_level(name = "Weapon proficiencies choices in current level") =
+  flatAppend(
+    [
+      filter(
+        weapon_proficiencies,
+        filter = ($filterValue) => ($filterValue.level == $character.level),
+      ),
+      (if !is_subrace
+        then selected_subrace?.weapon_proficiencies_choices_in_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<levelled_choice_text>[] tool_proficiencies_choices_in_current_level(name = "Tool proficiencies choices in current level") =
+  flatAppend(
+    [
+      filter(
+        tool_proficiencies,
+        filter = ($filterValue) => ($filterValue.level == $character.level),
+      ),
+      (if !is_subrace
+        then selected_subrace?.tool_proficiencies_choices_in_current_level ?? []
+        else []),
+    ],
+  );
+
+calc resource<feat>[] all_traits(name = "All traits") =
+  flatMap(
+    flatAppend([traits, (selected_subrace?.traits ?? [])]),
+    mapper = ($mapValue) => flatAppend(
+      [
+        [$mapValue],
+        (if $mapValue.has_selectable_features
+          then filter(
+              $mapValue.selectable_features,
+              filter = ($filterValue) => contains(haystack = selected_selectable_feature_ids, needle = $filterValue.id),
+            )
+          else []),
+      ],
+    ),
+  );
+
+calc string[] selected_selectable_feature_ids(name = "Selected selectable feature ids") =
+  $character?.selected_selectable_feature_ids ?? [];
+
+calc resource<feat>[] current_level_traits(name = "Current level traits") =
+  if defined(stat = "$character")
+    then filter(
+        all_traits,
+        filter = ($filterValue) => ($filterValue.min_level <= $character.level),
+      )
+    else [];
+
+calc resource<feat>[] traits_with_updates_in_current_level(name = "Traits with updates in current level") =
+  filter(
+    all_traits,
+    filter = ($feat) => (!isEmpty(
+      filter(
+        $feat.descriptions,
+        filter = ($filterValue) => ($filterValue.level == $character.level),
+      ),
+    )),
+  );
+
+calc string display_armor_class(name = "Display armor class") =
+  if is_subrace && same_ac_as_parent
+    then $parent.display_armor_class
+    else joinToString(flatAppend([[base_ac], ac_modifiers]), separator = " + ");
+
+calc string display_speeds(name = "Display speeds") =
+  joinToString(
+    flatAppend(
+      [
+        [concat(["normal ", speed])],
+        (if 0 != burrow_speed then [concat(["burrow ", burrow_speed])] else []),
+        (if 0 != climb_speed then [concat(["climb ", climb_speed])] else []),
+        (if 0 != fly_speed then [concat(["fly ", fly_speed])] else []),
+        (if 0 != swim_speed then [concat(["swim ", swim_speed])] else []),
+      ],
+    ),
+    separator = ", ",
+  );
+
+calc resource lowest_level_unarmed_strike(name = "Lowest level unarmed strike") =
+  findFirst(
+    sortBy(unarmed_strike, order = "asc", sort_by_selector = $sortByValue.level),
+    filter = true,
+  );
+
+calc string display_unarmed_strike(name = "Display unarmed strike") =
+  if isEmpty(unarmed_strike)
+    then "None"
+    else concat(
+        [
+          lowest_level_unarmed_strike.weapon.name,
+          ", ",
+          lowest_level_unarmed_strike.weapon.damage_dice_display_description,
+          " + ",
+          lowest_level_unarmed_strike.weapon.attack_ability,
+        ],
+      );

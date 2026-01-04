@@ -1,0 +1,222 @@
+base string name(name = "Name") = "";
+
+base string source(name = "Source") = "";
+
+base string type(name = "Type") = "general";
+
+base string prerequisites(name = "Prerequisites") = "";
+
+base resource<levelled_description>[] descriptions(name = "Descriptions") = [];
+
+base resource<levelled_effect>[] effects(name = "Effects") = [];
+
+base resource<levelled_amount>[] selectable_feature_amount_per_level(name = "Selectable feature amount per level") =
+  [];
+
+base bool has_selectable_features(name = "Has selectable features") = false;
+
+base resource<feat>[] selectable_features(name = "Selectable features") = [];
+
+calc string[] selectable_feature_ids(name = "Selectable feature ids") =
+  map(selectable_features, mapper = ($mapValue) => $mapValue.id);
+
+calc string[] selected_selectable_feature_ids(name = "Selected selectable feature ids") =
+  $parent?.selected_selectable_feature_ids ?? [];
+
+calc bool selected(name = "Selected") =
+  contains(haystack = selected_selectable_feature_ids, needle = id);
+
+calc bool can_have_selectable_features(name = "Can have selectable features?") =
+  !is_selectable_feature;
+
+calc integer level(name = "Level to use for determining what effects to trigger") =
+  when {
+    defined(stat = "$parent.level") -> $parent.level,
+    defined(stat = "$character.level") -> $character.level,
+    else -> 1,
+  };
+
+calc string levelled_description(name = "Levelled description") =
+  if isEmpty(descriptions)
+    then (if isEmpty(name) then "Empty" else name)
+    else (if isEmpty(name)
+        then lowest_level_description?.display_description ?? ""
+        else concat(
+            [
+              "Lvl. ",
+              (lowest_level_description?.level ?? "1"),
+              ": ",
+              name,
+            ],
+          ));
+
+calc integer min_level(name = "Minimum level for this feat") =
+  lowest_level_description?.level ?? 1;
+
+calc resource<levelled_description> lowest_level_description(name = "Lowest level description") =
+  if isEmpty(descriptions)
+    then null
+    else findFirst(sorted_descriptions, filter = true);
+
+calc string first_description_text(name = "First description text") =
+  when {
+    isEmpty(descriptions) -> "No description",
+    defined(stat = "$character") -> current_level_levelled_description?.description ?? findFirst(
+      map(
+        sortBy(descriptions, sort_by_selector = $sortByValue.level),
+        mapper = ($mapValue) => $mapValue.description,
+      ),
+      filter = true,
+    ),
+    else -> findFirst(
+      map(
+        sortBy(descriptions, sort_by_selector = $sortByValue.level),
+        mapper = ($mapValue) => $mapValue.description,
+      ),
+      filter = true,
+    ),
+  };
+
+calc string list_view_description(name = "List view description") =
+  if isEmpty(prerequisites) then first_description_text else prerequisites;
+
+calc resource previous_level_levelled_description(name = "Previous level levelled_description") =
+  findFirst(
+    sortBy(descriptions, order = "desc", sort_by_selector = $sortByValue.level),
+    filter = ($findFirstValue.level <= level - 1),
+  );
+
+calc resource current_level_levelled_description(name = "Current level levelled_description") =
+  findFirst(
+    sortBy(descriptions, order = "desc", sort_by_selector = $sortByValue.level),
+    filter = ($findFirstValue.level <= level),
+  );
+
+calc string current_level_description(name = "Current level description") =
+  if defined(stat = "$character")
+    then (if isEmpty(descriptions)
+        then ""
+        else current_level_levelled_description?.description ?? first_description_text)
+    else first_description_text;
+
+calc integer min_required_level(name = "Minimum required level") =
+  if isEmpty(descriptions)
+    then 999999
+    else findFirst(
+        map(
+          sortBy(descriptions, order = "asc", sort_by_selector = $sortByValue.level),
+          mapper = ($mapValue) => $mapValue.level,
+        ),
+        filter = true,
+      );
+
+calc bool can_be_used(name = "Can be_used") = level >= min_required_level;
+
+calc resource<effect>[] available_effects_for_current_level(name = "Available effects for current level") =
+  map(
+    filter(
+      sortBy(effects, order = "asc", sort_by_selector = $sortByValue.level),
+      filter = ($filterValue) => ($filterValue.level <= level),
+    ),
+    mapper = ($mapValue) => $mapValue.effect,
+  );
+
+calc resource<effect>[] active_or_charge_effects_for_current_level(name = "Active or charge-only effects for current level") =
+  filter(
+    available_effects_for_current_level,
+    filter = ($filterValue) => ($filterValue?.trigger_type? == "active" || $filterValue?.has_charges? ?? false),
+  );
+
+calc resource<levelled_description>[] sorted_descriptions(name = "Sorted descriptions") =
+  sortBy(descriptions, order = "asc", sort_by_selector = $sortByValue.level);
+
+calc resource<levelled_effect>[] sorted_effects(name = "Sorted effects") =
+  sortBy(effects, order = "asc", sort_by_selector = $sortByValue.level);
+
+calc resource<levelled_amount>[] sorted_selectable_feature_amount_per_level(name = "Sorted selectable feature amount per level") =
+  sortBy(
+    selectable_feature_amount_per_level,
+    order = "asc",
+    sort_by_selector = $sortByValue.level,
+  );
+
+calc resource<levelled_amount> current_levelled_amount_of_allowed_selectable_features(name = "Current levelled amount of allowed selectable features") =
+  findFirst(
+    sortBy(
+      selectable_feature_amount_per_level,
+      order = "desc",
+      sort_by_selector = $sortByValue.level,
+    ),
+    filter = ($findFirstValue.level <= level),
+  );
+
+calc integer current_allowed_amount_of_selectable_features(name = "Current allowed amount of selectable features") =
+  current_levelled_amount_of_allowed_selectable_features?.amount ?? 0;
+
+calc bool can_choose_new_selectable_features_in_current_level(name = "Can choose new selectable features in the current level") =
+  current_levelled_amount_of_allowed_selectable_features?.level == level;
+
+calc resource<feat>[] sorted_selectable_features(name = "Sorted selectable features") =
+  sortBy(
+    selectable_features,
+    order = "asc",
+    sort_by_selector = $sortByValue.min_level,
+  );
+
+calc resource<feat>[] available_selectable_features_for_current_level(name = "Available selectable features for current level") =
+  filter(
+    sorted_selectable_features,
+    filter = ($filterValue) => ($filterValue.min_level <= level),
+  );
+
+calc string current_allowed_amount_of_selectable_features_label_text(name = "Current allowed amount of selectable features label text") =
+  concat(
+    [
+      "Allowed selectable feature amount (for your level): ",
+      current_allowed_amount_of_selectable_features,
+    ],
+  );
+
+calc bool is_selectable_feature(name = "Is selectable feature") =
+  defined(stat = "$parent.selectable_features");
+
+calc string selected_selectable_feature_ids_stat_path(name = "Chosen selectable feature ids stat path") =
+  if notNull($parent?.current_class_details?.selected_selectable_feature_ids?)
+    then "$parent.current_class_details.selected_selectable_feature_ids"
+    else "$character.selected_selectable_feature_ids";
+
+calc string[] current_level_available_selectable_feature_ids(name = "Current level available selectable feature ids") =
+  map(
+    available_selectable_features_for_current_level,
+    mapper = ($mapValue) => $mapValue.id,
+  );
+
+calc string[] chosen_selectable_features(name = "Chosen selectable features") =
+  filter(
+    selected_selectable_feature_ids,
+    filter = ($filterValue) => contains(
+      haystack = current_level_available_selectable_feature_ids,
+      needle = $filterValue,
+    ),
+  );
+
+calc bool is_selected_selectable_feature(name = "Is selected selectable feature") =
+  contains(haystack = selected_selectable_feature_ids, needle = id);
+
+calc bool should_load_effects(name = "Should load effects") =
+  $parent?.should_load_effects? ?? true
+    && (!is_selectable_feature || is_selected_selectable_feature);
+
+calc string type_name(name = "Type name") =
+  enumeratedName(enumerated_type = "feat_types", id = type);
+
+calc string list_name(name = "List view name") =
+  if show_level_in_name then level_plus_name else name;
+
+calc string level_plus_name(name = "First level plus name") =
+  concat(["Lvl. ", min_level, ": ", name]);
+
+calc bool show_level_in_name(name = "Show level in feat name") =
+  $parent?.feat_show_level? ?? false;
+
+base bool is_feat(name = "Is feat") = true;

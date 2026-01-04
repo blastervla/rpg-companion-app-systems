@@ -1,0 +1,231 @@
+base string name(name = "Name") = "";
+
+base resource<levelled_description>[] description(name = "Description") = [];
+
+base string trigger_type(name = "Trigger type") = "passive";
+
+base resource<trigger_condition_or> trigger_condition(name = "Trigger condition") =
+  null;
+
+base bool has_charges(name = "Has charges") = false;
+
+base string charge_type(name = "Charge type") = "constant";
+
+base string recharge_type(name = "Recharge type") = "all";
+
+base string recharge_event(name = "Recharge event") = "long_rest";
+
+base integer max_charges_constant(name = "Max charges") = 0;
+
+base resource<levelled_value_calculator>[] max_charges_levelled_formulas(name = "Max charges levelled formulas") =
+  [];
+
+calc integer current_charges(name = "Charges") = max_charges_constant;
+
+base resource<dice_roll> recharges(name = "Max charges") = null;
+
+base string type(name = "Type") = "none";
+
+base bool clear_on_remove(name = "Clear on remove") = true;
+
+base string events(name = "Trigger events") = "";
+
+base string revert_events(name = "Revert events") = "";
+
+base string stat(name = "Stat") = "$character.strength_score";
+
+base string advantage_stat(name = "(dis)advantage stat") =
+  "$character.strength_modifier";
+
+base string aggregation_type(name = "Aggregation type") = "max";
+
+base resource<dice_roll> dice_roll(name = "Dice") = null;
+
+base integer constant(name = "Constant") = 0;
+
+base resource<spell> spell(name = "Spell") = null;
+
+calc string edit_display_name(name = "Edit display name") =
+  if isEmpty(name) then display_subtitle else name;
+
+calc string effect_description(name = "Effect description") =
+  when {
+    type == "none" -> if defined(stat = "$character")
+      then ""
+      else enumeratedName(enumerated_type = "effect_types", id = "none"),
+    type == "add_to_stat" -> concat(
+      [
+        "Add ",
+        (if is_passive then constant else dice_roll.formula),
+        " to ",
+        enumeratedName(enumerated_type = "effect_character_stats", id = stat),
+      ],
+    ),
+    type == "set_stat" -> concat(
+      [
+        "Set ",
+        enumeratedName(enumerated_type = "effect_character_stats", id = stat),
+        " to ",
+        (if is_passive then constant else dice_roll.formula),
+      ],
+    ),
+    type == "disadvantage" -> concat(
+      [
+        "Set disadv. on ",
+        enumeratedName(
+          enumerated_type = "effect_advantage_character_stats",
+          id = advantage_stat,
+        ),
+      ],
+    ),
+    type == "advantage" -> concat(
+      [
+        "Set adv. on ",
+        enumeratedName(
+          enumerated_type = "effect_advantage_character_stats",
+          id = advantage_stat,
+        ),
+      ],
+    ),
+    type == "add_spell" -> concat(
+      [
+        "Add ",
+        (if defined(stat = "spell.name") then spell.name else "no spell"),
+        " to known spells",
+      ],
+    ),
+    type == "use_spell" -> concat(
+      [
+        "Use ",
+        (if defined(stat = "spell.name") then spell.name else "no spell"),
+      ],
+    ),
+  };
+
+calc string recharges_amount_text(name = "Recharges amount text") =
+  concat(
+    [
+      "Recharges ",
+      (if recharge_type == "all" then "all" else recharges?.formula? ?? "0"),
+    ],
+  );
+
+calc string display_subtitle(name = "Display subtitle") =
+  joinToString(
+    flatAppend(
+      [
+        (if isEmpty(effect_description) then [] else [effect_description]),
+        (if "active" == trigger_type
+          && ("none" != type || has_charges && "active" != trigger_type)
+          then [
+              enumeratedName(enumerated_type = "effect_trigger_types", id = trigger_type),
+            ]
+          else []),
+        (if has_charges
+          then [
+              (if recharge_event != "manual"
+                then concat(
+                    [
+                      recharges_amount_text,
+                      " at ",
+                      enumeratedName(enumerated_type = "lifecycle_events", id = recharge_event),
+                    ],
+                  )
+                else concat([recharges_amount_text, " manually"])),
+            ]
+          else []),
+      ],
+    ),
+    separator = ", ",
+  );
+
+calc bool is_passive(name = "Is passive trigger_type") =
+  trigger_type == "passive" && type != "use_spell";
+
+calc bool is_active(name = "Is active trigger_type") = trigger_type == "active";
+
+calc string[] recharge_event_names(name = "Recharge events") =
+  if recharge_event == "manual"
+    then [eventName(event_name = "recharge")]
+    else [recharge_event];
+
+calc string[] trigger_events(name = "Trigger events") =
+  when {
+    is_passive && type != "none" -> ["rpg_onUpdate"],
+    trigger_type == "event" -> [events],
+    else -> [eventName(event_name = "use")],
+  };
+
+calc string[] trigger_revert_events(name = "Revert events") =
+  when {
+    is_passive -> [],
+    trigger_type == "event" -> [revert_events],
+    else -> [eventName(event_name = "revert")],
+  };
+
+calc bool can_execute(name = "Trigger condition allows execution") =
+  $parent?.should_load_effects? ?? true && (if defined(stat = "$parent.is_attuned")
+    then $parent.is_attuned || !$parent.requires_attunement
+    else true) && (if defined(stat = "$parent.is_equipped")
+    then $parent.is_equipped || !$parent.requires_equipping
+    else true) && (if defined(stat = "$parent.is_levelled")
+    then (if $parent.is_levelled then $parent.can_execute else true)
+    else true) && (if trigger_condition == null then true else trigger_condition.evaluated_value);
+
+calc bool is_add_to_stat(name = "Is add to stat") =
+  "add_to_stat" == $view?.edit_effect_type_select?;
+
+calc bool is_set_stat(name = "Is set stat") =
+  "set_stat" == $view?.edit_effect_type_select?;
+
+calc bool is_set_or_add_to_stat(name = "Is setStat or addToStat type") =
+  is_add_to_stat || is_set_stat;
+
+calc bool is_advantage(name = "Is advantage") =
+  "advantage" == $view?.edit_effect_type_select?;
+
+calc bool is_disadvantage(name = "Is disadvantage") =
+  "disadvantage" == $view?.edit_effect_type_select?;
+
+calc bool is_advantage_or_disadvantage_type(name = "Is setStat or addToStat type") =
+  is_advantage || is_disadvantage;
+
+calc bool is_spell_type(name = "Is addSpell or useSpell type") =
+  "add_spell" == $view?.edit_effect_type_select?
+    || "use_spell" == $view?.edit_effect_type_select?;
+
+calc string max_charges_display_text(name = "Max charges display text") =
+  if charge_type == "constant"
+    then concat([max_charges_constant, " charges"])
+    else "Special amnt of charges";
+
+calc integer max_charges(name = "Max charges") =
+  if charge_type == "constant"
+    then max_charges_constant
+    else current_level_max_charges_formula?.calculated_value ?? 0;
+
+calc resource current_level_max_charges_formula(name = "Max charges formula for the current level") =
+  findFirst(
+    sortBy(
+      max_charges_levelled_formulas,
+      order = "desc",
+      sort_by_selector = $sortByValue.level,
+    ),
+    filter = ($findFirstValue.level <= current_level),
+  );
+
+calc integer current_level(name = "Current level") =
+  when {
+    defined(stat = "$parent.current_level") -> $parent.current_level,
+    defined(stat = "$character.level") -> $character.level,
+    else -> 1,
+  };
+
+calc resource current_level_levelled_description(name = "Current level levelled_description") =
+  findFirst(
+    sortBy(description, order = "desc", sort_by_selector = $sortByValue.level),
+    filter = ($findFirstValue.level <= current_level),
+  );
+
+calc string current_level_description(name = "Current level description") =
+  current_level_levelled_description?.description ?? "";

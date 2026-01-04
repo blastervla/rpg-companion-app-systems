@@ -1,0 +1,161 @@
+base string name(name = "Name") = "";
+
+base string source(name = "Source") = "";
+
+base integer gold_pieces(name = "Gold pieces") = 10;
+
+base resource<feat>[] features(name = "Features") = [];
+
+base resource<selectable_items>[] selectable_equipments(name = "Selectable equipment") =
+  [];
+
+base resource<selectable_armors>[] selectable_armors(name = "Selectable armor") =
+  [];
+
+base resource<selectable_weapons>[] selectable_weapons(name = "Selectable weapons") =
+  [];
+
+base resource<levelled_choice_text>[] language_proficiencies(name = "Language proficiencies") =
+  [];
+
+base resource<levelled_skill_proficiency>[] skill_proficiencies(name = "Skill proficiencies") =
+  [];
+
+base resource<levelled_armor_proficiency>[] armor_proficiencies(name = "Armor proficiencies") =
+  [];
+
+base resource<levelled_weapon_proficiency>[] weapon_proficiencies(name = "Weapon proficiencies") =
+  [];
+
+base resource<levelled_choice_text>[] tool_proficiencies(name = "Tool proficiencies") =
+  [];
+
+calc resource<levelled_choice_text>[] language_proficiencies_for_current_level(name = "Language proficiencies for current level") =
+  filter(
+    language_proficiencies,
+    filter = ($filterValue) => ($filterValue.level <= ($character.level ?? 1)),
+  );
+
+calc resource<levelled_skill_proficiency>[] skill_proficiencies_for_current_level(name = "Skill proficiencies for current level") =
+  filter(
+    skill_proficiencies,
+    filter = ($filterValue) => ($filterValue.level <= ($character.level ?? 1)),
+  );
+
+calc resource<levelled_armor_proficiency>[] armor_proficiencies_for_current_level(name = "Armor proficiencies for current level") =
+  filter(
+    armor_proficiencies,
+    filter = ($filterValue) => ($filterValue.level <= ($character.level ?? 1)),
+  );
+
+calc resource<levelled_weapon_proficiency>[] weapon_proficiencies_for_current_level(name = "Weapon proficiencies for current level") =
+  filter(
+    weapon_proficiencies,
+    filter = ($filterValue) => ($filterValue.level <= ($character.level ?? 1)),
+  );
+
+calc resource<levelled_choice_text>[] tool_proficiencies_for_current_level(name = "Tool proficiencies for current level") =
+  filter(
+    tool_proficiencies,
+    filter = ($filterValue) => ($filterValue.level <= ($character.level ?? 1)),
+  );
+
+calc resource<levelled_choice_text>[] language_proficiencies_choices_in_current_level(name = "Language proficiencies choices in current level") =
+  filter(
+    language_proficiencies,
+    filter = ($filterValue) => ($filterValue.level == ($character.level ?? 1)),
+  );
+
+calc resource<levelled_skill_proficiency>[] skill_proficiencies_choices_in_current_level(name = "Skill proficiencies choices in current level") =
+  filter(
+    skill_proficiencies,
+    filter = ($filterValue) => ($filterValue.level == ($character.level ?? 1)),
+  );
+
+calc resource<levelled_armor_proficiency>[] armor_proficiencies_choices_in_current_level(name = "Armor proficiencies choices in current level") =
+  filter(
+    armor_proficiencies,
+    filter = ($filterValue) => ($filterValue.level == ($character.level ?? 1)),
+  );
+
+calc resource<levelled_weapon_proficiency>[] weapon_proficiencies_choices_in_current_level(name = "Weapon proficiencies choices in current level") =
+  filter(
+    weapon_proficiencies,
+    filter = ($filterValue) => ($filterValue.level == ($character.level ?? 1)),
+  );
+
+calc resource<levelled_choice_text>[] tool_proficiencies_choices_in_current_level(name = "Tool proficiencies choices in current level") =
+  filter(
+    tool_proficiencies,
+    filter = ($filterValue) => ($filterValue.level == ($character.level ?? 1)),
+  );
+
+calc string formatted_description(name = "Formatted description") =
+  concat(
+    [
+      gold_pieces,
+      " GP",
+      (if !isEmpty(language_proficiencies)
+        then concat(
+            [
+              ", ",
+              joinToString(
+                map(language_proficiencies, mapper = ($mapValue) => $mapValue.options),
+                separator = ", ",
+              ),
+            ],
+          )
+        else ""),
+    ],
+  );
+
+calc string[] selected_selectable_feature_ids(name = "Selected selectable feature ids") =
+  $character?.selected_selectable_feature_ids ?? [];
+
+calc resource<feat>[] current_level_features(name = "Current level features") =
+  flatMap(
+    (if defined(stat = "$character")
+      then filter(
+          features,
+          filter = ($filterValue) => ($filterValue.min_level <= $character.level),
+        )
+      else []),
+    mapper = ($mapValue) => flatAppend(
+      [
+        [$mapValue],
+        (if $mapValue.has_selectable_features
+          then filter(
+              $mapValue.selectable_features,
+              filter = ($filterValue) => contains(haystack = selected_selectable_feature_ids, needle = $filterValue.id),
+            )
+          else []),
+      ],
+    ),
+  );
+
+calc resource<feat>[] features_with_updates_in_current_level(name = "Features with updates in current level") =
+  filter(
+    features,
+    filter = ($feat) => (!isEmpty(
+      filter(
+        $feat.descriptions,
+        filter = ($filterValue) => ($filterValue.level == $character.level),
+      ),
+    )),
+  );
+
+calc resource<feat>[] all_features(name = "All features") =
+  flatMap(
+    features,
+    mapper = ($mapValue) => flatAppend(
+      [
+        [$mapValue],
+        (if $mapValue.has_selectable_features
+          then filter(
+              $mapValue.selectable_features,
+              filter = ($filterValue) => contains(haystack = selected_selectable_feature_ids, needle = $filterValue.id),
+            )
+          else []),
+      ],
+    ),
+  );

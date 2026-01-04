@@ -1,0 +1,94 @@
+base string name(name = "Name") = "";
+
+base string source(name = "Source") = "";
+
+base bool is_core(name = "Core") = false;
+
+base string description(name = "Description") = "";
+
+base resource cost(name = "Cost") = null;
+
+base resource weight(name = "Weight") = null;
+
+base string type(name = "Type") = "light";
+
+base string rarity(name = "Rarity") = "common";
+
+base bool impose_stealth_disadvantage(name = "Stealth disadvantage") = false;
+
+base integer base_ac(name = "Base AC") = 0;
+
+base string modifier(name = "Modifier") = "none";
+
+base bool has_max_bonus(name = "Has max bonus") = false;
+
+base integer max_bonus(name = "Max bonus") = 0;
+
+base integer required_strength(name = "Required strength") = 0;
+
+base bool requires_attunement(name = "Requires attunement") = false;
+
+calc bool should_load_effects(name = "Should load effects") =
+  $parent?.should_load_effects? ?? true;
+
+base resource<effect>[] effects(name = "Effects") = [];
+
+base bool override_is_proficient(name = "Override is proficient") = false;
+
+base bool is_attuned(name = "Is attuned") = false;
+
+calc string equip_stat_name(name = "Equip stat name") =
+  if type == "shield"
+    then "$character.equipped_shield_id"
+    else "$character.equipped_armor_id";
+
+base bool requires_equipping(name = "Requires equipping to activate effects") =
+  true;
+
+calc bool is_equipped(name = "Is equipped") =
+  if defined(stat = "$character")
+    then metaStat(meta_stat = equip_stat_name) == id
+    else false;
+
+calc bool is_proficient(name = "Is proficient") =
+  override_is_proficient || (if defined(stat = "$character")
+    then contains(haystack = $character.armor_proficiencies, needle = type)
+    else false);
+
+calc string properties(name = "Properties") =
+  joinToString(
+    flatAppend(
+      [
+        (if rarity != "none"
+          then [
+              enumeratedName(enumerated_type = "item_rarity", id = rarity),
+            ]
+          else []),
+        (if impose_stealth_disadvantage then ["Dis. on stealth"] else []),
+        (if requires_attunement then ["Req. attunement"] else []),
+        (if (cost?.value ?? 0) != 0 then [cost.description] else []),
+        (if (weight?.value ?? 0) != 0 then [weight.description] else []),
+      ],
+    ),
+    separator = ", ",
+  );
+
+calc string armor_class(name = "Armor class") =
+  concat(
+    [
+      (if type == "shield" then "+" else ""),
+      base_ac,
+      (if modifier != "none"
+        then concat(
+            [
+              " + ",
+              enumeratedName(enumerated_type = "ability_plus_none", id = modifier),
+              (if has_max_bonus then concat([" (max ", max_bonus, ")"]) else ""),
+            ],
+          )
+        else ""),
+    ],
+  );
+
+calc string required_strength_summary(name = "Required strength summary") =
+  if required_strength > 0 then concat(["STR ", required_strength]) else "";

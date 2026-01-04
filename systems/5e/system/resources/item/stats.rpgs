@@ -1,0 +1,87 @@
+base string name(name = "Name") = "";
+
+base string source(name = "Source") = "";
+
+base string description(name = "Description") = "";
+
+base string type(name = "Type") = "adventuring_gear";
+
+base resource cost(name = "Cost") = null;
+
+base resource weight(name = "Weight") = null;
+
+base string ammunition_type(name = "Ammunition type") = "arrow";
+
+base string rarity(name = "Rarity") = "common";
+
+base bool is_magic(name = "Is magic") = false;
+
+base bool requires_attunement(name = "Requires attunement") = false;
+
+base bool is_cursed(name = "Is cursed") = false;
+
+base bool is_intelligent(name = "Is intelligent") = false;
+
+base bool is_spellcasting_focus(name = "Spellcasting Focus") = false;
+
+calc bool should_load_effects(name = "Should load effects") =
+  $parent?.should_load_effects? ?? true;
+
+base resource<effect>[] effects(name = "Effects") = [];
+
+base bool is_attuned(name = "Is attuned") = false;
+
+base bool is_equipped(name = "Is equipped") = false;
+
+base integer quantity(name = "Quantity") = 1;
+
+base integer edit_quantity(name = "Edit quantity") = 1;
+
+calc bool requires_equipping(name = "Requires equipping to activate effects") =
+  type == "ring" || type == "rod" || type == "wand";
+
+calc string properties(name = "Properties") =
+  concat(
+    [
+      (if rarity != "none"
+        then concat(
+            [
+              enumeratedName(enumerated_type = "item_rarity", id = rarity),
+              " ",
+            ],
+          )
+        else ""),
+      (if is_magic then concat(["magic "]) else ""),
+      enumeratedName(enumerated_type = "item_types", id = type),
+      (if requires_attunement then " (requires attunement)" else ""),
+      (if is_cursed then ", cursed" else ""),
+      (if is_intelligent then ", intelligent" else ""),
+      (if is_spellcasting_focus then ", spellcasting focus." else ""),
+      (if type == "ammunition" && ammunition_type != "none"
+        then concat(
+            [
+              " (",
+              enumeratedName(enumerated_type = "ammunition_types", id = ammunition_type),
+              ")",
+            ],
+          )
+        else ""),
+    ],
+  );
+
+calc string price_and_weight(name = "Item price and weight") =
+  joinToString(
+    flatAppend(
+      [
+        (if (cost?.value ?? 0) != 0 then [cost.description] else []),
+        (if (weight?.value ?? 0) != 0 then [weight.description] else []),
+      ],
+    ),
+    separator = ", ",
+  );
+
+calc string first_line_extra(name = "Item price and weight or quantity (when in character)") =
+  if defined(stat = "$character") then concat([quantity]) else price_and_weight;
+
+calc string name_with_amount(name = "Name with amount") =
+  concat([name, " (", quantity, ")"]);

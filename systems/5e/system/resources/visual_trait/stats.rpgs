@@ -1,0 +1,21 @@
+base string name(name = "Name") = "";
+
+base resource<visual_trait_option>[] options(name = "Options") = [];
+
+base integer importance(name = "Importance") = 0;
+
+base string selected_option(name = "Selected option") = "";
+
+calc string name_for_select(name = "Name for select") = concat([name, ": "]);
+
+calc string display_text(name = "Display text") =
+  concat(
+    [
+      "- ",
+      name_for_select,
+      joinToString(
+        map(options, mapper = ($mapValue) => $mapValue.text),
+        separator = ", ",
+      ),
+    ],
+  );

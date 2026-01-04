@@ -1,0 +1,4 @@
+base resource<trigger_condition_term>[] terms(name = "Terms") = [];
+
+calc bool evaluated_value(name = "Evaluated") =
+  and(map(terms, mapper = ($mapValue) => $mapValue.evaluated_value));

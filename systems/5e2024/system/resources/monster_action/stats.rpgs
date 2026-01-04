@@ -1,0 +1,26 @@
+base string action_name(name = "Name") = "";
+
+base string action_description(name = "Description") = "";
+
+base string action_type(name = "Type") = "none";
+
+base integer action_attack_bonus(name = "Attack bonus") = 0;
+
+base resource<damage_variant>[] action_damage_variants(name = "Damage variants") =
+  [];
+
+calc string action_display_description(name = "Display description") =
+  concat(
+    flatAppend(
+      [
+        (if action_type == "none"
+          then []
+          else [
+              enumeratedName(enumerated_type = "monster_action_types", id = action_type),
+              " ",
+            ]),
+        (if action_type == "none" && action_attack_bonus == 0 then [] else ["Attack: "]),
+        [trim(action_description)],
+      ],
+    ),
+  );

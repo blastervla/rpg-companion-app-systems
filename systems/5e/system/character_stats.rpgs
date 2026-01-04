@@ -1,0 +1,1534 @@
+calc string created_at_display(name = "Created at display") =
+  concat(["Created ", date(created_at)]);
+
+base photo photo(name = "Photo") = null;
+
+base string name(name = "Name") = "";
+
+base string alignment(name = "Alignment") = "true_neutral";
+
+base string personality_traits(name = "Personality traits") = "";
+
+base string ideals(name = "Ideals") = "";
+
+base string bonds(name = "Bonds") = "";
+
+base string flaws(name = "Flaws") = "";
+
+base string about(name = "About") = "";
+
+base resource<note>[] notes(name = "Notes") = [];
+
+base integer base_hp(name = "Base HP") = 1;
+
+base integer current_hp(name = "Current HP") = 1;
+
+calc integer max_hp(name = "Maximum HP") = base_hp + classes_hp_mods;
+
+base string hit_point_mode(name = "Hit point mode") = "roll";
+
+calc integer classes_hp_mods(name = "Classes HP mods") =
+  max(
+    [
+      0,
+      (level * max(
+        map(
+          classes,
+          mapper = ($class) => add(
+            map(
+              ($class.class.selected_archetype?.actual_hp_modifiers ?? $class.class.actual_hp_modifiers),
+              mapper = ($mapValue) => metaStat(meta_stat = concat([$mapValue, "_modifier"])),
+            ),
+          ),
+        ),
+      )),
+    ],
+  );
+
+base integer current_d4_hit_dice(name = "Hit Dice (d4)") = 0;
+
+calc integer max_d4_hit_dice(name = "Max d4 hit dice") =
+  add(
+    map(
+      filter(classes, filter = ($class) => ($class.class.actual_hit_die == "d4")),
+      mapper = ($class) => $class.class_level,
+    ),
+  );
+
+base integer current_d6_hit_dice(name = "Hit Dice (d6)") = 0;
+
+calc integer max_d6_hit_dice(name = "Max d6 hit dice") =
+  add(
+    map(
+      filter(classes, filter = ($class) => ($class.class.actual_hit_die == "d6")),
+      mapper = ($class) => $class.class_level,
+    ),
+  );
+
+base integer current_d8_hit_dice(name = "Hit Dice (d8)") = 0;
+
+calc integer max_d8_hit_dice(name = "Max d8 hit dice") =
+  add(
+    map(
+      filter(classes, filter = ($class) => ($class.class.actual_hit_die == "d8")),
+      mapper = ($class) => $class.class_level,
+    ),
+  );
+
+base integer current_d10_hit_dice(name = "Hit Dice (d10)") = 0;
+
+calc integer max_d10_hit_dice(name = "Max d10 hit dice") =
+  add(
+    map(
+      filter(classes, filter = ($class) => ($class.class.actual_hit_die == "d10")),
+      mapper = ($class) => $class.class_level,
+    ),
+  );
+
+base integer current_d12_hit_dice(name = "Hit Dice (d12)") = 0;
+
+calc integer max_d12_hit_dice(name = "Max d12 hit dice") =
+  add(
+    map(
+      filter(classes, filter = ($class) => ($class.class.actual_hit_die == "d12")),
+      mapper = ($class) => $class.class_level,
+    ),
+  );
+
+base integer current_d20_hit_dice(name = "Hit Dice (d20)") = 0;
+
+calc integer max_d20_hit_dice(name = "Max d20 hit dice") =
+  add(
+    map(
+      filter(classes, filter = ($class) => ($class.class.actual_hit_die == "d20")),
+      mapper = ($class) => $class.class_level,
+    ),
+  );
+
+calc integer total_hit_dice(name = "Hit Dice (total)") =
+  current_d4_hit_dice + current_d6_hit_dice + current_d8_hit_dice + current_d10_hit_dice + current_d12_hit_dice + current_d20_hit_dice;
+
+calc string description(name = "Description") =
+  concat(
+    [
+      (race.selected_subrace?.name ?? race.name),
+      " ",
+      joinToString(
+        map(
+          classes,
+          mapper = ($class) => concat([$class.class.name, " ", $class.class_level]),
+        ),
+        separator = " / ",
+      ),
+    ],
+  );
+
+base resource<class_details>[] classes(name = "Classes") = [];
+
+base resource<background> background(name = "Background") = null;
+
+base resource<race> race(name = "Race") = null;
+
+base string subrace_id(name = "Subrace ID") = null;
+
+calc resource<feat>[] racial_traits(name = "Racial traits") =
+  sortBy(
+    filter(
+      flatAppend([race.traits, (race.selected_subrace?.traits ?? [])]),
+      filter = ($filterValue) => ($filterValue.min_level <= level),
+    ),
+    order = "asc",
+    sort_by_selector = $sortByValue.min_level,
+  );
+
+base string[] advantages(name = "Advantages") = [];
+
+base string[] disadvantages(name = "Disadvantages") = [];
+
+calc bool is_not_wearing_inproficient_armor(name = "Character is not currently wearing a piece of armor its not proficient with") =
+  isNull(equipped_armor) || equipped_armor?.is_proficient? ?? true;
+
+calc string[] armor_disadvantages(name = "Armor disadvantages") =
+  if is_not_wearing_inproficient_armor
+    then []
+    else [
+        "strength_modifier",
+        "dexterity_modifier",
+        "strength_saving_throw",
+        "dexterity_saving_throw",
+        "athletics",
+        "acrobatics",
+        "sleight_of_hand",
+        "stealth",
+      ];
+
+calc bool equipped_armor_imposes_stealth_disadvantage(name = "Equipped armor imposes stealth disadvantage") =
+  equipped_armor?.impose_stealth_disadvantage ?? false;
+
+calc string[] all_disadvantages(name = "Disadvantages") =
+  flatAppend(
+    [
+      disadvantages,
+      armor_disadvantages,
+      (if equipped_armor_imposes_stealth_disadvantage then ["stealth"] else []),
+    ],
+    treat_as_set = true,
+  );
+
+base string[] language_proficiencies(name = "Language proficiencies") = [];
+
+base string[] armor_proficiencies(name = "Armor proficiencies") = [];
+
+base string[] weapon_proficiencies(name = "Weapon proficiencies") = [];
+
+base string[] tool_proficiencies(name = "Tool proficiencies") = [];
+
+base string acrobatics_proficiency(name = "Acrobatics proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer acrobatics(name = "Acrobatics") =
+  dexterity_modifier + when {
+    acrobatics_proficiency == "proficient" -> proficiency_bonus,
+    acrobatics_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string acrobatics_formatted(name = "Acrobatics formatted") =
+  if acrobatics > 0 then concat(["+", acrobatics]) else concat([acrobatics]);
+
+calc string acrobatics_color(name = "Acrobatics number color") =
+  if acrobatics_proficiency == "proficient" || acrobatics_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string acrobatics_label_color(name = "Acrobatics label color") =
+  if acrobatics_proficiency == "expert" then "accent" else "hint";
+
+base string animal_handling_proficiency(name = "Animal Handling proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer animal_handling(name = "Animal Handling") =
+  wisdom_modifier + when {
+    animal_handling_proficiency == "proficient" -> proficiency_bonus,
+    animal_handling_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string animal_handling_formatted(name = "Animal Handling formatted") =
+  if animal_handling > 0
+    then concat(["+", animal_handling])
+    else concat([animal_handling]);
+
+calc string animal_handling_color(name = "Animal Handling number color") =
+  if animal_handling_proficiency == "proficient"
+    || animal_handling_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string animal_handling_label_color(name = "Animal Handling label color") =
+  if animal_handling_proficiency == "expert" then "accent" else "hint";
+
+base string arcana_proficiency(name = "Arcana proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer arcana(name = "Arcana") =
+  intelligence_modifier + when {
+    arcana_proficiency == "proficient" -> proficiency_bonus,
+    arcana_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string arcana_formatted(name = "Arcana formatted") =
+  if arcana > 0 then concat(["+", arcana]) else concat([arcana]);
+
+calc string arcana_color(name = "Arcana number color") =
+  if arcana_proficiency == "proficient" || arcana_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string arcana_label_color(name = "Arcana label color") =
+  if arcana_proficiency == "expert" then "accent" else "hint";
+
+base string athletics_proficiency(name = "Athletics proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer athletics(name = "Athletics") =
+  strength_modifier + when {
+    athletics_proficiency == "proficient" -> proficiency_bonus,
+    athletics_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string athletics_formatted(name = "Athletics formatted") =
+  if athletics > 0 then concat(["+", athletics]) else concat([athletics]);
+
+calc string athletics_color(name = "Athletics number color") =
+  if athletics_proficiency == "proficient" || athletics_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string athletics_label_color(name = "Athletics label color") =
+  if athletics_proficiency == "expert" then "accent" else "hint";
+
+base string deception_proficiency(name = "Deception proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer deception(name = "Deception") =
+  charisma_modifier + when {
+    deception_proficiency == "proficient" -> proficiency_bonus,
+    deception_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string deception_formatted(name = "Deception formatted") =
+  if deception > 0 then concat(["+", deception]) else concat([deception]);
+
+calc string deception_color(name = "Deception number color") =
+  if deception_proficiency == "proficient" || deception_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string deception_label_color(name = "Deception label color") =
+  if deception_proficiency == "expert" then "accent" else "hint";
+
+base string history_proficiency(name = "History proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer history(name = "History") =
+  intelligence_modifier + when {
+    history_proficiency == "proficient" -> proficiency_bonus,
+    history_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string history_formatted(name = "History formatted") =
+  if history > 0 then concat(["+", history]) else concat([history]);
+
+calc string history_color(name = "History number color") =
+  if history_proficiency == "proficient" || history_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string history_label_color(name = "History label color") =
+  if history_proficiency == "expert" then "accent" else "hint";
+
+base string insight_proficiency(name = "Insight proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer insight(name = "Insight") =
+  wisdom_modifier + when {
+    insight_proficiency == "proficient" -> proficiency_bonus,
+    insight_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string insight_formatted(name = "Insight formatted") =
+  if insight > 0 then concat(["+", insight]) else concat([insight]);
+
+calc string insight_color(name = "Insight number color") =
+  if insight_proficiency == "proficient" || insight_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string insight_label_color(name = "Insight label color") =
+  if insight_proficiency == "expert" then "accent" else "hint";
+
+base string intimidation_proficiency(name = "Intimidation proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer intimidation(name = "Intimidation") =
+  charisma_modifier + when {
+    intimidation_proficiency == "proficient" -> proficiency_bonus,
+    intimidation_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string intimidation_formatted(name = "Intimidation formatted") =
+  if intimidation > 0 then concat(["+", intimidation]) else concat([intimidation]);
+
+calc string intimidation_color(name = "Intimidation number color") =
+  if intimidation_proficiency == "proficient" || intimidation_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string intimidation_label_color(name = "Intimidation label color") =
+  if intimidation_proficiency == "expert" then "accent" else "hint";
+
+base string investigation_proficiency(name = "Investigation proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer investigation(name = "Investigation") =
+  intelligence_modifier + when {
+    investigation_proficiency == "proficient" -> proficiency_bonus,
+    investigation_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string investigation_formatted(name = "Investigation formatted") =
+  if investigation > 0
+    then concat(["+", investigation])
+    else concat([investigation]);
+
+calc string investigation_color(name = "Investigation number color") =
+  if investigation_proficiency == "proficient"
+    || investigation_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string investigation_label_color(name = "Investigation label color") =
+  if investigation_proficiency == "expert" then "accent" else "hint";
+
+base string medicine_proficiency(name = "Medicine proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer medicine(name = "Medicine") =
+  wisdom_modifier + when {
+    medicine_proficiency == "proficient" -> proficiency_bonus,
+    medicine_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string medicine_formatted(name = "Medicine formatted") =
+  if medicine > 0 then concat(["+", medicine]) else concat([medicine]);
+
+calc string medicine_color(name = "Medicine number color") =
+  if medicine_proficiency == "proficient" || medicine_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string medicine_label_color(name = "Medicine label color") =
+  if medicine_proficiency == "expert" then "accent" else "hint";
+
+base string nature_proficiency(name = "Nature proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer nature(name = "Nature") =
+  intelligence_modifier + when {
+    nature_proficiency == "proficient" -> proficiency_bonus,
+    nature_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string nature_formatted(name = "Nature formatted") =
+  if nature > 0 then concat(["+", nature]) else concat([nature]);
+
+calc string nature_color(name = "Nature number color") =
+  if nature_proficiency == "proficient" || nature_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string nature_label_color(name = "Nature label color") =
+  if nature_proficiency == "expert" then "accent" else "hint";
+
+base string perception_proficiency(name = "Perception proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer perception(name = "Perception") =
+  wisdom_modifier + when {
+    perception_proficiency == "proficient" -> proficiency_bonus,
+    perception_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string perception_formatted(name = "Perception formatted") =
+  if perception > 0 then concat(["+", perception]) else concat([perception]);
+
+calc string perception_color(name = "Perception number color") =
+  if perception_proficiency == "proficient" || perception_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string perception_label_color(name = "Perception label color") =
+  if perception_proficiency == "expert" then "accent" else "hint";
+
+base string performance_proficiency(name = "Performance proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer performance(name = "Performance") =
+  charisma_modifier + when {
+    performance_proficiency == "proficient" -> proficiency_bonus,
+    performance_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string performance_formatted(name = "Performance formatted") =
+  if performance > 0 then concat(["+", performance]) else concat([performance]);
+
+calc string performance_color(name = "Performance number color") =
+  if performance_proficiency == "proficient" || performance_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string performance_label_color(name = "Performance label color") =
+  if performance_proficiency == "expert" then "accent" else "hint";
+
+base string persuasion_proficiency(name = "Persuasion proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer persuasion(name = "Persuasion") =
+  charisma_modifier + when {
+    persuasion_proficiency == "proficient" -> proficiency_bonus,
+    persuasion_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string persuasion_formatted(name = "Persuasion formatted") =
+  if persuasion > 0 then concat(["+", persuasion]) else concat([persuasion]);
+
+calc string persuasion_color(name = "Persuasion number color") =
+  if persuasion_proficiency == "proficient" || persuasion_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string persuasion_label_color(name = "Persuasion label color") =
+  if persuasion_proficiency == "expert" then "accent" else "hint";
+
+base string religion_proficiency(name = "Religion proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer religion(name = "Religion") =
+  intelligence_modifier + when {
+    religion_proficiency == "proficient" -> proficiency_bonus,
+    religion_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string religion_formatted(name = "Religion formatted") =
+  if religion > 0 then concat(["+", religion]) else concat([religion]);
+
+calc string religion_color(name = "Religion number color") =
+  if religion_proficiency == "proficient" || religion_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string religion_label_color(name = "Religion label color") =
+  if religion_proficiency == "expert" then "accent" else "hint";
+
+base string sleight_of_hand_proficiency(name = "Sleight of Hand proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer sleight_of_hand(name = "Sleight of Hand") =
+  dexterity_modifier + when {
+    sleight_of_hand_proficiency == "proficient" -> proficiency_bonus,
+    sleight_of_hand_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string sleight_of_hand_formatted(name = "Sleight of Hand formatted") =
+  if sleight_of_hand > 0
+    then concat(["+", sleight_of_hand])
+    else concat([sleight_of_hand]);
+
+calc string sleight_of_hand_color(name = "Sleight of Hand number color") =
+  if sleight_of_hand_proficiency == "proficient"
+    || sleight_of_hand_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string sleight_of_hand_label_color(name = "Sleight of Hand label color") =
+  if sleight_of_hand_proficiency == "expert" then "accent" else "hint";
+
+base string stealth_proficiency(name = "Stealth proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer stealth(name = "Stealth") =
+  dexterity_modifier + when {
+    stealth_proficiency == "proficient" -> proficiency_bonus,
+    stealth_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string stealth_formatted(name = "Stealth formatted") =
+  if stealth > 0 then concat(["+", stealth]) else concat([stealth]);
+
+calc string stealth_color(name = "Stealth number color") =
+  if stealth_proficiency == "proficient" || stealth_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string stealth_label_color(name = "Stealth label color") =
+  if stealth_proficiency == "expert" then "accent" else "hint";
+
+base string survival_proficiency(name = "Survival proficiency (none, proficient, expert)") =
+  "none";
+
+calc integer survival(name = "Survival") =
+  wisdom_modifier + when {
+    survival_proficiency == "proficient" -> proficiency_bonus,
+    survival_proficiency == "expert" -> 2 * proficiency_bonus,
+    has_jack_of_all_trades -> divide([proficiency_bonus, 2], rounding_method = "down"),
+    else -> 0,
+  };
+
+calc string survival_formatted(name = "Survival formatted") =
+  if survival > 0 then concat(["+", survival]) else concat([survival]);
+
+calc string survival_color(name = "Survival number color") =
+  if survival_proficiency == "proficient" || survival_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string survival_label_color(name = "Survival label color") =
+  if survival_proficiency == "expert" then "accent" else "hint";
+
+base bool sort_skills_by_name(name = "Should sort skills by name") = true;
+
+base string equipped_armor_id(name = "Equipped armor ID") = "";
+
+base string equipped_shield_id(name = "Equipped shield ID") = "";
+
+calc integer speed(name = "Speed") =
+  race.current_speed + worn_armor_speed_modifier;
+
+calc integer burrow_speed(name = "Burrow speed") =
+  race.current_burrow_speed + worn_armor_speed_modifier;
+
+calc integer climb_speed(name = "Climb speed") =
+  race.current_climb_speed + worn_armor_speed_modifier;
+
+calc integer fly_speed(name = "Fly speed") =
+  race.current_fly_speed + worn_armor_speed_modifier;
+
+calc integer swim_speed(name = "Swim speed") =
+  race.current_swim_speed + worn_armor_speed_modifier;
+
+calc integer worn_armor_speed_modifier(name = "Worn armor speed modifier (penalty)") =
+  if equipped_armor != null
+    then (if strength_score >= equipped_armor.required_strength then 0 else -10)
+    else 0;
+
+calc integer level(name = "Level", abbreviation = "Lvl.") =
+  add(map(classes, mapper = ($class) => $class.class_level));
+
+calc integer armor_class(name = "Armor Class", abbreviation = "AC") =
+  max([equipped_armor_ac, classes_ac, race_ac]) + (if contains(
+    haystack = map(armors, mapper = ($mapValue) => $mapValue.id),
+    needle = equipped_shield_id,
+  )
+    then (if equipped_shield?.is_proficient? ?? false
+        then equipped_shield?.base_ac? ?? 0
+        else 0)
+    else 0);
+
+calc integer race_ac(name = "Race AC") =
+  race.actual_base_ac + add(
+    map(
+      race.actual_ac_modifiers,
+      mapper = ($mapValue) => metaStat(meta_stat = concat([$mapValue, "_modifier"])),
+    ),
+  );
+
+calc integer classes_ac(name = "Classes AC") =
+  max(
+    map(
+      classes,
+      mapper = ($class) => ($class.class.actual_base_ac + add(
+        map(
+          $class.class.actual_ac_modifiers,
+          mapper = ($mapValue) => metaStat(meta_stat = concat([$mapValue, "_modifier"])),
+        ),
+      )),
+    ),
+  );
+
+calc integer equipped_armor_ac(name = "Equipped armor AC") =
+  if contains(
+    haystack = map(armors, mapper = ($mapValue) => $mapValue.id),
+    needle = equipped_armor_id,
+  )
+    then equipped_armor.base_ac + min(
+        [
+          (if "none" != equipped_armor.modifier
+            then metaStat(meta_stat = concat([equipped_armor.modifier, "_modifier"]))
+            else 0),
+          (if equipped_armor.has_max_bonus then equipped_armor.max_bonus else 10000),
+        ],
+      )
+    else 0;
+
+calc resource equipped_armor(name = "Equipped armor") =
+  findFirst(armors, filter = ($findFirstValue.id == equipped_armor_id));
+
+calc resource equipped_shield(name = "Equipped shield") =
+  findFirst(armors, filter = ($findFirstValue.id == equipped_shield_id));
+
+calc integer passive_perception(name = "Passive perception", abbreviation = "PP") =
+  10 + perception;
+
+calc integer initiative(name = "Initiative", abbreviation = "Ini.") =
+  dexterity_modifier;
+
+calc integer proficiency_bonus(name = "Proficiency Bonus", abbreviation = "PB") =
+  1 + divide([level, 4], rounding_method = "up");
+
+calc string display_proficiency_bonus(name = "Display proficiency bonus") =
+  if proficiency_bonus >= 0
+    then concat(["+", proficiency_bonus])
+    else concat(["", proficiency_bonus]);
+
+base integer strength_score(name = "Strength", abbreviation = "STR") = 8;
+
+base integer dexterity_score(name = "Dexterity", abbreviation = "DEX") = 8;
+
+base integer constitution_score(name = "Constitution", abbreviation = "CON") =
+  8;
+
+base integer intelligence_score(name = "Intelligence", abbreviation = "INT") =
+  8;
+
+base integer wisdom_score(name = "Wisdom", abbreviation = "WIS") = 8;
+
+base integer charisma_score(name = "Charisma", abbreviation = "CHA") = 8;
+
+calc integer strength_modifier(name = "Strength", abbreviation = "STR") =
+  divide([(strength_score + -10), 2], rounding_method = "down");
+
+calc integer dexterity_modifier(name = "Dexterity", abbreviation = "DEX") =
+  divide([(dexterity_score + -10), 2], rounding_method = "down");
+
+calc integer constitution_modifier(name = "Constitution", abbreviation = "CON") =
+  divide([(constitution_score + -10), 2], rounding_method = "down");
+
+calc integer intelligence_modifier(name = "Intelligence", abbreviation = "INT") =
+  divide([(intelligence_score + -10), 2], rounding_method = "down");
+
+calc integer wisdom_modifier(name = "Wisdom", abbreviation = "WIS") =
+  divide([(wisdom_score + -10), 2], rounding_method = "down");
+
+calc integer charisma_modifier(name = "Charisma", abbreviation = "CHA") =
+  divide([(charisma_score + -10), 2], rounding_method = "down");
+
+calc integer attacks_per_action(name = "Attacks per action") =
+  max(map(classes, mapper = ($class) => $class.attacks_per_action));
+
+calc resource<weapon>[] all_weapons(name = "All weapons (including racial and class weapons)") =
+  flatAppend(
+    [
+      race.weapons,
+      flatMap(classes, mapper = ($class) => ($class.class.weapons ?? [])),
+      weapons,
+    ],
+  );
+
+base resource<weapon>[] weapons(name = "Weapons") = [];
+
+base resource<armor>[] armors(name = "Armors") = [];
+
+base resource<item>[] equipment(name = "Equipment") = [];
+
+calc resource<spell>[] sorted_spells(name = "Sorted spells") =
+  sortBy(
+    flatAppend(
+      [
+        map(
+          filter(
+            flatAppend([race.spells, (race.selected_subrace?.spells ?? [])]),
+            filter = ($filterValue) => ($filterValue.level <= level),
+          ),
+          mapper = ($mapValue) => $mapValue.spell,
+        ),
+        spells,
+      ],
+      treat_as_set = true,
+    ),
+    sort_by_selector = $sortByValue.name,
+  );
+
+calc resource<spell>[] cantrips(name = "Cantrips") =
+  filter(
+    sorted_spells,
+    filter = ($filterValue) => ("spell_level_0" == $filterValue.level),
+  );
+
+calc resource<spell>[] level_1_spells(name = "Level 1 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_1" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_1" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+calc resource<spell>[] level_2_spells(name = "Level 2 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_2" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_2" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+calc resource<spell>[] level_3_spells(name = "Level 3 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_3" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_3" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+calc resource<spell>[] level_4_spells(name = "Level 4 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_4" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_4" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+calc resource<spell>[] level_5_spells(name = "Level 5 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_5" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_5" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+calc resource<spell>[] level_6_spells(name = "Level 6 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_6" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_6" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+calc resource<spell>[] level_7_spells(name = "Level 7 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_7" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_7" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+calc resource<spell>[] level_8_spells(name = "Level 8 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_8" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_8" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+calc resource<spell>[] level_9_spells(name = "Level 9 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_9" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_9" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+base resource<spell>[] spells(name = "Spells") = [];
+
+base integer max_spell_slots_1_bonus(name = "Max lvl 1 slots bonus") = 0;
+
+base integer max_spell_slots_2_bonus(name = "Max lvl 2 slots bonus") = 0;
+
+base integer max_spell_slots_3_bonus(name = "Max lvl 3 slots bonus") = 0;
+
+base integer max_spell_slots_4_bonus(name = "Max lvl 4 slots bonus") = 0;
+
+base integer max_spell_slots_5_bonus(name = "Max lvl 5 slots bonus") = 0;
+
+base integer max_spell_slots_6_bonus(name = "Max lvl 6 slots bonus") = 0;
+
+base integer max_spell_slots_7_bonus(name = "Max lvl 7 slots bonus") = 0;
+
+base integer max_spell_slots_8_bonus(name = "Max lvl 8 slots bonus") = 0;
+
+base integer max_spell_slots_9_bonus(name = "Max lvl 9 slots bonus") = 0;
+
+base integer spell_slots_1(name = "1st") = 0;
+
+base integer spell_slots_2(name = "2nd") = 0;
+
+base integer spell_slots_3(name = "3rd") = 0;
+
+base integer spell_slots_4(name = "4th") = 0;
+
+base integer spell_slots_5(name = "5th") = 0;
+
+base integer spell_slots_6(name = "6th") = 0;
+
+base integer spell_slots_7(name = "7th") = 0;
+
+base integer spell_slots_8(name = "8th") = 0;
+
+base integer spell_slots_9(name = "9th") = 0;
+
+calc integer str_point_buy_point_worth(name = "Strength point buy point worth") =
+  when {
+    ($view?.edit_character_basics_ability_scores_point_buy_str? ?? 8) <= 13 -> -8 + ($view?.edit_character_basics_ability_scores_point_buy_str? ?? 8),
+    $view.edit_character_basics_ability_scores_point_buy_str? == 14 -> 7,
+    else -> 9,
+  };
+
+calc integer dex_point_buy_point_worth(name = "Dexterity point buy point worth") =
+  when {
+    ($view?.edit_character_basics_ability_scores_point_buy_dex? ?? 8) <= 13 -> -8 + ($view?.edit_character_basics_ability_scores_point_buy_dex? ?? 8),
+    $view.edit_character_basics_ability_scores_point_buy_dex? == 14 -> 7,
+    else -> 9,
+  };
+
+calc integer con_point_buy_point_worth(name = "Constitution point buy point worth") =
+  when {
+    ($view?.edit_character_basics_ability_scores_point_buy_con? ?? 8) <= 13 -> -8 + ($view?.edit_character_basics_ability_scores_point_buy_con? ?? 8),
+    $view.edit_character_basics_ability_scores_point_buy_con? == 14 -> 7,
+    else -> 9,
+  };
+
+calc integer int_point_buy_point_worth(name = "Intelligence point buy point worth") =
+  when {
+    ($view?.edit_character_basics_ability_scores_point_buy_int? ?? 8) <= 13 -> -8 + ($view?.edit_character_basics_ability_scores_point_buy_int? ?? 8),
+    $view.edit_character_basics_ability_scores_point_buy_int? == 14 -> 7,
+    else -> 9,
+  };
+
+calc integer wis_point_buy_point_worth(name = "Wisdom point buy point worth") =
+  when {
+    ($view?.edit_character_basics_ability_scores_point_buy_wis? ?? 8) <= 13 -> -8 + ($view?.edit_character_basics_ability_scores_point_buy_wis? ?? 8),
+    $view.edit_character_basics_ability_scores_point_buy_wis? == 14 -> 7,
+    else -> 9,
+  };
+
+calc integer cha_point_buy_point_worth(name = "Charisma point buy point worth") =
+  when {
+    ($view?.edit_character_basics_ability_scores_point_buy_cha? ?? 8) <= 13 -> -8 + ($view?.edit_character_basics_ability_scores_point_buy_cha? ?? 8),
+    $view.edit_character_basics_ability_scores_point_buy_cha? == 14 -> 7,
+    else -> 9,
+  };
+
+calc integer remaining_point_buy_points(name = "Remaining point buy points") =
+  27 - str_point_buy_point_worth - dex_point_buy_point_worth - con_point_buy_point_worth - int_point_buy_point_worth - wis_point_buy_point_worth - cha_point_buy_point_worth;
+
+calc resource<race> creator_selected_subrace(name = "Selected creator subrace") =
+  findFirst(
+    ($view?.edit_character_basics_race_select?.subraces ?? []),
+    filter = ($findFirstValue.id == $view?.edit_character_basics_subrace_select?),
+  );
+
+calc resource<ability_score_increase>[] creator_ability_score_increases(name = "Creator ability score increases") =
+  flatAppend(
+    [
+      ($view?.edit_character_basics_race_select?.ability_score_increases ?? []),
+      (creator_selected_subrace?.ability_score_increases ?? []),
+    ],
+  );
+
+base resource<ability_score_increase>[] old_creator_ability_score_increases(name = "Old creator ability score increases") =
+  [];
+
+base string ability_score_mode(name = "Ability score mode") = "custom";
+
+calc resource<levelled_choice_text>[] creator_language_proficiency_choices(name = "Creator language proficiency choices") =
+  flatAppend(
+    [
+      race.language_proficiencies_for_current_level,
+      flatMap(
+        classes,
+        mapper = ($mapValue) => $mapValue.class.language_proficiencies_for_current_level,
+      ),
+      background.language_proficiencies_for_current_level,
+    ],
+  );
+
+calc resource<levelled_choice_text>[] creator_skill_proficiency_choices(name = "Creator skill proficiency choices") =
+  flatAppend(
+    [
+      race.skill_proficiencies_for_current_level,
+      flatMap(
+        classes,
+        mapper = ($mapValue) => $mapValue.class.skill_proficiencies_for_current_level,
+      ),
+      background.skill_proficiencies_for_current_level,
+    ],
+  );
+
+calc resource<levelled_choice_text>[] creator_armor_proficiency_choices(name = "Creator armor proficiency choices") =
+  flatAppend(
+    [
+      race.armor_proficiencies_for_current_level,
+      flatMap(
+        classes,
+        mapper = ($mapValue) => $mapValue.class.armor_proficiencies_for_current_level,
+      ),
+      background.armor_proficiencies_for_current_level,
+    ],
+  );
+
+calc resource<levelled_choice_text>[] creator_weapon_proficiency_choices(name = "Creator weapon proficiency choices") =
+  flatAppend(
+    [
+      race.weapon_proficiencies_for_current_level,
+      flatMap(
+        classes,
+        mapper = ($mapValue) => $mapValue.class.weapon_proficiencies_for_current_level,
+      ),
+      background.weapon_proficiencies_for_current_level,
+    ],
+  );
+
+calc resource<levelled_choice_text>[] creator_tool_proficiency_choices(name = "Creator tool proficiency choices") =
+  flatAppend(
+    [
+      race.tool_proficiencies_for_current_level,
+      flatMap(
+        classes,
+        mapper = ($mapValue) => $mapValue.class.tool_proficiencies_for_current_level,
+      ),
+      background.tool_proficiencies_for_current_level,
+    ],
+  );
+
+calc resource<selectable_items>[] creator_starting_equipment_choices(name = "Creator starting equipment choices") =
+  flatAppend(
+    [
+      flatMap(classes, mapper = ($mapValue) => $mapValue.class.selectable_equipments),
+      background.selectable_equipments,
+    ],
+  );
+
+calc resource<selectable_armors>[] creator_starting_armor_choices(name = "Creator starting armor choices") =
+  flatAppend(
+    [
+      flatMap(classes, mapper = ($mapValue) => $mapValue.class.selectable_armors),
+      background.selectable_armors,
+    ],
+  );
+
+calc resource<selectable_weapons>[] creator_starting_weapon_choices(name = "Creator starting weapon choices") =
+  flatAppend(
+    [
+      flatMap(classes, mapper = ($mapValue) => $mapValue.class.selectable_weapons),
+      background.selectable_weapons,
+    ],
+  );
+
+base integer spell_attack_extra_bonus(name = "Extra spell attack bonus") = 0;
+
+base integer spell_dc_extra_bonus(name = "Extra spell save DC bonus") = 0;
+
+calc bool strength_saving_throw_proficiency(name = "Strength") =
+  findFirst(
+    map(
+      classes,
+      mapper = ($class) => $class.class.has_strength_saving_throw_proficiency,
+    ),
+    filter = true,
+  );
+
+calc integer strength_saving_throw(name = "Strength") =
+  strength_modifier + (if strength_saving_throw_proficiency then proficiency_bonus else 0);
+
+calc bool dexterity_saving_throw_proficiency(name = "Dexterity") =
+  findFirst(
+    map(
+      classes,
+      mapper = ($class) => $class.class.has_dexterity_saving_throw_proficiency,
+    ),
+    filter = true,
+  );
+
+calc integer dexterity_saving_throw(name = "Dexterity") =
+  dexterity_modifier + (if dexterity_saving_throw_proficiency then proficiency_bonus else 0);
+
+calc bool constitution_saving_throw_proficiency(name = "Constitution") =
+  findFirst(
+    map(
+      classes,
+      mapper = ($class) => $class.class.has_constitution_saving_throw_proficiency,
+    ),
+    filter = true,
+  );
+
+calc integer constitution_saving_throw(name = "Constitution") =
+  constitution_modifier + (if constitution_saving_throw_proficiency then proficiency_bonus else 0);
+
+calc bool intelligence_saving_throw_proficiency(name = "Intelligence") =
+  findFirst(
+    map(
+      classes,
+      mapper = ($class) => $class.class.has_intelligence_saving_throw_proficiency,
+    ),
+    filter = true,
+  );
+
+calc integer intelligence_saving_throw(name = "Intelligence") =
+  intelligence_modifier + (if intelligence_saving_throw_proficiency then proficiency_bonus else 0);
+
+calc bool wisdom_saving_throw_proficiency(name = "Wisdom") =
+  findFirst(
+    map(
+      classes,
+      mapper = ($class) => $class.class.has_wisdom_saving_throw_proficiency,
+    ),
+    filter = true,
+  );
+
+calc integer wisdom_saving_throw(name = "Wisdom") =
+  wisdom_modifier + (if wisdom_saving_throw_proficiency then proficiency_bonus else 0);
+
+calc bool charisma_saving_throw_proficiency(name = "Charisma") =
+  findFirst(
+    map(
+      classes,
+      mapper = ($class) => $class.class.has_charisma_saving_throw_proficiency,
+    ),
+    filter = true,
+  );
+
+calc integer charisma_saving_throw(name = "Charisma") =
+  charisma_modifier + (if charisma_saving_throw_proficiency then proficiency_bonus else 0);
+
+calc string[] class_hit_dice_formatted(name = "Class hit dice (formatted e.g: 1d10)") =
+  map(
+    classes,
+    mapper = ($class) => concat([$class.class_level, $class.class.actual_hit_die]),
+  );
+
+base string[] selected_selectable_feature_ids(name = "Selected selectable feature ids") =
+  [];
+
+calc resource<feat>[] race_traits(name = "Race traits") =
+  sortBy(race.current_level_traits, sort_by_selector = $sortByValue.min_level);
+
+calc resource<feat>[] background_features(name = "Background features") =
+  sortBy(
+    background.current_level_features,
+    sort_by_selector = $sortByValue.min_level,
+  );
+
+base resource<feat>[] feats(name = "Feats") = [];
+
+base bool blinded(name = "Blinded") = false;
+
+base bool charmed(name = "Charmed") = false;
+
+base bool deafened(name = "Deafened") = false;
+
+base bool frightened(name = "Frightened") = false;
+
+base bool grappled(name = "Grappled") = false;
+
+base bool incapacitated(name = "Incapacitated") = false;
+
+base bool invisible(name = "Invisible") = false;
+
+base bool paralyzed(name = "Paralyzed") = false;
+
+base bool petrified(name = "Petrified") = false;
+
+base bool poisoned(name = "Poisoned") = false;
+
+base bool prone(name = "Prone") = false;
+
+base bool restrained(name = "Restrained") = false;
+
+base bool stunned(name = "Stunned") = false;
+
+base bool unconscious(name = "Unconscious") = false;
+
+base bool exhausted(name = "Exhausted") = false;
+
+base integer temp_short_rest_hit_dice_d4(name = "d4") = 0;
+
+base integer temp_short_rest_hit_dice_d6(name = "d6") = 0;
+
+base integer temp_short_rest_hit_dice_d8(name = "d8") = 0;
+
+base integer temp_short_rest_hit_dice_d10(name = "d10") = 0;
+
+base integer temp_short_rest_hit_dice_d12(name = "d12") = 0;
+
+base integer temp_short_rest_hit_dice_d20(name = "d20") = 0;
+
+calc bool is_single_half_level_caster(name = "Is single half level caster") =
+  length(classes) == 1 && findFirst(
+    map(
+      classes,
+      mapper = ($class) => ($class.class.actual_effective_caster_level == "half"),
+    ),
+    filter = true,
+  );
+
+calc resource<class_details> first_half_level_caster_class(name = "First half level caster class") =
+  if is_single_half_level_caster then findFirst(classes, filter = true) else null;
+
+calc bool is_single_third_level_caster(name = "Is single third level caster") =
+  length(classes) == 1 && findFirst(
+    map(
+      classes,
+      mapper = ($class) => ($class.class.actual_effective_caster_level == "third"),
+    ),
+    filter = true,
+  );
+
+calc resource<class_details> first_third_level_caster_class(name = "First third level caster class") =
+  if is_single_third_level_caster then findFirst(classes, filter = true) else null;
+
+calc integer spellcaster_level(name = "Spellcaster level") =
+  add(
+    map(
+      classes,
+      mapper = ($class) => when {
+        $class.class.actual_effective_caster_level == "full" -> $class.class_level,
+        $class.class.actual_effective_caster_level == "half" -> divide([$class.class_level, 2], rounding_method = "down"),
+        $class.class.actual_effective_caster_level == "third" -> divide([$class.class_level, 3], rounding_method = "down"),
+        else -> 0,
+      },
+    ),
+  );
+
+calc resource<class_details>[] custom_spell_slot_classes(name = "Custom spell slot classes") =
+  filter(
+    classes,
+    filter = ($class) => ($class.class.actual_effective_caster_level == "custom"),
+  );
+
+base integer copper_pieces(name = "CP") = 0;
+
+base integer silver_pieces(name = "SP") = 0;
+
+base integer electrum_pieces(name = "EP") = 0;
+
+base integer gold_pieces(name = "GP") = 0;
+
+base integer platinum_pieces(name = "PP") = 0;
+
+base bool death_saving_throws_success_1(name = "Death saving throw success 1") =
+  false;
+
+base bool death_saving_throws_success_2(name = "Death saving throw success 2") =
+  false;
+
+base bool death_saving_throws_success_3(name = "Death saving throw success 3") =
+  false;
+
+base bool death_saving_throws_failure_1(name = "Death saving throw failure 1") =
+  false;
+
+base bool death_saving_throws_failure_2(name = "Death saving throw failure 2") =
+  false;
+
+base bool death_saving_throws_failure_3(name = "Death saving throw failure 3") =
+  false;
+
+calc resource level_up_selected_class_details(name = "Selected existing class when levelling up") =
+  findFirst(
+    classes,
+    filter = ($findFirstValue.class.id == $view?.level_up_select_class?),
+  );
+
+calc resource<class>[] level_up_available_archetypes(name = "Available archetypes for level up") =
+  level_up_selected_class_details?.class.archetypes? ?? [];
+
+calc bool level_up_has_to_select_archetype(name = "Has to select an archetype when levelling up for the current selected class") =
+  !isEmpty(level_up_available_archetypes)
+    && isNull(level_up_selected_class_details?.archetype_id)
+    && (level_up_selected_class_details?.class_level ?? 0) + 1 >= (level_up_selected_class_details?.class.archetype_selection_level ?? 0);
+
+base string temp_level_up_class(name = "Temporary variable for selecting among existing classes") =
+  null;
+
+base string temp_level_up_archetype(name = "Temporary variable for selecting an archetype for an existing class") =
+  null;
+
+base bool temp_level_up_multiclass(name = "Temporary variable for selecting to multiclass") =
+  null;
+
+base resource<class_details> temp_level_up_new_class(name = "Temporary variable for levelling up into a new class") =
+  null;
+
+calc resource<levelled_choice_text>[] level_up_language_proficiency_choices(name = "Level up language proficiency choices") =
+  flatAppend(
+    [
+      race.language_proficiencies_choices_in_current_level,
+      flatMap(
+        classes,
+        mapper = ($mapValue) => (if $mapValue.should_select_on_level_up
+          then $mapValue.class.language_proficiencies_choices_in_current_level
+          else []),
+      ),
+      background.language_proficiencies_choices_in_current_level,
+    ],
+  );
+
+calc resource<levelled_choice_text>[] level_up_skill_proficiency_choices(name = "Level up skill proficiency choices") =
+  flatAppend(
+    [
+      race.skill_proficiencies_choices_in_current_level,
+      flatMap(
+        classes,
+        mapper = ($mapValue) => (if $mapValue.should_select_on_level_up
+          then $mapValue.class.skill_proficiencies_choices_in_current_level
+          else []),
+      ),
+      background.skill_proficiencies_choices_in_current_level,
+    ],
+  );
+
+calc resource<levelled_choice_text>[] level_up_armor_proficiency_choices(name = "Level up armor proficiency choices") =
+  flatAppend(
+    [
+      race.armor_proficiencies_choices_in_current_level,
+      flatMap(
+        classes,
+        mapper = ($mapValue) => (if $mapValue.should_select_on_level_up
+          then $mapValue.class.armor_proficiencies_choices_in_current_level
+          else []),
+      ),
+      background.armor_proficiencies_choices_in_current_level,
+    ],
+  );
+
+calc resource<levelled_choice_text>[] level_up_weapon_proficiency_choices(name = "Level up weapon proficiency choices") =
+  flatAppend(
+    [
+      race.weapon_proficiencies_choices_in_current_level,
+      flatMap(
+        classes,
+        mapper = ($mapValue) => (if $mapValue.should_select_on_level_up
+          then $mapValue.class.weapon_proficiencies_choices_in_current_level
+          else []),
+      ),
+      background.weapon_proficiencies_choices_in_current_level,
+    ],
+  );
+
+calc resource<levelled_choice_text>[] level_up_tool_proficiency_choices(name = "Level up tool proficiency choices") =
+  flatAppend(
+    [
+      race.tool_proficiencies_choices_in_current_level,
+      flatMap(
+        classes,
+        mapper = ($mapValue) => (if $mapValue.should_select_on_level_up
+          then $mapValue.class.tool_proficiencies_choices_in_current_level
+          else []),
+      ),
+      background.tool_proficiencies_choices_in_current_level,
+    ],
+  );
+
+base string temp_last_level_up_class_id(name = "Last level up class ID") = null;
+
+calc resource last_level_up_class_details(name = "Last level up class") =
+  findFirst(
+    classes,
+    filter = ($findFirstValue.class.id == temp_last_level_up_class_id),
+  );
+
+calc bool should_show_asi(name = "Should show ASI") =
+  last_level_up_class_details?.class_level == 4 || last_level_up_class_details?.class_level == 8 || last_level_up_class_details?.class_level == 12 || last_level_up_class_details?.class_level == 16 || last_level_up_class_details?.class_level == 19 || contains(
+    haystack = toLowerCase((last_level_up_class_details?.class.name ?? "")),
+    needle = "rogue",
+  ) && last_level_up_class_details?.class_level == 10 || contains(
+    haystack = toLowerCase((last_level_up_class_details?.class.name ?? "")),
+    needle = "fighter",
+  ) && (last_level_up_class_details?.class_level == 6
+    || last_level_up_class_details?.class_level == 14);
+
+base string temp_asi_selection_1(name = "Temp ASI selection") = null;
+
+base string temp_asi_selection_2(name = "Temp ASI selection") = null;
+
+base bool temp_asi_choose_feat(name = "Temp choose feat") = false;
+
+base resource<feat> temp_asi_feat_selection(name = "Temp feat selection") =
+  null;
+
+calc resource<feat>[] features_with_new_descriptions_in_new_level(name = "Features with new descriptions in new level") =
+  flatAppend(
+    [
+      race.traits_with_updates_in_current_level,
+      flatMap(
+        filter(
+          classes,
+          filter = ($filterValue) => (last_level_up_class_details?.class.id == $filterValue.class.id),
+        ),
+        mapper = ($mapValue) => $mapValue.class.features_with_updates_in_current_level,
+      ),
+      background.features_with_updates_in_current_level,
+    ],
+  );
+
+base bool currently_levelling_up(name = "Currently levelling up") = false;
+
+calc resource<feat>[] selectable_features_with_new_amounts_in_new_level(name = "Selectable features with new amounts in the new level") =
+  filter(
+    flatAppend(
+      [
+        race.current_level_traits,
+        (last_level_up_class_details?.class.current_level_features ?? []),
+        background.current_level_features,
+      ],
+    ),
+    filter = ($filterValue) => $filterValue.can_choose_new_selectable_features_in_current_level,
+  );
+
+base string hair_color(name = "Hair color") = "";
+
+base string eye_color(name = "Eye color") = "";
+
+base string outfit(name = "Outfit") = "";
+
+base string appearance_weapon(name = "Appearance weapon") = "";
+
+base string sex(name = "Sex") = "";
+
+calc string photo_prompt(name = "Photo prompt") =
+  joinToString(
+    flatAppend(
+      [
+        (if race.actual_hair_color_selectable
+          then [concat(["(", hair_color, ":1.6)"])]
+          else []),
+        (if race.actual_eye_color_selectable
+          then [concat(["(", eye_color, ":1.3)"])]
+          else []),
+        (if race.actual_outfit_selectable then [concat(["(", outfit, ":1.3)"])] else []),
+        (if race.actual_appearance_weapon_selectable
+          then [concat(["(", appearance_weapon, ":1.6)"])]
+          else []),
+        (if race.actual_sex_selectable then [concat(["(", sex, ":1.3)"])] else []),
+        map(
+          race.actual_visual_traits,
+          mapper = ($mapValue) => concat(
+            [
+              "(",
+              $mapValue.selected_option,
+              ":1.",
+              $mapValue.importance,
+              ")",
+            ],
+          ),
+        ),
+      ],
+    ),
+    separator = ",",
+  );
+
+calc resource<mixed>[] attuned_armors(name = "Attuned armors") =
+  filter(
+    armors,
+    filter = ($filterValue) => ($filterValue.requires_attunement && $filterValue.is_attuned),
+  );
+
+calc resource<mixed>[] attuned_weapons(name = "Attuned weapons") =
+  filter(
+    all_weapons,
+    filter = ($filterValue) => ($filterValue.requires_attunement && $filterValue.is_attuned),
+  );
+
+calc resource<mixed>[] attuned_items(name = "Attuned items") =
+  filter(
+    equipment,
+    filter = ($filterValue) => ($filterValue.requires_attunement && $filterValue.is_attuned),
+  );
+
+calc resource<mixed>[] attuned_resources(name = "Attuned resources") =
+  flatAppend([attuned_armors, attuned_weapons, attuned_items]);
+
+calc string attuned_resources_count_message(name = "Attuned resources count message") =
+  concat(["Attuned to ", length(attuned_resources), " / 3 items"]);
+
+base bool selecting(name = "Player is selecting things for this character") =
+  false;
+
+calc bool should_show_controls_for_choices(name = "Should show controls for choices (for race, background, etc choices like equipments or proficiencies)") =
+  selecting || currently_levelling_up;
+
+calc resource<feat>[] all_features(name = "All features") =
+  flatAppend(
+    [
+      flatMap(classes, mapper = ($class) => $class.features),
+      feats,
+      race_traits,
+      background_features,
+    ],
+  );
+
+calc bool has_jack_of_all_trades(name = "Has jack of all trades") =
+  or(
+    map(
+      all_features,
+      mapper = ($mapValue) => (toLowerCase($mapValue.name) == "jack of all trades"),
+    ),
+  );
+
+base bool is_new_and_should_long_rest(name = "Is new and should long rest?") =
+  true;
+
+base resource<companion>[] companions(name = "Companions") = [];
+
+calc string companion_section_title(name = "Companion section title") =
+  if contains(
+    haystack = map(classes, mapper = ($mapValue) => toLowerCase(trim($mapValue.class.name))),
+    needle = "druid",
+  )
+    then "Wild shape"
+    else "Companions / familiars";
