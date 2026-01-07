@@ -80,4 +80,7 @@ calc bool should_show_level_up_disclaimer(name = "Should show level up disclaime
     && ($view?.class_details_edit_class_level? ?? 1) > class_level;
 
 calc resource<feat>[] features(name = "Features") =
-  sortBy(class.current_level_features, sort_by_selector = $sortByValue.min_level);
+  sortBy(
+    class.current_level_features,
+    sort_by_selector = ($sortByValue) => $sortByValue.min_level,
+  );

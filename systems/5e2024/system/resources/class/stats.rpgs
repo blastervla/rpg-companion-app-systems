@@ -224,7 +224,11 @@ calc resource<class> selected_archetype(name = "Selected archetype") =
 
 calc resource<levelled_weapon> current_level_weapon(name = "Current level weapon") =
   findFirst(
-    sortBy(weapon, order = "desc", sort_by_selector = $sortByValue.level),
+    sortBy(
+      weapon,
+      order = "desc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
     filter = ($findFirstValue.level <= level),
   );
 
@@ -415,7 +419,7 @@ calc resource<levelled_amount> current_level_attacks_per_action(name = "Current 
     sortBy(
       actual_attacks_per_action_per_level,
       order = "desc",
-      sort_by_selector = $sortByValue.level,
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
     ),
     filter = ($findFirstValue.level <= level),
   );
@@ -526,7 +530,11 @@ calc string display_caster_level(name = "Display caster level") =
 
 calc resource lowest_level_weapon(name = "Lowest level weapon") =
   findFirst(
-    sortBy(weapon, order = "asc", sort_by_selector = $sortByValue.level),
+    sortBy(
+      weapon,
+      order = "asc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
     filter = true,
   );
 

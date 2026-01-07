@@ -138,7 +138,7 @@ calc resource<feat>[] racial_traits(name = "Racial traits") =
       filter = ($filterValue) => ($filterValue.min_level <= level),
     ),
     order = "asc",
-    sort_by_selector = $sortByValue.min_level,
+    sort_by_selector = ($sortByValue) => $sortByValue.min_level,
   );
 
 base string[] advantages(name = "Advantages") = [];
@@ -748,7 +748,7 @@ calc resource<spell>[] sorted_spells(name = "Sorted spells") =
       ],
       treat_as_set = true,
     ),
-    sort_by_selector = $sortByValue.name,
+    sort_by_selector = ($sortByValue) => $sortByValue.name,
   );
 
 calc resource<spell>[] cantrips(name = "Cantrips") =
@@ -1150,12 +1150,15 @@ base string[] selected_selectable_feature_ids(name = "Selected selectable featur
   [];
 
 calc resource<feat>[] race_traits(name = "Race traits") =
-  sortBy(race.current_level_traits, sort_by_selector = $sortByValue.min_level);
+  sortBy(
+    race.current_level_traits,
+    sort_by_selector = ($sortByValue) => $sortByValue.min_level,
+  );
 
 calc resource<feat>[] background_features(name = "Background features") =
   sortBy(
     background.current_level_features,
-    sort_by_selector = $sortByValue.min_level,
+    sort_by_selector = ($sortByValue) => $sortByValue.min_level,
   );
 
 base resource<feat>[] feats(name = "Feats") = [];

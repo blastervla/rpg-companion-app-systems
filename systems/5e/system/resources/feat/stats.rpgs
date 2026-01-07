@@ -61,14 +61,14 @@ calc string first_description_text(name = "First description text") =
     isEmpty(descriptions) -> "No description",
     defined(stat = "$character") -> current_level_levelled_description?.description ?? findFirst(
       map(
-        sortBy(descriptions, sort_by_selector = $sortByValue.level),
+        sortBy(descriptions, sort_by_selector = ($sortByValue) => $sortByValue.level),
         mapper = ($mapValue) => $mapValue.description,
       ),
       filter = true,
     ),
     else -> findFirst(
       map(
-        sortBy(descriptions, sort_by_selector = $sortByValue.level),
+        sortBy(descriptions, sort_by_selector = ($sortByValue) => $sortByValue.level),
         mapper = ($mapValue) => $mapValue.description,
       ),
       filter = true,
@@ -80,13 +80,21 @@ calc string list_view_description(name = "List view description") =
 
 calc resource previous_level_levelled_description(name = "Previous level levelled_description") =
   findFirst(
-    sortBy(descriptions, order = "desc", sort_by_selector = $sortByValue.level),
+    sortBy(
+      descriptions,
+      order = "desc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
     filter = ($findFirstValue.level <= level - 1),
   );
 
 calc resource current_level_levelled_description(name = "Current level levelled_description") =
   findFirst(
-    sortBy(descriptions, order = "desc", sort_by_selector = $sortByValue.level),
+    sortBy(
+      descriptions,
+      order = "desc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
     filter = ($findFirstValue.level <= level),
   );
 
@@ -102,7 +110,11 @@ calc integer min_required_level(name = "Minimum required level") =
     then 999999
     else findFirst(
         map(
-          sortBy(descriptions, order = "asc", sort_by_selector = $sortByValue.level),
+          sortBy(
+            descriptions,
+            order = "asc",
+            sort_by_selector = ($sortByValue) => $sortByValue.level,
+          ),
           mapper = ($mapValue) => $mapValue.level,
         ),
         filter = true,
@@ -113,7 +125,11 @@ calc bool can_be_used(name = "Can be_used") = level >= min_required_level;
 calc resource<effect>[] available_effects_for_current_level(name = "Available effects for current level") =
   map(
     filter(
-      sortBy(effects, order = "asc", sort_by_selector = $sortByValue.level),
+      sortBy(
+        effects,
+        order = "asc",
+        sort_by_selector = ($sortByValue) => $sortByValue.level,
+      ),
       filter = ($filterValue) => ($filterValue.level <= level),
     ),
     mapper = ($mapValue) => $mapValue.effect,
@@ -126,16 +142,24 @@ calc resource<effect>[] active_or_charge_effects_for_current_level(name = "Activ
   );
 
 calc resource<levelled_description>[] sorted_descriptions(name = "Sorted descriptions") =
-  sortBy(descriptions, order = "asc", sort_by_selector = $sortByValue.level);
+  sortBy(
+    descriptions,
+    order = "asc",
+    sort_by_selector = ($sortByValue) => $sortByValue.level,
+  );
 
 calc resource<levelled_effect>[] sorted_effects(name = "Sorted effects") =
-  sortBy(effects, order = "asc", sort_by_selector = $sortByValue.level);
+  sortBy(
+    effects,
+    order = "asc",
+    sort_by_selector = ($sortByValue) => $sortByValue.level,
+  );
 
 calc resource<levelled_amount>[] sorted_selectable_feature_amount_per_level(name = "Sorted selectable feature amount per level") =
   sortBy(
     selectable_feature_amount_per_level,
     order = "asc",
-    sort_by_selector = $sortByValue.level,
+    sort_by_selector = ($sortByValue) => $sortByValue.level,
   );
 
 calc resource<levelled_amount> current_levelled_amount_of_allowed_selectable_features(name = "Current levelled amount of allowed selectable features") =
@@ -143,7 +167,7 @@ calc resource<levelled_amount> current_levelled_amount_of_allowed_selectable_fea
     sortBy(
       selectable_feature_amount_per_level,
       order = "desc",
-      sort_by_selector = $sortByValue.level,
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
     ),
     filter = ($findFirstValue.level <= level),
   );
@@ -158,7 +182,7 @@ calc resource<feat>[] sorted_selectable_features(name = "Sorted selectable featu
   sortBy(
     selectable_features,
     order = "asc",
-    sort_by_selector = $sortByValue.min_level,
+    sort_by_selector = ($sortByValue) => $sortByValue.min_level,
   );
 
 calc resource<feat>[] available_selectable_features_for_current_level(name = "Available selectable features for current level") =

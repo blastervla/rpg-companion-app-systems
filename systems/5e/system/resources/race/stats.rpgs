@@ -126,7 +126,11 @@ calc integer current_swim_speed(name = "Current swim speed") =
 
 calc resource<levelled_weapon> current_level_weapon(name = "Current level weapon") =
   findFirst(
-    sortBy(unarmed_strike, order = "desc", sort_by_selector = $sortByValue.level),
+    sortBy(
+      unarmed_strike,
+      order = "desc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
     filter = ($findFirstValue.level <= $character.level),
   );
 
@@ -331,7 +335,11 @@ calc string display_speeds(name = "Display speeds") =
 
 calc resource lowest_level_unarmed_strike(name = "Lowest level unarmed strike") =
   findFirst(
-    sortBy(unarmed_strike, order = "asc", sort_by_selector = $sortByValue.level),
+    sortBy(
+      unarmed_strike,
+      order = "asc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
     filter = true,
   );
 
