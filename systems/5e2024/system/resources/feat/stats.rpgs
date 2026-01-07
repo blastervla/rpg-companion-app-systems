@@ -56,7 +56,7 @@ calc integer min_level(name = "Minimum level for this feat") =
 calc resource<levelled_description> lowest_level_description(name = "Lowest level description") =
   if isEmpty(descriptions)
     then null
-    else findFirst(sorted_descriptions, filter = true);
+    else findFirst(sorted_descriptions, filter = ($findFirstValue) => true);
 
 calc string first_description_text(name = "First description text") =
   when {
@@ -66,14 +66,14 @@ calc string first_description_text(name = "First description text") =
         sortBy(descriptions, sort_by_selector = ($sortByValue) => $sortByValue.level),
         mapper = ($mapValue) => $mapValue.description,
       ),
-      filter = true,
+      filter = ($findFirstValue) => true,
     ),
     else -> findFirst(
       map(
         sortBy(descriptions, sort_by_selector = ($sortByValue) => $sortByValue.level),
         mapper = ($mapValue) => $mapValue.description,
       ),
-      filter = true,
+      filter = ($findFirstValue) => true,
     ),
   };
 
@@ -87,7 +87,7 @@ calc resource previous_level_levelled_description(name = "Previous level levelle
       order = "desc",
       sort_by_selector = ($sortByValue) => $sortByValue.level,
     ),
-    filter = ($findFirstValue.level <= level - 1),
+    filter = ($findFirstValue) => ($findFirstValue.level <= level - 1),
   );
 
 calc resource current_level_levelled_description(name = "Current level levelled_description") =
@@ -97,7 +97,7 @@ calc resource current_level_levelled_description(name = "Current level levelled_
       order = "desc",
       sort_by_selector = ($sortByValue) => $sortByValue.level,
     ),
-    filter = ($findFirstValue.level <= level),
+    filter = ($findFirstValue) => ($findFirstValue.level <= level),
   );
 
 calc string current_level_description(name = "Current level description") =
@@ -119,7 +119,7 @@ calc integer min_required_level(name = "Minimum required level") =
           ),
           mapper = ($mapValue) => $mapValue.level,
         ),
-        filter = true,
+        filter = ($findFirstValue) => true,
       );
 
 calc bool can_be_used(name = "Can be_used") = level >= min_required_level;
@@ -171,7 +171,7 @@ calc resource<levelled_amount> current_levelled_amount_of_allowed_selectable_fea
       order = "desc",
       sort_by_selector = ($sortByValue) => $sortByValue.level,
     ),
-    filter = ($findFirstValue.level <= level),
+    filter = ($findFirstValue) => ($findFirstValue.level <= level),
   );
 
 calc integer current_allowed_amount_of_selectable_features(name = "Current allowed amount of selectable features") =

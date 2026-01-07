@@ -10,7 +10,12 @@ calc string description(name = "Display description") =
           "Assign ",
           value,
           (if length(modifier_options) == 1
-            then concat([" to ", findFirst(modifier_options, filter = true)])
+            then concat(
+                [
+                  " to ",
+                  findFirst(modifier_options, filter = ($findFirstValue) => true),
+                ],
+              )
             else concat(
                 [
                   " to one of ",

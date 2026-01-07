@@ -664,10 +664,16 @@ calc integer equipped_armor_ac(name = "Equipped armor AC") =
     else 0;
 
 calc resource equipped_armor(name = "Equipped armor") =
-  findFirst(armors, filter = ($findFirstValue.id == equipped_armor_id));
+  findFirst(
+    armors,
+    filter = ($findFirstValue) => ($findFirstValue.id == equipped_armor_id),
+  );
 
 calc resource equipped_shield(name = "Equipped shield") =
-  findFirst(armors, filter = ($findFirstValue.id == equipped_shield_id));
+  findFirst(
+    armors,
+    filter = ($findFirstValue) => ($findFirstValue.id == equipped_shield_id),
+  );
 
 calc integer passive_perception(name = "Passive perception", abbreviation = "PP") =
   10 + perception;
@@ -969,7 +975,7 @@ calc integer remaining_point_buy_points(name = "Remaining point buy points") =
 calc resource<race> creator_selected_subrace(name = "Selected creator subrace") =
   findFirst(
     ($view?.edit_character_basics_race_select?.subraces ?? []),
-    filter = ($findFirstValue.id == $view?.edit_character_basics_subrace_select?),
+    filter = ($findFirstValue) => ($findFirstValue.id == $view?.edit_character_basics_subrace_select?),
   );
 
 calc resource<ability_score_increase>[] creator_ability_score_increases(name = "Creator ability score increases") =
@@ -1074,7 +1080,7 @@ calc bool strength_saving_throw_proficiency(name = "Strength") =
       classes,
       mapper = ($class) => $class.class.has_strength_saving_throw_proficiency,
     ),
-    filter = true,
+    filter = ($findFirstValue) => true,
   );
 
 calc integer strength_saving_throw(name = "Strength") =
@@ -1086,7 +1092,7 @@ calc bool dexterity_saving_throw_proficiency(name = "Dexterity") =
       classes,
       mapper = ($class) => $class.class.has_dexterity_saving_throw_proficiency,
     ),
-    filter = true,
+    filter = ($findFirstValue) => true,
   );
 
 calc integer dexterity_saving_throw(name = "Dexterity") =
@@ -1098,7 +1104,7 @@ calc bool constitution_saving_throw_proficiency(name = "Constitution") =
       classes,
       mapper = ($class) => $class.class.has_constitution_saving_throw_proficiency,
     ),
-    filter = true,
+    filter = ($findFirstValue) => true,
   );
 
 calc integer constitution_saving_throw(name = "Constitution") =
@@ -1110,7 +1116,7 @@ calc bool intelligence_saving_throw_proficiency(name = "Intelligence") =
       classes,
       mapper = ($class) => $class.class.has_intelligence_saving_throw_proficiency,
     ),
-    filter = true,
+    filter = ($findFirstValue) => true,
   );
 
 calc integer intelligence_saving_throw(name = "Intelligence") =
@@ -1122,7 +1128,7 @@ calc bool wisdom_saving_throw_proficiency(name = "Wisdom") =
       classes,
       mapper = ($class) => $class.class.has_wisdom_saving_throw_proficiency,
     ),
-    filter = true,
+    filter = ($findFirstValue) => true,
   );
 
 calc integer wisdom_saving_throw(name = "Wisdom") =
@@ -1134,7 +1140,7 @@ calc bool charisma_saving_throw_proficiency(name = "Charisma") =
       classes,
       mapper = ($class) => $class.class.has_charisma_saving_throw_proficiency,
     ),
-    filter = true,
+    filter = ($findFirstValue) => true,
   );
 
 calc integer charisma_saving_throw(name = "Charisma") =
@@ -1242,11 +1248,13 @@ calc bool is_single_third_level_caster(name = "Is single third level caster") =
       classes,
       mapper = ($class) => ($class.class.actual_effective_caster_level == "third"),
     ),
-    filter = true,
+    filter = ($findFirstValue) => true,
   );
 
 calc resource<class_details> first_third_level_caster_class(name = "First third level caster class") =
-  if is_single_third_level_caster then findFirst(classes, filter = true) else null;
+  if is_single_third_level_caster
+    then findFirst(classes, filter = ($findFirstValue) => true)
+    else null;
 
 calc integer spellcaster_level(name = "Spellcaster level") =
   add(
@@ -1298,7 +1306,7 @@ base bool death_saving_throws_failure_3(name = "Death saving throw failure 3") =
 calc resource level_up_selected_class_details(name = "Selected existing class when levelling up") =
   findFirst(
     classes,
-    filter = ($findFirstValue.class.id == $view?.level_up_select_class?),
+    filter = ($findFirstValue) => ($findFirstValue.class.id == $view?.level_up_select_class?),
   );
 
 calc resource<class>[] level_up_available_archetypes(name = "Available archetypes for level up") =
@@ -1396,7 +1404,7 @@ base string temp_last_level_up_class_id(name = "Last level up class ID") = null;
 calc resource last_level_up_class_details(name = "Last level up class") =
   findFirst(
     classes,
-    filter = ($findFirstValue.class.id == temp_last_level_up_class_id),
+    filter = ($findFirstValue) => ($findFirstValue.class.id == temp_last_level_up_class_id),
   );
 
 calc bool should_show_asi(name = "Should show ASI") =

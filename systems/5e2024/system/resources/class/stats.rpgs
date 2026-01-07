@@ -219,7 +219,7 @@ calc resource<class_details> current_class_details(name = "Current class details
 calc resource<class> selected_archetype(name = "Selected archetype") =
   findFirst(
     (if is_archetype then $parent.archetypes else archetypes),
-    filter = ($findFirstValue.id == current_class_details?.archetype_id?),
+    filter = ($findFirstValue) => ($findFirstValue.id == current_class_details?.archetype_id?),
   );
 
 calc resource<levelled_weapon> current_level_weapon(name = "Current level weapon") =
@@ -229,7 +229,7 @@ calc resource<levelled_weapon> current_level_weapon(name = "Current level weapon
       order = "desc",
       sort_by_selector = ($sortByValue) => $sortByValue.level,
     ),
-    filter = ($findFirstValue.level <= level),
+    filter = ($findFirstValue) => ($findFirstValue.level <= level),
   );
 
 calc bool selected_archetype_has_weapon(name = "Selected archetype has weapon") =
@@ -332,7 +332,7 @@ calc bool is_primary_class(name = "Is primary class") =
   if defined(stat = "$character")
     then findFirst(
         map($character.classes, mapper = ($mapValue) => $mapValue.class.id),
-        filter = true,
+        filter = ($findFirstValue) => true,
       ) == id
     else false;
 
@@ -421,7 +421,7 @@ calc resource<levelled_amount> current_level_attacks_per_action(name = "Current 
       order = "desc",
       sort_by_selector = ($sortByValue) => $sortByValue.level,
     ),
-    filter = ($findFirstValue.level <= level),
+    filter = ($findFirstValue) => ($findFirstValue.level <= level),
   );
 
 calc integer attacks_per_action_number_for_current_level(name = "Attacks per action for current level") =
@@ -535,7 +535,7 @@ calc resource lowest_level_weapon(name = "Lowest level weapon") =
       order = "asc",
       sort_by_selector = ($sortByValue) => $sortByValue.level,
     ),
-    filter = true,
+    filter = ($findFirstValue) => true,
   );
 
 calc string display_weapon(name = "Display weapon") =

@@ -211,7 +211,7 @@ calc resource current_level_max_charges_formula(name = "Max charges formula for 
       order = "desc",
       sort_by_selector = ($sortByValue) => $sortByValue.level,
     ),
-    filter = ($findFirstValue.level <= current_level),
+    filter = ($findFirstValue) => ($findFirstValue.level <= current_level),
   );
 
 calc integer current_level(name = "Current level") =
@@ -228,7 +228,7 @@ calc resource current_level_levelled_description(name = "Current level levelled_
       order = "desc",
       sort_by_selector = ($sortByValue) => $sortByValue.level,
     ),
-    filter = ($findFirstValue.level <= current_level),
+    filter = ($findFirstValue) => ($findFirstValue.level <= current_level),
   );
 
 calc string current_level_description(name = "Current level description") =

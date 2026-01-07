@@ -99,7 +99,7 @@ calc resource<race> selected_subrace(name = "Selected subrace") =
   if defined(stat = "$character")
     then findFirst(
         (if is_subrace then $parent.subraces else subraces),
-        filter = ($findFirstValue.id == $character.subrace_id),
+        filter = ($findFirstValue) => ($findFirstValue.id == $character.subrace_id),
       )
     else null;
 
@@ -128,7 +128,7 @@ calc resource<levelled_weapon> current_level_weapon(name = "Current level weapon
       order = "desc",
       sort_by_selector = ($sortByValue) => $sortByValue.level,
     ),
-    filter = ($findFirstValue.level <= $character.level),
+    filter = ($findFirstValue) => ($findFirstValue.level <= $character.level),
   );
 
 calc bool selected_subrace_has_weapon(name = "Selected subrace has weapon") =
@@ -337,7 +337,7 @@ calc resource lowest_level_unarmed_strike(name = "Lowest level unarmed strike") 
       order = "asc",
       sort_by_selector = ($sortByValue) => $sortByValue.level,
     ),
-    filter = true,
+    filter = ($findFirstValue) => true,
   );
 
 calc string display_unarmed_strike(name = "Display unarmed strike") =

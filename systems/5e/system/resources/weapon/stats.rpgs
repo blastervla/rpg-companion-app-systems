@@ -237,5 +237,5 @@ calc resource<item>[] ammunition_items(name = "Items that can be used as ammunit
 calc resource<item> selected_item_to_shoot(name = "Selected item to shoot") =
   findFirst(
     ammunition_items,
-    filter = ($findFirstValue.id == $view?.weapon_display_ammunition_select?),
+    filter = ($findFirstValue) => ($findFirstValue.id == $view?.weapon_display_ammunition_select?),
   );
