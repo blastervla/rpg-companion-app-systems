@@ -1,0 +1,207 @@
+view edit_effect() =
+  list(
+    id = "edit_effect",
+    padding = 16,
+    subviews = [
+      text(
+        id = "edit_effect_name",
+        edit_stat = "name",
+        style = "text",
+        max_length = 80,
+        label = "Name",
+        validation_message = if isEmpty($view.edit_effect_name) && $view?.edit_effect_type_select? == "none"
+          then "Please add a name to your effect"
+          else null,
+      ),
+      resourceArray(
+        id = "edit_effect_levelled_descriptions",
+        resource_id = "levelled_description",
+        stat = "description",
+        view_type = "edit",
+        left_view = text(
+          id = "edit_effect_levelled_descriptions_label",
+          text = "Descriptions (per lvl): ",
+          style = "text",
+        ),
+      ),
+      composite(
+        id = "edit_effect_trigger_type_composite",
+        subviews = [
+          text(id = "edit_effect_trigger_type_label", text = "Type: ", style = "text"),
+          select(
+            id = "edit_effect_trigger_type_select",
+            stat = "trigger_type",
+            options = "effect_trigger_types",
+          ),
+          checkbox(
+            id = "edit_effect_clear_on_remove",
+            stat = "clear_on_remove",
+            margin_left = 4,
+            label = "Clear on remove",
+            label_alignment = "right",
+          ),
+        ],
+      ),
+      text(
+        id = "edit_effect_events",
+        edit_stat = "events",
+        style = "text",
+        hint = "Separate by , (e.g: event1, event2)",
+        label = "Triggering events",
+        is_visible = $view.edit_effect_trigger_type_select == "event",
+      ),
+      text(
+        id = "edit_effect_revert_events",
+        edit_stat = "revert_events",
+        style = "text",
+        hint = "Separate by , (e.g: event1, event2)",
+        label = "Revertion events",
+        is_visible = $view.edit_effect_trigger_type_select == "event",
+      ),
+      resource(
+        id = "edit_effect_trigger_conditions",
+        view_type = "edit",
+        resource_id = "trigger_condition_or",
+        stat = "trigger_condition",
+        create_if_empty = true,
+      ),
+      composite(
+        id = "edit_effect_has_charges_composite",
+        subviews = [
+          checkbox(
+            id = "edit_effect_has_charges",
+            stat = "has_charges",
+            label = "Has charges",
+            label_alignment = "right",
+          ),
+          select(
+            id = "edit_effect_charge_type",
+            stat = "charge_type",
+            options = "charge_types",
+            margin_left = 4,
+            is_visible = $view.edit_effect_has_charges,
+          ),
+          text(
+            id = "edit_effect_max_charges_constant",
+            edit_stat = "max_charges_constant",
+            style = "text",
+            max_length = 4,
+            signed = false,
+            hint = "0",
+            is_visible = $view.edit_effect_has_charges && $view.edit_effect_charge_type == "constant",
+          ),
+        ],
+      ),
+      resourceArray(
+        id = "edit_effect_charge_formulas",
+        resource_id = "levelled_value_calculator",
+        stat = "max_charges_levelled_formulas",
+        view_type = "edit",
+        left_view = text(
+          id = "edit_effect_charge_formulas_label",
+          text = "Charges (per lvl)",
+          style = "text",
+        ),
+        pop_up_type = "bottomSheet",
+        pop_up_button_text = description,
+        is_visible = $view.edit_effect_has_charges && $view.edit_effect_charge_type == "calculated",
+      ),
+      composite(
+        id = "edit_effect_recharges_composite",
+        is_visible = $view.edit_effect_has_charges,
+        margin_top = 4,
+        margin_bottom = 4,
+        subviews = [
+          text(id = "edit_effect_recharges_label", text = "Recharges ", style = "text"),
+          select(
+            id = "edit_effect_recharge_type",
+            stat = "recharge_type",
+            options = "recharge_types",
+          ),
+          resource(
+            id = "edit_effect_recharges_dice",
+            view_type = "edit",
+            resource_id = "dice_roll",
+            stat = "recharges",
+            create_if_empty = true,
+            is_visible = $view.edit_effect_recharge_type == "formula",
+          ),
+          text(id = "edit_effect_recharges_at_label", text = " at ", style = "text"),
+          select(
+            id = "edit_effect_recharges_event",
+            stat = "recharge_event",
+            options = "lifecycle_events",
+          ),
+        ],
+      ),
+      composite(
+        id = "edit_effect_type_composite",
+        subviews = [
+          text(id = "edit_effect_type_label", text = "Effect: ", style = "text"),
+          select(id = "edit_effect_type_select", stat = "type", options = "effect_types"),
+        ],
+      ),
+      composite(
+        id = "edit_effect_effect_layout_composite",
+        is_visible = "none" != $view?.edit_effect_type_select?,
+        subviews = [
+          select(
+            id = "edit_effect_stat_select",
+            stat = "stat",
+            options = "effect_character_stats",
+            is_visible = is_set_or_add_to_stat,
+          ),
+          select(
+            id = "edit_effect_advantage_stat_select",
+            stat = "advantage_stat",
+            options = "effect_advantage_character_stats",
+            is_visible = is_advantage_or_disadvantage_type,
+          ),
+          text(
+            id = "edit_effect_stat_linker_add",
+            text = " + ",
+            style = "text",
+            is_visible = is_add_to_stat,
+          ),
+          text(
+            id = "edit_effect_stat_linker_set",
+            text = " = ",
+            style = "text",
+            is_visible = is_set_stat,
+          ),
+          resource(
+            id = "edit_effect_dice_roll",
+            view_type = "edit",
+            resource_id = "dice_roll",
+            stat = "dice_roll",
+            create_if_empty = true,
+            is_visible = is_set_or_add_to_stat && $view.edit_effect_trigger_type_select != "passive",
+          ),
+          text(
+            id = "edit_effect_constant",
+            style = "text",
+            edit_stat = "constant",
+            max_length = 4,
+            signed = true,
+            hint = "0",
+            is_visible = is_set_or_add_to_stat && $view.edit_effect_trigger_type_select == "passive",
+          ),
+          select(
+            id = "edit_effect_aggregation_type",
+            stat = "aggregation_type",
+            options = "effect_aggregation_types",
+            is_visible = is_set_or_add_to_stat,
+          ),
+        ],
+      ),
+      selectResources(
+        id = "edit_effect_select_spells",
+        stat = "spell",
+        resource_id = "spell",
+        is_visible = is_spell_type,
+        validation_message = if !notNull($view.edit_effect_select_spells) && is_spell_type
+          then "Please add a name to your effect"
+          else null,
+      ),
+    ],
+  );

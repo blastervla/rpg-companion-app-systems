@@ -1,0 +1,13 @@
+mechanic weapon_shoot_ammunition(event_names = "shoot_ammo") =
+  sequence(
+    effects = [
+      when {
+        notNull(selected_item_to_shoot) -> addToStat(
+          stat = "selected_item_to_shoot.quantity",
+          value = -1,
+          aggregation_type = "set",
+        ),
+      },
+      fireEvent(event_names = ["remove_empty_items"]),
+    ],
+  );

@@ -1,0 +1,11 @@
+mechanic item_add_quantity(event_names = "add_quantity") =
+  sequence(
+    effects = [
+      addToStat(
+        stat = "quantity",
+        value = $view.item_quantity,
+        aggregation_type = "set",
+      ),
+      delayed(millis = 500, effect = dismissResource()),
+    ],
+  );

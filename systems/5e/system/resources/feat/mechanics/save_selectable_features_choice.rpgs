@@ -1,0 +1,20 @@
+mechanic save_selectable_features_choice(event_names = "saveSelectableFeaturesChoice") =
+  sequence(
+    effects = [
+      setStat(
+        meta_stat = selected_selectable_feature_ids_stat_path,
+        new_value = flatAppend(
+          [
+            filter(
+              metaStat(meta_stat = selected_selectable_feature_ids_stat_path),
+              filter = ($filterValue) => (!contains(haystack = selectable_feature_ids, needle = $filterValue)),
+            ),
+            $view.feat_display_selectable_features_select,
+          ],
+          treat_as_set = true,
+        ),
+        aggregation_type = "set",
+      ),
+      delayed(millis = 100, effect = dismissResource()),
+    ],
+  );

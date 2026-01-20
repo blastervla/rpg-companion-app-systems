@@ -1,0 +1,92 @@
+character_creation_page edit_about_title() =
+  characterCreationPage(
+    title = displayableData(id = "edit_about_title", name = "About"),
+    view = list(
+      id = "edit_character_about",
+      padding = 32,
+      subviews = [
+        text(
+          id = "edit_character_about_subheader",
+          text = "Choose a background and an alignment",
+          style = "subhead",
+        ),
+        composite(
+          id = "edit_character_about_background_composite",
+          subviews = [
+            selectResources(
+              id = "edit_character_about_background_select",
+              stat = "background",
+              resource_id = "background",
+              margin_right = 4,
+              margin_bottom = 4,
+              validation_message = if !notNull($view.edit_character_about_background_select)
+                then "Please pick a background"
+                else null,
+            ),
+            popUpButton(
+              id = "edit_character_about_see_background_button",
+              text = "SEE DETAILS",
+              pop_up_view = resource(
+                id = "edit_character_about_see_background_bottom_sheet",
+                view_type = "display",
+                resource_id = "background",
+                stat = "$view.edit_character_about_background_select",
+              ),
+              pop_up_title = $view?.edit_character_about_background_select?.name ?? "Background",
+              display_cancel_button = true,
+              cancel_text = "OK",
+              is_visible = $view?.edit_character_about_background_select? != null,
+            ),
+          ],
+        ),
+        select(
+          id = "edit_character_about_alignment",
+          stat = "alignment",
+          options = "alignments",
+          margin_bottom = 4,
+        ),
+        text(
+          id = "edit_character_about_subheader",
+          text = "Write a bit about your character",
+          style = "subhead",
+        ),
+        text(
+          id = "edit_character_about_personality_traits",
+          edit_stat = "personality_traits",
+          style = "text",
+          label = "Personality traits",
+        ),
+        text(
+          id = "edit_character_about_ideals",
+          edit_stat = "ideals",
+          style = "text",
+          label = "Ideals",
+        ),
+        text(
+          id = "edit_character_about_bonds",
+          edit_stat = "bonds",
+          style = "text",
+          label = "Bonds",
+        ),
+        text(
+          id = "edit_character_about_flaws",
+          edit_stat = "flaws",
+          style = "text",
+          label = "Flaws",
+        ),
+        text(
+          id = "edit_character_about_about",
+          edit_stat = "about",
+          style = "text",
+          label = "About",
+        ),
+      ],
+    ),
+    post_edit = when {
+      $is_new -> setStat(
+        stat = "gold_pieces",
+        new_value = background.gold_pieces,
+        aggregation_type = "set",
+      ),
+    },
+  );

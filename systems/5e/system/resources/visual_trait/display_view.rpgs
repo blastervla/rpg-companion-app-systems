@@ -1,0 +1,35 @@
+view visual_trait_display() =
+  list(
+    id = "visual_trait_display",
+    alignment = "start",
+    subviews = [
+      composite(
+        id = "visual_trait_display_in_character_edit",
+        is_visible = defined(stat = "$character.$is_new"),
+        subviews = [
+          text(
+            id = "visual_trait_display_in_character_label",
+            text = name_for_select,
+            style = "text",
+          ),
+          select(
+            id = "visual_trait_display_in_character_option_select",
+            stat = "selected_option",
+            resource_options = options,
+            options_display_stat = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "visual_trait_display_out_of_character",
+        is_visible = !defined(stat = "$character.$is_new"),
+        subviews = [
+          text(
+            id = "visual_trait_display_out_of_character_label",
+            text = "display_text",
+            style = "text",
+          ),
+        ],
+      ),
+    ],
+  );

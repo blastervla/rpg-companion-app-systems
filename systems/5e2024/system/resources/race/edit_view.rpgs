@@ -1,0 +1,398 @@
+view race_edit() =
+  viewPager(
+    id = "race_edit",
+    names = [
+      "Basic information",
+      "Weapon & Spells",
+      "Proficiencies",
+      "Visual traits",
+      "Ancestries",
+    ],
+    color = "#A33715",
+    subviews = [
+      list(
+        id = "race_edit_basics",
+        padding = 16,
+        subviews = [
+          text(
+            id = "race_edit_name",
+            edit_stat = "name",
+            style = "text",
+            label = "Name",
+            max_length = 140,
+            validation_message = if isEmpty($view.race_edit_name) then "Please add a name to your race" else null,
+          ),
+          composite(
+            id = "race_edit_source",
+            margin_top = 4,
+            subviews = [
+              text(id = "race_edit_source_label", text = "Source: ", style = "text"),
+              select(
+                id = "race_edit_source_select",
+                options = "source",
+                options_display_stat = "abbreviation",
+                stat = "source",
+              ),
+            ],
+          ),
+          checkbox(
+            id = "race_edit_has_same_ac",
+            stat = "same_ac_as_parent",
+            label = "Has same AC as race",
+            label_alignment = "right",
+            is_visible = is_subrace,
+          ),
+          composite(
+            id = "race_edit_armor_composite",
+            margin_top = 4,
+            is_visible = !is_subrace || !($view?.race_edit_has_same_ac ?? false),
+            subviews = [
+              text(id = "race_edit_base_ac", text = "Base AC: ", style = "text", bold = true),
+              text(
+                id = "race_edit_base_ac",
+                edit_stat = "base_ac",
+                style = "text",
+                max_length = 2,
+                signed = false,
+                hint = "0",
+              ),
+              select(
+                id = "race_edit_ac_modifiers",
+                stat = "ac_modifiers",
+                options = "ability",
+                multi_select = true,
+                margin_left = 4,
+              ),
+            ],
+          ),
+          text(id = "race_edit_speed_label", text = "Speed:", style = "text", bold = true),
+          composite(
+            id = "race_edit_speed_composite",
+            alignment = "center",
+            subviews = [
+              text(
+                id = "race_edit_speed",
+                edit_stat = "speed",
+                style = "text",
+                max_length = 2,
+                margin_right = 4,
+                signed = false,
+                hint = "0",
+                label = "Normal",
+              ),
+              text(
+                id = "race_edit_burrow_speed",
+                edit_stat = "burrow_speed",
+                style = "text",
+                max_length = 2,
+                margin_left = 4,
+                margin_right = 4,
+                signed = false,
+                hint = "0",
+                label = "Burrow",
+              ),
+              text(
+                id = "race_edit_climb_speed",
+                edit_stat = "climb_speed",
+                style = "text",
+                max_length = 2,
+                margin_left = 4,
+                margin_right = 4,
+                signed = false,
+                hint = "0",
+                label = "Climb",
+              ),
+              text(
+                id = "race_edit_fly_speed",
+                edit_stat = "fly_speed",
+                style = "text",
+                max_length = 2,
+                margin_left = 4,
+                margin_right = 4,
+                signed = false,
+                hint = "0",
+                label = "Fly",
+              ),
+              text(
+                id = "race_edit_swim_speed",
+                edit_stat = "swim_speed",
+                style = "text",
+                max_length = 2,
+                margin_left = 4,
+                signed = false,
+                hint = "0",
+                label = "Swim",
+              ),
+            ],
+          ),
+          resourceArray(
+            id = "race_edit_traits",
+            resource_id = "feat",
+            stat = "traits",
+            view_type = "edit",
+            left_view = text(
+              id = "race_edit_traits_label",
+              text = "Traits: ",
+              style = "text",
+              bold = true,
+            ),
+            pop_up_type = "bottomSheet",
+            pop_up_button_text = levelled_description,
+            validation_message = if !isEmpty(
+              filter(
+                $view.race_edit_traits,
+                filter = ($filterValue) => isEmpty($filterValue.name),
+              ),
+            )
+              then "You have empty traits. Please add some content to them or remove them."
+              else null,
+          ),
+        ],
+      ),
+      list(
+        id = "race_edit_spells_weapons",
+        padding = 16,
+        subviews = [
+          resourceArray(
+            id = "race_edit_unarmed_strike",
+            resource_id = "levelled_weapon",
+            stat = "unarmed_strike",
+            view_type = "edit",
+            left_view = text(
+              id = "race_edit_unarmed_strike_label",
+              text = "Unarmed strike (per lvl): ",
+              style = "text",
+              bold = true,
+            ),
+            validation_message = if !isEmpty(
+              filter(
+                $view.race_edit_unarmed_strike,
+                filter = ($filterValue) => isNull($filterValue.weapon),
+              ),
+            )
+              then "You have empty unarmed strikes. Please work on them or remove them."
+              else null,
+          ),
+          checkbox(
+            id = "race_edit_has_same_spellcasting_ability",
+            stat = "same_spellcasting_ability_as_parent",
+            label = "Has same spellcasting ability as race",
+            label_alignment = "right",
+            is_visible = is_subrace,
+          ),
+          composite(
+            id = "race_edit_spellcasting_ability_composite",
+            subviews = [
+              text(
+                id = "race_edit_spellcasting_ability_label",
+                text = "Spellcasting Ability: ",
+                style = "text",
+                bold = true,
+              ),
+              select(
+                id = "race_edit_spellcasting_ability_select",
+                stat = "spellcasting_ability",
+                options = "ability",
+              ),
+            ],
+            is_visible = !is_subrace || !($view?.race_edit_has_same_spellcasting_ability ?? false),
+          ),
+          resourceArray(
+            id = "race_edit_spells",
+            resource_id = "levelled_spell",
+            stat = "spells",
+            view_type = "edit",
+            left_view = text(
+              id = "race_edit_spells_label",
+              text = "Spells (per lvl): ",
+              style = "text",
+              bold = true,
+            ),
+          ),
+        ],
+      ),
+      list(
+        id = "race_edit_proficiencies",
+        padding = 16,
+        subviews = [
+          resourceArray(
+            id = "race_edit_language_proficiencies",
+            resource_id = "levelled_choice_text",
+            stat = "language_proficiencies",
+            view_type = "edit",
+            left_view = text(
+              id = "race_edit_language_proficiencies_label",
+              text = "Language proficiency choices (per lvl): ",
+              style = "text",
+              bold = true,
+            ),
+          ),
+          resourceArray(
+            id = "race_edit_skill_proficiencies",
+            resource_id = "levelled_skill_proficiency",
+            stat = "skill_proficiencies",
+            view_type = "edit",
+            left_view = text(
+              id = "race_edit_skill_proficiencies_label",
+              text = "Skill proficiency choices (per lvl): ",
+              style = "text",
+              bold = true,
+            ),
+            pop_up_type = "bottomSheet",
+            pop_up_button_text = description,
+            validation_message = if !isEmpty(
+              filter(
+                $view.race_edit_skill_proficiencies,
+                filter = ($filterValue) => isEmpty($filterValue.options),
+              ),
+            )
+              then "You have empty levelled skill proficiencies. Please add some skills to them or remove them."
+              else null,
+          ),
+          resourceArray(
+            id = "race_edit_armor_proficiencies",
+            resource_id = "levelled_armor_proficiency",
+            stat = "armor_proficiencies",
+            view_type = "edit",
+            left_view = text(
+              id = "race_edit_armor_proficiencies_label",
+              text = "Armor proficiency choices (per lvl): ",
+              style = "text",
+              bold = true,
+            ),
+          ),
+          resourceArray(
+            id = "race_edit_weapon_proficiencies",
+            resource_id = "levelled_weapon_proficiency",
+            stat = "weapon_proficiencies",
+            view_type = "edit",
+            left_view = text(
+              id = "race_edit_weapon_proficiencies_label",
+              text = "Weapon proficiency choices (per lvl): ",
+              style = "text",
+              bold = true,
+            ),
+            pop_up_type = "bottomSheet",
+            pop_up_button_text = description,
+          ),
+          resourceArray(
+            id = "race_edit_tool_proficiencies",
+            resource_id = "levelled_choice_text",
+            stat = "tool_proficiencies",
+            view_type = "edit",
+            left_view = text(
+              id = "race_edit_tool_proficiencies_label",
+              text = "Tool proficiency choices (per lvl): ",
+              style = "text",
+              bold = true,
+            ),
+          ),
+        ],
+      ),
+      list(
+        id = "race_edit_visual_traits",
+        padding = 16,
+        subviews = [
+          text(
+            id = "race_edit_visual_traits_selectable_label",
+            text = "Selectable visual traits:",
+            style = "text",
+            bold = true,
+          ),
+          composite(
+            id = "race_edit_visual_traits_comp",
+            subviews = [
+              checkbox(
+                id = "race_edit_visual_traits_allow_hair_color_selection",
+                stat = "hair_color_selectable",
+                label = "Hair color",
+                label_alignment = "right",
+              ),
+              checkbox(
+                id = "race_edit_visual_traits_allow_eye_color_selection",
+                stat = "eye_color_selectable",
+                label = "Eye color",
+                label_alignment = "right",
+              ),
+              checkbox(
+                id = "race_edit_visual_traits_allow_outfit_selection",
+                stat = "outfit_selectable",
+                label = "Outfit",
+                label_alignment = "right",
+              ),
+              checkbox(
+                id = "race_edit_visual_traits_allow_weapon_selection",
+                stat = "weapon_selectable",
+                label = "Weapon",
+                label_alignment = "right",
+              ),
+              checkbox(
+                id = "race_edit_visual_traits_allow_sex_selection",
+                stat = "sex_selectable",
+                label = "Sex",
+                label_alignment = "right",
+              ),
+            ],
+          ),
+          resourceArray(
+            id = "race_edit_visual_traits_array",
+            resource_id = "visual_trait",
+            stat = "visual_traits",
+            view_type = "edit",
+            left_view = text(
+              id = "race_edit_visual_traits_label",
+              text = "Extra visual traits: ",
+              style = "text",
+              bold = true,
+            ),
+            pop_up_type = "bottomSheet",
+            pop_up_button_text = name,
+            validation_message = if !isEmpty(
+              filter(
+                $view.race_edit_visual_traits,
+                filter = ($filterValue) => isEmpty($filterValue.name),
+              ),
+            )
+              then "You have empty visual traits. Please edit them or delete them."
+              else null,
+          ),
+        ],
+      ),
+      list(
+        id = "race_edit_subraces",
+        padding = 16,
+        subviews = [
+          resourceArray(
+            id = "race_edit_subraces",
+            resource_id = "race",
+            stat = "subraces",
+            view_type = "edit",
+            left_view = text(
+              id = "race_edit_subraces_label",
+              text = "Ancestries: ",
+              style = "text",
+              bold = true,
+            ),
+            pop_up_type = "window",
+            pop_up_button_text = name,
+            is_visible = !is_subrace,
+            validation_message = if !isEmpty(
+              filter(
+                $view.race_edit_subraces,
+                filter = ($filterValue) => isEmpty($filterValue.name),
+              ),
+            )
+              then "You have empty ancestries. Please edit them or delete them."
+              else null,
+          ),
+          text(
+            id = "race_edit_subraces_no_subraces_message",
+            text = "Ancestries cannot have ancestries!",
+            style = "text",
+            bold = true,
+            is_visible = is_subrace,
+          ),
+        ],
+      ),
+    ],
+  );

@@ -1,0 +1,58 @@
+character_sheet_section weapons() =
+  section(
+    id = "weapons_section",
+    show_divider = true,
+    content_item_min_width = 1,
+    collapsible = true,
+    header = [
+      icon(
+        id = "weapons_section_icon",
+        name = "ic_weapon",
+        size = "medium",
+        margin_left = 16,
+      ),
+      text(
+        id = "weapons_section_title",
+        margin_right = 16,
+        margin_left = 16,
+        text = "Weapons",
+        style = "title",
+      ),
+      spacer(id = "weapons_section_header_spacer"),
+      selectResources(
+        id = "weapons_section_add_weapon",
+        stat = "weapons",
+        resource_id = "weapon",
+        view_type = "icon",
+        should_append = true,
+        should_save_on_selection = true,
+      ),
+    ],
+    content = [
+      resourceSection(
+        id = "weapons_list",
+        resource_stat = "all_weapons",
+        resource_set_stat = "weapons",
+        resource_id = "weapon",
+        header_view = composite(
+          id = "weapons_list_attacks_per_action_composite",
+          margin_left = 16,
+          margin_bottom = 16,
+          subviews = [
+            text(
+              id = "weapons_list_attacks_per_action_label",
+              text = "Attacks per action: ",
+              style = "text",
+              bold = true,
+            ),
+            text(
+              id = "weapons_list_attacks_per_action",
+              text = attacks_per_action,
+              style = "text",
+              bold = true,
+            ),
+          ],
+        ),
+      ),
+    ],
+  );

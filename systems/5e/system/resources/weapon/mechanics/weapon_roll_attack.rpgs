@@ -1,0 +1,28 @@
+mechanic weapon_roll_attack(event_names = "attack") =
+  sequence(
+    effects = [
+      when {
+        has_ammunition -> fireEvent(event = event(name = "shoot_ammo")),
+      },
+      roll(
+        rolls = [
+          rollable(
+            formulas = [
+              concat(
+                [
+                  when {
+                    $view.weapon_display_advantage_disadvantage_select == "disadvantage" -> "min(2d20) + ",
+                    $view.weapon_display_advantage_disadvantage_select == "advantage" -> "max(2d20) + ",
+                    else -> "1d20 + ",
+                  },
+                  attack_bonus,
+                ],
+              ),
+            ],
+            text = "to hit",
+          ),
+        ],
+      ),
+      delayed(millis = 500, effect = dismissResource()),
+    ],
+  );

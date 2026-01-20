@@ -1,0 +1,31 @@
+view item_list() =
+  listItem(
+    id = "item_list",
+    title = name,
+    subtitle = properties,
+    first_line_extra = first_line_extra,
+    chips = flatAppend(
+      [
+        (if true == is_equipped
+          then [
+              createChip(
+                id = "equipped_chip",
+                text = "EQUIPPED",
+                background_color = "#4caf50",
+                style = "compact",
+              ),
+            ]
+          else []),
+        (if true == is_attuned
+          then [
+              createChip(
+                id = "attuned_chip",
+                text = "ATTUNED",
+                background_color = "#4caf50",
+                style = "compact",
+              ),
+            ]
+          else []),
+      ],
+    ),
+  );

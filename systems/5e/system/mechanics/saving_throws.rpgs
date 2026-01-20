@@ -1,0 +1,6 @@
+mechanic saving_throws(event_names = "rpg_onUpdate") =
+  when {
+    death_saving_throws_success_1
+    && death_saving_throws_success_2
+    && death_saving_throws_success_3 -> fireEvent(event = event(name = "death_saves_stabilize", payload = payload())),
+  };

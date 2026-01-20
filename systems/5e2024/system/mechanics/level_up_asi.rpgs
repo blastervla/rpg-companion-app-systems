@@ -1,0 +1,8 @@
+mechanic level_up_asi(event_names = "level_up_asi") =
+  when {
+    notNull($view.asi_feat_selection) -> addToStat(
+      stat = "feats",
+      value = $view.asi_feat_selection,
+      aggregation_type = "set",
+    ),
+  };

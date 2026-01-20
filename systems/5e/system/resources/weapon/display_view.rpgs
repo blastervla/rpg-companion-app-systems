@@ -1,0 +1,199 @@
+view weapon_display() =
+  list(
+    id = "weapon_display",
+    padding = 16,
+    subviews = [
+      composite(
+        id = "weapon_display_info",
+        subviews = [
+          text(
+            id = "weapon_display_source",
+            margin_left = 16,
+            style = "caption",
+            resource_id = "source",
+            resource_instance_ids_stat = "source",
+            resource_display_stat = "abbreviation",
+          ),
+          text(id = "weapon_display_source_separator", text = ", ", style = "caption"),
+          text(
+            id = "weapon_display_properties",
+            text = properties,
+            style = "caption",
+            is_visible = !isEmpty(properties),
+          ),
+        ],
+      ),
+      composite(
+        id = "weapon_display_character_properties",
+        subviews = [
+          text(
+            id = "weapon_display_proficient",
+            margin_left = 16,
+            text = "Proficient",
+            style = "caption",
+            color = "accent",
+            is_visible = is_proficient,
+          ),
+          text(
+            id = "weapon_display_attuned",
+            margin_left = 16,
+            text = "Attuned",
+            style = "caption",
+            color = "#4CAF50",
+            is_visible = is_attuned,
+          ),
+        ],
+        is_visible = defined(stat = "$character"),
+      ),
+      composite(
+        id = "weapon_display_type_composite",
+        margin_top = 16,
+        subviews = [
+          text(
+            id = "weapon_display_type_label",
+            text = "Type: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "weapon_display_type_label",
+            text = enumeratedName(enumerated_type = "weapon_types", id = type),
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "weapon_display_attack_bonus_composite",
+        margin_top = 8,
+        is_visible = defined(stat = "$character"),
+        subviews = [
+          text(
+            id = "weapon_display_attack_bonus_label",
+            text = "Attack Bonus: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "weapon_display_attack_bonus_label",
+            text = display_attack_bonus,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "weapon_display_damage_composite",
+        subviews = [
+          text(
+            id = "weapon_display_damage_label",
+            text = "Damage: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "weapon_display_damage_label",
+            text = damage_dice_display_description,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "weapon_display_versatile_damage_composite",
+        is_visible = defined(stat = "$character") && is_versatile,
+        subviews = [
+          text(
+            id = "weapon_display_damage_label",
+            text = "Damage (two-handed): ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "weapon_display_damage_label",
+            text = versatile_damage_dice_display_description,
+            style = "text",
+          ),
+        ],
+      ),
+      text(
+        id = "weapon_display_description",
+        margin_top = 16,
+        text = description,
+        style = "text",
+        is_visible = !isEmpty(description),
+      ),
+      collapsible(
+        id = "weapon_display_effects_collapsible",
+        margin_top = 8,
+        title = "Magic effects",
+        is_visible = !isEmpty(effects),
+        subviews = [
+          resourceArray(
+            id = "weapon_display_effects",
+            resource_id = "effect",
+            stat = "effects",
+            view_type = "display",
+          ),
+        ],
+      ),
+      list(
+        id = "weapon_display_in_character_controls",
+        is_visible = defined(stat = "$character"),
+        subviews = [
+          composite(
+            id = "weapon_versatile_toggle_composite",
+            alignment = "end",
+            subviews = [
+              checkbox(
+                id = "weapon_versatile_toggle",
+                stat = "currently_used_as_versatile",
+                label = if $view?.weapon_versatile_toggle? ?? false then "Two-handed" else "One-handed",
+                label_alignment = "right",
+                style = "switcher",
+                is_visible = is_versatile,
+              ),
+            ],
+          ),
+          composite(
+            id = "weapon_display_attune_advantage_composite",
+            row_only = true,
+            subviews = [
+              button(
+                id = "weapon_display_attune_button",
+                text = if is_attuned then "UNATTUNE" else "ATTUNE",
+                event = event(name = "toggle_attunement"),
+                is_visible = requires_attunement,
+              ),
+              spacer(id = "weapon_display_attune_advantage_spacer"),
+              select(
+                id = "weapon_display_advantage_disadvantage_select",
+                stat = "advantage_status",
+                options = "advantage_status",
+              ),
+            ],
+          ),
+          composite(
+            id = "weapon_display_ammunition_use_composite",
+            alignment = "end",
+            subviews = [
+              select(
+                id = "weapon_display_ammunition_select",
+                stat = "temp_shoot_ammo",
+                resource_options = ammunition_items,
+                options_display_stat = "name_with_amount",
+                is_visible = has_ammunition,
+              ),
+              button(
+                id = "weapon_display_attack_button",
+                text = if has_ammunition then "SHOOT" else "ATTACK",
+                event = event(name = "attack"),
+              ),
+              button(
+                id = "weapon_display_attack_button",
+                text = "DAMAGE",
+                event = event(name = "damage"),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ],
+  );

@@ -1,0 +1,189 @@
+view race_display() =
+  list(
+    id = "race_display",
+    padding = 16,
+    alignment = "start",
+    subviews = [
+      text(
+        id = "race_display_source",
+        style = "caption",
+        margin_left = 16,
+        resource_id = "source",
+        resource_instance_ids_stat = "source",
+        resource_display_stat = "abbreviation",
+      ),
+      composite(
+        id = "race_display_armor_class_composite",
+        margin_top = 8,
+        subviews = [
+          text(
+            id = "race_display_armor_class_label",
+            text = "Armor class: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "race_display_armor_class_label",
+            text = display_armor_class,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "race_display_speeds",
+        subviews = [
+          text(
+            id = "race_display_armor_class_label",
+            text = "Speeds: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "race_display_speeds_text", text = display_speeds, style = "text"),
+        ],
+      ),
+      resourceArray(
+        id = "race_display_ability_score_increases",
+        resource_id = "ability_score_increase",
+        stat = "ability_score_increases",
+        view_type = "display",
+        left_view = text(
+          id = "race_display_armor_class_label",
+          text = "Ability Scores: ",
+          style = "text",
+          bold = true,
+        ),
+        is_visible = !isEmpty(ability_score_increases),
+      ),
+      collapsible(
+        id = "race_display_traits_collapsible",
+        title = "Traits",
+        start_expanded = false,
+        subviews = [
+          resourceSection(
+            id = "race_display_traits",
+            resource_stat = "traits",
+            resource_id = "feat",
+            content_item_min_width = 1,
+            read_only = true,
+          ),
+        ],
+      ),
+      composite(
+        id = "race_display_weapon",
+        margin_top = 8,
+        subviews = [
+          text(
+            id = "race_display_armor_class_label",
+            text = "Weapon: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "race_display_weapon_text",
+            text = display_unarmed_strike,
+            style = "text",
+          ),
+        ],
+      ),
+      collapsible(
+        id = "race_display_spells_collapsible",
+        title = "Spells (per lvl)",
+        start_expanded = false,
+        subviews = [
+          resourceSection(
+            id = "race_display_spells",
+            resource_stat = "spells",
+            resource_id = "levelled_spell",
+            content_item_min_width = 1,
+            read_only = true,
+          ),
+        ],
+        is_visible = !isEmpty(spells),
+      ),
+      collapsible(
+        id = "race_display_languages_collapsible",
+        title = "Languages (per lvl)",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "race_display_languages",
+            resource_id = "levelled_choice_text",
+            stat = "language_proficiencies",
+            view_type = "display",
+          ),
+        ],
+        is_visible = !isEmpty(language_proficiencies),
+      ),
+      collapsible(
+        id = "race_display_skills_collapsible",
+        title = "Skill proficiencies (per lvl)",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "race_display_skills",
+            resource_id = "levelled_skill_proficiency",
+            stat = "skill_proficiencies",
+            view_type = "display",
+          ),
+        ],
+        is_visible = !isEmpty(skill_proficiencies),
+      ),
+      collapsible(
+        id = "race_display_armor_proficiencies_collapsible",
+        title = "Armor proficiencies (per lvl)",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "race_display_armor_proficiencies",
+            resource_id = "levelled_armor_proficiency",
+            stat = "armor_proficiencies",
+            view_type = "display",
+          ),
+        ],
+        is_visible = !isEmpty(armor_proficiencies),
+      ),
+      collapsible(
+        id = "race_display_weapon_proficiencies_collapsible",
+        title = "Weapon proficiencies (per lvl)",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "race_display_weapon_proficiencies",
+            resource_id = "levelled_weapon_proficiency",
+            stat = "weapon_proficiencies",
+            view_type = "display",
+          ),
+        ],
+        is_visible = !isEmpty(weapon_proficiencies),
+      ),
+      collapsible(
+        id = "race_display_tool_proficiencies_collapsible",
+        title = "Tool proficiencies (per lvl)",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "race_display_tool_proficiencies",
+            resource_id = "levelled_choice_text",
+            stat = "tool_proficiencies",
+            view_type = "display",
+          ),
+        ],
+        is_visible = !isEmpty(tool_proficiencies),
+      ),
+      collapsible(
+        id = "race_display_subraces_collapsible",
+        title = "Subraces",
+        start_expanded = false,
+        subviews = [
+          resourceSection(
+            id = "race_display_subraces",
+            resource_stat = "subraces",
+            resource_id = "race",
+            content_item_min_width = 1,
+            read_only = true,
+          ),
+        ],
+        is_visible = !isEmpty(subraces),
+      ),
+    ],
+  );

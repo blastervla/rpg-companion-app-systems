@@ -1,0 +1,5 @@
+mechanic armor_equip(event_names = "toggle_equip") =
+  when {
+    is_equipped -> setStat(meta_stat = equip_stat_name, new_value = "", aggregation_type = "set"),
+    else -> setStat(meta_stat = equip_stat_name, new_value = id, aggregation_type = "set"),
+  };

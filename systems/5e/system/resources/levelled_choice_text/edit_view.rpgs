@@ -1,0 +1,24 @@
+view levelled_choice_text_edit() =
+  composite(
+    id = "levelled_choice_text_edit",
+    subviews = [
+      text(
+        id = "levelled_choice_text_edit_level",
+        edit_stat = "level",
+        style = "text",
+        hint = "Lvl",
+        max_length = 3,
+      ),
+      text(
+        id = "levelled_choice_text_edit_options",
+        edit_stat = "options",
+        style = "text",
+        max_length = 140,
+        hint = "Separate by , (e.g: option1, option2)",
+        label = "Options",
+        validation_message = if isEmpty($view.levelled_choice_text_edit_options)
+          then "You have an empty levelled options box. Please complete it or remove it"
+          else null,
+      ),
+    ],
+  );

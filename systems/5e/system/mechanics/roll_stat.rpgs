@@ -1,0 +1,17 @@
+mechanic roll_stat(event_names = "rollStat") =
+  roll(
+    rolls = [
+      rollable(
+        formulas = when {
+          contains(haystack = advantages, needle = $event.stat) -> [
+            concat(["max(2d20) + ", metaStat(meta_stat = $event.stat)]),
+          ],
+          contains(haystack = all_disadvantages, needle = $event.stat) -> [
+            concat(["min(2d20) + ", metaStat(meta_stat = $event.stat)]),
+          ],
+          else -> [concat(["1d20 + ", metaStat(meta_stat = $event.stat)])],
+        },
+        text = $event.statName,
+      ),
+    ],
+  );

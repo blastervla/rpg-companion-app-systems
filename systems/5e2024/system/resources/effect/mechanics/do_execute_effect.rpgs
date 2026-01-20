@@ -1,0 +1,41 @@
+mechanic do_execute_effect(
+  event_names = "do_execute_effect",
+  revert_event_names = "revert_effect_execution",
+  calculated_revert_event_names = trigger_revert_events,
+  revert_on_remove = clear_on_remove) =
+  when {
+    type == "add_to_stat" -> addToStat(
+      meta_stat = stat,
+      value = if is_passive then constant else roll(formula = dice_roll.formula),
+      calculated_aggregation_type = aggregation_type,
+    ),
+    type == "set_stat" -> setStat(
+      meta_stat = stat,
+      new_value = if is_passive then constant else roll(formula = dice_roll.formula),
+      calculated_aggregation_type = aggregation_type,
+    ),
+    type == "advantage" || type == "disadvantage" -> addToStat(
+      meta_stat = if type == "advantage"
+        then "$character.advantages"
+        else "$character.disadvantages",
+      value = [
+        replace(string = advantage_stat, occurrence = "$character.", replace = ""),
+      ],
+      aggregation_type = "sum",
+    ),
+    type == "add_spell" -> when {
+      defined(stat = "spell") -> setStat(
+        stat = "$character.spells",
+        new_value = if contains(
+          needle = spell.name,
+          haystack = map($character.spells, mapper = ($mapValue) => $mapValue.name),
+        )
+          then $character.spells
+          else append(list = $character.spells, item = spell),
+        aggregation_type = "set",
+      ),
+    },
+    type == "use_spell" -> when {
+      defined(stat = "spell") -> showResource(resource = spell),
+    },
+  };

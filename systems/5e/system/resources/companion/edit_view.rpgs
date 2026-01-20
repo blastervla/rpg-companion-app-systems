@@ -1,0 +1,22 @@
+view companion_edit() =
+  list(
+    id = "companion_edit",
+    padding = 16,
+    subviews = [
+      text(
+        id = "companion_edit_name",
+        hint = "Name",
+        edit_stat = "name",
+        style = "title",
+        max_length = 40,
+        validation_message = if isEmpty($view.companion_edit_name)
+          then "Please make sure to provide a name"
+          else null,
+      ),
+      selectResources(
+        id = "companion_edit_monster",
+        stat = "monster",
+        resource_id = "monster",
+      ),
+    ],
+  );

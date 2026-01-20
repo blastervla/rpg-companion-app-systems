@@ -1,0 +1,12 @@
+mechanic item_subtract_quantity(event_names = "subtract_quantity") =
+  sequence(
+    effects = [
+      addToStat(
+        stat = "quantity",
+        value = $view.item_quantity * -1,
+        aggregation_type = "set",
+      ),
+      fireEvent(event_names = ["remove_empty_items"]),
+      delayed(millis = 500, effect = dismissResource()),
+    ],
+  );

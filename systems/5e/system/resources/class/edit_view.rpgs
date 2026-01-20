@@ -1,0 +1,741 @@
+view class_edit() =
+  viewPager(
+    id = "class_edit",
+    names = [
+      "Basic information",
+      "Features",
+      "Spellcasting",
+      "Weapons & Equipment",
+      "Proficiencies",
+      "Archetypes",
+    ],
+    color = "#016157",
+    subviews = [
+      list(
+        id = "class_edit_basics",
+        padding = 16,
+        subviews = [
+          text(
+            id = "class_edit_name",
+            edit_stat = "name",
+            style = "text",
+            label = "Name",
+            max_length = 140,
+            validation_message = if isEmpty($view.class_edit_name)
+              then "Please add a name to your class"
+              else null,
+          ),
+          composite(
+            id = "class_edit_source",
+            margin_top = 4,
+            subviews = [
+              text(id = "class_edit_source_label", text = "Source: ", style = "text"),
+              select(
+                id = "class_edit_source_select",
+                options = "source",
+                options_display_stat = "abbreviation",
+                stat = "source",
+              ),
+            ],
+          ),
+          checkbox(
+            id = "class_edit_has_same_hp",
+            stat = "same_hp_as_parent",
+            label = "Has same HP as class",
+            label_alignment = "right",
+            is_visible = is_archetype,
+          ),
+          composite(
+            id = "class_edit_hp_composite",
+            margin_top = 4,
+            is_visible = !is_archetype || !($view?.class_edit_has_same_hp ?? false),
+            subviews = [
+              text(
+                id = "class_edit_hit_die_label",
+                text = "Hit die: ",
+                style = "text",
+                bold = true,
+              ),
+              select(id = "class_edit_hit_die", stat = "hit_die", options = "dice"),
+              text(id = "class_edit_hp_plus_label", text = " + ", style = "text"),
+              select(
+                id = "class_edit_hp_modifiers",
+                stat = "hp_modifiers",
+                options = "ability",
+                multi_select = true,
+              ),
+            ],
+          ),
+          checkbox(
+            id = "class_edit_has_same_ac",
+            stat = "same_ac_as_parent",
+            label = "Has same AC as class",
+            label_alignment = "right",
+            is_visible = is_archetype,
+          ),
+          composite(
+            id = "class_edit_armor_composite",
+            margin_top = 4,
+            is_visible = !is_archetype || !($view?.class_edit_has_same_ac ?? false),
+            subviews = [
+              text(id = "class_edit_base_ac", text = "Base AC: ", style = "text", bold = true),
+              text(
+                id = "class_edit_base_ac",
+                edit_stat = "base_ac",
+                style = "text",
+                max_length = 2,
+                signed = false,
+                hint = "0",
+              ),
+              text(id = "class_edit_ac_plus_label", text = " + ", style = "text"),
+              select(
+                id = "class_edit_ac_modifiers",
+                stat = "ac_modifiers",
+                options = "ability",
+                multi_select = true,
+              ),
+            ],
+          ),
+          text(
+            id = "class_edit_saving_throw_proficiencies_label",
+            margin_top = 4,
+            text = saving_throws_text,
+            style = "text",
+            bold = true,
+          ),
+          composite(
+            id = "class_edit_saving_throws_composite",
+            alignment = "center",
+            subviews = [
+              list(
+                id = "class_edit_strength_saving_throw_proficiency_composite",
+                padding = 4,
+                alignment = "center",
+                subviews = [
+                  checkbox(
+                    id = "class_edit_strength_saving_throw_proficiency",
+                    stat = "strength_saving_throw_proficiency",
+                  ),
+                  text(
+                    id = "class_edit_strength_saving_throw_proficiency_label",
+                    text = "STR",
+                    style = "text",
+                  ),
+                ],
+              ),
+              list(
+                id = "class_edit_dexterity_saving_throw_proficiency_composite",
+                padding = 4,
+                alignment = "center",
+                subviews = [
+                  checkbox(
+                    id = "class_edit_dexterity_saving_throw_proficiency",
+                    stat = "dexterity_saving_throw_proficiency",
+                  ),
+                  text(
+                    id = "class_edit_dexterity_saving_throw_proficiency_label",
+                    text = "DEX",
+                    style = "text",
+                  ),
+                ],
+              ),
+              list(
+                id = "class_edit_constitution_saving_throw_proficiency_composite",
+                padding = 4,
+                alignment = "center",
+                subviews = [
+                  checkbox(
+                    id = "class_edit_constitution_saving_throw_proficiency",
+                    stat = "constitution_saving_throw_proficiency",
+                  ),
+                  text(
+                    id = "class_edit_constitution_saving_throw_proficiency_label",
+                    text = "CON",
+                    style = "text",
+                  ),
+                ],
+              ),
+              list(
+                id = "class_edit_intelligence_saving_throw_proficiency_composite",
+                padding = 4,
+                alignment = "center",
+                subviews = [
+                  checkbox(
+                    id = "class_edit_intelligence_saving_throw_proficiency",
+                    stat = "intelligence_saving_throw_proficiency",
+                  ),
+                  text(
+                    id = "class_edit_intelligence_saving_throw_proficiency_label",
+                    text = "INT",
+                    style = "text",
+                  ),
+                ],
+              ),
+              list(
+                id = "class_edit_wisdom_saving_throw_proficiency_composite",
+                padding = 4,
+                alignment = "center",
+                subviews = [
+                  checkbox(
+                    id = "class_edit_wisdom_saving_throw_proficiency",
+                    stat = "wisdom_saving_throw_proficiency",
+                  ),
+                  text(
+                    id = "class_edit_wisdom_saving_throw_proficiency_label",
+                    text = "WIS",
+                    style = "text",
+                  ),
+                ],
+              ),
+              list(
+                id = "class_edit_charisma_saving_throw_proficiency_composite",
+                padding = 4,
+                alignment = "center",
+                subviews = [
+                  checkbox(
+                    id = "class_edit_charisma_saving_throw_proficiency",
+                    stat = "charisma_saving_throw_proficiency",
+                  ),
+                  text(
+                    id = "class_edit_charisma_saving_throw_proficiency_label",
+                    text = "CHA",
+                    style = "text",
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+      list(
+        id = "class_edit_features",
+        padding = 16,
+        subviews = [
+          resourceArray(
+            id = "class_edit_features",
+            resource_id = "feat",
+            stat = "features",
+            view_type = "edit",
+            left_view = text(
+              id = "class_edit_features_label",
+              text = "Features: ",
+              style = "text",
+              bold = true,
+            ),
+            pop_up_type = "bottomSheet",
+            pop_up_button_text = levelled_description,
+            validation_message = if !isEmpty(
+              filter(
+                $view.class_edit_features,
+                filter = ($filterValue) => isEmpty($filterValue.name),
+              ),
+            )
+              then "You have empty features. Please add some content to them or remove them."
+              else null,
+          ),
+        ],
+      ),
+      list(
+        id = "class_edit_spells",
+        padding = 16,
+        subviews = [
+          checkbox(
+            id = "class_edit_has_same_spellcasting_ability",
+            stat = "same_spellcasting_ability_as_parent",
+            label = "Has same spellcasting ability as class",
+            label_alignment = "right",
+            is_visible = is_archetype,
+          ),
+          composite(
+            id = "class_edit_spellcasting_ability_composite",
+            margin_bottom = 4,
+            is_visible = !is_archetype || !($view?.class_edit_has_same_spellcasting_ability ?? false),
+            subviews = [
+              text(
+                id = "class_edit_spellcasting_ability_label",
+                text = "Spellcasting Ability: ",
+                style = "text",
+                bold = true,
+              ),
+              select(
+                id = "class_edit_spellcasting_ability_select",
+                stat = "spellcasting_ability",
+                options = "ability",
+              ),
+            ],
+          ),
+          checkbox(
+            id = "class_edit_has_same_effective_caster_level",
+            stat = "same_effective_caster_level_as_parent",
+            label = "Has same caster level as class",
+            label_alignment = "right",
+            is_visible = is_archetype,
+          ),
+          composite(
+            id = "class_edit_effective_caster_level_composite",
+            is_visible = should_ask_for_effective_caster_level,
+            subviews = [
+              text(
+                id = "class_edit_effective_caster_level_label",
+                text = "Effective caster level: ",
+                style = "text",
+                bold = true,
+              ),
+              select(
+                id = "class_edit_effective_caster_level",
+                stat = "effective_caster_level",
+                options = "effective_caster_level_types",
+              ),
+            ],
+          ),
+          list(
+            id = "class_edit_spell_slots_per_level",
+            padding = 0,
+            is_visible = should_fill_custom_spell_slots,
+            subviews = [
+              checkbox(
+                id = "class_edit_spell_recharge_slots_on_short_rest",
+                stat = "recharge_slots_on_short_rest",
+                label = "Recharge slots on short rest",
+                label_alignment = "right",
+              ),
+              text(
+                id = "class_edit_spell_slots_per_level_label",
+                text = "Spell slots:",
+                style = "text",
+                bold = true,
+              ),
+              popUpButton(
+                id = "class_edit_spell_slots_level_1_per_level_bottom_sheet_button",
+                text = "Level 1",
+                pop_up_view = resourceArray(
+                  id = "class_edit_spell_slots_level_1_per_level",
+                  resource_id = "levelled_amount",
+                  stat = "spell_slots_level_1_per_level",
+                  view_type = "edit",
+                  left_view = text(
+                    id = "class_edit_spell_slots_level_1_per_level_label",
+                    text = "Max. amount per level: ",
+                    style = "text",
+                  ),
+                ),
+                pop_up_title = "Edit Level 1 Slots",
+                display_cancel_button = true,
+                display_save_button = true,
+              ),
+              popUpButton(
+                id = "class_edit_spell_slots_level_2_per_level_bottom_sheet_button",
+                text = "Level 2",
+                pop_up_view = resourceArray(
+                  id = "class_edit_spell_slots_level_2_per_level",
+                  resource_id = "levelled_amount",
+                  stat = "spell_slots_level_2_per_level",
+                  view_type = "edit",
+                  left_view = text(
+                    id = "class_edit_spell_slots_level_2_per_level_label",
+                    text = "Max. amount per level: ",
+                    style = "text",
+                  ),
+                ),
+                pop_up_title = "Edit Level 2 Slots",
+                display_cancel_button = true,
+                display_save_button = true,
+              ),
+              popUpButton(
+                id = "class_edit_spell_slots_level_3_per_level_bottom_sheet_button",
+                text = "Level 3",
+                pop_up_view = resourceArray(
+                  id = "class_edit_spell_slots_level_3_per_level",
+                  resource_id = "levelled_amount",
+                  stat = "spell_slots_level_3_per_level",
+                  view_type = "edit",
+                  left_view = text(
+                    id = "class_edit_spell_slots_level_3_per_level_label",
+                    text = "Max. amount per level: ",
+                    style = "text",
+                  ),
+                ),
+                pop_up_title = "Edit Level 3 Slots",
+                display_cancel_button = true,
+                display_save_button = true,
+              ),
+              popUpButton(
+                id = "class_edit_spell_slots_level_4_per_level_bottom_sheet_button",
+                text = "Level 4",
+                pop_up_view = resourceArray(
+                  id = "class_edit_spell_slots_level_4_per_level",
+                  resource_id = "levelled_amount",
+                  stat = "spell_slots_level_4_per_level",
+                  view_type = "edit",
+                  left_view = text(
+                    id = "class_edit_spell_slots_level_4_per_level_label",
+                    text = "Max. amount per level: ",
+                    style = "text",
+                  ),
+                ),
+                pop_up_title = "Edit Level 4 Slots",
+                display_cancel_button = true,
+                display_save_button = true,
+              ),
+              popUpButton(
+                id = "class_edit_spell_slots_level_5_per_level_bottom_sheet_button",
+                text = "Level 5",
+                pop_up_view = resourceArray(
+                  id = "class_edit_spell_slots_level_5_per_level",
+                  resource_id = "levelled_amount",
+                  stat = "spell_slots_level_5_per_level",
+                  view_type = "edit",
+                  left_view = text(
+                    id = "class_edit_spell_slots_level_5_per_level_label",
+                    text = "Max. amount per level: ",
+                    style = "text",
+                  ),
+                ),
+                pop_up_title = "Edit Level 5 Slots",
+                display_cancel_button = true,
+                display_save_button = true,
+              ),
+              popUpButton(
+                id = "class_edit_spell_slots_level_6_per_level_bottom_sheet_button",
+                text = "Level 6",
+                pop_up_view = resourceArray(
+                  id = "class_edit_spell_slots_level_6_per_level",
+                  resource_id = "levelled_amount",
+                  stat = "spell_slots_level_6_per_level",
+                  view_type = "edit",
+                  left_view = text(
+                    id = "class_edit_spell_slots_level_6_per_level_label",
+                    text = "Max. amount per level: ",
+                    style = "text",
+                  ),
+                ),
+                pop_up_title = "Edit Level 6 Slots",
+                display_cancel_button = true,
+                display_save_button = true,
+              ),
+              popUpButton(
+                id = "class_edit_spell_slots_level_7_per_level_bottom_sheet_button",
+                text = "Level 7",
+                pop_up_view = resourceArray(
+                  id = "class_edit_spell_slots_level_7_per_level",
+                  resource_id = "levelled_amount",
+                  stat = "spell_slots_level_7_per_level",
+                  view_type = "edit",
+                  left_view = text(
+                    id = "class_edit_spell_slots_level_7_per_level_label",
+                    text = "Max. amount per level: ",
+                    style = "text",
+                  ),
+                ),
+                pop_up_title = "Edit Level 7 Slots",
+                display_cancel_button = true,
+                display_save_button = true,
+              ),
+              popUpButton(
+                id = "class_edit_spell_slots_level_8_per_level_bottom_sheet_button",
+                text = "Level 8",
+                pop_up_view = resourceArray(
+                  id = "class_edit_spell_slots_level_8_per_level",
+                  resource_id = "levelled_amount",
+                  stat = "spell_slots_level_8_per_level",
+                  view_type = "edit",
+                  left_view = text(
+                    id = "class_edit_spell_slots_level_8_per_level_label",
+                    text = "Max. amount per level: ",
+                    style = "text",
+                  ),
+                ),
+                pop_up_title = "Edit Level 8 Slots",
+                display_cancel_button = true,
+                display_save_button = true,
+              ),
+              popUpButton(
+                id = "class_edit_spell_slots_level_9_per_level_bottom_sheet_button",
+                text = "Level 9",
+                pop_up_view = resourceArray(
+                  id = "class_edit_spell_slots_level_9_per_level",
+                  resource_id = "levelled_amount",
+                  stat = "spell_slots_level_9_per_level",
+                  view_type = "edit",
+                  left_view = text(
+                    id = "class_edit_spell_slots_level_9_per_level_label",
+                    text = "Max. amount per level: ",
+                    style = "text",
+                  ),
+                ),
+                pop_up_title = "Edit Level 9 Slots",
+                display_cancel_button = true,
+                display_save_button = true,
+              ),
+            ],
+          ),
+          resourceArray(
+            id = "class_edit_spells",
+            resource_id = "levelled_spell",
+            stat = "spells",
+            view_type = "edit",
+            left_view = text(
+              id = "class_edit_spells_label",
+              text = "Spells (per lvl): ",
+              style = "text",
+              bold = true,
+            ),
+          ),
+        ],
+      ),
+      list(
+        id = "class_edit_weapons_and_equipment",
+        padding = 16,
+        subviews = [
+          resourceArray(
+            id = "class_edit_weapon",
+            resource_id = "levelled_weapon",
+            stat = "weapon",
+            view_type = "edit",
+            left_view = text(
+              id = "class_edit_weapon_label",
+              text = "Class weapon (per lvl): ",
+              style = "text",
+              bold = true,
+            ),
+          ),
+          resourceArray(
+            id = "class_edit_attacks_per_action",
+            resource_id = "levelled_amount",
+            stat = "attacks_per_action_per_level",
+            view_type = "edit",
+            left_view = text(
+              id = "class_edit_attacks_per_action_label",
+              text = attacks_per_action_text,
+              style = "text",
+              bold = true,
+            ),
+          ),
+          resourceArray(
+            id = "class_edit_selectable_armors",
+            resource_id = "selectable_armors",
+            stat = "selectable_armors",
+            view_type = "edit",
+            left_view = text(
+              id = "class_edit_selectable_armors_label",
+              text = "Armor choices: ",
+              style = "text",
+              bold = true,
+            ),
+            pop_up_type = "bottomSheet",
+            pop_up_button_text = display_description,
+            is_visible = !is_archetype,
+            validation_message = if !isEmpty(
+              filter(
+                $view.class_edit_selectable_armors,
+                filter = ($filterValue) => isEmpty($filterValue.options),
+              ),
+            )
+              then "You have empty armor options. Please select some armors or remove it."
+              else null,
+          ),
+          resourceArray(
+            id = "class_edit_selectable_weapons",
+            resource_id = "selectable_weapons",
+            stat = "selectable_weapons",
+            view_type = "edit",
+            left_view = text(
+              id = "class_edit_selectable_weapons_label",
+              text = "Weapon choices: ",
+              style = "text",
+              bold = true,
+            ),
+            pop_up_type = "bottomSheet",
+            pop_up_button_text = display_description,
+            is_visible = !is_archetype,
+            validation_message = if !isEmpty(
+              filter(
+                $view.class_edit_selectable_weapons,
+                filter = ($filterValue) => isEmpty($filterValue.options),
+              ),
+            )
+              then "You have empty weapon options. Please select some weapons or remove it."
+              else null,
+          ),
+          resourceArray(
+            id = "class_edit_selectable_equipments",
+            resource_id = "selectable_items",
+            stat = "selectable_equipments",
+            view_type = "edit",
+            left_view = text(
+              id = "class_edit_selectable_equipments_label",
+              text = "Equipment choices: ",
+              style = "text",
+              bold = true,
+            ),
+            pop_up_type = "bottomSheet",
+            pop_up_button_text = display_description,
+            is_visible = !is_archetype,
+            validation_message = if !isEmpty(
+              filter(
+                $view.class_edit_selectable_equipments,
+                filter = ($filterValue) => isEmpty($filterValue.options),
+              ),
+            )
+              then "You have empty equipment options. Please select some equipments or remove it."
+              else null,
+          ),
+        ],
+      ),
+      list(
+        id = "class_edit_proficiencies",
+        padding = 16,
+        subviews = [
+          resourceArray(
+            id = "class_edit_language_proficiencies",
+            resource_id = "levelled_choice_text",
+            stat = "language_proficiencies",
+            view_type = "edit",
+            left_view = text(
+              id = "class_edit_language_proficiencies_label",
+              text = "Language proficiency choices (per lvl): ",
+              style = "text",
+              bold = true,
+            ),
+          ),
+          checkbox(
+            id = "class_edit_skill_proficiencies_multiclass_check",
+            stat = "account_for_skill_proficiencies_on_multiclass",
+            label = "Grant skill proficiencies on multiclass",
+            label_alignment = "right",
+          ),
+          resourceArray(
+            id = "class_edit_skill_proficiencies",
+            resource_id = "levelled_skill_proficiency",
+            stat = "skill_proficiencies",
+            view_type = "edit",
+            left_view = text(
+              id = "class_edit_skill_proficiencies_label",
+              text = "Skill proficiency choices (per lvl): ",
+              style = "text",
+              bold = true,
+            ),
+            pop_up_type = "bottomSheet",
+            pop_up_button_text = description,
+            validation_message = if !isEmpty(
+              filter(
+                $view.class_edit_skill_proficiencies,
+                filter = ($filterValue) => isEmpty($filterValue.options),
+              ),
+            )
+              then "You have empty levelled skill proficiencies. Please add some skills to them or remove them."
+              else null,
+          ),
+          checkbox(
+            id = "class_edit_armor_proficiencies_multiclass_check",
+            stat = "account_for_armor_proficiencies_on_multiclass",
+            label = "Grant armor proficiencies on multiclass",
+            label_alignment = "right",
+          ),
+          resourceArray(
+            id = "class_edit_armor_proficiencies",
+            resource_id = "levelled_armor_proficiency",
+            stat = "armor_proficiencies",
+            view_type = "edit",
+            left_view = text(
+              id = "class_edit_armor_proficiencies_label",
+              text = "Armor proficiency choices (per lvl): ",
+              style = "text",
+              bold = true,
+            ),
+          ),
+          checkbox(
+            id = "class_edit_weapon_proficiencies_multiclass_check",
+            stat = "account_for_weapon_proficiencies_on_multiclass",
+            label = "Grant weapon proficiencies on multiclass",
+            label_alignment = "right",
+          ),
+          resourceArray(
+            id = "class_edit_weapon_proficiencies",
+            resource_id = "levelled_weapon_proficiency",
+            stat = "weapon_proficiencies",
+            view_type = "edit",
+            left_view = text(
+              id = "class_edit_weapon_proficiencies_label",
+              text = "Weapon proficiency choices (per lvl): ",
+              style = "text",
+              bold = true,
+            ),
+          ),
+          checkbox(
+            id = "class_edit_tool_proficiencies_multiclass_check",
+            stat = "account_for_tool_proficiencies_on_multiclass",
+            label = "Grant tool proficiencies on multiclass",
+            label_alignment = "right",
+          ),
+          resourceArray(
+            id = "class_edit_tool_proficiencies",
+            resource_id = "levelled_choice_text",
+            stat = "tool_proficiencies",
+            view_type = "edit",
+            left_view = text(
+              id = "class_edit_tool_proficiencies_label",
+              text = "Tool proficiency choices (per lvl): ",
+              style = "text",
+              bold = true,
+            ),
+          ),
+        ],
+      ),
+      list(
+        id = "class_edit_archetypes_list",
+        padding = 16,
+        subviews = [
+          composite(
+            id = "class_edit_archetype_selection_level_composite",
+            subviews = [
+              text(
+                id = "class_edit_archetype_selection_level_label",
+                text = "Archetype selection level: ",
+                style = "text",
+                bold = true,
+              ),
+              text(
+                id = "class_edit_archetype_selection_level",
+                edit_stat = "archetype_selection_level",
+                style = "text",
+                max_length = 2,
+                hint = "3",
+              ),
+            ],
+            is_visible = !is_archetype,
+          ),
+          resourceArray(
+            id = "class_edit_archetypes",
+            resource_id = "class",
+            stat = "archetypes",
+            view_type = "edit",
+            left_view = text(
+              id = "class_edit_archetypes_label",
+              text = "Archetypes: ",
+              style = "text",
+              bold = true,
+            ),
+            pop_up_type = "window",
+            pop_up_button_text = name,
+            is_visible = !is_archetype,
+            validation_message = if !isEmpty(
+              filter(
+                $view.class_edit_archetypes,
+                filter = ($filterValue) => isEmpty($filterValue.name),
+              ),
+            )
+              then "You have empty archetypes. Please edit them or delete them."
+              else null,
+          ),
+          text(
+            id = "class_edit_archetypes_no_archetypes_message",
+            text = "Archetypes cannot have archetypes!",
+            style = "text",
+            bold = true,
+            is_visible = is_archetype,
+          ),
+        ],
+      ),
+    ],
+  );

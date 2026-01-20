@@ -1,0 +1,5 @@
+mechanic skill_tap(event_names = "skillTap") =
+  when {
+    $edit_mode -> forwardEvent(new_event_names = ["editSkillProficiency"]),
+    !$edit_mode -> forwardEvent(new_event_names = ["rollStat"]),
+  };

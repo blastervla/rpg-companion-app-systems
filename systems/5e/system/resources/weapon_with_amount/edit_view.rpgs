@@ -1,0 +1,21 @@
+view weapon_with_amount_edit() =
+  composite(
+    id = "weapon_with_amount_edit",
+    subviews = [
+      text(
+        id = "weapon_with_amount_edit_amount",
+        edit_stat = "amount",
+        style = "text",
+        hint = "Amnt.",
+        max_length = 6,
+      ),
+      selectResources(
+        id = "weapon_with_amount_edit_weapon",
+        stat = "weapon",
+        resource_id = "weapon",
+        validation_message = if !notNull($view.weapon_with_amount_edit_weapon)
+          then "You have an empty weapon. Please select an weapon or remove it."
+          else null,
+      ),
+    ],
+  );

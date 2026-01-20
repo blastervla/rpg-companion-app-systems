@@ -1,0 +1,288 @@
+view weapon_edit() =
+  list(
+    id = "weapon_edit",
+    padding = 32,
+    subviews = [
+      text(
+        id = "weapon_edit_name",
+        edit_stat = "name",
+        style = "text",
+        label = "Name",
+        max_length = 140,
+        validation_message = if isEmpty($view.weapon_edit_name)
+          then "Please add a name to your weapon"
+          else null,
+      ),
+      composite(
+        id = "weapon_edit_source_core",
+        margin_top = 4,
+        subviews = [
+          composite(
+            id = "weapon_edit_source",
+            subviews = [
+              text(id = "weapon_edit_source_label", text = "Source: ", style = "text"),
+              select(
+                id = "weapon_edit_source_select",
+                options = "source",
+                options_display_stat = "abbreviation",
+                stat = "source",
+              ),
+            ],
+          ),
+          checkbox(
+            id = "weapon_edit_is_core",
+            stat = "is_core",
+            label = "Core",
+            label_alignment = "right",
+          ),
+        ],
+      ),
+      text(
+        id = "weapon_edit_description",
+        edit_stat = "description",
+        label = "Description",
+        style = "text",
+      ),
+      composite(
+        id = "weapon_edit_weight_cost_composite",
+        margin_top = 4,
+        subviews = [
+          text(id = "weapon_edit_price_label", text = "Price: ", style = "text"),
+          resource(
+            id = "weapon_edit_price",
+            view_type = "edit",
+            resource_id = "cost",
+            stat = "cost",
+            create_if_empty = true,
+          ),
+          text(
+            id = "weapon_edit_weight_label",
+            margin_left = 4,
+            text = "Weight: ",
+            style = "text",
+          ),
+          resource(
+            id = "weapon_edit_weight",
+            view_type = "edit",
+            resource_id = "weight",
+            stat = "weight",
+            create_if_empty = true,
+          ),
+        ],
+      ),
+      composite(
+        id = "weapon_edit_type_attack_ability",
+        margin_top = 4,
+        subviews = [
+          text(id = "weapon_edit_type_label", text = "Type: ", style = "text"),
+          select(id = "weapon_edit_type", options = "weapon_types", stat = "type"),
+          text(
+            id = "weapon_edit_attack_ability_label",
+            text = "Atk. ability: ",
+            style = "text",
+          ),
+          select(
+            id = "weapon_edit_attack_ability",
+            options = "ability",
+            stat = "attack_ability",
+          ),
+        ],
+      ),
+      composite(
+        id = "weapon_edit_rarity_requires_attunement",
+        margin_top = 4,
+        subviews = [
+          text(id = "weapon_edit_rarity_label", text = "Rarity: ", style = "text"),
+          select(id = "weapon_edit_rarity", options = "item_rarity", stat = "rarity"),
+          checkbox(
+            id = "weapon_edit_requires_attunement",
+            stat = "requires_attunement",
+            label = "Requires attunement",
+            label_alignment = "right",
+          ),
+        ],
+      ),
+      composite(
+        id = "weapon_edit_properties_composite",
+        subviews = [
+          checkbox(
+            id = "weapon_edit_is_simple",
+            stat = "is_simple",
+            label = "Simple",
+            label_alignment = "right",
+          ),
+          checkbox(
+            id = "weapon_edit_is_two_handed",
+            stat = "is_two_handed",
+            label = "Two-handed",
+            label_alignment = "right",
+          ),
+          checkbox(
+            id = "weapon_edit_is_finesse",
+            stat = "is_finesse",
+            label = "Finesse",
+            label_alignment = "right",
+          ),
+          checkbox(
+            id = "is_silver",
+            stat = "is_silver",
+            label = "Silver",
+            label_alignment = "right",
+          ),
+          checkbox(
+            id = "weapon_edit_is_heavy",
+            stat = "is_heavy",
+            label = "Heavy",
+            label_alignment = "right",
+          ),
+          checkbox(
+            id = "weapon_edit_is_light",
+            stat = "is_light",
+            label = "Light",
+            label_alignment = "right",
+          ),
+          checkbox(
+            id = "weapon_edit_is_loading",
+            stat = "is_loading",
+            label = "Loading",
+            label_alignment = "right",
+          ),
+          checkbox(
+            id = "weapon_edit_is_special",
+            stat = "is_special",
+            label = "Special",
+            label_alignment = "right",
+          ),
+          checkbox(
+            id = "weapon_edit_is_improvised",
+            stat = "is_improvised",
+            label = "Improvised",
+            label_alignment = "right",
+          ),
+          checkbox(
+            id = "weapon_edit_is_thrown",
+            stat = "is_thrown",
+            label = "Thrown",
+            label_alignment = "right",
+          ),
+          text(
+            id = "weapon_edit_thrown_range",
+            edit_stat = "thrown_range",
+            style = "text",
+            max_length = 9,
+            hint = "80/320",
+            is_visible = $view.weapon_edit_is_thrown,
+          ),
+          checkbox(
+            id = "weapon_edit_is_reach",
+            stat = "is_reach",
+            label = "Reach",
+            label_alignment = "right",
+          ),
+          text(
+            id = "weapon_edit_reach_range",
+            edit_stat = "reach_range",
+            style = "text",
+            max_length = 3,
+            signed = false,
+            hint = "5",
+            is_visible = $view.weapon_edit_is_reach,
+          ),
+          checkbox(
+            id = "weapon_edit_is_versatile",
+            stat = "is_versatile",
+            label = "Versatile",
+            label_alignment = "right",
+          ),
+        ],
+      ),
+      composite(
+        id = "edit_weapon_range_composite",
+        subviews = [
+          checkbox(
+            id = "weapon_edit_is_range",
+            stat = "is_range",
+            label = "Range",
+            label_alignment = "right",
+          ),
+          text(
+            id = "weapon_edit_range_amount",
+            edit_stat = "range",
+            style = "text",
+            max_length = 9,
+            hint = "80/320",
+            is_visible = $view.weapon_edit_is_range,
+          ),
+          text(
+            id = "weapon_edit_ammunition_label",
+            text = "Ammunition: ",
+            style = "text",
+            is_visible = $view.weapon_edit_is_range,
+          ),
+          select(
+            id = "weapon_edit_ammunition_type",
+            options = "ammunition_types",
+            stat = "ammunition_type",
+            is_visible = $view.weapon_edit_is_range,
+          ),
+        ],
+      ),
+      composite(
+        id = "weapon_edit_extra_attack_bonus_override_is_proficient",
+        subviews = [
+          text(
+            id = "weapon_edit_extra_attack_bonus_label",
+            text = "Extra atk. bonus: ",
+            style = "text",
+          ),
+          text(
+            id = "weapon_edit_extra_attack_bonus",
+            edit_stat = "extra_attack_bonus",
+            style = "text",
+            max_length = 3,
+            signed = true,
+            hint = "0",
+          ),
+          checkbox(
+            id = "weapon_edit_override_is_proficient",
+            stat = "override_is_proficient",
+            label = "Proficient",
+            label_alignment = "right",
+            is_visible = defined(stat = "$character"),
+          ),
+        ],
+      ),
+      resourceArray(
+        id = "weapon_edit_damage_dice",
+        resource_id = "damage_dice",
+        view_type = "edit",
+        left_view = text(
+          id = "weapon_edit_damage_dice_label",
+          text = "Damage dice: ",
+          style = "text",
+        ),
+        stat = "damage_dice",
+      ),
+      resourceArray(
+        id = "weapon_edit_versatile_damage_dice",
+        resource_id = "damage_dice",
+        view_type = "edit",
+        left_view = text(
+          id = "weapon_edit_versatile_damage_dice_label",
+          text = "Versatile damage dice: ",
+          style = "text",
+        ),
+        stat = "versatile_damage_dice",
+        is_visible = $view.weapon_edit_is_versatile,
+      ),
+      resourceArray(
+        id = "weapon_edit_effects",
+        resource_id = "effect",
+        view_type = "edit",
+        stat = "effects",
+        pop_up_type = "bottomSheet",
+        pop_up_button_text = edit_display_name,
+        left_view = text(id = "weapon_edit_effects_label", text = "Effects: ", style = "text"),
+      ),
+    ],
+  );

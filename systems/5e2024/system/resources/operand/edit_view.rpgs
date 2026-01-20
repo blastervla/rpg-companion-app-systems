@@ -1,0 +1,25 @@
+view operand_edit() =
+  composite(
+    id = "operand_edit",
+    subviews = [
+      select(id = "operand_edit_operator", stat = "operator", options = "plus_minus"),
+      select(
+        id = "operand_edit_stat",
+        stat = "stat",
+        options = "effect_character_stats_plus_mods_and_constant",
+      ),
+      text(
+        id = "operand_edit_linker",
+        text = " x ",
+        style = "text",
+        is_visible = $view.operand_edit_stat != "constant",
+      ),
+      text(
+        id = "operand_edit_constant",
+        edit_stat = "constant",
+        style = "text",
+        max_length = 3,
+        hint = "1",
+      ),
+    ],
+  );

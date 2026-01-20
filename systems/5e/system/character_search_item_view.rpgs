@@ -1,0 +1,31 @@
+view character_list_item() =
+  composite(
+    id = "character_list_item",
+    row_only = true,
+    margin_top = 16,
+    margin_bottom = 16,
+    margin_left = 16,
+    margin_right = 16,
+    subviews = [
+      avatar(
+        id = "character_list_item_avatar",
+        name_stat = "name",
+        photo_stat = "photo",
+        size = "medium",
+        margin_right = 16,
+      ),
+      list(
+        id = "character_list_item_texts",
+        alignment = "start",
+        subviews = [
+          text(id = "character_list_item_name", text = name, style = "subhead"),
+          text(id = "character_list_item_description", text = description, style = "text"),
+          text(
+            id = "character_list_item_created_at",
+            text = created_at_display,
+            style = "caption",
+          ),
+        ],
+      ),
+    ],
+  );

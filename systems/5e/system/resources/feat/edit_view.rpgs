@@ -1,0 +1,92 @@
+view feat_edit() =
+  list(
+    id = "feat_edit",
+    padding = 16,
+    subviews = [
+      text(
+        id = "feat_edit_name",
+        edit_stat = "name",
+        style = "text",
+        label = "Name",
+        max_length = 140,
+        validation_message = if isEmpty($view.feat_edit_name) then "Please add a name to your feat" else null,
+      ),
+      composite(
+        id = "feat_edit_source",
+        margin_top = 4,
+        subviews = [
+          text(id = "feat_edit_source_label", text = "Source: ", style = "text"),
+          select(
+            id = "feat_edit_source_select",
+            options = "source",
+            options_display_stat = "abbreviation",
+            stat = "source",
+          ),
+        ],
+        is_visible = !defined(stat = "$parent"),
+      ),
+      text(
+        id = "feat_edit_prerequisites",
+        edit_stat = "prerequisites",
+        style = "text",
+        label = "Prerequisites",
+        max_length = 140,
+      ),
+      resourceArray(
+        id = "feat_edit_levelled_descriptions",
+        resource_id = "levelled_description",
+        stat = "descriptions",
+        view_type = "edit",
+        left_view = text(
+          id = "feat_edit_descriptions_label",
+          text = "Descriptions (per lvl): ",
+          style = "text",
+        ),
+      ),
+      resourceArray(
+        id = "feat_edit_effects",
+        resource_id = "levelled_effect",
+        view_type = "edit",
+        stat = "effects",
+        left_view = text(
+          id = "feat_edit_effects_label",
+          text = "Effects (per lvl): ",
+          style = "text",
+        ),
+      ),
+      checkbox(
+        id = "feat_edit_has_selectable_features",
+        stat = "has_selectable_features",
+        label = "Has selectable features",
+        label_alignment = "right",
+        style = "checkbox",
+        is_visible = can_have_selectable_features,
+      ),
+      resourceArray(
+        id = "feat_edit_selectable_features",
+        resource_id = "feat",
+        stat = "selectable_features",
+        view_type = "edit",
+        left_view = text(
+          id = "feat_edit_selectable_features_label",
+          text = "Selectable features: ",
+          style = "text",
+        ),
+        pop_up_type = "bottomSheet",
+        pop_up_button_text = levelled_description,
+        is_visible = $view.feat_edit_has_selectable_features,
+      ),
+      resourceArray(
+        id = "feat_edit_selectable_feature_amount_per_level",
+        resource_id = "levelled_amount",
+        stat = "selectable_feature_amount_per_level",
+        view_type = "edit",
+        left_view = text(
+          id = "feat_edit_selectable_features_amount_per_level_label",
+          text = "Amount of selectable features per lvl: ",
+          style = "text",
+        ),
+        is_visible = $view.feat_edit_has_selectable_features,
+      ),
+    ],
+  );

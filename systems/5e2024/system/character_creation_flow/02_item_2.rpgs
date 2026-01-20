@@ -1,0 +1,32 @@
+character_creation_page edit_about_title() =
+  characterCreationPage(
+    title = displayableData(id = "edit_about_title", name = "About"),
+    view = list(
+      id = "edit_character_about",
+      padding = 32,
+      subviews = [
+        text(
+          id = "edit_character_about_subheader",
+          text = "Choose an alignment",
+          style = "subhead",
+        ),
+        select(
+          id = "edit_character_about_alignment",
+          stat = "alignment",
+          options = "alignments",
+          margin_bottom = 4,
+        ),
+        text(
+          id = "edit_character_about_subheader",
+          text = "Write a bit about your character",
+          style = "subhead",
+        ),
+        text(
+          id = "edit_character_about_about",
+          edit_stat = "about",
+          style = "text",
+          label = "About",
+        ),
+      ],
+    ),
+  );

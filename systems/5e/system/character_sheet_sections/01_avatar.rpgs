@@ -1,0 +1,41 @@
+character_sheet_section avatar() =
+  avatarSection(
+    id = "avatar",
+    bottom_right_stack = [
+      menuButton(
+        id = "lifecycle_events_button",
+        icon_name = "ic_daytime",
+        icon_size = "small",
+        icon_color = "accent",
+        options = "lifecycle_events_menu",
+      ),
+    ],
+    center_content = [
+      avatar(
+        id = "avatar_view",
+        margin_top = 8,
+        photo_stat = "photo",
+        name_stat = "name",
+        size = "massive",
+        interactable = true,
+      ),
+      text(
+        id = "avatar_name",
+        margin_top = 8,
+        margin_left = 48,
+        margin_right = 48,
+        text = name,
+        style = "headline",
+      ),
+      text(
+        id = "avatar_description",
+        margin_bottom = 8,
+        margin_left = 32,
+        margin_right = 32,
+        text = description,
+        style = "text",
+      ),
+    ],
+    bottom_left_button_title = "INFORMATION",
+    bottom_left_button_event = event(name = "show_information"),
+  );

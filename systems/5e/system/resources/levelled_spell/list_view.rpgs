@@ -1,0 +1,13 @@
+view levelled_spell_list() =
+  popUpButton(
+    id = "levelled_spell_list",
+    text = description,
+    pop_up_view = resource(
+      id = "levelled_spell_view",
+      view_type = "display",
+      resource_id = "spell",
+      stat = "spell",
+    ),
+    pop_up_type = "bottomSheet",
+    pop_up_title = spell.name,
+  );

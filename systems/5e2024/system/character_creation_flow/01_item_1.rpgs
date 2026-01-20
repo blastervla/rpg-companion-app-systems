@@ -1,0 +1,456 @@
+character_creation_page edit_basics_title() =
+  characterCreationPage(
+    title = displayableData(id = "edit_basics_title", name = "Character basics"),
+    view = list(
+      id = "edit_character_basics",
+      padding = 32,
+      subviews = [
+        text(
+          id = "edit_character_basics_subheader",
+          text = "What's your name, race and classes?",
+          style = "subhead",
+        ),
+        text(
+          id = "edit_character_basics_name",
+          edit_stat = "name",
+          style = "title",
+          max_length = 80,
+          label = "Character name",
+          validation_message = if isEmpty($view.edit_character_basics_name)
+            then "Please make sure to provide a name for your character!"
+            else null,
+        ),
+        text(
+          id = "edit_character_basics_class_subheader",
+          text = "What's your class?",
+          style = "subhead",
+        ),
+        resourceArray(
+          id = "edit_character_basics_classes",
+          resource_id = "class_details",
+          stat = "classes",
+          view_type = "edit",
+          auto_add_first = true,
+          left_view = text(
+            id = "edit_character_basics_classes_label",
+            text = "Classes: ",
+            style = "text",
+          ),
+          validation_message = when {
+            isEmpty($view.edit_character_basics_classes) -> "Please pick at least one class",
+            !$is_new && (length($view.edit_character_basics_classes) > length(classes) || 1 != length($view.edit_character_basics_classes) && or(
+            map(
+              $view.edit_character_basics_classes,
+              mapper = ($class) => (length(
+                filter(
+                  classes,
+                  filter = ($filterValue) => ($class.$view.class_details_edit_class_select.name == $filterValue.class.name),
+                ),
+              ) == 0),
+            ),
+          )) -> "To multiclass, please use the EXP / LEVEL UP button at the top-center of the character sheet.",
+            or(
+            map(
+              $view.edit_character_basics_classes,
+              mapper = ($class) => (length(
+                filter(
+                  $view.edit_character_basics_classes,
+                  filter = ($filterValue) => ($class.$view.class_details_edit_class_select.name == $filterValue.$view.class_details_edit_class_select.name),
+                ),
+              ) != 1),
+            ),
+          ) -> "It looks like you have selected the same class multiple times. Please remove one of the duplicates.",
+            else -> null,
+          },
+        ),
+        text(
+          id = "edit_character_basics_origin_subheader",
+          text = "What's your origin?",
+          style = "subhead",
+        ),
+        composite(
+          id = "edit_character_basics_background_composite",
+          alignment = "end",
+          margin_bottom = 4,
+          subviews = [
+            popUpButton(
+              id = "edit_character_basics_see_background_button",
+              text = "SEE DETAILS",
+              pop_up_view = resource(
+                id = "edit_character_basics_see_background_bottom_sheet",
+                view_type = "display",
+                resource_id = "background",
+                stat = "$view.edit_character_basics_background_select",
+              ),
+              pop_up_title = $view?.edit_character_basics_background_select?.name ?? "Background",
+              display_cancel_button = true,
+              cancel_text = "OK",
+              is_visible = $view?.edit_character_basics_background_select? != null,
+            ),
+            selectResources(
+              id = "edit_character_basics_background_select",
+              stat = "background",
+              resource_id = "background",
+              margin_right = 4,
+              margin_bottom = 4,
+              validation_message = if !notNull($view.edit_character_basics_background_select)
+                then "Please pick a background"
+                else null,
+            ),
+          ],
+        ),
+        composite(
+          id = "edit_character_basics_race_subrace_composite",
+          alignment = "end",
+          margin_bottom = 4,
+          subviews = [
+            popUpButton(
+              id = "edit_character_basics_see_race_button",
+              text = "SEE DETAILS",
+              pop_up_view = resource(
+                id = "edit_character_basics_see_race_bottom_sheet",
+                view_type = "display",
+                resource_id = "race",
+                stat = "$view.edit_character_basics_race_select",
+              ),
+              pop_up_title = $view?.edit_character_basics_race_select?.name ?? "Race",
+              display_cancel_button = true,
+              cancel_text = "OK",
+              is_visible = $view?.edit_character_basics_race_select? != null,
+            ),
+            selectResources(
+              id = "edit_character_basics_race_select",
+              stat = "race",
+              resource_id = "race",
+              validation_message = if !notNull($view.edit_character_basics_race_select)
+                then "Please pick a race"
+                else null,
+            ),
+            select(
+              id = "edit_character_basics_subrace_select",
+              stat = "subrace_id",
+              margin_left = 4,
+              resource_options = $view.edit_character_basics_race_select?.subraces ?? [],
+              options_display_stat = "name",
+              is_visible = !isEmpty(($view.edit_character_basics_race_select?.subraces ?? [])),
+            ),
+          ],
+        ),
+        composite(
+          id = "edit_character_basics_hit_point_composite",
+          margin_bottom = 4,
+          subviews = [
+            text(
+              id = "edit_character_basics_hit_points_label",
+              text = "Hit points: ",
+              style = "text",
+              bold = true,
+            ),
+            select(
+              id = "edit_character_basics_hit_point_mode_select",
+              stat = "hit_point_mode",
+              options = "hit_point_modes",
+            ),
+          ],
+        ),
+        composite(
+          id = "edit_character_basics_edit_ability_scores_warning_comp",
+          alignment = "center",
+          is_visible = !$is_new,
+          subviews = [
+            text(
+              id = "edit_character_basics_edit_ability_scores_warning_label",
+              text = "To edit ability scores, please long-press on them in the character sheet",
+              style = "text",
+              bold = true,
+            ),
+          ],
+        ),
+        composite(
+          id = "edit_character_basics_ability_score_composite",
+          margin_bottom = 4,
+          subviews = [
+            text(
+              id = "edit_character_basics_ability_scores_label",
+              text = "Ability Scores: ",
+              style = "text",
+              bold = true,
+            ),
+            select(
+              id = "edit_character_basics_ability_score_mode_select",
+              stat = "ability_score_mode",
+              options = "ability_score_modes",
+            ),
+          ],
+          is_visible = $is_new,
+        ),
+        resourceArray(
+          id = "edit_character_basics_select_ability_score_increases",
+          resource_id = "ability_score_increase",
+          stat = "creator_ability_score_increases",
+          view_type = "display",
+          is_visible = $is_new,
+        ),
+        composite(
+          id = "edit_character_basics_ability_scores_custom_composite",
+          alignment = "center",
+          is_visible = $is_new && $view.edit_character_basics_ability_score_mode_select == "custom",
+          subviews = [
+            text(
+              id = "edit_character_basics_ability_scores_custom_str",
+              edit_stat = "strength_score",
+              style = "text",
+              max_length = 2,
+              margin_right = 4,
+              signed = false,
+              hint = "8",
+              label = "STR",
+            ),
+            text(
+              id = "edit_character_basics_ability_scores_custom_dex",
+              edit_stat = "dexterity_score",
+              style = "text",
+              max_length = 2,
+              margin_right = 4,
+              signed = false,
+              hint = "8",
+              label = "DEX",
+            ),
+            text(
+              id = "edit_character_basics_ability_scores_custom_con",
+              edit_stat = "constitution_score",
+              style = "text",
+              max_length = 2,
+              margin_right = 4,
+              signed = false,
+              hint = "8",
+              label = "CON",
+            ),
+            text(
+              id = "edit_character_basics_ability_scores_custom_int",
+              edit_stat = "intelligence_score",
+              style = "text",
+              max_length = 2,
+              margin_right = 4,
+              signed = false,
+              hint = "8",
+              label = "INT",
+            ),
+            text(
+              id = "edit_character_basics_ability_scores_custom_wis",
+              edit_stat = "wisdom_score",
+              style = "text",
+              max_length = 2,
+              margin_right = 4,
+              signed = false,
+              hint = "8",
+              label = "WIS",
+            ),
+            text(
+              id = "edit_character_basics_ability_scores_custom_cha",
+              edit_stat = "charisma_score",
+              style = "text",
+              max_length = 2,
+              margin_right = 4,
+              signed = false,
+              hint = "8",
+              label = "CHA",
+            ),
+          ],
+        ),
+        text(
+          id = "edit_character_basics_ability_scores_point_buy_remaining_points_label",
+          text = concat(["Remaining points: ", remaining_point_buy_points]),
+          style = "text",
+          is_visible = $is_new && $view.edit_character_basics_ability_score_mode_select == "point_buy",
+        ),
+        section(
+          id = "edit_character_basics_ability_scores_point_buy_composite",
+          header = [],
+          show_divider = false,
+          content_item_min_width = 100,
+          collapsible = false,
+          is_visible = $is_new && $view.edit_character_basics_ability_score_mode_select == "point_buy",
+          content = [
+            stat(
+              id = "edit_character_basics_ability_scores_point_buy_str",
+              stat = "strength_score",
+              min_value_allowed = 8,
+              max_value_allowed = 15,
+            ),
+            stat(
+              id = "edit_character_basics_ability_scores_point_buy_dex",
+              stat = "dexterity_score",
+              min_value_allowed = 8,
+              max_value_allowed = 15,
+            ),
+            stat(
+              id = "edit_character_basics_ability_scores_point_buy_con",
+              stat = "constitution_score",
+              min_value_allowed = 8,
+              max_value_allowed = 15,
+            ),
+            stat(
+              id = "edit_character_basics_ability_scores_point_buy_int",
+              stat = "intelligence_score",
+              min_value_allowed = 8,
+              max_value_allowed = 15,
+            ),
+            stat(
+              id = "edit_character_basics_ability_scores_point_buy_wis",
+              stat = "wisdom_score",
+              min_value_allowed = 8,
+              max_value_allowed = 15,
+            ),
+            stat(
+              id = "edit_character_basics_ability_scores_point_buy_cha",
+              stat = "charisma_score",
+              min_value_allowed = 8,
+              max_value_allowed = 15,
+            ),
+          ],
+        ),
+      ],
+    ),
+    post_edit = sequence(
+      effects = [
+        when {
+          $is_new -> forEach(
+            creator_ability_score_increases,
+            apply = addToStat(
+              meta_stat = concat([$forEachValue.temp_selected_modifier, "_score"]),
+              value = $forEachValue.value,
+              aggregation_type = "set",
+            ),
+          ),
+        },
+        when {
+          $is_new -> setStat(
+            stat = "old_creator_ability_score_increases",
+            new_value = creator_ability_score_increases,
+            aggregation_type = "set",
+          ),
+        },
+        when {
+          contains(haystack = $updated_stats, needle = hit_point_mode) || $is_new -> when {
+            "roll" == hit_point_mode -> setStat(
+              stat = "base_hp",
+              new_value = roll(
+                formula = joinToString(
+                  (if isEmpty(class_hit_dice_formatted) then ["1d8"] else class_hit_dice_formatted),
+                  separator = " + ",
+                ),
+              ),
+              aggregation_type = "set",
+            ),
+            "average" == hit_point_mode -> setStat(
+              stat = "base_hp",
+              new_value = add(
+                map(classes, mapper = ($class) => ($class.class_level * $class.hit_die_average)),
+              ),
+              aggregation_type = "set",
+            ),
+            "max" == hit_point_mode -> setStat(
+              stat = "base_hp",
+              new_value = add(
+                map(classes, mapper = ($class) => ($class.class_level * $class.hit_die_max)),
+              ),
+              aggregation_type = "set",
+            ),
+          },
+        },
+        setStat(
+          stat = "current_d4_hit_dice",
+          new_value = add(
+            map(
+              filter(
+                classes,
+                filter = ($filterValue) => ($filterValue.class.actual_hit_die == "d4"),
+              ),
+              mapper = ($mapValue) => $mapValue.class_level,
+            ),
+          ),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "current_d6_hit_dice",
+          new_value = add(
+            map(
+              filter(
+                classes,
+                filter = ($filterValue) => ($filterValue.class.actual_hit_die == "d6"),
+              ),
+              mapper = ($mapValue) => $mapValue.class_level,
+            ),
+          ),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "current_d8_hit_dice",
+          new_value = add(
+            map(
+              filter(
+                classes,
+                filter = ($filterValue) => ($filterValue.class.actual_hit_die == "d8"),
+              ),
+              mapper = ($mapValue) => $mapValue.class_level,
+            ),
+          ),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "current_d10_hit_dice",
+          new_value = add(
+            map(
+              filter(
+                classes,
+                filter = ($filterValue) => ($filterValue.class.actual_hit_die == "d10"),
+              ),
+              mapper = ($mapValue) => $mapValue.class_level,
+            ),
+          ),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "current_d12_hit_dice",
+          new_value = add(
+            map(
+              filter(
+                classes,
+                filter = ($filterValue) => ($filterValue.class.actual_hit_die == "d12"),
+              ),
+              mapper = ($mapValue) => $mapValue.class_level,
+            ),
+          ),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "current_d20_hit_dice",
+          new_value = add(
+            map(
+              filter(
+                classes,
+                filter = ($filterValue) => ($filterValue.class.actual_hit_die == "d20"),
+              ),
+              mapper = ($mapValue) => $mapValue.class_level,
+            ),
+          ),
+          aggregation_type = "set",
+        ),
+        when {
+          $is_new -> setStat(stat = "current_hp", new_value = max_hp, aggregation_type = "set"),
+        },
+        forEach(
+          classes,
+          for_each_value_key = "$class",
+          apply = when {
+            $class.class_level < $class.class.archetype_selection_level -> setStat(
+              stat = "$class.archetype_id",
+              new_value = null,
+              aggregation_type = "set",
+            ),
+          },
+        ),
+      ],
+    ),
+  );

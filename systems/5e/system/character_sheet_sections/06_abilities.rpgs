@@ -1,0 +1,86 @@
+character_sheet_section abilities() =
+  section(
+    id = "ability_section",
+    show_divider = true,
+    content_item_min_width = 125,
+    collapsible = false,
+    header = [
+      icon(
+        id = "ability_section_icon",
+        name = "ic_d20",
+        size = "medium",
+        margin_top = 8,
+        margin_right = 8,
+        margin_left = 16,
+      ),
+      text(
+        id = "ability_section_title",
+        margin_right = 16,
+        margin_left = 16,
+        text = "Ability Modifiers",
+        style = "title",
+      ),
+    ],
+    content = [
+      stat(
+        id = "strength",
+        stat = "strength_modifier",
+        edit_stat = "strength_score",
+        change_amount = 1,
+        on_tap_event = event(
+          name = "rollStat",
+          payload = payload(stat = "strength_modifier", statName = "Strength"),
+        ),
+      ),
+      stat(
+        id = "dexterity",
+        stat = "dexterity_modifier",
+        edit_stat = "dexterity_score",
+        change_amount = 1,
+        on_tap_event = event(
+          name = "rollStat",
+          payload = payload(stat = "dexterity_modifier", statName = "Dexterity"),
+        ),
+      ),
+      stat(
+        id = "constitution",
+        stat = "constitution_modifier",
+        edit_stat = "constitution_score",
+        change_amount = 1,
+        on_tap_event = event(
+          name = "rollStat",
+          payload = payload(stat = "constitution_modifier", statName = "Constitution"),
+        ),
+      ),
+      stat(
+        id = "intelligence",
+        stat = "intelligence_modifier",
+        edit_stat = "intelligence_score",
+        change_amount = 1,
+        on_tap_event = event(
+          name = "rollStat",
+          payload = payload(stat = "intelligence_modifier", statName = "Intelligence"),
+        ),
+      ),
+      stat(
+        id = "wisdom",
+        stat = "wisdom_modifier",
+        edit_stat = "wisdom_score",
+        change_amount = 1,
+        on_tap_event = event(
+          name = "rollStat",
+          payload = payload(stat = "wisdom_modifier", statName = "Wisdom"),
+        ),
+      ),
+      stat(
+        id = "charisma",
+        stat = "charisma_modifier",
+        edit_stat = "charisma_score",
+        change_amount = 1,
+        on_tap_event = event(
+          name = "rollStat",
+          payload = payload(stat = "charisma_modifier", statName = "Charisma"),
+        ),
+      ),
+    ],
+  );

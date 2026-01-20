@@ -1,0 +1,23 @@
+mechanic trigger_long_rest(event_names = "trigger_long_rest") =
+  showPopUp(
+    pop_up_view = list(
+      id = "long_rest_bottom_sheet",
+      padding = 32,
+      subviews = [
+        text(
+          id = "bottom_sheet_long_rest_label",
+          margin_top = 16,
+          text = "Does your DM approve?",
+          style = "text",
+        ),
+      ],
+    ),
+    pop_up_title = "Long Rest",
+    display_cancel_button = true,
+    extra_buttons = [
+      rPGViewBottomSheetExtraButton(
+        text = "REST",
+        event = event(name = "long_rest", payload = payload()),
+      ),
+    ],
+  );

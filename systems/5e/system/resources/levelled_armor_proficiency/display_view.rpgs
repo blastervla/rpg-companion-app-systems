@@ -1,0 +1,20 @@
+view levelled_armor_proficiency_display() =
+  list(
+    id = "levelled_armor_proficiency_display",
+    subviews = [
+      text(
+        id = "levelled_armor_proficiency_display_out_of_character",
+        margin_left = 4,
+        text = description,
+        style = "text",
+        is_visible = !($character?.should_show_controls_for_choices ?? false),
+      ),
+      select(
+        id = "levelled_armor_proficiency_display_in_character",
+        stat = "selected_option",
+        options = "armor_types",
+        allowed_options = options,
+        is_visible = $character?.should_show_controls_for_choices ?? false,
+      ),
+    ],
+  );

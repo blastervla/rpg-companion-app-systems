@@ -1,0 +1,30 @@
+view weapon_list() =
+  listItem(
+    id = "weapon_list",
+    title = name,
+    subtitle = properties,
+    first_line_extra = display_first_line_extra,
+    first_line_extra_color = if defined(stat = "$character")
+      then (if is_proficient then "accent" else "text")
+      else "text",
+    second_line_extra = display_second_line_extra,
+    second_line_extra_color = when {
+      defined(stat = "$character") -> "text",
+      !isEmpty(effects) -> "accent",
+      else -> "text",
+    },
+    chips = flatAppend(
+      [
+        (if true == is_attuned
+          then [
+              createChip(
+                id = "attuned_chip",
+                text = "ATTUNED",
+                background_color = "#4caf50",
+                style = "compact",
+              ),
+            ]
+          else []),
+      ],
+    ),
+  );

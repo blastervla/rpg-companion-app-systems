@@ -1,0 +1,25 @@
+view class_details_subsection() =
+  section(
+    id = "class_details_subsection",
+    header = [
+      text(
+        id = "class_details_label",
+        margin_left = 24,
+        text = class_name_with_archetype,
+        style = "section",
+      ),
+    ],
+    content = [
+      resourceSection(
+        id = "class_details_list",
+        resource_stat = "features",
+        read_only = true,
+        resource_id = "feat",
+      ),
+    ],
+    show_divider = false,
+    content_item_min_width = 1,
+    collapsible = true,
+    start_collapsed = true,
+    always_show_collapse_icon = true,
+  );

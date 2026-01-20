@@ -1,0 +1,135 @@
+mechanic show_information(event_names = "show_information") =
+  showPopUp(
+    pop_up_view = list(
+      id = "information_bottom_sheet",
+      padding = 16,
+      subviews = [
+        composite(
+          id = "information_background_comp",
+          subviews = [
+            text(
+              id = "information_background_label",
+              text = "Background: ",
+              style = "text",
+              bold = true,
+            ),
+            text(id = "information_background", text = background.name, style = "text"),
+          ],
+        ),
+        composite(
+          id = "information_alignment_comp",
+          margin_top = 4,
+          subviews = [
+            text(
+              id = "information_alignment_label",
+              text = "Alignment: ",
+              style = "text",
+              bold = true,
+            ),
+            text(
+              id = "information_alignment",
+              text = enumeratedName(enumerated_type = "alignments", id = alignment),
+              style = "text",
+            ),
+          ],
+        ),
+        text(
+          id = "information_personality_traits",
+          margin_top = 16,
+          text = personality_traits,
+          style = "text",
+          is_visible = !isEmpty(personality_traits),
+        ),
+        text(
+          id = "information_ideals",
+          margin_top = 5,
+          text = ideals,
+          style = "text",
+          is_visible = !isEmpty(ideals),
+        ),
+        text(
+          id = "information_bonds",
+          margin_top = 5,
+          text = bonds,
+          style = "text",
+          is_visible = !isEmpty(bonds),
+        ),
+        text(
+          id = "information_flaws",
+          margin_top = 5,
+          text = flaws,
+          style = "text",
+          is_visible = !isEmpty(flaws),
+        ),
+        text(
+          id = "information_about",
+          margin_top = 5,
+          text = about,
+          style = "text",
+          is_visible = !isEmpty(about),
+        ),
+        text(
+          id = "information_language_proficiencies_label",
+          text = "Languages:",
+          margin_top = 16,
+          style = "text",
+          bold = true,
+        ),
+        text(
+          id = "information_language_proficiencies",
+          text = joinToString(language_proficiencies, separator = ", "),
+          style = "text",
+        ),
+        text(
+          id = "information_armor_proficiencies_label",
+          margin_top = 16,
+          text = "Armor proficiencies:",
+          style = "text",
+          bold = true,
+        ),
+        text(
+          id = "information_armor_proficiencies",
+          text = joinToString(
+            map(
+              armor_proficiencies,
+              mapper = ($mapValue) => enumeratedName(enumerated_type = "armor_types", id = $mapValue),
+            ),
+            separator = ", ",
+          ),
+          style = "text",
+        ),
+        text(
+          id = "information_weapon_proficiencies_label",
+          margin_top = 16,
+          text = "Weapon proficiencies:",
+          style = "text",
+          bold = true,
+        ),
+        text(
+          id = "information_weapon_proficiencies",
+          text = joinToString(
+            map(
+              weapon_proficiencies,
+              mapper = ($mapValue) => enumeratedName(enumerated_type = "weapon_types_plus_all_types", id = $mapValue),
+            ),
+            separator = ", ",
+          ),
+          style = "text",
+        ),
+        text(
+          id = "information_tool_proficiencies_label",
+          margin_top = 16,
+          text = "Tools:",
+          style = "text",
+          bold = true,
+        ),
+        text(
+          id = "information_tool_proficiencies",
+          text = joinToString(tool_proficiencies, separator = ", "),
+          style = "text",
+        ),
+      ],
+    ),
+    pop_up_title = concat(["About ", name]),
+    display_cancel_button = false,
+  );

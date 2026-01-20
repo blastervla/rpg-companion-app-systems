@@ -1,0 +1,609 @@
+view monster_edit() =
+  viewPager(
+    id = "monster_edit",
+    names = [
+      "Basic information",
+      "Traits & Actions",
+      "Extra information",
+    ],
+    color = "#311B66",
+    subviews = [
+      list(
+        id = "monster_edit_basics",
+        padding = 16,
+        subviews = [
+          composite(
+            id = "monster_edit_basics_name_photo",
+            alignment = "center",
+            subviews = [
+              avatar(
+                id = "monster_edit_basics_photo",
+                photo_stat = "photo",
+                name_stat = "name",
+                size = "medium",
+                interactable = true,
+              ),
+              text(
+                id = "monster_edit_name",
+                edit_stat = "name",
+                style = "text",
+                label = "Name",
+                max_length = 140,
+                validation_message = if isEmpty($view.monster_edit_name)
+                  then "Please add a name to your monster"
+                  else null,
+              ),
+            ],
+          ),
+          composite(
+            id = "monster_edit_source",
+            margin_top = 4,
+            subviews = [
+              text(id = "monster_edit_source_label", text = "Source: ", style = "text"),
+              select(
+                id = "monster_edit_source_select",
+                options = "source",
+                options_display_stat = "abbreviation",
+                stat = "source",
+              ),
+            ],
+          ),
+          composite(
+            id = "monster_edit_basics_size_type",
+            margin_top = 4,
+            subviews = [
+              select(
+                id = "monster_edit_basics_size",
+                stat = "size",
+                options = "monster_sizes",
+              ),
+              select(
+                id = "monster_edit_basics_type",
+                stat = "type",
+                options = "monster_types",
+              ),
+              select(
+                id = "monster_edit_basics_alignment",
+                stat = "alignment",
+                options = "monster_alignments",
+              ),
+            ],
+          ),
+          composite(
+            id = "monster_edit_basics_tag_alignment",
+            margin_top = 4,
+            subviews = [
+              text(
+                id = "monster_edit_basics_tag",
+                edit_stat = "tag",
+                style = "text",
+                max_length = 14,
+                hint = "(tag)",
+              ),
+            ],
+          ),
+          composite(
+            id = "monster_edit_basics_cr_xp",
+            margin_top = 4,
+            subviews = [
+              select(
+                id = "monster_edit_basics_cr",
+                stat = "cr",
+                options = "monster_cr_types",
+                margin_right = 4,
+              ),
+              text(
+                id = "monster_edit_basics_xp_label",
+                text = "XP: ",
+                style = "text",
+                bold = true,
+              ),
+              text(
+                id = "monster_edit_basics_xp_label",
+                edit_stat = "xp",
+                style = "text",
+                max_length = 8,
+              ),
+            ],
+          ),
+          composite(
+            id = "monster_edit_basics_habitat",
+            margin_top = 4,
+            subviews = [
+              text(
+                id = "monster_edit_basics_habitat_label",
+                text = "Habitat: ",
+                style = "text",
+                bold = true,
+              ),
+              select(
+                id = "monster_edit_basics_habitat_select",
+                stat = "habitat",
+                multi_select = true,
+                options = "monster_habitats",
+              ),
+            ],
+          ),
+          composite(
+            id = "monster_edit_basics_treasure",
+            margin_top = 4,
+            subviews = [
+              text(
+                id = "monster_edit_basics_treasure_label",
+                text = "Treasure: ",
+                style = "text",
+                bold = true,
+              ),
+              select(
+                id = "monster_edit_basics_treasure_select",
+                stat = "treasure",
+                multi_select = true,
+                options = "monster_treasure_themes",
+              ),
+            ],
+          ),
+          divider(id = "monster_edit_basics_divider_1"),
+          composite(
+            id = "monster_edit_basics_armor_class",
+            subviews = [
+              text(
+                id = "monster_edit_basics_armor_class_label",
+                text = "Armor class: ",
+                style = "text",
+                bold = true,
+              ),
+              text(
+                id = "monster_edit_basics_armor_class_text",
+                edit_stat = "armor_class",
+                style = "text",
+                max_length = 2,
+              ),
+            ],
+          ),
+          composite(
+            id = "monster_edit_basics_hit_points",
+            margin_top = 4,
+            subviews = [
+              text(
+                id = "monster_edit_basics_hit_points_label",
+                text = "Hit points: ",
+                style = "text",
+                bold = true,
+              ),
+              resource(
+                id = "monster_edit_basics_hit_points_res",
+                view_type = "edit",
+                resource_id = "dice_roll",
+                stat = "hit_points",
+                create_if_empty = true,
+              ),
+            ],
+          ),
+          composite(
+            id = "monster_edit_basics_initiative",
+            subviews = [
+              text(
+                id = "monster_edit_basics_initiative_label",
+                text = "Initiative: ",
+                style = "text",
+                bold = true,
+              ),
+              text(
+                id = "monster_edit_basics_initiative_text",
+                edit_stat = "initiative",
+                style = "text",
+                signed = true,
+                max_length = 3,
+              ),
+            ],
+          ),
+          composite(
+            id = "monster_edit_basics_speed_composite",
+            alignment = "center",
+            subviews = [
+              text(
+                id = "monster_edit_basics_speed",
+                edit_stat = "speed",
+                style = "text",
+                max_length = 2,
+                margin_right = 4,
+                signed = false,
+                hint = "0",
+                label = "Normal",
+              ),
+              text(
+                id = "monster_edit_basics_burrow_speed",
+                edit_stat = "burrow_speed",
+                style = "text",
+                max_length = 2,
+                margin_left = 4,
+                margin_right = 4,
+                signed = false,
+                hint = "0",
+                label = "Burrow",
+              ),
+              text(
+                id = "monster_edit_basics_climb_speed",
+                edit_stat = "climb_speed",
+                style = "text",
+                max_length = 2,
+                margin_left = 4,
+                margin_right = 4,
+                signed = false,
+                hint = "0",
+                label = "Climb",
+              ),
+              text(
+                id = "monster_edit_basics_fly_speed",
+                edit_stat = "fly_speed",
+                style = "text",
+                max_length = 2,
+                margin_left = 4,
+                margin_right = 4,
+                signed = false,
+                hint = "0",
+                label = "Fly",
+              ),
+              text(
+                id = "monster_edit_basics_swim_speed",
+                edit_stat = "swim_speed",
+                style = "text",
+                max_length = 2,
+                margin_left = 4,
+                signed = false,
+                hint = "0",
+                label = "Swim",
+              ),
+            ],
+          ),
+          divider(id = "monster_edit_basics_divider_1"),
+          text(
+            id = "monster_edit_basics_ability_scores_label",
+            text = "Ability scores:",
+            style = "text",
+            bold = true,
+          ),
+          composite(
+            id = "edit_character_basics_ability_scores_composite",
+            alignment = "center",
+            subviews = [
+              text(
+                id = "edit_character_basics_ability_scores_str",
+                edit_stat = "strength_score",
+                style = "text",
+                max_length = 2,
+                margin_right = 4,
+                signed = false,
+                hint = "8",
+                label = "STR",
+              ),
+              text(
+                id = "edit_character_basics_ability_scores_dex",
+                edit_stat = "dexterity_score",
+                style = "text",
+                max_length = 2,
+                margin_right = 4,
+                signed = false,
+                hint = "8",
+                label = "DEX",
+              ),
+              text(
+                id = "edit_character_basics_ability_scores_con",
+                edit_stat = "constitution_score",
+                style = "text",
+                max_length = 2,
+                margin_right = 4,
+                signed = false,
+                hint = "8",
+                label = "CON",
+              ),
+              text(
+                id = "edit_character_basics_ability_scores_int",
+                edit_stat = "intelligence_score",
+                style = "text",
+                max_length = 2,
+                margin_right = 4,
+                signed = false,
+                hint = "8",
+                label = "INT",
+              ),
+              text(
+                id = "edit_character_basics_ability_scores_wis",
+                edit_stat = "wisdom_score",
+                style = "text",
+                max_length = 2,
+                margin_right = 4,
+                signed = false,
+                hint = "8",
+                label = "WIS",
+              ),
+              text(
+                id = "edit_character_basics_ability_scores_cha",
+                edit_stat = "charisma_score",
+                style = "text",
+                max_length = 2,
+                margin_right = 4,
+                signed = false,
+                hint = "8",
+                label = "CHA",
+              ),
+            ],
+          ),
+          text(
+            id = "monster_edit_basics_saving_throws_label",
+            text = "Saving throw modifiers:",
+            style = "text",
+            bold = true,
+            margin_top = 4,
+          ),
+          composite(
+            id = "edit_character_basics_saving_throws_composite",
+            alignment = "center",
+            subviews = [
+              text(
+                id = "edit_character_basics_saving_throws_str",
+                edit_stat = "strength_saving_throw_modifier",
+                style = "text",
+                max_length = 3,
+                margin_right = 4,
+                signed = true,
+                hint = "8",
+                label = "STR",
+              ),
+              text(
+                id = "edit_character_basics_saving_throws_dex",
+                edit_stat = "dexterity_saving_throw_modifier",
+                style = "text",
+                max_length = 3,
+                margin_right = 4,
+                signed = true,
+                hint = "8",
+                label = "DEX",
+              ),
+              text(
+                id = "edit_character_basics_saving_throws_con",
+                edit_stat = "constitution_saving_throw_modifier",
+                style = "text",
+                max_length = 3,
+                margin_right = 4,
+                signed = true,
+                hint = "8",
+                label = "CON",
+              ),
+            ],
+          ),
+          composite(
+            id = "edit_character_basics_saving_throws_composite_2",
+            alignment = "center",
+            subviews = [
+              text(
+                id = "edit_character_basics_saving_throws_int",
+                edit_stat = "intelligence_saving_throw_modifier",
+                style = "text",
+                max_length = 3,
+                margin_right = 4,
+                signed = true,
+                hint = "8",
+                label = "INT",
+              ),
+              text(
+                id = "edit_character_basics_saving_throws_wis",
+                edit_stat = "wisdom_saving_throw_modifier",
+                style = "text",
+                max_length = 3,
+                margin_right = 4,
+                signed = true,
+                hint = "8",
+                label = "WIS",
+              ),
+              text(
+                id = "edit_character_basics_saving_throws_cha",
+                edit_stat = "charisma_saving_throw_modifier",
+                style = "text",
+                max_length = 2,
+                margin_right = 4,
+                signed = false,
+                hint = "8",
+                label = "CHA",
+              ),
+            ],
+          ),
+        ],
+      ),
+      list(
+        id = "monster_edit_traits_and_actions",
+        padding = 16,
+        subviews = [
+          resourceArray(
+            id = "monster_edit_traits",
+            resource_id = "monster_trait",
+            stat = "traits",
+            view_type = "edit",
+            left_view = text(
+              id = "monster_edit_traits_label",
+              text = "Traits: ",
+              style = "text",
+              bold = true,
+            ),
+            pop_up_type = "bottomSheet",
+            pop_up_button_text = trait_name,
+            validation_message = if !isEmpty(
+              filter(
+                $view.monster_edit_traits,
+                filter = ($filterValue) => isEmpty($filterValue.trait_name),
+              ),
+            )
+              then "You have empty traits. Please add some content to them or remove them."
+              else null,
+          ),
+          resourceArray(
+            id = "monster_edit_actions",
+            resource_id = "monster_action",
+            stat = "actions",
+            view_type = "edit",
+            left_view = text(
+              id = "monster_edit_actions_label",
+              text = "Actions: ",
+              style = "text",
+              bold = true,
+            ),
+            pop_up_type = "bottomSheet",
+            pop_up_button_text = action_name,
+            validation_message = if !isEmpty(
+              filter(
+                $view.monster_edit_actions,
+                filter = ($filterValue) => isEmpty($filterValue.action_name),
+              ),
+            )
+              then "You have empty actions. Please add some content to them or remove them."
+              else null,
+          ),
+          resourceArray(
+            id = "monster_edit_bonus_actions",
+            resource_id = "monster_action",
+            stat = "bonus_actions",
+            view_type = "edit",
+            left_view = text(
+              id = "monster_edit_actions_label",
+              text = "Bonus actions: ",
+              style = "text",
+              bold = true,
+            ),
+            pop_up_type = "bottomSheet",
+            pop_up_button_text = action_name,
+            validation_message = if !isEmpty(
+              filter(
+                $view.monster_edit_bonus_actions,
+                filter = ($filterValue) => isEmpty($filterValue.action_name),
+              ),
+            )
+              then "You have empty bonus actions. Please add some content to them or remove them."
+              else null,
+          ),
+          resourceArray(
+            id = "monster_edit_reactions",
+            resource_id = "monster_action",
+            stat = "reactions",
+            view_type = "edit",
+            left_view = text(
+              id = "monster_edit_actions_label",
+              text = "Rections: ",
+              style = "text",
+              bold = true,
+            ),
+            pop_up_type = "bottomSheet",
+            pop_up_button_text = action_name,
+            validation_message = if !isEmpty(
+              filter(
+                $view.monster_edit_reactions,
+                filter = ($filterValue) => isEmpty($filterValue.action_name),
+              ),
+            )
+              then "You have empty reactions. Please add some content to them or remove them."
+              else null,
+          ),
+          resourceArray(
+            id = "monster_edit_legendary_actions",
+            resource_id = "monster_action",
+            stat = "legendary_actions",
+            view_type = "edit",
+            left_view = text(
+              id = "monster_edit_actions_label",
+              text = "Legendary actions: ",
+              style = "text",
+              bold = true,
+            ),
+            pop_up_type = "bottomSheet",
+            pop_up_button_text = action_name,
+            validation_message = if !isEmpty(
+              filter(
+                $view.monster_edit_legendary_actions,
+                filter = ($filterValue) => isEmpty($filterValue.action_name),
+              ),
+            )
+              then "You have empty legendary actions. Please add some content to them or remove them."
+              else null,
+          ),
+          resourceSection(
+            id = "monster_edit_spells",
+            resource_stat = "spells",
+            resource_id = "spell",
+            header_view = composite(
+              id = "monster_edit_spells_comp",
+              subviews = [
+                text(
+                  id = "monster_edit_spells_label",
+                  text = "Spells: ",
+                  style = "text",
+                  bold = true,
+                ),
+                selectResources(
+                  id = "monster_edit_spells_add_spell",
+                  stat = "spells",
+                  resource_id = "spell",
+                  view_type = "icon",
+                  should_append = true,
+                  should_save_on_selection = true,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+      list(
+        id = "monster_edit_basics",
+        padding = 16,
+        subviews = [
+          text(
+            id = "monster_edit_skills",
+            edit_stat = "skills",
+            style = "text",
+            label = "Skills",
+            max_length = 140,
+          ),
+          text(
+            id = "monster_edit_gear",
+            edit_stat = "gear",
+            style = "text",
+            label = "Gear",
+            max_length = 140,
+          ),
+          text(
+            id = "monster_edit_vulnerabilities",
+            edit_stat = "vulnerabilities",
+            style = "text",
+            label = "Vulnerabilities",
+            max_length = 140,
+          ),
+          text(
+            id = "monster_edit_immunities",
+            edit_stat = "immunities",
+            style = "text",
+            label = "Immunities",
+            max_length = 140,
+          ),
+          text(
+            id = "monster_edit_resistances",
+            edit_stat = "resistances",
+            style = "text",
+            label = "Resistances",
+            max_length = 140,
+          ),
+          text(
+            id = "monster_edit_senses",
+            edit_stat = "senses",
+            style = "text",
+            label = "Senses",
+            max_length = 140,
+          ),
+          text(
+            id = "monster_edit_languages",
+            edit_stat = "languages",
+            style = "text",
+            label = "Languages",
+            max_length = 140,
+          ),
+        ],
+      ),
+    ],
+  );

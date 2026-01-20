@@ -1,0 +1,22 @@
+view spell_list() =
+  listItem(
+    id = "spell_list",
+    title = name,
+    subtitle = display_type,
+    first_line_extra = display_requirements,
+    second_line_extra = range,
+    chips = flatAppend(
+      [
+        (if true == prepared
+          then [
+              createChip(
+                id = "prepared_chip",
+                text = "PREPARED",
+                background_color = "#4caf50",
+                style = "compact",
+              ),
+            ]
+          else []),
+      ],
+    ),
+  );

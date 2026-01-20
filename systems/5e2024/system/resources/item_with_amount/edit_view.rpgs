@@ -1,0 +1,21 @@
+view item_with_amount_edit() =
+  composite(
+    id = "item_with_amount_edit",
+    subviews = [
+      text(
+        id = "item_with_amount_edit_amount",
+        edit_stat = "amount",
+        style = "text",
+        hint = "Amnt.",
+        max_length = 6,
+      ),
+      selectResources(
+        id = "item_with_amount_edit_item",
+        stat = "item",
+        resource_id = "item",
+        validation_message = if !notNull($view.item_with_amount_edit_item)
+          then "You have an empty item. Please select an item or remove it."
+          else null,
+      ),
+    ],
+  );

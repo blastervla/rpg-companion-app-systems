@@ -1,0 +1,57 @@
+character_sheet_section attuned_items() =
+  section(
+    id = "attuned_items_section",
+    show_divider = true,
+    content_item_min_width = 1,
+    collapsible = true,
+    is_visible = !isEmpty(attuned_resources),
+    header = [
+      icon(
+        id = "attuned_items_section_icon",
+        name = "ic_stars",
+        color = "#7b1fa2",
+        size = "medium",
+        margin_top = 8,
+        margin_right = 8,
+        margin_left = 16,
+      ),
+      text(
+        id = "attuned_items_section_title",
+        margin_right = 16,
+        margin_left = 16,
+        text = "Attuned items",
+        style = "title",
+      ),
+    ],
+    content = [
+      text(
+        id = "attuned_items_count",
+        text = attuned_resources_count_message,
+        style = "text",
+        margin_top = 4,
+        margin_bottom = 4,
+        margin_left = 16,
+      ),
+      resourceSection(
+        id = "attuned_armors_list",
+        resource_stat = "attuned_armors",
+        resource_id = "armor",
+        max_items_in_preview = 5,
+        read_only = true,
+      ),
+      resourceSection(
+        id = "attuned_weapons_list",
+        resource_stat = "attuned_weapons",
+        resource_id = "weapon",
+        max_items_in_preview = 5,
+        read_only = true,
+      ),
+      resourceSection(
+        id = "attuned_items_list",
+        resource_stat = "attuned_items",
+        resource_id = "item",
+        max_items_in_preview = 5,
+        read_only = true,
+      ),
+    ],
+  );

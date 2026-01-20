@@ -1,0 +1,22 @@
+view levelled_armor_proficiency_edit() =
+  composite(
+    id = "levelled_armor_proficiency_edit",
+    subviews = [
+      text(
+        id = "levelled_armor_proficiency_edit_level",
+        edit_stat = "level",
+        style = "text",
+        hint = "Lvl",
+        max_length = 3,
+      ),
+      select(
+        id = "levelled_armor_proficiency_edit_options",
+        stat = "options",
+        options = "armor_types",
+        multi_select = true,
+        validation_message = if isEmpty($view.levelled_armor_proficiency_edit_options)
+          then "You have a box with empty armor proficiency options. Please add options to it or remove it"
+          else null,
+      ),
+    ],
+  );

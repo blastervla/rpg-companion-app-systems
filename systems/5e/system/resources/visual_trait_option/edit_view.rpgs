@@ -1,0 +1,11 @@
+view visual_trait_option_edit() =
+  text(
+    id = "visual_trait_option_edit",
+    edit_stat = "text",
+    style = "text",
+    max_length = 80,
+    hint = "Option (no parenthesis). e.g: Blue Eyes",
+    validation_message = if isEmpty($view.visual_trait_option_edit)
+      then "You have empty trait options. Please fill them or remove them."
+      else null,
+  );

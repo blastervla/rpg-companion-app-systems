@@ -1,0 +1,38 @@
+character_sheet_section armors() =
+  section(
+    id = "armors_section",
+    show_divider = true,
+    content_item_min_width = 1,
+    collapsible = true,
+    header = [
+      icon(
+        id = "armors_section_icon",
+        name = "ic_armor",
+        size = "medium",
+        margin_left = 16,
+      ),
+      text(
+        id = "armors_section_title",
+        margin_right = 16,
+        margin_left = 16,
+        text = "Armor",
+        style = "title",
+      ),
+      spacer(id = "armors_section_header_spacer"),
+      selectResources(
+        id = "armors_section_add_armor",
+        stat = "armors",
+        resource_id = "armor",
+        view_type = "icon",
+        should_append = true,
+        should_save_on_selection = true,
+      ),
+    ],
+    content = [
+      resourceSection(
+        id = "armors_list",
+        resource_stat = "armors",
+        resource_id = "armor",
+      ),
+    ],
+  );

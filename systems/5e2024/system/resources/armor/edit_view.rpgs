@@ -1,0 +1,187 @@
+view armor_edit() =
+  list(
+    id = "armor_edit",
+    padding = 32,
+    subviews = [
+      text(
+        id = "armor_edit_name",
+        edit_stat = "name",
+        style = "text",
+        label = "Name",
+        max_length = 140,
+        validation_message = if isEmpty($view.armor_edit_name)
+          then "Please add a name to your armor"
+          else null,
+      ),
+      composite(
+        id = "armor_edit_source_core",
+        margin_top = 4,
+        subviews = [
+          composite(
+            id = "armor_edit_source",
+            subviews = [
+              text(id = "armor_edit_source_label", text = "Source: ", style = "text"),
+              select(
+                id = "armor_edit_source_select",
+                options = "source",
+                options_display_stat = "abbreviation",
+                stat = "source",
+              ),
+            ],
+          ),
+          checkbox(
+            id = "armor_edit_is_core",
+            stat = "is_core",
+            label = "Core",
+            label_alignment = "right",
+          ),
+        ],
+      ),
+      text(
+        id = "armor_edit_description",
+        edit_stat = "description",
+        label = "Description",
+        style = "text",
+      ),
+      composite(
+        id = "armor_edit_weight_cost_composite",
+        margin_top = 4,
+        subviews = [
+          text(id = "armor_edit_price_label", text = "Price: ", style = "text"),
+          resource(
+            id = "armor_edit_price",
+            view_type = "edit",
+            resource_id = "cost",
+            stat = "cost",
+            create_if_empty = true,
+          ),
+          text(
+            id = "armor_edit_weight_label",
+            margin_left = 4,
+            text = "Weight: ",
+            style = "text",
+          ),
+          resource(
+            id = "armor_edit_weight",
+            view_type = "edit",
+            resource_id = "weight",
+            stat = "weight",
+            create_if_empty = true,
+          ),
+        ],
+      ),
+      composite(
+        id = "armor_edit_type_is_proficient_composite",
+        margin_top = 4,
+        subviews = [
+          text(id = "armor_edit_type_label", text = "Type: ", style = "text"),
+          select(id = "armor_edit_type", options = "armor_types", stat = "type"),
+          checkbox(
+            id = "armor_edit_is_proficient",
+            stat = "override_is_proficient",
+            label = "Proficient",
+            label_alignment = "right",
+            is_visible = defined(stat = "$character"),
+          ),
+        ],
+      ),
+      composite(
+        id = "armor_edit_rarity",
+        margin_top = 4,
+        subviews = [
+          text(id = "armor_edit_rarity_label", text = "Rarity: ", style = "text"),
+          select(id = "armor_edit_rarity", options = "item_rarity", stat = "rarity"),
+        ],
+      ),
+      composite(
+        id = "armor_edit_stealth_disadvantage_override_requires_attunement_composite",
+        subviews = [
+          checkbox(
+            id = "armor_edit_stealth_disadvantage",
+            stat = "impose_stealth_disadvantage",
+            label = "Stealth Disadv.",
+            label_alignment = "right",
+          ),
+          checkbox(
+            id = "armor_edit_requires_attunement",
+            stat = "requires_attunement",
+            label = "Requires attunement",
+            label_alignment = "right",
+          ),
+        ],
+      ),
+      composite(
+        id = "armor_edit_base_ac_composite",
+        subviews = [
+          text(id = "armor_edit_base_ac_label", text = "Base AC: ", style = "text"),
+          text(
+            id = "armor_edit_base_ac",
+            edit_stat = "base_ac",
+            style = "text",
+            max_length = 2,
+            signed = false,
+            hint = "0",
+          ),
+        ],
+      ),
+      composite(
+        id = "armor_edit_modifier_composite",
+        margin_top = 4,
+        subviews = [
+          text(id = "armor_edit_modifier_label", text = "Modifier: ", style = "text"),
+          select(
+            id = "armor_edit_modifier",
+            options = "ability_plus_none",
+            stat = "modifier",
+          ),
+        ],
+      ),
+      composite(
+        id = "armor_edit_max_bonus_composite",
+        subviews = [
+          checkbox(
+            id = "armor_edit_has_max_bonus",
+            stat = "has_max_bonus",
+            label = "Has max bonus",
+            label_alignment = "right",
+          ),
+          text(
+            id = "armor_edit_max_bonus",
+            edit_stat = "max_bonus",
+            style = "text",
+            max_length = 2,
+            signed = false,
+            hint = "0",
+            is_visible = $view.armor_edit_has_max_bonus,
+          ),
+        ],
+      ),
+      composite(
+        id = "armor_edit_required_strength_composite",
+        subviews = [
+          text(
+            id = "armor_edit_required_strength_label",
+            text = "Required strength: ",
+            style = "text",
+          ),
+          text(
+            id = "armor_edit_required_strength",
+            edit_stat = "required_strength",
+            style = "text",
+            max_length = 2,
+            signed = false,
+            hint = "0",
+          ),
+        ],
+      ),
+      resourceArray(
+        id = "armor_edit_effects",
+        resource_id = "effect",
+        view_type = "edit",
+        stat = "effects",
+        pop_up_type = "bottomSheet",
+        pop_up_button_text = edit_display_name,
+        left_view = text(id = "armor_edit_effects_label", text = "Effects: ", style = "text"),
+      ),
+    ],
+  );

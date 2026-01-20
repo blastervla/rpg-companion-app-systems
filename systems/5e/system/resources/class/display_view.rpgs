@@ -1,0 +1,313 @@
+view class_display() =
+  list(
+    id = "class_display",
+    padding = 16,
+    alignment = "start",
+    subviews = [
+      text(
+        id = "class_display_source",
+        style = "caption",
+        margin_left = 16,
+        resource_id = "source",
+        resource_instance_ids_stat = "source",
+        resource_display_stat = "abbreviation",
+      ),
+      composite(
+        id = "class_display_hit_die_composite",
+        margin_top = 8,
+        subviews = [
+          text(
+            id = "class_display_hit_die_label",
+            text = "HP: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "class_display_hit_die_label", text = display_hp, style = "text"),
+        ],
+      ),
+      composite(
+        id = "class_display_armor_class_composite",
+        margin_top = 8,
+        subviews = [
+          text(
+            id = "class_display_armor_class_label",
+            text = "Armor class: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "class_display_armor_class_label",
+            text = display_armor_class,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "class_display_saving_throws",
+        subviews = [
+          text(
+            id = "class_display_saving_throws_label",
+            text = "Saving throws: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "class_display_saving_throws_text",
+            text = display_saving_throws,
+            style = "text",
+          ),
+        ],
+      ),
+      collapsible(
+        id = "class_display_features_collapsible",
+        title = "Features",
+        start_expanded = false,
+        subviews = [
+          resourceSection(
+            id = "class_display_features",
+            resource_stat = "features",
+            resource_id = "feat",
+            content_item_min_width = 1,
+            read_only = true,
+          ),
+        ],
+      ),
+      composite(
+        id = "class_display_spellcasting_ability_composite",
+        margin_top = 8,
+        subviews = [
+          text(
+            id = "class_display_spellcasting_ability_label",
+            text = "Spellcasting ability: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "class_display_spellcasting_ability_label",
+            text = display_spellcasting_ability,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "class_display_caster_level_composite",
+        margin_top = 8,
+        subviews = [
+          text(
+            id = "class_display_caster_level_label",
+            text = "Caster level: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "class_display_caster_level_label",
+            text = display_caster_level,
+            style = "text",
+          ),
+        ],
+      ),
+      collapsible(
+        id = "class_display_spells_collapsible",
+        title = "Spells (per lvl)",
+        start_expanded = false,
+        subviews = [
+          resourceSection(
+            id = "class_display_spells",
+            resource_stat = "spells",
+            resource_id = "levelled_spell",
+            content_item_min_width = 1,
+            read_only = true,
+          ),
+        ],
+        is_visible = !isEmpty(spells),
+      ),
+      composite(
+        id = "class_display_weapon",
+        margin_top = 8,
+        subviews = [
+          text(
+            id = "class_display_weapon_label",
+            text = "Weapon: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "class_display_weapon_text", text = display_weapon, style = "text"),
+        ],
+      ),
+      resourceArray(
+        id = "class_display_attacks_per_action_per_level",
+        resource_id = "levelled_amount",
+        stat = "attacks_per_action_per_level",
+        view_type = "display",
+        left_view = text(
+          id = "class_display_armor_class_label",
+          text = "Attacks per action (per level): ",
+          style = "text",
+          bold = true,
+        ),
+        is_visible = !isEmpty(attacks_per_action_per_level),
+      ),
+      collapsible(
+        id = "class_display_equipment_choices_collapsible",
+        title = "Starting equipment choices",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "class_display_selectable_armors",
+            resource_id = "selectable_armors",
+            stat = "selectable_armors",
+            view_type = "display",
+          ),
+          resourceArray(
+            id = "class_display_selectable_weapons",
+            resource_id = "selectable_weapons",
+            stat = "selectable_weapons",
+            view_type = "display",
+          ),
+          resourceArray(
+            id = "class_display_selectable_items",
+            resource_id = "selectable_items",
+            stat = "selectable_equipments",
+            view_type = "display",
+          ),
+        ],
+        is_visible = !isEmpty(selectable_armors)
+          && !isEmpty(selectable_weapons)
+          && !isEmpty(selectable_equipments),
+      ),
+      collapsible(
+        id = "class_display_languages_collapsible",
+        title = "Languages (per lvl)",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "class_display_languages",
+            resource_id = "levelled_choice_text",
+            stat = "language_proficiencies",
+            view_type = "display",
+          ),
+        ],
+        is_visible = !isEmpty(language_proficiencies),
+      ),
+      collapsible(
+        id = "class_display_skills_collapsible",
+        title = "Skill proficiencies (per lvl)",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "class_display_skills",
+            resource_id = "levelled_skill_proficiency",
+            stat = "skill_proficiencies",
+            view_type = "display",
+            left_view = checkbox(
+              id = "class_display_skills_multiclassable",
+              stat = "account_for_skill_proficiencies_on_multiclass",
+              label = "Available on multiclass",
+              enabled = false,
+              label_alignment = "right",
+              style = "checkbox",
+            ),
+          ),
+        ],
+        is_visible = !isEmpty(skill_proficiencies),
+      ),
+      collapsible(
+        id = "class_display_armor_proficiencies_collapsible",
+        title = "Armor proficiencies (per lvl)",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "class_display_armor_proficiencies",
+            resource_id = "levelled_armor_proficiency",
+            stat = "armor_proficiencies",
+            view_type = "display",
+            left_view = checkbox(
+              id = "class_display_armor_proficiencies_multiclassable",
+              stat = "account_for_armor_proficiencies_on_multiclass",
+              label = "Available on multiclass",
+              enabled = false,
+              label_alignment = "right",
+              style = "checkbox",
+            ),
+          ),
+        ],
+        is_visible = !isEmpty(armor_proficiencies),
+      ),
+      collapsible(
+        id = "class_display_weapon_proficiencies_collapsible",
+        title = "Weapon proficiencies (per lvl)",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "class_display_weapon_proficiencies",
+            resource_id = "levelled_weapon_proficiency",
+            stat = "weapon_proficiencies",
+            view_type = "display",
+            left_view = checkbox(
+              id = "class_display_weapon_proficiencies_multiclassable",
+              stat = "account_for_weapon_proficiencies_on_multiclass",
+              label = "Available on multiclass",
+              enabled = false,
+              label_alignment = "right",
+              style = "checkbox",
+            ),
+          ),
+        ],
+        is_visible = !isEmpty(weapon_proficiencies),
+      ),
+      collapsible(
+        id = "class_display_tool_proficiencies_collapsible",
+        title = "Tool proficiencies (per lvl)",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "class_display_tool_proficiencies",
+            resource_id = "levelled_choice_text",
+            stat = "tool_proficiencies",
+            view_type = "display",
+            left_view = checkbox(
+              id = "class_display_tool_proficiencies_multiclassable",
+              stat = "account_for_tool_proficiencies_on_multiclass",
+              label = "Available on multiclass",
+              enabled = false,
+              label_alignment = "right",
+              style = "checkbox",
+            ),
+          ),
+        ],
+        is_visible = !isEmpty(tool_proficiencies),
+      ),
+      collapsible(
+        id = "class_display_archetypes_collapsible",
+        title = "Archetypes",
+        start_expanded = false,
+        subviews = [
+          resourceSection(
+            id = "class_display_archetypes",
+            resource_stat = "archetypes",
+            resource_id = "class",
+            content_item_min_width = 1,
+            read_only = true,
+            header_view = composite(
+              id = "class_display_archetype_selection_level_composite",
+              margin_top = 8,
+              subviews = [
+                text(
+                  id = "class_display_archetype_selection_level_label",
+                  text = "Selection level: ",
+                  style = "text",
+                  bold = true,
+                ),
+                text(
+                  id = "class_display_archetype_selection_level_label",
+                  text = archetype_selection_level,
+                  style = "text",
+                ),
+              ],
+            ),
+          ),
+        ],
+        is_visible = !isEmpty(archetypes),
+      ),
+    ],
+  );

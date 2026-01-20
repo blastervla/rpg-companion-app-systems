@@ -1,0 +1,104 @@
+character_sheet_section death_saving_throws() =
+  section(
+    id = "death_saving_throws",
+    content_item_min_width = 1,
+    is_visible = current_hp <= 0,
+    header = [
+      icon(
+        id = "death_saving_throws_section_icon",
+        name = "ic_death",
+        size = "medium",
+        color = "accent",
+        margin_top = 8,
+        margin_right = 8,
+        margin_left = 16,
+      ),
+      text(
+        id = "death_saving_throws_section_title",
+        margin_right = 16,
+        margin_left = 16,
+        text = "Death Saves",
+        style = "title",
+      ),
+      spacer(id = "death_saving_throws_header_spacer"),
+      menuButton(
+        id = "death_saving_throws_menu_button",
+        icon_name = "ic_more_vert",
+        icon_size = "small",
+        icon_color = "text",
+        options = "death_saves_menu",
+      ),
+    ],
+    content = [
+      composite(
+        id = "death_saving_throws_successes_comp",
+        subviews = [
+          text(
+            id = "death_saving_throws_success_label",
+            text = "Successes",
+            margin_left = 32,
+            margin_right = 32,
+            style = "text",
+          ),
+          checkbox(
+            id = "death_saving_throws_success_1",
+            stat = "death_saving_throws_success_1",
+            should_auto_save = true,
+            margin_right = 32,
+          ),
+          checkbox(
+            id = "death_saving_throws_success_2",
+            stat = "death_saving_throws_success_2",
+            should_auto_save = true,
+            margin_right = 32,
+            is_visible = $view?.death_saving_throws_success_1? ?? false,
+          ),
+          checkbox(
+            id = "death_saving_throws_success_3",
+            stat = "death_saving_throws_success_3",
+            should_auto_save = true,
+            margin_right = 32,
+            is_visible = $view?.death_saving_throws_success_1? ?? false
+              && $view?.death_saving_throws_success_2? ?? false,
+          ),
+        ],
+      ),
+      composite(
+        id = "death_saving_throws_failures_comp",
+        subviews = [
+          text(
+            id = "death_saving_throws_failure_label",
+            text = "Failures",
+            margin_left = 50,
+            margin_right = 32,
+            style = "text",
+          ),
+          checkbox(
+            id = "death_saving_throws_failure_1",
+            stat = "death_saving_throws_failure_1",
+            should_auto_save = true,
+            margin_right = 32,
+          ),
+          checkbox(
+            id = "death_saving_throws_failure_2",
+            stat = "death_saving_throws_failure_2",
+            should_auto_save = true,
+            margin_right = 32,
+            is_visible = $view?.death_saving_throws_failure_1? ?? false,
+          ),
+          checkbox(
+            id = "death_saving_throws_failure_3",
+            stat = "death_saving_throws_failure_3",
+            should_auto_save = true,
+            margin_right = 32,
+            is_visible = $view?.death_saving_throws_failure_1? ?? false
+              && $view?.death_saving_throws_failure_2? ?? false,
+          ),
+        ],
+      ),
+    ],
+    show_divider = true,
+    collapsible = true,
+    start_collapsed = false,
+    alignment = "start",
+  );

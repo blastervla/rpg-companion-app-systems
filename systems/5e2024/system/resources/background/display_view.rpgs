@@ -1,0 +1,141 @@
+view background_display() =
+  list(
+    id = "background_display",
+    padding = 16,
+    alignment = "start",
+    subviews = [
+      text(
+        id = "background_display_source",
+        style = "caption",
+        margin_left = 16,
+        resource_id = "source",
+        resource_instance_ids_stat = "source",
+        resource_display_stat = "abbreviation",
+      ),
+      resourceArray(
+        id = "background_display_ability_score_increases",
+        resource_id = "ability_score_increase",
+        stat = "ability_score_increases",
+        view_type = "display",
+        left_view = text(
+          id = "background_display_armor_class_label",
+          text = "Ability Scores: ",
+          style = "text",
+          bold = true,
+        ),
+        is_visible = !isEmpty(ability_score_increases),
+      ),
+      collapsible(
+        id = "background_display_features_collapsible",
+        title = "Features",
+        start_expanded = true,
+        subviews = [
+          resourceSection(
+            id = "background_display_features",
+            resource_stat = "features_list",
+            resource_id = "feat",
+            content_item_min_width = 1,
+            read_only = true,
+          ),
+        ],
+      ),
+      collapsible(
+        id = "background_display_equipment_choices_collapsible",
+        title = "Starting equipment choices",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "background_display_selectable_armors",
+            resource_id = "selectable_armors",
+            stat = "selectable_armors",
+            view_type = "display",
+          ),
+          resourceArray(
+            id = "background_display_selectable_weapons",
+            resource_id = "selectable_weapons",
+            stat = "selectable_weapons",
+            view_type = "display",
+          ),
+          resourceArray(
+            id = "background_display_selectable_items",
+            resource_id = "selectable_items",
+            stat = "selectable_equipments",
+            view_type = "display",
+          ),
+        ],
+        is_visible = !isEmpty(selectable_armors)
+          && !isEmpty(selectable_weapons)
+          && !isEmpty(selectable_equipments),
+      ),
+      collapsible(
+        id = "background_display_languages_collapsible",
+        title = "Languages (per lvl)",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "background_display_languages",
+            resource_id = "levelled_choice_text",
+            stat = "language_proficiencies",
+            view_type = "display",
+          ),
+        ],
+        is_visible = !isEmpty(language_proficiencies),
+      ),
+      collapsible(
+        id = "background_display_skills_collapsible",
+        title = "Skill proficiencies (per lvl)",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "background_display_skills",
+            resource_id = "levelled_skill_proficiency",
+            stat = "skill_proficiencies",
+            view_type = "display",
+          ),
+        ],
+        is_visible = !isEmpty(skill_proficiencies),
+      ),
+      collapsible(
+        id = "background_display_armor_proficiencies_collapsible",
+        title = "Armor proficiencies (per lvl)",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "background_display_armor_proficiencies",
+            resource_id = "levelled_armor_proficiency",
+            stat = "armor_proficiencies",
+            view_type = "display",
+          ),
+        ],
+        is_visible = !isEmpty(armor_proficiencies),
+      ),
+      collapsible(
+        id = "background_display_weapon_proficiencies_collapsible",
+        title = "Weapon proficiencies (per lvl)",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "background_display_weapon_proficiencies",
+            resource_id = "levelled_weapon_proficiency",
+            stat = "weapon_proficiencies",
+            view_type = "display",
+          ),
+        ],
+        is_visible = !isEmpty(weapon_proficiencies),
+      ),
+      collapsible(
+        id = "background_display_tool_proficiencies_collapsible",
+        title = "Tool proficiencies (per lvl)",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "background_display_tool_proficiencies",
+            resource_id = "levelled_choice_text",
+            stat = "tool_proficiencies",
+            view_type = "display",
+          ),
+        ],
+        is_visible = !isEmpty(tool_proficiencies),
+      ),
+    ],
+  );

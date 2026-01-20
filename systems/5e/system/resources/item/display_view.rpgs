@@ -1,0 +1,135 @@
+view item_display() =
+  list(
+    id = "item_display",
+    padding = 16,
+    subviews = [
+      composite(
+        id = "item_display_current_quantity_composite",
+        alignment = "end",
+        is_visible = defined(stat = "$character"),
+        subviews = [
+          ticker(
+            id = "item_display_current_quantity_ticker",
+            stat = "quantity",
+            style = "title",
+          ),
+        ],
+      ),
+      composite(
+        id = "item_display_info",
+        subviews = [
+          text(
+            id = "item_display_source",
+            margin_left = 16,
+            style = "caption",
+            resource_id = "source",
+            resource_instance_ids_stat = "source",
+            resource_display_stat = "abbreviation",
+          ),
+          text(id = "item_display_source_separator", text = ", ", style = "caption"),
+          text(
+            id = "item_display_properties",
+            text = properties,
+            style = "caption",
+            is_visible = !isEmpty(properties),
+          ),
+        ],
+      ),
+      composite(
+        id = "item_display_character_properties",
+        subviews = [
+          text(
+            id = "item_display_equipped",
+            margin_left = 16,
+            text = "Equipped",
+            style = "caption",
+            color = "#4CAF50",
+            is_visible = is_equipped,
+          ),
+          text(
+            id = "item_display_attuned",
+            margin_left = 16,
+            text = "Attuned",
+            style = "caption",
+            color = "#4CAF50",
+            is_visible = is_attuned,
+          ),
+        ],
+        is_visible = defined(stat = "$character"),
+      ),
+      text(
+        id = "item_display_price_and_weight",
+        margin_left = 16,
+        text = price_and_weight,
+        style = "caption",
+        is_visible = !isEmpty(price_and_weight),
+      ),
+      text(
+        id = "item_display_description",
+        margin_top = 16,
+        text = description,
+        style = "text",
+        is_visible = !isEmpty(description),
+      ),
+      collapsible(
+        id = "item_display_effects_collapsible",
+        margin_top = 8,
+        title = "Magic effects",
+        is_visible = !isEmpty(effects),
+        subviews = [
+          resourceArray(
+            id = "item_display_effects",
+            resource_id = "effect",
+            stat = "effects",
+            view_type = "display",
+          ),
+        ],
+      ),
+      composite(
+        id = "item_quantity_composite",
+        row_only = true,
+        alignment = "end",
+        is_visible = defined(stat = "$character"),
+        subviews = [
+          spacer(id = "item_quantity_spacer"),
+          text(
+            id = "item_quantity",
+            edit_stat = "edit_quantity",
+            style = "text",
+            max_length = 12,
+            hint = "Amount (default = 1)",
+          ),
+        ],
+      ),
+      composite(
+        id = "item_display_attune_equip_add_remove_composite",
+        row_only = true,
+        is_visible = defined(stat = "$character"),
+        subviews = [
+          button(
+            id = "item_display_attune_button",
+            text = if is_attuned then "UNATTUNE" else "ATTUNE",
+            event = event(name = "toggle_attunement"),
+            is_visible = requires_attunement,
+          ),
+          button(
+            id = "item_display_equip_button",
+            text = if is_equipped then "UNEQUIP" else "EQUIP",
+            event = event(name = "toggle_equip"),
+            is_visible = requires_equipping,
+          ),
+          spacer(id = "item_display_attune_equip_add_remove_spacer"),
+          button(
+            id = "item_display_add_button",
+            text = "+ ADD",
+            event = event(name = "add_quantity"),
+          ),
+          button(
+            id = "item_display_remove_button",
+            text = "+ REMOVE",
+            event = event(name = "subtract_quantity"),
+          ),
+        ],
+      ),
+    ],
+  );

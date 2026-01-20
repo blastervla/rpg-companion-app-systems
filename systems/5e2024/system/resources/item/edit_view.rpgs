@@ -1,0 +1,130 @@
+view item_edit() =
+  list(
+    id = "item_edit",
+    padding = 32,
+    subviews = [
+      text(
+        id = "item_edit_name",
+        edit_stat = "name",
+        style = "text",
+        label = "Name",
+        max_length = 140,
+        validation_message = if isEmpty($view.item_edit_name) then "Please add a name to your item" else null,
+      ),
+      composite(
+        id = "item_edit_source",
+        margin_top = 4,
+        subviews = [
+          text(id = "item_edit_source_label", text = "Source: ", style = "text"),
+          select(
+            id = "item_edit_source_select",
+            options = "source",
+            options_display_stat = "abbreviation",
+            stat = "source",
+          ),
+        ],
+      ),
+      text(
+        id = "item_edit_description",
+        edit_stat = "description",
+        label = "Description",
+        style = "text",
+      ),
+      composite(
+        id = "item_edit_type_ammunition_type_composite",
+        margin_top = 4,
+        subviews = [
+          text(id = "item_edit_type_label", text = "Type: ", style = "text"),
+          select(id = "item_edit_type", options = "item_types", stat = "type"),
+          select(
+            id = "item_edit_ammunition_type",
+            options = "ammunition_types",
+            stat = "ammunition_type",
+            is_visible = $view.item_edit_type == "ammunition",
+          ),
+        ],
+      ),
+      composite(
+        id = "item_edit_weight_cost_composite",
+        margin_top = 4,
+        subviews = [
+          text(id = "item_edit_price_label", text = "Price: ", style = "text"),
+          resource(
+            id = "item_edit_price",
+            view_type = "edit",
+            resource_id = "cost",
+            stat = "cost",
+            create_if_empty = true,
+          ),
+          text(
+            id = "item_edit_weight_label",
+            margin_left = 4,
+            text = "Weight: ",
+            style = "text",
+          ),
+          resource(
+            id = "item_edit_weight",
+            view_type = "edit",
+            resource_id = "weight",
+            stat = "weight",
+            create_if_empty = true,
+          ),
+        ],
+      ),
+      composite(
+        id = "item_edit_rarity_is_magic",
+        margin_top = 4,
+        subviews = [
+          text(id = "item_edit_rarity_label", text = "Rarity: ", style = "text"),
+          select(id = "item_edit_rarity", options = "item_rarity", stat = "rarity"),
+          checkbox(
+            id = "item_edit_is_magic",
+            stat = "is_magic",
+            label = "Magic",
+            label_alignment = "right",
+          ),
+        ],
+      ),
+      composite(
+        id = "item_edit_properties_composite",
+        subviews = [
+          checkbox(
+            id = "item_edit_requires_attunement",
+            stat = "requires_attunement",
+            label = "Requires attunement",
+            label_alignment = "right",
+            is_visible = $view.item_edit_is_magic,
+          ),
+          checkbox(
+            id = "item_edit_is_cursed",
+            stat = "is_cursed",
+            label = "Cursed",
+            label_alignment = "right",
+            is_visible = $view.item_edit_is_magic,
+          ),
+          checkbox(
+            id = "item_edit_is_intelligent",
+            stat = "is_intelligent",
+            label = "Intelligent",
+            label_alignment = "right",
+            is_visible = $view.item_edit_is_magic,
+          ),
+          checkbox(
+            id = "item_edit_is_spellcasting_focus",
+            stat = "is_spellcasting_focus",
+            label = "Spellcasting focus",
+            label_alignment = "right",
+          ),
+        ],
+      ),
+      resourceArray(
+        id = "item_edit_effects",
+        resource_id = "effect",
+        view_type = "edit",
+        stat = "effects",
+        pop_up_type = "bottomSheet",
+        pop_up_button_text = edit_display_name,
+        left_view = text(id = "item_edit_effects_label", text = "Effects: ", style = "text"),
+      ),
+    ],
+  );

@@ -1,0 +1,24 @@
+mechanic level_up_asi(event_names = "level_up_asi") =
+  when {
+    $view.asi_choose_feat_check && notNull($view.asi_feat_selection) -> when {
+      notNull($view.asi_feat_selection) -> addToStat(
+        stat = "feats",
+        value = $view.asi_feat_selection,
+        aggregation_type = "set",
+      ),
+    },
+    !$view.asi_choose_feat_check -> sequence(
+      effects = [
+        addToStat(
+          meta_stat = concat([$view.asi_selection_1, "_score"]),
+          value = 1,
+          aggregation_type = "set",
+        ),
+        addToStat(
+          meta_stat = concat([$view.asi_selection_2, "_score"]),
+          value = 1,
+          aggregation_type = "set",
+        ),
+      ],
+    ),
+  };

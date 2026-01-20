@@ -1,0 +1,48 @@
+view class_details_display() =
+  list(
+    id = "class_details_display",
+    padding_bottom = 16,
+    padding_left = 16,
+    alignment = "start",
+    is_visible = show_spellcasting_details,
+    subviews = [
+      text(
+        id = "class_details_display_name_spellcasting_ability",
+        text = class_name_with_spellcasting_ability,
+        style = "text",
+        bold = true,
+      ),
+      composite(
+        id = "class_details_display_spell_attack_bonus_composite",
+        subviews = [
+          text(
+            id = "class_details_display_spell_attack_bonus_label",
+            text = "Spell attack bonus: ",
+            style = "text",
+          ),
+          text(
+            id = "class_details_display_spell_attack_bonus",
+            text = spell_attack_bonus_text,
+            style = "text",
+            color = "accent",
+          ),
+        ],
+      ),
+      composite(
+        id = "class_details_display_spell_save_dc_composite",
+        subviews = [
+          text(
+            id = "class_details_display_spell_save_dc_label",
+            text = "Spell save DC: ",
+            style = "text",
+          ),
+          text(
+            id = "class_details_display_spell_save_dc",
+            text = spell_save_dc,
+            style = "text",
+            color = "accent",
+          ),
+        ],
+      ),
+    ],
+  );

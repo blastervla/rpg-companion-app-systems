@@ -1,0 +1,92 @@
+character_sheet_section saving_throws() =
+  section(
+    id = "saving_throws_section",
+    show_divider = true,
+    content_item_min_width = 125,
+    collapsible = false,
+    header = [
+      icon(
+        id = "saving_throws_section_icon",
+        name = "ic_d20",
+        size = "medium",
+        margin_top = 8,
+        margin_right = 8,
+        margin_left = 16,
+      ),
+      text(
+        id = "saving_throws_section_title",
+        margin_right = 16,
+        margin_left = 16,
+        text = "Saving Throws",
+        style = "title",
+      ),
+    ],
+    content = [
+      stat(
+        id = "strength",
+        stat = "strength_saving_throw",
+        edit_stat = "strength_saving_throw_proficiency",
+        change_amount = 1,
+        on_tap_event = event(
+          name = "rollStat",
+          payload = payload(stat = "strength_saving_throw", statName = "Strength saving throw"),
+        ),
+      ),
+      stat(
+        id = "dexterity",
+        stat = "dexterity_saving_throw",
+        edit_stat = "dexterity_saving_throw_proficiency",
+        change_amount = 1,
+        on_tap_event = event(
+          name = "rollStat",
+          payload = payload(stat = "dexterity_saving_throw", statName = "Dexterity saving throw"),
+        ),
+      ),
+      stat(
+        id = "constitution",
+        stat = "constitution_saving_throw",
+        edit_stat = "constitution_saving_throw_proficiency",
+        change_amount = 1,
+        on_tap_event = event(
+          name = "rollStat",
+          payload = payload(
+            stat = "constitution_saving_throw",
+            statName = "Constitution saving throw",
+          ),
+        ),
+      ),
+      stat(
+        id = "intelligence",
+        stat = "intelligence_saving_throw",
+        edit_stat = "intelligence_saving_throw_proficiency",
+        change_amount = 1,
+        on_tap_event = event(
+          name = "rollStat",
+          payload = payload(
+            stat = "intelligence_saving_throw",
+            statName = "Intelligence saving throw",
+          ),
+        ),
+      ),
+      stat(
+        id = "wisdom",
+        stat = "wisdom_saving_throw",
+        edit_stat = "wisdom_saving_throw_proficiency",
+        change_amount = 1,
+        on_tap_event = event(
+          name = "rollStat",
+          payload = payload(stat = "wisdom_saving_throw", statName = "Wisdom saving throw"),
+        ),
+      ),
+      stat(
+        id = "charisma",
+        stat = "charisma_saving_throw",
+        edit_stat = "charisma_saving_throw_proficiency",
+        change_amount = 1,
+        on_tap_event = event(
+          name = "rollStat",
+          payload = payload(stat = "charisma_saving_throw", statName = "Charisma saving throw"),
+        ),
+      ),
+    ],
+  );

@@ -1,0 +1,149 @@
+view spell_edit() =
+  list(
+    id = "spell_edit",
+    padding = 32,
+    subviews = [
+      text(
+        id = "spell_edit_name",
+        edit_stat = "name",
+        style = "text",
+        label = "Name",
+        max_length = 140,
+        validation_message = if isEmpty($view.spell_edit_name)
+          then "Please add a name to your spell"
+          else null,
+      ),
+      composite(
+        id = "spell_edit_source",
+        margin_top = 4,
+        subviews = [
+          text(id = "spell_edit_source_label", text = "Source: ", style = "text"),
+          select(
+            id = "spell_edit_source_select",
+            options = "source",
+            options_display_stat = "abbreviation",
+            stat = "source",
+          ),
+        ],
+      ),
+      composite(
+        id = "spell_edit_level_school",
+        margin_top = 4,
+        subviews = [
+          text(id = "spell_edit_level_label", text = "Level: ", style = "text"),
+          select(id = "spell_edit_level", options = "spell_level", stat = "level"),
+          text(id = "spell_edit_school_label", text = "School: ", style = "text"),
+          select(id = "spell_edit_school", options = "spell_school", stat = "school"),
+        ],
+      ),
+      composite(
+        id = "spell_edit_vsm",
+        subviews = [
+          checkbox(
+            id = "spell_edit_ritual",
+            stat = "ritual",
+            label = "Ritual",
+            label_alignment = "right",
+          ),
+          checkbox(
+            id = "spell_edit_verbal",
+            stat = "verbal",
+            label = "V",
+            label_alignment = "right",
+          ),
+          checkbox(
+            id = "spell_edit_somatic",
+            stat = "somatic",
+            label = "S",
+            label_alignment = "right",
+          ),
+          checkbox(
+            id = "spell_edit_material",
+            stat = "material",
+            label = "M",
+            label_alignment = "right",
+          ),
+        ],
+      ),
+      composite(
+        id = "spell_edit_casting_time_range",
+        subviews = [
+          text(
+            id = "spell_edit_casting_time",
+            edit_stat = "casting_time",
+            style = "text",
+            label = "Casting time",
+            max_length = 140,
+          ),
+          text(
+            id = "spell_edit_range",
+            edit_stat = "range",
+            style = "text",
+            label = "Range",
+            max_length = 80,
+          ),
+          text(
+            id = "spell_edit_duration",
+            edit_stat = "duration",
+            style = "text",
+            label = "Duration",
+            max_length = 140,
+          ),
+        ],
+      ),
+      text(
+        id = "spell_edit_components",
+        edit_stat = "components",
+        style = "text",
+        label = "Components",
+        is_visible = $view.spell_edit_material,
+        max_length = 300,
+      ),
+      text(
+        id = "spell_edit_description",
+        edit_stat = "description",
+        label = "Description",
+        style = "text",
+      ),
+      text(
+        id = "spell_edit_higher_level_description",
+        edit_stat = "higher_level_description",
+        label = "Higher levels description",
+        style = "text",
+      ),
+      composite(
+        id = "spell_edit_classes",
+        margin_top = 4,
+        subviews = [
+          text(id = "spell_edit_classes_label", text = "Classes: ", style = "text"),
+          select(
+            id = "spell_edit_classes",
+            options = "class",
+            options_display_stat = "name",
+            stat = "classes",
+            multi_select = true,
+          ),
+        ],
+      ),
+      resourceArray(
+        id = "spell_edit_levelled_damage_dice",
+        resource_id = "levelled_damage_dice",
+        view_type = "edit",
+        left_view = text(
+          id = "spell_edit_levelled_damage_dice_label",
+          text = "Damage dice (per lvl): ",
+          style = "text",
+        ),
+        stat = "dice",
+      ),
+      resourceArray(
+        id = "spell_edit_effects",
+        resource_id = "effect",
+        view_type = "edit",
+        stat = "effects",
+        pop_up_type = "bottomSheet",
+        pop_up_button_text = edit_display_name,
+        left_view = text(id = "spell_edit_effects_label", text = "Effects: ", style = "text"),
+      ),
+    ],
+  );

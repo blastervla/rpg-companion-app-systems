@@ -1,0 +1,37 @@
+view selectable_armors_edit() =
+  list(
+    id = "selectable_armors_edit",
+    subviews = [
+      composite(
+        id = "selectable_armors_edit_amount_composite",
+        subviews = [
+          text(
+            id = "selectable_armors_edit_amount_label",
+            text = "Amount to choose: ",
+            style = "text",
+          ),
+          text(
+            id = "selectable_armors_edit_amount",
+            edit_stat = "amount",
+            style = "text",
+            hint = "1",
+            max_length = 2,
+          ),
+        ],
+      ),
+      resourceArray(
+        id = "selectable_armors_edit_options",
+        resource_id = "armor_with_amount",
+        stat = "options",
+        view_type = "edit",
+        left_view = text(
+          id = "selectable_armors_edit_options_label",
+          text = "Options: ",
+          style = "text",
+        ),
+        validation_message = if isEmpty($view.selectable_armors_edit_options)
+          then "You have empty armor options. Please select some armors or remove it."
+          else null,
+      ),
+    ],
+  );

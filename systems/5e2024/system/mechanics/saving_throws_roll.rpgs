@@ -1,0 +1,85 @@
+mechanic saving_throws_roll(event_names = "death_saves_roll") =
+  roll(
+    rolls = [rollable(formulas = ["1d20"], text = "death save")],
+    on_result_effect = when {
+      $event.result == 20 -> fireEvent(event = event(name = "death_saves_stabilize", payload = payload())),
+      $event.result == 1 -> when {
+        !death_saving_throws_failure_1 -> sequence(
+          effects = [
+            setStat(
+              stat = "death_saving_throws_failure_1",
+              new_value = true,
+              aggregation_type = "set",
+            ),
+            setStat(
+              stat = "death_saving_throws_failure_2",
+              new_value = true,
+              aggregation_type = "set",
+            ),
+          ],
+        ),
+        !death_saving_throws_failure_2 -> sequence(
+          effects = [
+            setStat(
+              stat = "death_saving_throws_failure_2",
+              new_value = true,
+              aggregation_type = "set",
+            ),
+            setStat(
+              stat = "death_saving_throws_failure_3",
+              new_value = true,
+              aggregation_type = "set",
+            ),
+          ],
+        ),
+        !death_saving_throws_failure_3 -> sequence(
+          effects = [
+            setStat(
+              stat = "death_saving_throws_failure_3",
+              new_value = true,
+              aggregation_type = "set",
+            ),
+          ],
+        ),
+      },
+      $event.result >= 10 -> when {
+        !death_saving_throws_success_1 -> setStat(
+          stat = "death_saving_throws_success_1",
+          new_value = true,
+          aggregation_type = "set",
+        ),
+        !death_saving_throws_success_2 -> setStat(
+          stat = "death_saving_throws_success_2",
+          new_value = true,
+          aggregation_type = "set",
+        ),
+        !death_saving_throws_success_3 -> sequence(
+          effects = [
+            setStat(
+              stat = "death_saving_throws_success_3",
+              new_value = true,
+              aggregation_type = "set",
+            ),
+            fireEvent(event = event(name = "death_saves_stabilize", payload = payload())),
+          ],
+        ),
+      },
+      $event.result < 10 -> when {
+        !death_saving_throws_failure_1 -> setStat(
+          stat = "death_saving_throws_failure_1",
+          new_value = true,
+          aggregation_type = "set",
+        ),
+        !death_saving_throws_failure_2 -> setStat(
+          stat = "death_saving_throws_failure_2",
+          new_value = true,
+          aggregation_type = "set",
+        ),
+        !death_saving_throws_failure_3 -> setStat(
+          stat = "death_saving_throws_failure_3",
+          new_value = true,
+          aggregation_type = "set",
+        ),
+      },
+    },
+  );

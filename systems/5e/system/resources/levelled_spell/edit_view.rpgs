@@ -1,0 +1,21 @@
+view levelled_spell_edit() =
+  composite(
+    id = "levelled_spell_edit",
+    subviews = [
+      text(
+        id = "levelled_spell_edit_level",
+        edit_stat = "level",
+        style = "text",
+        hint = "Lvl",
+        max_length = 3,
+      ),
+      selectResources(
+        id = "levelled_spell_edit_spell_select",
+        stat = "spell",
+        resource_id = "spell",
+        validation_message = if !notNull($view.levelled_spell_edit_spell_select)
+          then "There's an empty levelled spell. Please select a spell or remove it"
+          else null,
+      ),
+    ],
+  );

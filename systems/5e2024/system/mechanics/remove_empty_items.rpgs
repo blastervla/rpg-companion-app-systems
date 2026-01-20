@@ -1,0 +1,10 @@
+mechanic remove_empty_items(event_names = "remove_empty_items") =
+  when {
+    !isEmpty(
+    filter(equipment, filter = ($filterValue) => ($filterValue.quantity <= 0)),
+  ) -> setStat(
+      stat = "equipment",
+      new_value = filter(equipment, filter = ($filterValue) => ($filterValue.quantity > 0)),
+      aggregation_type = "set",
+    ),
+  };

@@ -1,0 +1,30 @@
+view ability_score_increase_display() =
+  list(
+    id = "ability_score_increase_display",
+    subviews = [
+      text(
+        id = "ability_score_increase_display_out_of_character",
+        text = description,
+        style = "text",
+        is_visible = !defined(stat = "$character.$is_new"),
+      ),
+      composite(
+        id = "ability_score_increase_display_in_character",
+        margin_bottom = 4,
+        is_visible = defined(stat = "$character.$is_new"),
+        subviews = [
+          text(
+            id = "ability_score_increase_display_assign_label",
+            text = assign_label_text,
+            style = "text",
+          ),
+          select(
+            id = "ability_score_increase_select",
+            stat = "temp_selected_modifier",
+            options = "ability",
+            allowed_options = modifier_options,
+          ),
+        ],
+      ),
+    ],
+  );

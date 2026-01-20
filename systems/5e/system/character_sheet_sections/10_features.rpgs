@@ -1,0 +1,94 @@
+character_sheet_section features() =
+  section(
+    id = "features_section",
+    show_divider = true,
+    content_item_min_width = 1,
+    collapsible = true,
+    header = [
+      icon(
+        id = "features_section_icon",
+        name = "ic_star",
+        size = "medium",
+        margin_left = 16,
+      ),
+      text(
+        id = "features_section_title",
+        margin_right = 16,
+        margin_left = 16,
+        text = "Traits & Features",
+        style = "title",
+      ),
+      spacer(id = "features_section_header_spacer"),
+      selectResources(
+        id = "features_section_add_feat",
+        stat = "feats",
+        resource_id = "feat",
+        view_type = "icon",
+        should_append = true,
+        should_save_on_selection = true,
+      ),
+    ],
+    content = [
+      resourceArray(
+        id = "class_features_subsection",
+        resource_id = "class_details",
+        stat = "classes",
+        view_type = "display",
+        hide_line = true,
+      ),
+      section(
+        id = "traits_subsection",
+        header = [
+          text(
+            id = "traits_label",
+            margin_left = 24,
+            text = "Racial traits",
+            style = "section",
+          ),
+        ],
+        content = [
+          resourceSection(
+            id = "traits_list",
+            resource_stat = "race_traits",
+            read_only = true,
+            resource_id = "feat",
+          ),
+        ],
+        show_divider = false,
+        content_item_min_width = 1,
+        collapsible = true,
+        start_collapsed = true,
+        always_show_collapse_icon = true,
+      ),
+      section(
+        id = "background_subsection",
+        header = [
+          text(
+            id = "background_label",
+            margin_left = 24,
+            text = "Background",
+            style = "section",
+          ),
+        ],
+        content = [
+          resourceSection(
+            id = "background_list",
+            resource_stat = "background_features",
+            read_only = true,
+            resource_id = "feat",
+          ),
+        ],
+        show_divider = false,
+        content_item_min_width = 1,
+        collapsible = true,
+        start_collapsed = true,
+        always_show_collapse_icon = true,
+      ),
+      resourceSection(
+        id = "feat_list",
+        resource_stat = "feats",
+        read_only = false,
+        resource_id = "feat",
+      ),
+    ],
+  );

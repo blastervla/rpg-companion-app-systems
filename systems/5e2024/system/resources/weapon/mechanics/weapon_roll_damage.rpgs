@@ -1,0 +1,22 @@
+mechanic weapon_roll_damage(event_names = "damage") =
+  sequence(
+    effects = [
+      roll(
+        rolls = map(
+          (if is_versatile && $view?.weapon_versatile_toggle? ?? false
+            then versatile_damage_dice
+            else damage_dice),
+          mapper = ($mapValue) => rollable(
+            formulas = flatAppend(
+              [
+                map($mapValue.dices, mapper = ($mapValue) => $mapValue.formula),
+                (if damage_bonus != 0 then [toSignedString(damage_bonus)] else []),
+              ],
+            ),
+            text = $mapValue.damage_type,
+          ),
+        ),
+      ),
+      delayed(millis = 500, effect = dismissResource()),
+    ],
+  );

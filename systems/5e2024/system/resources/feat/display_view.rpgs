@@ -1,0 +1,152 @@
+view feat_display() =
+  list(
+    id = "feat_display",
+    padding = 16,
+    alignment = "start",
+    subviews = [
+      list(
+        id = "feat_display_non_level_up",
+        is_visible = !($character?.currently_levelling_up ?? false),
+        subviews = [
+          composite(
+            id = "feat_display_info",
+            margin_left = 16,
+            subviews = [
+              text(
+                id = "feat_display_source",
+                style = "caption",
+                resource_id = "source",
+                resource_instance_ids_stat = "source",
+                resource_display_stat = "abbreviation",
+                is_visible = !isEmpty(source),
+              ),
+              text(
+                id = "feat_display_source_separator",
+                text = ", ",
+                style = "caption",
+                is_visible = !isEmpty(source),
+              ),
+              text(id = "feat_display_type", style = "caption", text = type_name),
+              text(id = "feat_display_type_separator", text = ", ", style = "caption"),
+              text(
+                id = "feat_display_prerequisites",
+                text = concat(["Prerequisites: ", prerequisites]),
+                style = "caption",
+                is_visible = !isEmpty(prerequisites),
+              ),
+            ],
+          ),
+          text(
+            id = "feat_display_current_level_description",
+            text = current_level_description,
+            style = "text",
+          ),
+          collapsible(
+            id = "feat_display_all_descriptions_collapsible",
+            margin_top = 8,
+            title = "All descriptions (by level)",
+            is_visible = (!defined(stat = "$character") || defined(stat = "$character.$is_new"))
+              && length(sorted_descriptions) > 1,
+            subviews = [
+              resourceArray(
+                id = "feat_display_descriptions",
+                resource_id = "levelled_description",
+                stat = "sorted_descriptions",
+                view_type = "display",
+              ),
+            ],
+          ),
+          collapsible(
+            id = "feat_display_available_effects_collapsible",
+            margin_top = 8,
+            title = "Magic effects",
+            is_visible = !isEmpty(available_effects_for_current_level)
+              && defined(stat = "$character")
+              && !defined(stat = "$character.$is_new"),
+            subviews = [
+              resourceArray(
+                id = "feat_display_effects",
+                resource_id = "effect",
+                stat = "available_effects_for_current_level",
+                view_type = "display",
+              ),
+            ],
+          ),
+          collapsible(
+            id = "feat_display_effects_collapsible",
+            margin_top = 8,
+            title = "Magic effects",
+            is_visible = !isEmpty(sorted_effects)
+              && (!defined(stat = "$character") || defined(stat = "$character.$is_new")),
+            subviews = [
+              resourceArray(
+                id = "feat_display_effects",
+                resource_id = "effect",
+                stat = "sorted_effects",
+                view_type = "display",
+              ),
+            ],
+          ),
+          collapsible(
+            id = "feat_display_selectable_features_collapsible",
+            margin_top = 8,
+            title = "All selectable features (by level)",
+            is_visible = has_selectable_features
+              && !isEmpty(sorted_selectable_features)
+              && (!defined(stat = "$character") || defined(stat = "$character.$is_new")),
+            subviews = [
+              resourceArray(
+                id = "feat_display_selectable_feature_amount_per_level",
+                resource_id = "levelled_amount",
+                stat = "sorted_selectable_feature_amount_per_level",
+                view_type = "display",
+              ),
+              resourceArray(
+                id = "feat_display_selectable_features",
+                resource_id = "feat",
+                stat = "sorted_selectable_features",
+                view_type = "list",
+              ),
+            ],
+          ),
+        ],
+      ),
+      text(
+        id = "feat_display_level_up_selectable_feature",
+        text = "Your level up allowed you to select some additional features:",
+        style = "text",
+        is_visible = $character?.currently_levelling_up ?? false,
+      ),
+      collapsible(
+        id = "feat_display_selectable_features_select_collapsible",
+        margin_top = 8,
+        title = "Chosen selectable features",
+        is_visible = has_selectable_features
+          && current_allowed_amount_of_selectable_features > 0
+          && !isEmpty(available_selectable_features_for_current_level)
+          && defined(stat = "$character")
+          && !defined(stat = "$character.$is_new"),
+        subviews = [
+          text(
+            id = "feat_display_allowed_amount_of_selectable_features",
+            text = current_allowed_amount_of_selectable_features_label_text,
+            style = "text",
+          ),
+          select(
+            id = "feat_display_selectable_features_select",
+            stat = "chosen_selectable_features",
+            resource_options = available_selectable_features_for_current_level,
+            max_selection_amount = current_allowed_amount_of_selectable_features,
+            options_display_stat = "name",
+            multi_select = true,
+            style = "list",
+          ),
+          button(
+            id = "feat_display_selectable_features_save_button",
+            text = "SAVE",
+            event = event(name = "saveSelectableFeaturesChoice", payload = payload()),
+          ),
+        ],
+      ),
+    ],
+  );

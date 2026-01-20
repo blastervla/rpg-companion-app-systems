@@ -1,0 +1,75 @@
+mechanic trigger_short_rest(event_names = "trigger_short_rest") =
+  showPopUp(
+    pop_up_view = list(
+      id = "short_rest_bottom_sheet",
+      padding = 16,
+      subviews = [
+        text(
+          id = "bottom_sheet_short_rest_label",
+          margin_top = 16,
+          text = "Select how many Hit Dice you want to spend",
+          style = "text",
+        ),
+        section(
+          id = "short_rest_hit_dice_section",
+          header = [],
+          show_divider = false,
+          content_item_min_width = 100,
+          collapsible = false,
+          content = [
+            stat(
+              id = "short_rest_hit_dice_d4_stat",
+              stat = "temp_short_rest_hit_dice_d4",
+              change_amount = 1,
+              min_value_allowed = 0,
+              calculated_max_value_allowed = current_d4_hit_dice,
+            ),
+            stat(
+              id = "short_rest_hit_dice_d6_stat",
+              stat = "temp_short_rest_hit_dice_d6",
+              change_amount = 1,
+              min_value_allowed = 0,
+              calculated_max_value_allowed = current_d6_hit_dice,
+            ),
+            stat(
+              id = "short_rest_hit_dice_d8_stat",
+              stat = "temp_short_rest_hit_dice_d8",
+              change_amount = 1,
+              min_value_allowed = 0,
+              calculated_max_value_allowed = current_d8_hit_dice,
+            ),
+            stat(
+              id = "short_rest_hit_dice_d10_stat",
+              stat = "temp_short_rest_hit_dice_d10",
+              change_amount = 1,
+              min_value_allowed = 0,
+              calculated_max_value_allowed = current_d10_hit_dice,
+            ),
+            stat(
+              id = "short_rest_hit_dice_d12_stat",
+              stat = "temp_short_rest_hit_dice_d12",
+              change_amount = 1,
+              min_value_allowed = 0,
+              calculated_max_value_allowed = current_d12_hit_dice,
+            ),
+            stat(
+              id = "short_rest_hit_dice_d20_stat",
+              stat = "temp_short_rest_hit_dice_d20",
+              change_amount = 1,
+              min_value_allowed = 0,
+              calculated_max_value_allowed = current_d20_hit_dice,
+            ),
+          ],
+        ),
+      ],
+    ),
+    pop_up_title = "Short Rest ",
+    display_cancel_button = true,
+    extra_buttons = [
+      rPGViewBottomSheetExtraButton(
+        text = "REST",
+        event = event(name = "short_rest", payload = payload()),
+      ),
+    ],
+    in_edit_mode = true,
+  );

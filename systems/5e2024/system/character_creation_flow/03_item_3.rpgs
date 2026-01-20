@@ -1,0 +1,147 @@
+character_creation_page edit_proficiencies_title() =
+  characterCreationPage(
+    title = displayableData(id = "edit_proficiencies_title", name = "Proficiencies"),
+    view = list(
+      id = "edit_character_proficiencies",
+      padding = 32,
+      subviews = [
+        resourceArray(
+          id = "edit_character_proficiencies_languages",
+          resource_id = "levelled_choice_text",
+          stat = "creator_language_proficiency_choices",
+          view_type = "display",
+          left_view = text(
+            id = "edit_character_proficiencies_languages_label",
+            text = "Languages proficiencies:",
+            style = "text",
+            bold = true,
+          ),
+        ),
+        resourceArray(
+          id = "edit_character_proficiencies_skills",
+          resource_id = "levelled_skill_proficiency",
+          stat = "creator_skill_proficiency_choices",
+          view_type = "display",
+          left_view = text(
+            id = "edit_character_proficiencies_skills_label",
+            text = "Skill proficiencies:",
+            style = "text",
+            bold = true,
+          ),
+        ),
+        resourceArray(
+          id = "edit_character_proficiencies_armors",
+          resource_id = "levelled_armor_proficiency",
+          stat = "creator_armor_proficiency_choices",
+          view_type = "display",
+          left_view = text(
+            id = "edit_character_proficiencies_armors_label",
+            text = "Armor proficiencies:",
+            style = "text",
+            bold = true,
+          ),
+        ),
+        resourceArray(
+          id = "edit_character_proficiencies_weapons",
+          resource_id = "levelled_choice_text",
+          stat = "creator_weapon_proficiency_choices",
+          view_type = "display",
+          left_view = text(
+            id = "edit_character_proficiencies_weapons_label",
+            text = "Weapon proficiencies:",
+            style = "text",
+            bold = true,
+          ),
+        ),
+        resourceArray(
+          id = "edit_character_proficiencies_tools",
+          resource_id = "levelled_choice_text",
+          stat = "creator_tool_proficiency_choices",
+          view_type = "display",
+          left_view = text(
+            id = "edit_character_proficiencies_tools_label",
+            text = "Tool proficiencies:",
+            style = "text",
+            bold = true,
+          ),
+        ),
+      ],
+    ),
+    on_page_open = setStat(stat = "selecting", new_value = true, aggregation_type = "set"),
+    on_page_close = setStat(stat = "selecting", new_value = false, aggregation_type = "set"),
+    post_edit = sequence(
+      effects = [
+        setStat(
+          stat = "language_proficiencies",
+          new_value = flatAppend(
+            [
+              language_proficiencies,
+              map(
+                flatMap(
+                  creator_language_proficiency_choices,
+                  mapper = ($mapValue) => split($mapValue.selected_options, separator = "\\\\s*,\\\\s*"),
+                ),
+                mapper = ($mapValue) => trim($mapValue),
+              ),
+            ],
+            treat_as_set = true,
+          ),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "armor_proficiencies",
+          new_value = flatAppend(
+            [
+              armor_proficiencies,
+              map(
+                creator_armor_proficiency_choices,
+                mapper = ($mapValue) => $mapValue.selected_option,
+              ),
+            ],
+            treat_as_set = true,
+          ),
+          aggregation_type = "set",
+        ),
+        forEach(
+          creator_skill_proficiency_choices,
+          apply = setStat(
+            meta_stat = concat([$forEachValue.selected_option, "_proficiency"]),
+            new_value = if $forEachValue.is_expertise then "expert" else "proficient",
+            aggregation_type = "set",
+          ),
+        ),
+        setStat(
+          stat = "weapon_proficiencies",
+          new_value = flatAppend(
+            [
+              weapon_proficiencies,
+              ["unarmed_strike"],
+              map(
+                creator_weapon_proficiency_choices,
+                mapper = ($mapValue) => $mapValue.selected_option,
+              ),
+            ],
+            treat_as_set = true,
+          ),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "tool_proficiencies",
+          new_value = flatAppend(
+            [
+              tool_proficiencies,
+              map(
+                flatMap(
+                  creator_tool_proficiency_choices,
+                  mapper = ($mapValue) => split($mapValue.selected_options, separator = "\\\\s*,\\\\s*"),
+                ),
+                mapper = ($mapValue) => trim($mapValue),
+              ),
+            ],
+            treat_as_set = true,
+          ),
+          aggregation_type = "set",
+        ),
+      ],
+    ),
+  );

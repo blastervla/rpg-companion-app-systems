@@ -1,0 +1,35 @@
+view armor_list() =
+  listItem(
+    id = "armor_list",
+    title = name,
+    subtitle = properties,
+    first_line_extra = armor_class,
+    first_line_extra_color = if defined(stat = "$character")
+      then (if is_proficient then "accent" else "text")
+      else "text",
+    second_line_extra = required_strength_summary,
+    chips = flatAppend(
+      [
+        (if true == is_equipped
+          then [
+              createChip(
+                id = "equipped_chip",
+                text = "EQUIPPED",
+                background_color = "#4caf50",
+                style = "compact",
+              ),
+            ]
+          else []),
+        (if true == is_attuned
+          then [
+              createChip(
+                id = "attuned_chip",
+                text = "ATTUNED",
+                background_color = "#4caf50",
+                style = "compact",
+              ),
+            ]
+          else []),
+      ],
+    ),
+  );

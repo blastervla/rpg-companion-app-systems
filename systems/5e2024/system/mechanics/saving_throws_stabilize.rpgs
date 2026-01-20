@@ -1,0 +1,7 @@
+mechanic saving_throws_stabilize(event_names = "death_saves_stabilize") =
+  sequence(
+    effects = [
+      setStat(stat = "current_hp", new_value = 1, aggregation_type = "set"),
+      showMessage(message = "Stabilized with 1 HP", message_type = "info"),
+    ],
+  );

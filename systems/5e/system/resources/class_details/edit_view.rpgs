@@ -1,0 +1,59 @@
+view class_details_edit() =
+  composite(
+    id = "class_details_edit",
+    alignment = "end",
+    margin_bottom = 4,
+    subviews = [
+      popUpButton(
+        id = "edit_character_basics_see_class_button",
+        text = "SEE DETAILS",
+        pop_up_view = resource(
+          id = "edit_character_basics_see_class_bottom_sheet",
+          view_type = "display",
+          resource_id = "class",
+          stat = "$view.class_details_edit_class_select",
+        ),
+        pop_up_title = $view?.class_details_edit_class_select?.name ?? "Class",
+        display_cancel_button = true,
+        cancel_text = "OK",
+        is_visible = notNull($view?.class_details_edit_class_select?),
+      ),
+      selectResources(
+        id = "class_details_edit_class_select",
+        stat = "class",
+        resource_id = "class",
+        validation_message = if isNull($view.class_details_edit_class_select)
+          then "You have an unselected class. Select a class or remove it."
+          else null,
+      ),
+      select(
+        id = "class_details_edit_archetype_select",
+        stat = "archetype_id",
+        margin_left = 4,
+        resource_options = $view.class_details_edit_class_select?.archetypes ?? [],
+        options_display_stat = "name",
+        is_visible = !isEmpty(($view.class_details_edit_class_select?.archetypes ?? []))
+          && ($view.class_details_edit_class_level? ?? 1) >= ($view.class_details_edit_class_select?.archetype_selection_level ?? 0),
+      ),
+      text(
+        id = "class_details_edit_class_level",
+        edit_stat = "class_level",
+        style = "text",
+        margin_left = 4,
+        max_length = 3,
+        hint = "Lvl",
+        validation_message = if should_show_level_up_disclaimer
+          then "To level up, please use the EXP / LEVEL UP button at the top-center of the character sheet"
+          else null,
+        is_visible = defined(stat = "$parent.$is_new"),
+      ),
+      text(
+        id = "class_details_edit_class_level_too_low_error_label",
+        text = "To level up, please use the EXP / LEVEL UP button at the top-center of the character sheet.",
+        style = "text",
+        bold = true,
+        color = "#F44336",
+        is_visible = should_show_level_up_disclaimer,
+      ),
+    ],
+  );

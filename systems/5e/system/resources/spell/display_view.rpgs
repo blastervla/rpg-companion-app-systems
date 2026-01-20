@@ -1,0 +1,215 @@
+view spell_display() =
+  list(
+    id = "spell_display",
+    padding = 16,
+    subviews = [
+      composite(
+        id = "spell_display_info",
+        subviews = [
+          text(
+            id = "spell_display_source",
+            margin_left = 16,
+            style = "caption",
+            resource_id = "source",
+            resource_instance_ids_stat = "source",
+            resource_display_stat = "abbreviation",
+          ),
+          text(id = "spell_display_source_separator", text = ", ", style = "caption"),
+          text(
+            id = "spell_display_classes",
+            resource_id = "class",
+            resource_instance_ids_stat = "classes",
+            resource_display_stat = "name",
+            style = "caption",
+          ),
+        ],
+      ),
+      text(
+        id = "spell_display_type",
+        margin_left = 16,
+        text = display_type,
+        style = "caption",
+      ),
+      composite(
+        id = "spell_display_casting_time_composite",
+        margin_top = 16,
+        subviews = [
+          text(
+            id = "spell_display_casting_time_subtitle",
+            text = "Casting Time: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "spell_display_casting_time_label",
+            text = display_casting_time,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "spell_display_range_composite",
+        subviews = [
+          text(
+            id = "spell_display_range_subtitle",
+            text = "Range: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "spell_display_range_label", text = range, style = "text"),
+        ],
+      ),
+      composite(
+        id = "spell_display_components_composite",
+        subviews = [
+          text(
+            id = "spell_display_components_subtitle",
+            text = "Components: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "spell_display_components_label",
+            text = full_components,
+            style = "text",
+          ),
+        ],
+        is_visible = has_components,
+      ),
+      composite(
+        id = "spell_display_duration_composite",
+        subviews = [
+          text(
+            id = "spell_display_duration_subtitle",
+            text = "Duration: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "spell_display_duration_label", text = duration, style = "text"),
+        ],
+      ),
+      text(
+        id = "spell_display_description_label",
+        margin_top = 16,
+        text = description,
+        is_visible = !isEmpty(description),
+        style = "text",
+      ),
+      text(
+        id = "spell_display_higher_level_description_subtitle",
+        margin_top = 16,
+        text = "At Higher Levels: ",
+        style = "text",
+        bold = true,
+        is_visible = has_higher_level_description,
+      ),
+      text(
+        id = "spell_display_higher_level_description_label",
+        text = higher_level_description,
+        style = "text",
+        is_visible = has_higher_level_description,
+      ),
+      collapsible(
+        id = "spell_display_dice_collapsible",
+        margin_top = 8,
+        title = "Damage dice",
+        is_visible = !isEmpty(dice),
+        subviews = [
+          resourceArray(
+            id = "spell_display_levelled_dice",
+            resource_id = "levelled_damage_dice",
+            stat = "dice",
+            view_type = "display",
+          ),
+        ],
+      ),
+      collapsible(
+        id = "spell_display_effects_collapsible",
+        margin_top = 8,
+        start_expanded = true,
+        title = "Magic effects",
+        is_visible = !isEmpty(effects),
+        subviews = [
+          resourceArray(
+            id = "spell_display_effects",
+            resource_id = "effect",
+            stat = "effects",
+            view_type = "display",
+          ),
+        ],
+      ),
+      composite(
+        id = "spell_display_cast_composite",
+        margin_top = 16,
+        is_visible = should_select_spell_slot_to_cast,
+        subviews = [
+          text(
+            id = "spell_display_cast_composite_level_label",
+            text = "Level: ",
+            style = "text",
+          ),
+          ticker(
+            id = "spell_display_cast_composite_ticker",
+            stat = "cast_level",
+            style = "headline",
+            button_location = "sideToSide",
+            button_look = "upDown",
+            allowed_values = available_slots_for_use,
+          ),
+          text(
+            id = "spell_display_cast_composite_slots_remaining_label",
+            text = "Slots remaining: ",
+            style = "text",
+          ),
+          ticker(
+            id = "spell_display_slots_remaining_composite_ticker",
+            stat = "available_selected_slots",
+            style = "headline",
+            is_visible = defined(stat = "$view.spell_display_cast_composite_ticker"),
+          ),
+        ],
+      ),
+      list(
+        id = "spell_display_cast_section_list",
+        is_visible = defined(stat = "$character"),
+        margin_top = 8,
+        subviews = [
+          text(
+            id = "spell_display_cast_explanation",
+            text = "Can't cast when wearing armor you are not proficient with",
+            color = "accent",
+            bold = true,
+            style = "text",
+            is_visible = !character_is_not_wearing_inproficient_armor,
+          ),
+          text(
+            id = "spell_display_cast_explanation_spell_slots",
+            text = "You don't have the required spell slots to cast this spell right now",
+            color = "accent",
+            bold = true,
+            style = "text",
+            is_visible = !has_required_spell_slots_to_cast,
+          ),
+          composite(
+            id = "spell_display_cast_button_composite",
+            row_only = true,
+            subviews = [
+              button(
+                id = "spell_display_prepare_button",
+                text = prepare_button_text,
+                is_visible = !is_cantrip,
+                event = event(name = "togglePrepareSpell", payload = payload()),
+              ),
+              spacer(id = "spell_display_cast_button_spacer"),
+              button(
+                id = "spell_display_cast_button",
+                text = "CAST",
+                enabled = can_cast,
+                event = event(name = "castSpell", payload = payload()),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ],
+  );

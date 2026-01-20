@@ -1,0 +1,21 @@
+view armor_with_amount_edit() =
+  composite(
+    id = "armor_with_amount_edit",
+    subviews = [
+      text(
+        id = "armor_with_amount_edit_amount",
+        edit_stat = "amount",
+        style = "text",
+        hint = "Amnt.",
+        max_length = 6,
+      ),
+      selectResources(
+        id = "armor_with_amount_edit_armor",
+        stat = "armor",
+        resource_id = "armor",
+        validation_message = if !notNull($view.armor_with_amount_edit_armor)
+          then "You have an empty armor. Please select an armor or remove it."
+          else null,
+      ),
+    ],
+  );

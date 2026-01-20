@@ -1,0 +1,469 @@
+mechanic on_long_rest(event_names = "long_rest") =
+  sequence(
+    effects = [
+      showMessage(
+        message = "You're feeling well rested. Your HP, spell slots and appropriate hit dice have been restored.",
+        message_type = "info",
+      ),
+      setStat(stat = "current_hp", new_value = max_hp, aggregation_type = "set"),
+      setStat(
+        stat = "current_d4_hit_dice",
+        new_value = min(
+          [
+            max_d4_hit_dice,
+            (current_d4_hit_dice + max([divide([max_d4_hit_dice, 2], rounding_method = "down"), 1])),
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "current_d6_hit_dice",
+        new_value = min(
+          [
+            max_d6_hit_dice,
+            (current_d6_hit_dice + max([divide([max_d6_hit_dice, 2], rounding_method = "down"), 1])),
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "current_d8_hit_dice",
+        new_value = min(
+          [
+            max_d8_hit_dice,
+            (current_d8_hit_dice + max([divide([max_d8_hit_dice, 2], rounding_method = "down"), 1])),
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "current_d10_hit_dice",
+        new_value = min(
+          [
+            max_d10_hit_dice,
+            (current_d10_hit_dice + max([divide([max_d10_hit_dice, 2], rounding_method = "down"), 1])),
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "current_d12_hit_dice",
+        new_value = min(
+          [
+            max_d12_hit_dice,
+            (current_d12_hit_dice + max([divide([max_d12_hit_dice, 2], rounding_method = "down"), 1])),
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "current_d20_hit_dice",
+        new_value = min(
+          [
+            max_d20_hit_dice,
+            (current_d20_hit_dice + max([divide([max_d20_hit_dice, 2], rounding_method = "down"), 1])),
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_1",
+        new_value = when {
+          is_single_third_level_caster -> when {
+            first_third_level_caster_class.class_level <= 2 -> 0,
+            first_third_level_caster_class.class_level == 3 -> 2,
+            first_third_level_caster_class.class_level <= 6 -> 3,
+            else -> 4,
+          } + add(
+            map(
+              map(
+                custom_spell_slot_classes,
+                mapper = ($class) => findFirst(
+                  sortBy(
+                    $class.class.actual_spell_slots_level_1_per_level,
+                    order = "desc",
+                    sort_by_selector = ($sortByValue) => $sortByValue.level,
+                  ),
+                  filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                ),
+              ),
+              mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+            ),
+          ) + max_spell_slots_1_bonus,
+          is_single_half_level_caster -> when {
+            first_half_level_caster_class.class_level <= 1 -> 0,
+            first_half_level_caster_class.class_level <= 2 -> 2,
+            first_half_level_caster_class.class_level <= 4 -> 3,
+            else -> 4,
+          } + add(
+            map(
+              map(
+                custom_spell_slot_classes,
+                mapper = ($class) => findFirst(
+                  sortBy(
+                    $class.class.actual_spell_slots_level_1_per_level,
+                    order = "desc",
+                    sort_by_selector = ($sortByValue) => $sortByValue.level,
+                  ),
+                  filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                ),
+              ),
+              mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+            ),
+          ) + max_spell_slots_1_bonus,
+          else -> when {
+            spellcaster_level == 0 -> 0,
+            spellcaster_level == 1 -> 2,
+            spellcaster_level == 2 -> 3,
+            else -> 4,
+          } + add(
+            map(
+              map(
+                custom_spell_slot_classes,
+                mapper = ($class) => findFirst(
+                  sortBy(
+                    $class.class.actual_spell_slots_level_1_per_level,
+                    order = "desc",
+                    sort_by_selector = ($sortByValue) => $sortByValue.level,
+                  ),
+                  filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                ),
+              ),
+              mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+            ),
+          ) + max_spell_slots_1_bonus,
+        },
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_2",
+        new_value = when {
+          is_single_third_level_caster -> when {
+            first_third_level_caster_class.class_level <= 6 -> 0,
+            first_third_level_caster_class.class_level <= 9 -> 2,
+            else -> 3,
+          } + add(
+            map(
+              map(
+                custom_spell_slot_classes,
+                mapper = ($class) => findFirst(
+                  sortBy(
+                    $class.class.actual_spell_slots_level_2_per_level,
+                    order = "desc",
+                    sort_by_selector = ($sortByValue) => $sortByValue.level,
+                  ),
+                  filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                ),
+              ),
+              mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+            ),
+          ) + max_spell_slots_2_bonus,
+          is_single_half_level_caster -> when {
+            first_half_level_caster_class.class_level <= 4 -> 0,
+            first_half_level_caster_class.class_level <= 6 -> 2,
+            else -> 3,
+          } + add(
+            map(
+              map(
+                custom_spell_slot_classes,
+                mapper = ($class) => findFirst(
+                  sortBy(
+                    $class.class.actual_spell_slots_level_2_per_level,
+                    order = "desc",
+                    sort_by_selector = ($sortByValue) => $sortByValue.level,
+                  ),
+                  filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                ),
+              ),
+              mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+            ),
+          ) + max_spell_slots_2_bonus,
+          else -> when {
+            spellcaster_level < 3 -> 0,
+            spellcaster_level == 3 -> 2,
+            else -> 3,
+          } + add(
+            map(
+              map(
+                custom_spell_slot_classes,
+                mapper = ($class) => findFirst(
+                  sortBy(
+                    $class.class.actual_spell_slots_level_2_per_level,
+                    order = "desc",
+                    sort_by_selector = ($sortByValue) => $sortByValue.level,
+                  ),
+                  filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                ),
+              ),
+              mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+            ),
+          ) + max_spell_slots_2_bonus,
+        },
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_3",
+        new_value = when {
+          is_single_third_level_caster -> when {
+            first_third_level_caster_class.class_level <= 12 -> 0,
+            first_third_level_caster_class.class_level <= 15 -> 2,
+            else -> 3,
+          } + add(
+            map(
+              map(
+                custom_spell_slot_classes,
+                mapper = ($class) => findFirst(
+                  sortBy(
+                    $class.class.actual_spell_slots_level_3_per_level,
+                    order = "desc",
+                    sort_by_selector = ($sortByValue) => $sortByValue.level,
+                  ),
+                  filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                ),
+              ),
+              mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+            ),
+          ) + max_spell_slots_3_bonus,
+          is_single_half_level_caster -> when {
+            first_half_level_caster_class.class_level <= 8 -> 0,
+            first_half_level_caster_class.class_level <= 10 -> 2,
+            else -> 3,
+          } + add(
+            map(
+              map(
+                custom_spell_slot_classes,
+                mapper = ($class) => findFirst(
+                  sortBy(
+                    $class.class.actual_spell_slots_level_3_per_level,
+                    order = "desc",
+                    sort_by_selector = ($sortByValue) => $sortByValue.level,
+                  ),
+                  filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                ),
+              ),
+              mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+            ),
+          ) + max_spell_slots_3_bonus,
+          else -> when {
+            spellcaster_level < 5 -> 0,
+            spellcaster_level == 5 -> 2,
+            else -> 3,
+          } + add(
+            map(
+              map(
+                custom_spell_slot_classes,
+                mapper = ($class) => findFirst(
+                  sortBy(
+                    $class.class.actual_spell_slots_level_3_per_level,
+                    order = "desc",
+                    sort_by_selector = ($sortByValue) => $sortByValue.level,
+                  ),
+                  filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                ),
+              ),
+              mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+            ),
+          ) + max_spell_slots_3_bonus,
+        },
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_4",
+        new_value = when {
+          is_single_third_level_caster -> (if first_third_level_caster_class.class_level <= 18 then 0 else 1) + add(
+            map(
+              map(
+                custom_spell_slot_classes,
+                mapper = ($class) => findFirst(
+                  sortBy(
+                    $class.class.actual_spell_slots_level_4_per_level,
+                    order = "desc",
+                    sort_by_selector = ($sortByValue) => $sortByValue.level,
+                  ),
+                  filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                ),
+              ),
+              mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+            ),
+          ) + max_spell_slots_4_bonus,
+          is_single_half_level_caster -> when {
+            first_half_level_caster_class.class_level <= 12 -> 0,
+            first_half_level_caster_class.class_level <= 14 -> 1,
+            first_half_level_caster_class.class_level <= 16 -> 2,
+            else -> 3,
+          } + add(
+            map(
+              map(
+                custom_spell_slot_classes,
+                mapper = ($class) => findFirst(
+                  sortBy(
+                    $class.class.actual_spell_slots_level_4_per_level,
+                    order = "desc",
+                    sort_by_selector = ($sortByValue) => $sortByValue.level,
+                  ),
+                  filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                ),
+              ),
+              mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+            ),
+          ) + max_spell_slots_4_bonus,
+          else -> when {
+            spellcaster_level < 7 -> 0,
+            spellcaster_level == 7 -> 1,
+            spellcaster_level == 8 -> 2,
+            else -> 3,
+          } + add(
+            map(
+              map(
+                custom_spell_slot_classes,
+                mapper = ($class) => findFirst(
+                  sortBy(
+                    $class.class.actual_spell_slots_level_4_per_level,
+                    order = "desc",
+                    sort_by_selector = ($sortByValue) => $sortByValue.level,
+                  ),
+                  filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                ),
+              ),
+              mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+            ),
+          ) + max_spell_slots_4_bonus,
+        },
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_5",
+        new_value = if is_single_half_level_caster
+          then when {
+              first_half_level_caster_class.class_level <= 16 -> 0,
+              first_half_level_caster_class.class_level <= 18 -> 1,
+              else -> 2,
+            } + add(
+              map(
+                map(
+                  custom_spell_slot_classes,
+                  mapper = ($class) => findFirst(
+                    sortBy(
+                      $class.class.actual_spell_slots_level_5_per_level,
+                      order = "desc",
+                      sort_by_selector = ($sortByValue) => $sortByValue.level,
+                    ),
+                    filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                  ),
+                ),
+                mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+              ),
+            ) + max_spell_slots_5_bonus
+          else when {
+              spellcaster_level < 9 -> 0,
+              spellcaster_level == 9 -> 1,
+              spellcaster_level < 18 -> 2,
+              else -> 3,
+            } + add(
+              map(
+                map(
+                  custom_spell_slot_classes,
+                  mapper = ($class) => findFirst(
+                    sortBy(
+                      $class.class.actual_spell_slots_level_5_per_level,
+                      order = "desc",
+                      sort_by_selector = ($sortByValue) => $sortByValue.level,
+                    ),
+                    filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                  ),
+                ),
+                mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+              ),
+            ) + max_spell_slots_5_bonus,
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_6",
+        new_value = when {
+          spellcaster_level < 11 -> 0,
+          spellcaster_level < 19 -> 1,
+          else -> 2,
+        } + add(
+          map(
+            map(
+              custom_spell_slot_classes,
+              mapper = ($class) => findFirst(
+                sortBy(
+                  $class.class.actual_spell_slots_level_6_per_level,
+                  order = "desc",
+                  sort_by_selector = ($sortByValue) => $sortByValue.level,
+                ),
+                filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+              ),
+            ),
+            mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+          ),
+        ) + max_spell_slots_6_bonus,
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_7",
+        new_value = when {
+          spellcaster_level < 13 -> 0,
+          spellcaster_level < 20 -> 1,
+          else -> 2,
+        } + add(
+          map(
+            map(
+              custom_spell_slot_classes,
+              mapper = ($class) => findFirst(
+                sortBy(
+                  $class.class.actual_spell_slots_level_7_per_level,
+                  order = "desc",
+                  sort_by_selector = ($sortByValue) => $sortByValue.level,
+                ),
+                filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+              ),
+            ),
+            mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+          ),
+        ) + max_spell_slots_7_bonus,
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_8",
+        new_value = (if spellcaster_level < 15 then 0 else 1) + add(
+          map(
+            map(
+              custom_spell_slot_classes,
+              mapper = ($class) => findFirst(
+                sortBy(
+                  $class.class.actual_spell_slots_level_8_per_level,
+                  order = "desc",
+                  sort_by_selector = ($sortByValue) => $sortByValue.level,
+                ),
+                filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+              ),
+            ),
+            mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+          ),
+        ) + max_spell_slots_8_bonus,
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_9",
+        new_value = (if spellcaster_level < 17 then 0 else 1) + add(
+          map(
+            map(
+              custom_spell_slot_classes,
+              mapper = ($class) => findFirst(
+                sortBy(
+                  $class.class.actual_spell_slots_level_9_per_level,
+                  order = "desc",
+                  sort_by_selector = ($sortByValue) => $sortByValue.level,
+                ),
+                filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+              ),
+            ),
+            mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+          ),
+        ) + max_spell_slots_9_bonus,
+        aggregation_type = "set",
+      ),
+    ],
+  );

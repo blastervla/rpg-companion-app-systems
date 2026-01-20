@@ -1,0 +1,11 @@
+view value_calculator_edit() =
+  resourceArray(
+    id = "value_calculator_edit",
+    resource_id = "operand",
+    stat = "operands",
+    view_type = "edit",
+    left_view = text(id = "value_calculator_edit_label", text = "Operands: ", style = "text"),
+    validation_message = if isEmpty($view.value_calculator_edit)
+      then "You have a calculator with empty operands. Please add operands to it or remove it."
+      else null,
+  );

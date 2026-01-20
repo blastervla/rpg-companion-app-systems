@@ -1,0 +1,61 @@
+view monster_action_edit() =
+  list(
+    id = "monster_action_edit",
+    padding = 16,
+    subviews = [
+      text(
+        id = "monster_action_edit_name",
+        edit_stat = "action_name",
+        style = "text",
+        label = "Name",
+        max_length = 140,
+        validation_message = if isEmpty($view.monster_action_edit_name)
+          then "Please add a name to the action"
+          else null,
+      ),
+      select(
+        id = "monster_action_edit_type",
+        stat = "action_type",
+        options = "monster_action_types",
+      ),
+      text(
+        id = "monster_action_edit_description",
+        edit_stat = "action_description",
+        label = "Description",
+        style = "text",
+      ),
+      composite(
+        id = "monster_action_edit_attack_bonus",
+        subviews = [
+          text(
+            id = "monster_action_edit_attack_bonus_label",
+            text = "Attack bonus: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "monster_action_edit_attack_bonus_text",
+            edit_stat = "action_attack_bonus",
+            style = "text",
+            max_length = 3,
+            signed = true,
+            hint = "0",
+          ),
+        ],
+      ),
+      resourceArray(
+        id = "monster_action_edit_damage_variants",
+        resource_id = "damage_variant",
+        stat = "action_damage_variants",
+        view_type = "edit",
+        left_view = text(
+          id = "monster_action_edit_damage_variants_label",
+          text = "Damage variants",
+          style = "text",
+          bold = true,
+        ),
+        pop_up_type = "bottomSheet",
+        pop_up_button_text = variant_description,
+      ),
+    ],
+  );

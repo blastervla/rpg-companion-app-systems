@@ -1,0 +1,79 @@
+view display_effect() =
+  list(
+    id = "display_effect",
+    padding_left = 8,
+    subviews = [
+      composite(
+        id = "display_effect_row_1",
+        subviews = [
+          list(
+            id = "display_effect_text_list",
+            subviews = [
+              text(
+                id = "display_effect_name",
+                text = name,
+                style = "subhead",
+                max_lines = 1,
+                is_visible = !isEmpty(name),
+              ),
+              text(
+                id = "display_effect_description",
+                text = current_level_description,
+                style = "caption",
+                is_visible = !isEmpty(current_level_description),
+              ),
+              text(
+                id = "display_effect_subtitle",
+                max_lines = 2,
+                text = concat(["- ", display_subtitle]),
+                style = "caption",
+              ),
+            ],
+          ),
+        ],
+      ),
+      composite(
+        id = "display_effect_row_2",
+        alignment = "end",
+        subviews = [
+          text(
+            id = "display_effect_total_charges_unusuable",
+            text = max_charges_display_text,
+            style = "subhead",
+            is_visible = !defined(stat = "$character") && has_charges,
+          ),
+          ticker(
+            id = "display_effect_charges_ticker",
+            stat = "current_charges",
+            style = "title",
+            button_location = "right",
+            button_look = "plusMinus",
+            change_amount = 1,
+            min_value_allowed = 0,
+            should_auto_save = true,
+            label = concat(["/ ", max_charges]),
+            label_alignment = "right",
+            is_visible = defined(stat = "$character") && has_charges,
+          ),
+          button(
+            id = "display_effect_recharge_button",
+            text = "RECHARGE",
+            event = event(name = "recharge"),
+            is_visible = defined(stat = "$character") && has_charges && recharge_event == "manual",
+          ),
+          button(
+            id = "display_effect_use_button",
+            text = "REVERT",
+            event = event(name = "revert"),
+            is_visible = defined(stat = "$character") && trigger_type == "active" && type != "none",
+          ),
+          button(
+            id = "display_effect_use_button",
+            text = "USE",
+            event = event(name = "use"),
+            is_visible = defined(stat = "$character") && trigger_type == "active",
+          ),
+        ],
+      ),
+    ],
+  );
