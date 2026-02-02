@@ -1,1 +1,302 @@
-{"resource_id":"feat","stats":{"name":{"value":"Naturalist"},"source":{"value":"ua"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"Your extensive study of nature rewards you with the following benefits:\n\n- Increase your Intelligence score by 1, to a maximum of 20.\n\n- You gain proficiency in the Nature skill. If you are already proficient in the skill, you add double your proficiency bonus to checks you make with it.\n\n- You learn the Druidcraft and Detect Poison and Disease spells. You can cast Detect Poison and Disease once without expending a spell slot, and you regain the ability to do so when you finish a long rest"},"updated_at":{"value":"2024-12-20T18:50:28.423444"},"id":"2e6aef65-720e-42af-8b17-40176ec3c4d2"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.intelligence_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"9d7f1775-7f0e-4dd5-8073-72a2cf674cf4"}}]},"id":"64f5c258-2c37-4956-9e31-ada204cb4753"}}]},"id":"98842909-6791-4ec5-984c-ce9034e0eb9f"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.intelligence_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"d973ee4e-ebe6-49ad-8fe3-ee56688845e0"}}},"id":"63ffd3d4-b5ed-44a7-8754-8fd9c8a75e67"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Nature Proficiency"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"d9b7c97f-6507-41ad-afd1-c90c16114715"}}},"stat":{"value":"$character.nature"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"5880a0fb-8fbf-4254-8af9-ee150a992b63"}}},"id":"50cf7b7a-0380-4446-b047-861dcd130959"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"3ab7bd6b-9d2d-4b2a-99cb-246953512036"}}},"has_charges":{"value":true},"max_charges_constant":{"value":1},"type":{"value":"add_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Druidcraft"},"source":{"value":"phb"},"school":{"value":"spell_school_transmutation"},"casting_time":{"value":"1 action"},"range":{"value":"30 feet"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"* You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round.\n\n* You instantly make a flower bloom, a seed pod open, or a leaf bud bloom.\n\n* You create an instantenous, harmless sensory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint order of skunk. The effect must fit in a 5-foot cube.\n\n* You instantly light or snuff out a candle, a torch, or a small campfire."},"classes":{"value":["druid"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.610166"},"id":"4da60714-d7d9-419a-97a5-199ba57a671a"}}},"id":"9dbe67ed-10d9-48e9-b91d-d0aed4d6d736"}}},"id":"d96850b3-0e21-4a21-8644-158d8649a3c3"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"4617a89d-3f15-4d50-9e42-6a1ca616db22"}}},"has_charges":{"value":true},"max_charges_constant":{"value":1},"type":{"value":"add_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Detect Poison or Disease"},"source":{"value":"phb"},"level":{"value":"spell_level_1"},"school":{"value":"spell_school_divination"},"ritual":{"value":true},"casting_time":{"value":"1 action"},"range":{"value":"Self"},"duration":{"value":"Concentration, up to 10 minutes"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a yew leaf"},"description":{"value":"For the duration, you can sense the presence and location of poisons, poisonous creatures, and diseases within 30 feet of you. You also identify the kind of poison, poisonous creature, or disease in each case.\n\nThe spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt."},"classes":{"value":["cleric","druid","paladin","revised_ranger","ranger"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.609151"},"id":"61c01013-16ef-4673-9495-9a684e3e3ea7"}}},"id":"509645eb-6ab0-4f5f-bd7f-4bb01a74e27e"}}},"id":"ffdd9abb-7bc4-44d8-8b75-582234a807b6"}}]},"updated_at":{"value":"2024-12-20T18:50:28.423447"},"id":"naturalist"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Naturalist"
+    },
+    "source": {
+      "value": "ua"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "Your extensive study of nature rewards you with the following benefits:\n\n- Increase your Intelligence score by 1, to a maximum of 20.\n\n- You gain proficiency in the Nature skill. If you are already proficient in the skill, you add double your proficiency bonus to checks you make with it.\n\n- You learn the Druidcraft and Detect Poison and Disease spells. You can cast Detect Poison and Disease once without expending a spell slot, and you regain the ability to do so when you finish a long rest"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.423444"
+            },
+            "id": "2e6aef65-720e-42af-8b17-40176ec3c4d2"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "terms": {
+                          "value": [
+                            {
+                              "resource_id": "trigger_condition_and",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_term",
+                                      "stats": {
+                                        "stat": {
+                                          "value": "$character.intelligence_score"
+                                        },
+                                        "condition": {
+                                          "value": "lower_than"
+                                        },
+                                        "value": {
+                                          "value": 20.0
+                                        },
+                                        "id": "9d7f1775-7f0e-4dd5-8073-72a2cf674cf4"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "64f5c258-2c37-4956-9e31-ada204cb4753"
+                              }
+                            }
+                          ]
+                        },
+                        "id": "98842909-6791-4ec5-984c-ce9034e0eb9f"
+                      }
+                    }
+                  },
+                  "type": {
+                    "value": "add_to_stat"
+                  },
+                  "stat": {
+                    "value": "$character.intelligence_score"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "d973ee4e-ebe6-49ad-8fe3-ee56688845e0"
+                }
+              }
+            },
+            "id": "63ffd3d4-b5ed-44a7-8754-8fd9c8a75e67"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Nature Proficiency"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "d9b7c97f-6507-41ad-afd1-c90c16114715"
+                      }
+                    }
+                  },
+                  "stat": {
+                    "value": "$character.nature"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "5880a0fb-8fbf-4254-8af9-ee150a992b63"
+                }
+              }
+            },
+            "id": "50cf7b7a-0380-4446-b047-861dcd130959"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "3ab7bd6b-9d2d-4b2a-99cb-246953512036"
+                      }
+                    }
+                  },
+                  "has_charges": {
+                    "value": true
+                  },
+                  "max_charges_constant": {
+                    "value": 1
+                  },
+                  "type": {
+                    "value": "add_spell"
+                  },
+                  "spell": {
+                    "value": {
+                      "resource_id": "spell",
+                      "stats": {
+                        "name": {
+                          "value": "Druidcraft"
+                        },
+                        "source": {
+                          "value": "phb"
+                        },
+                        "school": {
+                          "value": "spell_school_transmutation"
+                        },
+                        "casting_time": {
+                          "value": "1 action"
+                        },
+                        "range": {
+                          "value": "30 feet"
+                        },
+                        "duration": {
+                          "value": "Instantaneous"
+                        },
+                        "verbal": {
+                          "value": true
+                        },
+                        "somatic": {
+                          "value": true
+                        },
+                        "description": {
+                          "value": "* You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round.\n\n* You instantly make a flower bloom, a seed pod open, or a leaf bud bloom.\n\n* You create an instantenous, harmless sensory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint order of skunk. The effect must fit in a 5-foot cube.\n\n* You instantly light or snuff out a candle, a torch, or a small campfire."
+                        },
+                        "classes": {
+                          "value": [
+                            "druid"
+                          ]
+                        },
+                        "dice": {
+                          "value": []
+                        },
+                        "updated_at": {
+                          "value": "2024-12-20T18:50:46.610166"
+                        },
+                        "id": "4da60714-d7d9-419a-97a5-199ba57a671a"
+                      }
+                    }
+                  },
+                  "id": "9dbe67ed-10d9-48e9-b91d-d0aed4d6d736"
+                }
+              }
+            },
+            "id": "d96850b3-0e21-4a21-8644-158d8649a3c3"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "4617a89d-3f15-4d50-9e42-6a1ca616db22"
+                      }
+                    }
+                  },
+                  "has_charges": {
+                    "value": true
+                  },
+                  "max_charges_constant": {
+                    "value": 1
+                  },
+                  "type": {
+                    "value": "add_spell"
+                  },
+                  "spell": {
+                    "value": {
+                      "resource_id": "spell",
+                      "stats": {
+                        "name": {
+                          "value": "Detect Poison or Disease"
+                        },
+                        "source": {
+                          "value": "phb"
+                        },
+                        "level": {
+                          "value": "spell_level_1"
+                        },
+                        "school": {
+                          "value": "spell_school_divination"
+                        },
+                        "ritual": {
+                          "value": true
+                        },
+                        "casting_time": {
+                          "value": "1 action"
+                        },
+                        "range": {
+                          "value": "Self"
+                        },
+                        "duration": {
+                          "value": "Concentration, up to 10 minutes"
+                        },
+                        "verbal": {
+                          "value": true
+                        },
+                        "somatic": {
+                          "value": true
+                        },
+                        "material": {
+                          "value": true
+                        },
+                        "components": {
+                          "value": "a yew leaf"
+                        },
+                        "description": {
+                          "value": "For the duration, you can sense the presence and location of poisons, poisonous creatures, and diseases within 30 feet of you. You also identify the kind of poison, poisonous creature, or disease in each case.\n\nThe spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt."
+                        },
+                        "classes": {
+                          "value": [
+                            "cleric",
+                            "druid",
+                            "paladin",
+                            "revised_ranger",
+                            "ranger"
+                          ]
+                        },
+                        "dice": {
+                          "value": []
+                        },
+                        "updated_at": {
+                          "value": "2024-12-20T18:50:46.609151"
+                        },
+                        "id": "61c01013-16ef-4673-9495-9a684e3e3ea7"
+                      }
+                    }
+                  },
+                  "id": "509645eb-6ab0-4f5f-bd7f-4bb01a74e27e"
+                }
+              }
+            },
+            "id": "ffdd9abb-7bc4-44d8-8b75-582234a807b6"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.423447"
+    },
+    "id": "naturalist"
+  }
+}

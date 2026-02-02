@@ -1,1 +1,260 @@
-{"resource_id":"feat","stats":{"name":{"value":"Wonder Maker"},"source":{"value":"ua"},"prerequisites":{"value":"Gnome (Rock)"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"You master the tinker techniques of your people. You gain the following benefits:\n\n- Increase your Dexterity or Intelligence score by 1, to a maximum of 20.\n\n- When you make a check using your proficiency with tinker's tools, you add double your proficiency bonus to the check.\n\n- When you make a device with your Tinker trait, you have the following additional options for what you make:\n    - Alarm: This device senses when a creature moves to within 15 feet of it without speaking aloud a password chosen when you create it. One round after a creature moves into range, the alarm makes a shrill ringing that lasts for 1 minute and can be heard from up to 300 feet away.\n    - Calculator: This device makes doing sums easy.\n    - Lifter: This device can be used as a block and tackle, allowing its user to hoist five times the weight the user can normally lift.\n    - Timekeeper: This pocket watch keeps accurate time.\n    - Weather Sensor: When used as an action, this device predicts weather conditions in a 1-mile radius over the next 4 hours, showing one symbol (clouds, sun/moon, rain, or snow) for each hour"},"updated_at":{"value":"2024-12-20T18:50:28.413819"},"id":"65dfac8a-a1d0-404d-893e-193f3ff963bd"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Tinker's Tools Check Bonus"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"07ad6683-21f0-4765-b808-1428cb4dbffe"}}},"id":"163e7994-675e-4bca-962b-5cd1fc99e21f"}}},"id":"732d283c-c1c8-4150-8948-ef58c561a51c"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Extra Options for Device with Tinker Trait"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"a8905f98-5dce-4842-bc2f-429f789ea131"}}},"id":"13eed41f-710f-4f2b-bd95-b635b4545ce0"}}},"id":"eff59073-51d0-4b67-968f-2061610ec1c3"}}]},"selectable_feature_amount_per_level":{"value":[{"resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"0e03de8c-cb46-4e44-995f-597aed2f59c1"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Dex Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.dexterity_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"c31c74a8-fe73-4ce9-878c-2165014d2061"}}]},"id":"51982fd2-5f74-4f64-9ecb-34e30c8ac0cb"}}]},"id":"10cc7682-ee26-4d3a-aa78-285f84d0fc6b"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.dexterity_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"547c3d93-68ee-4adc-98ee-00fde90d298f"}}},"id":"64e0dba0-0e29-4f4e-acbf-5fe9aba8d05e"}}]},"id":"d08e1400-d493-439b-8897-e00d3630350a"}},{"resource_id":"feat","stats":{"name":{"value":"Int Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.intelligence_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"d25488bf-5e34-41b5-9855-244b915e1aa9"}}]},"id":"ba3a2e1e-636f-4ebd-b4b2-5aec9432a980"}}]},"id":"9da48cc5-d9ed-49df-9f7a-98c855417ec8"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.intelligence_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"8fbc98fa-4cfa-49dd-9951-210897a66933"}}},"id":"ee30359c-91b5-4fae-b16d-9893b5cc7a24"}}]},"id":"894109a7-00d9-47da-b07c-84d0f4f5d11a"}}]},"updated_at":{"value":"2024-12-20T18:50:28.413821"},"id":"wonder_maker"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Wonder Maker"
+    },
+    "source": {
+      "value": "ua"
+    },
+    "prerequisites": {
+      "value": "Gnome (Rock)"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "You master the tinker techniques of your people. You gain the following benefits:\n\n- Increase your Dexterity or Intelligence score by 1, to a maximum of 20.\n\n- When you make a check using your proficiency with tinker's tools, you add double your proficiency bonus to the check.\n\n- When you make a device with your Tinker trait, you have the following additional options for what you make:\n    - Alarm: This device senses when a creature moves to within 15 feet of it without speaking aloud a password chosen when you create it. One round after a creature moves into range, the alarm makes a shrill ringing that lasts for 1 minute and can be heard from up to 300 feet away.\n    - Calculator: This device makes doing sums easy.\n    - Lifter: This device can be used as a block and tackle, allowing its user to hoist five times the weight the user can normally lift.\n    - Timekeeper: This pocket watch keeps accurate time.\n    - Weather Sensor: When used as an action, this device predicts weather conditions in a 1-mile radius over the next 4 hours, showing one symbol (clouds, sun/moon, rain, or snow) for each hour"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.413819"
+            },
+            "id": "65dfac8a-a1d0-404d-893e-193f3ff963bd"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Tinker's Tools Check Bonus"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "07ad6683-21f0-4765-b808-1428cb4dbffe"
+                      }
+                    }
+                  },
+                  "id": "163e7994-675e-4bca-962b-5cd1fc99e21f"
+                }
+              }
+            },
+            "id": "732d283c-c1c8-4150-8948-ef58c561a51c"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Extra Options for Device with Tinker Trait"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "a8905f98-5dce-4842-bc2f-429f789ea131"
+                      }
+                    }
+                  },
+                  "id": "13eed41f-710f-4f2b-bd95-b635b4545ce0"
+                }
+              }
+            },
+            "id": "eff59073-51d0-4b67-968f-2061610ec1c3"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "0e03de8c-cb46-4e44-995f-597aed2f59c1"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Dex Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.dexterity_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "c31c74a8-fe73-4ce9-878c-2165014d2061"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "51982fd2-5f74-4f64-9ecb-34e30c8ac0cb"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "10cc7682-ee26-4d3a-aa78-285f84d0fc6b"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.dexterity_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "547c3d93-68ee-4adc-98ee-00fde90d298f"
+                        }
+                      }
+                    },
+                    "id": "64e0dba0-0e29-4f4e-acbf-5fe9aba8d05e"
+                  }
+                }
+              ]
+            },
+            "id": "d08e1400-d493-439b-8897-e00d3630350a"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Int Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.intelligence_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "d25488bf-5e34-41b5-9855-244b915e1aa9"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "ba3a2e1e-636f-4ebd-b4b2-5aec9432a980"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "9da48cc5-d9ed-49df-9f7a-98c855417ec8"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.intelligence_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "8fbc98fa-4cfa-49dd-9951-210897a66933"
+                        }
+                      }
+                    },
+                    "id": "ee30359c-91b5-4fae-b16d-9893b5cc7a24"
+                  }
+                }
+              ]
+            },
+            "id": "894109a7-00d9-47da-b07c-84d0f4f5d11a"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.413821"
+    },
+    "id": "wonder_maker"
+  }
+}

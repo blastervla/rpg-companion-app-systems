@@ -1,1 +1,363 @@
-{"resource_id":"weapon","stats":{"name":{"value":"Staff of Swarming Insects"},"source":{"value":"dmg"},"description":{"value":"(requires attunement by a bard, cleric, druid, sorcerer, warlock, or wizard)\n\nThis staff has 10 charges and regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, a swarm of insects consumes and destroys the staff, then disperses.\n\nSpells. While holding the staff, you can use an action to expend some of its charges to cast one of the following spells from it, using your spell save DC: giant insect (4 charges) or insect plague (5 charges).\n\nInsect Cloud. While holding the staff, you can use an action and expend 1 charge to cause a swarm of harmless flying insects to spread out in a 30-foot radius from you. The insects remain for 10 minutes, making the area heavily obscured for creatures other than you. The swarm moves with you, remaining centered on you. A wind of at least 10 miles per hour disperses the swarm and ends the effect"},"cost":{"value":{"resource_id":"cost","stats":{"unit":{"value":"gold"},"id":"29b7014c-189d-4f96-aa29-3adae2432f9b"}}},"weight":{"value":{"resource_id":"weight","stats":{"value":{"value":4},"id":"f85eb1ce-1a70-4f62-aa9d-982285250956"}}},"type":{"value":"quarterstaff"},"rarity":{"value":"rare"},"requires_attunement":{"value":true},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d6"},"id":"fe2c316b-cb09-4a20-9438-d4ead490d508"}}]},"damage_type":{"value":"bludgeoning"},"id":"b3cd4b2c-916b-480a-9591-58e20d4d009b"}}]},"is_versatile":{"value":true},"versatile_damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d8"},"id":"db54cfc2-f2a7-406d-8849-d29b2d439086"}}]},"damage_type":{"value":"bludgeoning"},"id":"d54c7ae3-7349-40df-9c83-a4aab5332867"}}]},"effects":{"value":[{"resource_id":"effect","stats":{"name":{"value":"Charges"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"19683c67-5a57-40ee-8508-65522dad2c10"}}},"has_charges":{"value":true},"recharge_type":{"value":"formula"},"recharge_event":{"value":"dawn"},"max_charges_constant":{"value":10},"recharges":{"value":{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d6"},"constant":{"value":4},"id":"ed57fdc4-99d9-482f-aa5c-565a0806101b"}}},"id":"5045fdcb-f859-41ca-85c1-635dd28481cb"}},{"resource_id":"effect","stats":{"name":{"value":"Cast giant insect (4 charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"5abe5f15-6fff-4e44-898f-21a6df5738dc"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Giant Insect"},"source":{"value":"phb"},"level":{"value":"spell_level_4"},"school":{"value":"spell_school_transmutation"},"casting_time":{"value":"1 action"},"range":{"value":"30 feet"},"duration":{"value":"Concentration, up to 10 minutes"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"You transform up to ten centipedes, three spiders, five wasps, or one scorpion within range into versions of their natural forms for the duration. A centipede becomes a giant centipede, a spider becomes a giant spider, a wasp becomes a giant wasp, a wasp becomes a giant wasp, and a scorpion becomes a giant scorpion.\n\nEach creature obeys your verbal commands, and in combat they act on your turn each round. The GM has the statistics for these creatures and resolves their actions and moment.\n\nA creature remains in its giant size for the duration until it drops to 0 hit points, or until you use an action to dismiss the effect on it.\n\nThe GM might allow you to choose different targets. for example, if you transform a bee, its giant version might have the same stats as a giant wasp."},"classes":{"value":["druid"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.654500"},"id":"5d6bf397-64a5-4d99-829e-3acaab78fa97"}}},"id":"f09afdd3-e6c5-450e-a97f-380dca58f94a"}},{"resource_id":"effect","stats":{"name":{"value":"Cast insect plague (5 charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"5b4442a0-d928-44ee-9c3e-d9bfdd924836"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Insect Plague"},"source":{"value":"phb"},"level":{"value":"spell_level_5"},"school":{"value":"spell_school_conjuration"},"casting_time":{"value":"1 action"},"range":{"value":"300 feet"},"duration":{"value":"Concentration, up to 10 minutes"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a few grains of sugar, some kernels of grain, and a smear of fat"},"description":{"value":"Swarming, biting locusts fill a 20-foot-radius sphere centered on a point you choose within range, The sphere spreads around corners. The sphere remains for the duration, and its area is lightly obscured. The sphere's area is difficult terrain.\n\nWhen the area appears, each creature in it must make a Constitution saving throw. A creature takes 4d10 piercing damage on a failed save, or half as much damage on a successful one. A creature must also make this saving throw when it enters the spell's area for the first time on a turn or ends its turn there."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 6th levei or higher, the damage increases by 1d10 for each slot level above 5th."},"classes":{"value":["cleric","druid","sorcerer"]},"dice":{"value":[{"resource_id":"levelled_damage_dice","stats":{"level":{"value":5},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":4},"dice_type":{"value":"d10"},"updated_at":{"value":"2024-12-20T18:50:46.657025"},"id":"3527831e-4c9e-4ea9-bdfd-6bab62069548"}}]},"damage_type":{"value":"piercing"},"updated_at":{"value":"2024-12-20T18:50:46.657030"},"id":"0faea3d0-8282-496c-be8b-2d8b8adb258e"}}]},"updated_at":{"value":"2024-12-20T18:50:46.657035"},"id":"16afb50f-dac6-45ca-bce1-15ebcd653368"}}]},"updated_at":{"value":"2024-12-20T18:50:46.657056"},"id":"3d0148be-da24-40fb-892d-2dfdcaf41b8d"}}},"id":"5a2bfcb9-5441-4685-a899-7c755c60d28a"}}]},"id":"bc846746-7fad-40d4-aea4-476cb80b35c2"}}
+{
+  "resource_id": "weapon",
+  "stats": {
+    "name": {
+      "value": "Staff of Swarming Insects"
+    },
+    "source": {
+      "value": "dmg"
+    },
+    "description": {
+      "value": "(requires attunement by a bard, cleric, druid, sorcerer, warlock, or wizard)\n\nThis staff has 10 charges and regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, a swarm of insects consumes and destroys the staff, then disperses.\n\nSpells. While holding the staff, you can use an action to expend some of its charges to cast one of the following spells from it, using your spell save DC: giant insect (4 charges) or insect plague (5 charges).\n\nInsect Cloud. While holding the staff, you can use an action and expend 1 charge to cause a swarm of harmless flying insects to spread out in a 30-foot radius from you. The insects remain for 10 minutes, making the area heavily obscured for creatures other than you. The swarm moves with you, remaining centered on you. A wind of at least 10 miles per hour disperses the swarm and ends the effect"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "unit": {
+            "value": "gold"
+          },
+          "id": "29b7014c-189d-4f96-aa29-3adae2432f9b"
+        }
+      }
+    },
+    "weight": {
+      "value": {
+        "resource_id": "weight",
+        "stats": {
+          "value": {
+            "value": 4
+          },
+          "id": "f85eb1ce-1a70-4f62-aa9d-982285250956"
+        }
+      }
+    },
+    "type": {
+      "value": "quarterstaff"
+    },
+    "rarity": {
+      "value": "rare"
+    },
+    "requires_attunement": {
+      "value": true
+    },
+    "damage_dice": {
+      "value": [
+        {
+          "resource_id": "damage_dice",
+          "stats": {
+            "dices": {
+              "value": [
+                {
+                  "resource_id": "dice_roll",
+                  "stats": {
+                    "dice_amount": {
+                      "value": 1
+                    },
+                    "dice_type": {
+                      "value": "d6"
+                    },
+                    "id": "fe2c316b-cb09-4a20-9438-d4ead490d508"
+                  }
+                }
+              ]
+            },
+            "damage_type": {
+              "value": "bludgeoning"
+            },
+            "id": "b3cd4b2c-916b-480a-9591-58e20d4d009b"
+          }
+        }
+      ]
+    },
+    "is_versatile": {
+      "value": true
+    },
+    "versatile_damage_dice": {
+      "value": [
+        {
+          "resource_id": "damage_dice",
+          "stats": {
+            "dices": {
+              "value": [
+                {
+                  "resource_id": "dice_roll",
+                  "stats": {
+                    "dice_amount": {
+                      "value": 1
+                    },
+                    "dice_type": {
+                      "value": "d8"
+                    },
+                    "id": "db54cfc2-f2a7-406d-8849-d29b2d439086"
+                  }
+                }
+              ]
+            },
+            "damage_type": {
+              "value": "bludgeoning"
+            },
+            "id": "d54c7ae3-7349-40df-9c83-a4aab5332867"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Charges"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "19683c67-5a57-40ee-8508-65522dad2c10"
+                }
+              }
+            },
+            "has_charges": {
+              "value": true
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharge_event": {
+              "value": "dawn"
+            },
+            "max_charges_constant": {
+              "value": 10
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "dice_amount": {
+                    "value": 1
+                  },
+                  "dice_type": {
+                    "value": "d6"
+                  },
+                  "constant": {
+                    "value": 4
+                  },
+                  "id": "ed57fdc4-99d9-482f-aa5c-565a0806101b"
+                }
+              }
+            },
+            "id": "5045fdcb-f859-41ca-85c1-635dd28481cb"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast giant insect (4 charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "5abe5f15-6fff-4e44-898f-21a6df5738dc"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Giant Insect"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_4"
+                  },
+                  "school": {
+                    "value": "spell_school_transmutation"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "30 feet"
+                  },
+                  "duration": {
+                    "value": "Concentration, up to 10 minutes"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "You transform up to ten centipedes, three spiders, five wasps, or one scorpion within range into versions of their natural forms for the duration. A centipede becomes a giant centipede, a spider becomes a giant spider, a wasp becomes a giant wasp, a wasp becomes a giant wasp, and a scorpion becomes a giant scorpion.\n\nEach creature obeys your verbal commands, and in combat they act on your turn each round. The GM has the statistics for these creatures and resolves their actions and moment.\n\nA creature remains in its giant size for the duration until it drops to 0 hit points, or until you use an action to dismiss the effect on it.\n\nThe GM might allow you to choose different targets. for example, if you transform a bee, its giant version might have the same stats as a giant wasp."
+                  },
+                  "classes": {
+                    "value": [
+                      "druid"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.654500"
+                  },
+                  "id": "5d6bf397-64a5-4d99-829e-3acaab78fa97"
+                }
+              }
+            },
+            "id": "f09afdd3-e6c5-450e-a97f-380dca58f94a"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast insect plague (5 charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "5b4442a0-d928-44ee-9c3e-d9bfdd924836"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Insect Plague"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_5"
+                  },
+                  "school": {
+                    "value": "spell_school_conjuration"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "300 feet"
+                  },
+                  "duration": {
+                    "value": "Concentration, up to 10 minutes"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a few grains of sugar, some kernels of grain, and a smear of fat"
+                  },
+                  "description": {
+                    "value": "Swarming, biting locusts fill a 20-foot-radius sphere centered on a point you choose within range, The sphere spreads around corners. The sphere remains for the duration, and its area is lightly obscured. The sphere's area is difficult terrain.\n\nWhen the area appears, each creature in it must make a Constitution saving throw. A creature takes 4d10 piercing damage on a failed save, or half as much damage on a successful one. A creature must also make this saving throw when it enters the spell's area for the first time on a turn or ends its turn there."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 6th levei or higher, the damage increases by 1d10 for each slot level above 5th."
+                  },
+                  "classes": {
+                    "value": [
+                      "cleric",
+                      "druid",
+                      "sorcerer"
+                    ]
+                  },
+                  "dice": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 5
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 4
+                                          },
+                                          "dice_type": {
+                                            "value": "d10"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.657025"
+                                          },
+                                          "id": "3527831e-4c9e-4ea9-bdfd-6bab62069548"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "piercing"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.657030"
+                                  },
+                                  "id": "0faea3d0-8282-496c-be8b-2d8b8adb258e"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.657035"
+                          },
+                          "id": "16afb50f-dac6-45ca-bce1-15ebcd653368"
+                        }
+                      }
+                    ]
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.657056"
+                  },
+                  "id": "3d0148be-da24-40fb-892d-2dfdcaf41b8d"
+                }
+              }
+            },
+            "id": "5a2bfcb9-5441-4685-a899-7c755c60d28a"
+          }
+        }
+      ]
+    },
+    "id": "bc846746-7fad-40d4-aea4-476cb80b35c2"
+  }
+}

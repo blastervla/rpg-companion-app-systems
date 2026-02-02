@@ -1,1 +1,135 @@
-{"resource_id":"feat","stats":{"name":{"value":"Acrobat"},"source":{"value":"ua"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"You become more nimble, gaining the following benefits:\n\n- Increase your Dexterity score by 1, to a maximum of 20.\n\n- You gain proficiency in the Acrobatics skill. If you are already proficient in the skill, you add double your proficiency bonus to checks you make with it.\n\n- As a bonus action, you can make a DC 15 Acrobatics check. If you succeed, difficult terrain doesn't cost you extra movement until the end of the current turn"},"updated_at":{"value":"2024-12-20T18:50:28.416999"},"id":"95804ff3-8c3e-4db8-90b3-aadee0bfd052"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.dexterity_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"31223c58-5a88-4a62-ab5d-30523346c068"}}]},"id":"1bd1b895-5509-4ae2-9417-b7a7372b38d3"}}]},"id":"2a255e7a-6dba-4f46-aa6f-8b789b2abd99"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.dexterity_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"236ab4bc-77b5-4985-a3c1-81687c037191"}}},"id":"d2586b7f-c5f5-4df9-b426-61297d3c60af"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Acrobatics Proficiency"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"05c509a3-849a-41e9-9feb-df9b8115a61e"}}},"stat":{"value":"$character.acrobatics"},"advantage_stat":{"value":"$character.acrobatics"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"152c767c-514b-49f5-94a1-1d8d39c0d978"}}},"id":"132baa07-3e4d-4ab7-88c9-b7cf54cce1ed"}}]},"updated_at":{"value":"2024-12-20T18:50:28.417002"},"id":"acrobat"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Acrobat"
+    },
+    "source": {
+      "value": "ua"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "You become more nimble, gaining the following benefits:\n\n- Increase your Dexterity score by 1, to a maximum of 20.\n\n- You gain proficiency in the Acrobatics skill. If you are already proficient in the skill, you add double your proficiency bonus to checks you make with it.\n\n- As a bonus action, you can make a DC 15 Acrobatics check. If you succeed, difficult terrain doesn't cost you extra movement until the end of the current turn"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.416999"
+            },
+            "id": "95804ff3-8c3e-4db8-90b3-aadee0bfd052"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "terms": {
+                          "value": [
+                            {
+                              "resource_id": "trigger_condition_and",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_term",
+                                      "stats": {
+                                        "stat": {
+                                          "value": "$character.dexterity_score"
+                                        },
+                                        "condition": {
+                                          "value": "lower_than"
+                                        },
+                                        "value": {
+                                          "value": 20.0
+                                        },
+                                        "id": "31223c58-5a88-4a62-ab5d-30523346c068"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "1bd1b895-5509-4ae2-9417-b7a7372b38d3"
+                              }
+                            }
+                          ]
+                        },
+                        "id": "2a255e7a-6dba-4f46-aa6f-8b789b2abd99"
+                      }
+                    }
+                  },
+                  "type": {
+                    "value": "add_to_stat"
+                  },
+                  "stat": {
+                    "value": "$character.dexterity_score"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "236ab4bc-77b5-4985-a3c1-81687c037191"
+                }
+              }
+            },
+            "id": "d2586b7f-c5f5-4df9-b426-61297d3c60af"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Acrobatics Proficiency"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "05c509a3-849a-41e9-9feb-df9b8115a61e"
+                      }
+                    }
+                  },
+                  "stat": {
+                    "value": "$character.acrobatics"
+                  },
+                  "advantage_stat": {
+                    "value": "$character.acrobatics"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "152c767c-514b-49f5-94a1-1d8d39c0d978"
+                }
+              }
+            },
+            "id": "132baa07-3e4d-4ab7-88c9-b7cf54cce1ed"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.417002"
+    },
+    "id": "acrobat"
+  }
+}

@@ -1,1 +1,256 @@
-{"resource_id":"item","stats":{"id":"ring_of_animal_influence","name":{"value":"Ring of Animal Influence"},"source":{"value":"xdmg"},"description":{"value":"This ring has 3 charges, and it regains 1d3 expended charges daily at dawn. While wearing the ring, you can use an action to expend 1 of its charges to cast one of the following spells:\n\n- Animal friendship (save DC 13)\n- Fear (save DC 13), targeting only beasts that have an Intelligence of 3 or lower\n- Speak with animals"},"type":{"value":"ring"},"cost":{"value":{"resource_id":"cost","stats":{"value":{"value":null},"unit":{"value":"gold"},"id":"dd479009-fcae-4bea-a163-f01e194bb513","updated_at":{"value":"2024-12-20T18:50:35.724236"}}}},"weight":{"value":{"resource_id":"weight","stats":{"value":{"value":null},"unit":{"value":"pounds"},"id":"55f32831-5f92-4eb4-9773-7e9db4b528c1","updated_at":{"value":"2024-12-20T18:50:35.724240"}}}},"rarity":{"value":"rare"},"is_magic":{"value":false},"requires_attunement":{"value":false},"is_cursed":{"value":false},"is_intelligent":{"value":false},"is_spellcasting_focus":{"value":false},"effects":{"value":[{"resource_id":"effect","stats":{"name":{"value":"Charges"},"trigger_type":{"value":"active"},"has_charges":{"value":true},"charge_type":{"value":"constant"},"recharge_type":{"value":"formula"},"recharge_event":{"value":"dawn"},"max_charges_constant":{"value":3},"recharges":{"value":{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d4"},"constant":{"value":0},"id":"10d30a33-e890-4799-87b3-4ec3edc39564","updated_at":{"value":"2024-12-20T18:50:35.724247"}}}},"type":{"value":"none"},"events":{"value":""},"stat":{"value":"$character.strength_score"},"advantage_stat":{"value":"$character.strength_score"},"id":"140e12ca-a593-4a83-8033-45d88c327030","updated_at":{"value":"2024-12-20T18:50:35.724252"}}},{"resource_id":"effect","stats":{"name":{"value":"Cast Animal Friendship (1 Charge)"},"trigger_type":{"value":"active"},"has_charges":{"value":false},"charge_type":{"value":"constant"},"recharge_type":{"value":"formula"},"max_charges_constant":{"value":0},"type":{"value":"use_spell"},"events":{"value":""},"stat":{"value":"$character.strength_score"},"advantage_stat":{"value":"$character.strength_modifier"},"id":"9769d7e6-f262-4fac-ab96-040e4dc1e2a7","updated_at":{"value":"2024-12-20T18:50:35.724259"}}},{"resource_id":"effect","stats":{"name":{"value":"Cast Fear (1 Charge)"},"trigger_type":{"value":"active"},"has_charges":{"value":false},"charge_type":{"value":"constant"},"recharge_type":{"value":"formula"},"max_charges_constant":{"value":0},"type":{"value":"use_spell"},"events":{"value":""},"stat":{"value":"$character.strength_score"},"advantage_stat":{"value":"$character.strength_modifier"},"id":"b2ad2e6d-08de-4773-83e3-9d7c3369a49d","updated_at":{"value":"2024-12-20T18:50:35.724266"}}},{"resource_id":"effect","stats":{"name":{"value":"Cast Speak With Animals (1 Charge)"},"trigger_type":{"value":"active"},"has_charges":{"value":false},"charge_type":{"value":"constant"},"recharge_type":{"value":"formula"},"max_charges_constant":{"value":0},"type":{"value":"use_spell"},"events":{"value":""},"stat":{"value":"$character.strength_score"},"advantage_stat":{"value":"$character.strength_modifier"},"id":"23043373-add9-4cee-a221-c2db91254a1e","updated_at":{"value":"2024-12-20T18:50:35.724273"}}}]},"updated_at":{"value":"2024-12-20T18:50:35.724275"}}}
+{
+  "resource_id": "item",
+  "stats": {
+    "id": "ring_of_animal_influence",
+    "name": {
+      "value": "Ring of Animal Influence"
+    },
+    "source": {
+      "value": "xdmg"
+    },
+    "description": {
+      "value": "This ring has 3 charges, and it regains 1d3 expended charges daily at dawn. While wearing the ring, you can use an action to expend 1 of its charges to cast one of the following spells:\n\n- Animal friendship (save DC 13)\n- Fear (save DC 13), targeting only beasts that have an Intelligence of 3 or lower\n- Speak with animals"
+    },
+    "type": {
+      "value": "ring"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "value": {
+            "value": null
+          },
+          "unit": {
+            "value": "gold"
+          },
+          "id": "dd479009-fcae-4bea-a163-f01e194bb513",
+          "updated_at": {
+            "value": "2024-12-20T18:50:35.724236"
+          }
+        }
+      }
+    },
+    "weight": {
+      "value": {
+        "resource_id": "weight",
+        "stats": {
+          "value": {
+            "value": null
+          },
+          "unit": {
+            "value": "pounds"
+          },
+          "id": "55f32831-5f92-4eb4-9773-7e9db4b528c1",
+          "updated_at": {
+            "value": "2024-12-20T18:50:35.724240"
+          }
+        }
+      }
+    },
+    "rarity": {
+      "value": "rare"
+    },
+    "is_magic": {
+      "value": false
+    },
+    "requires_attunement": {
+      "value": false
+    },
+    "is_cursed": {
+      "value": false
+    },
+    "is_intelligent": {
+      "value": false
+    },
+    "is_spellcasting_focus": {
+      "value": false
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Charges"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "has_charges": {
+              "value": true
+            },
+            "charge_type": {
+              "value": "constant"
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharge_event": {
+              "value": "dawn"
+            },
+            "max_charges_constant": {
+              "value": 3
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "dice_amount": {
+                    "value": 1
+                  },
+                  "dice_type": {
+                    "value": "d4"
+                  },
+                  "constant": {
+                    "value": 0
+                  },
+                  "id": "10d30a33-e890-4799-87b3-4ec3edc39564",
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:35.724247"
+                  }
+                }
+              }
+            },
+            "type": {
+              "value": "none"
+            },
+            "events": {
+              "value": ""
+            },
+            "stat": {
+              "value": "$character.strength_score"
+            },
+            "advantage_stat": {
+              "value": "$character.strength_score"
+            },
+            "id": "140e12ca-a593-4a83-8033-45d88c327030",
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.724252"
+            }
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Animal Friendship (1 Charge)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "has_charges": {
+              "value": false
+            },
+            "charge_type": {
+              "value": "constant"
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "max_charges_constant": {
+              "value": 0
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "events": {
+              "value": ""
+            },
+            "stat": {
+              "value": "$character.strength_score"
+            },
+            "advantage_stat": {
+              "value": "$character.strength_modifier"
+            },
+            "id": "9769d7e6-f262-4fac-ab96-040e4dc1e2a7",
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.724259"
+            }
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Fear (1 Charge)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "has_charges": {
+              "value": false
+            },
+            "charge_type": {
+              "value": "constant"
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "max_charges_constant": {
+              "value": 0
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "events": {
+              "value": ""
+            },
+            "stat": {
+              "value": "$character.strength_score"
+            },
+            "advantage_stat": {
+              "value": "$character.strength_modifier"
+            },
+            "id": "b2ad2e6d-08de-4773-83e3-9d7c3369a49d",
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.724266"
+            }
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Speak With Animals (1 Charge)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "has_charges": {
+              "value": false
+            },
+            "charge_type": {
+              "value": "constant"
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "max_charges_constant": {
+              "value": 0
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "events": {
+              "value": ""
+            },
+            "stat": {
+              "value": "$character.strength_score"
+            },
+            "advantage_stat": {
+              "value": "$character.strength_modifier"
+            },
+            "id": "23043373-add9-4cee-a221-c2db91254a1e",
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.724273"
+            }
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:35.724275"
+    }
+  }
+}

@@ -1,1 +1,273 @@
-{"resource_id":"feat","stats":{"name":{"value":"Tavern Brawler"},"source":{"value":"phb"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"Accustomed to rough-and-tumble fighting using whatever weapons happen to be at hand, you gain the following benefits:\n\n- Increase your Strength or Constitution score by 1, to a maximum of 20.\n\n- You are proficient with improvised weapons and unarmed strikes.\n\n- Your unarmed strikes use a d4 for damage.\n\n- When you hit a creature with an unarmed strike or an improvised weapon on your turn, you can use a bonus action to attempt to grapple the target. A grapple check is a Strength (Athletics) check contested by the target's Strength (Athletics) or Dexterity (Acrobatics) check"},"updated_at":{"value":"2024-12-20T18:50:28.404566"},"id":"b62c3fa9-e176-45a1-a412-ab1b533b92e2"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Improvised Weapons and Unarmed Strike Proficiency"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"15a5f7cc-a7a9-4eb6-a329-951109ed22e6"}}},"id":"1e6dddf2-a39e-48b5-93fb-1638cbddd40f"}}},"id":"76d1f17b-5006-4e4d-b380-fcf2e33cfece"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Unarmed Strikes use d4"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"a718dbe5-25d1-4e6f-b7a7-1570c3d0ea79"}}},"id":"3454494a-a976-4cf3-9d80-e3a6175f4235"}}},"id":"011ac726-7283-447e-8535-1416f1f92bbc"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Grapple when attacking unarmed / improvised weapon"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"f325ab2f-eb06-44b5-872c-53b3e029e0c4"}}},"id":"babc3a45-b98f-4144-b151-927bee831743"}}},"id":"4d25138d-75d3-47b2-b955-08f17e9516e9"}}]},"selectable_feature_amount_per_level":{"value":[{"resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"2468fdff-2770-474a-8e59-243a99f5da3d"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Str Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"89f2afd0-723f-4a50-afe0-e668c49a112b"}}]},"id":"5b958a76-f949-4c84-8265-15a36892b0c1"}}]},"id":"a91fcb7a-8c04-45b8-bb2c-b765a8e06f69"}}},"type":{"value":"add_to_stat"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"f5e09337-9f78-4b51-8b13-86bf209cc178"}}},"id":"0c1ea691-e4b8-418f-9f85-bb45c3f0783f"}}]},"id":"cdad3667-33f5-47cf-b762-ebfc06c09a46"}},{"resource_id":"feat","stats":{"name":{"value":"Con Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.constitution_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"b2f0f39f-5401-41af-9720-ce94ec0fd0bb"}}]},"id":"1432a239-ba4a-4578-a1e5-be801cd3186a"}}]},"id":"2195b311-7880-4a16-ad3b-2f6b94be9534"}}},"type":{"value":"add_to_stat"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"b7ffea0b-d483-4342-b608-c217e9a8c837"}}},"id":"19b7459a-6b5b-45cd-87c4-86c94c4a9120"}}]},"id":"88b87e54-223f-40ab-82ec-6812df5be422"}}]},"updated_at":{"value":"2024-12-20T18:50:28.404569"},"id":"tavern_brawler"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Tavern Brawler"
+    },
+    "source": {
+      "value": "phb"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "Accustomed to rough-and-tumble fighting using whatever weapons happen to be at hand, you gain the following benefits:\n\n- Increase your Strength or Constitution score by 1, to a maximum of 20.\n\n- You are proficient with improvised weapons and unarmed strikes.\n\n- Your unarmed strikes use a d4 for damage.\n\n- When you hit a creature with an unarmed strike or an improvised weapon on your turn, you can use a bonus action to attempt to grapple the target. A grapple check is a Strength (Athletics) check contested by the target's Strength (Athletics) or Dexterity (Acrobatics) check"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.404566"
+            },
+            "id": "b62c3fa9-e176-45a1-a412-ab1b533b92e2"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Improvised Weapons and Unarmed Strike Proficiency"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "15a5f7cc-a7a9-4eb6-a329-951109ed22e6"
+                      }
+                    }
+                  },
+                  "id": "1e6dddf2-a39e-48b5-93fb-1638cbddd40f"
+                }
+              }
+            },
+            "id": "76d1f17b-5006-4e4d-b380-fcf2e33cfece"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Unarmed Strikes use d4"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "a718dbe5-25d1-4e6f-b7a7-1570c3d0ea79"
+                      }
+                    }
+                  },
+                  "id": "3454494a-a976-4cf3-9d80-e3a6175f4235"
+                }
+              }
+            },
+            "id": "011ac726-7283-447e-8535-1416f1f92bbc"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Grapple when attacking unarmed / improvised weapon"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "f325ab2f-eb06-44b5-872c-53b3e029e0c4"
+                      }
+                    }
+                  },
+                  "id": "babc3a45-b98f-4144-b151-927bee831743"
+                }
+              }
+            },
+            "id": "4d25138d-75d3-47b2-b955-08f17e9516e9"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "2468fdff-2770-474a-8e59-243a99f5da3d"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Str Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "89f2afd0-723f-4a50-afe0-e668c49a112b"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "5b958a76-f949-4c84-8265-15a36892b0c1"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "a91fcb7a-8c04-45b8-bb2c-b765a8e06f69"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "f5e09337-9f78-4b51-8b13-86bf209cc178"
+                        }
+                      }
+                    },
+                    "id": "0c1ea691-e4b8-418f-9f85-bb45c3f0783f"
+                  }
+                }
+              ]
+            },
+            "id": "cdad3667-33f5-47cf-b762-ebfc06c09a46"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Con Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.constitution_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "b2f0f39f-5401-41af-9720-ce94ec0fd0bb"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "1432a239-ba4a-4578-a1e5-be801cd3186a"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "2195b311-7880-4a16-ad3b-2f6b94be9534"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "b7ffea0b-d483-4342-b608-c217e9a8c837"
+                        }
+                      }
+                    },
+                    "id": "19b7459a-6b5b-45cd-87c4-86c94c4a9120"
+                  }
+                }
+              ]
+            },
+            "id": "88b87e54-223f-40ab-82ec-6812df5be422"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.404569"
+    },
+    "id": "tavern_brawler"
+  }
+}

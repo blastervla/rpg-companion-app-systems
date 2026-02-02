@@ -1,1 +1,387 @@
-{"resource_id":"feat","stats":{"name":{"value":"Elven Accuracy"},"source":{"value":"xge"},"prerequisites":{"value":"Elf or Half-Elf"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"The accuracy of elves is legendary, especially that of elf archers and spellcasters. You have uncanny aim with attacks that rely on precision rather than brute force. You gain the following benefits:\n\n- Increase your Dexterity, Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20\n\n- Whenever you have advantage on an attack roll using Dexterity, Intelligence, Wisdom, or Charisma, you can reroll one of the dice once"},"updated_at":{"value":"2024-12-20T18:50:28.407862"},"id":"fdc10b13-2b5b-45d3-a281-53895ccf459c"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Re-Roll on Advantage"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"1356554c-39ed-45d2-969b-79d612f8c688"}}},"id":"8a49917a-907c-448e-9d3e-7a9d17be6473"}}},"id":"55ecba36-d77f-4811-9f52-52d8af82a491"}}]},"selectable_feature_amount_per_level":{"value":[{"resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"a1a83bd8-192e-4f2d-b20b-abc0db4a41f5"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Dex Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.dexterity_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"8a9a4299-2f52-4c80-bc8b-e781fabbe8c4"}}]},"id":"9a7fae7c-e7e5-4986-8903-587a09c96ccd"}}]},"id":"fcbb308b-9e00-4182-8858-85867971c98f"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.dexterity_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"9d87527c-11b0-473d-93f2-1e7d892a81bb"}}},"id":"fd5a3973-9222-4336-8bbf-a927a6eb7707"}}]},"id":"4084c0d2-1726-4fa2-9ddd-efc25a191002"}},{"resource_id":"feat","stats":{"name":{"value":"Wis Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.wisdom_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"835a691c-dfc5-40dd-a504-0819d47c7565"}}]},"id":"4dbb5983-6d52-47cd-92bd-6251b204a2f9"}}]},"id":"e4618828-a020-4a62-a8e5-2f4eacd8e51c"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.wisdom_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"c186bae1-fdb9-4fa3-9998-2e7ae891412e"}}},"id":"a99b4f30-db91-467b-908a-3d1a80251da5"}}]},"id":"15faad55-85ea-4460-80c3-16f30a789b19"}},{"resource_id":"feat","stats":{"name":{"value":"Int Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.intelligence_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"09cef6e8-a9f1-4b75-9a2d-e40330bcf8e8"}}]},"id":"085f90e2-ff76-4ddd-b9c9-a121d4e9b803"}}]},"id":"46a929a1-43f8-4151-a87f-1beb55ad5e5e"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.intelligence_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"6d550f1b-9054-41ed-a7df-b546cec2ee4c"}}},"id":"87d5602f-1e1d-4f52-abfb-9aafea7a9a22"}}]},"id":"ead986a3-b13d-45af-b6bc-affc375eb13f"}},{"resource_id":"feat","stats":{"name":{"value":"Cha Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.charisma_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"c0b493ec-d167-461e-a788-3457a2ba3ac2"}}]},"id":"923d342a-e655-49e4-8e41-e27329ffc12f"}}]},"id":"e45d7530-da60-4961-86bc-e0f3b8c64d89"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.charisma_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"04454317-d41e-48b3-a0a7-fee27becf8db"}}},"id":"0bcc656c-f228-48e7-9981-1921e6b4863b"}}]},"id":"fb37d0cf-cbdc-4de6-ac72-bb1df615f140"}}]},"updated_at":{"value":"2024-12-20T18:50:28.407865"},"id":"elven_accuracy"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Elven Accuracy"
+    },
+    "source": {
+      "value": "xge"
+    },
+    "prerequisites": {
+      "value": "Elf or Half-Elf"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "The accuracy of elves is legendary, especially that of elf archers and spellcasters. You have uncanny aim with attacks that rely on precision rather than brute force. You gain the following benefits:\n\n- Increase your Dexterity, Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20\n\n- Whenever you have advantage on an attack roll using Dexterity, Intelligence, Wisdom, or Charisma, you can reroll one of the dice once"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.407862"
+            },
+            "id": "fdc10b13-2b5b-45d3-a281-53895ccf459c"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Re-Roll on Advantage"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "1356554c-39ed-45d2-969b-79d612f8c688"
+                      }
+                    }
+                  },
+                  "id": "8a49917a-907c-448e-9d3e-7a9d17be6473"
+                }
+              }
+            },
+            "id": "55ecba36-d77f-4811-9f52-52d8af82a491"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "a1a83bd8-192e-4f2d-b20b-abc0db4a41f5"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Dex Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.dexterity_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "8a9a4299-2f52-4c80-bc8b-e781fabbe8c4"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "9a7fae7c-e7e5-4986-8903-587a09c96ccd"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "fcbb308b-9e00-4182-8858-85867971c98f"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.dexterity_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "9d87527c-11b0-473d-93f2-1e7d892a81bb"
+                        }
+                      }
+                    },
+                    "id": "fd5a3973-9222-4336-8bbf-a927a6eb7707"
+                  }
+                }
+              ]
+            },
+            "id": "4084c0d2-1726-4fa2-9ddd-efc25a191002"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Wis Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.wisdom_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "835a691c-dfc5-40dd-a504-0819d47c7565"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "4dbb5983-6d52-47cd-92bd-6251b204a2f9"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "e4618828-a020-4a62-a8e5-2f4eacd8e51c"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.wisdom_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "c186bae1-fdb9-4fa3-9998-2e7ae891412e"
+                        }
+                      }
+                    },
+                    "id": "a99b4f30-db91-467b-908a-3d1a80251da5"
+                  }
+                }
+              ]
+            },
+            "id": "15faad55-85ea-4460-80c3-16f30a789b19"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Int Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.intelligence_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "09cef6e8-a9f1-4b75-9a2d-e40330bcf8e8"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "085f90e2-ff76-4ddd-b9c9-a121d4e9b803"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "46a929a1-43f8-4151-a87f-1beb55ad5e5e"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.intelligence_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "6d550f1b-9054-41ed-a7df-b546cec2ee4c"
+                        }
+                      }
+                    },
+                    "id": "87d5602f-1e1d-4f52-abfb-9aafea7a9a22"
+                  }
+                }
+              ]
+            },
+            "id": "ead986a3-b13d-45af-b6bc-affc375eb13f"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Cha Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.charisma_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "c0b493ec-d167-461e-a788-3457a2ba3ac2"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "923d342a-e655-49e4-8e41-e27329ffc12f"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "e45d7530-da60-4961-86bc-e0f3b8c64d89"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.charisma_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "04454317-d41e-48b3-a0a7-fee27becf8db"
+                        }
+                      }
+                    },
+                    "id": "0bcc656c-f228-48e7-9981-1921e6b4863b"
+                  }
+                }
+              ]
+            },
+            "id": "fb37d0cf-cbdc-4de6-ac72-bb1df615f140"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.407865"
+    },
+    "id": "elven_accuracy"
+  }
+}

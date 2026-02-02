@@ -1,1 +1,330 @@
-{"resource_id":"feat","stats":{"name":{"value":"Dragon Hide"},"source":{"value":"xge"},"prerequisites":{"value":"Dragonborn"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"You manifest scales and claws reminiscent of your draconic ancestors. You gain the following benefits:\n\n- Increase your Strength, Constitution, or Charisma score by 1, up to a maximum of 20.\n\n- Your scales harden. While you aren't wearing armor, you can calculate your AC as 13 + your Dexterity modifier. You can use a shield and still gain this benefit.\n\n- You can grow retractable claws from the tips of your fingers. Extending or retracting the claws requires no action. The claws are natural weapons, which you can use to make unarmed strikes. If you hit with them, you deal slashing damage equal to 1d4 + your Strength modifier, instead of the normal bludgeoning damage for an unarmed strike"},"updated_at":{"value":"2024-12-20T18:50:28.411459"},"id":"ace42b59-5c61-408d-afb3-499a25aa8c1f"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Hardened Scales"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"9d33bed7-4b45-4977-8a44-78842bc3426e"}}},"id":"fc2998ff-8e2b-48b3-804e-cff80409050d"}}},"id":"5f627b1f-8244-4774-9996-a4f361ecd964"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Retractable Claws"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"f9d616db-c7be-47c1-a8c5-714ba302e118"}}},"id":"8ce0adf5-c16f-4de3-b0d4-ab6aabc00e08"}}},"id":"6488647c-9303-440c-92c2-d7edd790a199"}}]},"selectable_feature_amount_per_level":{"value":[{"resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"74021854-99d2-4568-a81d-15598179b1c7"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Str Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"dc083f85-2de5-4f98-95f1-1da43defca3b"}}]},"id":"0feb2963-825c-490e-9167-c3a67ff7a242"}}]},"id":"24c13da8-c8a5-4046-a965-a4ca6014658c"}}},"type":{"value":"add_to_stat"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"12dae945-7d62-4dee-8bf5-945467bcc3c0"}}},"id":"fe1dc854-29c9-4a80-8212-afb530c56e72"}}]},"id":"9e612a6b-87f8-45d3-9b94-44ba2439436a"}},{"resource_id":"feat","stats":{"name":{"value":"Con Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.constitution_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"519a5d66-a50e-4002-b0b5-7d408afd5c91"}}]},"id":"3f91a3c0-c217-42ae-b2d3-d1a16995a16e"}}]},"id":"6ab8e22d-196f-4d7b-b8fb-13b7db9c7c9d"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.constitution_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"5925ed8b-5fb7-42b9-843b-ee0a212feb47"}}},"id":"01dced1d-37e4-4190-b702-43b9146bac8b"}}]},"id":"bc15b334-917c-4af9-b22a-e3b6cb85bf57"}},{"resource_id":"feat","stats":{"name":{"value":"Cha Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.charisma_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"c4e9dbaf-e653-4421-bf87-505f77349ff7"}}]},"id":"4d643692-d84d-4b69-b8da-b63daa6e8cf5"}}]},"id":"9d03af9c-8a3f-4d7c-be2b-e270eadf3096"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.charisma_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"31cf800f-9d0c-4c6c-866d-20d1ebf80d4c"}}},"id":"6ba2d1d0-c509-43dc-8b4a-4f3cdbc712e7"}}]},"id":"a48771dc-fe38-45b7-8926-7d94d79269bd"}}]},"updated_at":{"value":"2024-12-20T18:50:28.411461"},"id":"dragon_hide"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Dragon Hide"
+    },
+    "source": {
+      "value": "xge"
+    },
+    "prerequisites": {
+      "value": "Dragonborn"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "You manifest scales and claws reminiscent of your draconic ancestors. You gain the following benefits:\n\n- Increase your Strength, Constitution, or Charisma score by 1, up to a maximum of 20.\n\n- Your scales harden. While you aren't wearing armor, you can calculate your AC as 13 + your Dexterity modifier. You can use a shield and still gain this benefit.\n\n- You can grow retractable claws from the tips of your fingers. Extending or retracting the claws requires no action. The claws are natural weapons, which you can use to make unarmed strikes. If you hit with them, you deal slashing damage equal to 1d4 + your Strength modifier, instead of the normal bludgeoning damage for an unarmed strike"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.411459"
+            },
+            "id": "ace42b59-5c61-408d-afb3-499a25aa8c1f"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Hardened Scales"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "9d33bed7-4b45-4977-8a44-78842bc3426e"
+                      }
+                    }
+                  },
+                  "id": "fc2998ff-8e2b-48b3-804e-cff80409050d"
+                }
+              }
+            },
+            "id": "5f627b1f-8244-4774-9996-a4f361ecd964"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Retractable Claws"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "f9d616db-c7be-47c1-a8c5-714ba302e118"
+                      }
+                    }
+                  },
+                  "id": "8ce0adf5-c16f-4de3-b0d4-ab6aabc00e08"
+                }
+              }
+            },
+            "id": "6488647c-9303-440c-92c2-d7edd790a199"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "74021854-99d2-4568-a81d-15598179b1c7"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Str Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "dc083f85-2de5-4f98-95f1-1da43defca3b"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "0feb2963-825c-490e-9167-c3a67ff7a242"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "24c13da8-c8a5-4046-a965-a4ca6014658c"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "12dae945-7d62-4dee-8bf5-945467bcc3c0"
+                        }
+                      }
+                    },
+                    "id": "fe1dc854-29c9-4a80-8212-afb530c56e72"
+                  }
+                }
+              ]
+            },
+            "id": "9e612a6b-87f8-45d3-9b94-44ba2439436a"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Con Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.constitution_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "519a5d66-a50e-4002-b0b5-7d408afd5c91"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "3f91a3c0-c217-42ae-b2d3-d1a16995a16e"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "6ab8e22d-196f-4d7b-b8fb-13b7db9c7c9d"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.constitution_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "5925ed8b-5fb7-42b9-843b-ee0a212feb47"
+                        }
+                      }
+                    },
+                    "id": "01dced1d-37e4-4190-b702-43b9146bac8b"
+                  }
+                }
+              ]
+            },
+            "id": "bc15b334-917c-4af9-b22a-e3b6cb85bf57"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Cha Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.charisma_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "c4e9dbaf-e653-4421-bf87-505f77349ff7"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "4d643692-d84d-4b69-b8da-b63daa6e8cf5"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "9d03af9c-8a3f-4d7c-be2b-e270eadf3096"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.charisma_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "31cf800f-9d0c-4c6c-866d-20d1ebf80d4c"
+                        }
+                      }
+                    },
+                    "id": "6ba2d1d0-c509-43dc-8b4a-4f3cdbc712e7"
+                  }
+                }
+              ]
+            },
+            "id": "a48771dc-fe38-45b7-8926-7d94d79269bd"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.411461"
+    },
+    "id": "dragon_hide"
+  }
+}

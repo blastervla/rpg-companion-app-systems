@@ -1,1 +1,343 @@
-{"resource_id": "monster", "stats": {"id": "dust_mephit", "name": {"value": "Dust Mephit"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/dust_mephit.png"}}, "source": {"value": "mm"}, "tag": {"value": ""}, "armor_class": {"value": 12}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 5}, "dice_type": {"value": "d6"}, "constant": {"value": 0}, "id": "108f472f-4ee1-4895-a573-a58aedbea74a", "updated_at": {"value": "2025-04-28T21:51:12.040120"}}}}, "cr": {"value": "cr_1_2"}, "xp": {"value": 100}, "initiative": {"value": 2}, "speed": {"value": 30}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 0}, "fly_speed": {"value": 30}, "swim_speed": {"value": 0}, "strength_score": {"value": 5}, "dexterity_score": {"value": 14}, "constitution_score": {"value": 10}, "intelligence_score": {"value": 9}, "wisdom_score": {"value": 11}, "charisma_score": {"value": 10}, "strength_saving_throw_modifier": {"value": -3}, "dexterity_saving_throw_modifier": {"value": 2}, "constitution_saving_throw_modifier": {"value": 0}, "intelligence_saving_throw_modifier": {"value": -1}, "wisdom_saving_throw_modifier": {"value": 0}, "charisma_saving_throw_modifier": {"value": 0}, "skills": {"value": "Perception +2, Stealth +4"}, "gear": {"value": ""}, "vulnerabilities": {"value": "Fire"}, "immunities": {"value": "Poison,Exhaustion, Poisoned"}, "resistances": {"value": ""}, "senses": {"value": "Passive Perception 12, Darkvision 60 ft."}, "languages": {"value": "Primordial (auran, terran)"}, "size": {"value": "small"}, "type": {"value": "elemental"}, "alignment": {"value": "neutral_evil"}, "traits": {"value": [{"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Death Burst"}, "trait_description": {"value": "The mephit explodes when it dies. Dexterity Saving Throw: DC 10, each creature in a 5-foot Emanation originating from the mephit. Failure: 5 (2d4) Bludgeoning damage. Success: Half damage."}, "id": "a227ccb4-8508-4859-bd5e-8b14017bb62b", "updated_at": {"value": "2025-04-28T21:51:12.040196"}}}]}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Claw"}, "action_description": {"value": "+4, reach 5 ft. Hit: 4 (1d4 + 2) Slashing damage."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 4}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "slashing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 1}, "dice_type": {"value": "d4"}, "constant": {"value": 2}, "id": "a7e65d6f-0a07-464e-9302-3b41e1abe0ee", "updated_at": {"value": "2025-04-28T21:51:12.040258"}}}}, "id": "0a6fde3c-e069-497b-a86e-875dae0d84ea", "updated_at": {"value": "2025-04-28T21:51:12.040262"}}}]}, "id": "7c085abe-2493-49dc-856e-0f5b3b726932", "updated_at": {"value": "2025-04-28T21:51:12.040268"}}}]}, "id": "f6831b39-c376-4602-ac79-355f19529377", "updated_at": {"value": "2025-04-28T21:51:12.040273"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Blinding Breath (Recharge 6)"}, "action_description": {"value": "Dexterity Saving Throw: DC 10, each creature in a 15-foot Cone. Failure: The target has the Blinded condition until the end of the mephit's next turn."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "cb09a1b8-c9c6-43cd-9365-76a5f9cc8492", "updated_at": {"value": "2025-04-28T21:51:12.040347"}}}, {"description": "The mephit casts the Sleep spell, requiring no spell components and using Charisma as the spellcasting ability (spell save DC 10).\n1/day each: Sleep", "id": -1, "isLegendary": false, "monsterId": -1, "name": "Sleep (1/Day)", "type": "NONE"}]}, "bonus_actions": {"value": []}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": [{"system": "5e2024", "resource_id": "spell", "stats": {"name": {"value": "Sleep"}, "source": {"value": "phb"}, "level": {"value": "spell_level_1"}, "school": {"value": "spell_school_enchantment"}, "casting_time": {"value": "1 action"}, "range": {"value": "60 feet"}, "duration": {"value": "Concentration, up to 1 minute"}, "verbal": {"value": true}, "somatic": {"value": true}, "material": {"value": true}, "components": {"value": "a pinch of sand or rose petals"}, "description": {"value": "Each creature of your choice in a 5-foot-radius Sphere centered on a point within range must succeed on a Wisdom saving throw or have the Incapacitated condition until the end of its next turn, at which point it must repeat the save. If the target fails the second save, the target has the Unconscious condition for the duration. The spell ends on a target if it takes damage or someone within 5 feet of it takes an action to shake it out of the spell's effect.\n\nCreatures that don't sleep, such as elves, or that have Immunity to the Exhaustion condition automatically succeed on saves against this spell"}, "classes": {"value": ["bard", "sorcerer", "fighter", "rogue", "wizard"]}, "dice": {"value": []}, "updated_at": {"value": "2024-12-20T18:50:46.622568"}, "id": "sleep"}}]}, "habitat": {"value": ["planar_elemental"]}, "treasure": {"value": []}, "updated_at": {"value": "2025-04-28T21:51:12.040461"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "dust_mephit",
+    "name": {
+      "value": "Dust Mephit"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/dust_mephit.png"
+      }
+    },
+    "source": {
+      "value": "mm"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 12
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 5
+          },
+          "dice_type": {
+            "value": "d6"
+          },
+          "constant": {
+            "value": 0
+          },
+          "id": "108f472f-4ee1-4895-a573-a58aedbea74a",
+          "updated_at": {
+            "value": "2025-04-28T21:51:12.040120"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_1_2"
+    },
+    "xp": {
+      "value": 100
+    },
+    "initiative": {
+      "value": 2
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 30
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_score": {
+      "value": 5
+    },
+    "dexterity_score": {
+      "value": 14
+    },
+    "constitution_score": {
+      "value": 10
+    },
+    "intelligence_score": {
+      "value": 9
+    },
+    "wisdom_score": {
+      "value": 11
+    },
+    "charisma_score": {
+      "value": 10
+    },
+    "strength_saving_throw_modifier": {
+      "value": -3
+    },
+    "dexterity_saving_throw_modifier": {
+      "value": 2
+    },
+    "constitution_saving_throw_modifier": {
+      "value": 0
+    },
+    "intelligence_saving_throw_modifier": {
+      "value": -1
+    },
+    "wisdom_saving_throw_modifier": {
+      "value": 0
+    },
+    "charisma_saving_throw_modifier": {
+      "value": 0
+    },
+    "skills": {
+      "value": "Perception +2, Stealth +4"
+    },
+    "gear": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": "Fire"
+    },
+    "immunities": {
+      "value": "Poison,Exhaustion, Poisoned"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "Passive Perception 12, Darkvision 60 ft."
+    },
+    "languages": {
+      "value": "Primordial (auran, terran)"
+    },
+    "size": {
+      "value": "small"
+    },
+    "type": {
+      "value": "elemental"
+    },
+    "alignment": {
+      "value": "neutral_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Death Burst"
+            },
+            "trait_description": {
+              "value": "The mephit explodes when it dies. Dexterity Saving Throw: DC 10, each creature in a 5-foot Emanation originating from the mephit. Failure: 5 (2d4) Bludgeoning damage. Success: Half damage."
+            },
+            "id": "a227ccb4-8508-4859-bd5e-8b14017bb62b",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.040196"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Claw"
+            },
+            "action_description": {
+              "value": "+4, reach 5 ft. Hit: 4 (1d4 + 2) Slashing damage."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 4
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 1
+                                  },
+                                  "dice_type": {
+                                    "value": "d4"
+                                  },
+                                  "constant": {
+                                    "value": 2
+                                  },
+                                  "id": "a7e65d6f-0a07-464e-9302-3b41e1abe0ee",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.040258"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "0a6fde3c-e069-497b-a86e-875dae0d84ea",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.040262"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "7c085abe-2493-49dc-856e-0f5b3b726932",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:12.040268"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "f6831b39-c376-4602-ac79-355f19529377",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.040273"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Blinding Breath (Recharge 6)"
+            },
+            "action_description": {
+              "value": "Dexterity Saving Throw: DC 10, each creature in a 15-foot Cone. Failure: The target has the Blinded condition until the end of the mephit's next turn."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "cb09a1b8-c9c6-43cd-9365-76a5f9cc8492",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.040347"
+            }
+          }
+        },
+        {
+          "description": "The mephit casts the Sleep spell, requiring no spell components and using Charisma as the spellcasting ability (spell save DC 10).\n1/day each: Sleep",
+          "id": -1,
+          "isLegendary": false,
+          "monsterId": -1,
+          "name": "Sleep (1/Day)",
+          "type": "NONE"
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": [
+        {
+          "system": "5e2024",
+          "resource_id": "spell",
+          "stats": {
+            "name": {
+              "value": "Sleep"
+            },
+            "source": {
+              "value": "phb"
+            },
+            "level": {
+              "value": "spell_level_1"
+            },
+            "school": {
+              "value": "spell_school_enchantment"
+            },
+            "casting_time": {
+              "value": "1 action"
+            },
+            "range": {
+              "value": "60 feet"
+            },
+            "duration": {
+              "value": "Concentration, up to 1 minute"
+            },
+            "verbal": {
+              "value": true
+            },
+            "somatic": {
+              "value": true
+            },
+            "material": {
+              "value": true
+            },
+            "components": {
+              "value": "a pinch of sand or rose petals"
+            },
+            "description": {
+              "value": "Each creature of your choice in a 5-foot-radius Sphere centered on a point within range must succeed on a Wisdom saving throw or have the Incapacitated condition until the end of its next turn, at which point it must repeat the save. If the target fails the second save, the target has the Unconscious condition for the duration. The spell ends on a target if it takes damage or someone within 5 feet of it takes an action to shake it out of the spell's effect.\n\nCreatures that don't sleep, such as elves, or that have Immunity to the Exhaustion condition automatically succeed on saves against this spell"
+            },
+            "classes": {
+              "value": [
+                "bard",
+                "sorcerer",
+                "fighter",
+                "rogue",
+                "wizard"
+              ]
+            },
+            "dice": {
+              "value": []
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:46.622568"
+            },
+            "id": "sleep"
+          }
+        }
+      ]
+    },
+    "habitat": {
+      "value": [
+        "planar_elemental"
+      ]
+    },
+    "treasure": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2025-04-28T21:51:12.040461"
+    }
+  }
+}

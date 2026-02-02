@@ -1,1 +1,333 @@
-{"resource_id": "monster", "stats": {"id": "tyrannosaurus_rex", "name": {"value": "Tyrannosaurus Rex"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/tyrannosaurus_rex.png"}}, "source": {"value": "mm"}, "tag": {"value": "Dinosaurs"}, "armor_class": {"value": 13}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 13}, "dice_type": {"value": "d12"}, "constant": {"value": 52}, "id": "594accf3-6cf9-452e-8714-cdb424234ac5", "updated_at": {"value": "2025-04-28T21:51:12.261810"}}}}, "cr": {"value": "cr_8"}, "xp": {"value": 3900}, "initiative": {"value": 1}, "speed": {"value": 50}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 0}, "fly_speed": {"value": 0}, "swim_speed": {"value": 0}, "strength_score": {"value": 25}, "dexterity_score": {"value": 10}, "constitution_score": {"value": 19}, "intelligence_score": {"value": 2}, "wisdom_score": {"value": 12}, "charisma_score": {"value": 9}, "strength_saving_throw_modifier": {"value": 10}, "dexterity_saving_throw_modifier": {"value": 0}, "constitution_saving_throw_modifier": {"value": 4}, "intelligence_saving_throw_modifier": {"value": -4}, "wisdom_saving_throw_modifier": {"value": 4}, "charisma_saving_throw_modifier": {"value": -1}, "skills": {"value": "Perception +4"}, "gear": {"value": ""}, "vulnerabilities": {"value": ""}, "immunities": {"value": ""}, "resistances": {"value": ""}, "senses": {"value": "Passive Perception 14"}, "languages": {"value": ""}, "size": {"value": "huge"}, "type": {"value": "beast"}, "alignment": {"value": "true_neutral"}, "traits": {"value": []}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Multiattack"}, "action_description": {"value": "The tyrannosaurus makes one Bite attack and one Tail attack."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "5402e509-1a70-43df-ad09-2621e63d1195", "updated_at": {"value": "2025-04-28T21:51:12.261874"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Bite"}, "action_description": {"value": "+10, reach 10 ft. Hit: 33 (4d12 + 7) Piercing damage. If the target is a Large or smaller creature, it has the Grappled condition (escape DC 17). While Grappled, the target has the Restrained condition and can't be targeted by the tyrannosaurus's Tail."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 10}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "piercing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 4}, "dice_type": {"value": "d12"}, "constant": {"value": 7}, "id": "6d6874e7-f5a4-4b86-af05-ac2c0a79f780", "updated_at": {"value": "2025-04-28T21:51:12.261942"}}}}, "id": "33289a58-2bac-4f11-b44e-fd002b9a8b72", "updated_at": {"value": "2025-04-28T21:51:12.261946"}}}]}, "id": "715bb4a7-6178-4aa1-b1b4-366c61171edc", "updated_at": {"value": "2025-04-28T21:51:12.261961"}}}]}, "id": "bffea6b9-1a47-45c8-92a7-d72509fd5589", "updated_at": {"value": "2025-04-28T21:51:12.261965"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Tail"}, "action_description": {"value": "+10, reach 15 ft. Hit: 25 (4d8 + 7) Bludgeoning damage. If the target is a Huge or smaller creature, it has the Prone condition."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 10}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "bludgeoning"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 4}, "dice_type": {"value": "d8"}, "constant": {"value": 7}, "id": "03688f53-3d9e-4ece-a360-79e57e5ee14e", "updated_at": {"value": "2025-04-28T21:51:12.262025"}}}}, "id": "5e3140e3-451b-4aa6-95d5-a58995e0dc25", "updated_at": {"value": "2025-04-28T21:51:12.262029"}}}]}, "id": "57dc2a1a-608f-4ddc-826a-378de67e1e14", "updated_at": {"value": "2025-04-28T21:51:12.262038"}}}]}, "id": "0ea217c2-75c4-41f8-ad5d-29c0680f52a2", "updated_at": {"value": "2025-04-28T21:51:12.262042"}}}]}, "bonus_actions": {"value": []}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["grassland"]}, "treasure": {"value": []}, "updated_at": {"value": "2025-04-28T21:51:12.262047"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "tyrannosaurus_rex",
+    "name": {
+      "value": "Tyrannosaurus Rex"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/tyrannosaurus_rex.png"
+      }
+    },
+    "source": {
+      "value": "mm"
+    },
+    "tag": {
+      "value": "Dinosaurs"
+    },
+    "armor_class": {
+      "value": 13
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 13
+          },
+          "dice_type": {
+            "value": "d12"
+          },
+          "constant": {
+            "value": 52
+          },
+          "id": "594accf3-6cf9-452e-8714-cdb424234ac5",
+          "updated_at": {
+            "value": "2025-04-28T21:51:12.261810"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_8"
+    },
+    "xp": {
+      "value": 3900
+    },
+    "initiative": {
+      "value": 1
+    },
+    "speed": {
+      "value": 50
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_score": {
+      "value": 25
+    },
+    "dexterity_score": {
+      "value": 10
+    },
+    "constitution_score": {
+      "value": 19
+    },
+    "intelligence_score": {
+      "value": 2
+    },
+    "wisdom_score": {
+      "value": 12
+    },
+    "charisma_score": {
+      "value": 9
+    },
+    "strength_saving_throw_modifier": {
+      "value": 10
+    },
+    "dexterity_saving_throw_modifier": {
+      "value": 0
+    },
+    "constitution_saving_throw_modifier": {
+      "value": 4
+    },
+    "intelligence_saving_throw_modifier": {
+      "value": -4
+    },
+    "wisdom_saving_throw_modifier": {
+      "value": 4
+    },
+    "charisma_saving_throw_modifier": {
+      "value": -1
+    },
+    "skills": {
+      "value": "Perception +4"
+    },
+    "gear": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "Passive Perception 14"
+    },
+    "languages": {
+      "value": ""
+    },
+    "size": {
+      "value": "huge"
+    },
+    "type": {
+      "value": "beast"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": []
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Multiattack"
+            },
+            "action_description": {
+              "value": "The tyrannosaurus makes one Bite attack and one Tail attack."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "5402e509-1a70-43df-ad09-2621e63d1195",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.261874"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Bite"
+            },
+            "action_description": {
+              "value": "+10, reach 10 ft. Hit: 33 (4d12 + 7) Piercing damage. If the target is a Large or smaller creature, it has the Grappled condition (escape DC 17). While Grappled, the target has the Restrained condition and can't be targeted by the tyrannosaurus's Tail."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 10
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 4
+                                  },
+                                  "dice_type": {
+                                    "value": "d12"
+                                  },
+                                  "constant": {
+                                    "value": 7
+                                  },
+                                  "id": "6d6874e7-f5a4-4b86-af05-ac2c0a79f780",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.261942"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "33289a58-2bac-4f11-b44e-fd002b9a8b72",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.261946"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "715bb4a7-6178-4aa1-b1b4-366c61171edc",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:12.261961"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "bffea6b9-1a47-45c8-92a7-d72509fd5589",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.261965"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Tail"
+            },
+            "action_description": {
+              "value": "+10, reach 15 ft. Hit: 25 (4d8 + 7) Bludgeoning damage. If the target is a Huge or smaller creature, it has the Prone condition."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 10
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 4
+                                  },
+                                  "dice_type": {
+                                    "value": "d8"
+                                  },
+                                  "constant": {
+                                    "value": 7
+                                  },
+                                  "id": "03688f53-3d9e-4ece-a360-79e57e5ee14e",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.262025"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "5e3140e3-451b-4aa6-95d5-a58995e0dc25",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.262029"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "57dc2a1a-608f-4ddc-826a-378de67e1e14",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:12.262038"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "0ea217c2-75c4-41f8-ad5d-29c0680f52a2",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.262042"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "grassland"
+      ]
+    },
+    "treasure": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2025-04-28T21:51:12.262047"
+    }
+  }
+}

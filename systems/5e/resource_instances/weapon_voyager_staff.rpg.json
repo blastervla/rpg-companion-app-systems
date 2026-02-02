@@ -1,1 +1,582 @@
-{"resource_id":"weapon","stats":{"name":{"value":"Voyager Staff"},"source":{"value":"ggr"},"description":{"value":"(requires attunement by a spellcaster)\n\nYou gain a +1 bonus to attack and damage rolls made with this magic quarterstaff. While you hold it, you gain a +1 bonus to spell attack rolls.\n\nThis staff has 10 charges. While holding it, you can use an action to expend 1 or more of the staff's charges to cast one of the following spells from it, using your spell save DC: banishment (4 charges), blink (3 charges), misty step (2 charges), passwall (5 charges), or teleport (7 charges).\n\nThe staff regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff vanishes forever"},"cost":{"value":{"resource_id":"cost","stats":{"unit":{"value":"gold"},"id":"0356d149-cdce-476c-8f55-525519314d07"}}},"weight":{"value":{"resource_id":"weight","stats":{"value":{"value":4},"id":"ba84d09c-a020-415b-a783-b40bb774e126"}}},"type":{"value":"quarterstaff"},"rarity":{"value":"very_rare"},"requires_attunement":{"value":true},"extra_attack_bonus":{"value":1},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d6"},"constant":{"value":1},"id":"d778f501-01be-42f4-b683-40f92b796dc9"}}]},"damage_type":{"value":"bludgeoning"},"id":"6b9f31ea-d8ff-46ac-a011-49e63ad62bd6"}}]},"is_versatile":{"value":true},"versatile_damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d8"},"constant":{"value":1},"id":"f3db1a2d-2334-4025-98da-aac87496003c"}}]},"damage_type":{"value":"bludgeoning"},"id":"1eba2aae-8963-455a-86a2-62659c36681e"}}]},"effects":{"value":[{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"9909d052-a3ec-41ea-9c9d-c7f3ffe02d9f"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.spell_attack_extra_bonus"},"constant":{"value":1},"id":"f230d1f6-a71b-4001-bd02-a9888ffa3cd5"}},{"resource_id":"effect","stats":{"name":{"value":"Charges"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"6d09b6a4-990b-4cf8-b64c-d462b914bac8"}}},"has_charges":{"value":true},"recharge_type":{"value":"formula"},"recharge_event":{"value":"dawn"},"max_charges_constant":{"value":10},"recharges":{"value":{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d6"},"constant":{"value":4},"id":"fe68daba-7a2a-4c36-8f68-96101da117ce"}}},"id":"f0eaea6c-269b-437b-b98e-5b5e67201e4e"}},{"resource_id":"effect","stats":{"name":{"value":"Cast banishment (4 charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"e022d06a-dce9-40d1-84fb-d1dd0976bb9d"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Banishment"},"source":{"value":"phb"},"level":{"value":"spell_level_4"},"casting_time":{"value":"1 action"},"range":{"value":"60 feet"},"duration":{"value":"Concentration, up to 1 minute"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"an item distasteful to the target"},"description":{"value":"You attempt to send one creature that you can see within range to another plane of existence. The target must succeed on a Charisma saving throw or be banished.\n\nIf the target is native to the plane of existance you're on, you banish the target to a harmless demiplane. While there, the target is incapacitated. The target remains there until the spell ends, at which point the target reappears in the space it left or in the nearest unoccupied space if that space is occupied.\n\nIf the target is native to a different plane of existance than the one you're on, the target is banished with a faint popping noise, returning to its home plane. If the spell ends before 1 minute has passed, the target reappears in the space it left or in the nearest unoccupied space if that space is occupied. Otherwise, the target doesn't return."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 5th level or higher, you can target one additional creature for each slot level above 4th."},"classes":{"value":["cleric","paladin","sorcerer","warlock","blood_hunter","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.628185"},"id":"afe63138-1748-4148-a1f0-351aa0d5a331"}}},"id":"136558c4-3c65-4c1c-b678-4d485656d394"}},{"resource_id":"effect","stats":{"name":{"value":"Cast blink (3 charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"eb81d0d5-7aea-43e5-bc2b-1813585f84a7"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Blink"},"source":{"value":"phb"},"level":{"value":"spell_level_3"},"school":{"value":"spell_school_transmutation"},"casting_time":{"value":"1 action"},"range":{"value":"Self"},"duration":{"value":"1 minute"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"Roll a d20 at the end of each of your turns for the duration of the spell. On a roll of 11 or higher, you vanish from your current plane of existence and appear in the Ethereal Plane (the spell fails and the casting is wasted if you were already on that plane). At the start of your next turn, and when the spell ends if you are on the Ethereal Plane, you return to an unoccupied space of your choice that you can see within 10 feet of the space you vanished from. If no unoccupied space is available within that range, you appear in the nearest unoccupied space (chosen at random if more than one space is equally near). You can dismiss this spell as an action.\n\nWhile on the Ethereal Plane, you can see and hear the plane you originated from, which is cast in shades of gray, and you can’t see anything there more than 60 feet away. You can only affect and be affected by other creatures on the Ethereal Plane. Creatures that aren’t there can’t perceive you or interact with you, unless they have the ability to do so."},"classes":{"value":["artificer","artificer__eb_","artificer__revised_","sorcerer","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.629435"},"id":"f102d167-282b-4857-b533-e0ecd76bc7a0"}}},"id":"a469c25e-d18c-4dc8-bb96-8662b08a0f1a"}},{"resource_id":"effect","stats":{"name":{"value":"Cast misty step (2 charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"269b6845-5d05-4087-b371-ba2fac6b153a"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Misty Step"},"source":{"value":"phb"},"level":{"value":"spell_level_2"},"school":{"value":"spell_school_conjuration"},"casting_time":{"value":"1 bonus action"},"range":{"value":"Self"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"description":{"value":"Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space that you can see."},"classes":{"value":["sorcerer","warlock","blood_hunter","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.659108"},"id":"9bf2302d-0e02-4e02-b3ef-b00000c2730d"}}},"id":"ab95f10a-0a2f-4f56-ab14-4982a68c274e"}},{"resource_id":"effect","stats":{"name":{"value":"Cast passwall (5 charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"32f19dec-48fe-4d10-b3ae-8fa1d8a344be"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Passwall"},"source":{"value":"phb"},"level":{"value":"spell_level_5"},"school":{"value":"spell_school_transmutation"},"casting_time":{"value":"1 action"},"range":{"value":"30 feet"},"duration":{"value":"1 hour"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a pinch of sesame seeds"},"description":{"value":"A Passage appears at a point of your choice that you can see on a wooden, plaster, or stone surface (such as a wall, a ceiling, or a floor) within range, and lasts for the Duration. You choose the opening's dimensions - up to 5 feet wide, 8 feet tall, and 20 feet deep. The Passage creates no instability in a structure surrounding it.\n\nWhen the opening disappears, any creatures or Objects still in the Passage created by the spell are safely ejected to an unoccupied space nearest to the surface on which you cast the spell"},"classes":{"value":["fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.661130"},"id":"ed0d9352-13c2-4c89-8f54-1082852ec39f"}}},"id":"19ee184a-73de-4a20-b8c0-06dfc96cdc25"}},{"resource_id":"effect","stats":{"name":{"value":"Cast teleport (7 charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"e7c68740-029e-4368-be7c-490aa3544510"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Teleport"},"source":{"value":"phb"},"level":{"value":"spell_level_7"},"school":{"value":"spell_school_conjuration"},"casting_time":{"value":"1 action"},"range":{"value":"10 feet"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"description":{"value":"This spell instantly transports you and up to eight willing creatures of your choice that you can see within range, or a single object, that you can see within range, to a destination you select. If you target an object, it must be able to fit entirely inside a 10-foot cube, and it can't be held or carried by an unwilling creature.\n\nThe destination you choose must be known to you, and it must be on the same plane of existence as you. Your familiarity with the destination determines whether you arrive there successfully. The GM rolls d100 and consults the table.\n\n| Familiarity       | Mishap | Simliar Area | Off Target | On Target |\n\n|-------------------|--------|--------------|------------|-----------|\n\n| Permanent circle  |  ---   |      ---     |     ---    |   01-100  |\n\n| Associated object |  ---   |      ---     |     ---    |   01-100  |\n\n| Very familiar     | 01-05  |     06-13    |    14-24   |   25-100  |\n\n| Seen casually     | 01-33  |     34-43    |    44-53   |   54-100  |\n\n| Viewed once       | 01-43  |     44-53    |    54-73   |   74-100  |\n\n| Description       | 01-43  |     44-53    |    54-73   |   74-100  |\n\n| False destination | 01-50  |    51-100    |     ---    |    ---    |\n\n\"Very familiar\" is a place you have been very often, a place you have carefully studied, or a place you can see when you cast the spell. \"Seen casually\" is someplace you have seen more than once but with which you aren't very familiar. \"Viewed once\" is a place you have seen once, possibly using magic. \"Description\" is a place whose location and appearance you know through someone else's description, perhaps from a map.\n\n\"False destination\" is a place that doesn't exist. Perhaps you tried to scry an enemy's sanctum but instead view an illusion, or you were attempting to teleport to a familiar location that no longer exists."},"classes":{"value":["bard","sorcerer","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.646218"},"id":"ff2ae1ca-5c16-4937-9d84-63621fcf7a95"}}},"id":"664e1f0d-4939-4e8c-9445-c0cbd5e0254a"}}]},"id":"c78fb27a-0e45-440b-8dbe-c155cb5a205d"}}
+{
+  "resource_id": "weapon",
+  "stats": {
+    "name": {
+      "value": "Voyager Staff"
+    },
+    "source": {
+      "value": "ggr"
+    },
+    "description": {
+      "value": "(requires attunement by a spellcaster)\n\nYou gain a +1 bonus to attack and damage rolls made with this magic quarterstaff. While you hold it, you gain a +1 bonus to spell attack rolls.\n\nThis staff has 10 charges. While holding it, you can use an action to expend 1 or more of the staff's charges to cast one of the following spells from it, using your spell save DC: banishment (4 charges), blink (3 charges), misty step (2 charges), passwall (5 charges), or teleport (7 charges).\n\nThe staff regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff vanishes forever"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "unit": {
+            "value": "gold"
+          },
+          "id": "0356d149-cdce-476c-8f55-525519314d07"
+        }
+      }
+    },
+    "weight": {
+      "value": {
+        "resource_id": "weight",
+        "stats": {
+          "value": {
+            "value": 4
+          },
+          "id": "ba84d09c-a020-415b-a783-b40bb774e126"
+        }
+      }
+    },
+    "type": {
+      "value": "quarterstaff"
+    },
+    "rarity": {
+      "value": "very_rare"
+    },
+    "requires_attunement": {
+      "value": true
+    },
+    "extra_attack_bonus": {
+      "value": 1
+    },
+    "damage_dice": {
+      "value": [
+        {
+          "resource_id": "damage_dice",
+          "stats": {
+            "dices": {
+              "value": [
+                {
+                  "resource_id": "dice_roll",
+                  "stats": {
+                    "dice_amount": {
+                      "value": 1
+                    },
+                    "dice_type": {
+                      "value": "d6"
+                    },
+                    "constant": {
+                      "value": 1
+                    },
+                    "id": "d778f501-01be-42f4-b683-40f92b796dc9"
+                  }
+                }
+              ]
+            },
+            "damage_type": {
+              "value": "bludgeoning"
+            },
+            "id": "6b9f31ea-d8ff-46ac-a011-49e63ad62bd6"
+          }
+        }
+      ]
+    },
+    "is_versatile": {
+      "value": true
+    },
+    "versatile_damage_dice": {
+      "value": [
+        {
+          "resource_id": "damage_dice",
+          "stats": {
+            "dices": {
+              "value": [
+                {
+                  "resource_id": "dice_roll",
+                  "stats": {
+                    "dice_amount": {
+                      "value": 1
+                    },
+                    "dice_type": {
+                      "value": "d8"
+                    },
+                    "constant": {
+                      "value": 1
+                    },
+                    "id": "f3db1a2d-2334-4025-98da-aac87496003c"
+                  }
+                }
+              ]
+            },
+            "damage_type": {
+              "value": "bludgeoning"
+            },
+            "id": "1eba2aae-8963-455a-86a2-62659c36681e"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "9909d052-a3ec-41ea-9c9d-c7f3ffe02d9f"
+                }
+              }
+            },
+            "type": {
+              "value": "add_to_stat"
+            },
+            "stat": {
+              "value": "$character.spell_attack_extra_bonus"
+            },
+            "constant": {
+              "value": 1
+            },
+            "id": "f230d1f6-a71b-4001-bd02-a9888ffa3cd5"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Charges"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "6d09b6a4-990b-4cf8-b64c-d462b914bac8"
+                }
+              }
+            },
+            "has_charges": {
+              "value": true
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharge_event": {
+              "value": "dawn"
+            },
+            "max_charges_constant": {
+              "value": 10
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "dice_amount": {
+                    "value": 1
+                  },
+                  "dice_type": {
+                    "value": "d6"
+                  },
+                  "constant": {
+                    "value": 4
+                  },
+                  "id": "fe68daba-7a2a-4c36-8f68-96101da117ce"
+                }
+              }
+            },
+            "id": "f0eaea6c-269b-437b-b98e-5b5e67201e4e"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast banishment (4 charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "e022d06a-dce9-40d1-84fb-d1dd0976bb9d"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Banishment"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_4"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "60 feet"
+                  },
+                  "duration": {
+                    "value": "Concentration, up to 1 minute"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "an item distasteful to the target"
+                  },
+                  "description": {
+                    "value": "You attempt to send one creature that you can see within range to another plane of existence. The target must succeed on a Charisma saving throw or be banished.\n\nIf the target is native to the plane of existance you're on, you banish the target to a harmless demiplane. While there, the target is incapacitated. The target remains there until the spell ends, at which point the target reappears in the space it left or in the nearest unoccupied space if that space is occupied.\n\nIf the target is native to a different plane of existance than the one you're on, the target is banished with a faint popping noise, returning to its home plane. If the spell ends before 1 minute has passed, the target reappears in the space it left or in the nearest unoccupied space if that space is occupied. Otherwise, the target doesn't return."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 5th level or higher, you can target one additional creature for each slot level above 4th."
+                  },
+                  "classes": {
+                    "value": [
+                      "cleric",
+                      "paladin",
+                      "sorcerer",
+                      "warlock",
+                      "blood_hunter",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.628185"
+                  },
+                  "id": "afe63138-1748-4148-a1f0-351aa0d5a331"
+                }
+              }
+            },
+            "id": "136558c4-3c65-4c1c-b678-4d485656d394"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast blink (3 charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "eb81d0d5-7aea-43e5-bc2b-1813585f84a7"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Blink"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_3"
+                  },
+                  "school": {
+                    "value": "spell_school_transmutation"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "Self"
+                  },
+                  "duration": {
+                    "value": "1 minute"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "Roll a d20 at the end of each of your turns for the duration of the spell. On a roll of 11 or higher, you vanish from your current plane of existence and appear in the Ethereal Plane (the spell fails and the casting is wasted if you were already on that plane). At the start of your next turn, and when the spell ends if you are on the Ethereal Plane, you return to an unoccupied space of your choice that you can see within 10 feet of the space you vanished from. If no unoccupied space is available within that range, you appear in the nearest unoccupied space (chosen at random if more than one space is equally near). You can dismiss this spell as an action.\n\nWhile on the Ethereal Plane, you can see and hear the plane you originated from, which is cast in shades of gray, and you can\u2019t see anything there more than 60 feet away. You can only affect and be affected by other creatures on the Ethereal Plane. Creatures that aren\u2019t there can\u2019t perceive you or interact with you, unless they have the ability to do so."
+                  },
+                  "classes": {
+                    "value": [
+                      "artificer",
+                      "artificer__eb_",
+                      "artificer__revised_",
+                      "sorcerer",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.629435"
+                  },
+                  "id": "f102d167-282b-4857-b533-e0ecd76bc7a0"
+                }
+              }
+            },
+            "id": "a469c25e-d18c-4dc8-bb96-8662b08a0f1a"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast misty step (2 charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "269b6845-5d05-4087-b371-ba2fac6b153a"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Misty Step"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_2"
+                  },
+                  "school": {
+                    "value": "spell_school_conjuration"
+                  },
+                  "casting_time": {
+                    "value": "1 bonus action"
+                  },
+                  "range": {
+                    "value": "Self"
+                  },
+                  "duration": {
+                    "value": "Instantaneous"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space that you can see."
+                  },
+                  "classes": {
+                    "value": [
+                      "sorcerer",
+                      "warlock",
+                      "blood_hunter",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.659108"
+                  },
+                  "id": "9bf2302d-0e02-4e02-b3ef-b00000c2730d"
+                }
+              }
+            },
+            "id": "ab95f10a-0a2f-4f56-ab14-4982a68c274e"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast passwall (5 charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "32f19dec-48fe-4d10-b3ae-8fa1d8a344be"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Passwall"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_5"
+                  },
+                  "school": {
+                    "value": "spell_school_transmutation"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "30 feet"
+                  },
+                  "duration": {
+                    "value": "1 hour"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a pinch of sesame seeds"
+                  },
+                  "description": {
+                    "value": "A Passage appears at a point of your choice that you can see on a wooden, plaster, or stone surface (such as a wall, a ceiling, or a floor) within range, and lasts for the Duration. You choose the opening's dimensions - up to 5 feet wide, 8 feet tall, and 20 feet deep. The Passage creates no instability in a structure surrounding it.\n\nWhen the opening disappears, any creatures or Objects still in the Passage created by the spell are safely ejected to an unoccupied space nearest to the surface on which you cast the spell"
+                  },
+                  "classes": {
+                    "value": [
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.661130"
+                  },
+                  "id": "ed0d9352-13c2-4c89-8f54-1082852ec39f"
+                }
+              }
+            },
+            "id": "19ee184a-73de-4a20-b8c0-06dfc96cdc25"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast teleport (7 charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "e7c68740-029e-4368-be7c-490aa3544510"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Teleport"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_7"
+                  },
+                  "school": {
+                    "value": "spell_school_conjuration"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "10 feet"
+                  },
+                  "duration": {
+                    "value": "Instantaneous"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "This spell instantly transports you and up to eight willing creatures of your choice that you can see within range, or a single object, that you can see within range, to a destination you select. If you target an object, it must be able to fit entirely inside a 10-foot cube, and it can't be held or carried by an unwilling creature.\n\nThe destination you choose must be known to you, and it must be on the same plane of existence as you. Your familiarity with the destination determines whether you arrive there successfully. The GM rolls d100 and consults the table.\n\n| Familiarity       | Mishap | Simliar Area | Off Target | On Target |\n\n|-------------------|--------|--------------|------------|-----------|\n\n| Permanent circle  |  ---   |      ---     |     ---    |   01-100  |\n\n| Associated object |  ---   |      ---     |     ---    |   01-100  |\n\n| Very familiar     | 01-05  |     06-13    |    14-24   |   25-100  |\n\n| Seen casually     | 01-33  |     34-43    |    44-53   |   54-100  |\n\n| Viewed once       | 01-43  |     44-53    |    54-73   |   74-100  |\n\n| Description       | 01-43  |     44-53    |    54-73   |   74-100  |\n\n| False destination | 01-50  |    51-100    |     ---    |    ---    |\n\n\"Very familiar\" is a place you have been very often, a place you have carefully studied, or a place you can see when you cast the spell. \"Seen casually\" is someplace you have seen more than once but with which you aren't very familiar. \"Viewed once\" is a place you have seen once, possibly using magic. \"Description\" is a place whose location and appearance you know through someone else's description, perhaps from a map.\n\n\"False destination\" is a place that doesn't exist. Perhaps you tried to scry an enemy's sanctum but instead view an illusion, or you were attempting to teleport to a familiar location that no longer exists."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "sorcerer",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.646218"
+                  },
+                  "id": "ff2ae1ca-5c16-4937-9d84-63621fcf7a95"
+                }
+              }
+            },
+            "id": "664e1f0d-4939-4e8c-9445-c0cbd5e0254a"
+          }
+        }
+      ]
+    },
+    "id": "c78fb27a-0e45-440b-8dbe-c155cb5a205d"
+  }
+}

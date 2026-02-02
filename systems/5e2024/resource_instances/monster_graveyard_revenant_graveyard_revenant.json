@@ -1,1 +1,339 @@
-{"resource_id": "monster", "stats": {"id": "graveyard_revenant", "name": {"value": "Graveyard Revenant"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/graveyard_revenant.png"}}, "source": {"value": "mm"}, "tag": {"value": ""}, "armor_class": {"value": 14}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 14}, "dice_type": {"value": "d12"}, "constant": {"value": 70}, "id": "538fdffb-485c-4ea0-9466-80a299942366", "updated_at": {"value": "2025-04-28T21:51:12.094207"}}}}, "cr": {"value": "cr_7"}, "xp": {"value": 2900}, "initiative": {"value": 2}, "speed": {"value": 40}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 0}, "fly_speed": {"value": 0}, "swim_speed": {"value": 0}, "strength_score": {"value": 20}, "dexterity_score": {"value": 14}, "constitution_score": {"value": 20}, "intelligence_score": {"value": 13}, "wisdom_score": {"value": 16}, "charisma_score": {"value": 18}, "strength_saving_throw_modifier": {"value": 8}, "dexterity_saving_throw_modifier": {"value": 2}, "constitution_saving_throw_modifier": {"value": 8}, "intelligence_saving_throw_modifier": {"value": 1}, "wisdom_saving_throw_modifier": {"value": 6}, "charisma_saving_throw_modifier": {"value": 7}, "skills": {"value": ""}, "gear": {"value": ""}, "vulnerabilities": {"value": ""}, "immunities": {"value": "Poison,Charmed, Exhaustion, Frightened, Paralyzed, Petrified, Poisoned, Stunned, Unconscious"}, "resistances": {"value": "Necrotic, Psychic"}, "senses": {"value": "Passive Perception 13, Darkvision 120 ft."}, "languages": {"value": "Common plus two other languages"}, "size": {"value": "huge"}, "type": {"value": "undead"}, "alignment": {"value": "true_neutral"}, "traits": {"value": [{"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Undead Restoration"}, "trait_description": {"value": "If the revenant dies, it revives 24 hours later unless Dispel Evil and Good is cast on its remains. If it revives, it animates another group of corpses elsewhere on the same plane of existence; it now looks different but uses the same stat block and returns with all its Hit Points."}, "id": "7ba72c61-0ed3-44b3-8c43-fd47086c5c4d", "updated_at": {"value": "2025-04-28T21:51:12.094316"}}}]}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Multiattack"}, "action_description": {"value": "The revenant makes two Suffocate attacks."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "9fb3d3cf-4b10-4253-b165-e7fe9029e9a2", "updated_at": {"value": "2025-04-28T21:51:12.094383"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Suffocate"}, "action_description": {"value": "+8, reach 10 ft. Hit: 10 (1d10 + 5) Bludgeoning damage plus 10 (3d6) Necrotic damage. If the target is a Large or smaller creature, it has the Grappled condition (escape DC 15). Until the grapple ends, the target is suffocating. The revenant can have up to two targets Grappled in this way at a time."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 8}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "bludgeoning"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 1}, "dice_type": {"value": "d10"}, "constant": {"value": 5}, "id": "ef61bb75-45d7-47c4-9e24-4bd300e8cd5e", "updated_at": {"value": "2025-04-28T21:51:12.094468"}}}}, "id": "ca6e79cf-c03f-401e-894b-6bf473f30976", "updated_at": {"value": "2025-04-28T21:51:12.094473"}}}, {"resource_id": "damage_dice", "stats": {"damage_type": {"value": "necrotic"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 3}, "dice_type": {"value": "d6"}, "constant": {"value": 0}, "id": "bbc27e56-2964-4a2b-a411-2377c8845005", "updated_at": {"value": "2025-04-28T21:51:12.094481"}}}}, "id": "d4295bb3-a15e-4ecc-bbc0-01f671fa1d27", "updated_at": {"value": "2025-04-28T21:51:12.094485"}}}]}, "id": "2829d7be-862c-444f-aaa9-8b56cabf83ed", "updated_at": {"value": "2025-04-28T21:51:12.094502"}}}]}, "id": "41a94e17-6f66-4ee4-a0e1-4a31ff507d47", "updated_at": {"value": "2025-04-28T21:51:12.094506"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Haunting Glare (Recharge 5-6)"}, "action_description": {"value": "Wisdom Saving Throw: DC 15, each creature in a 30-foot Emanation originating from the revenant. Failure: The target has the Paralyzed condition and repeats the save at the end of each of its turns, ending the effect on itself on a success. After 1 minute, it succeeds automatically."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "9e8c7e07-16b7-4b09-85e2-3a966ffd23f5", "updated_at": {"value": "2025-04-28T21:51:12.094585"}}}]}, "bonus_actions": {"value": []}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["forest", "swamp", "urban"]}, "treasure": {"value": ["arcana", "armaments", "implements", "relics"]}, "updated_at": {"value": "2025-04-28T21:51:12.094593"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "graveyard_revenant",
+    "name": {
+      "value": "Graveyard Revenant"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/graveyard_revenant.png"
+      }
+    },
+    "source": {
+      "value": "mm"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 14
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 14
+          },
+          "dice_type": {
+            "value": "d12"
+          },
+          "constant": {
+            "value": 70
+          },
+          "id": "538fdffb-485c-4ea0-9466-80a299942366",
+          "updated_at": {
+            "value": "2025-04-28T21:51:12.094207"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_7"
+    },
+    "xp": {
+      "value": 2900
+    },
+    "initiative": {
+      "value": 2
+    },
+    "speed": {
+      "value": 40
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_score": {
+      "value": 20
+    },
+    "dexterity_score": {
+      "value": 14
+    },
+    "constitution_score": {
+      "value": 20
+    },
+    "intelligence_score": {
+      "value": 13
+    },
+    "wisdom_score": {
+      "value": 16
+    },
+    "charisma_score": {
+      "value": 18
+    },
+    "strength_saving_throw_modifier": {
+      "value": 8
+    },
+    "dexterity_saving_throw_modifier": {
+      "value": 2
+    },
+    "constitution_saving_throw_modifier": {
+      "value": 8
+    },
+    "intelligence_saving_throw_modifier": {
+      "value": 1
+    },
+    "wisdom_saving_throw_modifier": {
+      "value": 6
+    },
+    "charisma_saving_throw_modifier": {
+      "value": 7
+    },
+    "skills": {
+      "value": ""
+    },
+    "gear": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Poison,Charmed, Exhaustion, Frightened, Paralyzed, Petrified, Poisoned, Stunned, Unconscious"
+    },
+    "resistances": {
+      "value": "Necrotic, Psychic"
+    },
+    "senses": {
+      "value": "Passive Perception 13, Darkvision 120 ft."
+    },
+    "languages": {
+      "value": "Common plus two other languages"
+    },
+    "size": {
+      "value": "huge"
+    },
+    "type": {
+      "value": "undead"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Undead Restoration"
+            },
+            "trait_description": {
+              "value": "If the revenant dies, it revives 24 hours later unless Dispel Evil and Good is cast on its remains. If it revives, it animates another group of corpses elsewhere on the same plane of existence; it now looks different but uses the same stat block and returns with all its Hit Points."
+            },
+            "id": "7ba72c61-0ed3-44b3-8c43-fd47086c5c4d",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.094316"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Multiattack"
+            },
+            "action_description": {
+              "value": "The revenant makes two Suffocate attacks."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "9fb3d3cf-4b10-4253-b165-e7fe9029e9a2",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.094383"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Suffocate"
+            },
+            "action_description": {
+              "value": "+8, reach 10 ft. Hit: 10 (1d10 + 5) Bludgeoning damage plus 10 (3d6) Necrotic damage. If the target is a Large or smaller creature, it has the Grappled condition (escape DC 15). Until the grapple ends, the target is suffocating. The revenant can have up to two targets Grappled in this way at a time."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 8
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 1
+                                  },
+                                  "dice_type": {
+                                    "value": "d10"
+                                  },
+                                  "constant": {
+                                    "value": 5
+                                  },
+                                  "id": "ef61bb75-45d7-47c4-9e24-4bd300e8cd5e",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.094468"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "ca6e79cf-c03f-401e-894b-6bf473f30976",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.094473"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "necrotic"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 3
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 0
+                                  },
+                                  "id": "bbc27e56-2964-4a2b-a411-2377c8845005",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.094481"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "d4295bb3-a15e-4ecc-bbc0-01f671fa1d27",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.094485"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "2829d7be-862c-444f-aaa9-8b56cabf83ed",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:12.094502"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "41a94e17-6f66-4ee4-a0e1-4a31ff507d47",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.094506"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Haunting Glare (Recharge 5-6)"
+            },
+            "action_description": {
+              "value": "Wisdom Saving Throw: DC 15, each creature in a 30-foot Emanation originating from the revenant. Failure: The target has the Paralyzed condition and repeats the save at the end of each of its turns, ending the effect on itself on a success. After 1 minute, it succeeds automatically."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "9e8c7e07-16b7-4b09-85e2-3a966ffd23f5",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.094585"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "forest",
+        "swamp",
+        "urban"
+      ]
+    },
+    "treasure": {
+      "value": [
+        "arcana",
+        "armaments",
+        "implements",
+        "relics"
+      ]
+    },
+    "updated_at": {
+      "value": "2025-04-28T21:51:12.094593"
+    }
+  }
+}

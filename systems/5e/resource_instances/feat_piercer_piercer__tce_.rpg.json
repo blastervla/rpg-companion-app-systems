@@ -1,1 +1,251 @@
-{"resource_id":"feat","stats":{"name":{"value":"Piercer"},"source":{"value":"tce"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"You have achieved a penetrating precision in combat, granting you the following benefits:\n\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n\n- Once per turn, when you hit a creature with an attack that deals piercing damage, you can reroll one of the attack's damage dice, and you must use the new roll.\n\n- When you score a critical hit that deals piercing damage to a creature, you can roll one additional damage die when determining the extra piercing damage the target takes"},"updated_at":{"value":"2024-12-20T18:50:28.424983"},"id":"602a4593-6d4b-4e7b-93dd-2134bd3b4b58"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Piercing Damage Re-Roll"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"d231a84a-bb61-490e-8be1-75b35202219c"}}},"id":"2670394f-d4f3-4247-a27a-0d300a7b6b12"}}},"id":"e5451ece-f57d-4b31-9721-90d833ce1dad"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Piercing Critical Hit"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"bfcb1f5f-919c-482b-ad2d-403ad243a6fe"}}},"id":"ba9cfd03-9ec3-4b4c-8fbe-5dea721a5657"}}},"id":"57902820-9808-4ec1-8efd-a9affa158412"}}]},"selectable_feature_amount_per_level":{"value":[{"resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"d51f5fe5-62ef-4535-9a3d-33292995b6e1"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Str Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"7ca9f6f9-e911-4070-a18d-8f0d99829d88"}}]},"id":"bd327fdd-1354-49f0-96ab-55312e427d03"}}]},"id":"6b4bb60f-28a9-43a2-8105-96bc7a188dd2"}}},"type":{"value":"add_to_stat"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"6afd995f-4f89-4aa6-b5a2-02a3d23e5a71"}}},"id":"bad17376-fc7d-4787-a22c-a9fe5cf82b5c"}}]},"id":"07d91931-39dd-458c-b595-075b09a2f992"}},{"resource_id":"feat","stats":{"name":{"value":"Dex Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.dexterity_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"72ce4c5a-ebd2-4c59-8300-d353eccd6163"}}]},"id":"292c2786-3d61-4c10-af14-0f8d251f11fd"}}]},"id":"71ff4124-1052-42f0-a9c1-bda9a94075fb"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.dexterity_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"bd97dded-98a6-43bc-8ffd-713183d99bf3"}}},"id":"09ef8f99-de01-461a-ba87-38b0bd2d59a8"}}]},"id":"43481e92-0bda-4adf-82ac-5bfc30e731c2"}}]},"updated_at":{"value":"2024-12-20T18:50:28.424985"},"id":"piercer__tce_"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Piercer"
+    },
+    "source": {
+      "value": "tce"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "You have achieved a penetrating precision in combat, granting you the following benefits:\n\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n\n- Once per turn, when you hit a creature with an attack that deals piercing damage, you can reroll one of the attack's damage dice, and you must use the new roll.\n\n- When you score a critical hit that deals piercing damage to a creature, you can roll one additional damage die when determining the extra piercing damage the target takes"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.424983"
+            },
+            "id": "602a4593-6d4b-4e7b-93dd-2134bd3b4b58"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Piercing Damage Re-Roll"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "d231a84a-bb61-490e-8be1-75b35202219c"
+                      }
+                    }
+                  },
+                  "id": "2670394f-d4f3-4247-a27a-0d300a7b6b12"
+                }
+              }
+            },
+            "id": "e5451ece-f57d-4b31-9721-90d833ce1dad"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Piercing Critical Hit"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "bfcb1f5f-919c-482b-ad2d-403ad243a6fe"
+                      }
+                    }
+                  },
+                  "id": "ba9cfd03-9ec3-4b4c-8fbe-5dea721a5657"
+                }
+              }
+            },
+            "id": "57902820-9808-4ec1-8efd-a9affa158412"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "d51f5fe5-62ef-4535-9a3d-33292995b6e1"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Str Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "7ca9f6f9-e911-4070-a18d-8f0d99829d88"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "bd327fdd-1354-49f0-96ab-55312e427d03"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "6b4bb60f-28a9-43a2-8105-96bc7a188dd2"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "6afd995f-4f89-4aa6-b5a2-02a3d23e5a71"
+                        }
+                      }
+                    },
+                    "id": "bad17376-fc7d-4787-a22c-a9fe5cf82b5c"
+                  }
+                }
+              ]
+            },
+            "id": "07d91931-39dd-458c-b595-075b09a2f992"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Dex Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.dexterity_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "72ce4c5a-ebd2-4c59-8300-d353eccd6163"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "292c2786-3d61-4c10-af14-0f8d251f11fd"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "71ff4124-1052-42f0-a9c1-bda9a94075fb"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.dexterity_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "bd97dded-98a6-43bc-8ffd-713183d99bf3"
+                        }
+                      }
+                    },
+                    "id": "09ef8f99-de01-461a-ba87-38b0bd2d59a8"
+                  }
+                }
+              ]
+            },
+            "id": "43481e92-0bda-4adf-82ac-5bfc30e731c2"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.424985"
+    },
+    "id": "piercer__tce_"
+  }
+}

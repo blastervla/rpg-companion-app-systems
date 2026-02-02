@@ -1,1 +1,757 @@
-{"resource_id":"race","stats":{"name":{"value":"Githzerai"},"source":{"value":"mom"},"same_ac_as_parent":{"value":false},"ability_score_increases":{"value":[{"resource_id":"ability_score_increase","stats":{"modifier_options":{"value":["strength","dexterity","constitution","intelligence","wisdom","charisma"]},"updated_at":{"value":"2024-12-20T18:50:53.826837"},"id":"a49b3108-6f65-4eb5-83f1-2688d56ab42c"}},{"resource_id":"ability_score_increase","stats":{"modifier_options":{"value":["strength","dexterity","constitution","intelligence","wisdom","charisma"]},"id":"9ee95f7f-2a5a-4f3f-9ee2-246c2efa3b2b"}},{"resource_id":"ability_score_increase","stats":{"modifier_options":{"value":["strength","dexterity","constitution","intelligence","wisdom","charisma"]},"id":"059182f0-c0fb-4f2f-a635-26068045dd07"}}]},"traits":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Githzerai Psionics"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"You know the mage hand cantrip, and the hand is invisible when you cast the cantrip with this trait.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race). None of these spells require spell components when you cast them with this trait"},"updated_at":{"value":"2024-12-20T18:50:53.826869"},"id":"cc7d1827-81e8-4283-84bb-8ee6a3124aaf"}},{"resource_id":"levelled_description","stats":{"level":{"value":3},"description":{"value":"You know the mage hand cantrip, and the hand is invisible when you cast the cantrip with this trait.\nStarting at 3rd level, you can cast the shield spell with this trait. Once you cast shield with this trait, you can't do so again until you finish a long rest. You can also cast it using any spell slots you have of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race). None of these spells require spell components when you cast them with this trait"},"updated_at":{"value":"2024-12-20T18:50:53.826875"},"id":"0a476be5-a6cc-4fb9-8e96-04be46d692e2"}},{"resource_id":"levelled_description","stats":{"level":{"value":5},"description":{"value":"You know the mage hand cantrip, and the hand is invisible when you cast the cantrip with this trait.\nStarting at 3rd level, you can cast the shield spell with this trait. Starting at 5th level, you can also cast the detect thoughts spell with it. Once you cast shield or detect thoughts with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race). None of these spells require spell components when you cast them with this trait"},"updated_at":{"value":"2024-12-20T18:50:53.826880"},"id":"e19b3530-73ed-4d4c-871d-1f3da3c43ad2"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"level":{"value":3},"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Cast shield"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"c951ffd3-b605-4cbd-b1d8-3c43d31710c5"}}},"has_charges":{"value":true},"max_charges_constant":{"value":1},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Shield"},"source":{"value":"phb"},"level":{"value":"spell_level_1"},"casting_time":{"value":"1 reaction, which you take when you are hit by an attack or targeted by the magic missile spell"},"range":{"value":"Self"},"duration":{"value":"1 round"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"An invisible barrier of magical force appears and protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile."},"classes":{"value":["sorcerer","fighter","rogue","wizard"]},"dice":{"value":[]},"effects":{"value":[{"resource_id":"effect","stats":{"name":{"value":"AC Boost"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"0be25590-3184-4183-b6e1-013f8df179b8"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.armor_class"},"aggregation_type":{"value":"sum"},"constant":{"value":5},"id":"eeb9147e-8389-4300-87e4-4999ff5da33d"}}]},"updated_at":{"value":"2024-12-20T18:50:46.621793"},"id":"441d01d5-bd36-4f32-8dc9-fedf473b7e10"}}},"id":"65071c28-ba6b-4848-9a44-40c6661c7987"}}},"id":"daf11c92-4bfd-4b1e-8580-9e12fb6b0686"}},{"resource_id":"levelled_effect","stats":{"level":{"value":5},"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Cast detect thoughts"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"41564dd4-2d7e-475b-84d7-4b9c1588789b"}}},"has_charges":{"value":true},"max_charges_constant":{"value":1},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Detect Thoughts"},"source":{"value":"phb"},"level":{"value":"spell_level_2"},"school":{"value":"spell_school_divination"},"casting_time":{"value":"1 action"},"range":{"value":"self"},"duration":{"value":"Concentration, up to 1 minute"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a copper piece"},"description":{"value":"For the duration, you can read the thoughts of certain creatures. When you cast the spell and as your action on each turn until the spell ends, you can focus your mind on any one creature that you can see within 30 feet of you. If the creature you choose has an Intelligence of 3 or lower or doesn’t speak any language, the creature is unaffected.\n\nYou initially learn the surface thoughts of the creature—what is most on its mind in that moment. As an action, you can either shift your attention to another creature’s thoughts or attempt to probe deeper into the same creature’s mind. If you probe deeper, the target must make a Wisdom saving throw. If it fails, you gain insight into its reasoning (if any), its emotional state, and something that looms large in its mind (such as something it worries over, loves, or hates). If it succeeds, the spell ends. Either way, the target knows that you are probing into its mind, and unless you shift your attention to another creature’s thoughts, the creature can use its action on its turn to make an Intelligence check contested by your Intelligence check; if it succeeds, the spell ends.\n\nQuestions verbally directed at the target creature naturally shape the course of its thoughts, so this spell is particularly effective as part of an interrogation. You can also use this spell to detect the presence of thinking creatures you can’t see. When you cast the spell or as your action during the duration, you can search for thoughts within 30 feet of you. The spell can penetrate barriers, but 2 feet of rock, 2 inches of any metal other than lead, or a thin sheet of lead blocks you. You can’t detect a creature with an Intelligence of 3 or lower or one that doesn’t speak any language.\n\nOnce you detect the presence of a creature in this way, you can read its thoughts for the rest of the duration as described above, even if you can’t see it, but it must still be within range."},"classes":{"value":["bard","sorcerer","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.638175"},"id":"8ef11f43-1466-46b7-a0df-ac5454693862"}}},"id":"6db6d31b-c353-422a-af1d-6798d24d8426"}}},"id":"34151448-9c1f-4df8-9ee4-ad876cf8ce44"}}]},"updated_at":{"value":"2024-12-20T18:50:53.826882"},"id":"githzerai_psionics"}},{"resource_id":"feat","stats":{"name":{"value":"Mental Discipline"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"Your innate psychic defenses grant you advantage on saving throws you make to avoid or end the charmed and frightened conditions on yourself"},"updated_at":{"value":"2024-12-20T18:50:53.826890"},"id":"96d09bf2-09e6-4ce9-ae12-3147f89de208"}}]},"updated_at":{"value":"2024-12-20T18:50:53.826892"},"id":"mental_discipline"}},{"resource_id":"feat","stats":{"name":{"value":"Psychic Resilience"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"You have resistance to psychic damage"},"updated_at":{"value":"2024-12-20T18:50:53.826899"},"id":"ef71f8ce-4a9c-452d-8719-b1a505e0b627"}}]},"updated_at":{"value":"2024-12-20T18:50:53.826901"},"id":"psychic_resilience"}}]},"unarmed_strike":{"value":[{"resource_id":"levelled_weapon","stats":{"weapon":{"value":{"resource_id":"weapon","stats":{"name":{"value":"Unarmed Strike"},"source":{"value":"aag"},"cost":{"value":{"resource_id":"cost","stats":{"id":"12d300ca-eed5-425d-9220-24c0feb63233"}}},"weight":{"value":{"resource_id":"weight","stats":{"id":"ad6f5df9-5925-49ac-9bea-7263cde4c985"}}},"type":{"value":"unarmed_strike"},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"constant":{"value":1},"updated_at":{"value":"2024-12-20T18:50:53.826909"},"id":"ea979954-202e-4c5e-86d6-6e61277d7298"}}]},"updated_at":{"value":"2024-12-20T18:50:53.826915"},"id":"86323404-be40-4d2b-8d02-92229c0df775"}}]},"updated_at":{"value":"2024-12-20T18:50:53.826920"},"id":"7f1c937b-289a-4c83-a0d1-5098acb148fc"}}},"updated_at":{"value":"2024-12-20T18:50:53.826926"},"id":"0450ddb7-faca-4650-b11b-174ce4ee1dd0"}}]},"same_spellcasting_ability_as_parent":{"value":false},"spells":{"value":[{"resource_id":"levelled_spell","stats":{"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Mage Hand"},"source":{"value":"phb"},"school":{"value":"spell_school_conjuration"},"casting_time":{"value":"1 action"},"range":{"value":"30 feet"},"duration":{"value":"1 minute"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration or until you dismiss it as an action. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.\n\nYou can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it.\n\nThe hand can’t attack, activate magic items, or carry more than 10 pounds."},"classes":{"value":["artificer__eb_","artificer__revised_","bard","sorcerer","warlock","blood_hunter","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.618336"},"id":"c1631e32-cd34-4d02-bff3-9a1ea53bba96"}}},"id":"aaa8ffa7-c41d-4218-a32f-3e82c92c79d2"}},{"resource_id":"levelled_spell","stats":{"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Shield"},"source":{"value":"phb"},"level":{"value":"spell_level_1"},"casting_time":{"value":"1 reaction, which you take when you are hit by an attack or targeted by the magic missile spell"},"range":{"value":"Self"},"duration":{"value":"1 round"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"An invisible barrier of magical force appears and protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile."},"classes":{"value":["sorcerer","fighter","rogue","wizard"]},"dice":{"value":[]},"effects":{"value":[{"resource_id":"effect","stats":{"name":{"value":"AC Boost"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"55c006c4-8442-4743-ac2c-43e53f9f30b2"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.armor_class"},"aggregation_type":{"value":"sum"},"constant":{"value":5},"id":"14729ca2-58bf-4f18-9669-5c8f0d7a6531"}}]},"updated_at":{"value":"2024-12-20T18:50:46.621793"},"id":"d7475581-ab0a-4ba6-bbcb-ecb857cff84d"}}},"id":"d0dbd508-96ad-4c56-8e40-5da836ebf46b"}},{"resource_id":"levelled_spell","stats":{"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Detect Thoughts"},"source":{"value":"phb"},"level":{"value":"spell_level_2"},"school":{"value":"spell_school_divination"},"casting_time":{"value":"1 action"},"range":{"value":"self"},"duration":{"value":"Concentration, up to 1 minute"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a copper piece"},"description":{"value":"For the duration, you can read the thoughts of certain creatures. When you cast the spell and as your action on each turn until the spell ends, you can focus your mind on any one creature that you can see within 30 feet of you. If the creature you choose has an Intelligence of 3 or lower or doesn’t speak any language, the creature is unaffected.\n\nYou initially learn the surface thoughts of the creature—what is most on its mind in that moment. As an action, you can either shift your attention to another creature’s thoughts or attempt to probe deeper into the same creature’s mind. If you probe deeper, the target must make a Wisdom saving throw. If it fails, you gain insight into its reasoning (if any), its emotional state, and something that looms large in its mind (such as something it worries over, loves, or hates). If it succeeds, the spell ends. Either way, the target knows that you are probing into its mind, and unless you shift your attention to another creature’s thoughts, the creature can use its action on its turn to make an Intelligence check contested by your Intelligence check; if it succeeds, the spell ends.\n\nQuestions verbally directed at the target creature naturally shape the course of its thoughts, so this spell is particularly effective as part of an interrogation. You can also use this spell to detect the presence of thinking creatures you can’t see. When you cast the spell or as your action during the duration, you can search for thoughts within 30 feet of you. The spell can penetrate barriers, but 2 feet of rock, 2 inches of any metal other than lead, or a thin sheet of lead blocks you. You can’t detect a creature with an Intelligence of 3 or lower or one that doesn’t speak any language.\n\nOnce you detect the presence of a creature in this way, you can read its thoughts for the rest of the duration as described above, even if you can’t see it, but it must still be within range."},"classes":{"value":["bard","sorcerer","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.638175"},"id":"788270e2-59e4-4cc8-9e7a-62241a0b49f0"}}},"id":"90f23ad4-1e4c-4da0-b2a1-74a51518b5f4"}}]},"language_proficiencies":{"value":[{"resource_id":"levelled_choice_text","stats":{"options":{"value":"Common"},"updated_at":{"value":"2024-12-20T18:50:53.826932"},"id":"871cb9b3-dc09-44b6-8742-5837dbc3d56d"}},{"resource_id":"levelled_choice_text","stats":{"options":{"value":"Choose 1"},"updated_at":{"value":"2024-12-20T18:50:53.826939"},"id":"9cf21507-7d99-42af-9f65-1b9b50cfd120"}}]},"skill_proficiencies":{"value":[]},"armor_proficiencies":{"value":[]},"weapon_proficiencies":{"value":[]},"tool_proficiencies":{"value":[]},"subraces":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:53.826944"},"id":"githzerai__mom_"}}
+{
+  "resource_id": "race",
+  "stats": {
+    "name": {
+      "value": "Githzerai"
+    },
+    "source": {
+      "value": "mom"
+    },
+    "same_ac_as_parent": {
+      "value": false
+    },
+    "ability_score_increases": {
+      "value": [
+        {
+          "resource_id": "ability_score_increase",
+          "stats": {
+            "modifier_options": {
+              "value": [
+                "strength",
+                "dexterity",
+                "constitution",
+                "intelligence",
+                "wisdom",
+                "charisma"
+              ]
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:53.826837"
+            },
+            "id": "a49b3108-6f65-4eb5-83f1-2688d56ab42c"
+          }
+        },
+        {
+          "resource_id": "ability_score_increase",
+          "stats": {
+            "modifier_options": {
+              "value": [
+                "strength",
+                "dexterity",
+                "constitution",
+                "intelligence",
+                "wisdom",
+                "charisma"
+              ]
+            },
+            "id": "9ee95f7f-2a5a-4f3f-9ee2-246c2efa3b2b"
+          }
+        },
+        {
+          "resource_id": "ability_score_increase",
+          "stats": {
+            "modifier_options": {
+              "value": [
+                "strength",
+                "dexterity",
+                "constitution",
+                "intelligence",
+                "wisdom",
+                "charisma"
+              ]
+            },
+            "id": "059182f0-c0fb-4f2f-a635-26068045dd07"
+          }
+        }
+      ]
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Githzerai Psionics"
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "description": {
+                      "value": "You know the mage hand cantrip, and the hand is invisible when you cast the cantrip with this trait.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race). None of these spells require spell components when you cast them with this trait"
+                    },
+                    "updated_at": {
+                      "value": "2024-12-20T18:50:53.826869"
+                    },
+                    "id": "cc7d1827-81e8-4283-84bb-8ee6a3124aaf"
+                  }
+                },
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "level": {
+                      "value": 3
+                    },
+                    "description": {
+                      "value": "You know the mage hand cantrip, and the hand is invisible when you cast the cantrip with this trait.\nStarting at 3rd level, you can cast the shield spell with this trait. Once you cast shield with this trait, you can't do so again until you finish a long rest. You can also cast it using any spell slots you have of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race). None of these spells require spell components when you cast them with this trait"
+                    },
+                    "updated_at": {
+                      "value": "2024-12-20T18:50:53.826875"
+                    },
+                    "id": "0a476be5-a6cc-4fb9-8e96-04be46d692e2"
+                  }
+                },
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "level": {
+                      "value": 5
+                    },
+                    "description": {
+                      "value": "You know the mage hand cantrip, and the hand is invisible when you cast the cantrip with this trait.\nStarting at 3rd level, you can cast the shield spell with this trait. Starting at 5th level, you can also cast the detect thoughts spell with it. Once you cast shield or detect thoughts with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race). None of these spells require spell components when you cast them with this trait"
+                    },
+                    "updated_at": {
+                      "value": "2024-12-20T18:50:53.826880"
+                    },
+                    "id": "e19b3530-73ed-4d4c-871d-1f3da3c43ad2"
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "level": {
+                      "value": 3
+                    },
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "name": {
+                            "value": "Cast shield"
+                          },
+                          "trigger_type": {
+                            "value": "active"
+                          },
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "id": "c951ffd3-b605-4cbd-b1d8-3c43d31710c5"
+                              }
+                            }
+                          },
+                          "has_charges": {
+                            "value": true
+                          },
+                          "max_charges_constant": {
+                            "value": 1
+                          },
+                          "type": {
+                            "value": "use_spell"
+                          },
+                          "spell": {
+                            "value": {
+                              "resource_id": "spell",
+                              "stats": {
+                                "name": {
+                                  "value": "Shield"
+                                },
+                                "source": {
+                                  "value": "phb"
+                                },
+                                "level": {
+                                  "value": "spell_level_1"
+                                },
+                                "casting_time": {
+                                  "value": "1 reaction, which you take when you are hit by an attack or targeted by the magic missile spell"
+                                },
+                                "range": {
+                                  "value": "Self"
+                                },
+                                "duration": {
+                                  "value": "1 round"
+                                },
+                                "verbal": {
+                                  "value": true
+                                },
+                                "somatic": {
+                                  "value": true
+                                },
+                                "description": {
+                                  "value": "An invisible barrier of magical force appears and protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile."
+                                },
+                                "classes": {
+                                  "value": [
+                                    "sorcerer",
+                                    "fighter",
+                                    "rogue",
+                                    "wizard"
+                                  ]
+                                },
+                                "dice": {
+                                  "value": []
+                                },
+                                "effects": {
+                                  "value": [
+                                    {
+                                      "resource_id": "effect",
+                                      "stats": {
+                                        "name": {
+                                          "value": "AC Boost"
+                                        },
+                                        "trigger_condition": {
+                                          "value": {
+                                            "resource_id": "trigger_condition_or",
+                                            "stats": {
+                                              "id": "0be25590-3184-4183-b6e1-013f8df179b8"
+                                            }
+                                          }
+                                        },
+                                        "type": {
+                                          "value": "add_to_stat"
+                                        },
+                                        "stat": {
+                                          "value": "$character.armor_class"
+                                        },
+                                        "aggregation_type": {
+                                          "value": "sum"
+                                        },
+                                        "constant": {
+                                          "value": 5
+                                        },
+                                        "id": "eeb9147e-8389-4300-87e4-4999ff5da33d"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2024-12-20T18:50:46.621793"
+                                },
+                                "id": "441d01d5-bd36-4f32-8dc9-fedf473b7e10"
+                              }
+                            }
+                          },
+                          "id": "65071c28-ba6b-4848-9a44-40c6661c7987"
+                        }
+                      }
+                    },
+                    "id": "daf11c92-4bfd-4b1e-8580-9e12fb6b0686"
+                  }
+                },
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "level": {
+                      "value": 5
+                    },
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "name": {
+                            "value": "Cast detect thoughts"
+                          },
+                          "trigger_type": {
+                            "value": "active"
+                          },
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "id": "41564dd4-2d7e-475b-84d7-4b9c1588789b"
+                              }
+                            }
+                          },
+                          "has_charges": {
+                            "value": true
+                          },
+                          "max_charges_constant": {
+                            "value": 1
+                          },
+                          "type": {
+                            "value": "use_spell"
+                          },
+                          "spell": {
+                            "value": {
+                              "resource_id": "spell",
+                              "stats": {
+                                "name": {
+                                  "value": "Detect Thoughts"
+                                },
+                                "source": {
+                                  "value": "phb"
+                                },
+                                "level": {
+                                  "value": "spell_level_2"
+                                },
+                                "school": {
+                                  "value": "spell_school_divination"
+                                },
+                                "casting_time": {
+                                  "value": "1 action"
+                                },
+                                "range": {
+                                  "value": "self"
+                                },
+                                "duration": {
+                                  "value": "Concentration, up to 1 minute"
+                                },
+                                "verbal": {
+                                  "value": true
+                                },
+                                "somatic": {
+                                  "value": true
+                                },
+                                "material": {
+                                  "value": true
+                                },
+                                "components": {
+                                  "value": "a copper piece"
+                                },
+                                "description": {
+                                  "value": "For the duration, you can read the thoughts of certain creatures. When you cast the spell and as your action on each turn until the spell ends, you can focus your mind on any one creature that you can see within 30 feet of you. If the creature you choose has an Intelligence of 3 or lower or doesn\u2019t speak any language, the creature is unaffected.\n\nYou initially learn the surface thoughts of the creature\u2014what is most on its mind in that moment. As an action, you can either shift your attention to another creature\u2019s thoughts or attempt to probe deeper into the same creature\u2019s mind. If you probe deeper, the target must make a Wisdom saving throw. If it fails, you gain insight into its reasoning (if any), its emotional state, and something that looms large in its mind (such as something it worries over, loves, or hates). If it succeeds, the spell ends. Either way, the target knows that you are probing into its mind, and unless you shift your attention to another creature\u2019s thoughts, the creature can use its action on its turn to make an Intelligence check contested by your Intelligence check; if it succeeds, the spell ends.\n\nQuestions verbally directed at the target creature naturally shape the course of its thoughts, so this spell is particularly effective as part of an interrogation. You can also use this spell to detect the presence of thinking creatures you can\u2019t see. When you cast the spell or as your action during the duration, you can search for thoughts within 30 feet of you. The spell can penetrate barriers, but 2 feet of rock, 2 inches of any metal other than lead, or a thin sheet of lead blocks you. You can\u2019t detect a creature with an Intelligence of 3 or lower or one that doesn\u2019t speak any language.\n\nOnce you detect the presence of a creature in this way, you can read its thoughts for the rest of the duration as described above, even if you can\u2019t see it, but it must still be within range."
+                                },
+                                "classes": {
+                                  "value": [
+                                    "bard",
+                                    "sorcerer",
+                                    "fighter",
+                                    "rogue",
+                                    "wizard"
+                                  ]
+                                },
+                                "dice": {
+                                  "value": []
+                                },
+                                "updated_at": {
+                                  "value": "2024-12-20T18:50:46.638175"
+                                },
+                                "id": "8ef11f43-1466-46b7-a0df-ac5454693862"
+                              }
+                            }
+                          },
+                          "id": "6db6d31b-c353-422a-af1d-6798d24d8426"
+                        }
+                      }
+                    },
+                    "id": "34151448-9c1f-4df8-9ee4-ad876cf8ce44"
+                  }
+                }
+              ]
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:53.826882"
+            },
+            "id": "githzerai_psionics"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Mental Discipline"
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "description": {
+                      "value": "Your innate psychic defenses grant you advantage on saving throws you make to avoid or end the charmed and frightened conditions on yourself"
+                    },
+                    "updated_at": {
+                      "value": "2024-12-20T18:50:53.826890"
+                    },
+                    "id": "96d09bf2-09e6-4ce9-ae12-3147f89de208"
+                  }
+                }
+              ]
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:53.826892"
+            },
+            "id": "mental_discipline"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Psychic Resilience"
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "description": {
+                      "value": "You have resistance to psychic damage"
+                    },
+                    "updated_at": {
+                      "value": "2024-12-20T18:50:53.826899"
+                    },
+                    "id": "ef71f8ce-4a9c-452d-8719-b1a505e0b627"
+                  }
+                }
+              ]
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:53.826901"
+            },
+            "id": "psychic_resilience"
+          }
+        }
+      ]
+    },
+    "unarmed_strike": {
+      "value": [
+        {
+          "resource_id": "levelled_weapon",
+          "stats": {
+            "weapon": {
+              "value": {
+                "resource_id": "weapon",
+                "stats": {
+                  "name": {
+                    "value": "Unarmed Strike"
+                  },
+                  "source": {
+                    "value": "aag"
+                  },
+                  "cost": {
+                    "value": {
+                      "resource_id": "cost",
+                      "stats": {
+                        "id": "12d300ca-eed5-425d-9220-24c0feb63233"
+                      }
+                    }
+                  },
+                  "weight": {
+                    "value": {
+                      "resource_id": "weight",
+                      "stats": {
+                        "id": "ad6f5df9-5925-49ac-9bea-7263cde4c985"
+                      }
+                    }
+                  },
+                  "type": {
+                    "value": "unarmed_strike"
+                  },
+                  "damage_dice": {
+                    "value": [
+                      {
+                        "resource_id": "damage_dice",
+                        "stats": {
+                          "dices": {
+                            "value": [
+                              {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "constant": {
+                                    "value": 1
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:53.826909"
+                                  },
+                                  "id": "ea979954-202e-4c5e-86d6-6e61277d7298"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:53.826915"
+                          },
+                          "id": "86323404-be40-4d2b-8d02-92229c0df775"
+                        }
+                      }
+                    ]
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:53.826920"
+                  },
+                  "id": "7f1c937b-289a-4c83-a0d1-5098acb148fc"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:53.826926"
+            },
+            "id": "0450ddb7-faca-4650-b11b-174ce4ee1dd0"
+          }
+        }
+      ]
+    },
+    "same_spellcasting_ability_as_parent": {
+      "value": false
+    },
+    "spells": {
+      "value": [
+        {
+          "resource_id": "levelled_spell",
+          "stats": {
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Mage Hand"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "school": {
+                    "value": "spell_school_conjuration"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "30 feet"
+                  },
+                  "duration": {
+                    "value": "1 minute"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration or until you dismiss it as an action. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.\n\nYou can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it.\n\nThe hand can\u2019t attack, activate magic items, or carry more than 10 pounds."
+                  },
+                  "classes": {
+                    "value": [
+                      "artificer__eb_",
+                      "artificer__revised_",
+                      "bard",
+                      "sorcerer",
+                      "warlock",
+                      "blood_hunter",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.618336"
+                  },
+                  "id": "c1631e32-cd34-4d02-bff3-9a1ea53bba96"
+                }
+              }
+            },
+            "id": "aaa8ffa7-c41d-4218-a32f-3e82c92c79d2"
+          }
+        },
+        {
+          "resource_id": "levelled_spell",
+          "stats": {
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Shield"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_1"
+                  },
+                  "casting_time": {
+                    "value": "1 reaction, which you take when you are hit by an attack or targeted by the magic missile spell"
+                  },
+                  "range": {
+                    "value": "Self"
+                  },
+                  "duration": {
+                    "value": "1 round"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "An invisible barrier of magical force appears and protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile."
+                  },
+                  "classes": {
+                    "value": [
+                      "sorcerer",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "effects": {
+                    "value": [
+                      {
+                        "resource_id": "effect",
+                        "stats": {
+                          "name": {
+                            "value": "AC Boost"
+                          },
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "id": "55c006c4-8442-4743-ac2c-43e53f9f30b2"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.armor_class"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 5
+                          },
+                          "id": "14729ca2-58bf-4f18-9669-5c8f0d7a6531"
+                        }
+                      }
+                    ]
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.621793"
+                  },
+                  "id": "d7475581-ab0a-4ba6-bbcb-ecb857cff84d"
+                }
+              }
+            },
+            "id": "d0dbd508-96ad-4c56-8e40-5da836ebf46b"
+          }
+        },
+        {
+          "resource_id": "levelled_spell",
+          "stats": {
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Detect Thoughts"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_2"
+                  },
+                  "school": {
+                    "value": "spell_school_divination"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "self"
+                  },
+                  "duration": {
+                    "value": "Concentration, up to 1 minute"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a copper piece"
+                  },
+                  "description": {
+                    "value": "For the duration, you can read the thoughts of certain creatures. When you cast the spell and as your action on each turn until the spell ends, you can focus your mind on any one creature that you can see within 30 feet of you. If the creature you choose has an Intelligence of 3 or lower or doesn\u2019t speak any language, the creature is unaffected.\n\nYou initially learn the surface thoughts of the creature\u2014what is most on its mind in that moment. As an action, you can either shift your attention to another creature\u2019s thoughts or attempt to probe deeper into the same creature\u2019s mind. If you probe deeper, the target must make a Wisdom saving throw. If it fails, you gain insight into its reasoning (if any), its emotional state, and something that looms large in its mind (such as something it worries over, loves, or hates). If it succeeds, the spell ends. Either way, the target knows that you are probing into its mind, and unless you shift your attention to another creature\u2019s thoughts, the creature can use its action on its turn to make an Intelligence check contested by your Intelligence check; if it succeeds, the spell ends.\n\nQuestions verbally directed at the target creature naturally shape the course of its thoughts, so this spell is particularly effective as part of an interrogation. You can also use this spell to detect the presence of thinking creatures you can\u2019t see. When you cast the spell or as your action during the duration, you can search for thoughts within 30 feet of you. The spell can penetrate barriers, but 2 feet of rock, 2 inches of any metal other than lead, or a thin sheet of lead blocks you. You can\u2019t detect a creature with an Intelligence of 3 or lower or one that doesn\u2019t speak any language.\n\nOnce you detect the presence of a creature in this way, you can read its thoughts for the rest of the duration as described above, even if you can\u2019t see it, but it must still be within range."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "sorcerer",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.638175"
+                  },
+                  "id": "788270e2-59e4-4cc8-9e7a-62241a0b49f0"
+                }
+              }
+            },
+            "id": "90f23ad4-1e4c-4da0-b2a1-74a51518b5f4"
+          }
+        }
+      ]
+    },
+    "language_proficiencies": {
+      "value": [
+        {
+          "resource_id": "levelled_choice_text",
+          "stats": {
+            "options": {
+              "value": "Common"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:53.826932"
+            },
+            "id": "871cb9b3-dc09-44b6-8742-5837dbc3d56d"
+          }
+        },
+        {
+          "resource_id": "levelled_choice_text",
+          "stats": {
+            "options": {
+              "value": "Choose 1"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:53.826939"
+            },
+            "id": "9cf21507-7d99-42af-9f65-1b9b50cfd120"
+          }
+        }
+      ]
+    },
+    "skill_proficiencies": {
+      "value": []
+    },
+    "armor_proficiencies": {
+      "value": []
+    },
+    "weapon_proficiencies": {
+      "value": []
+    },
+    "tool_proficiencies": {
+      "value": []
+    },
+    "subraces": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:53.826944"
+    },
+    "id": "githzerai__mom_"
+  }
+}

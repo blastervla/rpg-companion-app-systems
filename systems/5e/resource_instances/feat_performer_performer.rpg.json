@@ -1,1 +1,157 @@
-{"resource_id":"feat","stats":{"name":{"value":"Performer"},"source":{"value":"ua"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"You master performance so that you can command any stage. You gain the following benefits:\n\n- Increase your Charisma score by 1, to a maximum of 20.\n\n- You gain proficiency in the Performance skill. If you are already proficient in the skill, you add double your proficiency bonus to checks you make with it.\n\n- While performing, you can try to distract one humanoid you can see. The humanoid must see and hear you. Make a Performance check contested by the humanoid's Insight check. If your check succeeds, you grab the humanoid's attention enough that it makes Perception and Investigation checks with disadvantage until you stop performing"},"updated_at":{"value":"2024-12-20T18:50:28.415031"},"id":"1e00c873-2dc5-4e63-9379-4faae9d57b78"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.charisma_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"69ffa960-8fd5-494a-99b7-5a0d872d152e"}}]},"id":"28e0051c-5df9-4406-bc97-64c8008e5a2c"}}]},"id":"e128730e-44ae-4cf2-9bcf-d59d4d001a7c"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.charisma_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"d80b483b-ac77-4050-aaaf-40eda15d25f8"}}},"id":"1f7379b0-a323-470d-9a0d-980408c6daa7"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Performance Proficiency"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"769f7cdc-4a73-496c-8164-ca3551923742"}}},"stat":{"value":"$character.performance"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"977ca040-5f51-4049-8d72-df15605f58ca"}}},"id":"65d5d82c-2125-402c-9fec-91d12698fd1d"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Distract"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"50f04285-6824-4c15-aa54-6384dd226fe0"}}},"id":"697f86e5-bc22-4fd3-baef-da42b5b8b6f5"}}},"id":"15f13df6-531c-4a56-a23b-d73ed2aac1f1"}}]},"updated_at":{"value":"2024-12-20T18:50:28.415033"},"id":"performer"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Performer"
+    },
+    "source": {
+      "value": "ua"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "You master performance so that you can command any stage. You gain the following benefits:\n\n- Increase your Charisma score by 1, to a maximum of 20.\n\n- You gain proficiency in the Performance skill. If you are already proficient in the skill, you add double your proficiency bonus to checks you make with it.\n\n- While performing, you can try to distract one humanoid you can see. The humanoid must see and hear you. Make a Performance check contested by the humanoid's Insight check. If your check succeeds, you grab the humanoid's attention enough that it makes Perception and Investigation checks with disadvantage until you stop performing"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.415031"
+            },
+            "id": "1e00c873-2dc5-4e63-9379-4faae9d57b78"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "terms": {
+                          "value": [
+                            {
+                              "resource_id": "trigger_condition_and",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_term",
+                                      "stats": {
+                                        "stat": {
+                                          "value": "$character.charisma_score"
+                                        },
+                                        "condition": {
+                                          "value": "lower_than"
+                                        },
+                                        "value": {
+                                          "value": 20.0
+                                        },
+                                        "id": "69ffa960-8fd5-494a-99b7-5a0d872d152e"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "28e0051c-5df9-4406-bc97-64c8008e5a2c"
+                              }
+                            }
+                          ]
+                        },
+                        "id": "e128730e-44ae-4cf2-9bcf-d59d4d001a7c"
+                      }
+                    }
+                  },
+                  "type": {
+                    "value": "add_to_stat"
+                  },
+                  "stat": {
+                    "value": "$character.charisma_score"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "d80b483b-ac77-4050-aaaf-40eda15d25f8"
+                }
+              }
+            },
+            "id": "1f7379b0-a323-470d-9a0d-980408c6daa7"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Performance Proficiency"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "769f7cdc-4a73-496c-8164-ca3551923742"
+                      }
+                    }
+                  },
+                  "stat": {
+                    "value": "$character.performance"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "977ca040-5f51-4049-8d72-df15605f58ca"
+                }
+              }
+            },
+            "id": "65d5d82c-2125-402c-9fec-91d12698fd1d"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Distract"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "50f04285-6824-4c15-aa54-6384dd226fe0"
+                      }
+                    }
+                  },
+                  "id": "697f86e5-bc22-4fd3-baef-da42b5b8b6f5"
+                }
+              }
+            },
+            "id": "15f13df6-531c-4a56-a23b-d73ed2aac1f1"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.415033"
+    },
+    "id": "performer"
+  }
+}

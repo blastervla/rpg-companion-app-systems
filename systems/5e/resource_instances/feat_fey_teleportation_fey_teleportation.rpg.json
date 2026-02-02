@@ -1,1 +1,320 @@
-{"resource_id":"feat","stats":{"name":{"value":"Fey Teleportation"},"source":{"value":"xge"},"prerequisites":{"value":"Elf (High)"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"Your study of high elven lore has unlocked fey power that few other elves possess, except your eladrin cousins. Drawing on your fey ancestry, you can momentarily stride through the Feywild to shorten your path from one place to another. You gain the following benefits:\n\n- Increase your Intelligence or Charisma score by 1, to a maximum of 20.\n\n- You learn to speak, read, and write Sylvan\n\n- You learn the Misty Step spell and can cast it once without expending a spell slot. You regain the ability to cast it in this way when you finish a short or long rest. Intelligence is your spellcasting ability for this spell"},"updated_at":{"value":"2024-12-20T18:50:28.403733"},"id":"3cd49cba-92ff-4eca-b48d-a3d3da2baa52"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Learn Sylvan"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"dcab75f0-cbf0-4e1c-b13d-350c05d4e242"}}},"id":"4490d687-9f01-47ad-9d95-2538eae96079"}}},"id":"961b1401-a11c-41d8-b1e8-1238fee90e0a"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"d3fe6683-f91d-410c-8cc0-f20a4e778bf2"}}},"has_charges":{"value":true},"recharge_event":{"value":"short_rest"},"max_charges_constant":{"value":1},"type":{"value":"add_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Misty Step"},"source":{"value":"phb"},"level":{"value":"spell_level_2"},"school":{"value":"spell_school_conjuration"},"casting_time":{"value":"1 bonus action"},"range":{"value":"Self"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"description":{"value":"Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space that you can see."},"classes":{"value":["sorcerer","warlock","blood_hunter","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.659108"},"id":"b6e6e005-dc5f-44a6-af6d-4e99ac84d28d"}}},"id":"0844f69d-f40c-4b94-a04d-bd8ff9856e33"}}},"id":"8f6b1003-6263-472d-b21a-d1c1cdd6e7f9"}}]},"selectable_feature_amount_per_level":{"value":[{"resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"d2ab1e3e-63c6-4c0b-a5be-f5e998e5572f"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Int Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.intelligence_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"02bb1870-7896-481b-b6a7-c1c628d1cf36"}}]},"id":"9cb65e84-d56c-4aa6-85ba-f9e86fdd42cf"}}]},"id":"86b92400-6afc-4576-b4f8-cc49f7fa6139"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.intelligence_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"933a2890-d497-4741-8ba7-11894bab4830"}}},"id":"bb667631-7624-4ce8-beb6-6bb924afe2e7"}}]},"id":"9ea24668-dd18-4057-933e-7a9b18cbb472"}},{"resource_id":"feat","stats":{"name":{"value":"Cha Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.charisma_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"ccc339ac-c409-497d-9886-5719c0c8dd06"}}]},"id":"c3e2fcae-3039-4b17-b805-c0bd69dccc05"}}]},"id":"0569b124-0350-4a17-b714-272987ecbfda"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.charisma_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"172d3387-9627-4f92-a17e-fb2ba6d3b89b"}}},"id":"97f56960-f38f-4fa7-b304-ad9f5467969c"}}]},"id":"d8708dda-fe6f-46bf-b366-75e6ed6296b1"}}]},"updated_at":{"value":"2024-12-20T18:50:28.403736"},"id":"fey_teleportation"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Fey Teleportation"
+    },
+    "source": {
+      "value": "xge"
+    },
+    "prerequisites": {
+      "value": "Elf (High)"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "Your study of high elven lore has unlocked fey power that few other elves possess, except your eladrin cousins. Drawing on your fey ancestry, you can momentarily stride through the Feywild to shorten your path from one place to another. You gain the following benefits:\n\n- Increase your Intelligence or Charisma score by 1, to a maximum of 20.\n\n- You learn to speak, read, and write Sylvan\n\n- You learn the Misty Step spell and can cast it once without expending a spell slot. You regain the ability to cast it in this way when you finish a short or long rest. Intelligence is your spellcasting ability for this spell"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.403733"
+            },
+            "id": "3cd49cba-92ff-4eca-b48d-a3d3da2baa52"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Learn Sylvan"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "dcab75f0-cbf0-4e1c-b13d-350c05d4e242"
+                      }
+                    }
+                  },
+                  "id": "4490d687-9f01-47ad-9d95-2538eae96079"
+                }
+              }
+            },
+            "id": "961b1401-a11c-41d8-b1e8-1238fee90e0a"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "d3fe6683-f91d-410c-8cc0-f20a4e778bf2"
+                      }
+                    }
+                  },
+                  "has_charges": {
+                    "value": true
+                  },
+                  "recharge_event": {
+                    "value": "short_rest"
+                  },
+                  "max_charges_constant": {
+                    "value": 1
+                  },
+                  "type": {
+                    "value": "add_spell"
+                  },
+                  "spell": {
+                    "value": {
+                      "resource_id": "spell",
+                      "stats": {
+                        "name": {
+                          "value": "Misty Step"
+                        },
+                        "source": {
+                          "value": "phb"
+                        },
+                        "level": {
+                          "value": "spell_level_2"
+                        },
+                        "school": {
+                          "value": "spell_school_conjuration"
+                        },
+                        "casting_time": {
+                          "value": "1 bonus action"
+                        },
+                        "range": {
+                          "value": "Self"
+                        },
+                        "duration": {
+                          "value": "Instantaneous"
+                        },
+                        "verbal": {
+                          "value": true
+                        },
+                        "description": {
+                          "value": "Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space that you can see."
+                        },
+                        "classes": {
+                          "value": [
+                            "sorcerer",
+                            "warlock",
+                            "blood_hunter",
+                            "fighter",
+                            "rogue",
+                            "wizard"
+                          ]
+                        },
+                        "dice": {
+                          "value": []
+                        },
+                        "updated_at": {
+                          "value": "2024-12-20T18:50:46.659108"
+                        },
+                        "id": "b6e6e005-dc5f-44a6-af6d-4e99ac84d28d"
+                      }
+                    }
+                  },
+                  "id": "0844f69d-f40c-4b94-a04d-bd8ff9856e33"
+                }
+              }
+            },
+            "id": "8f6b1003-6263-472d-b21a-d1c1cdd6e7f9"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "d2ab1e3e-63c6-4c0b-a5be-f5e998e5572f"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Int Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.intelligence_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "02bb1870-7896-481b-b6a7-c1c628d1cf36"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "9cb65e84-d56c-4aa6-85ba-f9e86fdd42cf"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "86b92400-6afc-4576-b4f8-cc49f7fa6139"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.intelligence_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "933a2890-d497-4741-8ba7-11894bab4830"
+                        }
+                      }
+                    },
+                    "id": "bb667631-7624-4ce8-beb6-6bb924afe2e7"
+                  }
+                }
+              ]
+            },
+            "id": "9ea24668-dd18-4057-933e-7a9b18cbb472"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Cha Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.charisma_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "ccc339ac-c409-497d-9886-5719c0c8dd06"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "c3e2fcae-3039-4b17-b805-c0bd69dccc05"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "0569b124-0350-4a17-b714-272987ecbfda"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.charisma_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "172d3387-9627-4f92-a17e-fb2ba6d3b89b"
+                        }
+                      }
+                    },
+                    "id": "97f56960-f38f-4fa7-b304-ad9f5467969c"
+                  }
+                }
+              ]
+            },
+            "id": "d8708dda-fe6f-46bf-b366-75e6ed6296b1"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.403736"
+    },
+    "id": "fey_teleportation"
+  }
+}

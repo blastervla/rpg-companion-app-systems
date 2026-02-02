@@ -1,1 +1,436 @@
-{"resource_id":"weapon","stats":{"name":{"value":"Spider Staff"},"source":{"value":"pabtso"},"description":{"value":"(requires attunement by a bard, sorcerer, warlock, or wizard)\n\nThe top of this magic quarterstaff is shaped like a spider. It deals an extra 1d6 poison damage on a hit when used to make a weapon attack.\n\nSpells. The staff has 10 charges. While holding it, you can expend the requisite number of charges to cast one of the following spells from the staff: spider climb (1 charge) or web (2 charges; spell save DC 15).\n\nThe staff regains 1d6 + 4 expended charges daily at dusk. If you expend the staff's last charge, roll a d20. On a 1, the staff crumbles to dust and is destroyed"},"cost":{"value":{"resource_id":"cost","stats":{"unit":{"value":"gold"},"id":"eefca95f-bf41-40d5-844e-46a1badf7038"}}},"weight":{"value":{"resource_id":"weight","stats":{"value":{"value":4},"id":"3d984188-57a3-483a-ac82-b9f5117e7c98"}}},"type":{"value":"quarterstaff"},"rarity":{"value":"rare"},"requires_attunement":{"value":true},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d6"},"id":"99fcd1fe-9994-4ca3-9174-1ea32df592e5"}}]},"damage_type":{"value":"bludgeoning"},"id":"4d4ceda9-c9b5-4fe6-bb87-de96b715ca7a"}},{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d6"},"id":"4dde2d07-691d-489b-8f16-927e51804330"}}]},"damage_type":{"value":"poison"},"id":"465dc3b5-0aa5-4489-87db-9531c8ca27c5"}}]},"is_versatile":{"value":true},"versatile_damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d8"},"id":"36a750e9-5d03-4d64-9794-83b1b7d61ebd"}}]},"damage_type":{"value":"bludgeoning"},"id":"c83883fc-3be0-4525-be6a-bbd6d297f556"}},{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d6"},"id":"58d0ed1f-94c8-4614-a598-b7ee1524ffce"}}]},"damage_type":{"value":"poison"},"id":"4f17ef4d-4594-43af-9422-eb0e6be2c4f3"}}]},"effects":{"value":[{"resource_id":"effect","stats":{"name":{"value":"Charges"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"914ccb50-c9ed-465a-9b4e-03c271ab5811"}}},"has_charges":{"value":true},"recharge_type":{"value":"formula"},"recharge_event":{"value":"dusk"},"max_charges_constant":{"value":10},"recharges":{"value":{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d6"},"constant":{"value":4},"id":"e4d22202-3e78-4448-b22a-4ac757650f6f"}}},"id":"e5f8daf5-1f55-472a-8ab3-f8a44b4bc3a0"}},{"resource_id":"effect","stats":{"name":{"value":"Cast spider climb (1 charge)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"a7846a0d-64cc-4a13-b8d9-1a05eda82283"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Spider Climb"},"source":{"value":"phb"},"level":{"value":"spell_level_2"},"school":{"value":"spell_school_transmutation"},"casting_time":{"value":"1 action"},"range":{"value":"Touch"},"duration":{"value":"Concentration, up to 1 hour"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a drop of bitumen and a spider"},"description":{"value":"Until the spell ends, one willing creature you touch gains the ability to move up, down, and across vertical surfaces and upside down along ceilings, while leaving its hands free. The target also gains a climbing speed equal to its walking speed."},"classes":{"value":["artificer","artificer__eb_","artificer__revised_","sorcerer","warlock","blood_hunter","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.663592"},"id":"55e8c829-50f5-4f83-b05f-b9ed197901a8"}}},"id":"b8b10994-d6d7-4540-ab17-6adcd1d4debc"}},{"resource_id":"effect","stats":{"name":{"value":"Cast web (2 charges)"},"description":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"Save DC: 15"},"id":"f7408125-6f44-4e69-9526-92f098c2a52a"}}]},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"3aa7aa28-e8d4-434e-9c43-5c026429e093"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Web"},"source":{"value":"phb"},"level":{"value":"spell_level_2"},"school":{"value":"spell_school_conjuration"},"casting_time":{"value":"1 action"},"range":{"value":"60 feet"},"duration":{"value":"Concentration, up to 1 hour"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a bit of spiderweb"},"description":{"value":"You conjure a mass of thick, sticky webbing at a point of your choice within range. The webs fill a 20-foot cube from that point for the duration. The webs are difficult terrain and lightly obscure their area.\n\nIf the webs aren't anchored between two solid masses (such as walls or trees) or layered across a floor, wall, or ceiling, the conjured web collapses on itself, and the spell ends at the start of your next turn. Webs layered over a flat surface have a depth of 5 feet.\n\nEach creature that starts its turn in the webs or that enters them during its turn must make a Dexterity saving throw. On a failed save, the creature is restrained as long as it remains in the webs or until it breaks free.\n\nA creature restrained by the webs can use its action to make a Strength cheek against your spell save DC. If it suceeeds, it is no longer restrained.\n\nThe webs are flammable. Any 5-foot cube of webs exposed to fire burns away in 1 round, dealing 2d4 fire damage to any creature that starts its turn in the fire."},"classes":{"value":["artificer__eb_","sorcerer","fighter","rogue","wizard"]},"dice":{"value":[{"resource_id":"levelled_damage_dice","stats":{"level":{"value":2},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":2},"updated_at":{"value":"2024-12-20T18:50:46.666244"},"id":"ba76e0ec-e6b1-44e6-9543-e6b4b8f947c7"}}]},"damage_type":{"value":"fire"},"updated_at":{"value":"2024-12-20T18:50:46.666249"},"id":"9191d3c2-4e08-4ade-88b0-ca92b70810bb"}}]},"updated_at":{"value":"2024-12-20T18:50:46.666254"},"id":"f7f2e1b7-a821-4f37-b8e1-7d9b11cde4a1"}}]},"updated_at":{"value":"2024-12-20T18:50:46.666256"},"id":"8f1984fe-5665-450e-8956-48eb7b0b83ed"}}},"id":"4d413bfa-f915-4c7d-a849-77459621a2b9"}}]},"id":"87b84b66-f0ac-4833-9290-ff2dd5e42e44"}}
+{
+  "resource_id": "weapon",
+  "stats": {
+    "name": {
+      "value": "Spider Staff"
+    },
+    "source": {
+      "value": "pabtso"
+    },
+    "description": {
+      "value": "(requires attunement by a bard, sorcerer, warlock, or wizard)\n\nThe top of this magic quarterstaff is shaped like a spider. It deals an extra 1d6 poison damage on a hit when used to make a weapon attack.\n\nSpells. The staff has 10 charges. While holding it, you can expend the requisite number of charges to cast one of the following spells from the staff: spider climb (1 charge) or web (2 charges; spell save DC 15).\n\nThe staff regains 1d6 + 4 expended charges daily at dusk. If you expend the staff's last charge, roll a d20. On a 1, the staff crumbles to dust and is destroyed"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "unit": {
+            "value": "gold"
+          },
+          "id": "eefca95f-bf41-40d5-844e-46a1badf7038"
+        }
+      }
+    },
+    "weight": {
+      "value": {
+        "resource_id": "weight",
+        "stats": {
+          "value": {
+            "value": 4
+          },
+          "id": "3d984188-57a3-483a-ac82-b9f5117e7c98"
+        }
+      }
+    },
+    "type": {
+      "value": "quarterstaff"
+    },
+    "rarity": {
+      "value": "rare"
+    },
+    "requires_attunement": {
+      "value": true
+    },
+    "damage_dice": {
+      "value": [
+        {
+          "resource_id": "damage_dice",
+          "stats": {
+            "dices": {
+              "value": [
+                {
+                  "resource_id": "dice_roll",
+                  "stats": {
+                    "dice_amount": {
+                      "value": 1
+                    },
+                    "dice_type": {
+                      "value": "d6"
+                    },
+                    "id": "99fcd1fe-9994-4ca3-9174-1ea32df592e5"
+                  }
+                }
+              ]
+            },
+            "damage_type": {
+              "value": "bludgeoning"
+            },
+            "id": "4d4ceda9-c9b5-4fe6-bb87-de96b715ca7a"
+          }
+        },
+        {
+          "resource_id": "damage_dice",
+          "stats": {
+            "dices": {
+              "value": [
+                {
+                  "resource_id": "dice_roll",
+                  "stats": {
+                    "dice_amount": {
+                      "value": 1
+                    },
+                    "dice_type": {
+                      "value": "d6"
+                    },
+                    "id": "4dde2d07-691d-489b-8f16-927e51804330"
+                  }
+                }
+              ]
+            },
+            "damage_type": {
+              "value": "poison"
+            },
+            "id": "465dc3b5-0aa5-4489-87db-9531c8ca27c5"
+          }
+        }
+      ]
+    },
+    "is_versatile": {
+      "value": true
+    },
+    "versatile_damage_dice": {
+      "value": [
+        {
+          "resource_id": "damage_dice",
+          "stats": {
+            "dices": {
+              "value": [
+                {
+                  "resource_id": "dice_roll",
+                  "stats": {
+                    "dice_amount": {
+                      "value": 1
+                    },
+                    "dice_type": {
+                      "value": "d8"
+                    },
+                    "id": "36a750e9-5d03-4d64-9794-83b1b7d61ebd"
+                  }
+                }
+              ]
+            },
+            "damage_type": {
+              "value": "bludgeoning"
+            },
+            "id": "c83883fc-3be0-4525-be6a-bbd6d297f556"
+          }
+        },
+        {
+          "resource_id": "damage_dice",
+          "stats": {
+            "dices": {
+              "value": [
+                {
+                  "resource_id": "dice_roll",
+                  "stats": {
+                    "dice_amount": {
+                      "value": 1
+                    },
+                    "dice_type": {
+                      "value": "d6"
+                    },
+                    "id": "58d0ed1f-94c8-4614-a598-b7ee1524ffce"
+                  }
+                }
+              ]
+            },
+            "damage_type": {
+              "value": "poison"
+            },
+            "id": "4f17ef4d-4594-43af-9422-eb0e6be2c4f3"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Charges"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "914ccb50-c9ed-465a-9b4e-03c271ab5811"
+                }
+              }
+            },
+            "has_charges": {
+              "value": true
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharge_event": {
+              "value": "dusk"
+            },
+            "max_charges_constant": {
+              "value": 10
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "dice_amount": {
+                    "value": 1
+                  },
+                  "dice_type": {
+                    "value": "d6"
+                  },
+                  "constant": {
+                    "value": 4
+                  },
+                  "id": "e4d22202-3e78-4448-b22a-4ac757650f6f"
+                }
+              }
+            },
+            "id": "e5f8daf5-1f55-472a-8ab3-f8a44b4bc3a0"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast spider climb (1 charge)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "a7846a0d-64cc-4a13-b8d9-1a05eda82283"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Spider Climb"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_2"
+                  },
+                  "school": {
+                    "value": "spell_school_transmutation"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "Touch"
+                  },
+                  "duration": {
+                    "value": "Concentration, up to 1 hour"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a drop of bitumen and a spider"
+                  },
+                  "description": {
+                    "value": "Until the spell ends, one willing creature you touch gains the ability to move up, down, and across vertical surfaces and upside down along ceilings, while leaving its hands free. The target also gains a climbing speed equal to its walking speed."
+                  },
+                  "classes": {
+                    "value": [
+                      "artificer",
+                      "artificer__eb_",
+                      "artificer__revised_",
+                      "sorcerer",
+                      "warlock",
+                      "blood_hunter",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.663592"
+                  },
+                  "id": "55e8c829-50f5-4f83-b05f-b9ed197901a8"
+                }
+              }
+            },
+            "id": "b8b10994-d6d7-4540-ab17-6adcd1d4debc"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast web (2 charges)"
+            },
+            "description": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "description": {
+                      "value": "Save DC: 15"
+                    },
+                    "id": "f7408125-6f44-4e69-9526-92f098c2a52a"
+                  }
+                }
+              ]
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "3aa7aa28-e8d4-434e-9c43-5c026429e093"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Web"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_2"
+                  },
+                  "school": {
+                    "value": "spell_school_conjuration"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "60 feet"
+                  },
+                  "duration": {
+                    "value": "Concentration, up to 1 hour"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a bit of spiderweb"
+                  },
+                  "description": {
+                    "value": "You conjure a mass of thick, sticky webbing at a point of your choice within range. The webs fill a 20-foot cube from that point for the duration. The webs are difficult terrain and lightly obscure their area.\n\nIf the webs aren't anchored between two solid masses (such as walls or trees) or layered across a floor, wall, or ceiling, the conjured web collapses on itself, and the spell ends at the start of your next turn. Webs layered over a flat surface have a depth of 5 feet.\n\nEach creature that starts its turn in the webs or that enters them during its turn must make a Dexterity saving throw. On a failed save, the creature is restrained as long as it remains in the webs or until it breaks free.\n\nA creature restrained by the webs can use its action to make a Strength cheek against your spell save DC. If it suceeeds, it is no longer restrained.\n\nThe webs are flammable. Any 5-foot cube of webs exposed to fire burns away in 1 round, dealing 2d4 fire damage to any creature that starts its turn in the fire."
+                  },
+                  "classes": {
+                    "value": [
+                      "artificer__eb_",
+                      "sorcerer",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 2
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 2
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.666244"
+                                          },
+                                          "id": "ba76e0ec-e6b1-44e6-9543-e6b4b8f947c7"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.666249"
+                                  },
+                                  "id": "9191d3c2-4e08-4ade-88b0-ca92b70810bb"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.666254"
+                          },
+                          "id": "f7f2e1b7-a821-4f37-b8e1-7d9b11cde4a1"
+                        }
+                      }
+                    ]
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.666256"
+                  },
+                  "id": "8f1984fe-5665-450e-8956-48eb7b0b83ed"
+                }
+              }
+            },
+            "id": "4d413bfa-f915-4c7d-a849-77459621a2b9"
+          }
+        }
+      ]
+    },
+    "id": "87b84b66-f0ac-4833-9290-ff2dd5e42e44"
+  }
+}

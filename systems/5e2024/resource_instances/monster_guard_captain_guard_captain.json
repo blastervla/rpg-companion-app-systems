@@ -1,1 +1,346 @@
-{"resource_id": "monster", "stats": {"id": "guard_captain", "name": {"value": "Guard Captain"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/guard_captain.png"}}, "source": {"value": "mm"}, "tag": {"value": ""}, "armor_class": {"value": 18}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 10}, "dice_type": {"value": "d8"}, "constant": {"value": 30}, "id": "b1b14655-3c38-4a60-a392-3068a3c7374a", "updated_at": {"value": "2025-04-28T21:51:12.102801"}}}}, "cr": {"value": "cr_4"}, "xp": {"value": 1100}, "initiative": {"value": 1}, "speed": {"value": 30}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 0}, "fly_speed": {"value": 0}, "swim_speed": {"value": 0}, "strength_score": {"value": 18}, "dexterity_score": {"value": 14}, "constitution_score": {"value": 16}, "intelligence_score": {"value": 12}, "wisdom_score": {"value": 14}, "charisma_score": {"value": 13}, "strength_saving_throw_modifier": {"value": 4}, "dexterity_saving_throw_modifier": {"value": 2}, "constitution_saving_throw_modifier": {"value": 3}, "intelligence_saving_throw_modifier": {"value": 1}, "wisdom_saving_throw_modifier": {"value": 2}, "charisma_saving_throw_modifier": {"value": 1}, "skills": {"value": "Athletics +6, Perception +4"}, "gear": {"value": "Breastplate|xphb, , Longsword|xphb, Shield|xphb"}, "vulnerabilities": {"value": ""}, "immunities": {"value": ""}, "resistances": {"value": ""}, "senses": {"value": "Passive Perception 14"}, "languages": {"value": "Common"}, "size": {"value": "small"}, "type": {"value": "humanoid"}, "alignment": {"value": "true_neutral"}, "traits": {"value": []}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Multiattack"}, "action_description": {"value": "The guard makes two attacks, using Javelin or Longsword in any combination."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "5c308d80-3593-440e-b1a7-a2e2cb5a5585", "updated_at": {"value": "2025-04-28T21:51:12.102872"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Javelin"}, "action_description": {"value": "+6, reach 5 ft. or range 30/120 ft. Hit: 14 (3d6 + 4) Piercing damage."}, "action_type": {"value": "melee_or_ranged"}, "action_attack_bonus": {"value": 6}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "piercing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 3}, "dice_type": {"value": "d6"}, "constant": {"value": 4}, "id": "59cb72c4-ad1e-4b1e-be33-fb13031a137e", "updated_at": {"value": "2025-04-28T21:51:12.102935"}}}}, "id": "5ca7e834-01d9-44c0-bc24-428a860a3c2a", "updated_at": {"value": "2025-04-28T21:51:12.102939"}}}]}, "id": "d65d2a42-ea45-4dab-9deb-e3370c679d92", "updated_at": {"value": "2025-04-28T21:51:12.102945"}}}]}, "id": "0da49f5d-b243-41b5-aa18-c3cab5ffdf60", "updated_at": {"value": "2025-04-28T21:51:12.102950"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Longsword"}, "action_description": {"value": "+6, reach 5 ft. Hit: 15 (2d10 + 4) Slashing damage."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 6}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "slashing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 2}, "dice_type": {"value": "d10"}, "constant": {"value": 4}, "id": "ae65316b-96c1-4d03-95bb-d255f35eb899", "updated_at": {"value": "2025-04-28T21:51:12.103011"}}}}, "id": "a6bc5f50-931e-405b-b499-063ccda3a827", "updated_at": {"value": "2025-04-28T21:51:12.103016"}}}]}, "id": "c7db8ad4-d8e3-4f06-9f6f-ffb294b3b570", "updated_at": {"value": "2025-04-28T21:51:12.103022"}}}]}, "id": "f00a5935-f967-4572-9723-97073195538b", "updated_at": {"value": "2025-04-28T21:51:12.103026"}}}]}, "bonus_actions": {"value": []}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["arctic", "coastal", "desert", "forest", "grassland", "hill", "mountain", "swamp", "underdark", "underwater", "urban"]}, "treasure": {"value": ["armaments", "individual"]}, "updated_at": {"value": "2025-04-28T21:51:12.103031"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "guard_captain",
+    "name": {
+      "value": "Guard Captain"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/guard_captain.png"
+      }
+    },
+    "source": {
+      "value": "mm"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 18
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 10
+          },
+          "dice_type": {
+            "value": "d8"
+          },
+          "constant": {
+            "value": 30
+          },
+          "id": "b1b14655-3c38-4a60-a392-3068a3c7374a",
+          "updated_at": {
+            "value": "2025-04-28T21:51:12.102801"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_4"
+    },
+    "xp": {
+      "value": 1100
+    },
+    "initiative": {
+      "value": 1
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_score": {
+      "value": 18
+    },
+    "dexterity_score": {
+      "value": 14
+    },
+    "constitution_score": {
+      "value": 16
+    },
+    "intelligence_score": {
+      "value": 12
+    },
+    "wisdom_score": {
+      "value": 14
+    },
+    "charisma_score": {
+      "value": 13
+    },
+    "strength_saving_throw_modifier": {
+      "value": 4
+    },
+    "dexterity_saving_throw_modifier": {
+      "value": 2
+    },
+    "constitution_saving_throw_modifier": {
+      "value": 3
+    },
+    "intelligence_saving_throw_modifier": {
+      "value": 1
+    },
+    "wisdom_saving_throw_modifier": {
+      "value": 2
+    },
+    "charisma_saving_throw_modifier": {
+      "value": 1
+    },
+    "skills": {
+      "value": "Athletics +6, Perception +4"
+    },
+    "gear": {
+      "value": "Breastplate|xphb, , Longsword|xphb, Shield|xphb"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "Passive Perception 14"
+    },
+    "languages": {
+      "value": "Common"
+    },
+    "size": {
+      "value": "small"
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": []
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Multiattack"
+            },
+            "action_description": {
+              "value": "The guard makes two attacks, using Javelin or Longsword in any combination."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "5c308d80-3593-440e-b1a7-a2e2cb5a5585",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.102872"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Javelin"
+            },
+            "action_description": {
+              "value": "+6, reach 5 ft. or range 30/120 ft. Hit: 14 (3d6 + 4) Piercing damage."
+            },
+            "action_type": {
+              "value": "melee_or_ranged"
+            },
+            "action_attack_bonus": {
+              "value": 6
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 3
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 4
+                                  },
+                                  "id": "59cb72c4-ad1e-4b1e-be33-fb13031a137e",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.102935"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "5ca7e834-01d9-44c0-bc24-428a860a3c2a",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.102939"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "d65d2a42-ea45-4dab-9deb-e3370c679d92",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:12.102945"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "0da49f5d-b243-41b5-aa18-c3cab5ffdf60",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.102950"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Longsword"
+            },
+            "action_description": {
+              "value": "+6, reach 5 ft. Hit: 15 (2d10 + 4) Slashing damage."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 6
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 2
+                                  },
+                                  "dice_type": {
+                                    "value": "d10"
+                                  },
+                                  "constant": {
+                                    "value": 4
+                                  },
+                                  "id": "ae65316b-96c1-4d03-95bb-d255f35eb899",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.103011"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "a6bc5f50-931e-405b-b499-063ccda3a827",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.103016"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "c7db8ad4-d8e3-4f06-9f6f-ffb294b3b570",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:12.103022"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "f00a5935-f967-4572-9723-97073195538b",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.103026"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "arctic",
+        "coastal",
+        "desert",
+        "forest",
+        "grassland",
+        "hill",
+        "mountain",
+        "swamp",
+        "underdark",
+        "underwater",
+        "urban"
+      ]
+    },
+    "treasure": {
+      "value": [
+        "armaments",
+        "individual"
+      ]
+    },
+    "updated_at": {
+      "value": "2025-04-28T21:51:12.103031"
+    }
+  }
+}

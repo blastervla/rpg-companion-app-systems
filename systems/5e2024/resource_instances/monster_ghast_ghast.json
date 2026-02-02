@@ -1,1 +1,364 @@
-{"resource_id": "monster", "stats": {"id": "ghast", "name": {"value": "Ghast"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/ghast.png"}}, "source": {"value": "mm"}, "tag": {"value": ""}, "armor_class": {"value": 13}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 8}, "dice_type": {"value": "d8"}, "constant": {"value": 0}, "id": "fb10cf5d-d1b7-4ee4-89bf-edf9f06dc3aa", "updated_at": {"value": "2025-04-28T21:51:12.062629"}}}}, "cr": {"value": "cr_2"}, "xp": {"value": 450}, "initiative": {"value": 3}, "speed": {"value": 30}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 0}, "fly_speed": {"value": 0}, "swim_speed": {"value": 0}, "strength_score": {"value": 16}, "dexterity_score": {"value": 17}, "constitution_score": {"value": 10}, "intelligence_score": {"value": 11}, "wisdom_score": {"value": 10}, "charisma_score": {"value": 8}, "strength_saving_throw_modifier": {"value": 3}, "dexterity_saving_throw_modifier": {"value": 3}, "constitution_saving_throw_modifier": {"value": 0}, "intelligence_saving_throw_modifier": {"value": 0}, "wisdom_saving_throw_modifier": {"value": 2}, "charisma_saving_throw_modifier": {"value": -1}, "skills": {"value": ""}, "gear": {"value": ""}, "vulnerabilities": {"value": ""}, "immunities": {"value": "Poison,Charmed, Exhaustion, Poisoned"}, "resistances": {"value": "Necrotic"}, "senses": {"value": "Passive Perception 10, Darkvision 60 ft."}, "languages": {"value": "Common"}, "size": {"value": "medium"}, "type": {"value": "undead"}, "alignment": {"value": "chaotic_evil"}, "traits": {"value": [{"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Stench"}, "trait_description": {"value": "Constitution Saving Throw: DC 10, any creature that starts its turn in a 5-foot Emanation originating from the ghast. Failure: The target has the Poisoned condition until the start of its next turn. Success: The target is immune to this ghast's Stench for 24 hours."}, "id": "0a69fd66-2561-47e2-b737-886ccc0d048e", "updated_at": {"value": "2025-04-28T21:51:12.062698"}}}]}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Bite"}, "action_description": {"value": "+5, reach 5 ft. Hit: 7 (1d8 + 3) Piercing damage plus 9 (2d8) Necrotic damage."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 5}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "piercing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 1}, "dice_type": {"value": "d8"}, "constant": {"value": 3}, "id": "4b228c0f-f997-4e02-ac0f-d787dcbe5dc6", "updated_at": {"value": "2025-04-28T21:51:12.062754"}}}}, "id": "ba047164-f122-473b-899c-73257e7ca511", "updated_at": {"value": "2025-04-28T21:51:12.062758"}}}, {"resource_id": "damage_dice", "stats": {"damage_type": {"value": "necrotic"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 2}, "dice_type": {"value": "d8"}, "constant": {"value": 0}, "id": "066b00d7-62c3-44eb-9816-77ce9c471967", "updated_at": {"value": "2025-04-28T21:51:12.062765"}}}}, "id": "e17224c4-e0a6-4add-9a25-a17decf09423", "updated_at": {"value": "2025-04-28T21:51:12.062768"}}}]}, "id": "10c3f61e-2a6d-4658-8026-f96bdfa693bb", "updated_at": {"value": "2025-04-28T21:51:12.062774"}}}]}, "id": "8b6123ee-9190-430e-8854-a5cc0b94d140", "updated_at": {"value": "2025-04-28T21:51:12.062778"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Claw"}, "action_description": {"value": "+5, reach 5 ft. Hit: 10 (2d6 + 3) Slashing damage. If the target is a non-Undead creature, it is subjected to the following effect. Constitution Saving Throw: DC 10. Failure: The target has the Paralyzed condition until the end of its next turn."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 5}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "slashing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 2}, "dice_type": {"value": "d6"}, "constant": {"value": 3}, "id": "0d577f0b-50bc-4424-8588-cdd7de58aba0", "updated_at": {"value": "2025-04-28T21:51:12.062842"}}}}, "id": "929339c7-8b87-4baa-90cb-801fa22c4772", "updated_at": {"value": "2025-04-28T21:51:12.062846"}}}]}, "id": "c315904e-c1cd-4e12-a6a0-3fbfd087e080", "updated_at": {"value": "2025-04-28T21:51:12.062859"}}}]}, "id": "0ba09e85-97ee-40c8-8657-1c385ac1a7dc", "updated_at": {"value": "2025-04-28T21:51:12.062864"}}}]}, "bonus_actions": {"value": []}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["swamp", "underdark", "urban"]}, "treasure": {"value": ["arcana", "armaments", "implements", "relics"]}, "updated_at": {"value": "2025-04-28T21:51:12.062870"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "ghast",
+    "name": {
+      "value": "Ghast"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/ghast.png"
+      }
+    },
+    "source": {
+      "value": "mm"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 13
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 8
+          },
+          "dice_type": {
+            "value": "d8"
+          },
+          "constant": {
+            "value": 0
+          },
+          "id": "fb10cf5d-d1b7-4ee4-89bf-edf9f06dc3aa",
+          "updated_at": {
+            "value": "2025-04-28T21:51:12.062629"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_2"
+    },
+    "xp": {
+      "value": 450
+    },
+    "initiative": {
+      "value": 3
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_score": {
+      "value": 16
+    },
+    "dexterity_score": {
+      "value": 17
+    },
+    "constitution_score": {
+      "value": 10
+    },
+    "intelligence_score": {
+      "value": 11
+    },
+    "wisdom_score": {
+      "value": 10
+    },
+    "charisma_score": {
+      "value": 8
+    },
+    "strength_saving_throw_modifier": {
+      "value": 3
+    },
+    "dexterity_saving_throw_modifier": {
+      "value": 3
+    },
+    "constitution_saving_throw_modifier": {
+      "value": 0
+    },
+    "intelligence_saving_throw_modifier": {
+      "value": 0
+    },
+    "wisdom_saving_throw_modifier": {
+      "value": 2
+    },
+    "charisma_saving_throw_modifier": {
+      "value": -1
+    },
+    "skills": {
+      "value": ""
+    },
+    "gear": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Poison,Charmed, Exhaustion, Poisoned"
+    },
+    "resistances": {
+      "value": "Necrotic"
+    },
+    "senses": {
+      "value": "Passive Perception 10, Darkvision 60 ft."
+    },
+    "languages": {
+      "value": "Common"
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "undead"
+    },
+    "alignment": {
+      "value": "chaotic_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Stench"
+            },
+            "trait_description": {
+              "value": "Constitution Saving Throw: DC 10, any creature that starts its turn in a 5-foot Emanation originating from the ghast. Failure: The target has the Poisoned condition until the start of its next turn. Success: The target is immune to this ghast's Stench for 24 hours."
+            },
+            "id": "0a69fd66-2561-47e2-b737-886ccc0d048e",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.062698"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Bite"
+            },
+            "action_description": {
+              "value": "+5, reach 5 ft. Hit: 7 (1d8 + 3) Piercing damage plus 9 (2d8) Necrotic damage."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 5
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 1
+                                  },
+                                  "dice_type": {
+                                    "value": "d8"
+                                  },
+                                  "constant": {
+                                    "value": 3
+                                  },
+                                  "id": "4b228c0f-f997-4e02-ac0f-d787dcbe5dc6",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.062754"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "ba047164-f122-473b-899c-73257e7ca511",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.062758"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "necrotic"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 2
+                                  },
+                                  "dice_type": {
+                                    "value": "d8"
+                                  },
+                                  "constant": {
+                                    "value": 0
+                                  },
+                                  "id": "066b00d7-62c3-44eb-9816-77ce9c471967",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.062765"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "e17224c4-e0a6-4add-9a25-a17decf09423",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.062768"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "10c3f61e-2a6d-4658-8026-f96bdfa693bb",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:12.062774"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "8b6123ee-9190-430e-8854-a5cc0b94d140",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.062778"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Claw"
+            },
+            "action_description": {
+              "value": "+5, reach 5 ft. Hit: 10 (2d6 + 3) Slashing damage. If the target is a non-Undead creature, it is subjected to the following effect. Constitution Saving Throw: DC 10. Failure: The target has the Paralyzed condition until the end of its next turn."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 5
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 2
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 3
+                                  },
+                                  "id": "0d577f0b-50bc-4424-8588-cdd7de58aba0",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.062842"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "929339c7-8b87-4baa-90cb-801fa22c4772",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.062846"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "c315904e-c1cd-4e12-a6a0-3fbfd087e080",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:12.062859"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "0ba09e85-97ee-40c8-8657-1c385ac1a7dc",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.062864"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "swamp",
+        "underdark",
+        "urban"
+      ]
+    },
+    "treasure": {
+      "value": [
+        "arcana",
+        "armaments",
+        "implements",
+        "relics"
+      ]
+    },
+    "updated_at": {
+      "value": "2025-04-28T21:51:12.062870"
+    }
+  }
+}

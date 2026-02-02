@@ -1,1 +1,319 @@
-{"resource_id": "monster", "stats": {"id": "mummy", "name": {"value": "Mummy"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/mummy.png"}}, "source": {"value": "mm"}, "tag": {"value": ""}, "armor_class": {"value": 11}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 9}, "dice_type": {"value": "d8"}, "constant": {"value": 18}, "id": "2bfa0302-b8b7-4fa4-a91f-9a7056c8c713", "updated_at": {"value": "2025-04-28T21:51:12.163244"}}}}, "cr": {"value": "cr_3"}, "xp": {"value": 700}, "initiative": {"value": -1}, "speed": {"value": 20}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 0}, "fly_speed": {"value": 0}, "swim_speed": {"value": 0}, "strength_score": {"value": 16}, "dexterity_score": {"value": 8}, "constitution_score": {"value": 15}, "intelligence_score": {"value": 6}, "wisdom_score": {"value": 12}, "charisma_score": {"value": 12}, "strength_saving_throw_modifier": {"value": 3}, "dexterity_saving_throw_modifier": {"value": -1}, "constitution_saving_throw_modifier": {"value": 2}, "intelligence_saving_throw_modifier": {"value": -2}, "wisdom_saving_throw_modifier": {"value": 3}, "charisma_saving_throw_modifier": {"value": 1}, "skills": {"value": ""}, "gear": {"value": ""}, "vulnerabilities": {"value": "Fire"}, "immunities": {"value": "Necrotic, Poison,Charmed, Exhaustion, Frightened, Paralyzed, Poisoned"}, "resistances": {"value": ""}, "senses": {"value": "Passive Perception 11, Darkvision 60 ft."}, "languages": {"value": "Common plus two other languages"}, "size": {"value": "small"}, "type": {"value": "undead"}, "alignment": {"value": "lawful_evil"}, "traits": {"value": []}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Multiattack"}, "action_description": {"value": "The mummy makes two Rotting Fist attacks and uses Dreadful Glare."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "3c30a269-6001-4898-8ec5-a51650b798af", "updated_at": {"value": "2025-04-28T21:51:12.163311"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Rotting Fist"}, "action_description": {"value": "+5, reach 5 ft. Hit: 8 (1d10 + 3) Bludgeoning damage plus 10 (3d6) Necrotic damage. If the target is a creature, it is cursed. While cursed, the target can't regain Hit Points, its Hit Points maximum doesn't return to normal when finishing a Long Rest, and its Hit Points maximum decreases by 10 (3d6) every 24 hours that elapse. A creature dies and turns to dust if reduced to 0 Hit Points by this attack."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 5}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "bludgeoning"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 1}, "dice_type": {"value": "d10"}, "constant": {"value": 3}, "id": "247c4bbd-5ca0-4fee-9b15-aa375c87d451", "updated_at": {"value": "2025-04-28T21:51:12.163397"}}}}, "id": "2e612d0d-5412-4234-ba95-a37c4d192b55", "updated_at": {"value": "2025-04-28T21:51:12.163401"}}}, {"resource_id": "damage_dice", "stats": {"damage_type": {"value": "necrotic"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 3}, "dice_type": {"value": "d6"}, "constant": {"value": 0}, "id": "cd016a26-c4c2-4aec-a8d9-95e626e4b83c", "updated_at": {"value": "2025-04-28T21:51:12.163408"}}}}, "id": "d0d6351a-6421-4f91-9314-7a5bb7a42335", "updated_at": {"value": "2025-04-28T21:51:12.163412"}}}]}, "id": "7305d9fe-2dcb-41c6-99b3-d988b4a2d920", "updated_at": {"value": "2025-04-28T21:51:12.163435"}}}]}, "id": "0cdd063f-6aee-44b7-8265-376aee39b402", "updated_at": {"value": "2025-04-28T21:51:12.163439"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Dreadful Glare"}, "action_description": {"value": "Wisdom Saving Throw: DC 11, one creature the mummy can see within 60 feet. Failure: The target has the Frightened condition until the end of the mummy's next turn. Success: The target is immune to this mummy's Dreadful Glare for 24 hours."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "528bafc7-57b8-4e37-a374-7ea0cdf77d07", "updated_at": {"value": "2025-04-28T21:51:12.163511"}}}]}, "bonus_actions": {"value": []}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["desert", "swamp"]}, "treasure": {"value": ["relics"]}, "updated_at": {"value": "2025-04-28T21:51:12.163517"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "mummy",
+    "name": {
+      "value": "Mummy"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/mummy.png"
+      }
+    },
+    "source": {
+      "value": "mm"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 11
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 9
+          },
+          "dice_type": {
+            "value": "d8"
+          },
+          "constant": {
+            "value": 18
+          },
+          "id": "2bfa0302-b8b7-4fa4-a91f-9a7056c8c713",
+          "updated_at": {
+            "value": "2025-04-28T21:51:12.163244"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_3"
+    },
+    "xp": {
+      "value": 700
+    },
+    "initiative": {
+      "value": -1
+    },
+    "speed": {
+      "value": 20
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_score": {
+      "value": 16
+    },
+    "dexterity_score": {
+      "value": 8
+    },
+    "constitution_score": {
+      "value": 15
+    },
+    "intelligence_score": {
+      "value": 6
+    },
+    "wisdom_score": {
+      "value": 12
+    },
+    "charisma_score": {
+      "value": 12
+    },
+    "strength_saving_throw_modifier": {
+      "value": 3
+    },
+    "dexterity_saving_throw_modifier": {
+      "value": -1
+    },
+    "constitution_saving_throw_modifier": {
+      "value": 2
+    },
+    "intelligence_saving_throw_modifier": {
+      "value": -2
+    },
+    "wisdom_saving_throw_modifier": {
+      "value": 3
+    },
+    "charisma_saving_throw_modifier": {
+      "value": 1
+    },
+    "skills": {
+      "value": ""
+    },
+    "gear": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": "Fire"
+    },
+    "immunities": {
+      "value": "Necrotic, Poison,Charmed, Exhaustion, Frightened, Paralyzed, Poisoned"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "Passive Perception 11, Darkvision 60 ft."
+    },
+    "languages": {
+      "value": "Common plus two other languages"
+    },
+    "size": {
+      "value": "small"
+    },
+    "type": {
+      "value": "undead"
+    },
+    "alignment": {
+      "value": "lawful_evil"
+    },
+    "traits": {
+      "value": []
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Multiattack"
+            },
+            "action_description": {
+              "value": "The mummy makes two Rotting Fist attacks and uses Dreadful Glare."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "3c30a269-6001-4898-8ec5-a51650b798af",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.163311"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Rotting Fist"
+            },
+            "action_description": {
+              "value": "+5, reach 5 ft. Hit: 8 (1d10 + 3) Bludgeoning damage plus 10 (3d6) Necrotic damage. If the target is a creature, it is cursed. While cursed, the target can't regain Hit Points, its Hit Points maximum doesn't return to normal when finishing a Long Rest, and its Hit Points maximum decreases by 10 (3d6) every 24 hours that elapse. A creature dies and turns to dust if reduced to 0 Hit Points by this attack."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 5
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 1
+                                  },
+                                  "dice_type": {
+                                    "value": "d10"
+                                  },
+                                  "constant": {
+                                    "value": 3
+                                  },
+                                  "id": "247c4bbd-5ca0-4fee-9b15-aa375c87d451",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.163397"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "2e612d0d-5412-4234-ba95-a37c4d192b55",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.163401"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "necrotic"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 3
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 0
+                                  },
+                                  "id": "cd016a26-c4c2-4aec-a8d9-95e626e4b83c",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.163408"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "d0d6351a-6421-4f91-9314-7a5bb7a42335",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.163412"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "7305d9fe-2dcb-41c6-99b3-d988b4a2d920",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:12.163435"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "0cdd063f-6aee-44b7-8265-376aee39b402",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.163439"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Dreadful Glare"
+            },
+            "action_description": {
+              "value": "Wisdom Saving Throw: DC 11, one creature the mummy can see within 60 feet. Failure: The target has the Frightened condition until the end of the mummy's next turn. Success: The target is immune to this mummy's Dreadful Glare for 24 hours."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "528bafc7-57b8-4e37-a374-7ea0cdf77d07",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.163511"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "desert",
+        "swamp"
+      ]
+    },
+    "treasure": {
+      "value": [
+        "relics"
+      ]
+    },
+    "updated_at": {
+      "value": "2025-04-28T21:51:12.163517"
+    }
+  }
+}

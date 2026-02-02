@@ -1,1 +1,327 @@
-{"resource_id":"weapon","stats":{"name":{"value":"Staff of the Rooted Hills"},"source":{"value":"bgg"},"description":{"value":"The hill rune is carved into this gnarled wooden staff. The staff magically resizes to match the height of any creature that attunes to it.\n\nThe staff can be wielded as a magic quarterstaff that grants a +1 bonus to attack and damage rolls made with it. The first time you hit any creature with the staff on your turn, the creature must succeed on a DC 12 Strength saving throw or be restrained by spectral vines until the start of your next turn.\n\nInvoking the Rune. As an action, you can invoke the staff's rune to cast either hold person (save DC 12) or speak with plants with the staff. When you cast hold person using the staff, the target is wreathed in spectral vines.\n\nOnce the rune has been invoked to cast either spell, it can't be invoked again until the next dawn"},"cost":{"value":{"resource_id":"cost","stats":{"unit":{"value":"gold"},"id":"5472a362-d63e-41ee-9570-980201ad90d6"}}},"weight":{"value":{"resource_id":"weight","stats":{"value":{"value":4},"id":"71d94629-07d6-4fd0-83cb-7aa033b22c5e"}}},"type":{"value":"quarterstaff"},"rarity":{"value":"rare"},"requires_attunement":{"value":true},"extra_attack_bonus":{"value":1},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d6"},"constant":{"value":1},"id":"bf715344-128a-45b0-8bd2-2ada36e2e8ea"}}]},"damage_type":{"value":"bludgeoning"},"id":"596b60e4-00b0-489d-99c9-b1b352ed4299"}}]},"is_versatile":{"value":true},"versatile_damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d8"},"constant":{"value":1},"id":"ee79c204-b14d-4bcc-85fc-cd8f429b4843"}}]},"damage_type":{"value":"bludgeoning"},"id":"a0c01ee6-fce1-453f-8d32-a42abb0f05da"}}]},"effects":{"value":[{"resource_id":"effect","stats":{"name":{"value":"Charges"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"a1209ab7-c416-4d79-887a-4a1fe750157e"}}},"has_charges":{"value":true},"recharge_event":{"value":"dawn"},"max_charges_constant":{"value":1},"id":"3b99b270-165c-49db-8a15-1836c2dacd7d"}},{"resource_id":"effect","stats":{"name":{"value":"Cast hold person (1 charge)"},"description":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"Save DC: 12"},"id":"db074cc0-5c45-4147-9efe-bc4ddd8684df"}}]},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"dafae37e-fe81-413b-a0f9-5a6e76fcfe6f"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Hold Person"},"source":{"value":"phb"},"level":{"value":"spell_level_2"},"school":{"value":"spell_school_enchantment"},"casting_time":{"value":"1 action"},"range":{"value":"60 feet"},"duration":{"value":"Concentration, up to 1 minute"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a small, straight piece of iron"},"description":{"value":"Choose a humanoid that you can see within range. The target must succeed on a Wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd. The humanoids must be within 30 feet of each other when you target them."},"classes":{"value":["bard","cleric","druid","sorcerer","warlock","blood_hunter","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.626072"},"id":"073ec5d3-bd8e-4a93-ae2c-a663323a86a2"}}},"id":"8476e4e0-80e9-42df-a455-60a92943c2da"}},{"resource_id":"effect","stats":{"name":{"value":"Cast speak with plants (1 charge)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"9555e1de-ab60-41dc-9374-5cea1c0fcc28"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Speak with Plants"},"source":{"value":"phb"},"level":{"value":"spell_level_3"},"school":{"value":"spell_school_transmutation"},"casting_time":{"value":"1 action"},"range":{"value":"Self (30-foot radius"},"duration":{"value":"10 minutes"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"You imbue plants within 30 feet of you with limited sentience and animation, giving them the ability to communicate with you and follow your simple commands. You can question plants about events in the spell’s area within the past day, gaining information about creatures that have passed, weather, and other circumstances.\n\nYou can also turn difficult terrain caused by plant growth (such as thickets and undergrowth) into ordinary terrain that lasts for the duration. Or you can turn ordinary terrain where plants are present into difficult terrain that lasts for the duration, causing v ines and branches to hinder pursuers, for example.\n\nPlants might be able to perform other tasks on your behalf, at the GM’s discretion. The spell doesn’t enable plants to uproot themselves and move about, but they can freely move branches, tendrils, and stalks.\n\nIf a plant creature is in the area, you can communicate with it as if you shared a common language, but you gain no magical ability to influence it.\n\nThis spell can cause the plants created by the entangle spell to release a restrained creature."},"classes":{"value":["bard","druid","ranger__revised__","revised_ranger","ranger"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.635730"},"id":"837b8a7b-1e19-4dd9-97bb-99ddea7aa99d"}}},"id":"be6a41f6-a942-4436-89e8-b289fbf322b3"}}]},"id":"040600c4-49a9-427d-bde7-7e4718cd4a66"}}
+{
+  "resource_id": "weapon",
+  "stats": {
+    "name": {
+      "value": "Staff of the Rooted Hills"
+    },
+    "source": {
+      "value": "bgg"
+    },
+    "description": {
+      "value": "The hill rune is carved into this gnarled wooden staff. The staff magically resizes to match the height of any creature that attunes to it.\n\nThe staff can be wielded as a magic quarterstaff that grants a +1 bonus to attack and damage rolls made with it. The first time you hit any creature with the staff on your turn, the creature must succeed on a DC 12 Strength saving throw or be restrained by spectral vines until the start of your next turn.\n\nInvoking the Rune. As an action, you can invoke the staff's rune to cast either hold person (save DC 12) or speak with plants with the staff. When you cast hold person using the staff, the target is wreathed in spectral vines.\n\nOnce the rune has been invoked to cast either spell, it can't be invoked again until the next dawn"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "unit": {
+            "value": "gold"
+          },
+          "id": "5472a362-d63e-41ee-9570-980201ad90d6"
+        }
+      }
+    },
+    "weight": {
+      "value": {
+        "resource_id": "weight",
+        "stats": {
+          "value": {
+            "value": 4
+          },
+          "id": "71d94629-07d6-4fd0-83cb-7aa033b22c5e"
+        }
+      }
+    },
+    "type": {
+      "value": "quarterstaff"
+    },
+    "rarity": {
+      "value": "rare"
+    },
+    "requires_attunement": {
+      "value": true
+    },
+    "extra_attack_bonus": {
+      "value": 1
+    },
+    "damage_dice": {
+      "value": [
+        {
+          "resource_id": "damage_dice",
+          "stats": {
+            "dices": {
+              "value": [
+                {
+                  "resource_id": "dice_roll",
+                  "stats": {
+                    "dice_amount": {
+                      "value": 1
+                    },
+                    "dice_type": {
+                      "value": "d6"
+                    },
+                    "constant": {
+                      "value": 1
+                    },
+                    "id": "bf715344-128a-45b0-8bd2-2ada36e2e8ea"
+                  }
+                }
+              ]
+            },
+            "damage_type": {
+              "value": "bludgeoning"
+            },
+            "id": "596b60e4-00b0-489d-99c9-b1b352ed4299"
+          }
+        }
+      ]
+    },
+    "is_versatile": {
+      "value": true
+    },
+    "versatile_damage_dice": {
+      "value": [
+        {
+          "resource_id": "damage_dice",
+          "stats": {
+            "dices": {
+              "value": [
+                {
+                  "resource_id": "dice_roll",
+                  "stats": {
+                    "dice_amount": {
+                      "value": 1
+                    },
+                    "dice_type": {
+                      "value": "d8"
+                    },
+                    "constant": {
+                      "value": 1
+                    },
+                    "id": "ee79c204-b14d-4bcc-85fc-cd8f429b4843"
+                  }
+                }
+              ]
+            },
+            "damage_type": {
+              "value": "bludgeoning"
+            },
+            "id": "a0c01ee6-fce1-453f-8d32-a42abb0f05da"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Charges"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "a1209ab7-c416-4d79-887a-4a1fe750157e"
+                }
+              }
+            },
+            "has_charges": {
+              "value": true
+            },
+            "recharge_event": {
+              "value": "dawn"
+            },
+            "max_charges_constant": {
+              "value": 1
+            },
+            "id": "3b99b270-165c-49db-8a15-1836c2dacd7d"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast hold person (1 charge)"
+            },
+            "description": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "description": {
+                      "value": "Save DC: 12"
+                    },
+                    "id": "db074cc0-5c45-4147-9efe-bc4ddd8684df"
+                  }
+                }
+              ]
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "dafae37e-fe81-413b-a0f9-5a6e76fcfe6f"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Hold Person"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_2"
+                  },
+                  "school": {
+                    "value": "spell_school_enchantment"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "60 feet"
+                  },
+                  "duration": {
+                    "value": "Concentration, up to 1 minute"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a small, straight piece of iron"
+                  },
+                  "description": {
+                    "value": "Choose a humanoid that you can see within range. The target must succeed on a Wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd. The humanoids must be within 30 feet of each other when you target them."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "cleric",
+                      "druid",
+                      "sorcerer",
+                      "warlock",
+                      "blood_hunter",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.626072"
+                  },
+                  "id": "073ec5d3-bd8e-4a93-ae2c-a663323a86a2"
+                }
+              }
+            },
+            "id": "8476e4e0-80e9-42df-a455-60a92943c2da"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast speak with plants (1 charge)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "9555e1de-ab60-41dc-9374-5cea1c0fcc28"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Speak with Plants"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_3"
+                  },
+                  "school": {
+                    "value": "spell_school_transmutation"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "Self (30-foot radius"
+                  },
+                  "duration": {
+                    "value": "10 minutes"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "You imbue plants within 30 feet of you with limited sentience and animation, giving them the ability to communicate with you and follow your simple commands. You can question plants about events in the spell\u2019s area within the past day, gaining information about creatures that have passed, weather, and other circumstances.\n\nYou can also turn difficult terrain caused by plant growth (such as thickets and undergrowth) into ordinary terrain that lasts for the duration. Or you can turn ordinary terrain where plants are present into difficult terrain that lasts for the duration, causing v ines and branches to hinder pursuers, for example.\n\nPlants might be able to perform other tasks on your behalf, at the GM\u2019s discretion. The spell doesn\u2019t enable plants to uproot themselves and move about, but they can freely move branches, tendrils, and stalks.\n\nIf a plant creature is in the area, you can communicate with it as if you shared a common language, but you gain no magical ability to influence it.\n\nThis spell can cause the plants created by the entangle spell to release a restrained creature."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "druid",
+                      "ranger__revised__",
+                      "revised_ranger",
+                      "ranger"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.635730"
+                  },
+                  "id": "837b8a7b-1e19-4dd9-97bb-99ddea7aa99d"
+                }
+              }
+            },
+            "id": "be6a41f6-a942-4436-89e8-b289fbf322b3"
+          }
+        }
+      ]
+    },
+    "id": "040600c4-49a9-427d-bde7-7e4718cd4a66"
+  }
+}

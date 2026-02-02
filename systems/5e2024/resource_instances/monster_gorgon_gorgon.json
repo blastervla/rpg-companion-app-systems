@@ -1,1 +1,341 @@
-{"resource_id": "monster", "stats": {"id": "gorgon", "name": {"value": "Gorgon"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/gorgon.png"}}, "source": {"value": "mm"}, "tag": {"value": ""}, "armor_class": {"value": 19}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 12}, "dice_type": {"value": "d10"}, "constant": {"value": 48}, "id": "23b6fd78-1121-4f16-90e3-4c5e4e63a915", "updated_at": {"value": "2025-04-28T21:51:12.092777"}}}}, "cr": {"value": "cr_5"}, "xp": {"value": 1800}, "initiative": {"value": 0}, "speed": {"value": 40}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 0}, "fly_speed": {"value": 0}, "swim_speed": {"value": 0}, "strength_score": {"value": 20}, "dexterity_score": {"value": 11}, "constitution_score": {"value": 18}, "intelligence_score": {"value": 2}, "wisdom_score": {"value": 12}, "charisma_score": {"value": 7}, "strength_saving_throw_modifier": {"value": 5}, "dexterity_saving_throw_modifier": {"value": 0}, "constitution_saving_throw_modifier": {"value": 4}, "intelligence_saving_throw_modifier": {"value": -4}, "wisdom_saving_throw_modifier": {"value": 1}, "charisma_saving_throw_modifier": {"value": -2}, "skills": {"value": "Perception +7"}, "gear": {"value": ""}, "vulnerabilities": {"value": ""}, "immunities": {"value": "Exhaustion, Petrified"}, "resistances": {"value": ""}, "senses": {"value": "Passive Perception 17, Darkvision 60 ft."}, "languages": {"value": ""}, "size": {"value": "large"}, "type": {"value": "construct"}, "alignment": {"value": "true_neutral"}, "traits": {"value": []}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Gore"}, "action_description": {"value": "+8, reach 5 ft. Hit: 18 (2d12 + 5) Piercing damage. If the target is a Large or smaller creature and the gorgon moved 20+ feet straight toward it immediately before the hit, the target has the Prone condition."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 8}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "piercing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 2}, "dice_type": {"value": "d12"}, "constant": {"value": 5}, "id": "a1554985-6fd7-4fd6-b7e7-65a8f09ac44f", "updated_at": {"value": "2025-04-28T21:51:12.092854"}}}}, "id": "ceda5277-d39e-4899-8425-ec6155c3f315", "updated_at": {"value": "2025-04-28T21:51:12.092858"}}}]}, "id": "2e6f3258-0e4e-492b-a0a8-96571554a64b", "updated_at": {"value": "2025-04-28T21:51:12.092870"}}}]}, "id": "d8de85b3-7cce-4280-923f-858c4dded7ed", "updated_at": {"value": "2025-04-28T21:51:12.092874"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Petrifying Breath (Recharge 5-6)"}, "action_description": {"value": "Constitution Saving Throw: DC 15, each creature in a 30-foot Cone. First Failure: The target has the Restrained condition and repeats the save at the end of its next turn if it is still Restrained, ending the effect on itself on a success. Second Failure: The target has the Petrified condition instead of the Restrained condition."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "60452044-e18b-4529-9a81-b880c3f5c000", "updated_at": {"value": "2025-04-28T21:51:12.092958"}}}]}, "bonus_actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Trample"}, "action_description": {"value": "Dexterity Saving Throw: DC 16, one creature within 5 feet that has the Prone condition. Failure: 16 (2d10 + 5) Bludgeoning damage. Success: Half damage."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "bludgeoning"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 2}, "dice_type": {"value": "d10"}, "constant": {"value": 5}, "id": "da9fec47-b417-43d0-babc-1a3ba635cd7d", "updated_at": {"value": "2025-04-28T21:51:12.093019"}}}}, "id": "6cd22e61-7eeb-4481-96d3-fcc6be06b4c6", "updated_at": {"value": "2025-04-28T21:51:12.093023"}}}]}, "id": "584d9395-fa0f-4649-bd5e-625779a7f1a8", "updated_at": {"value": "2025-04-28T21:51:12.093029"}}}]}, "id": "0d1fef9d-a16c-4ab5-8fc2-f78c94f7f4bc", "updated_at": {"value": "2025-04-28T21:51:12.093032"}}}]}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["forest", "grassland", "hill"]}, "treasure": {"value": ["arcana", "armaments", "implements", "relics"]}, "updated_at": {"value": "2025-04-28T21:51:12.093038"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "gorgon",
+    "name": {
+      "value": "Gorgon"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/gorgon.png"
+      }
+    },
+    "source": {
+      "value": "mm"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 19
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 12
+          },
+          "dice_type": {
+            "value": "d10"
+          },
+          "constant": {
+            "value": 48
+          },
+          "id": "23b6fd78-1121-4f16-90e3-4c5e4e63a915",
+          "updated_at": {
+            "value": "2025-04-28T21:51:12.092777"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_5"
+    },
+    "xp": {
+      "value": 1800
+    },
+    "initiative": {
+      "value": 0
+    },
+    "speed": {
+      "value": 40
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_score": {
+      "value": 20
+    },
+    "dexterity_score": {
+      "value": 11
+    },
+    "constitution_score": {
+      "value": 18
+    },
+    "intelligence_score": {
+      "value": 2
+    },
+    "wisdom_score": {
+      "value": 12
+    },
+    "charisma_score": {
+      "value": 7
+    },
+    "strength_saving_throw_modifier": {
+      "value": 5
+    },
+    "dexterity_saving_throw_modifier": {
+      "value": 0
+    },
+    "constitution_saving_throw_modifier": {
+      "value": 4
+    },
+    "intelligence_saving_throw_modifier": {
+      "value": -4
+    },
+    "wisdom_saving_throw_modifier": {
+      "value": 1
+    },
+    "charisma_saving_throw_modifier": {
+      "value": -2
+    },
+    "skills": {
+      "value": "Perception +7"
+    },
+    "gear": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Exhaustion, Petrified"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "Passive Perception 17, Darkvision 60 ft."
+    },
+    "languages": {
+      "value": ""
+    },
+    "size": {
+      "value": "large"
+    },
+    "type": {
+      "value": "construct"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": []
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Gore"
+            },
+            "action_description": {
+              "value": "+8, reach 5 ft. Hit: 18 (2d12 + 5) Piercing damage. If the target is a Large or smaller creature and the gorgon moved 20+ feet straight toward it immediately before the hit, the target has the Prone condition."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 8
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 2
+                                  },
+                                  "dice_type": {
+                                    "value": "d12"
+                                  },
+                                  "constant": {
+                                    "value": 5
+                                  },
+                                  "id": "a1554985-6fd7-4fd6-b7e7-65a8f09ac44f",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.092854"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "ceda5277-d39e-4899-8425-ec6155c3f315",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.092858"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "2e6f3258-0e4e-492b-a0a8-96571554a64b",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:12.092870"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "d8de85b3-7cce-4280-923f-858c4dded7ed",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.092874"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Petrifying Breath (Recharge 5-6)"
+            },
+            "action_description": {
+              "value": "Constitution Saving Throw: DC 15, each creature in a 30-foot Cone. First Failure: The target has the Restrained condition and repeats the save at the end of its next turn if it is still Restrained, ending the effect on itself on a success. Second Failure: The target has the Petrified condition instead of the Restrained condition."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "60452044-e18b-4529-9a81-b880c3f5c000",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.092958"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Trample"
+            },
+            "action_description": {
+              "value": "Dexterity Saving Throw: DC 16, one creature within 5 feet that has the Prone condition. Failure: 16 (2d10 + 5) Bludgeoning damage. Success: Half damage."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 2
+                                  },
+                                  "dice_type": {
+                                    "value": "d10"
+                                  },
+                                  "constant": {
+                                    "value": 5
+                                  },
+                                  "id": "da9fec47-b417-43d0-babc-1a3ba635cd7d",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.093019"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "6cd22e61-7eeb-4481-96d3-fcc6be06b4c6",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.093023"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "584d9395-fa0f-4649-bd5e-625779a7f1a8",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:12.093029"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "0d1fef9d-a16c-4ab5-8fc2-f78c94f7f4bc",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.093032"
+            }
+          }
+        }
+      ]
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "forest",
+        "grassland",
+        "hill"
+      ]
+    },
+    "treasure": {
+      "value": [
+        "arcana",
+        "armaments",
+        "implements",
+        "relics"
+      ]
+    },
+    "updated_at": {
+      "value": "2025-04-28T21:51:12.093038"
+    }
+  }
+}

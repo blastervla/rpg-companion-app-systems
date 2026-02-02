@@ -1,1 +1,926 @@
-{"resource_id":"item","stats":{"name":{"value":"Staff of Dunamancy"},"source":{"value":"egw"},"description":{"value":"This staff of polished gray wood bears numerous runes carved along its length. The staff has 10 charges and regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff turns into dust and is destroyed.\n\nWhile holding the staff, you can use an action to expend 2 or more of its charges to cast one of the following spells from it, using your spell save DC and spell attack bonus: fortune’s favor (2 charges), pulse wave (3 charges), or gravity sinkhole (4 charges).\n\nNew Possibility: If you are holding the staff and fail a saving throw against a spell that targets only you, you can turn your failed save into a successful one. This property can’t be used again until the next dawn."},"type":{"value":"staff"},"cost":{"value":{"resource_id":"cost","stats":{"value":{"value":50000.0},"unit":{"value":"gold"},"updated_at":{"value":"2024-12-20T18:50:35.669887"},"id":"f2903a13-7c0a-40ed-a13a-11b1b4e68f47"}}},"weight":{"value":{"resource_id":"weight","stats":{"value":{"value":6.0},"updated_at":{"value":"2024-12-20T18:50:35.669891"},"id":"b1be93d3-dd78-48cf-a89a-8f944e457df0"}}},"rarity":{"value":"very_rare"},"is_magic":{"value":true},"requires_attunement":{"value":true},"effects":{"value":[{"resource_id":"effect","stats":{"name":{"value":"Charges"},"trigger_type":{"value":"active"},"has_charges":{"value":true},"recharge_type":{"value":"formula"},"recharge_event":{"value":"dawn"},"max_charges_constant":{"value":10},"recharges":{"value":{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d6"},"constant":{"value":4},"updated_at":{"value":"2024-12-20T18:50:35.669900"},"id":"ac46b64d-abcb-413a-aedc-393d1c3116d5"}}},"advantage_stat":{"value":"$character.strength_score"},"updated_at":{"value":"2024-12-20T18:50:35.669905"},"id":"a190d385-9375-449d-880e-8c6a402a7e28"}},{"resource_id":"effect","stats":{"name":{"value":"Cast Fortune’s Favor (2 Charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"332f6d0c-b214-44de-bff6-990eaced97f9"}}},"recharge_type":{"value":"formula"},"recharges":{"value":{"resource_id":"dice_roll","stats":{"id":"5ec06441-69f7-4842-9bd4-d43e6d93ffa2"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Fortune's Favor"},"source":{"value":"egw"},"level":{"value":"spell_level_2"},"school":{"value":"spell_school_divination"},"casting_time":{"value":"1 minute"},"range":{"value":"Touch"},"duration":{"value":"1 hour"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a white pearl worth at least 100 gp, which the spell consumes"},"description":{"value":"You impart latent luck to yourself or one willing creature you can see within range. When the chosen creature makes an attack roll, an ability check, or a saving throw before the spell ends, it can dismiss this spell on itself to roll an additional d20 and choose which of the d20s to use. Alternatively, when an attack roll is made against the chosen creature, it can dismiss this spell on itself to roll a d20 and choose which of the d20s to use, the one it rolled or the one the attacker rolled.\n\nIf the original d20 roll has advantage or disadvantage, the creature rolls the additional d20 after advantage or disadvantage has been applied to the original roll."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd."},"classes":{"value":["wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.699144"},"id":"1d56a039-4c53-44b8-a0c1-345ad0aa2f35"}}},"updated_at":{"value":"2024-12-20T18:50:35.669913"},"id":"3dc5b5dc-5e56-47fa-b137-1f569024a65d"}},{"resource_id":"effect","stats":{"name":{"value":"Cast Pulse Wave (3 Charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"2e87d56a-09b7-4ceb-8326-48e3447984b9"}}},"recharge_type":{"value":"formula"},"recharges":{"value":{"resource_id":"dice_roll","stats":{"id":"769af1a5-cfe8-456c-9bd0-1d32e61e4db4"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Pulse Wave"},"source":{"value":"egw"},"level":{"value":"spell_level_3"},"school":{"value":"spell_school_evocation"},"casting_time":{"value":"1 action"},"range":{"value":"30 feet"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"You create intense pressure, unleash it in a 30-foot cone, and decide whether the pressure pulls or pushes creatures and objects. Each creature in that cone must make a Constitution saving throw. A creature takes 6d6 force damage on a failed save, or half as much damage on a successful one. And every creature that fails the save is either pulled 15 feet toward you or pushed 15 feet away from you, depending on the choice you made for the spell.\n\nIn addition, unsecured objects that are completely within the cone are likewise pulled or pushed 15 feet."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 and the distance pulled or pushed increases by 5 feet for each slot level above 3rd."},"classes":{"value":["wizard"]},"dice":{"value":[{"resource_id":"levelled_damage_dice","stats":{"level":{"value":3},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":6},"dice_type":{"value":"d6"},"updated_at":{"value":"2024-12-20T18:50:46.699934"},"id":"546432b4-c8ac-460c-8722-d2c3f28e8e78"}}]},"damage_type":{"value":"force"},"updated_at":{"value":"2024-12-20T18:50:46.699939"},"id":"0e7dbd3c-2478-4449-bbe8-f5cd93d9519f"}}]},"updated_at":{"value":"2024-12-20T18:50:46.699942"},"id":"5909e4e1-2063-493c-b1d3-f017f7c58b2b"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":4},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":7},"dice_type":{"value":"d6"},"updated_at":{"value":"2024-12-20T18:50:46.699950"},"id":"8646e029-f655-482e-91dc-65d0e8c551b9"}}]},"damage_type":{"value":"force"},"updated_at":{"value":"2024-12-20T18:50:46.699954"},"id":"0b6761b6-0df4-4937-a3eb-2b0d63dc9e1f"}}]},"updated_at":{"value":"2024-12-20T18:50:46.699957"},"id":"5ac2af84-9775-4d40-a181-e396c37fca20"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":5},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":8},"dice_type":{"value":"d8"},"id":"059e1d66-05f2-48de-875a-bd69464cedd4"}}]},"damage_type":{"value":"force"},"id":"e8eab2cb-4d7c-4312-97f1-409b0e7090f0"}}]},"id":"2477ca96-63c8-4554-95a5-60ea7752089e"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":6},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":9},"dice_type":{"value":"d8"},"id":"e2d580a2-3f77-4ef3-a94b-2223b22fafc9"}}]},"damage_type":{"value":"force"},"id":"a31d3729-8a04-4364-bd79-d5ac61a1d0b4"}}]},"id":"e7aa9f1f-a4da-4733-afd1-22ec32fae9cf"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":7},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":10},"dice_type":{"value":"d8"},"id":"e57bf021-6bd0-4d64-93dd-57aeae12f4c8"}}]},"damage_type":{"value":"force"},"id":"7d13a391-8269-4ec1-8b54-0b195a233ddb"}}]},"id":"8aadfe67-8ee6-4637-897d-2d863f44de6a"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":8},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":11},"dice_type":{"value":"d8"},"id":"357aadb6-2f25-4ecf-a573-8ab6ea138386"}}]},"damage_type":{"value":"force"},"id":"6b9e0e68-e26a-41d0-9cda-03a18c718a5a"}}]},"id":"67dda47b-c2c9-4c27-a2ff-b099e6616fad"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":9},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":12},"dice_type":{"value":"d8"},"id":"23139f15-2113-4a81-b7d3-4cd91fc499be"}}]},"damage_type":{"value":"force"},"id":"c05b6382-b123-471f-aaf2-432cbdf1f255"}}]},"id":"8e8475f7-4e9c-4942-9708-83f509c459c9"}}]},"updated_at":{"value":"2024-12-20T18:50:46.699960"},"id":"5c38a2da-a932-4e69-b953-c857d04953f9"}}},"updated_at":{"value":"2024-12-20T18:50:35.669921"},"id":"c278af6c-3116-4c06-9345-f4abb7677233"}},{"resource_id":"effect","stats":{"name":{"value":"Cast Gravity Sinkhole (4 Charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"0f1defa4-7129-4fd3-b153-ed3607f92eff"}}},"recharge_type":{"value":"formula"},"recharges":{"value":{"resource_id":"dice_roll","stats":{"id":"bb60d5ea-053f-41c8-b92c-0aeb075398ed"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Gravity Sinkhole"},"source":{"value":"egw"},"level":{"value":"spell_level_4"},"school":{"value":"spell_school_evocation"},"casting_time":{"value":"1 action"},"range":{"value":"120 feet"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a black marble"},"description":{"value":"A 20-foot-radius sphere of crushing force forms at a point you can see within range and tugs at the creatures there. Each creature in the sphere must make a Constitution saving throw. On a failed save, the creature takes 5d10 force damage and is pulled in a straight line toward the center of the sphere, ending in an unoccupied space as close to the center as possible (even if that space is in the air). On a successful save, the creature takes half as much damage and isn't pulled."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 5th level or higher, the damage increases by 1d10 for each slot level above 4th."},"classes":{"value":["wizard"]},"dice":{"value":[{"resource_id":"levelled_damage_dice","stats":{"level":{"value":4},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":5},"dice_type":{"value":"d10"},"updated_at":{"value":"2024-12-20T18:50:46.699512"},"id":"b57b2e6b-3bc9-425c-b4e2-e9e0f978b89a"}}]},"damage_type":{"value":"force"},"updated_at":{"value":"2024-12-20T18:50:46.699517"},"id":"2cb71bd4-7a04-43ec-a42f-3c29cd560ef0"}}]},"updated_at":{"value":"2024-12-20T18:50:46.699520"},"id":"891b1baf-ae30-4602-819e-afcc1f596910"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":5},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":6},"dice_type":{"value":"d10"},"updated_at":{"value":"2024-12-20T18:50:46.699528"},"id":"adf9afbb-b652-4d22-87bc-77d2467d1e21"}}]},"damage_type":{"value":"force"},"updated_at":{"value":"2024-12-20T18:50:46.699532"},"id":"1f294f6e-68b2-4342-8f53-14b86821b3e8"}}]},"updated_at":{"value":"2024-12-20T18:50:46.699535"},"id":"07f70cb9-45f4-43d1-adbd-dbfd092391b1"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":6},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":7},"dice_type":{"value":"d10"},"id":"e63b252f-2fa7-42d5-9e59-1e689639e0f4"}}]},"damage_type":{"value":"force"},"id":"fd63eb9a-14e1-497d-bf3d-f53fcd43bd0c"}}]},"id":"613218bf-fde4-4b12-9016-5f922f8003d0"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":7},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":8},"dice_type":{"value":"d10"},"id":"501a85b3-6b92-4749-9610-cd6cde110da1"}}]},"damage_type":{"value":"force"},"id":"788fdb7f-db7a-4bf5-b354-bf1a93abfd39"}}]},"id":"8a318ebc-f39e-476d-9559-0985fac7b4e0"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":8},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":9},"dice_type":{"value":"d10"},"id":"ee8f674f-7678-4b29-a5f7-d045c81a7997"}}]},"damage_type":{"value":"force"},"id":"c252f743-7eeb-40b7-a79f-fc064ab5ff27"}}]},"id":"818dff58-1bd0-4a3f-877a-cba137d2f1dd"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":9},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":10},"dice_type":{"value":"d10"},"id":"47457715-e073-419c-8175-c572d4bbb93b"}}]},"damage_type":{"value":"force"},"id":"4e0e4e32-dc53-43f2-8649-72dd60d957fc"}}]},"id":"83a32bad-19b2-4fdf-9795-33cade480ac0"}}]},"updated_at":{"value":"2024-12-20T18:50:46.699538"},"id":"b7d99274-b281-4962-96bf-cb3671915fc6"}}},"updated_at":{"value":"2024-12-20T18:50:35.669929"},"id":"047bc46a-a971-48de-b856-5b62531fcb91"}}]},"updated_at":{"value":"2024-12-20T18:50:35.669931"},"id":"staff_of_dunamancy"}}
+{
+  "resource_id": "item",
+  "stats": {
+    "name": {
+      "value": "Staff of Dunamancy"
+    },
+    "source": {
+      "value": "egw"
+    },
+    "description": {
+      "value": "This staff of polished gray wood bears numerous runes carved along its length. The staff has 10 charges and regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff turns into dust and is destroyed.\n\nWhile holding the staff, you can use an action to expend 2 or more of its charges to cast one of the following spells from it, using your spell save DC and spell attack bonus: fortune\u2019s favor (2 charges), pulse wave (3 charges), or gravity sinkhole (4 charges).\n\nNew Possibility: If you are holding the staff and fail a saving throw against a spell that targets only you, you can turn your failed save into a successful one. This property can\u2019t be used again until the next dawn."
+    },
+    "type": {
+      "value": "staff"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "value": {
+            "value": 50000.0
+          },
+          "unit": {
+            "value": "gold"
+          },
+          "updated_at": {
+            "value": "2024-12-20T18:50:35.669887"
+          },
+          "id": "f2903a13-7c0a-40ed-a13a-11b1b4e68f47"
+        }
+      }
+    },
+    "weight": {
+      "value": {
+        "resource_id": "weight",
+        "stats": {
+          "value": {
+            "value": 6.0
+          },
+          "updated_at": {
+            "value": "2024-12-20T18:50:35.669891"
+          },
+          "id": "b1be93d3-dd78-48cf-a89a-8f944e457df0"
+        }
+      }
+    },
+    "rarity": {
+      "value": "very_rare"
+    },
+    "is_magic": {
+      "value": true
+    },
+    "requires_attunement": {
+      "value": true
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Charges"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "has_charges": {
+              "value": true
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharge_event": {
+              "value": "dawn"
+            },
+            "max_charges_constant": {
+              "value": 10
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "dice_amount": {
+                    "value": 1
+                  },
+                  "dice_type": {
+                    "value": "d6"
+                  },
+                  "constant": {
+                    "value": 4
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:35.669900"
+                  },
+                  "id": "ac46b64d-abcb-413a-aedc-393d1c3116d5"
+                }
+              }
+            },
+            "advantage_stat": {
+              "value": "$character.strength_score"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.669905"
+            },
+            "id": "a190d385-9375-449d-880e-8c6a402a7e28"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Fortune\u2019s Favor (2 Charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "332f6d0c-b214-44de-bff6-990eaced97f9"
+                }
+              }
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "5ec06441-69f7-4842-9bd4-d43e6d93ffa2"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Fortune's Favor"
+                  },
+                  "source": {
+                    "value": "egw"
+                  },
+                  "level": {
+                    "value": "spell_level_2"
+                  },
+                  "school": {
+                    "value": "spell_school_divination"
+                  },
+                  "casting_time": {
+                    "value": "1 minute"
+                  },
+                  "range": {
+                    "value": "Touch"
+                  },
+                  "duration": {
+                    "value": "1 hour"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a white pearl worth at least 100 gp, which the spell consumes"
+                  },
+                  "description": {
+                    "value": "You impart latent luck to yourself or one willing creature you can see within range. When the chosen creature makes an attack roll, an ability check, or a saving throw before the spell ends, it can dismiss this spell on itself to roll an additional d20 and choose which of the d20s to use. Alternatively, when an attack roll is made against the chosen creature, it can dismiss this spell on itself to roll a d20 and choose which of the d20s to use, the one it rolled or the one the attacker rolled.\n\nIf the original d20 roll has advantage or disadvantage, the creature rolls the additional d20 after advantage or disadvantage has been applied to the original roll."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd."
+                  },
+                  "classes": {
+                    "value": [
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.699144"
+                  },
+                  "id": "1d56a039-4c53-44b8-a0c1-345ad0aa2f35"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.669913"
+            },
+            "id": "3dc5b5dc-5e56-47fa-b137-1f569024a65d"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Pulse Wave (3 Charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "2e87d56a-09b7-4ceb-8326-48e3447984b9"
+                }
+              }
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "769af1a5-cfe8-456c-9bd0-1d32e61e4db4"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Pulse Wave"
+                  },
+                  "source": {
+                    "value": "egw"
+                  },
+                  "level": {
+                    "value": "spell_level_3"
+                  },
+                  "school": {
+                    "value": "spell_school_evocation"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "30 feet"
+                  },
+                  "duration": {
+                    "value": "Instantaneous"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "You create intense pressure, unleash it in a 30-foot cone, and decide whether the pressure pulls or pushes creatures and objects. Each creature in that cone must make a Constitution saving throw. A creature takes 6d6 force damage on a failed save, or half as much damage on a successful one. And every creature that fails the save is either pulled 15 feet toward you or pushed 15 feet away from you, depending on the choice you made for the spell.\n\nIn addition, unsecured objects that are completely within the cone are likewise pulled or pushed 15 feet."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 and the distance pulled or pushed increases by 5 feet for each slot level above 3rd."
+                  },
+                  "classes": {
+                    "value": [
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 3
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 6
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.699934"
+                                          },
+                                          "id": "546432b4-c8ac-460c-8722-d2c3f28e8e78"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "force"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.699939"
+                                  },
+                                  "id": "0e7dbd3c-2478-4449-bbe8-f5cd93d9519f"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.699942"
+                          },
+                          "id": "5909e4e1-2063-493c-b1d3-f017f7c58b2b"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 4
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 7
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.699950"
+                                          },
+                                          "id": "8646e029-f655-482e-91dc-65d0e8c551b9"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "force"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.699954"
+                                  },
+                                  "id": "0b6761b6-0df4-4937-a3eb-2b0d63dc9e1f"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.699957"
+                          },
+                          "id": "5ac2af84-9775-4d40-a181-e396c37fca20"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 5
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 8
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "059e1d66-05f2-48de-875a-bd69464cedd4"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "force"
+                                  },
+                                  "id": "e8eab2cb-4d7c-4312-97f1-409b0e7090f0"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "2477ca96-63c8-4554-95a5-60ea7752089e"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 6
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 9
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "e2d580a2-3f77-4ef3-a94b-2223b22fafc9"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "force"
+                                  },
+                                  "id": "a31d3729-8a04-4364-bd79-d5ac61a1d0b4"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "e7aa9f1f-a4da-4733-afd1-22ec32fae9cf"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 7
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 10
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "e57bf021-6bd0-4d64-93dd-57aeae12f4c8"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "force"
+                                  },
+                                  "id": "7d13a391-8269-4ec1-8b54-0b195a233ddb"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "8aadfe67-8ee6-4637-897d-2d863f44de6a"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 8
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 11
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "357aadb6-2f25-4ecf-a573-8ab6ea138386"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "force"
+                                  },
+                                  "id": "6b9e0e68-e26a-41d0-9cda-03a18c718a5a"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "67dda47b-c2c9-4c27-a2ff-b099e6616fad"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 9
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 12
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "23139f15-2113-4a81-b7d3-4cd91fc499be"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "force"
+                                  },
+                                  "id": "c05b6382-b123-471f-aaf2-432cbdf1f255"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "8e8475f7-4e9c-4942-9708-83f509c459c9"
+                        }
+                      }
+                    ]
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.699960"
+                  },
+                  "id": "5c38a2da-a932-4e69-b953-c857d04953f9"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.669921"
+            },
+            "id": "c278af6c-3116-4c06-9345-f4abb7677233"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Gravity Sinkhole (4 Charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "0f1defa4-7129-4fd3-b153-ed3607f92eff"
+                }
+              }
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "bb60d5ea-053f-41c8-b92c-0aeb075398ed"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Gravity Sinkhole"
+                  },
+                  "source": {
+                    "value": "egw"
+                  },
+                  "level": {
+                    "value": "spell_level_4"
+                  },
+                  "school": {
+                    "value": "spell_school_evocation"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "120 feet"
+                  },
+                  "duration": {
+                    "value": "Instantaneous"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a black marble"
+                  },
+                  "description": {
+                    "value": "A 20-foot-radius sphere of crushing force forms at a point you can see within range and tugs at the creatures there. Each creature in the sphere must make a Constitution saving throw. On a failed save, the creature takes 5d10 force damage and is pulled in a straight line toward the center of the sphere, ending in an unoccupied space as close to the center as possible (even if that space is in the air). On a successful save, the creature takes half as much damage and isn't pulled."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 5th level or higher, the damage increases by 1d10 for each slot level above 4th."
+                  },
+                  "classes": {
+                    "value": [
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 4
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 5
+                                          },
+                                          "dice_type": {
+                                            "value": "d10"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.699512"
+                                          },
+                                          "id": "b57b2e6b-3bc9-425c-b4e2-e9e0f978b89a"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "force"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.699517"
+                                  },
+                                  "id": "2cb71bd4-7a04-43ec-a42f-3c29cd560ef0"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.699520"
+                          },
+                          "id": "891b1baf-ae30-4602-819e-afcc1f596910"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 5
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 6
+                                          },
+                                          "dice_type": {
+                                            "value": "d10"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.699528"
+                                          },
+                                          "id": "adf9afbb-b652-4d22-87bc-77d2467d1e21"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "force"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.699532"
+                                  },
+                                  "id": "1f294f6e-68b2-4342-8f53-14b86821b3e8"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.699535"
+                          },
+                          "id": "07f70cb9-45f4-43d1-adbd-dbfd092391b1"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 6
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 7
+                                          },
+                                          "dice_type": {
+                                            "value": "d10"
+                                          },
+                                          "id": "e63b252f-2fa7-42d5-9e59-1e689639e0f4"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "force"
+                                  },
+                                  "id": "fd63eb9a-14e1-497d-bf3d-f53fcd43bd0c"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "613218bf-fde4-4b12-9016-5f922f8003d0"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 7
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 8
+                                          },
+                                          "dice_type": {
+                                            "value": "d10"
+                                          },
+                                          "id": "501a85b3-6b92-4749-9610-cd6cde110da1"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "force"
+                                  },
+                                  "id": "788fdb7f-db7a-4bf5-b354-bf1a93abfd39"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "8a318ebc-f39e-476d-9559-0985fac7b4e0"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 8
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 9
+                                          },
+                                          "dice_type": {
+                                            "value": "d10"
+                                          },
+                                          "id": "ee8f674f-7678-4b29-a5f7-d045c81a7997"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "force"
+                                  },
+                                  "id": "c252f743-7eeb-40b7-a79f-fc064ab5ff27"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "818dff58-1bd0-4a3f-877a-cba137d2f1dd"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 9
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 10
+                                          },
+                                          "dice_type": {
+                                            "value": "d10"
+                                          },
+                                          "id": "47457715-e073-419c-8175-c572d4bbb93b"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "force"
+                                  },
+                                  "id": "4e0e4e32-dc53-43f2-8649-72dd60d957fc"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "83a32bad-19b2-4fdf-9795-33cade480ac0"
+                        }
+                      }
+                    ]
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.699538"
+                  },
+                  "id": "b7d99274-b281-4962-96bf-cb3671915fc6"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.669929"
+            },
+            "id": "047bc46a-a971-48de-b856-5b62531fcb91"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:35.669931"
+    },
+    "id": "staff_of_dunamancy"
+  }
+}

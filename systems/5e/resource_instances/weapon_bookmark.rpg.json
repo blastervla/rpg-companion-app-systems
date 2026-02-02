@@ -1,1 +1,317 @@
-{"resource_id":"weapon","stats":{"name":{"value":"Bookmark"},"source":{"value":"toa"},"description":{"value":"While you have the dagger drawn, you can use a bonus action to activate one of the following properties:\n\n- Cause a blue gem set into the dagger's pommel to shed bright light in a 20-foot radius and dim light for an additional 20 feet, or make the gem go dark.\n- Turn the dagger into a compass that, while resting on your palm, points north.\n- Cast dimension door from the dagger. Once this property is used, it can't be used again until the next dawn.\n- Cast compulsion (save DC 15) from the dagger. The range of the spell increases to 90 feet but it targets only spiders that are beasts. Once this property is used, it can't be used again until the next dawn"},"cost":{"value":{"resource_id":"cost","stats":{"id":"4f4af125-a820-4528-8fcf-fdc750cf3233"}}},"weight":{"value":{"resource_id":"weight","stats":{"value":{"value":1},"id":"f26326ea-fd84-428f-ad60-8c1e5ef6ea2c"}}},"type":{"value":"dagger"},"rarity":{"value":"legendary"},"requires_attunement":{"value":true},"is_finesse":{"value":true},"is_thrown":{"value":true},"thrown_range":{"value":"20/60"},"is_light":{"value":true},"extra_attack_bonus":{"value":3},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"constant":{"value":3},"id":"cc52161a-9a2a-4988-87ac-7d6c1fc4b5dd"}}]},"damage_type":{"value":"piercing"},"id":"f3b26c2a-c95a-4f21-a8f0-5f45e863d40d"}}]},"effects":{"value":[{"resource_id":"effect","stats":{"name":{"value":"Cast dimension door"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"2ffd0e29-656b-4b3c-8604-e176a23496fb"}}},"has_charges":{"value":true},"recharge_event":{"value":"dawn"},"max_charges_constant":{"value":1},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Dimension Door"},"source":{"value":"phb"},"level":{"value":"spell_level_4"},"school":{"value":"spell_school_conjuration"},"casting_time":{"value":"1 action"},"range":{"value":"500 feet"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"description":{"value":"You teleport yourself from your current location to any other spot within range. You arrive at exactly the spot desired. It can be a place you can see, one you can visualise, or one you can describe by stating distance and direction, such as \"200 feet straight downward\" or \"upward to the northwest at a 45-degree angle, 300 feet.\"\n\nYou can bring along objects as long as their weight doesn't exceed what you can carry. You can also bring one willing creature of your size or smaller who is carrying gear up to its carrying capacity. The creature must be within 5 feet of you when you cast this spell.\n\nIf you would arrive in a place already occupied by an object or a creature, you and any creature travelling with you each take 4d6 force damage, and the spell fails to teleport you."},"classes":{"value":["bard","sorcerer","warlock","blood_hunter","fighter","rogue","wizard"]},"dice":{"value":[{"resource_id":"levelled_damage_dice","stats":{"level":{"value":4},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":4},"dice_type":{"value":"d6"},"updated_at":{"value":"2024-12-20T18:50:46.643941"},"id":"b91ee8f8-3eee-4ec2-8d17-b907840bdfd9"}}]},"damage_type":{"value":"force"},"updated_at":{"value":"2024-12-20T18:50:46.643947"},"id":"1cd9c099-0507-4df7-9e41-6fe820aab62a"}}]},"updated_at":{"value":"2024-12-20T18:50:46.643952"},"id":"51ce72a6-02b5-48f0-83d5-8e14ba22e748"}}]},"updated_at":{"value":"2024-12-20T18:50:46.643955"},"id":"aee430f3-54cd-45f7-9126-24a6ffd890af"}}},"id":"a86018b3-969e-4a41-816c-8d3a9e06bb07"}},{"resource_id":"effect","stats":{"name":{"value":"Cast compulsion"},"description":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"Save DC: 15\nThe range of the spell increases to 90 feet but it targets only spiders that are beasts"},"id":"d2299e58-2a9d-47e6-bdde-e3d97bba62d3"}}]},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"4f27c9eb-631e-4b11-8b93-26a9b65e490d"}}},"has_charges":{"value":true},"recharge_event":{"value":"dawn"},"max_charges_constant":{"value":1},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Compulsion"},"source":{"value":"phb"},"level":{"value":"spell_level_4"},"school":{"value":"spell_school_enchantment"},"casting_time":{"value":"1 action"},"range":{"value":"30 feet"},"duration":{"value":"Concentration, up to 1 minute"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"Creatures of your choice that you can see within range and that can hear you must make a Wisdom saving throw. A target automatically succeeds on this saving throw if it can't be charmed. On a failed save, a target is affected by this spell. Until the spell ends, you can use a bonus action on each of your turns to designate a direction that is horizontal to you. Each affected target must use as much of its movement as possible to move in that direction on its next turn. It can take any action before it moves. After moving in this way, it can make another Wisdom save to try to end the effect.\n\nA target isn't compelled to move into an obviously deadly hazard, such as a fire or a pit, but it will provoke opportunity attacks to move in the designated direction."},"classes":{"value":["bard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.630325"},"id":"61ed6074-6e6a-4d98-b8c8-9a57188220c0"}}},"id":"5e8382ed-d8eb-4003-8956-57f5900cc37c"}}]},"id":"9a70701f-8ae8-484f-b839-741b6ded6d5c"}}
+{
+  "resource_id": "weapon",
+  "stats": {
+    "name": {
+      "value": "Bookmark"
+    },
+    "source": {
+      "value": "toa"
+    },
+    "description": {
+      "value": "While you have the dagger drawn, you can use a bonus action to activate one of the following properties:\n\n- Cause a blue gem set into the dagger's pommel to shed bright light in a 20-foot radius and dim light for an additional 20 feet, or make the gem go dark.\n- Turn the dagger into a compass that, while resting on your palm, points north.\n- Cast dimension door from the dagger. Once this property is used, it can't be used again until the next dawn.\n- Cast compulsion (save DC 15) from the dagger. The range of the spell increases to 90 feet but it targets only spiders that are beasts. Once this property is used, it can't be used again until the next dawn"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "id": "4f4af125-a820-4528-8fcf-fdc750cf3233"
+        }
+      }
+    },
+    "weight": {
+      "value": {
+        "resource_id": "weight",
+        "stats": {
+          "value": {
+            "value": 1
+          },
+          "id": "f26326ea-fd84-428f-ad60-8c1e5ef6ea2c"
+        }
+      }
+    },
+    "type": {
+      "value": "dagger"
+    },
+    "rarity": {
+      "value": "legendary"
+    },
+    "requires_attunement": {
+      "value": true
+    },
+    "is_finesse": {
+      "value": true
+    },
+    "is_thrown": {
+      "value": true
+    },
+    "thrown_range": {
+      "value": "20/60"
+    },
+    "is_light": {
+      "value": true
+    },
+    "extra_attack_bonus": {
+      "value": 3
+    },
+    "damage_dice": {
+      "value": [
+        {
+          "resource_id": "damage_dice",
+          "stats": {
+            "dices": {
+              "value": [
+                {
+                  "resource_id": "dice_roll",
+                  "stats": {
+                    "dice_amount": {
+                      "value": 1
+                    },
+                    "constant": {
+                      "value": 3
+                    },
+                    "id": "cc52161a-9a2a-4988-87ac-7d6c1fc4b5dd"
+                  }
+                }
+              ]
+            },
+            "damage_type": {
+              "value": "piercing"
+            },
+            "id": "f3b26c2a-c95a-4f21-a8f0-5f45e863d40d"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast dimension door"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "2ffd0e29-656b-4b3c-8604-e176a23496fb"
+                }
+              }
+            },
+            "has_charges": {
+              "value": true
+            },
+            "recharge_event": {
+              "value": "dawn"
+            },
+            "max_charges_constant": {
+              "value": 1
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Dimension Door"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_4"
+                  },
+                  "school": {
+                    "value": "spell_school_conjuration"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "500 feet"
+                  },
+                  "duration": {
+                    "value": "Instantaneous"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "You teleport yourself from your current location to any other spot within range. You arrive at exactly the spot desired. It can be a place you can see, one you can visualise, or one you can describe by stating distance and direction, such as \"200 feet straight downward\" or \"upward to the northwest at a 45-degree angle, 300 feet.\"\n\nYou can bring along objects as long as their weight doesn't exceed what you can carry. You can also bring one willing creature of your size or smaller who is carrying gear up to its carrying capacity. The creature must be within 5 feet of you when you cast this spell.\n\nIf you would arrive in a place already occupied by an object or a creature, you and any creature travelling with you each take 4d6 force damage, and the spell fails to teleport you."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "sorcerer",
+                      "warlock",
+                      "blood_hunter",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 4
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 4
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.643941"
+                                          },
+                                          "id": "b91ee8f8-3eee-4ec2-8d17-b907840bdfd9"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "force"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.643947"
+                                  },
+                                  "id": "1cd9c099-0507-4df7-9e41-6fe820aab62a"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.643952"
+                          },
+                          "id": "51ce72a6-02b5-48f0-83d5-8e14ba22e748"
+                        }
+                      }
+                    ]
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.643955"
+                  },
+                  "id": "aee430f3-54cd-45f7-9126-24a6ffd890af"
+                }
+              }
+            },
+            "id": "a86018b3-969e-4a41-816c-8d3a9e06bb07"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast compulsion"
+            },
+            "description": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "description": {
+                      "value": "Save DC: 15\nThe range of the spell increases to 90 feet but it targets only spiders that are beasts"
+                    },
+                    "id": "d2299e58-2a9d-47e6-bdde-e3d97bba62d3"
+                  }
+                }
+              ]
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "4f27c9eb-631e-4b11-8b93-26a9b65e490d"
+                }
+              }
+            },
+            "has_charges": {
+              "value": true
+            },
+            "recharge_event": {
+              "value": "dawn"
+            },
+            "max_charges_constant": {
+              "value": 1
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Compulsion"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_4"
+                  },
+                  "school": {
+                    "value": "spell_school_enchantment"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "30 feet"
+                  },
+                  "duration": {
+                    "value": "Concentration, up to 1 minute"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "Creatures of your choice that you can see within range and that can hear you must make a Wisdom saving throw. A target automatically succeeds on this saving throw if it can't be charmed. On a failed save, a target is affected by this spell. Until the spell ends, you can use a bonus action on each of your turns to designate a direction that is horizontal to you. Each affected target must use as much of its movement as possible to move in that direction on its next turn. It can take any action before it moves. After moving in this way, it can make another Wisdom save to try to end the effect.\n\nA target isn't compelled to move into an obviously deadly hazard, such as a fire or a pit, but it will provoke opportunity attacks to move in the designated direction."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.630325"
+                  },
+                  "id": "61ed6074-6e6a-4d98-b8c8-9a57188220c0"
+                }
+              }
+            },
+            "id": "5e8382ed-d8eb-4003-8956-57f5900cc37c"
+          }
+        }
+      ]
+    },
+    "id": "9a70701f-8ae8-484f-b839-741b6ded6d5c"
+  }
+}

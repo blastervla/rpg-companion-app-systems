@@ -1,1 +1,347 @@
-{"resource_id":"feat","stats":{"name":{"value":"Soul of the Storm Giant"},"source":{"value":"bgg"},"prerequisites":{"value":"4th level, strike of the giants (storm strike) feat"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"level":{"value":4},"description":{"value":"You've manifested the tempest magic emblematic of storm giants, granting you the following benefits:\n\n- Ability Score Increase: Increase your Strength, Wisdom, or Charisma by 1, to a maximum of 20.\n\n- Maelstrom Aura: As a bonus action, you surround yourself with an aura of magical wind and lightning that extends 10 feet from you in every direction but not through total cover. The aura lasts until the start of your next turn or until you are incapacitated. While the aura is active, you have resistance to lightning and thunder damage. In addition, attack rolls against you have disadvantage, and whenever another creature starts its turn within the aura, you can force the creature to make a Strength saving throw (DC equals 8 + your proficiency bonus + the modifier of the ability increased by this feat). On a failed save, the creature's speed is halved until the start of its next turn. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest"},"updated_at":{"value":"2024-12-20T18:50:28.422058"},"id":"e1312b68-a671-4602-8cdc-d6f4691fc0a1"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Maelstrom Aura"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"84299e33-af5d-4396-86ee-2da1aae833c4"}}},"has_charges":{"value":true},"charge_type":{"value":"calculated"},"max_charges_levelled_formulas":{"value":[{"resource_id":"levelled_value_calculator","stats":{"calculators":{"value":[{"resource_id":"value_calculator","stats":{"operands":{"value":[{"resource_id":"operand","stats":{"stat":{"value":"$character.proficiency_bonus"},"id":"9e8ae0ee-afb2-40e0-8b7d-65de2a92935f"}}]},"id":"893a309f-36fa-4602-bfcd-3b0769ed2c06"}}]},"id":"248232de-4ab4-43b3-9935-6a7f6640a1a9"}}]},"id":"b71b411c-5cbf-4dc9-867d-f9048d95c862"}}},"id":"4af644a5-a0cf-490e-bed3-ca84a97e0221"}}]},"selectable_feature_amount_per_level":{"value":[{"resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"c2f594e4-041b-4666-9de3-1c93f844cdde"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Str Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"b16b09fc-f5ec-4814-93b9-501583b27c8b"}}]},"id":"04e48201-3d1a-40fb-aa5d-ff261f496cad"}}]},"id":"74f15f87-e3a1-4cc9-a455-d83f192bc0c0"}}},"type":{"value":"add_to_stat"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"4e6f9203-d2c9-4582-8702-1dc2fce3b5eb"}}},"id":"bb5fcc17-461e-4ff5-b8ee-db1d77b726e8"}}]},"id":"a630a5bf-dffe-48ef-a15e-ee2dea8bb58d"}},{"resource_id":"feat","stats":{"name":{"value":"Wis Increase "},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.wisdom_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"a99712d4-037e-4bc7-be27-4b3073d69e5e"}}]},"id":"6c92111c-6640-42a7-a089-579f4dd1647b"}}]},"id":"fa95f3db-1ef7-45a4-88a2-4487a61d9b24"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.wisdom_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"404ebafa-2152-4dcd-ab11-c83b503b2842"}}},"id":"7b8b4ff4-8aa5-44a2-acf9-bcfbf2939c56"}}]},"id":"0f4dd046-4ed4-4f64-9d9b-b53738527521"}},{"resource_id":"feat","stats":{"name":{"value":"Cha Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.charisma_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"c6806fc3-886e-4476-b0d8-646b52dd4816"}}]},"id":"c7d5acfa-e1ce-4773-ae01-2b6e3e376c55"}}]},"id":"e6a12bb7-12f6-4aa7-b3e5-fd936500367d"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.charisma_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"e150a68d-dd01-499e-a36b-00a669ac1457"}}},"id":"3c1eda55-f333-4adc-88e4-060640461b21"}}]},"id":"0404bfe7-6340-4168-971e-1d887a0435e3"}}]},"updated_at":{"value":"2024-12-20T18:50:28.422060"},"id":"soul_of_the_storm_giant__bgg_"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Soul of the Storm Giant"
+    },
+    "source": {
+      "value": "bgg"
+    },
+    "prerequisites": {
+      "value": "4th level, strike of the giants (storm strike) feat"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "level": {
+              "value": 4
+            },
+            "description": {
+              "value": "You've manifested the tempest magic emblematic of storm giants, granting you the following benefits:\n\n- Ability Score Increase: Increase your Strength, Wisdom, or Charisma by 1, to a maximum of 20.\n\n- Maelstrom Aura: As a bonus action, you surround yourself with an aura of magical wind and lightning that extends 10 feet from you in every direction but not through total cover. The aura lasts until the start of your next turn or until you are incapacitated. While the aura is active, you have resistance to lightning and thunder damage. In addition, attack rolls against you have disadvantage, and whenever another creature starts its turn within the aura, you can force the creature to make a Strength saving throw (DC equals 8 + your proficiency bonus + the modifier of the ability increased by this feat). On a failed save, the creature's speed is halved until the start of its next turn. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.422058"
+            },
+            "id": "e1312b68-a671-4602-8cdc-d6f4691fc0a1"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Maelstrom Aura"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "84299e33-af5d-4396-86ee-2da1aae833c4"
+                      }
+                    }
+                  },
+                  "has_charges": {
+                    "value": true
+                  },
+                  "charge_type": {
+                    "value": "calculated"
+                  },
+                  "max_charges_levelled_formulas": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_value_calculator",
+                        "stats": {
+                          "calculators": {
+                            "value": [
+                              {
+                                "resource_id": "value_calculator",
+                                "stats": {
+                                  "operands": {
+                                    "value": [
+                                      {
+                                        "resource_id": "operand",
+                                        "stats": {
+                                          "stat": {
+                                            "value": "$character.proficiency_bonus"
+                                          },
+                                          "id": "9e8ae0ee-afb2-40e0-8b7d-65de2a92935f"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "id": "893a309f-36fa-4602-bfcd-3b0769ed2c06"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "248232de-4ab4-43b3-9935-6a7f6640a1a9"
+                        }
+                      }
+                    ]
+                  },
+                  "id": "b71b411c-5cbf-4dc9-867d-f9048d95c862"
+                }
+              }
+            },
+            "id": "4af644a5-a0cf-490e-bed3-ca84a97e0221"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "c2f594e4-041b-4666-9de3-1c93f844cdde"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Str Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "b16b09fc-f5ec-4814-93b9-501583b27c8b"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "04e48201-3d1a-40fb-aa5d-ff261f496cad"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "74f15f87-e3a1-4cc9-a455-d83f192bc0c0"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "4e6f9203-d2c9-4582-8702-1dc2fce3b5eb"
+                        }
+                      }
+                    },
+                    "id": "bb5fcc17-461e-4ff5-b8ee-db1d77b726e8"
+                  }
+                }
+              ]
+            },
+            "id": "a630a5bf-dffe-48ef-a15e-ee2dea8bb58d"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Wis Increase "
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.wisdom_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "a99712d4-037e-4bc7-be27-4b3073d69e5e"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "6c92111c-6640-42a7-a089-579f4dd1647b"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "fa95f3db-1ef7-45a4-88a2-4487a61d9b24"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.wisdom_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "404ebafa-2152-4dcd-ab11-c83b503b2842"
+                        }
+                      }
+                    },
+                    "id": "7b8b4ff4-8aa5-44a2-acf9-bcfbf2939c56"
+                  }
+                }
+              ]
+            },
+            "id": "0f4dd046-4ed4-4f64-9d9b-b53738527521"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Cha Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.charisma_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "c6806fc3-886e-4476-b0d8-646b52dd4816"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "c7d5acfa-e1ce-4773-ae01-2b6e3e376c55"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "e6a12bb7-12f6-4aa7-b3e5-fd936500367d"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.charisma_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "e150a68d-dd01-499e-a36b-00a669ac1457"
+                        }
+                      }
+                    },
+                    "id": "3c1eda55-f333-4adc-88e4-060640461b21"
+                  }
+                }
+              ]
+            },
+            "id": "0404bfe7-6340-4168-971e-1d887a0435e3"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.422060"
+    },
+    "id": "soul_of_the_storm_giant__bgg_"
+  }
+}

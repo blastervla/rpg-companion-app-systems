@@ -1,1 +1,612 @@
-{"resource_id":"weapon","stats":{"name":{"value":"Staff of Fire"},"source":{"value":"dmg"},"description":{"value":"(requires attunement by a druid, sorcerer, warlock, or wizard)\n\nYou have resistance to fire damage while you hold this staff.\n\nThe staff has 10 charges. While holding it, you can use an action to expend 1 or more of its charges to cast one of the following spells from it, using your spell save DC: burning hands (1 charge), fireball (3 charges), or wall of fire (4 charges).\n\nThe staff regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff blackens, crumbles into cinders, and is destroyed"},"cost":{"value":{"resource_id":"cost","stats":{"unit":{"value":"gold"},"id":"c1ecad10-c064-4c69-b2e6-2e1696278842"}}},"weight":{"value":{"resource_id":"weight","stats":{"value":{"value":4},"id":"7214b0d8-8473-4f93-a2dd-f2b7063e30b6"}}},"type":{"value":"quarterstaff"},"rarity":{"value":"very_rare"},"requires_attunement":{"value":true},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d6"},"id":"14536759-462e-4421-9d78-317e86b45096"}}]},"damage_type":{"value":"bludgeoning"},"id":"4a953f4e-bedf-402c-8229-cb48fb76e049"}}]},"is_versatile":{"value":true},"versatile_damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d8"},"id":"3397e629-8819-4991-8a27-12980f466de3"}}]},"damage_type":{"value":"bludgeoning"},"id":"5bbb2849-a776-41a5-9a34-19b03abe3cd8"}}]},"effects":{"value":[{"resource_id":"effect","stats":{"name":{"value":"Resistance to fire damage"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"50c9953c-c7b0-49de-8517-e11dcd3b5357"}}},"id":"582549c8-6248-42e9-9d53-f6d94ec5fb85"}},{"resource_id":"effect","stats":{"name":{"value":"Charges"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"703ca6eb-f4b5-4a14-8ab4-ceb963d29f44"}}},"has_charges":{"value":true},"recharge_type":{"value":"formula"},"recharge_event":{"value":"dawn"},"max_charges_constant":{"value":10},"recharges":{"value":{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d6"},"constant":{"value":4},"id":"ec3f60bf-0a43-4ef7-9812-923f6675ef4f"}}},"id":"67aed571-d056-414a-8159-c69755058c72"}},{"resource_id":"effect","stats":{"name":{"value":"Cast burning hands (1 charge)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"758fa178-46f3-437d-b517-343fd300f9a2"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Burning Hands"},"source":{"value":"phb"},"level":{"value":"spell_level_1"},"school":{"value":"spell_school_evocation"},"casting_time":{"value":"1 action"},"range":{"value":"Self (15-foot cone)"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one.\n\nThe fire ignites any flammable objects in the area that aren’t being worn or carried."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st."},"classes":{"value":["sorcerer","fighter","rogue","wizard"]},"dice":{"value":[{"resource_id":"levelled_damage_dice","stats":{"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":3},"dice_type":{"value":"d6"},"updated_at":{"value":"2024-12-20T18:50:46.605822"},"id":"15ad8777-b89f-4245-8dd9-0fa46cc87bf2"}}]},"damage_type":{"value":"fire"},"updated_at":{"value":"2024-12-20T18:50:46.605836"},"id":"9a37b930-be3f-4e35-b376-f0cb1cd26342"}}]},"updated_at":{"value":"2024-12-20T18:50:46.605846"},"id":"280b7594-169c-445f-be30-ef5816d23e5d"}}]},"updated_at":{"value":"2024-12-20T18:50:46.605891"},"id":"798dedb0-9d04-49fd-b213-0e0c7529105f"}}},"id":"5b3d397f-c08d-4798-a712-16bcdb98deb7"}},{"resource_id":"effect","stats":{"name":{"value":"Cast fireball (3 charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"a475066e-7454-48d5-a892-67ee27747742"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Fireball"},"source":{"value":"phb"},"level":{"value":"spell_level_3"},"school":{"value":"spell_school_evocation"},"casting_time":{"value":"1 action"},"range":{"value":"150 feet"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a tiny ball of bat guano and sulfur"},"description":{"value":"A bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw. A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one.\n\nThe fire spreads around corners. It ignites flammable objects in the area that aren't being worn or carried."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd."},"classes":{"value":["sorcerer","fighter","rogue","wizard"]},"dice":{"value":[{"resource_id":"levelled_damage_dice","stats":{"level":{"value":3},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":8},"dice_type":{"value":"d6"},"updated_at":{"value":"2024-12-20T18:50:46.632110"},"id":"6b8564ad-55ec-46d3-9038-a21ed1ef7e0e"}}]},"damage_type":{"value":"fire"},"updated_at":{"value":"2024-12-20T18:50:46.632117"},"id":"f541e83e-f32e-447d-a52f-0dd1dd41302d"}}]},"updated_at":{"value":"2024-12-20T18:50:46.632123"},"id":"dd154f6c-1d24-4bca-945f-0543d088e4aa"}}]},"updated_at":{"value":"2024-12-20T18:50:46.632149"},"id":"cd99a052-9f93-4c25-8eca-e6a2deca74c5"}}},"id":"285cb29e-38c4-4109-b036-a1c0399bd6b0"}},{"resource_id":"effect","stats":{"name":{"value":"Cast wall of fire (4 charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"6daf6dbd-3fbb-427a-bf67-9a7528f61b3e"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Wall of Fire"},"source":{"value":"phb"},"level":{"value":"spell_level_4"},"school":{"value":"spell_school_evocation"},"casting_time":{"value":"1 action"},"range":{"value":"120 feet"},"duration":{"value":"Concentration, up to 1 minute"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a small piece of phosphorus"},"description":{"value":"You create a wall of fire on a solid surface within range. You can make the wall up to 60 feet long, 20 feet high, and 1 foot thick, or a ringed wall up to 20 feet in diameter, 20 feet high, and 1 foot thick. The wall is opaque and lasts for the duration.\n\nWhen the wall appears, each creature within its area must make a Dexterity saving throw. On a failed save, a creature takes 5d8 fire damage, or half as much damage on a successful save.\n\nOne side of the wall, selected by you when you cast this spell, deals 5d8 fire damage to each creature that ends its turn within 10 feet of that side or inside the wall. A creature takes the same damage when it enters the wall for the first time on a turn or ends its turn there. The other side of the wall deals no damage."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 5th level or higher, the damage increases by 1d8 for each slot level above 4th."},"classes":{"value":["druid","sorcerer","fighter","rogue","wizard"]},"dice":{"value":[{"resource_id":"levelled_damage_dice","stats":{"level":{"value":4},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":5},"dice_type":{"value":"d8"},"updated_at":{"value":"2024-12-20T18:50:46.665139"},"id":"8c6fa372-8826-4106-b7e3-2d8e6e8a3b03"}}]},"damage_type":{"value":"fire"},"updated_at":{"value":"2024-12-20T18:50:46.665144"},"id":"a5b36587-a64e-4f79-a053-6a2ce3195437"}}]},"updated_at":{"value":"2024-12-20T18:50:46.665149"},"id":"0180f45d-e6ea-4607-bc9c-3a535f111447"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":5},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d8"},"updated_at":{"value":"2024-12-20T18:50:46.665157"},"id":"eed3a0f7-29d9-4839-bb05-9b39bda480a7"}}]},"damage_type":{"value":"No match found for 'unknown'"},"updated_at":{"value":"2024-12-20T18:50:46.665162"},"id":"2ae01c3f-6884-4318-beaf-dab8eb9255d9"}}]},"updated_at":{"value":"2024-12-20T18:50:46.665166"},"id":"98b3f032-ff82-4c48-8dfa-6520b42de581"}}]},"updated_at":{"value":"2024-12-20T18:50:46.665169"},"id":"5d079499-3b23-4f75-8922-1b19108bca80"}}},"id":"d6266e10-faad-4a49-80b1-d111f766cfd3"}}]},"id":"fad21d2c-fd65-4fcb-aad7-89ea712c8983"}}
+{
+  "resource_id": "weapon",
+  "stats": {
+    "name": {
+      "value": "Staff of Fire"
+    },
+    "source": {
+      "value": "dmg"
+    },
+    "description": {
+      "value": "(requires attunement by a druid, sorcerer, warlock, or wizard)\n\nYou have resistance to fire damage while you hold this staff.\n\nThe staff has 10 charges. While holding it, you can use an action to expend 1 or more of its charges to cast one of the following spells from it, using your spell save DC: burning hands (1 charge), fireball (3 charges), or wall of fire (4 charges).\n\nThe staff regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff blackens, crumbles into cinders, and is destroyed"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "unit": {
+            "value": "gold"
+          },
+          "id": "c1ecad10-c064-4c69-b2e6-2e1696278842"
+        }
+      }
+    },
+    "weight": {
+      "value": {
+        "resource_id": "weight",
+        "stats": {
+          "value": {
+            "value": 4
+          },
+          "id": "7214b0d8-8473-4f93-a2dd-f2b7063e30b6"
+        }
+      }
+    },
+    "type": {
+      "value": "quarterstaff"
+    },
+    "rarity": {
+      "value": "very_rare"
+    },
+    "requires_attunement": {
+      "value": true
+    },
+    "damage_dice": {
+      "value": [
+        {
+          "resource_id": "damage_dice",
+          "stats": {
+            "dices": {
+              "value": [
+                {
+                  "resource_id": "dice_roll",
+                  "stats": {
+                    "dice_amount": {
+                      "value": 1
+                    },
+                    "dice_type": {
+                      "value": "d6"
+                    },
+                    "id": "14536759-462e-4421-9d78-317e86b45096"
+                  }
+                }
+              ]
+            },
+            "damage_type": {
+              "value": "bludgeoning"
+            },
+            "id": "4a953f4e-bedf-402c-8229-cb48fb76e049"
+          }
+        }
+      ]
+    },
+    "is_versatile": {
+      "value": true
+    },
+    "versatile_damage_dice": {
+      "value": [
+        {
+          "resource_id": "damage_dice",
+          "stats": {
+            "dices": {
+              "value": [
+                {
+                  "resource_id": "dice_roll",
+                  "stats": {
+                    "dice_amount": {
+                      "value": 1
+                    },
+                    "dice_type": {
+                      "value": "d8"
+                    },
+                    "id": "3397e629-8819-4991-8a27-12980f466de3"
+                  }
+                }
+              ]
+            },
+            "damage_type": {
+              "value": "bludgeoning"
+            },
+            "id": "5bbb2849-a776-41a5-9a34-19b03abe3cd8"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Resistance to fire damage"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "50c9953c-c7b0-49de-8517-e11dcd3b5357"
+                }
+              }
+            },
+            "id": "582549c8-6248-42e9-9d53-f6d94ec5fb85"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Charges"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "703ca6eb-f4b5-4a14-8ab4-ceb963d29f44"
+                }
+              }
+            },
+            "has_charges": {
+              "value": true
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharge_event": {
+              "value": "dawn"
+            },
+            "max_charges_constant": {
+              "value": 10
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "dice_amount": {
+                    "value": 1
+                  },
+                  "dice_type": {
+                    "value": "d6"
+                  },
+                  "constant": {
+                    "value": 4
+                  },
+                  "id": "ec3f60bf-0a43-4ef7-9812-923f6675ef4f"
+                }
+              }
+            },
+            "id": "67aed571-d056-414a-8159-c69755058c72"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast burning hands (1 charge)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "758fa178-46f3-437d-b517-343fd300f9a2"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Burning Hands"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_1"
+                  },
+                  "school": {
+                    "value": "spell_school_evocation"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "Self (15-foot cone)"
+                  },
+                  "duration": {
+                    "value": "Instantaneous"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one.\n\nThe fire ignites any flammable objects in the area that aren\u2019t being worn or carried."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st."
+                  },
+                  "classes": {
+                    "value": [
+                      "sorcerer",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 3
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.605822"
+                                          },
+                                          "id": "15ad8777-b89f-4245-8dd9-0fa46cc87bf2"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.605836"
+                                  },
+                                  "id": "9a37b930-be3f-4e35-b376-f0cb1cd26342"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.605846"
+                          },
+                          "id": "280b7594-169c-445f-be30-ef5816d23e5d"
+                        }
+                      }
+                    ]
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.605891"
+                  },
+                  "id": "798dedb0-9d04-49fd-b213-0e0c7529105f"
+                }
+              }
+            },
+            "id": "5b3d397f-c08d-4798-a712-16bcdb98deb7"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast fireball (3 charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "a475066e-7454-48d5-a892-67ee27747742"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Fireball"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_3"
+                  },
+                  "school": {
+                    "value": "spell_school_evocation"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "150 feet"
+                  },
+                  "duration": {
+                    "value": "Instantaneous"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a tiny ball of bat guano and sulfur"
+                  },
+                  "description": {
+                    "value": "A bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw. A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one.\n\nThe fire spreads around corners. It ignites flammable objects in the area that aren't being worn or carried."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd."
+                  },
+                  "classes": {
+                    "value": [
+                      "sorcerer",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 3
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 8
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.632110"
+                                          },
+                                          "id": "6b8564ad-55ec-46d3-9038-a21ed1ef7e0e"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.632117"
+                                  },
+                                  "id": "f541e83e-f32e-447d-a52f-0dd1dd41302d"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.632123"
+                          },
+                          "id": "dd154f6c-1d24-4bca-945f-0543d088e4aa"
+                        }
+                      }
+                    ]
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.632149"
+                  },
+                  "id": "cd99a052-9f93-4c25-8eca-e6a2deca74c5"
+                }
+              }
+            },
+            "id": "285cb29e-38c4-4109-b036-a1c0399bd6b0"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast wall of fire (4 charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "6daf6dbd-3fbb-427a-bf67-9a7528f61b3e"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Wall of Fire"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_4"
+                  },
+                  "school": {
+                    "value": "spell_school_evocation"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "120 feet"
+                  },
+                  "duration": {
+                    "value": "Concentration, up to 1 minute"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a small piece of phosphorus"
+                  },
+                  "description": {
+                    "value": "You create a wall of fire on a solid surface within range. You can make the wall up to 60 feet long, 20 feet high, and 1 foot thick, or a ringed wall up to 20 feet in diameter, 20 feet high, and 1 foot thick. The wall is opaque and lasts for the duration.\n\nWhen the wall appears, each creature within its area must make a Dexterity saving throw. On a failed save, a creature takes 5d8 fire damage, or half as much damage on a successful save.\n\nOne side of the wall, selected by you when you cast this spell, deals 5d8 fire damage to each creature that ends its turn within 10 feet of that side or inside the wall. A creature takes the same damage when it enters the wall for the first time on a turn or ends its turn there. The other side of the wall deals no damage."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 5th level or higher, the damage increases by 1d8 for each slot level above 4th."
+                  },
+                  "classes": {
+                    "value": [
+                      "druid",
+                      "sorcerer",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 4
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 5
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.665139"
+                                          },
+                                          "id": "8c6fa372-8826-4106-b7e3-2d8e6e8a3b03"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.665144"
+                                  },
+                                  "id": "a5b36587-a64e-4f79-a053-6a2ce3195437"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.665149"
+                          },
+                          "id": "0180f45d-e6ea-4607-bc9c-3a535f111447"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 5
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 1
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.665157"
+                                          },
+                                          "id": "eed3a0f7-29d9-4839-bb05-9b39bda480a7"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "No match found for 'unknown'"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.665162"
+                                  },
+                                  "id": "2ae01c3f-6884-4318-beaf-dab8eb9255d9"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.665166"
+                          },
+                          "id": "98b3f032-ff82-4c48-8dfa-6520b42de581"
+                        }
+                      }
+                    ]
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.665169"
+                  },
+                  "id": "5d079499-3b23-4f75-8922-1b19108bca80"
+                }
+              }
+            },
+            "id": "d6266e10-faad-4a49-80b1-d111f766cfd3"
+          }
+        }
+      ]
+    },
+    "id": "fad21d2c-fd65-4fcb-aad7-89ea712c8983"
+  }
+}

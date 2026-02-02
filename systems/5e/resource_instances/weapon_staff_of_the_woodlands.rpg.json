@@ -1,1 +1,833 @@
-{"resource_id":"weapon","stats":{"name":{"value":"Staff of the Woodlands"},"source":{"value":"dmg"},"description":{"value":"(requires attunement by a druid)\n\nThis staff can be wielded as a magic quarterstaff that grants a +2 bonus to attack and damage rolls made with it. While holding it, you have a +2 bonus to spell attack rolls.\n\nThe staff has 10 charges for the following properties. It regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff loses its properties and becomes a nonmagical quarterstaff.\n\nSpells. You can use an action to expend 1 or more of the staff's charges to cast one of the following spells from it, using your spell save DC: animal friendship (1 charge), awaken (5 charges), barkskin (2 charges), locate animals or plants (2 charges), speak with animals (1 charge), speak with plants (3 charges), or wall of thorns (6 charges).\n\nYou can also use an action to cast the pass without trace spell from the staff without using any charges.\n\nTree Form. You can use an action to plant one end of the staff in fertile earth and expend 1 charge to transform the staff into a healthy tree. The tree is 60 feet tall and has a 5-foot-diameter trunk, and its branches at the top spread out in a 20-foot radius. The tree appears ordinary but radiates a faint aura of transmutation magic if targeted by detect magic. While touching the tree and using another action to speak its command word, you return the staff to its normal form. Any creature in the tree falls when it reverts to a staff"},"cost":{"value":{"resource_id":"cost","stats":{"unit":{"value":"gold"},"id":"c57c6b50-48f2-45b9-bed5-5403ee5316c2"}}},"weight":{"value":{"resource_id":"weight","stats":{"value":{"value":4},"id":"fdfdc241-63a2-4b31-abb1-79442a372668"}}},"type":{"value":"quarterstaff"},"rarity":{"value":"rare"},"requires_attunement":{"value":true},"extra_attack_bonus":{"value":2},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d6"},"constant":{"value":2},"id":"66a53d26-952e-47b3-a764-f1dda226567a"}}]},"damage_type":{"value":"bludgeoning"},"id":"3bb8d81e-4ac4-4249-8e69-954b15ce382f"}}]},"is_versatile":{"value":true},"versatile_damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d8"},"constant":{"value":2},"id":"0a93b4a4-09fa-4df2-8842-71d6e569dc9f"}}]},"damage_type":{"value":"bludgeoning"},"id":"fd38c3ff-d22d-440e-ad1b-bb12399c0b72"}}]},"effects":{"value":[{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"f85c32f5-6933-414b-9ab2-4ee21522784a"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.spell_attack_extra_bonus"},"constant":{"value":2},"id":"49c325cc-9599-4202-a1b0-bf75bf4ba9d8"}},{"resource_id":"effect","stats":{"name":{"value":"Charges"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"4baa8b53-742b-4bd5-b7b4-b7431d6663d9"}}},"has_charges":{"value":true},"recharge_type":{"value":"formula"},"recharge_event":{"value":"dawn"},"max_charges_constant":{"value":10},"recharges":{"value":{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d6"},"constant":{"value":4},"id":"17916a5f-ca3b-4146-a745-40f52956c444"}}},"id":"7115ee11-1345-4051-9b76-6d0f66bb9f6e"}},{"resource_id":"effect","stats":{"name":{"value":"Cast animal friendship (1 charge)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"77470ce2-ec2c-44a7-80bc-30030a40261f"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Animal Friendship"},"source":{"value":"phb"},"level":{"value":"spell_level_1"},"school":{"value":"spell_school_enchantment"},"casting_time":{"value":"1 action"},"range":{"value":"30 feet"},"duration":{"value":"24 hours"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a morsel of food"},"description":{"value":"This spell lets you convince a beast that you mean it no harm. Choose a beast that you can see within range. It must see and hear you. If the beast's Intelligence is 4 or higher, the spell fails. Otherwise, the beast must succeed on a Wisdom saving throw or be charmed by you for the spell's duration. If you or one of your companions harms the target, the spell ends."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional beast for each slot level above 1st."},"classes":{"value":["bard","druid","ranger__revised__","revised_ranger","ranger"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.604570"},"id":"cb8d9545-3980-4941-bcf3-c0140d0a373a"}}},"id":"a119ef76-083d-437c-85ad-ac05282b87bc"}},{"resource_id":"effect","stats":{"name":{"value":"Cast awaken (5 charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"ec2f6afe-8214-43f5-b302-cee4bbb7bc1a"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Awaken"},"source":{"value":"phb"},"level":{"value":"spell_level_5"},"school":{"value":"spell_school_transmutation"},"casting_time":{"value":"8 hours"},"range":{"value":"Touch"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"an agate worth at least 1000 gp, which the spell consumes"},"description":{"value":"After spending the casting time tracing magical pathways within a precious gemstone, you touch a Huge or smaller beast or plant. The target must have either no Intelligence score or an Intelligence of 3 or less. The target gains an Intelligence of 10. The target also gains the ability to speak one language you know. If the target is a plant, it gains the ability to move its limbs, roots, vines, creepers, and so forth, and it gains senses similar to a human's. Your GM chooses statistics appropriate for the awakened plant, such as the statistics for the awakened shrub or the awakened tree.\n\nThe awakened beast or plant is charmed by you for 30 days or until you or your companions do anything harmful to it. When the charmed condition ends, the awakened creature chooses whether to remain friendly to you, based on how you treated it while it was charmed."},"classes":{"value":["bard","druid"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.646977"},"id":"0b702b7d-83f4-4c29-8905-a5d71d3dcb4f"}}},"id":"c81547e9-9705-4918-84f2-7396be2110cb"}},{"resource_id":"effect","stats":{"name":{"value":"Cast barkskin (2 charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"a8a23dc1-6151-4926-bf81-5160452de806"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Barkskin"},"source":{"value":"phb"},"level":{"value":"spell_level_2"},"school":{"value":"spell_school_transmutation"},"casting_time":{"value":"1 action"},"range":{"value":"Touch"},"duration":{"value":"Concentration, up to 1 hour"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a handful of oak bark"},"description":{"value":"You touch a willing creature. Until the spell ends, the target’s skin has a rough, bark-like appearance, and the target’s AC can’t be less than 16, regardless of what kind of armor it is wearing."},"classes":{"value":["druid","ranger__revised__","revised_ranger","ranger"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.634174"},"id":"15e4ffc5-f2c8-4a46-b36e-fcbcd4d18814"}}},"id":"88481aa7-70dc-41ef-a4f9-a24161771905"}},{"resource_id":"effect","stats":{"name":{"value":"Cast locate animals or plants (2 charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"cb11f467-cd3a-49de-acf5-844ca5ef58cf"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Locate Animals or Plants"},"source":{"value":"phb"},"level":{"value":"spell_level_2"},"school":{"value":"spell_school_divination"},"ritual":{"value":true},"casting_time":{"value":"1 action"},"range":{"value":"Self"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a bit of fur from a bloodhound"},"description":{"value":"Describe or name a specific kind of beast or plant. Concentrating on the voice of nature in your surroundings, you learn the direction and distance to the closest creature or plant of that kind within 5 miles, if any are present."},"classes":{"value":["bard","druid","ranger__revised__","revised_ranger","ranger"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.657539"},"id":"1d37754d-8883-4741-abf0-a3457a091f33"}}},"id":"9dd0d387-b6cd-4862-83f4-8e6eefb637d5"}},{"resource_id":"effect","stats":{"name":{"value":"Cast speak with animals (1 charge)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"48a1b47a-80b4-4265-ba6c-014c7978a4c7"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Speak with Animals"},"source":{"value":"phb"},"level":{"value":"spell_level_1"},"school":{"value":"spell_school_divination"},"ritual":{"value":true},"casting_time":{"value":"1 action"},"range":{"value":"Self"},"duration":{"value":"10 minutes"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"You gain the ability to comprehend and verbally communicate with beasts for the duration. The knowledge and awareness of many beasts is limited by their intelligence, but at a minimum, beasts can give you information about nearby locations and monsters, including whatever they can perceive or have perceived within the past day. You might be able to persuade a beast to perform a small favor for you, at the GM's discretion."},"classes":{"value":["bard","druid","ranger__revised__","revised_ranger","ranger"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.622967"},"id":"c5fa4983-9d37-452c-a0b2-ee9b441eb269"}}},"id":"97fc7785-1cd8-4fbb-a737-86138ca6b687"}},{"resource_id":"effect","stats":{"name":{"value":"Cast speak with plants (3 charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"519ea186-aeab-4896-a631-2c85114d5918"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Speak with Plants"},"source":{"value":"phb"},"level":{"value":"spell_level_3"},"school":{"value":"spell_school_transmutation"},"casting_time":{"value":"1 action"},"range":{"value":"Self (30-foot radius"},"duration":{"value":"10 minutes"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"You imbue plants within 30 feet of you with limited sentience and animation, giving them the ability to communicate with you and follow your simple commands. You can question plants about events in the spell’s area within the past day, gaining information about creatures that have passed, weather, and other circumstances.\n\nYou can also turn difficult terrain caused by plant growth (such as thickets and undergrowth) into ordinary terrain that lasts for the duration. Or you can turn ordinary terrain where plants are present into difficult terrain that lasts for the duration, causing v ines and branches to hinder pursuers, for example.\n\nPlants might be able to perform other tasks on your behalf, at the GM’s discretion. The spell doesn’t enable plants to uproot themselves and move about, but they can freely move branches, tendrils, and stalks.\n\nIf a plant creature is in the area, you can communicate with it as if you shared a common language, but you gain no magical ability to influence it.\n\nThis spell can cause the plants created by the entangle spell to release a restrained creature."},"classes":{"value":["bard","druid","ranger__revised__","revised_ranger","ranger"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.635730"},"id":"298a0f4c-7843-4732-bce3-3c8c55ed5070"}}},"id":"400a5f06-0737-493c-b7b4-5c60af961a0d"}},{"resource_id":"effect","stats":{"name":{"value":"Cast wall of thorns (6 charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"c5cd8e56-134e-4ce4-920c-a7c1f5422f48"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Wall of Thorns"},"source":{"value":"phb"},"level":{"value":"spell_level_6"},"school":{"value":"spell_school_conjuration"},"casting_time":{"value":"1 action"},"range":{"value":"120 feet"},"duration":{"value":"Concentration, up to 10 minutes"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a handful of thorns"},"description":{"value":"You create a wall of tough, pliable, tangled brush bristling with needle-sharp thorns. The wall appears within range on a solid surface and lasts for the duration. You choose to make the wall up to 60 feet long, 10 feet high, and 5 feet thick or a circle that has a 20-foot diameter and is up to 20 feet high and 5 feet thick. The wall blocks line of sight.\n\nWhen the wall appears, each creature within its area must make a Dexterity saving throw. On a failed save, a creature takes 7d8 piercing damage, or half as much damage on a successful save.\n\nA creature can move through the wall, albeit slowly and painfully. For every 1 foot a creature moves through the wall, it must spend 4 feet of movement. Furthermore, the first time a creature enters the wall on a turn or ends its turn there, the creature must make a Dexterity saving throw. It takes 7d8 slashing damage on a failed save, or half as much damage on a successful one."},"higher_level_description":{"value":"When you cast this spell using a spell slot o f 7th level or higher, both types of damage increase by 1d8 for each slot level above 6th."},"classes":{"value":["druid"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.665740"},"id":"025339d8-23f1-4f73-a5a8-7216a3048368"}}},"id":"4a274ca3-7a1d-4ed3-9f9a-210a99aabdf5"}},{"resource_id":"effect","stats":{"name":{"value":"Cast pass without trace"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"3d1d9762-e19b-4bf9-9286-ddf6aff24868"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Pass Without Trace"},"level":{"value":"spell_level_2"},"casting_time":{"value":"1 action"},"range":{"value":"Self"},"duration":{"value":"Concentration, up to 1 hour"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"ashes from a burned leaf of mistletoe and a sprig of spruce"},"description":{"value":"A veil of shadows and silence radiates from you, masking you and your companions from detection. For the duration, each creature you choose within 30 feet of you (including you) has a +10 bonus to Dexterity (Stealth) checks and can’t be tracked except by magical means. A creature that receives this bonus leaves behind no tracks or other traces of its passage."},"classes":{"value":["druid","ranger__revised__","revised_ranger","ranger"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.661031"},"id":"f4e07309-9864-4128-a881-21559011a8e2"}}},"id":"ceb28dbf-99d7-4eef-985c-93809bbd089a"}}]},"id":"d2fe6553-a790-4dd8-a0f9-c4a274453f39"}}
+{
+  "resource_id": "weapon",
+  "stats": {
+    "name": {
+      "value": "Staff of the Woodlands"
+    },
+    "source": {
+      "value": "dmg"
+    },
+    "description": {
+      "value": "(requires attunement by a druid)\n\nThis staff can be wielded as a magic quarterstaff that grants a +2 bonus to attack and damage rolls made with it. While holding it, you have a +2 bonus to spell attack rolls.\n\nThe staff has 10 charges for the following properties. It regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff loses its properties and becomes a nonmagical quarterstaff.\n\nSpells. You can use an action to expend 1 or more of the staff's charges to cast one of the following spells from it, using your spell save DC: animal friendship (1 charge), awaken (5 charges), barkskin (2 charges), locate animals or plants (2 charges), speak with animals (1 charge), speak with plants (3 charges), or wall of thorns (6 charges).\n\nYou can also use an action to cast the pass without trace spell from the staff without using any charges.\n\nTree Form. You can use an action to plant one end of the staff in fertile earth and expend 1 charge to transform the staff into a healthy tree. The tree is 60 feet tall and has a 5-foot-diameter trunk, and its branches at the top spread out in a 20-foot radius. The tree appears ordinary but radiates a faint aura of transmutation magic if targeted by detect magic. While touching the tree and using another action to speak its command word, you return the staff to its normal form. Any creature in the tree falls when it reverts to a staff"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "unit": {
+            "value": "gold"
+          },
+          "id": "c57c6b50-48f2-45b9-bed5-5403ee5316c2"
+        }
+      }
+    },
+    "weight": {
+      "value": {
+        "resource_id": "weight",
+        "stats": {
+          "value": {
+            "value": 4
+          },
+          "id": "fdfdc241-63a2-4b31-abb1-79442a372668"
+        }
+      }
+    },
+    "type": {
+      "value": "quarterstaff"
+    },
+    "rarity": {
+      "value": "rare"
+    },
+    "requires_attunement": {
+      "value": true
+    },
+    "extra_attack_bonus": {
+      "value": 2
+    },
+    "damage_dice": {
+      "value": [
+        {
+          "resource_id": "damage_dice",
+          "stats": {
+            "dices": {
+              "value": [
+                {
+                  "resource_id": "dice_roll",
+                  "stats": {
+                    "dice_amount": {
+                      "value": 1
+                    },
+                    "dice_type": {
+                      "value": "d6"
+                    },
+                    "constant": {
+                      "value": 2
+                    },
+                    "id": "66a53d26-952e-47b3-a764-f1dda226567a"
+                  }
+                }
+              ]
+            },
+            "damage_type": {
+              "value": "bludgeoning"
+            },
+            "id": "3bb8d81e-4ac4-4249-8e69-954b15ce382f"
+          }
+        }
+      ]
+    },
+    "is_versatile": {
+      "value": true
+    },
+    "versatile_damage_dice": {
+      "value": [
+        {
+          "resource_id": "damage_dice",
+          "stats": {
+            "dices": {
+              "value": [
+                {
+                  "resource_id": "dice_roll",
+                  "stats": {
+                    "dice_amount": {
+                      "value": 1
+                    },
+                    "dice_type": {
+                      "value": "d8"
+                    },
+                    "constant": {
+                      "value": 2
+                    },
+                    "id": "0a93b4a4-09fa-4df2-8842-71d6e569dc9f"
+                  }
+                }
+              ]
+            },
+            "damage_type": {
+              "value": "bludgeoning"
+            },
+            "id": "fd38c3ff-d22d-440e-ad1b-bb12399c0b72"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "f85c32f5-6933-414b-9ab2-4ee21522784a"
+                }
+              }
+            },
+            "type": {
+              "value": "add_to_stat"
+            },
+            "stat": {
+              "value": "$character.spell_attack_extra_bonus"
+            },
+            "constant": {
+              "value": 2
+            },
+            "id": "49c325cc-9599-4202-a1b0-bf75bf4ba9d8"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Charges"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "4baa8b53-742b-4bd5-b7b4-b7431d6663d9"
+                }
+              }
+            },
+            "has_charges": {
+              "value": true
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharge_event": {
+              "value": "dawn"
+            },
+            "max_charges_constant": {
+              "value": 10
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "dice_amount": {
+                    "value": 1
+                  },
+                  "dice_type": {
+                    "value": "d6"
+                  },
+                  "constant": {
+                    "value": 4
+                  },
+                  "id": "17916a5f-ca3b-4146-a745-40f52956c444"
+                }
+              }
+            },
+            "id": "7115ee11-1345-4051-9b76-6d0f66bb9f6e"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast animal friendship (1 charge)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "77470ce2-ec2c-44a7-80bc-30030a40261f"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Animal Friendship"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_1"
+                  },
+                  "school": {
+                    "value": "spell_school_enchantment"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "30 feet"
+                  },
+                  "duration": {
+                    "value": "24 hours"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a morsel of food"
+                  },
+                  "description": {
+                    "value": "This spell lets you convince a beast that you mean it no harm. Choose a beast that you can see within range. It must see and hear you. If the beast's Intelligence is 4 or higher, the spell fails. Otherwise, the beast must succeed on a Wisdom saving throw or be charmed by you for the spell's duration. If you or one of your companions harms the target, the spell ends."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional beast for each slot level above 1st."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "druid",
+                      "ranger__revised__",
+                      "revised_ranger",
+                      "ranger"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.604570"
+                  },
+                  "id": "cb8d9545-3980-4941-bcf3-c0140d0a373a"
+                }
+              }
+            },
+            "id": "a119ef76-083d-437c-85ad-ac05282b87bc"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast awaken (5 charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "ec2f6afe-8214-43f5-b302-cee4bbb7bc1a"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Awaken"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_5"
+                  },
+                  "school": {
+                    "value": "spell_school_transmutation"
+                  },
+                  "casting_time": {
+                    "value": "8 hours"
+                  },
+                  "range": {
+                    "value": "Touch"
+                  },
+                  "duration": {
+                    "value": "Instantaneous"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "an agate worth at least 1000 gp, which the spell consumes"
+                  },
+                  "description": {
+                    "value": "After spending the casting time tracing magical pathways within a precious gemstone, you touch a Huge or smaller beast or plant. The target must have either no Intelligence score or an Intelligence of 3 or less. The target gains an Intelligence of 10. The target also gains the ability to speak one language you know. If the target is a plant, it gains the ability to move its limbs, roots, vines, creepers, and so forth, and it gains senses similar to a human's. Your GM chooses statistics appropriate for the awakened plant, such as the statistics for the awakened shrub or the awakened tree.\n\nThe awakened beast or plant is charmed by you for 30 days or until you or your companions do anything harmful to it. When the charmed condition ends, the awakened creature chooses whether to remain friendly to you, based on how you treated it while it was charmed."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "druid"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.646977"
+                  },
+                  "id": "0b702b7d-83f4-4c29-8905-a5d71d3dcb4f"
+                }
+              }
+            },
+            "id": "c81547e9-9705-4918-84f2-7396be2110cb"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast barkskin (2 charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "a8a23dc1-6151-4926-bf81-5160452de806"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Barkskin"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_2"
+                  },
+                  "school": {
+                    "value": "spell_school_transmutation"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "Touch"
+                  },
+                  "duration": {
+                    "value": "Concentration, up to 1 hour"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a handful of oak bark"
+                  },
+                  "description": {
+                    "value": "You touch a willing creature. Until the spell ends, the target\u2019s skin has a rough, bark-like appearance, and the target\u2019s AC can\u2019t be less than 16, regardless of what kind of armor it is wearing."
+                  },
+                  "classes": {
+                    "value": [
+                      "druid",
+                      "ranger__revised__",
+                      "revised_ranger",
+                      "ranger"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.634174"
+                  },
+                  "id": "15e4ffc5-f2c8-4a46-b36e-fcbcd4d18814"
+                }
+              }
+            },
+            "id": "88481aa7-70dc-41ef-a4f9-a24161771905"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast locate animals or plants (2 charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "cb11f467-cd3a-49de-acf5-844ca5ef58cf"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Locate Animals or Plants"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_2"
+                  },
+                  "school": {
+                    "value": "spell_school_divination"
+                  },
+                  "ritual": {
+                    "value": true
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "Self"
+                  },
+                  "duration": {
+                    "value": "Instantaneous"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a bit of fur from a bloodhound"
+                  },
+                  "description": {
+                    "value": "Describe or name a specific kind of beast or plant. Concentrating on the voice of nature in your surroundings, you learn the direction and distance to the closest creature or plant of that kind within 5 miles, if any are present."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "druid",
+                      "ranger__revised__",
+                      "revised_ranger",
+                      "ranger"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.657539"
+                  },
+                  "id": "1d37754d-8883-4741-abf0-a3457a091f33"
+                }
+              }
+            },
+            "id": "9dd0d387-b6cd-4862-83f4-8e6eefb637d5"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast speak with animals (1 charge)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "48a1b47a-80b4-4265-ba6c-014c7978a4c7"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Speak with Animals"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_1"
+                  },
+                  "school": {
+                    "value": "spell_school_divination"
+                  },
+                  "ritual": {
+                    "value": true
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "Self"
+                  },
+                  "duration": {
+                    "value": "10 minutes"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "You gain the ability to comprehend and verbally communicate with beasts for the duration. The knowledge and awareness of many beasts is limited by their intelligence, but at a minimum, beasts can give you information about nearby locations and monsters, including whatever they can perceive or have perceived within the past day. You might be able to persuade a beast to perform a small favor for you, at the GM's discretion."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "druid",
+                      "ranger__revised__",
+                      "revised_ranger",
+                      "ranger"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.622967"
+                  },
+                  "id": "c5fa4983-9d37-452c-a0b2-ee9b441eb269"
+                }
+              }
+            },
+            "id": "97fc7785-1cd8-4fbb-a737-86138ca6b687"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast speak with plants (3 charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "519ea186-aeab-4896-a631-2c85114d5918"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Speak with Plants"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_3"
+                  },
+                  "school": {
+                    "value": "spell_school_transmutation"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "Self (30-foot radius"
+                  },
+                  "duration": {
+                    "value": "10 minutes"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "You imbue plants within 30 feet of you with limited sentience and animation, giving them the ability to communicate with you and follow your simple commands. You can question plants about events in the spell\u2019s area within the past day, gaining information about creatures that have passed, weather, and other circumstances.\n\nYou can also turn difficult terrain caused by plant growth (such as thickets and undergrowth) into ordinary terrain that lasts for the duration. Or you can turn ordinary terrain where plants are present into difficult terrain that lasts for the duration, causing v ines and branches to hinder pursuers, for example.\n\nPlants might be able to perform other tasks on your behalf, at the GM\u2019s discretion. The spell doesn\u2019t enable plants to uproot themselves and move about, but they can freely move branches, tendrils, and stalks.\n\nIf a plant creature is in the area, you can communicate with it as if you shared a common language, but you gain no magical ability to influence it.\n\nThis spell can cause the plants created by the entangle spell to release a restrained creature."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "druid",
+                      "ranger__revised__",
+                      "revised_ranger",
+                      "ranger"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.635730"
+                  },
+                  "id": "298a0f4c-7843-4732-bce3-3c8c55ed5070"
+                }
+              }
+            },
+            "id": "400a5f06-0737-493c-b7b4-5c60af961a0d"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast wall of thorns (6 charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "c5cd8e56-134e-4ce4-920c-a7c1f5422f48"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Wall of Thorns"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_6"
+                  },
+                  "school": {
+                    "value": "spell_school_conjuration"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "120 feet"
+                  },
+                  "duration": {
+                    "value": "Concentration, up to 10 minutes"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a handful of thorns"
+                  },
+                  "description": {
+                    "value": "You create a wall of tough, pliable, tangled brush bristling with needle-sharp thorns. The wall appears within range on a solid surface and lasts for the duration. You choose to make the wall up to 60 feet long, 10 feet high, and 5 feet thick or a circle that has a 20-foot diameter and is up to 20 feet high and 5 feet thick. The wall blocks line of sight.\n\nWhen the wall appears, each creature within its area must make a Dexterity saving throw. On a failed save, a creature takes 7d8 piercing damage, or half as much damage on a successful save.\n\nA creature can move through the wall, albeit slowly and painfully. For every 1 foot a creature moves through the wall, it must spend 4 feet of movement. Furthermore, the first time a creature enters the wall on a turn or ends its turn there, the creature must make a Dexterity saving throw. It takes 7d8 slashing damage on a failed save, or half as much damage on a successful one."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot o f 7th level or higher, both types of damage increase by 1d8 for each slot level above 6th."
+                  },
+                  "classes": {
+                    "value": [
+                      "druid"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.665740"
+                  },
+                  "id": "025339d8-23f1-4f73-a5a8-7216a3048368"
+                }
+              }
+            },
+            "id": "4a274ca3-7a1d-4ed3-9f9a-210a99aabdf5"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast pass without trace"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "3d1d9762-e19b-4bf9-9286-ddf6aff24868"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Pass Without Trace"
+                  },
+                  "level": {
+                    "value": "spell_level_2"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "Self"
+                  },
+                  "duration": {
+                    "value": "Concentration, up to 1 hour"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "ashes from a burned leaf of mistletoe and a sprig of spruce"
+                  },
+                  "description": {
+                    "value": "A veil of shadows and silence radiates from you, masking you and your companions from detection. For the duration, each creature you choose within 30 feet of you (including you) has a +10 bonus to Dexterity (Stealth) checks and can\u2019t be tracked except by magical means. A creature that receives this bonus leaves behind no tracks or other traces of its passage."
+                  },
+                  "classes": {
+                    "value": [
+                      "druid",
+                      "ranger__revised__",
+                      "revised_ranger",
+                      "ranger"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.661031"
+                  },
+                  "id": "f4e07309-9864-4128-a881-21559011a8e2"
+                }
+              }
+            },
+            "id": "ceb28dbf-99d7-4eef-985c-93809bbd089a"
+          }
+        }
+      ]
+    },
+    "id": "d2fe6553-a790-4dd8-a0f9-c4a274453f39"
+  }
+}

@@ -1,1 +1,1294 @@
-{"resource_id":"item","stats":{"name":{"value":"Staff of Fire"},"source":{"value":"dmg"},"description":{"value":"You have resistance to fire damage while you hold this staff.\n\nThe staff has 10 charges. While holding it, you can use an action to expend 1 or more of its charges to cast one of the following spells from it, using your spell save DC: burning hands (1 charge), fireball (3 charges), or wall of fire (4 charges).\n\nThe staff regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff blackens, crumbles into cinders, and is destroyed."},"type":{"value":"staff"},"cost":{"value":{"resource_id":"cost","stats":{"unit":{"value":"gold"},"updated_at":{"value":"2024-12-20T18:50:35.713238"},"id":"85848063-82d2-492a-8bd3-af2e51f30cb7"}}},"weight":{"value":{"resource_id":"weight","stats":{"value":{"value":4.0},"unit":{"value":"ounces"},"updated_at":{"value":"2024-12-20T18:50:35.713243"},"id":"1ec70a8c-d1f8-4e5f-bfeb-cfc67ae1a595"}}},"rarity":{"value":"very_rare"},"is_magic":{"value":true},"requires_attunement":{"value":true},"effects":{"value":[{"resource_id":"effect","stats":{"name":{"value":"Charges"},"trigger_type":{"value":"active"},"has_charges":{"value":true},"recharge_type":{"value":"formula"},"recharge_event":{"value":"dawn"},"max_charges_constant":{"value":10},"recharges":{"value":{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d6"},"constant":{"value":4},"updated_at":{"value":"2024-12-20T18:50:35.713251"},"id":"0e50be23-b5d8-410d-8f4e-8f80ad7c0b7f"}}},"advantage_stat":{"value":"$character.strength_score"},"updated_at":{"value":"2024-12-20T18:50:35.713256"},"id":"db10a295-ae6a-43d3-9d3d-48962f2e6e33"}},{"resource_id":"effect","stats":{"name":{"value":"Cast Burning Hands (1 Charge)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"d5403cef-ffb4-4afc-b89f-efefbac10130"}}},"recharge_type":{"value":"formula"},"recharges":{"value":{"resource_id":"dice_roll","stats":{"id":"7423bf3d-98ea-47b0-b33a-96d104bb7fd1"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Burning Hands"},"source":{"value":"phb"},"level":{"value":"spell_level_1"},"school":{"value":"spell_school_evocation"},"casting_time":{"value":"1 action"},"range":{"value":"Self (15-foot cone)"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one.\n\nThe fire ignites any flammable objects in the area that aren’t being worn or carried."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st."},"classes":{"value":["sorcerer","fighter","rogue","wizard"]},"dice":{"value":[{"resource_id":"levelled_damage_dice","stats":{"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":3},"dice_type":{"value":"d6"},"updated_at":{"value":"2024-12-20T18:50:46.605822"},"id":"537264b2-2c82-4465-b8fb-9245b9d7bb1e"}}]},"damage_type":{"value":"fire"},"updated_at":{"value":"2024-12-20T18:50:46.605836"},"id":"a13dd76f-6d95-4579-b58b-e069c238ff97"}}]},"updated_at":{"value":"2024-12-20T18:50:46.605846"},"id":"09a74066-8886-446e-8f5e-937ac2ea9e0b"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":2},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":4},"dice_type":{"value":"d6"},"updated_at":{"value":"2024-12-20T18:50:46.605868"},"id":"b867cd7f-cae6-491c-b368-4282879a10db"}}]},"damage_type":{"value":"fire"},"updated_at":{"value":"2024-12-20T18:50:46.605877"},"id":"75e3289c-9a45-4af9-ad1e-117759295430"}}]},"updated_at":{"value":"2024-12-20T18:50:46.605885"},"id":"18798565-1fb1-4ee1-826b-347b1e380506"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":3},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":5},"dice_type":{"value":"d6"},"id":"69bd41b0-6a63-4b9b-8882-6c5a557bfca5"}}]},"damage_type":{"value":"fire"},"id":"64fe49c4-8e0d-4089-a51c-f9c549be2def"}}]},"id":"5f45c4be-d3dd-4cfd-9a78-18b035ef09ec"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":4},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":7},"dice_type":{"value":"d6"},"id":"33074bd6-7c19-4197-8308-1c78fc534889"}}]},"damage_type":{"value":"fire"},"id":"eebd3667-6a26-4943-9c8b-57151f7d5915"}}]},"id":"98545219-006d-4f96-b47b-774f49f71e23"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":5},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":8},"dice_type":{"value":"d6"},"id":"7914c9c4-edc8-4b56-8749-924136bfdfd7"}}]},"damage_type":{"value":"fire"},"id":"e4ad15c9-24d6-463f-800c-59425582b16d"}}]},"id":"0df466bb-c821-4a6c-b063-04f372f99318"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":6},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":9},"dice_type":{"value":"d6"},"id":"1f811d66-7aeb-46bc-a604-836446404339"}}]},"damage_type":{"value":"fire"},"id":"a949e9e5-5dbc-4571-9cb7-11e8e4c12124"}}]},"id":"0464cb15-10e8-48eb-a55f-46f44c1155a9"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":7},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":10},"dice_type":{"value":"d6"},"id":"f0cbe30c-e347-40ba-91d6-87fa628fe2d0"}}]},"damage_type":{"value":"fire"},"id":"62e70233-3def-4e85-82f5-7d9d623e319f"}}]},"id":"843709a1-c6a8-4a57-9107-dbf00a446a7e"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":8},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":11},"dice_type":{"value":"d6"},"id":"3828ea2f-9052-4ca3-b9ec-e711ca0b886c"}}]},"damage_type":{"value":"fire"},"id":"6340a017-ac8a-4d79-bf5f-68e16f2321d4"}}]},"id":"898a552b-0b91-4625-a73f-47de83a14231"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":9},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":12},"dice_type":{"value":"d6"},"id":"c9f95547-deef-4abf-8af3-b4ca87444e23"}}]},"damage_type":{"value":"fire"},"id":"ccec2beb-a7f0-4a54-b964-75e2898094f7"}}]},"id":"806f8c8a-30cb-4e00-99b3-3d5ca8a569eb"}}]},"updated_at":{"value":"2024-12-20T18:50:46.605891"},"id":"38e53a49-61d7-4648-945f-42a0ea248c65"}}},"updated_at":{"value":"2024-12-20T18:50:35.713264"},"id":"460d020d-4e9d-4cfa-875d-3e50ce18dc10"}},{"resource_id":"effect","stats":{"name":{"value":"Cast Fireball (3 Charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"2e1f8042-1ba2-49a8-8ad6-ad4808677db5"}}},"recharge_type":{"value":"formula"},"recharges":{"value":{"resource_id":"dice_roll","stats":{"id":"bc8784df-43a6-46e8-bd96-1be6a11e7c63"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Fireball"},"source":{"value":"phb"},"level":{"value":"spell_level_3"},"school":{"value":"spell_school_evocation"},"casting_time":{"value":"1 action"},"range":{"value":"150 feet"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a tiny ball of bat guano and sulfur"},"description":{"value":"A bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw. A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one.\n\nThe fire spreads around corners. It ignites flammable objects in the area that aren't being worn or carried."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd."},"classes":{"value":["sorcerer","fighter","rogue","wizard"]},"dice":{"value":[{"resource_id":"levelled_damage_dice","stats":{"level":{"value":3},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":8},"dice_type":{"value":"d6"},"updated_at":{"value":"2024-12-20T18:50:46.632110"},"id":"4b2aa1a5-a19f-4eaf-b1ae-bf332ea8829c"}}]},"damage_type":{"value":"fire"},"updated_at":{"value":"2024-12-20T18:50:46.632117"},"id":"ec860839-2e2b-4200-8bab-9f86bcf8c202"}}]},"updated_at":{"value":"2024-12-20T18:50:46.632123"},"id":"4b3a8430-13ac-4c86-bcf8-377f3df83968"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":4},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":9},"dice_type":{"value":"d6"},"updated_at":{"value":"2024-12-20T18:50:46.632134"},"id":"17b02df7-d5e5-4072-b461-d4594759ad21"}}]},"damage_type":{"value":"fire"},"updated_at":{"value":"2024-12-20T18:50:46.632140"},"id":"4507b148-90e4-4804-9678-2a9e9ced701a"}}]},"updated_at":{"value":"2024-12-20T18:50:46.632145"},"id":"7ebecee3-4aa1-4c07-b401-be44d523f8c6"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":5},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":10},"dice_type":{"value":"d6"},"id":"877b515c-f628-47ff-a515-7e7fe3457606"}}]},"damage_type":{"value":"fire"},"id":"d510c2e2-5e1b-445c-9893-f0ee03adfcc6"}}]},"id":"0a2e8815-96b4-469f-94de-da09a4c419a4"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":6},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":11},"dice_type":{"value":"d6"},"id":"58096d38-8f70-44f9-aca2-51fde16cb7a5"}}]},"damage_type":{"value":"fire"},"id":"bf85ff31-362e-448e-a94a-3d4982e5567d"}}]},"id":"1e720997-17f2-43f1-b03c-798b6c471103"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":7},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":12},"dice_type":{"value":"d6"},"id":"7f3b66f2-3b4d-4d11-86f4-d09e2480dda6"}}]},"damage_type":{"value":"fire"},"id":"d8fdfa12-c17f-4d0e-85a4-09967bc1d857"}}]},"id":"47d3306a-c4c1-4fac-966f-5d0866e27345"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":8},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":13},"dice_type":{"value":"d6"},"id":"3d4c39bb-52e5-41b3-81c1-4e562a4dc207"}}]},"damage_type":{"value":"fire"},"id":"463ed3f4-b8d0-4481-bc8b-2ac0fd571dc4"}}]},"id":"979f152f-1337-49c5-9969-d20d6772ca77"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":9},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":14},"dice_type":{"value":"d6"},"id":"b03b946c-445d-4da0-b281-81ea62e6e059"}}]},"damage_type":{"value":"fire"},"id":"cab4ffd5-596b-4dd0-80d7-bd1ae9ae17d9"}}]},"id":"62de8195-ada9-4e7c-9f57-2e977875bece"}}]},"updated_at":{"value":"2024-12-20T18:50:46.632149"},"id":"63abf9a4-0c7a-42fd-9fdf-289d2740ede2"}}},"updated_at":{"value":"2024-12-20T18:50:35.713272"},"id":"72c74abf-2dae-4a6c-8278-00d43ceaa0ff"}},{"resource_id":"effect","stats":{"name":{"value":"Cast Wall of Fire (4 Charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"b3c268dc-959b-4094-9bfc-9c3b34db4ec7"}}},"recharge_type":{"value":"formula"},"recharges":{"value":{"resource_id":"dice_roll","stats":{"id":"339645e5-38b4-4d28-bdde-df65a0860dc8"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Wall of Fire"},"source":{"value":"phb"},"level":{"value":"spell_level_4"},"school":{"value":"spell_school_evocation"},"casting_time":{"value":"1 action"},"range":{"value":"120 feet"},"duration":{"value":"Concentration, up to 1 minute"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a small piece of phosphorus"},"description":{"value":"You create a wall of fire on a solid surface within range. You can make the wall up to 60 feet long, 20 feet high, and 1 foot thick, or a ringed wall up to 20 feet in diameter, 20 feet high, and 1 foot thick. The wall is opaque and lasts for the duration.\n\nWhen the wall appears, each creature within its area must make a Dexterity saving throw. On a failed save, a creature takes 5d8 fire damage, or half as much damage on a successful save.\n\nOne side of the wall, selected by you when you cast this spell, deals 5d8 fire damage to each creature that ends its turn within 10 feet of that side or inside the wall. A creature takes the same damage when it enters the wall for the first time on a turn or ends its turn there. The other side of the wall deals no damage."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 5th level or higher, the damage increases by 1d8 for each slot level above 4th."},"classes":{"value":["druid","sorcerer","fighter","rogue","wizard"]},"dice":{"value":[{"resource_id":"levelled_damage_dice","stats":{"level":{"value":4},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":5},"dice_type":{"value":"d8"},"updated_at":{"value":"2024-12-20T18:50:46.665139"},"id":"b843720b-7fa5-4605-a256-b2e7ec660657"}}]},"damage_type":{"value":"fire"},"updated_at":{"value":"2024-12-20T18:50:46.665144"},"id":"3967ee3b-d014-4427-afa5-40249d6a1234"}}]},"updated_at":{"value":"2024-12-20T18:50:46.665149"},"id":"dd8e5913-a94e-4b30-9f35-c36e28655b29"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":5},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":6},"dice_type":{"value":"d8"},"updated_at":{"value":"2024-12-20T18:50:46.665157"},"id":"12b22281-7924-4949-8de2-a425a4d43066"}}]},"damage_type":{"value":"fire"},"updated_at":{"value":"2024-12-20T18:50:46.665162"},"id":"43a58d5f-6c02-4a59-8b2f-cbad5a5f52bc"}}]},"updated_at":{"value":"2024-12-20T18:50:46.665166"},"id":"351e89e0-d8f2-43ee-92a3-7e227be8ae8f"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":6},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":7},"dice_type":{"value":"d8"},"id":"b90d3a32-62da-4bcb-87b0-8f416710c29c"}}]},"damage_type":{"value":"fire"},"id":"b827f22d-bcc1-4b41-9590-64712797b6c4"}}]},"id":"5e67dc52-7f4b-4100-afa6-da5b7a901510"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":7},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":8},"dice_type":{"value":"d8"},"id":"86444ba7-276a-451a-9f53-7c594ff26704"}}]},"damage_type":{"value":"fire"},"id":"d0b1d29c-61f1-4c26-a3d1-61d9fad7e5b7"}}]},"id":"fec9c346-e56d-4072-8f76-4043d708e361"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":8},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":9},"dice_type":{"value":"d8"},"id":"32e9df0d-b1aa-4a83-96ab-bbcef2f65a93"}}]},"damage_type":{"value":"fire"},"id":"fb4fc00b-5336-49de-990f-aad08285f942"}}]},"id":"a07fc4f8-4975-4cc7-8c7f-fa0ee475ad3d"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":9},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":10},"dice_type":{"value":"d8"},"id":"04cc96cb-8d73-49fb-bf8c-049e48d95ee3"}}]},"damage_type":{"value":"fire"},"id":"48a6e814-f92b-441a-9516-e2c04945857a"}}]},"id":"08c53522-5401-478e-a9d4-dab7911bfadb"}}]},"updated_at":{"value":"2024-12-20T18:50:46.665169"},"id":"e9d3a604-2151-4ae4-b970-4ab19d763cad"}}},"updated_at":{"value":"2024-12-20T18:50:35.713279"},"id":"bc00709a-5146-46a4-9d20-749bf2673aa9"}}]},"updated_at":{"value":"2024-12-20T18:50:35.713281"},"id":"staff_of_fire"}}
+{
+  "resource_id": "item",
+  "stats": {
+    "name": {
+      "value": "Staff of Fire"
+    },
+    "source": {
+      "value": "dmg"
+    },
+    "description": {
+      "value": "You have resistance to fire damage while you hold this staff.\n\nThe staff has 10 charges. While holding it, you can use an action to expend 1 or more of its charges to cast one of the following spells from it, using your spell save DC: burning hands (1 charge), fireball (3 charges), or wall of fire (4 charges).\n\nThe staff regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff blackens, crumbles into cinders, and is destroyed."
+    },
+    "type": {
+      "value": "staff"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "unit": {
+            "value": "gold"
+          },
+          "updated_at": {
+            "value": "2024-12-20T18:50:35.713238"
+          },
+          "id": "85848063-82d2-492a-8bd3-af2e51f30cb7"
+        }
+      }
+    },
+    "weight": {
+      "value": {
+        "resource_id": "weight",
+        "stats": {
+          "value": {
+            "value": 4.0
+          },
+          "unit": {
+            "value": "ounces"
+          },
+          "updated_at": {
+            "value": "2024-12-20T18:50:35.713243"
+          },
+          "id": "1ec70a8c-d1f8-4e5f-bfeb-cfc67ae1a595"
+        }
+      }
+    },
+    "rarity": {
+      "value": "very_rare"
+    },
+    "is_magic": {
+      "value": true
+    },
+    "requires_attunement": {
+      "value": true
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Charges"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "has_charges": {
+              "value": true
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharge_event": {
+              "value": "dawn"
+            },
+            "max_charges_constant": {
+              "value": 10
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "dice_amount": {
+                    "value": 1
+                  },
+                  "dice_type": {
+                    "value": "d6"
+                  },
+                  "constant": {
+                    "value": 4
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:35.713251"
+                  },
+                  "id": "0e50be23-b5d8-410d-8f4e-8f80ad7c0b7f"
+                }
+              }
+            },
+            "advantage_stat": {
+              "value": "$character.strength_score"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.713256"
+            },
+            "id": "db10a295-ae6a-43d3-9d3d-48962f2e6e33"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Burning Hands (1 Charge)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "d5403cef-ffb4-4afc-b89f-efefbac10130"
+                }
+              }
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "7423bf3d-98ea-47b0-b33a-96d104bb7fd1"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Burning Hands"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_1"
+                  },
+                  "school": {
+                    "value": "spell_school_evocation"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "Self (15-foot cone)"
+                  },
+                  "duration": {
+                    "value": "Instantaneous"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one.\n\nThe fire ignites any flammable objects in the area that aren\u2019t being worn or carried."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st."
+                  },
+                  "classes": {
+                    "value": [
+                      "sorcerer",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 3
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.605822"
+                                          },
+                                          "id": "537264b2-2c82-4465-b8fb-9245b9d7bb1e"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.605836"
+                                  },
+                                  "id": "a13dd76f-6d95-4579-b58b-e069c238ff97"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.605846"
+                          },
+                          "id": "09a74066-8886-446e-8f5e-937ac2ea9e0b"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 2
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 4
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.605868"
+                                          },
+                                          "id": "b867cd7f-cae6-491c-b368-4282879a10db"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.605877"
+                                  },
+                                  "id": "75e3289c-9a45-4af9-ad1e-117759295430"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.605885"
+                          },
+                          "id": "18798565-1fb1-4ee1-826b-347b1e380506"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 3
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 5
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "id": "69bd41b0-6a63-4b9b-8882-6c5a557bfca5"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "id": "64fe49c4-8e0d-4089-a51c-f9c549be2def"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "5f45c4be-d3dd-4cfd-9a78-18b035ef09ec"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 4
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 7
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "id": "33074bd6-7c19-4197-8308-1c78fc534889"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "id": "eebd3667-6a26-4943-9c8b-57151f7d5915"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "98545219-006d-4f96-b47b-774f49f71e23"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 5
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 8
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "id": "7914c9c4-edc8-4b56-8749-924136bfdfd7"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "id": "e4ad15c9-24d6-463f-800c-59425582b16d"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "0df466bb-c821-4a6c-b063-04f372f99318"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 6
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 9
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "id": "1f811d66-7aeb-46bc-a604-836446404339"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "id": "a949e9e5-5dbc-4571-9cb7-11e8e4c12124"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "0464cb15-10e8-48eb-a55f-46f44c1155a9"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 7
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 10
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "id": "f0cbe30c-e347-40ba-91d6-87fa628fe2d0"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "id": "62e70233-3def-4e85-82f5-7d9d623e319f"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "843709a1-c6a8-4a57-9107-dbf00a446a7e"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 8
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 11
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "id": "3828ea2f-9052-4ca3-b9ec-e711ca0b886c"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "id": "6340a017-ac8a-4d79-bf5f-68e16f2321d4"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "898a552b-0b91-4625-a73f-47de83a14231"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 9
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 12
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "id": "c9f95547-deef-4abf-8af3-b4ca87444e23"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "id": "ccec2beb-a7f0-4a54-b964-75e2898094f7"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "806f8c8a-30cb-4e00-99b3-3d5ca8a569eb"
+                        }
+                      }
+                    ]
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.605891"
+                  },
+                  "id": "38e53a49-61d7-4648-945f-42a0ea248c65"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.713264"
+            },
+            "id": "460d020d-4e9d-4cfa-875d-3e50ce18dc10"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Fireball (3 Charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "2e1f8042-1ba2-49a8-8ad6-ad4808677db5"
+                }
+              }
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "bc8784df-43a6-46e8-bd96-1be6a11e7c63"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Fireball"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_3"
+                  },
+                  "school": {
+                    "value": "spell_school_evocation"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "150 feet"
+                  },
+                  "duration": {
+                    "value": "Instantaneous"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a tiny ball of bat guano and sulfur"
+                  },
+                  "description": {
+                    "value": "A bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw. A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one.\n\nThe fire spreads around corners. It ignites flammable objects in the area that aren't being worn or carried."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd."
+                  },
+                  "classes": {
+                    "value": [
+                      "sorcerer",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 3
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 8
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.632110"
+                                          },
+                                          "id": "4b2aa1a5-a19f-4eaf-b1ae-bf332ea8829c"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.632117"
+                                  },
+                                  "id": "ec860839-2e2b-4200-8bab-9f86bcf8c202"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.632123"
+                          },
+                          "id": "4b3a8430-13ac-4c86-bcf8-377f3df83968"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 4
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 9
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.632134"
+                                          },
+                                          "id": "17b02df7-d5e5-4072-b461-d4594759ad21"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.632140"
+                                  },
+                                  "id": "4507b148-90e4-4804-9678-2a9e9ced701a"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.632145"
+                          },
+                          "id": "7ebecee3-4aa1-4c07-b401-be44d523f8c6"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 5
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 10
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "id": "877b515c-f628-47ff-a515-7e7fe3457606"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "id": "d510c2e2-5e1b-445c-9893-f0ee03adfcc6"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "0a2e8815-96b4-469f-94de-da09a4c419a4"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 6
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 11
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "id": "58096d38-8f70-44f9-aca2-51fde16cb7a5"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "id": "bf85ff31-362e-448e-a94a-3d4982e5567d"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "1e720997-17f2-43f1-b03c-798b6c471103"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 7
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 12
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "id": "7f3b66f2-3b4d-4d11-86f4-d09e2480dda6"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "id": "d8fdfa12-c17f-4d0e-85a4-09967bc1d857"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "47d3306a-c4c1-4fac-966f-5d0866e27345"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 8
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 13
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "id": "3d4c39bb-52e5-41b3-81c1-4e562a4dc207"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "id": "463ed3f4-b8d0-4481-bc8b-2ac0fd571dc4"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "979f152f-1337-49c5-9969-d20d6772ca77"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 9
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 14
+                                          },
+                                          "dice_type": {
+                                            "value": "d6"
+                                          },
+                                          "id": "b03b946c-445d-4da0-b281-81ea62e6e059"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "id": "cab4ffd5-596b-4dd0-80d7-bd1ae9ae17d9"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "62de8195-ada9-4e7c-9f57-2e977875bece"
+                        }
+                      }
+                    ]
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.632149"
+                  },
+                  "id": "63abf9a4-0c7a-42fd-9fdf-289d2740ede2"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.713272"
+            },
+            "id": "72c74abf-2dae-4a6c-8278-00d43ceaa0ff"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Wall of Fire (4 Charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "b3c268dc-959b-4094-9bfc-9c3b34db4ec7"
+                }
+              }
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "339645e5-38b4-4d28-bdde-df65a0860dc8"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Wall of Fire"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_4"
+                  },
+                  "school": {
+                    "value": "spell_school_evocation"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "120 feet"
+                  },
+                  "duration": {
+                    "value": "Concentration, up to 1 minute"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a small piece of phosphorus"
+                  },
+                  "description": {
+                    "value": "You create a wall of fire on a solid surface within range. You can make the wall up to 60 feet long, 20 feet high, and 1 foot thick, or a ringed wall up to 20 feet in diameter, 20 feet high, and 1 foot thick. The wall is opaque and lasts for the duration.\n\nWhen the wall appears, each creature within its area must make a Dexterity saving throw. On a failed save, a creature takes 5d8 fire damage, or half as much damage on a successful save.\n\nOne side of the wall, selected by you when you cast this spell, deals 5d8 fire damage to each creature that ends its turn within 10 feet of that side or inside the wall. A creature takes the same damage when it enters the wall for the first time on a turn or ends its turn there. The other side of the wall deals no damage."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 5th level or higher, the damage increases by 1d8 for each slot level above 4th."
+                  },
+                  "classes": {
+                    "value": [
+                      "druid",
+                      "sorcerer",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 4
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 5
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.665139"
+                                          },
+                                          "id": "b843720b-7fa5-4605-a256-b2e7ec660657"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.665144"
+                                  },
+                                  "id": "3967ee3b-d014-4427-afa5-40249d6a1234"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.665149"
+                          },
+                          "id": "dd8e5913-a94e-4b30-9f35-c36e28655b29"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 5
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 6
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.665157"
+                                          },
+                                          "id": "12b22281-7924-4949-8de2-a425a4d43066"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.665162"
+                                  },
+                                  "id": "43a58d5f-6c02-4a59-8b2f-cbad5a5f52bc"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.665166"
+                          },
+                          "id": "351e89e0-d8f2-43ee-92a3-7e227be8ae8f"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 6
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 7
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "b90d3a32-62da-4bcb-87b0-8f416710c29c"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "id": "b827f22d-bcc1-4b41-9590-64712797b6c4"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "5e67dc52-7f4b-4100-afa6-da5b7a901510"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 7
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 8
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "86444ba7-276a-451a-9f53-7c594ff26704"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "id": "d0b1d29c-61f1-4c26-a3d1-61d9fad7e5b7"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "fec9c346-e56d-4072-8f76-4043d708e361"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 8
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 9
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "32e9df0d-b1aa-4a83-96ab-bbcef2f65a93"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "id": "fb4fc00b-5336-49de-990f-aad08285f942"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "a07fc4f8-4975-4cc7-8c7f-fa0ee475ad3d"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 9
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 10
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "04cc96cb-8d73-49fb-bf8c-049e48d95ee3"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "fire"
+                                  },
+                                  "id": "48a6e814-f92b-441a-9516-e2c04945857a"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "08c53522-5401-478e-a9d4-dab7911bfadb"
+                        }
+                      }
+                    ]
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.665169"
+                  },
+                  "id": "e9d3a604-2151-4ae4-b970-4ab19d763cad"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.713279"
+            },
+            "id": "bc00709a-5146-46a4-9d20-749bf2673aa9"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:35.713281"
+    },
+    "id": "staff_of_fire"
+  }
+}

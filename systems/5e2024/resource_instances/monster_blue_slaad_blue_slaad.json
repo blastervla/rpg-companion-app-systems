@@ -1,1 +1,328 @@
-{"resource_id": "monster", "stats": {"id": "blue_slaad", "name": {"value": "Blue Slaad"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/blue_slaad.png"}}, "source": {"value": "mm"}, "tag": {"value": ""}, "armor_class": {"value": 15}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 14}, "dice_type": {"value": "d10"}, "constant": {"value": 56}, "id": "65ecb2a6-ca5d-495e-96de-50ee4aa8dbf4", "updated_at": {"value": "2025-04-28T21:51:11.988744"}}}}, "cr": {"value": "cr_7"}, "xp": {"value": 2900}, "initiative": {"value": 2}, "speed": {"value": 30}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 0}, "fly_speed": {"value": 0}, "swim_speed": {"value": 0}, "strength_score": {"value": 20}, "dexterity_score": {"value": 15}, "constitution_score": {"value": 18}, "intelligence_score": {"value": 7}, "wisdom_score": {"value": 7}, "charisma_score": {"value": 9}, "strength_saving_throw_modifier": {"value": 5}, "dexterity_saving_throw_modifier": {"value": 2}, "constitution_saving_throw_modifier": {"value": 4}, "intelligence_saving_throw_modifier": {"value": -2}, "wisdom_saving_throw_modifier": {"value": -2}, "charisma_saving_throw_modifier": {"value": -1}, "skills": {"value": "Perception +1"}, "gear": {"value": ""}, "vulnerabilities": {"value": ""}, "immunities": {"value": ""}, "resistances": {"value": "Acid, Cold, Fire, Lightning, Thunder"}, "senses": {"value": "Passive Perception 11, Darkvision 60 ft."}, "languages": {"value": "Slaad; telepathy 60 ft."}, "size": {"value": "large"}, "type": {"value": "aberration"}, "alignment": {"value": "chaotic_neutral"}, "traits": {"value": [{"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Magic Resistance"}, "trait_description": {"value": "The slaad has Advantage on saving throws against spells and other magical effects."}, "id": "f6e9ca4f-9541-4930-8b8b-6a7d2155cbc0", "updated_at": {"value": "2025-04-28T21:51:11.988811"}}}, {"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Regeneration"}, "trait_description": {"value": "The slaad regains 10 Hit Points at the start of each of its turns if it has at least 1 Hit Points."}, "id": "683e1bca-53f9-44fa-9db0-5f72a2b782ce", "updated_at": {"value": "2025-04-28T21:51:11.988863"}}}]}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Multiattack"}, "action_description": {"value": "The slaad makes three Mutating Claw attacks."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "7d5d7f37-d10b-4642-9e48-bf0d912664c4", "updated_at": {"value": "2025-04-28T21:51:11.988913"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Mutating Claw"}, "action_description": {"value": "+8, reach 10 ft. Hit: 12 (2d6 + 5) Slashing damage plus 3 (1d6) Poison damage. If the target is a Humanoid not cursed by a slaad, it is subjected to the following effect. Constitution Saving Throw: DC 15. Failure: The target is cursed. The cursed target can't regain Hit Points, and its Hit Points maximum decreases by 10 (3d6) after every 24 hours and doesn't return to normal after finishing a Long Rest. If the curse reduces the target's Hit Points maximum to 0, the curse ends, and instead of dying, the target instantly transforms into a Red Slaad|XMM or, if it can cast spells of level 3 or higher, a Green Slaad|XMM. Only a Wish spell can reverse this transformation."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 8}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "slashing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 2}, "dice_type": {"value": "d6"}, "constant": {"value": 5}, "id": "74c41c45-d0da-4de0-911b-dc0aa6031557", "updated_at": {"value": "2025-04-28T21:51:11.989003"}}}}, "id": "a6d01565-54b6-43b4-8c19-da2fb2d3e2b9", "updated_at": {"value": "2025-04-28T21:51:11.989007"}}}, {"resource_id": "damage_dice", "stats": {"damage_type": {"value": "poison"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 1}, "dice_type": {"value": "d6"}, "constant": {"value": 0}, "id": "707419ae-b96a-4876-b9f2-56911575caa6", "updated_at": {"value": "2025-04-28T21:51:11.989014"}}}}, "id": "068a3c9b-d64c-435f-9c5f-a68c5f724fd8", "updated_at": {"value": "2025-04-28T21:51:11.989017"}}}]}, "id": "b1cafe29-0348-449c-bfe2-90e54d921188", "updated_at": {"value": "2025-04-28T21:51:11.989051"}}}]}, "id": "999cfd17-2f4d-40bf-b4e5-e896ced2b435", "updated_at": {"value": "2025-04-28T21:51:11.989056"}}}]}, "bonus_actions": {"value": []}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["planar_limbo"]}, "treasure": {"value": ["arcana", "armaments", "implements", "relics"]}, "updated_at": {"value": "2025-04-28T21:51:11.989061"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "blue_slaad",
+    "name": {
+      "value": "Blue Slaad"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/blue_slaad.png"
+      }
+    },
+    "source": {
+      "value": "mm"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 15
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 14
+          },
+          "dice_type": {
+            "value": "d10"
+          },
+          "constant": {
+            "value": 56
+          },
+          "id": "65ecb2a6-ca5d-495e-96de-50ee4aa8dbf4",
+          "updated_at": {
+            "value": "2025-04-28T21:51:11.988744"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_7"
+    },
+    "xp": {
+      "value": 2900
+    },
+    "initiative": {
+      "value": 2
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_score": {
+      "value": 20
+    },
+    "dexterity_score": {
+      "value": 15
+    },
+    "constitution_score": {
+      "value": 18
+    },
+    "intelligence_score": {
+      "value": 7
+    },
+    "wisdom_score": {
+      "value": 7
+    },
+    "charisma_score": {
+      "value": 9
+    },
+    "strength_saving_throw_modifier": {
+      "value": 5
+    },
+    "dexterity_saving_throw_modifier": {
+      "value": 2
+    },
+    "constitution_saving_throw_modifier": {
+      "value": 4
+    },
+    "intelligence_saving_throw_modifier": {
+      "value": -2
+    },
+    "wisdom_saving_throw_modifier": {
+      "value": -2
+    },
+    "charisma_saving_throw_modifier": {
+      "value": -1
+    },
+    "skills": {
+      "value": "Perception +1"
+    },
+    "gear": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": "Acid, Cold, Fire, Lightning, Thunder"
+    },
+    "senses": {
+      "value": "Passive Perception 11, Darkvision 60 ft."
+    },
+    "languages": {
+      "value": "Slaad; telepathy 60 ft."
+    },
+    "size": {
+      "value": "large"
+    },
+    "type": {
+      "value": "aberration"
+    },
+    "alignment": {
+      "value": "chaotic_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Magic Resistance"
+            },
+            "trait_description": {
+              "value": "The slaad has Advantage on saving throws against spells and other magical effects."
+            },
+            "id": "f6e9ca4f-9541-4930-8b8b-6a7d2155cbc0",
+            "updated_at": {
+              "value": "2025-04-28T21:51:11.988811"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Regeneration"
+            },
+            "trait_description": {
+              "value": "The slaad regains 10 Hit Points at the start of each of its turns if it has at least 1 Hit Points."
+            },
+            "id": "683e1bca-53f9-44fa-9db0-5f72a2b782ce",
+            "updated_at": {
+              "value": "2025-04-28T21:51:11.988863"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Multiattack"
+            },
+            "action_description": {
+              "value": "The slaad makes three Mutating Claw attacks."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "7d5d7f37-d10b-4642-9e48-bf0d912664c4",
+            "updated_at": {
+              "value": "2025-04-28T21:51:11.988913"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Mutating Claw"
+            },
+            "action_description": {
+              "value": "+8, reach 10 ft. Hit: 12 (2d6 + 5) Slashing damage plus 3 (1d6) Poison damage. If the target is a Humanoid not cursed by a slaad, it is subjected to the following effect. Constitution Saving Throw: DC 15. Failure: The target is cursed. The cursed target can't regain Hit Points, and its Hit Points maximum decreases by 10 (3d6) after every 24 hours and doesn't return to normal after finishing a Long Rest. If the curse reduces the target's Hit Points maximum to 0, the curse ends, and instead of dying, the target instantly transforms into a Red Slaad|XMM or, if it can cast spells of level 3 or higher, a Green Slaad|XMM. Only a Wish spell can reverse this transformation."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 8
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 2
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 5
+                                  },
+                                  "id": "74c41c45-d0da-4de0-911b-dc0aa6031557",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:11.989003"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "a6d01565-54b6-43b4-8c19-da2fb2d3e2b9",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:11.989007"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "poison"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 1
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 0
+                                  },
+                                  "id": "707419ae-b96a-4876-b9f2-56911575caa6",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:11.989014"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "068a3c9b-d64c-435f-9c5f-a68c5f724fd8",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:11.989017"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "b1cafe29-0348-449c-bfe2-90e54d921188",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:11.989051"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "999cfd17-2f4d-40bf-b4e5-e896ced2b435",
+            "updated_at": {
+              "value": "2025-04-28T21:51:11.989056"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "planar_limbo"
+      ]
+    },
+    "treasure": {
+      "value": [
+        "arcana",
+        "armaments",
+        "implements",
+        "relics"
+      ]
+    },
+    "updated_at": {
+      "value": "2025-04-28T21:51:11.989061"
+    }
+  }
+}

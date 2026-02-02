@@ -1,1 +1,326 @@
-{"resource_id": "monster", "stats": {"id": "grick", "name": {"value": "Grick"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/grick.png"}}, "source": {"value": "mm"}, "tag": {"value": null}, "armor_class": {"value": 14}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 6}, "dice_type": {"value": "d8"}, "constant": {"value": 0}, "id": "2e06c211-3e44-422b-8117-dac054295075", "updated_at": {"value": "2025-08-03T22:41:00.026112"}}}}, "cr": {"value": "cr_2"}, "xp": {"value": 450}, "initiative": {"value": 2}, "speed": {"value": 30}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 30}, "fly_speed": {"value": 0}, "swim_speed": {"value": 0}, "strength_score": {"value": 14}, "dexterity_score": {"value": 14}, "constitution_score": {"value": 11}, "intelligence_score": {"value": 3}, "wisdom_score": {"value": 14}, "charisma_score": {"value": 5}, "skills": {"value": ""}, "vulnerabilities": {"value": ""}, "immunities": {"value": ""}, "resistances": {"value": "bludgeoning, piercing, and slashing damage from nonmagical weapons"}, "senses": {"value": "darkvision 60 ft."}, "languages": {"value": ""}, "size": {"value": "medium"}, "type": {"value": "monstrosity"}, "alignment": {"value": "neutral"}, "traits": {"value": [{"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Stone camouflage"}, "trait_description": {"value": "The grick has advantage on Dexterity (Stealth) checks made to hide in rocky terrain."}, "id": "32022cbc-508d-4a80-b594-035d74433f85", "updated_at": {"value": "2025-08-03T22:41:00.026139"}}}]}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Multiattack"}, "action_description": {"value": "The grick makes one attack with its tentacles. If that attack hits, the grick can make one beak attack against the same target."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "47120aa6-8177-4b9d-9bca-278a3e260839", "updated_at": {"value": "2025-08-03T22:41:00.026152"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Tentacles"}, "action_description": {"value": "+4 to hit, reach 5 ft., one target. Hit: 9 (2d6 + 2) slashing damage."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 4}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "slashing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 2}, "dice_type": {"value": "d6"}, "constant": {"value": 2}, "id": "42676708-676e-4542-8ede-6cacffb5183a", "updated_at": {"value": "2025-08-03T22:41:00.026168"}}}}, "id": "64312958-9c2a-4f85-af87-f4c4224d4f0c", "updated_at": {"value": "2025-08-03T22:41:00.026173"}}}]}, "id": "e9058eed-31ed-4f11-91aa-6b5f13709f76", "updated_at": {"value": "2025-08-03T22:41:00.026180"}}}]}, "id": "c2089589-2205-4b0c-a851-adc0254f488e", "updated_at": {"value": "2025-08-03T22:41:00.026184"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Beak"}, "action_description": {"value": "+4 to hit, reach 5 ft., one target. Hit: 5 (1d6 + 2) piercing damage."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 4}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "piercing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 1}, "dice_type": {"value": "d6"}, "constant": {"value": 2}, "id": "69bb9670-0175-4c6e-951d-b4058aa6cbc6", "updated_at": {"value": "2025-08-03T22:41:00.026196"}}}}, "id": "0696564f-ad6d-495d-8fcd-4b0e77591b9f", "updated_at": {"value": "2025-08-03T22:41:00.026201"}}}]}, "id": "2fd23ce0-8f61-4538-98bc-f74065c287a8", "updated_at": {"value": "2025-08-03T22:41:00.026206"}}}]}, "id": "cd06f167-4463-426c-9166-e1c66f813427", "updated_at": {"value": "2025-08-03T22:41:00.026211"}}}]}, "bonus_actions": {"value": []}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["underdark", "forest"]}, "updated_at": {"value": "2025-08-03T22:41:00.026221"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "grick",
+    "name": {
+      "value": "Grick"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/grick.png"
+      }
+    },
+    "source": {
+      "value": "mm"
+    },
+    "tag": {
+      "value": null
+    },
+    "armor_class": {
+      "value": 14
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 6
+          },
+          "dice_type": {
+            "value": "d8"
+          },
+          "constant": {
+            "value": 0
+          },
+          "id": "2e06c211-3e44-422b-8117-dac054295075",
+          "updated_at": {
+            "value": "2025-08-03T22:41:00.026112"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_2"
+    },
+    "xp": {
+      "value": 450
+    },
+    "initiative": {
+      "value": 2
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 30
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_score": {
+      "value": 14
+    },
+    "dexterity_score": {
+      "value": 14
+    },
+    "constitution_score": {
+      "value": 11
+    },
+    "intelligence_score": {
+      "value": 3
+    },
+    "wisdom_score": {
+      "value": 14
+    },
+    "charisma_score": {
+      "value": 5
+    },
+    "skills": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": "bludgeoning, piercing, and slashing damage from nonmagical weapons"
+    },
+    "senses": {
+      "value": "darkvision 60 ft."
+    },
+    "languages": {
+      "value": ""
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "monstrosity"
+    },
+    "alignment": {
+      "value": "neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Stone camouflage"
+            },
+            "trait_description": {
+              "value": "The grick has advantage on Dexterity (Stealth) checks made to hide in rocky terrain."
+            },
+            "id": "32022cbc-508d-4a80-b594-035d74433f85",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.026139"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Multiattack"
+            },
+            "action_description": {
+              "value": "The grick makes one attack with its tentacles. If that attack hits, the grick can make one beak attack against the same target."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "47120aa6-8177-4b9d-9bca-278a3e260839",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.026152"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Tentacles"
+            },
+            "action_description": {
+              "value": "+4 to hit, reach 5 ft., one target. Hit: 9 (2d6 + 2) slashing damage."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 4
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 2
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 2
+                                  },
+                                  "id": "42676708-676e-4542-8ede-6cacffb5183a",
+                                  "updated_at": {
+                                    "value": "2025-08-03T22:41:00.026168"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "64312958-9c2a-4f85-af87-f4c4224d4f0c",
+                            "updated_at": {
+                              "value": "2025-08-03T22:41:00.026173"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "e9058eed-31ed-4f11-91aa-6b5f13709f76",
+                    "updated_at": {
+                      "value": "2025-08-03T22:41:00.026180"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "c2089589-2205-4b0c-a851-adc0254f488e",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.026184"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Beak"
+            },
+            "action_description": {
+              "value": "+4 to hit, reach 5 ft., one target. Hit: 5 (1d6 + 2) piercing damage."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 4
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 1
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 2
+                                  },
+                                  "id": "69bb9670-0175-4c6e-951d-b4058aa6cbc6",
+                                  "updated_at": {
+                                    "value": "2025-08-03T22:41:00.026196"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "0696564f-ad6d-495d-8fcd-4b0e77591b9f",
+                            "updated_at": {
+                              "value": "2025-08-03T22:41:00.026201"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "2fd23ce0-8f61-4538-98bc-f74065c287a8",
+                    "updated_at": {
+                      "value": "2025-08-03T22:41:00.026206"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "cd06f167-4463-426c-9166-e1c66f813427",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.026211"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "underdark",
+        "forest"
+      ]
+    },
+    "updated_at": {
+      "value": "2025-08-03T22:41:00.026221"
+    }
+  }
+}

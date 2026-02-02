@@ -1,1 +1,316 @@
-{"resource_id": "monster", "stats": {"id": "devourer", "name": {"value": "Devourer"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/devourer.png"}}, "source": {"value": "vgm"}, "tag": {"value": null}, "armor_class": {"value": 16}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 17}, "dice_type": {"value": "d10"}, "constant": {"value": 85}, "id": "a5fb12fa-55a0-439c-8592-0683bb29ea88", "updated_at": {"value": "2025-08-03T22:41:00.077076"}}}}, "cr": {"value": "cr_13"}, "xp": {"value": 10000}, "initiative": {"value": 1}, "speed": {"value": 30}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 0}, "fly_speed": {"value": 0}, "swim_speed": {"value": 0}, "strength_score": {"value": 20}, "dexterity_score": {"value": 12}, "constitution_score": {"value": 20}, "intelligence_score": {"value": 13}, "wisdom_score": {"value": 10}, "charisma_score": {"value": 16}, "skills": {"value": ""}, "vulnerabilities": {"value": ""}, "immunities": {"value": "poisoned; poison"}, "resistances": {"value": "cold, fire, lightning"}, "senses": {"value": "darkvision 120 ft."}, "languages": {"value": "Abyssal, telepathy 120 ft."}, "size": {"value": "large"}, "type": {"value": "fiend"}, "alignment": {"value": "chaotic_evil"}, "traits": {"value": []}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Multiattack"}, "action_description": {"value": "The devourer makes two claw attacks and can use either Imprison Soul or Soul Rend."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "5a5615d2-7dae-411e-ab9a-1b1c43142b9f", "updated_at": {"value": "2025-08-03T22:41:00.077089"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Claw"}, "action_description": {"value": "+10 to hit, reach 5 ft., one target. Hit: 12 (2d6+5) slashing damage plus 21 (6d6) necrotic damage."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 10}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "slashing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 2}, "dice_type": {"value": "d6"}, "constant": {"value": 5}, "id": "480f1506-16c1-4b7c-be83-f8017f7f0302", "updated_at": {"value": "2025-08-03T22:41:00.077100"}}}}, "id": "81705351-c01e-4241-8db6-bbdc7ac8029f", "updated_at": {"value": "2025-08-03T22:41:00.077104"}}}, {"resource_id": "damage_dice", "stats": {"damage_type": {"value": "necrotic"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 6}, "dice_type": {"value": "d6"}, "constant": {"value": 0}, "id": "7c4f1d61-34c5-414c-a241-685902875eaf", "updated_at": {"value": "2025-08-03T22:41:00.077110"}}}}, "id": "3efb8a44-d611-4081-8959-8dc4fa76d1e3", "updated_at": {"value": "2025-08-03T22:41:00.077114"}}}]}, "id": "c21b83d0-d387-48bc-b1e0-4188c2a89c2a", "updated_at": {"value": "2025-08-03T22:41:00.077119"}}}]}, "id": "17e5811b-5c4e-4209-8c11-d768ff8f16d8", "updated_at": {"value": "2025-08-03T22:41:00.077123"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Imprison soul"}, "action_description": {"value": "The devourer chooses a living humanoid with 0 hit points that it can see within 30 feet of it. That creature is teleported inside the devourer's ribcage and imprisoned there. A creature imprisoned in this manner has disadvantage on death saving throws. If it dies while imprisoned, the devourer regains 25 hit points, immediately recharges Soul Rend, and gains an additional action on its next turn. Additionally, at the start of its next turn, the devourer regurgitates the slain creature as a bonus action, and the creature becomes an undead. If the victim had 2 or fewer Hit Dice, it becomes a zombie. If it had 3 to 5 Hit Dice, it becomes a ghoul. Otherwise, it becomes a wight. A devourer can imprison only one creature at a time."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "917a6a14-2dbc-47b3-9f0e-95ede5886ab3", "updated_at": {"value": "2025-08-03T22:41:00.077141"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Soul rend (recharge 6)"}, "action_description": {"value": "The devourer creates a vortex of life-draining energy in a 20-foot radius centered on itself. Each humanoid in that area must make a DC 18 Constitution saving throw, taking 44 (8d10) necrotic damage on a failed save, or half as much damage on a successful one. Increase the damage by 10 for each living humanoid with 0 hit points in that area."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "2e4d92e1-1627-42ba-844f-ca0f3434a815", "updated_at": {"value": "2025-08-03T22:41:00.077155"}}}]}, "bonus_actions": {"value": []}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["underdark"]}, "updated_at": {"value": "2025-08-03T22:41:00.077165"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "devourer",
+    "name": {
+      "value": "Devourer"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/devourer.png"
+      }
+    },
+    "source": {
+      "value": "vgm"
+    },
+    "tag": {
+      "value": null
+    },
+    "armor_class": {
+      "value": 16
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 17
+          },
+          "dice_type": {
+            "value": "d10"
+          },
+          "constant": {
+            "value": 85
+          },
+          "id": "a5fb12fa-55a0-439c-8592-0683bb29ea88",
+          "updated_at": {
+            "value": "2025-08-03T22:41:00.077076"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_13"
+    },
+    "xp": {
+      "value": 10000
+    },
+    "initiative": {
+      "value": 1
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_score": {
+      "value": 20
+    },
+    "dexterity_score": {
+      "value": 12
+    },
+    "constitution_score": {
+      "value": 20
+    },
+    "intelligence_score": {
+      "value": 13
+    },
+    "wisdom_score": {
+      "value": 10
+    },
+    "charisma_score": {
+      "value": 16
+    },
+    "skills": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "poisoned; poison"
+    },
+    "resistances": {
+      "value": "cold, fire, lightning"
+    },
+    "senses": {
+      "value": "darkvision 120 ft."
+    },
+    "languages": {
+      "value": "Abyssal, telepathy 120 ft."
+    },
+    "size": {
+      "value": "large"
+    },
+    "type": {
+      "value": "fiend"
+    },
+    "alignment": {
+      "value": "chaotic_evil"
+    },
+    "traits": {
+      "value": []
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Multiattack"
+            },
+            "action_description": {
+              "value": "The devourer makes two claw attacks and can use either Imprison Soul or Soul Rend."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "5a5615d2-7dae-411e-ab9a-1b1c43142b9f",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.077089"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Claw"
+            },
+            "action_description": {
+              "value": "+10 to hit, reach 5 ft., one target. Hit: 12 (2d6+5) slashing damage plus 21 (6d6) necrotic damage."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 10
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 2
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 5
+                                  },
+                                  "id": "480f1506-16c1-4b7c-be83-f8017f7f0302",
+                                  "updated_at": {
+                                    "value": "2025-08-03T22:41:00.077100"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "81705351-c01e-4241-8db6-bbdc7ac8029f",
+                            "updated_at": {
+                              "value": "2025-08-03T22:41:00.077104"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "necrotic"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 6
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 0
+                                  },
+                                  "id": "7c4f1d61-34c5-414c-a241-685902875eaf",
+                                  "updated_at": {
+                                    "value": "2025-08-03T22:41:00.077110"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "3efb8a44-d611-4081-8959-8dc4fa76d1e3",
+                            "updated_at": {
+                              "value": "2025-08-03T22:41:00.077114"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "c21b83d0-d387-48bc-b1e0-4188c2a89c2a",
+                    "updated_at": {
+                      "value": "2025-08-03T22:41:00.077119"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "17e5811b-5c4e-4209-8c11-d768ff8f16d8",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.077123"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Imprison soul"
+            },
+            "action_description": {
+              "value": "The devourer chooses a living humanoid with 0 hit points that it can see within 30 feet of it. That creature is teleported inside the devourer's ribcage and imprisoned there. A creature imprisoned in this manner has disadvantage on death saving throws. If it dies while imprisoned, the devourer regains 25 hit points, immediately recharges Soul Rend, and gains an additional action on its next turn. Additionally, at the start of its next turn, the devourer regurgitates the slain creature as a bonus action, and the creature becomes an undead. If the victim had 2 or fewer Hit Dice, it becomes a zombie. If it had 3 to 5 Hit Dice, it becomes a ghoul. Otherwise, it becomes a wight. A devourer can imprison only one creature at a time."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "917a6a14-2dbc-47b3-9f0e-95ede5886ab3",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.077141"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Soul rend (recharge 6)"
+            },
+            "action_description": {
+              "value": "The devourer creates a vortex of life-draining energy in a 20-foot radius centered on itself. Each humanoid in that area must make a DC 18 Constitution saving throw, taking 44 (8d10) necrotic damage on a failed save, or half as much damage on a successful one. Increase the damage by 10 for each living humanoid with 0 hit points in that area."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "2e4d92e1-1627-42ba-844f-ca0f3434a815",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.077155"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "underdark"
+      ]
+    },
+    "updated_at": {
+      "value": "2025-08-03T22:41:00.077165"
+    }
+  }
+}

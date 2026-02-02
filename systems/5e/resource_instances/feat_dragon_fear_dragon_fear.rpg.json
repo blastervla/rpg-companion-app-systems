@@ -1,1 +1,305 @@
-{"resource_id":"feat","stats":{"name":{"value":"Dragon Fear"},"source":{"value":"xge"},"prerequisites":{"value":"Dragonborn"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"When angered, you radiate menace. You gain the following benefits:\n\n- Increase your Strength, Constitution, or Charisma score by 1, to a maximum of 20.\n\n- Instead of exhaling destructive energy, you can expend a use of your Breath Weapon trait to roar, forcing each creature of your choice within 30 feet of you to make a Wisdom saving throw (DC 8 + your proficiency bonus + your Charisma modifier). A target automatically succeeds on the save if it can't hear or see you. On a failed save, a target becomes frightened for 1 minute. If the frightened target takes any damage, it can repeat the saving throw, ending the effect on itself on a success"},"updated_at":{"value":"2024-12-20T18:50:28.396074"},"id":"97e0acdf-7e1d-46bc-ac7a-494a3fbbca57"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Roar"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"fc9d07ef-cb33-49b7-b887-627116d205b3"}}},"id":"a204f885-32d6-472a-96fa-fd61fdb662a7"}}},"id":"8a39446c-7cb9-4a04-8801-115814d3dff9"}}]},"selectable_feature_amount_per_level":{"value":[{"resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"2578d0dd-692d-40c0-9e87-848e52d59059"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Str Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"5186c198-39c5-465b-b225-18fe37f2c588"}}]},"id":"adea1051-16c5-4ab9-a8a5-ba3fce99f6fb"}}]},"id":"82cf2a67-30f2-49e1-81cb-5d4ddd8a836f"}}},"type":{"value":"add_to_stat"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"a8e281e4-c507-49bb-8af6-5abc6f05bc1b"}}},"id":"da71fd81-ef55-4cd2-b2b5-a0b45da1863a"}}]},"id":"b7fe5d5c-ce9e-4f2b-ae28-5f762e399216"}},{"resource_id":"feat","stats":{"name":{"value":"Con Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.constitution_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"b9bc4ab8-e237-4f11-a4e3-7520565b58a8"}}]},"id":"c1bc363c-dd18-4bed-972b-16734aeaff42"}}]},"id":"ad205aae-b041-43ea-91bf-a38e0dabc924"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.constitution_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"486d9672-8b1f-4e5c-847d-82bb59f11ba0"}}},"id":"e91c16ec-0a31-4bc7-8154-09bdb524fc76"}}]},"id":"7ba4a644-37ab-4c3a-9cbb-607d11fafbb6"}},{"resource_id":"feat","stats":{"name":{"value":"Cha Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.charisma_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"2e9f6975-bafa-4a3b-bd59-9ea74356c3c4"}}]},"id":"91c2cb1d-8741-4380-92cd-1b92bca50a51"}}]},"id":"4106243f-715a-44a4-abca-d820950dc662"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.charisma_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"ffaa7eb7-3484-4cf0-91db-4759ced46013"}}},"id":"13756938-9350-417b-a588-a914a101ffc8"}}]},"id":"2807b78a-505d-450c-a9c3-52ca7f34e5ff"}}]},"updated_at":{"value":"2024-12-20T18:50:28.396077"},"id":"dragon_fear"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Dragon Fear"
+    },
+    "source": {
+      "value": "xge"
+    },
+    "prerequisites": {
+      "value": "Dragonborn"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "When angered, you radiate menace. You gain the following benefits:\n\n- Increase your Strength, Constitution, or Charisma score by 1, to a maximum of 20.\n\n- Instead of exhaling destructive energy, you can expend a use of your Breath Weapon trait to roar, forcing each creature of your choice within 30 feet of you to make a Wisdom saving throw (DC 8 + your proficiency bonus + your Charisma modifier). A target automatically succeeds on the save if it can't hear or see you. On a failed save, a target becomes frightened for 1 minute. If the frightened target takes any damage, it can repeat the saving throw, ending the effect on itself on a success"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.396074"
+            },
+            "id": "97e0acdf-7e1d-46bc-ac7a-494a3fbbca57"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Roar"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "fc9d07ef-cb33-49b7-b887-627116d205b3"
+                      }
+                    }
+                  },
+                  "id": "a204f885-32d6-472a-96fa-fd61fdb662a7"
+                }
+              }
+            },
+            "id": "8a39446c-7cb9-4a04-8801-115814d3dff9"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "2578d0dd-692d-40c0-9e87-848e52d59059"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Str Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "5186c198-39c5-465b-b225-18fe37f2c588"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "adea1051-16c5-4ab9-a8a5-ba3fce99f6fb"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "82cf2a67-30f2-49e1-81cb-5d4ddd8a836f"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "a8e281e4-c507-49bb-8af6-5abc6f05bc1b"
+                        }
+                      }
+                    },
+                    "id": "da71fd81-ef55-4cd2-b2b5-a0b45da1863a"
+                  }
+                }
+              ]
+            },
+            "id": "b7fe5d5c-ce9e-4f2b-ae28-5f762e399216"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Con Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.constitution_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "b9bc4ab8-e237-4f11-a4e3-7520565b58a8"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "c1bc363c-dd18-4bed-972b-16734aeaff42"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "ad205aae-b041-43ea-91bf-a38e0dabc924"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.constitution_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "486d9672-8b1f-4e5c-847d-82bb59f11ba0"
+                        }
+                      }
+                    },
+                    "id": "e91c16ec-0a31-4bc7-8154-09bdb524fc76"
+                  }
+                }
+              ]
+            },
+            "id": "7ba4a644-37ab-4c3a-9cbb-607d11fafbb6"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Cha Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.charisma_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "2e9f6975-bafa-4a3b-bd59-9ea74356c3c4"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "91c2cb1d-8741-4380-92cd-1b92bca50a51"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "4106243f-715a-44a4-abca-d820950dc662"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.charisma_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "ffaa7eb7-3484-4cf0-91db-4759ced46013"
+                        }
+                      }
+                    },
+                    "id": "13756938-9350-417b-a588-a914a101ffc8"
+                  }
+                }
+              ]
+            },
+            "id": "2807b78a-505d-450c-a9c3-52ca7f34e5ff"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.396077"
+    },
+    "id": "dragon_fear"
+  }
+}

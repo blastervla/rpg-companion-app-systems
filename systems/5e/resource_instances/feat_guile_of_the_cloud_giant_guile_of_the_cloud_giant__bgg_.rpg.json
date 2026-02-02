@@ -1,1 +1,347 @@
-{"resource_id":"feat","stats":{"name":{"value":"Guile of the Cloud Giant"},"source":{"value":"bgg"},"prerequisites":{"value":"4th level, strike of the giants (cloud strike) feat"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"level":{"value":4},"description":{"value":"You've manifested the confounding magic emblematic of cloud giants, granting you the following benefits:\n\n- Ability Score Increase: Increase your Strength, Constitution, or Charisma by 1, to a maximum of 20.\n\n- Cloudy Escape: When a creature you can see hits you with an attack roll, you can use your reaction to give yourself resistance to that attack's damage. You then teleport to an unoccupied space that you can see within 30 feet of yourself. You can use this reaction a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest"},"updated_at":{"value":"2024-12-20T18:50:28.401085"},"id":"d6b5a006-6ec2-457b-bda6-345c55d50947"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Cloudy Escape"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"7c7fdb23-be9e-4567-9abc-67ff4fea48a1"}}},"has_charges":{"value":true},"charge_type":{"value":"calculated"},"max_charges_levelled_formulas":{"value":[{"resource_id":"levelled_value_calculator","stats":{"calculators":{"value":[{"resource_id":"value_calculator","stats":{"operands":{"value":[{"resource_id":"operand","stats":{"stat":{"value":"$character.proficiency_bonus"},"id":"f52b3ce8-8e35-4dc7-b204-5febd4feea26"}}]},"id":"f390c4f5-7ac4-433e-8a0c-8bf325f38679"}}]},"id":"6006413e-4e5b-48e7-88e3-a96908bd4221"}}]},"id":"cc1b2e86-3bd6-4897-9c15-63cdd2ccd2a5"}}},"id":"c699a73d-2669-40af-9989-a991f9bdbbec"}}]},"selectable_feature_amount_per_level":{"value":[{"resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"523375b6-59e0-4ebf-90aa-6b102daf98e4"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Str Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"3295806a-7634-4ad3-a995-31c3f7353941"}}]},"id":"173b4cdf-1d11-4759-9c52-65f3fa25279d"}}]},"id":"8a71c652-4538-4e1d-8ad7-9833756eef77"}}},"type":{"value":"add_to_stat"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"21b3453d-9b1c-4b7a-b213-b863abc9dec1"}}},"id":"dc17f971-2be1-425d-9e5d-f2b37e9cfcfe"}}]},"id":"30cc0ecc-f93d-491b-9500-652e5c3d7a1c"}},{"resource_id":"feat","stats":{"name":{"value":"Con Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.constitution_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"9bb751a9-6184-46e8-bc45-cb5f5f566a57"}}]},"id":"42b2d7df-32e4-47f8-85fb-a25861016680"}}]},"id":"c82b1f41-8159-4511-838e-1259ccba6648"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.constitution_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"a887a66e-efbe-4cb3-a4d2-f601987b571d"}}},"id":"8bf41b33-20df-4d16-a76a-b5c035c5e8c3"}}]},"id":"6ebabac8-4185-4c7c-abdd-406554fb4936"}},{"resource_id":"feat","stats":{"name":{"value":"Cha Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.charisma_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"6d927e8f-a77f-4315-b50e-75685d59083b"}}]},"id":"dd82611e-0ca0-4205-a58f-38097e64c789"}}]},"id":"96c98759-4074-48f7-9167-cb10566e44c9"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.charisma_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"0ddde486-64eb-47a1-ba51-fd9405af07c8"}}},"id":"8252ed8d-0b73-4b8c-a4b5-628ddc75cbf2"}}]},"id":"46dd36d1-542b-41ab-af37-9a9e483a89a9"}}]},"updated_at":{"value":"2024-12-20T18:50:28.401088"},"id":"guile_of_the_cloud_giant__bgg_"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Guile of the Cloud Giant"
+    },
+    "source": {
+      "value": "bgg"
+    },
+    "prerequisites": {
+      "value": "4th level, strike of the giants (cloud strike) feat"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "level": {
+              "value": 4
+            },
+            "description": {
+              "value": "You've manifested the confounding magic emblematic of cloud giants, granting you the following benefits:\n\n- Ability Score Increase: Increase your Strength, Constitution, or Charisma by 1, to a maximum of 20.\n\n- Cloudy Escape: When a creature you can see hits you with an attack roll, you can use your reaction to give yourself resistance to that attack's damage. You then teleport to an unoccupied space that you can see within 30 feet of yourself. You can use this reaction a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.401085"
+            },
+            "id": "d6b5a006-6ec2-457b-bda6-345c55d50947"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Cloudy Escape"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "7c7fdb23-be9e-4567-9abc-67ff4fea48a1"
+                      }
+                    }
+                  },
+                  "has_charges": {
+                    "value": true
+                  },
+                  "charge_type": {
+                    "value": "calculated"
+                  },
+                  "max_charges_levelled_formulas": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_value_calculator",
+                        "stats": {
+                          "calculators": {
+                            "value": [
+                              {
+                                "resource_id": "value_calculator",
+                                "stats": {
+                                  "operands": {
+                                    "value": [
+                                      {
+                                        "resource_id": "operand",
+                                        "stats": {
+                                          "stat": {
+                                            "value": "$character.proficiency_bonus"
+                                          },
+                                          "id": "f52b3ce8-8e35-4dc7-b204-5febd4feea26"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "id": "f390c4f5-7ac4-433e-8a0c-8bf325f38679"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "6006413e-4e5b-48e7-88e3-a96908bd4221"
+                        }
+                      }
+                    ]
+                  },
+                  "id": "cc1b2e86-3bd6-4897-9c15-63cdd2ccd2a5"
+                }
+              }
+            },
+            "id": "c699a73d-2669-40af-9989-a991f9bdbbec"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "523375b6-59e0-4ebf-90aa-6b102daf98e4"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Str Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "3295806a-7634-4ad3-a995-31c3f7353941"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "173b4cdf-1d11-4759-9c52-65f3fa25279d"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "8a71c652-4538-4e1d-8ad7-9833756eef77"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "21b3453d-9b1c-4b7a-b213-b863abc9dec1"
+                        }
+                      }
+                    },
+                    "id": "dc17f971-2be1-425d-9e5d-f2b37e9cfcfe"
+                  }
+                }
+              ]
+            },
+            "id": "30cc0ecc-f93d-491b-9500-652e5c3d7a1c"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Con Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.constitution_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "9bb751a9-6184-46e8-bc45-cb5f5f566a57"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "42b2d7df-32e4-47f8-85fb-a25861016680"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "c82b1f41-8159-4511-838e-1259ccba6648"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.constitution_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "a887a66e-efbe-4cb3-a4d2-f601987b571d"
+                        }
+                      }
+                    },
+                    "id": "8bf41b33-20df-4d16-a76a-b5c035c5e8c3"
+                  }
+                }
+              ]
+            },
+            "id": "6ebabac8-4185-4c7c-abdd-406554fb4936"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Cha Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.charisma_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "6d927e8f-a77f-4315-b50e-75685d59083b"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "dd82611e-0ca0-4205-a58f-38097e64c789"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "96c98759-4074-48f7-9167-cb10566e44c9"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.charisma_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "0ddde486-64eb-47a1-ba51-fd9405af07c8"
+                        }
+                      }
+                    },
+                    "id": "8252ed8d-0b73-4b8c-a4b5-628ddc75cbf2"
+                  }
+                }
+              ]
+            },
+            "id": "46dd36d1-542b-41ab-af37-9a9e483a89a9"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.401088"
+    },
+    "id": "guile_of_the_cloud_giant__bgg_"
+  }
+}

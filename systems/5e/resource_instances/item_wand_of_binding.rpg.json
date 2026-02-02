@@ -1,1 +1,319 @@
-{"resource_id":"item","stats":{"name":{"value":"Wand of Binding"},"source":{"value":"dmg"},"description":{"value":"This wand has 7 charges for the following properties. It regains 1d6 + 1 expended charges daily at dawn. If you expend the wand's last charge, roll a d20. On a 1, the wand crumbles into ashes and is destroyed.\n\nSpells\nWhile holding the wand, you can use an action to expend some of its charges to cast one of the following spells (save DC 17): hold monster (5 charges) or hold person (2 charges).\n\nAssisted Escape\nWhile holding the wand, you can use your reaction to expend 1 charge and gain advantage on a saving throw you make to avoid being paralyzed or restrained, or you can expend 1 charge and gain advantage on any check you make to escape a grapple."},"type":{"value":"wand"},"cost":{"value":{"resource_id":"cost","stats":{"unit":{"value":"gold"},"updated_at":{"value":"2024-12-20T18:50:35.787749"},"id":"701f30a9-4fbc-4848-9231-54734bb9dcbb"}}},"weight":{"value":{"resource_id":"weight","stats":{"value":{"value":1.0},"unit":{"value":"ounces"},"updated_at":{"value":"2024-12-20T18:50:35.787754"},"id":"a260a780-a114-4abd-ac4b-3be720914015"}}},"rarity":{"value":"rare"},"is_magic":{"value":true},"requires_attunement":{"value":true},"effects":{"value":[{"resource_id":"effect","stats":{"name":{"value":"Charges"},"trigger_type":{"value":"active"},"has_charges":{"value":true},"recharge_type":{"value":"formula"},"recharge_event":{"value":"dawn"},"max_charges_constant":{"value":7},"recharges":{"value":{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d6"},"constant":{"value":1},"updated_at":{"value":"2024-12-20T18:50:35.787763"},"id":"a06f8afb-2b41-4095-9e04-33d67a3b20a2"}}},"advantage_stat":{"value":"$character.strength_score"},"updated_at":{"value":"2024-12-20T18:50:35.787768"},"id":"1e1f2078-a163-49aa-8dba-ac4c54bacb23"}},{"resource_id":"effect","stats":{"name":{"value":"Cast Hold Monster (5 Charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"d929ae1f-6a03-43cf-8106-cb983ed6a546"}}},"recharge_type":{"value":"formula"},"recharges":{"value":{"resource_id":"dice_roll","stats":{"id":"88f77f90-365a-4052-aa1c-5901ac0278e8"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Hold Monster"},"source":{"value":"phb"},"level":{"value":"spell_level_5"},"school":{"value":"spell_school_enchantment"},"casting_time":{"value":"1 action"},"range":{"value":"90 feet"},"duration":{"value":"Concentration, up to 1 minute"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a small, straight piece of iron"},"description":{"value":"Choose a creature that you can see within range. The target must succeed on a Wisdom saving throw or be paralyzed for the duration. This spell has no effect on undead. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 6th level or higher, you can target one additional creature for each slot level above 5th. The creatures must be within 30 feet of each other when you target them."},"classes":{"value":["bard","sorcerer","warlock","blood_hunter","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.656682"},"id":"7ac429ed-1ba5-426e-b1fb-6461bae66023"}}},"updated_at":{"value":"2024-12-20T18:50:35.787777"},"id":"a2afb8a7-a9a0-4c81-8e20-92ec7e208ad0"}},{"resource_id":"effect","stats":{"name":{"value":"Cast Hold Person (2 Charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"38d2f48b-6444-4ba6-b16b-7e18c7a84e0f"}}},"recharge_type":{"value":"formula"},"recharges":{"value":{"resource_id":"dice_roll","stats":{"id":"273b18f6-8388-47bf-ae1b-0c8f670aad80"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Hold Person"},"source":{"value":"phb"},"level":{"value":"spell_level_2"},"school":{"value":"spell_school_enchantment"},"casting_time":{"value":"1 action"},"range":{"value":"60 feet"},"duration":{"value":"Concentration, up to 1 minute"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a small, straight piece of iron"},"description":{"value":"Choose a humanoid that you can see within range. The target must succeed on a Wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd. The humanoids must be within 30 feet of each other when you target them."},"classes":{"value":["bard","cleric","druid","sorcerer","warlock","blood_hunter","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.626072"},"id":"a6b0d842-f35b-432f-84e6-5bfb350ecf53"}}},"updated_at":{"value":"2024-12-20T18:50:35.787785"},"id":"8d39cb5f-4bac-4614-af8a-b901741fdc6a"}}]},"updated_at":{"value":"2024-12-20T18:50:35.787787"},"id":"wand_of_binding"}}
+{
+  "resource_id": "item",
+  "stats": {
+    "name": {
+      "value": "Wand of Binding"
+    },
+    "source": {
+      "value": "dmg"
+    },
+    "description": {
+      "value": "This wand has 7 charges for the following properties. It regains 1d6 + 1 expended charges daily at dawn. If you expend the wand's last charge, roll a d20. On a 1, the wand crumbles into ashes and is destroyed.\n\nSpells\nWhile holding the wand, you can use an action to expend some of its charges to cast one of the following spells (save DC 17): hold monster (5 charges) or hold person (2 charges).\n\nAssisted Escape\nWhile holding the wand, you can use your reaction to expend 1 charge and gain advantage on a saving throw you make to avoid being paralyzed or restrained, or you can expend 1 charge and gain advantage on any check you make to escape a grapple."
+    },
+    "type": {
+      "value": "wand"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "unit": {
+            "value": "gold"
+          },
+          "updated_at": {
+            "value": "2024-12-20T18:50:35.787749"
+          },
+          "id": "701f30a9-4fbc-4848-9231-54734bb9dcbb"
+        }
+      }
+    },
+    "weight": {
+      "value": {
+        "resource_id": "weight",
+        "stats": {
+          "value": {
+            "value": 1.0
+          },
+          "unit": {
+            "value": "ounces"
+          },
+          "updated_at": {
+            "value": "2024-12-20T18:50:35.787754"
+          },
+          "id": "a260a780-a114-4abd-ac4b-3be720914015"
+        }
+      }
+    },
+    "rarity": {
+      "value": "rare"
+    },
+    "is_magic": {
+      "value": true
+    },
+    "requires_attunement": {
+      "value": true
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Charges"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "has_charges": {
+              "value": true
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharge_event": {
+              "value": "dawn"
+            },
+            "max_charges_constant": {
+              "value": 7
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "dice_amount": {
+                    "value": 1
+                  },
+                  "dice_type": {
+                    "value": "d6"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:35.787763"
+                  },
+                  "id": "a06f8afb-2b41-4095-9e04-33d67a3b20a2"
+                }
+              }
+            },
+            "advantage_stat": {
+              "value": "$character.strength_score"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.787768"
+            },
+            "id": "1e1f2078-a163-49aa-8dba-ac4c54bacb23"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Hold Monster (5 Charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "d929ae1f-6a03-43cf-8106-cb983ed6a546"
+                }
+              }
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "88f77f90-365a-4052-aa1c-5901ac0278e8"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Hold Monster"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_5"
+                  },
+                  "school": {
+                    "value": "spell_school_enchantment"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "90 feet"
+                  },
+                  "duration": {
+                    "value": "Concentration, up to 1 minute"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a small, straight piece of iron"
+                  },
+                  "description": {
+                    "value": "Choose a creature that you can see within range. The target must succeed on a Wisdom saving throw or be paralyzed for the duration. This spell has no effect on undead. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 6th level or higher, you can target one additional creature for each slot level above 5th. The creatures must be within 30 feet of each other when you target them."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "sorcerer",
+                      "warlock",
+                      "blood_hunter",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.656682"
+                  },
+                  "id": "7ac429ed-1ba5-426e-b1fb-6461bae66023"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.787777"
+            },
+            "id": "a2afb8a7-a9a0-4c81-8e20-92ec7e208ad0"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Hold Person (2 Charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "38d2f48b-6444-4ba6-b16b-7e18c7a84e0f"
+                }
+              }
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "273b18f6-8388-47bf-ae1b-0c8f670aad80"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Hold Person"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_2"
+                  },
+                  "school": {
+                    "value": "spell_school_enchantment"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "60 feet"
+                  },
+                  "duration": {
+                    "value": "Concentration, up to 1 minute"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a small, straight piece of iron"
+                  },
+                  "description": {
+                    "value": "Choose a humanoid that you can see within range. The target must succeed on a Wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd. The humanoids must be within 30 feet of each other when you target them."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "cleric",
+                      "druid",
+                      "sorcerer",
+                      "warlock",
+                      "blood_hunter",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.626072"
+                  },
+                  "id": "a6b0d842-f35b-432f-84e6-5bfb350ecf53"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.787785"
+            },
+            "id": "8d39cb5f-4bac-4614-af8a-b901741fdc6a"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:35.787787"
+    },
+    "id": "wand_of_binding"
+  }
+}

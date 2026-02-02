@@ -1,1 +1,300 @@
-{"resource_id":"feat","stats":{"name":{"value":"Observant"},"source":{"value":"phb"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"Quick to notice details of your environment, you gain the following benefits:\n\n- Increase your Intelligence or Wisdom score by 1, to a maximum of 20.\n\n- If you can see a creature's mouth while it is speaking a language you understand, you can interpret what it's saying by reading its lips.\n\n- You have a +5 bonus to your passive Perception and Investigation scores"},"updated_at":{"value":"2024-12-20T18:50:28.417494"},"id":"59db138d-8703-4244-8d2f-07547920c557"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Lip Reading"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"98c71238-64c3-4846-94b2-7368f783fc6c"}}},"id":"031b7a45-f10e-4882-850c-5727386118f4"}}},"id":"44c9bdb1-1ede-4ad8-a2ad-348c23e29f32"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"f78b7b32-4c64-4bb1-aa15-fa829bb2b26a"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.perception"},"aggregation_type":{"value":"sum"},"constant":{"value":5},"id":"8b7ae786-95d8-404b-88ad-730e84bafdcc"}}},"id":"c2f50c41-14e9-47ae-8222-c5a1e81c23f0"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"102aec67-2701-481d-9be4-b3d325be7e1a"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.investigation"},"aggregation_type":{"value":"sum"},"constant":{"value":5},"id":"5e951db3-5b30-492e-b840-ace238525fe4"}}},"id":"041c9b72-74f9-4118-ada2-7e68876f8da7"}}]},"selectable_feature_amount_per_level":{"value":[{"resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"0b8f07ee-9d22-479f-9bf3-62861ca04fff"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Int Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.intelligence_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"4dee4817-4d66-48fa-bb04-fe36dfc2f6a6"}}]},"id":"5a0ef252-2b92-4e7f-a3a5-d49a6f6711bd"}}]},"id":"64ba1ee6-d336-4ec7-bddb-21374612f2c2"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.intelligence_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"fbfe2448-2ada-4575-a7e8-1c25acf73424"}}},"id":"f1164a75-c6aa-4a28-87be-a2fd1c60678a"}}]},"id":"377fb833-4e03-4706-bd92-40b45c26d494"}},{"resource_id":"feat","stats":{"name":{"value":"Wis Increase "},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.wisdom_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"d076c519-314a-4493-9a1e-8a802b6c16b7"}}]},"id":"fead83db-1cdf-44c3-8de2-f5654833ff38"}}]},"id":"a615e8d4-200a-4302-84a6-4db5e85b4981"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.wisdom_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"bb4db8fd-4abb-4071-9ea1-c83e632b9fa2"}}},"id":"295e75ee-82b1-4d65-a584-2bd5f03157cb"}}]},"id":"a9f00841-e3d9-487b-842d-883bda44deac"}}]},"updated_at":{"value":"2024-12-20T18:50:28.417496"},"id":"observant"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Observant"
+    },
+    "source": {
+      "value": "phb"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "Quick to notice details of your environment, you gain the following benefits:\n\n- Increase your Intelligence or Wisdom score by 1, to a maximum of 20.\n\n- If you can see a creature's mouth while it is speaking a language you understand, you can interpret what it's saying by reading its lips.\n\n- You have a +5 bonus to your passive Perception and Investigation scores"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.417494"
+            },
+            "id": "59db138d-8703-4244-8d2f-07547920c557"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Lip Reading"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "98c71238-64c3-4846-94b2-7368f783fc6c"
+                      }
+                    }
+                  },
+                  "id": "031b7a45-f10e-4882-850c-5727386118f4"
+                }
+              }
+            },
+            "id": "44c9bdb1-1ede-4ad8-a2ad-348c23e29f32"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "f78b7b32-4c64-4bb1-aa15-fa829bb2b26a"
+                      }
+                    }
+                  },
+                  "type": {
+                    "value": "add_to_stat"
+                  },
+                  "stat": {
+                    "value": "$character.perception"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 5
+                  },
+                  "id": "8b7ae786-95d8-404b-88ad-730e84bafdcc"
+                }
+              }
+            },
+            "id": "c2f50c41-14e9-47ae-8222-c5a1e81c23f0"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "102aec67-2701-481d-9be4-b3d325be7e1a"
+                      }
+                    }
+                  },
+                  "type": {
+                    "value": "add_to_stat"
+                  },
+                  "stat": {
+                    "value": "$character.investigation"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 5
+                  },
+                  "id": "5e951db3-5b30-492e-b840-ace238525fe4"
+                }
+              }
+            },
+            "id": "041c9b72-74f9-4118-ada2-7e68876f8da7"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "0b8f07ee-9d22-479f-9bf3-62861ca04fff"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Int Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.intelligence_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "4dee4817-4d66-48fa-bb04-fe36dfc2f6a6"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "5a0ef252-2b92-4e7f-a3a5-d49a6f6711bd"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "64ba1ee6-d336-4ec7-bddb-21374612f2c2"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.intelligence_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "fbfe2448-2ada-4575-a7e8-1c25acf73424"
+                        }
+                      }
+                    },
+                    "id": "f1164a75-c6aa-4a28-87be-a2fd1c60678a"
+                  }
+                }
+              ]
+            },
+            "id": "377fb833-4e03-4706-bd92-40b45c26d494"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Wis Increase "
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.wisdom_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "d076c519-314a-4493-9a1e-8a802b6c16b7"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "fead83db-1cdf-44c3-8de2-f5654833ff38"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "a615e8d4-200a-4302-84a6-4db5e85b4981"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.wisdom_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "bb4db8fd-4abb-4071-9ea1-c83e632b9fa2"
+                        }
+                      }
+                    },
+                    "id": "295e75ee-82b1-4d65-a584-2bd5f03157cb"
+                  }
+                }
+              ]
+            },
+            "id": "a9f00841-e3d9-487b-842d-883bda44deac"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.417496"
+    },
+    "id": "observant"
+  }
+}

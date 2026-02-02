@@ -1,1 +1,306 @@
-{"resource_id": "monster", "stats": {"id": "cave_fisher", "name": {"value": "Cave Fisher"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/cave_fisher.png"}}, "source": {"value": "vgm"}, "tag": {"value": null}, "armor_class": {"value": 16}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 9}, "dice_type": {"value": "d8"}, "constant": {"value": 18}, "id": "1a064292-1952-4b46-a199-73656e21a84b", "updated_at": {"value": "2025-08-03T22:41:00.155256"}}}}, "cr": {"value": "cr_3"}, "xp": {"value": 700}, "initiative": {"value": 1}, "speed": {"value": 20}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 20}, "fly_speed": {"value": 0}, "swim_speed": {"value": 0}, "strength_score": {"value": 16}, "dexterity_score": {"value": 13}, "constitution_score": {"value": 14}, "intelligence_score": {"value": 3}, "wisdom_score": {"value": 10}, "charisma_score": {"value": 3}, "skills": {"value": "Perception +2, Stealth +5"}, "vulnerabilities": {"value": ""}, "immunities": {"value": ""}, "resistances": {"value": ""}, "senses": {"value": "blindsight 60 ft."}, "languages": {"value": ""}, "size": {"value": "medium"}, "type": {"value": "monstrosity"}, "alignment": {"value": "unaligned"}, "traits": {"value": [{"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Adhesive filament"}, "trait_description": {"value": "The cave fisher can use its action to extend a sticky filament up to 60 feet, and the filament adheres to anything that touches it. A creature adhered to the filament is grappled by the cave fisher (escape DC 13), and ability checks made to escape this grapple have disadvantage. The filament can be attacked (AC 15; 5 hit points; immunity to poison and psychic damage), but a weapon that fails to sever it becomes stuck to it, requiring an action and a successful DC 13 Strength check to pull free. Destroying the filament causes no damage to the cave fisher, which can extrude a replacement filament on its next turn"}, "id": "4adf777a-4f63-46e9-a310-c3e6692ad9b1", "updated_at": {"value": "2025-08-03T22:41:00.155267"}}}, {"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Flammable blood"}, "trait_description": {"value": "If the cave fisher drops to half its hit points or fewer, it gains vulnerability to fire damage."}, "id": "47494e68-4370-4f92-b691-dfb294eee4e5", "updated_at": {"value": "2025-08-03T22:41:00.155271"}}}, {"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Spider climb"}, "trait_description": {"value": "The cave fisher can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."}, "id": "16f1f9dd-09f9-471b-a6f0-4f5285e77e27", "updated_at": {"value": "2025-08-03T22:41:00.155275"}}}]}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Multiattack"}, "action_description": {"value": "The cave fisher makes two attacks with its claws."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "4ba58a38-0044-4190-8acd-fe2963cfa2d4", "updated_at": {"value": "2025-08-03T22:41:00.155283"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Claw"}, "action_description": {"value": "+5 to hit, reach 5 it, one target. Hit: 10 (2d6+3) slashing damage."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 5}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "slashing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 2}, "dice_type": {"value": "d6"}, "constant": {"value": 3}, "id": "ed9f1c22-b255-4387-96cc-c3d0107cd005", "updated_at": {"value": "2025-08-03T22:41:00.155296"}}}}, "id": "67584675-66e8-41fa-b09a-f131a31c83a1", "updated_at": {"value": "2025-08-03T22:41:00.155300"}}}]}, "id": "bbac4ff1-233a-41e4-8858-7ef58e0bdf9a", "updated_at": {"value": "2025-08-03T22:41:00.155306"}}}]}, "id": "b0075181-9429-4398-8da5-b2861bffca04", "updated_at": {"value": "2025-08-03T22:41:00.155310"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Filament"}, "action_description": {"value": "One creature grappled by the cave fisher's adhesive filament must make a DC 13 Strength saving throw, provided that the target weighs 200 pounds or less. On a failure, the target is pulled into an unoccupied space within 5 feet of the cave fisher, and the cave fisher makes a claw attack against it as a bonus action. Reeling up the target releases anyone else who was attached to the filament. Until the grapple ends on the target, the cave fisher can't extrude another filament."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "1576d72b-93a6-4334-9dff-d1813c679152", "updated_at": {"value": "2025-08-03T22:41:00.155326"}}}]}, "bonus_actions": {"value": []}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["underdark"]}, "updated_at": {"value": "2025-08-03T22:41:00.155334"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "cave_fisher",
+    "name": {
+      "value": "Cave Fisher"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/cave_fisher.png"
+      }
+    },
+    "source": {
+      "value": "vgm"
+    },
+    "tag": {
+      "value": null
+    },
+    "armor_class": {
+      "value": 16
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 9
+          },
+          "dice_type": {
+            "value": "d8"
+          },
+          "constant": {
+            "value": 18
+          },
+          "id": "1a064292-1952-4b46-a199-73656e21a84b",
+          "updated_at": {
+            "value": "2025-08-03T22:41:00.155256"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_3"
+    },
+    "xp": {
+      "value": 700
+    },
+    "initiative": {
+      "value": 1
+    },
+    "speed": {
+      "value": 20
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 20
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_score": {
+      "value": 16
+    },
+    "dexterity_score": {
+      "value": 13
+    },
+    "constitution_score": {
+      "value": 14
+    },
+    "intelligence_score": {
+      "value": 3
+    },
+    "wisdom_score": {
+      "value": 10
+    },
+    "charisma_score": {
+      "value": 3
+    },
+    "skills": {
+      "value": "Perception +2, Stealth +5"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "blindsight 60 ft."
+    },
+    "languages": {
+      "value": ""
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "monstrosity"
+    },
+    "alignment": {
+      "value": "unaligned"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Adhesive filament"
+            },
+            "trait_description": {
+              "value": "The cave fisher can use its action to extend a sticky filament up to 60 feet, and the filament adheres to anything that touches it. A creature adhered to the filament is grappled by the cave fisher (escape DC 13), and ability checks made to escape this grapple have disadvantage. The filament can be attacked (AC 15; 5 hit points; immunity to poison and psychic damage), but a weapon that fails to sever it becomes stuck to it, requiring an action and a successful DC 13 Strength check to pull free. Destroying the filament causes no damage to the cave fisher, which can extrude a replacement filament on its next turn"
+            },
+            "id": "4adf777a-4f63-46e9-a310-c3e6692ad9b1",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.155267"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Flammable blood"
+            },
+            "trait_description": {
+              "value": "If the cave fisher drops to half its hit points or fewer, it gains vulnerability to fire damage."
+            },
+            "id": "47494e68-4370-4f92-b691-dfb294eee4e5",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.155271"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Spider climb"
+            },
+            "trait_description": {
+              "value": "The cave fisher can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+            },
+            "id": "16f1f9dd-09f9-471b-a6f0-4f5285e77e27",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.155275"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Multiattack"
+            },
+            "action_description": {
+              "value": "The cave fisher makes two attacks with its claws."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "4ba58a38-0044-4190-8acd-fe2963cfa2d4",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.155283"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Claw"
+            },
+            "action_description": {
+              "value": "+5 to hit, reach 5 it, one target. Hit: 10 (2d6+3) slashing damage."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 5
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 2
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 3
+                                  },
+                                  "id": "ed9f1c22-b255-4387-96cc-c3d0107cd005",
+                                  "updated_at": {
+                                    "value": "2025-08-03T22:41:00.155296"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "67584675-66e8-41fa-b09a-f131a31c83a1",
+                            "updated_at": {
+                              "value": "2025-08-03T22:41:00.155300"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "bbac4ff1-233a-41e4-8858-7ef58e0bdf9a",
+                    "updated_at": {
+                      "value": "2025-08-03T22:41:00.155306"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "b0075181-9429-4398-8da5-b2861bffca04",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.155310"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Filament"
+            },
+            "action_description": {
+              "value": "One creature grappled by the cave fisher's adhesive filament must make a DC 13 Strength saving throw, provided that the target weighs 200 pounds or less. On a failure, the target is pulled into an unoccupied space within 5 feet of the cave fisher, and the cave fisher makes a claw attack against it as a bonus action. Reeling up the target releases anyone else who was attached to the filament. Until the grapple ends on the target, the cave fisher can't extrude another filament."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "1576d72b-93a6-4334-9dff-d1813c679152",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.155326"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "underdark"
+      ]
+    },
+    "updated_at": {
+      "value": "2025-08-03T22:41:00.155334"
+    }
+  }
+}

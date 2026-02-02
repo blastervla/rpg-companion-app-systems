@@ -1,1 +1,365 @@
-{"resource_id": "monster", "stats": {"id": "lacedon_ghoul", "name": {"value": "Lacedon Ghoul"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/lacedon_ghoul.png"}}, "source": {"value": "mm"}, "tag": {"value": ""}, "armor_class": {"value": 12}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 5}, "dice_type": {"value": "d8"}, "constant": {"value": 0}, "id": "233ea1e5-0731-4601-9739-c8f966c43a46", "updated_at": {"value": "2025-04-28T21:51:12.132545"}}}}, "cr": {"value": "cr_1"}, "xp": {"value": 200}, "initiative": {"value": 2}, "speed": {"value": 30}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 0}, "fly_speed": {"value": 0}, "swim_speed": {"value": 30}, "strength_score": {"value": 13}, "dexterity_score": {"value": 15}, "constitution_score": {"value": 10}, "intelligence_score": {"value": 7}, "wisdom_score": {"value": 10}, "charisma_score": {"value": 6}, "strength_saving_throw_modifier": {"value": 1}, "dexterity_saving_throw_modifier": {"value": 2}, "constitution_saving_throw_modifier": {"value": 0}, "intelligence_saving_throw_modifier": {"value": -2}, "wisdom_saving_throw_modifier": {"value": 0}, "charisma_saving_throw_modifier": {"value": -2}, "skills": {"value": ""}, "gear": {"value": ""}, "vulnerabilities": {"value": ""}, "immunities": {"value": "Poison,Charmed, Exhaustion, Poisoned"}, "resistances": {"value": "Cold"}, "senses": {"value": "Passive Perception 10, Darkvision 60 ft."}, "languages": {"value": "Common"}, "size": {"value": "medium"}, "type": {"value": "undead"}, "alignment": {"value": "chaotic_evil"}, "traits": {"value": []}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Multiattack"}, "action_description": {"value": "The ghoul makes two Icy Bite attacks."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "85e8a852-10aa-4918-b5c6-2aafebcae62b", "updated_at": {"value": "2025-04-28T21:51:12.132616"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Icy Bite"}, "action_description": {"value": "+4, reach 5 ft. Hit: 9 (2d6 + 2) Cold damage, and the target's Speed decreases by 5 feet until the start of the ghoul's next turn."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 4}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "cold"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 2}, "dice_type": {"value": "d6"}, "constant": {"value": 2}, "id": "a96ddef0-9b9b-4c1e-835b-712c914387d2", "updated_at": {"value": "2025-04-28T21:51:12.132684"}}}}, "id": "619eee2a-db7c-4f76-95d0-389eb2707803", "updated_at": {"value": "2025-04-28T21:51:12.132689"}}}]}, "id": "71d00422-6428-4ad2-9973-2640bd23453f", "updated_at": {"value": "2025-04-28T21:51:12.132700"}}}]}, "id": "f42466d0-42e1-4dab-bc12-ff06ecfadae8", "updated_at": {"value": "2025-04-28T21:51:12.132705"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Claw"}, "action_description": {"value": "+4, reach 5 ft. Hit: 4 (1d4 + 2) Slashing damage. If the target is a creature that isn't an Undead or elf, it is subjected to the following effect. Constitution Saving Throw: DC 10. Failure: The target has the Paralyzed condition until the end of its next turn."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 4}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "slashing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 1}, "dice_type": {"value": "d4"}, "constant": {"value": 2}, "id": "613d5bfc-433e-464c-970a-471408dd4e89", "updated_at": {"value": "2025-04-28T21:51:12.132780"}}}}, "id": "33af3ef8-e0db-4737-a389-26d3837a0bd1", "updated_at": {"value": "2025-04-28T21:51:12.132784"}}}]}, "id": "f4655cc0-e719-46ce-a2cd-9e920c93cfee", "updated_at": {"value": "2025-04-28T21:51:12.132801"}}}]}, "id": "0702ee48-88fd-424a-8784-baeb561c77f6", "updated_at": {"value": "2025-04-28T21:51:12.132806"}}}]}, "bonus_actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Watery Rush"}, "action_description": {"value": "While underwater, the ghoul moves up to half its Swim Speed without provoking Opportunity Attacks."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "d0d0d538-df84-40f1-b6dd-0589c3460adc", "updated_at": {"value": "2025-04-28T21:51:12.132869"}}}]}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["swamp", "underdark", "urban"]}, "treasure": {"value": ["arcana", "armaments", "implements", "relics"]}, "updated_at": {"value": "2025-04-28T21:51:12.132877"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "lacedon_ghoul",
+    "name": {
+      "value": "Lacedon Ghoul"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/lacedon_ghoul.png"
+      }
+    },
+    "source": {
+      "value": "mm"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 12
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 5
+          },
+          "dice_type": {
+            "value": "d8"
+          },
+          "constant": {
+            "value": 0
+          },
+          "id": "233ea1e5-0731-4601-9739-c8f966c43a46",
+          "updated_at": {
+            "value": "2025-04-28T21:51:12.132545"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_1"
+    },
+    "xp": {
+      "value": 200
+    },
+    "initiative": {
+      "value": 2
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 30
+    },
+    "strength_score": {
+      "value": 13
+    },
+    "dexterity_score": {
+      "value": 15
+    },
+    "constitution_score": {
+      "value": 10
+    },
+    "intelligence_score": {
+      "value": 7
+    },
+    "wisdom_score": {
+      "value": 10
+    },
+    "charisma_score": {
+      "value": 6
+    },
+    "strength_saving_throw_modifier": {
+      "value": 1
+    },
+    "dexterity_saving_throw_modifier": {
+      "value": 2
+    },
+    "constitution_saving_throw_modifier": {
+      "value": 0
+    },
+    "intelligence_saving_throw_modifier": {
+      "value": -2
+    },
+    "wisdom_saving_throw_modifier": {
+      "value": 0
+    },
+    "charisma_saving_throw_modifier": {
+      "value": -2
+    },
+    "skills": {
+      "value": ""
+    },
+    "gear": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Poison,Charmed, Exhaustion, Poisoned"
+    },
+    "resistances": {
+      "value": "Cold"
+    },
+    "senses": {
+      "value": "Passive Perception 10, Darkvision 60 ft."
+    },
+    "languages": {
+      "value": "Common"
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "undead"
+    },
+    "alignment": {
+      "value": "chaotic_evil"
+    },
+    "traits": {
+      "value": []
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Multiattack"
+            },
+            "action_description": {
+              "value": "The ghoul makes two Icy Bite attacks."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "85e8a852-10aa-4918-b5c6-2aafebcae62b",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.132616"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Icy Bite"
+            },
+            "action_description": {
+              "value": "+4, reach 5 ft. Hit: 9 (2d6 + 2) Cold damage, and the target's Speed decreases by 5 feet until the start of the ghoul's next turn."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 4
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "cold"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 2
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 2
+                                  },
+                                  "id": "a96ddef0-9b9b-4c1e-835b-712c914387d2",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.132684"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "619eee2a-db7c-4f76-95d0-389eb2707803",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.132689"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "71d00422-6428-4ad2-9973-2640bd23453f",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:12.132700"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "f42466d0-42e1-4dab-bc12-ff06ecfadae8",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.132705"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Claw"
+            },
+            "action_description": {
+              "value": "+4, reach 5 ft. Hit: 4 (1d4 + 2) Slashing damage. If the target is a creature that isn't an Undead or elf, it is subjected to the following effect. Constitution Saving Throw: DC 10. Failure: The target has the Paralyzed condition until the end of its next turn."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 4
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 1
+                                  },
+                                  "dice_type": {
+                                    "value": "d4"
+                                  },
+                                  "constant": {
+                                    "value": 2
+                                  },
+                                  "id": "613d5bfc-433e-464c-970a-471408dd4e89",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.132780"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "33af3ef8-e0db-4737-a389-26d3837a0bd1",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.132784"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "f4655cc0-e719-46ce-a2cd-9e920c93cfee",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:12.132801"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "0702ee48-88fd-424a-8784-baeb561c77f6",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.132806"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Watery Rush"
+            },
+            "action_description": {
+              "value": "While underwater, the ghoul moves up to half its Swim Speed without provoking Opportunity Attacks."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "d0d0d538-df84-40f1-b6dd-0589c3460adc",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.132869"
+            }
+          }
+        }
+      ]
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "swamp",
+        "underdark",
+        "urban"
+      ]
+    },
+    "treasure": {
+      "value": [
+        "arcana",
+        "armaments",
+        "implements",
+        "relics"
+      ]
+    },
+    "updated_at": {
+      "value": "2025-04-28T21:51:12.132877"
+    }
+  }
+}

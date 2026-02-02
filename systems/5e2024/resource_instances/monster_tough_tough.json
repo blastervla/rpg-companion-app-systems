@@ -1,1 +1,337 @@
-{"resource_id": "monster", "stats": {"id": "tough", "name": {"value": "Tough"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/tough.png"}}, "source": {"value": "mm"}, "tag": {"value": ""}, "armor_class": {"value": 12}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 5}, "dice_type": {"value": "d8"}, "constant": {"value": 10}, "id": "a00b8df4-0aa3-4324-adab-03e8cb235466", "updated_at": {"value": "2025-04-28T21:51:12.256929"}}}}, "cr": {"value": "cr_1_2"}, "xp": {"value": 100}, "initiative": {"value": 1}, "speed": {"value": 30}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 0}, "fly_speed": {"value": 0}, "swim_speed": {"value": 0}, "strength_score": {"value": 15}, "dexterity_score": {"value": 12}, "constitution_score": {"value": 14}, "intelligence_score": {"value": 10}, "wisdom_score": {"value": 10}, "charisma_score": {"value": 11}, "strength_saving_throw_modifier": {"value": 2}, "dexterity_saving_throw_modifier": {"value": 1}, "constitution_saving_throw_modifier": {"value": 2}, "intelligence_saving_throw_modifier": {"value": 0}, "wisdom_saving_throw_modifier": {"value": 0}, "charisma_saving_throw_modifier": {"value": 0}, "skills": {"value": ""}, "gear": {"value": "Heavy crossbow|xphb, Leather armor|xphb, Mace|xphb"}, "vulnerabilities": {"value": ""}, "immunities": {"value": ""}, "resistances": {"value": ""}, "senses": {"value": "Passive Perception 10"}, "languages": {"value": "Common"}, "size": {"value": "small"}, "type": {"value": "humanoid"}, "alignment": {"value": "true_neutral"}, "traits": {"value": [{"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Pack Tactics"}, "trait_description": {"value": "The tough has Advantage on an attack roll against a creature if at least one of the tough's allies is within 5 feet of the creature and the ally doesn't have the Incapacitated condition."}, "id": "f090dcd6-d563-403e-9122-817c38db55b4", "updated_at": {"value": "2025-04-28T21:51:12.256996"}}}]}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Mace"}, "action_description": {"value": "+4, reach 5 ft. Hit: 5 (1d6 + 2) Bludgeoning damage."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 4}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "bludgeoning"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 1}, "dice_type": {"value": "d6"}, "constant": {"value": 2}, "id": "7854c065-2bc4-4eeb-82c6-770428b1d412", "updated_at": {"value": "2025-04-28T21:51:12.257052"}}}}, "id": "74434a5f-14ab-44c8-98c7-9b60db88bac8", "updated_at": {"value": "2025-04-28T21:51:12.257056"}}}]}, "id": "60ea5a2b-ae44-4da8-95d2-6dac2f1b8cf3", "updated_at": {"value": "2025-04-28T21:51:12.257061"}}}]}, "id": "7a4165ea-f2a8-43c4-ba2c-bed3c70df051", "updated_at": {"value": "2025-04-28T21:51:12.257065"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Heavy Crossbow"}, "action_description": {"value": "+3, range 100/400 ft. Hit: 6 (1d10 + 1) Piercing damage."}, "action_type": {"value": "ranged"}, "action_attack_bonus": {"value": 3}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "piercing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 1}, "dice_type": {"value": "d10"}, "constant": {"value": 1}, "id": "cdd8f57c-7bac-4679-91ff-794c38fa0383", "updated_at": {"value": "2025-04-28T21:51:12.257120"}}}}, "id": "4d0f89da-7828-4520-97a3-a69e8476b378", "updated_at": {"value": "2025-04-28T21:51:12.257124"}}}]}, "id": "288d460e-13ca-4916-a9b0-50ddb871c5ef", "updated_at": {"value": "2025-04-28T21:51:12.257129"}}}]}, "id": "f5616ca7-cab9-4ab7-bfb7-f9992fca4101", "updated_at": {"value": "2025-04-28T21:51:12.257133"}}}]}, "bonus_actions": {"value": []}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["arctic", "coastal", "desert", "forest", "grassland", "hill", "mountain", "swamp", "underdark", "underwater", "urban"]}, "treasure": {"value": ["armaments"]}, "updated_at": {"value": "2025-04-28T21:51:12.257138"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "tough",
+    "name": {
+      "value": "Tough"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/tough.png"
+      }
+    },
+    "source": {
+      "value": "mm"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 12
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 5
+          },
+          "dice_type": {
+            "value": "d8"
+          },
+          "constant": {
+            "value": 10
+          },
+          "id": "a00b8df4-0aa3-4324-adab-03e8cb235466",
+          "updated_at": {
+            "value": "2025-04-28T21:51:12.256929"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_1_2"
+    },
+    "xp": {
+      "value": 100
+    },
+    "initiative": {
+      "value": 1
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_score": {
+      "value": 15
+    },
+    "dexterity_score": {
+      "value": 12
+    },
+    "constitution_score": {
+      "value": 14
+    },
+    "intelligence_score": {
+      "value": 10
+    },
+    "wisdom_score": {
+      "value": 10
+    },
+    "charisma_score": {
+      "value": 11
+    },
+    "strength_saving_throw_modifier": {
+      "value": 2
+    },
+    "dexterity_saving_throw_modifier": {
+      "value": 1
+    },
+    "constitution_saving_throw_modifier": {
+      "value": 2
+    },
+    "intelligence_saving_throw_modifier": {
+      "value": 0
+    },
+    "wisdom_saving_throw_modifier": {
+      "value": 0
+    },
+    "charisma_saving_throw_modifier": {
+      "value": 0
+    },
+    "skills": {
+      "value": ""
+    },
+    "gear": {
+      "value": "Heavy crossbow|xphb, Leather armor|xphb, Mace|xphb"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "Passive Perception 10"
+    },
+    "languages": {
+      "value": "Common"
+    },
+    "size": {
+      "value": "small"
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Pack Tactics"
+            },
+            "trait_description": {
+              "value": "The tough has Advantage on an attack roll against a creature if at least one of the tough's allies is within 5 feet of the creature and the ally doesn't have the Incapacitated condition."
+            },
+            "id": "f090dcd6-d563-403e-9122-817c38db55b4",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.256996"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Mace"
+            },
+            "action_description": {
+              "value": "+4, reach 5 ft. Hit: 5 (1d6 + 2) Bludgeoning damage."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 4
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 1
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 2
+                                  },
+                                  "id": "7854c065-2bc4-4eeb-82c6-770428b1d412",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.257052"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "74434a5f-14ab-44c8-98c7-9b60db88bac8",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.257056"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "60ea5a2b-ae44-4da8-95d2-6dac2f1b8cf3",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:12.257061"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "7a4165ea-f2a8-43c4-ba2c-bed3c70df051",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.257065"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Heavy Crossbow"
+            },
+            "action_description": {
+              "value": "+3, range 100/400 ft. Hit: 6 (1d10 + 1) Piercing damage."
+            },
+            "action_type": {
+              "value": "ranged"
+            },
+            "action_attack_bonus": {
+              "value": 3
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 1
+                                  },
+                                  "dice_type": {
+                                    "value": "d10"
+                                  },
+                                  "constant": {
+                                    "value": 1
+                                  },
+                                  "id": "cdd8f57c-7bac-4679-91ff-794c38fa0383",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.257120"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "4d0f89da-7828-4520-97a3-a69e8476b378",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.257124"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "288d460e-13ca-4916-a9b0-50ddb871c5ef",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:12.257129"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "f5616ca7-cab9-4ab7-bfb7-f9992fca4101",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.257133"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "arctic",
+        "coastal",
+        "desert",
+        "forest",
+        "grassland",
+        "hill",
+        "mountain",
+        "swamp",
+        "underdark",
+        "underwater",
+        "urban"
+      ]
+    },
+    "treasure": {
+      "value": [
+        "armaments"
+      ]
+    },
+    "updated_at": {
+      "value": "2025-04-28T21:51:12.257138"
+    }
+  }
+}

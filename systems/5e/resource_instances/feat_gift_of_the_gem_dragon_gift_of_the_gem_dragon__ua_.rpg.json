@@ -1,1 +1,347 @@
-{"resource_id":"feat","stats":{"name":{"value":"Gift of the Gem Dragon"},"source":{"value":"ua"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"You’ve manifested some of the power of gem dragons, granting you the following benefits:\n\n- Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.\n\n- When you take damage from a creature that is within 10 feet of you, you can use your reaction to emanate telekinetic energy. The creature that dealt damage to you must succeed on a Strength saving throw (DC equals 8 + your proficiency bonus + the ability modifier of the score increased by this feat) or take 2d8 force damage and be pushed 10 feet away from you. You can use this reaction a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest"},"updated_at":{"value":"2024-12-20T18:50:28.395114"},"id":"d5d605e5-de6c-45eb-a02b-82610b1067c0"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Telekinetic Reprisal"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"b0e11f6a-0193-49af-9ee8-d1c6561f86c4"}}},"has_charges":{"value":true},"charge_type":{"value":"calculated"},"max_charges_levelled_formulas":{"value":[{"resource_id":"levelled_value_calculator","stats":{"calculators":{"value":[{"resource_id":"value_calculator","stats":{"operands":{"value":[{"resource_id":"operand","stats":{"stat":{"value":"$character.proficiency_bonus"},"id":"9a8749c3-9236-4dc1-9cae-4987ece8fc72"}}]},"id":"15c554d4-3a08-4ff3-8841-9a59da604120"}}]},"id":"9eebd73a-52b7-46d4-aba3-66c449191087"}}]},"id":"0d7706d6-3946-4bcd-9798-ea88582f8fc1"}}},"id":"8091ff56-ccb0-4246-b17c-129b68d32439"}}]},"selectable_feature_amount_per_level":{"value":[{"resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"28e3b0de-6027-4eed-8d0e-665788a80666"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Int Incredible "},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.intelligence_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"49f9c0b4-cc9a-4f07-9dca-bfff14e5ed8a"}}]},"id":"6ab5392b-3ce7-4280-a39a-3e03989caa09"}}]},"id":"db60da36-a9a1-43f7-a594-559cfc545893"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.intelligence_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"4226a03e-66d1-4651-948b-3413d8da98ec"}}},"id":"e8fff92c-064e-4c59-8ff0-8872858fbb05"}}]},"id":"4d595153-fb1e-4ad1-9cdd-56e42c29fcb1"}},{"resource_id":"feat","stats":{"name":{"value":"Wis Increase "},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.wisdom_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"ea4dd57f-77e2-4ede-8246-0ce8c0aa3937"}}]},"id":"49c59612-a0fc-46cb-a410-1d449e34464f"}}]},"id":"195bbb53-cd9e-4c3f-b1fa-94141b902c03"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.wisdom_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"15a5e9ca-f490-4e9b-89bc-6689016f30f4"}}},"id":"ec6b55ce-a351-4204-bffe-d26587fd9523"}}]},"id":"98b27594-6d72-4c68-b544-3b6cfcad39dc"}},{"resource_id":"feat","stats":{"name":{"value":"Cha Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.charisma_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"c2e18644-23c9-4f4b-b72e-5687fedb86f6"}}]},"id":"96e8b496-83ca-46eb-8b16-8ed8c8bda48d"}}]},"id":"1b5fa0b6-f64f-48ca-8f9b-355e18db9df0"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.charisma_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"6abe7692-35ed-40f9-97dd-f58dd226379a"}}},"id":"668967ee-63c1-4a2d-8656-7bd3ce013b3f"}}]},"id":"8ca847ca-d20c-4a3d-9d05-2074b28cffae"}}]},"updated_at":{"value":"2024-12-20T18:50:28.395118"},"id":"gift_of_the_gem_dragon__ua_"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Gift of the Gem Dragon"
+    },
+    "source": {
+      "value": "ua"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "You\u2019ve manifested some of the power of gem dragons, granting you the following benefits:\n\n- Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.\n\n- When you take damage from a creature that is within 10 feet of you, you can use your reaction to emanate telekinetic energy. The creature that dealt damage to you must succeed on a Strength saving throw (DC equals 8 + your proficiency bonus + the ability modifier of the score increased by this feat) or take 2d8 force damage and be pushed 10 feet away from you. You can use this reaction a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.395114"
+            },
+            "id": "d5d605e5-de6c-45eb-a02b-82610b1067c0"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Telekinetic Reprisal"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "b0e11f6a-0193-49af-9ee8-d1c6561f86c4"
+                      }
+                    }
+                  },
+                  "has_charges": {
+                    "value": true
+                  },
+                  "charge_type": {
+                    "value": "calculated"
+                  },
+                  "max_charges_levelled_formulas": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_value_calculator",
+                        "stats": {
+                          "calculators": {
+                            "value": [
+                              {
+                                "resource_id": "value_calculator",
+                                "stats": {
+                                  "operands": {
+                                    "value": [
+                                      {
+                                        "resource_id": "operand",
+                                        "stats": {
+                                          "stat": {
+                                            "value": "$character.proficiency_bonus"
+                                          },
+                                          "id": "9a8749c3-9236-4dc1-9cae-4987ece8fc72"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "id": "15c554d4-3a08-4ff3-8841-9a59da604120"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "9eebd73a-52b7-46d4-aba3-66c449191087"
+                        }
+                      }
+                    ]
+                  },
+                  "id": "0d7706d6-3946-4bcd-9798-ea88582f8fc1"
+                }
+              }
+            },
+            "id": "8091ff56-ccb0-4246-b17c-129b68d32439"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "28e3b0de-6027-4eed-8d0e-665788a80666"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Int Incredible "
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.intelligence_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "49f9c0b4-cc9a-4f07-9dca-bfff14e5ed8a"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "6ab5392b-3ce7-4280-a39a-3e03989caa09"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "db60da36-a9a1-43f7-a594-559cfc545893"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.intelligence_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "4226a03e-66d1-4651-948b-3413d8da98ec"
+                        }
+                      }
+                    },
+                    "id": "e8fff92c-064e-4c59-8ff0-8872858fbb05"
+                  }
+                }
+              ]
+            },
+            "id": "4d595153-fb1e-4ad1-9cdd-56e42c29fcb1"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Wis Increase "
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.wisdom_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "ea4dd57f-77e2-4ede-8246-0ce8c0aa3937"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "49c59612-a0fc-46cb-a410-1d449e34464f"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "195bbb53-cd9e-4c3f-b1fa-94141b902c03"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.wisdom_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "15a5e9ca-f490-4e9b-89bc-6689016f30f4"
+                        }
+                      }
+                    },
+                    "id": "ec6b55ce-a351-4204-bffe-d26587fd9523"
+                  }
+                }
+              ]
+            },
+            "id": "98b27594-6d72-4c68-b544-3b6cfcad39dc"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Cha Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.charisma_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "c2e18644-23c9-4f4b-b72e-5687fedb86f6"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "96e8b496-83ca-46eb-8b16-8ed8c8bda48d"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "1b5fa0b6-f64f-48ca-8f9b-355e18db9df0"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.charisma_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "6abe7692-35ed-40f9-97dd-f58dd226379a"
+                        }
+                      }
+                    },
+                    "id": "668967ee-63c1-4a2d-8656-7bd3ce013b3f"
+                  }
+                }
+              ]
+            },
+            "id": "8ca847ca-d20c-4a3d-9d05-2074b28cffae"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.395118"
+    },
+    "id": "gift_of_the_gem_dragon__ua_"
+  }
+}

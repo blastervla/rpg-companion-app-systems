@@ -1,1 +1,350 @@
-{"resource_id":"weapon","stats":{"name":{"value":"Axe of the Dwarvish Lords"},"source":{"value":"dmg"},"description":{"value":"Magic Weapon. The Axe of the Dwarvish Lords is a magic weapon that grants a +3 bonus to attack and damage rolls made with it. The axe also functions as a belt of dwarvenkind, a dwarven thrower, and a sword of sharpness.\n\nWhile attuned, you have a 50 percent chance each day at dawn of growing a full beard if you're capable of growing one, or a visibly thicker beard if you already have one.\n\nIf you aren't a dwarf, you gain the following additional benefits while wearing the belt:\n\n- You have advantage on saving throws against poison.\n- You have darkvision out to a range of 60 feet.\n- You can speak, read, and write Dwarvish.\n\nWhen you hit with a ranged attack using this weapon, it deals an extra 1d8 damage or, if the target is a giant, 2d8 damage. Immediately after the attack, the weapon flies back to your hand.\n\nWhen you attack an object with this weapon and hit, maximize your weapon damage dice against the target.\n\nWhen you attack a creature with this weapon and roll a 20 on the attack roll, that target takes an extra 14 slashing damage. Then roll another d20. If you roll a 20, you lop off one of the target's limbs, with the effect of such loss determined by the DM. If the creature has no limb to sever, you lop off a portion of its body instead.\n\nIn addition, you can speak the sword's command to cause the blade to shed bright light in a 10-foot radius and dim light for an additional 10 feet. Speaking the command word again or sheathing the sword puts out the light\n\nRandom Properties. The axe has the following randomly determined properties:\n\n2 minor beneficial properties\n1 major beneficial property\n2 minor detrimental properties\nBlessings of Moradin. If you are a dwarf attuned to the axe, you gain the following benefits:\n\nYou have immunity to poison damage.\nThe range of your darkvision increases by 60 feet.\nYou gain proficiency with artisan's tools related to blacksmithing, brewing, and stonemasonry.\nConjure Earth Elemental. If you are holding the axe, you can use your action to cast the conjure elemental spell from it, summoning an earth elemental. You can't use this property again until the next dawn.\n\nTravel the Depths. You can use an action to touch the axe to a fixed piece of dwarven stonework and cast the teleport spell from the axe. If your intended destination is underground, there is no chance of a mishap or arriving somewhere unexpected. You can't use this property again until 3 days have passed.\n\nCurse. The axe bears a curse that affects any non-dwarf that becomes attuned to it. Even if the attunement ends, the curse remains. With each passing day, the creature's physical appearance and stature become more dwarflike. After seven days, the creature looks like a typical dwarf, but the creature neither loses its racial traits nor gains the racial traits of a dwarf. The physical changes wrought by the axe aren't considered magical in nature (and therefore can't be dispelled), but they can be undone by any effect that removes a curse, such as a greater restoration or remove curse spell.\n\nDestroying the Axe. The only way to destroy the axe is to melt it down in the Earthheart Forge, where it was created. It must remain in the burning forge for fifty years before it finally succumbs to the fire and is consumed"},"cost":{"value":{"resource_id":"cost","stats":{"id":"73cc5a96-8ab8-445a-a7a9-eef10782b5be"}}},"weight":{"value":{"resource_id":"weight","stats":{"value":{"value":4},"id":"297b1a32-ac43-4aba-a4f6-36e1d0a81c8b"}}},"type":{"value":"battleaxe"},"rarity":{"value":"artifact"},"requires_attunement":{"value":true},"is_simple":{"value":false},"is_thrown":{"value":true},"thrown_range":{"value":"20/60"},"extra_attack_bonus":{"value":3},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d8"},"constant":{"value":3},"id":"9c9e2975-5a0d-4caa-a29e-ba4d0e9063f7"}}]},"damage_type":{"value":"slashing"},"id":"2650d0c1-93f5-4ec2-9741-da6d3528befa"}}]},"is_versatile":{"value":true},"versatile_damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d10"},"constant":{"value":3},"id":"2b56be45-c0ce-4e0c-9045-48bc8c470243"}}]},"damage_type":{"value":"slashing"},"id":"6c9583d5-9e61-4de3-88cf-262f20921d84"}}]},"effects":{"value":[{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.constitution_score"},"condition":{"value":"lower_than"},"value":{"value":19.0},"id":"3901b086-f0c2-4e59-ace8-777d02963408"}}]},"id":"7ff83578-d5ca-4328-a363-1153b361b501"}}]},"id":"a38cb42e-fbfe-4650-b99c-77bd40bca556"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.constitution_score"},"constant":{"value":2},"id":"849aedd0-ecbc-48ee-84d7-b7f74b697f1d"}},{"resource_id":"effect","stats":{"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"bb0d7812-6f0a-42f0-87b2-df5fe49c790c"}}},"has_charges":{"value":true},"recharge_event":{"value":"dawn"},"max_charges_constant":{"value":1},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Conjure Elemental"},"source":{"value":"phb"},"level":{"value":"spell_level_5"},"school":{"value":"spell_school_conjuration"},"casting_time":{"value":"1 minute"},"range":{"value":"90 feet"},"duration":{"value":"Concentration, up to 1 hour"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"burning incense for air, soft clay for earth, sulfur and phosphorus for fire, or water and sand for water"},"description":{"value":"You call forth an elemental servant. Choose an area of air, earth, fire, or water that fills a 10-foot cube within range. An elemental of challenge rating 5 or lower appropriate to the area you chose appears in an unoccupied space within 10 feet of it. For example, a fire elemental emerges from a bonfire, and an earth elemental rises up from the ground. The elemental disappears when it drops to 0 hit points or when the spell ends.\n\nThe elemental is friendly to you and your companions for the duration. Roll initiative for the elemental, which has its own turns. It obeys any verbal commands that you issue to it (no action required by you). If you don't issue any commands to the elemental, it defends itself from hostile creatures but otherwise takes no actions.\n\nIf your concentration is broken, the elemental doesn't disappear. Instead, you lose control of the elemental, it becomes hostile toward you and your companions, and it might attack. An uncontrolled elemental can't be dismissed by you, and it disappears 1 hour after you summoned it.\n\nThe GM has the elemental's statistics."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 6th level or higher, the challenge rating increases by 1 for each slot level above 5th."},"classes":{"value":["druid","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.648943"},"id":"8a724a3e-32ac-401a-9503-42e347f9af06"}}},"id":"0e63c2d0-db78-4715-bab1-20c574962c95"}},{"resource_id":"effect","stats":{"name":{"value":"Travel the Depths (recharges in 3 days)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"48c41be4-2e27-48e5-8342-01fbf7107d8f"}}},"has_charges":{"value":true},"recharge_event":{"value":"manual"},"max_charges_constant":{"value":1},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Teleport"},"source":{"value":"phb"},"level":{"value":"spell_level_7"},"school":{"value":"spell_school_conjuration"},"casting_time":{"value":"1 action"},"range":{"value":"10 feet"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"description":{"value":"This spell instantly transports you and up to eight willing creatures of your choice that you can see within range, or a single object, that you can see within range, to a destination you select. If you target an object, it must be able to fit entirely inside a 10-foot cube, and it can't be held or carried by an unwilling creature.\n\nThe destination you choose must be known to you, and it must be on the same plane of existence as you. Your familiarity with the destination determines whether you arrive there successfully. The GM rolls d100 and consults the table.\n\n| Familiarity       | Mishap | Simliar Area | Off Target | On Target |\n\n|-------------------|--------|--------------|------------|-----------|\n\n| Permanent circle  |  ---   |      ---     |     ---    |   01-100  |\n\n| Associated object |  ---   |      ---     |     ---    |   01-100  |\n\n| Very familiar     | 01-05  |     06-13    |    14-24   |   25-100  |\n\n| Seen casually     | 01-33  |     34-43    |    44-53   |   54-100  |\n\n| Viewed once       | 01-43  |     44-53    |    54-73   |   74-100  |\n\n| Description       | 01-43  |     44-53    |    54-73   |   74-100  |\n\n| False destination | 01-50  |    51-100    |     ---    |    ---    |\n\n\"Very familiar\" is a place you have been very often, a place you have carefully studied, or a place you can see when you cast the spell. \"Seen casually\" is someplace you have seen more than once but with which you aren't very familiar. \"Viewed once\" is a place you have seen once, possibly using magic. \"Description\" is a place whose location and appearance you know through someone else's description, perhaps from a map.\n\n\"False destination\" is a place that doesn't exist. Perhaps you tried to scry an enemy's sanctum but instead view an illusion, or you were attempting to teleport to a familiar location that no longer exists."},"classes":{"value":["bard","sorcerer","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.646218"},"id":"b0862d44-36f2-4563-a05b-cf0ad336aafe"}}},"id":"07f28290-2627-47a8-869a-66295ea480eb"}}]},"id":"8272ba4e-149c-449c-9235-5af9f0dbb503"}}
+{
+  "resource_id": "weapon",
+  "stats": {
+    "name": {
+      "value": "Axe of the Dwarvish Lords"
+    },
+    "source": {
+      "value": "dmg"
+    },
+    "description": {
+      "value": "Magic Weapon. The Axe of the Dwarvish Lords is a magic weapon that grants a +3 bonus to attack and damage rolls made with it. The axe also functions as a belt of dwarvenkind, a dwarven thrower, and a sword of sharpness.\n\nWhile attuned, you have a 50 percent chance each day at dawn of growing a full beard if you're capable of growing one, or a visibly thicker beard if you already have one.\n\nIf you aren't a dwarf, you gain the following additional benefits while wearing the belt:\n\n- You have advantage on saving throws against poison.\n- You have darkvision out to a range of 60 feet.\n- You can speak, read, and write Dwarvish.\n\nWhen you hit with a ranged attack using this weapon, it deals an extra 1d8 damage or, if the target is a giant, 2d8 damage. Immediately after the attack, the weapon flies back to your hand.\n\nWhen you attack an object with this weapon and hit, maximize your weapon damage dice against the target.\n\nWhen you attack a creature with this weapon and roll a 20 on the attack roll, that target takes an extra 14 slashing damage. Then roll another d20. If you roll a 20, you lop off one of the target's limbs, with the effect of such loss determined by the DM. If the creature has no limb to sever, you lop off a portion of its body instead.\n\nIn addition, you can speak the sword's command to cause the blade to shed bright light in a 10-foot radius and dim light for an additional 10 feet. Speaking the command word again or sheathing the sword puts out the light\n\nRandom Properties. The axe has the following randomly determined properties:\n\n2 minor beneficial properties\n1 major beneficial property\n2 minor detrimental properties\nBlessings of Moradin. If you are a dwarf attuned to the axe, you gain the following benefits:\n\nYou have immunity to poison damage.\nThe range of your darkvision increases by 60 feet.\nYou gain proficiency with artisan's tools related to blacksmithing, brewing, and stonemasonry.\nConjure Earth Elemental. If you are holding the axe, you can use your action to cast the conjure elemental spell from it, summoning an earth elemental. You can't use this property again until the next dawn.\n\nTravel the Depths. You can use an action to touch the axe to a fixed piece of dwarven stonework and cast the teleport spell from the axe. If your intended destination is underground, there is no chance of a mishap or arriving somewhere unexpected. You can't use this property again until 3 days have passed.\n\nCurse. The axe bears a curse that affects any non-dwarf that becomes attuned to it. Even if the attunement ends, the curse remains. With each passing day, the creature's physical appearance and stature become more dwarflike. After seven days, the creature looks like a typical dwarf, but the creature neither loses its racial traits nor gains the racial traits of a dwarf. The physical changes wrought by the axe aren't considered magical in nature (and therefore can't be dispelled), but they can be undone by any effect that removes a curse, such as a greater restoration or remove curse spell.\n\nDestroying the Axe. The only way to destroy the axe is to melt it down in the Earthheart Forge, where it was created. It must remain in the burning forge for fifty years before it finally succumbs to the fire and is consumed"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "id": "73cc5a96-8ab8-445a-a7a9-eef10782b5be"
+        }
+      }
+    },
+    "weight": {
+      "value": {
+        "resource_id": "weight",
+        "stats": {
+          "value": {
+            "value": 4
+          },
+          "id": "297b1a32-ac43-4aba-a4f6-36e1d0a81c8b"
+        }
+      }
+    },
+    "type": {
+      "value": "battleaxe"
+    },
+    "rarity": {
+      "value": "artifact"
+    },
+    "requires_attunement": {
+      "value": true
+    },
+    "is_simple": {
+      "value": false
+    },
+    "is_thrown": {
+      "value": true
+    },
+    "thrown_range": {
+      "value": "20/60"
+    },
+    "extra_attack_bonus": {
+      "value": 3
+    },
+    "damage_dice": {
+      "value": [
+        {
+          "resource_id": "damage_dice",
+          "stats": {
+            "dices": {
+              "value": [
+                {
+                  "resource_id": "dice_roll",
+                  "stats": {
+                    "dice_amount": {
+                      "value": 1
+                    },
+                    "dice_type": {
+                      "value": "d8"
+                    },
+                    "constant": {
+                      "value": 3
+                    },
+                    "id": "9c9e2975-5a0d-4caa-a29e-ba4d0e9063f7"
+                  }
+                }
+              ]
+            },
+            "damage_type": {
+              "value": "slashing"
+            },
+            "id": "2650d0c1-93f5-4ec2-9741-da6d3528befa"
+          }
+        }
+      ]
+    },
+    "is_versatile": {
+      "value": true
+    },
+    "versatile_damage_dice": {
+      "value": [
+        {
+          "resource_id": "damage_dice",
+          "stats": {
+            "dices": {
+              "value": [
+                {
+                  "resource_id": "dice_roll",
+                  "stats": {
+                    "dice_amount": {
+                      "value": 1
+                    },
+                    "dice_type": {
+                      "value": "d10"
+                    },
+                    "constant": {
+                      "value": 3
+                    },
+                    "id": "2b56be45-c0ce-4e0c-9045-48bc8c470243"
+                  }
+                }
+              ]
+            },
+            "damage_type": {
+              "value": "slashing"
+            },
+            "id": "6c9583d5-9e61-4de3-88cf-262f20921d84"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "terms": {
+                    "value": [
+                      {
+                        "resource_id": "trigger_condition_and",
+                        "stats": {
+                          "terms": {
+                            "value": [
+                              {
+                                "resource_id": "trigger_condition_term",
+                                "stats": {
+                                  "stat": {
+                                    "value": "$character.constitution_score"
+                                  },
+                                  "condition": {
+                                    "value": "lower_than"
+                                  },
+                                  "value": {
+                                    "value": 19.0
+                                  },
+                                  "id": "3901b086-f0c2-4e59-ace8-777d02963408"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "7ff83578-d5ca-4328-a363-1153b361b501"
+                        }
+                      }
+                    ]
+                  },
+                  "id": "a38cb42e-fbfe-4650-b99c-77bd40bca556"
+                }
+              }
+            },
+            "type": {
+              "value": "add_to_stat"
+            },
+            "stat": {
+              "value": "$character.constitution_score"
+            },
+            "constant": {
+              "value": 2
+            },
+            "id": "849aedd0-ecbc-48ee-84d7-b7f74b697f1d"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "bb0d7812-6f0a-42f0-87b2-df5fe49c790c"
+                }
+              }
+            },
+            "has_charges": {
+              "value": true
+            },
+            "recharge_event": {
+              "value": "dawn"
+            },
+            "max_charges_constant": {
+              "value": 1
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Conjure Elemental"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_5"
+                  },
+                  "school": {
+                    "value": "spell_school_conjuration"
+                  },
+                  "casting_time": {
+                    "value": "1 minute"
+                  },
+                  "range": {
+                    "value": "90 feet"
+                  },
+                  "duration": {
+                    "value": "Concentration, up to 1 hour"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "burning incense for air, soft clay for earth, sulfur and phosphorus for fire, or water and sand for water"
+                  },
+                  "description": {
+                    "value": "You call forth an elemental servant. Choose an area of air, earth, fire, or water that fills a 10-foot cube within range. An elemental of challenge rating 5 or lower appropriate to the area you chose appears in an unoccupied space within 10 feet of it. For example, a fire elemental emerges from a bonfire, and an earth elemental rises up from the ground. The elemental disappears when it drops to 0 hit points or when the spell ends.\n\nThe elemental is friendly to you and your companions for the duration. Roll initiative for the elemental, which has its own turns. It obeys any verbal commands that you issue to it (no action required by you). If you don't issue any commands to the elemental, it defends itself from hostile creatures but otherwise takes no actions.\n\nIf your concentration is broken, the elemental doesn't disappear. Instead, you lose control of the elemental, it becomes hostile toward you and your companions, and it might attack. An uncontrolled elemental can't be dismissed by you, and it disappears 1 hour after you summoned it.\n\nThe GM has the elemental's statistics."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 6th level or higher, the challenge rating increases by 1 for each slot level above 5th."
+                  },
+                  "classes": {
+                    "value": [
+                      "druid",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.648943"
+                  },
+                  "id": "8a724a3e-32ac-401a-9503-42e347f9af06"
+                }
+              }
+            },
+            "id": "0e63c2d0-db78-4715-bab1-20c574962c95"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Travel the Depths (recharges in 3 days)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "48c41be4-2e27-48e5-8342-01fbf7107d8f"
+                }
+              }
+            },
+            "has_charges": {
+              "value": true
+            },
+            "recharge_event": {
+              "value": "manual"
+            },
+            "max_charges_constant": {
+              "value": 1
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Teleport"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_7"
+                  },
+                  "school": {
+                    "value": "spell_school_conjuration"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "10 feet"
+                  },
+                  "duration": {
+                    "value": "Instantaneous"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "This spell instantly transports you and up to eight willing creatures of your choice that you can see within range, or a single object, that you can see within range, to a destination you select. If you target an object, it must be able to fit entirely inside a 10-foot cube, and it can't be held or carried by an unwilling creature.\n\nThe destination you choose must be known to you, and it must be on the same plane of existence as you. Your familiarity with the destination determines whether you arrive there successfully. The GM rolls d100 and consults the table.\n\n| Familiarity       | Mishap | Simliar Area | Off Target | On Target |\n\n|-------------------|--------|--------------|------------|-----------|\n\n| Permanent circle  |  ---   |      ---     |     ---    |   01-100  |\n\n| Associated object |  ---   |      ---     |     ---    |   01-100  |\n\n| Very familiar     | 01-05  |     06-13    |    14-24   |   25-100  |\n\n| Seen casually     | 01-33  |     34-43    |    44-53   |   54-100  |\n\n| Viewed once       | 01-43  |     44-53    |    54-73   |   74-100  |\n\n| Description       | 01-43  |     44-53    |    54-73   |   74-100  |\n\n| False destination | 01-50  |    51-100    |     ---    |    ---    |\n\n\"Very familiar\" is a place you have been very often, a place you have carefully studied, or a place you can see when you cast the spell. \"Seen casually\" is someplace you have seen more than once but with which you aren't very familiar. \"Viewed once\" is a place you have seen once, possibly using magic. \"Description\" is a place whose location and appearance you know through someone else's description, perhaps from a map.\n\n\"False destination\" is a place that doesn't exist. Perhaps you tried to scry an enemy's sanctum but instead view an illusion, or you were attempting to teleport to a familiar location that no longer exists."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "sorcerer",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.646218"
+                  },
+                  "id": "b0862d44-36f2-4563-a05b-cf0ad336aafe"
+                }
+              }
+            },
+            "id": "07f28290-2627-47a8-869a-66295ea480eb"
+          }
+        }
+      ]
+    },
+    "id": "8272ba4e-149c-449c-9235-5af9f0dbb503"
+  }
+}

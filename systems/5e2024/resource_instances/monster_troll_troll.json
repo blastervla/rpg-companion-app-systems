@@ -1,1 +1,321 @@
-{"resource_id": "monster", "stats": {"id": "troll", "name": {"value": "Troll"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/troll.png"}}, "source": {"value": "mm"}, "tag": {"value": ""}, "armor_class": {"value": 15}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 9}, "dice_type": {"value": "d10"}, "constant": {"value": 45}, "id": "d26c8430-dcf2-401c-864d-99d9d5ce72cc", "updated_at": {"value": "2025-04-28T21:51:12.260421"}}}}, "cr": {"value": "cr_5"}, "xp": {"value": 1800}, "initiative": {"value": 1}, "speed": {"value": 30}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 0}, "fly_speed": {"value": 0}, "swim_speed": {"value": 0}, "strength_score": {"value": 18}, "dexterity_score": {"value": 13}, "constitution_score": {"value": 20}, "intelligence_score": {"value": 7}, "wisdom_score": {"value": 9}, "charisma_score": {"value": 7}, "strength_saving_throw_modifier": {"value": 4}, "dexterity_saving_throw_modifier": {"value": 1}, "constitution_saving_throw_modifier": {"value": 5}, "intelligence_saving_throw_modifier": {"value": -2}, "wisdom_saving_throw_modifier": {"value": -1}, "charisma_saving_throw_modifier": {"value": -2}, "skills": {"value": "Perception +5"}, "gear": {"value": ""}, "vulnerabilities": {"value": ""}, "immunities": {"value": ""}, "resistances": {"value": ""}, "senses": {"value": "Passive Perception 15, Darkvision 60 ft."}, "languages": {"value": "Giant"}, "size": {"value": "large"}, "type": {"value": "giant"}, "alignment": {"value": "chaotic_evil"}, "traits": {"value": [{"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Loathsome Limbs (4/Day)"}, "trait_description": {"value": "If the troll ends any turn Bloodied and took 15+ Slashing damage during that turn, one of the troll's limbs is severed, falls into the troll's space, and becomes a Troll Limb|XMM. The limb acts immediately after the troll's turn. The troll has 1 Exhaustion level for each missing limb, and it grows replacement limbs the next time it regains Hit Points."}, "id": "930bd326-9da0-4dfe-b6b5-fdb7992e8c5c", "updated_at": {"value": "2025-04-28T21:51:12.260495"}}}, {"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Regeneration"}, "trait_description": {"value": "The troll regains 15 Hit Points at the start of each of its turns. If the troll takes Acid or Fire damage, this trait doesn't function on the troll's next turn. The troll dies only if it starts its turn with 0 Hit Points and doesn't regenerate."}, "id": "aacc92f9-546c-49e1-9a14-7cd92a70417c", "updated_at": {"value": "2025-04-28T21:51:12.260549"}}}]}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Multiattack"}, "action_description": {"value": "The troll makes three Rend attacks."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "35f768bd-5df2-4eb9-8470-4631777073f3", "updated_at": {"value": "2025-04-28T21:51:12.260598"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Rend"}, "action_description": {"value": "+7, reach 10 ft. Hit: 11 (2d6 + 4) Slashing damage."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 7}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "slashing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 2}, "dice_type": {"value": "d6"}, "constant": {"value": 4}, "id": "d12f24f7-0127-445b-b123-0362fe05c17f", "updated_at": {"value": "2025-04-28T21:51:12.260654"}}}}, "id": "036bb120-997f-476c-8117-15c242a8b345", "updated_at": {"value": "2025-04-28T21:51:12.260658"}}}]}, "id": "55d28534-f5a5-4d1f-bfd9-f00ef74a60b7", "updated_at": {"value": "2025-04-28T21:51:12.260663"}}}]}, "id": "f5801322-b36f-4e1e-a197-894ac0ef4488", "updated_at": {"value": "2025-04-28T21:51:12.260667"}}}]}, "bonus_actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Charge"}, "action_description": {"value": "The troll moves up to half its Speed straight toward an enemy it can see."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "51525270-3b01-48cb-b24f-1c37927648a3", "updated_at": {"value": "2025-04-28T21:51:12.260719"}}}]}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["arctic", "forest", "hill", "mountain", "swamp", "underdark"]}, "treasure": {"value": []}, "updated_at": {"value": "2025-04-28T21:51:12.260727"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "troll",
+    "name": {
+      "value": "Troll"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/troll.png"
+      }
+    },
+    "source": {
+      "value": "mm"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 15
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 9
+          },
+          "dice_type": {
+            "value": "d10"
+          },
+          "constant": {
+            "value": 45
+          },
+          "id": "d26c8430-dcf2-401c-864d-99d9d5ce72cc",
+          "updated_at": {
+            "value": "2025-04-28T21:51:12.260421"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_5"
+    },
+    "xp": {
+      "value": 1800
+    },
+    "initiative": {
+      "value": 1
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_score": {
+      "value": 18
+    },
+    "dexterity_score": {
+      "value": 13
+    },
+    "constitution_score": {
+      "value": 20
+    },
+    "intelligence_score": {
+      "value": 7
+    },
+    "wisdom_score": {
+      "value": 9
+    },
+    "charisma_score": {
+      "value": 7
+    },
+    "strength_saving_throw_modifier": {
+      "value": 4
+    },
+    "dexterity_saving_throw_modifier": {
+      "value": 1
+    },
+    "constitution_saving_throw_modifier": {
+      "value": 5
+    },
+    "intelligence_saving_throw_modifier": {
+      "value": -2
+    },
+    "wisdom_saving_throw_modifier": {
+      "value": -1
+    },
+    "charisma_saving_throw_modifier": {
+      "value": -2
+    },
+    "skills": {
+      "value": "Perception +5"
+    },
+    "gear": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "Passive Perception 15, Darkvision 60 ft."
+    },
+    "languages": {
+      "value": "Giant"
+    },
+    "size": {
+      "value": "large"
+    },
+    "type": {
+      "value": "giant"
+    },
+    "alignment": {
+      "value": "chaotic_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Loathsome Limbs (4/Day)"
+            },
+            "trait_description": {
+              "value": "If the troll ends any turn Bloodied and took 15+ Slashing damage during that turn, one of the troll's limbs is severed, falls into the troll's space, and becomes a Troll Limb|XMM. The limb acts immediately after the troll's turn. The troll has 1 Exhaustion level for each missing limb, and it grows replacement limbs the next time it regains Hit Points."
+            },
+            "id": "930bd326-9da0-4dfe-b6b5-fdb7992e8c5c",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.260495"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Regeneration"
+            },
+            "trait_description": {
+              "value": "The troll regains 15 Hit Points at the start of each of its turns. If the troll takes Acid or Fire damage, this trait doesn't function on the troll's next turn. The troll dies only if it starts its turn with 0 Hit Points and doesn't regenerate."
+            },
+            "id": "aacc92f9-546c-49e1-9a14-7cd92a70417c",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.260549"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Multiattack"
+            },
+            "action_description": {
+              "value": "The troll makes three Rend attacks."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "35f768bd-5df2-4eb9-8470-4631777073f3",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.260598"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Rend"
+            },
+            "action_description": {
+              "value": "+7, reach 10 ft. Hit: 11 (2d6 + 4) Slashing damage."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 7
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 2
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 4
+                                  },
+                                  "id": "d12f24f7-0127-445b-b123-0362fe05c17f",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.260654"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "036bb120-997f-476c-8117-15c242a8b345",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.260658"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "55d28534-f5a5-4d1f-bfd9-f00ef74a60b7",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:12.260663"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "f5801322-b36f-4e1e-a197-894ac0ef4488",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.260667"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Charge"
+            },
+            "action_description": {
+              "value": "The troll moves up to half its Speed straight toward an enemy it can see."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "51525270-3b01-48cb-b24f-1c37927648a3",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.260719"
+            }
+          }
+        }
+      ]
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "arctic",
+        "forest",
+        "hill",
+        "mountain",
+        "swamp",
+        "underdark"
+      ]
+    },
+    "treasure": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2025-04-28T21:51:12.260727"
+    }
+  }
+}

@@ -1,1 +1,277 @@
-{"resource_id":"feat","stats":{"name":{"value":"Revenant Blade"},"source":{"value":"aag"},"prerequisites":{"value":"Elf"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"- Increase your Dexterity or Strength score by 1, to a maximum of 20.\n\n- While wielding a double-bladed weapon with two hands, the weapon has the finesse trait for your attacks with it, and you gain +1 AC.\n\n- On your turn, when you use a bonus action to make a melee attack with the blade at the opposite end of the weapon, the weapon’s damage die for this attack increases to 2d4, instead of 1d4"},"updated_at":{"value":"2024-12-20T18:50:28.398899"},"id":"170504d8-cba5-4978-a2bc-e6bca644a885"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Two Hand Double Bladed Bonus"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"ca1a21d5-15e2-401c-ab1c-2b1a2d933649"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.armor_class"},"aggregation_type":{"value":"sum"},"dice_roll":{"value":{"resource_id":"dice_roll","stats":{"constant":{"value":1},"id":"a78c8326-3728-471a-b311-b2859ff118b7"}}},"id":"a0a0e2eb-b77b-4af9-805b-ec3dc746d9b8"}}},"id":"fbd0d9a9-6cfe-49c6-98b8-61e513f9bf31"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Better Bonus Action Attack"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"b8271dc8-cb80-4100-80a0-5832141a3f5d"}}},"id":"25b6aa5f-df2e-419d-8473-7071d1800f74"}}},"id":"f10b250a-7957-4757-ab66-08e341cb3b07"}}]},"selectable_feature_amount_per_level":{"value":[{"resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"474a4501-af51-4df2-b722-819fef0fffe8"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Dex Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.dexterity_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"c61dd17f-e0c0-4609-9eea-8d011f8152df"}}]},"id":"5ec1144a-4669-459a-8cf4-be15913912d2"}}]},"id":"ed4debd4-e227-435f-a80d-d62451a8e1a2"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.dexterity_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"bd976bda-f9d6-46e2-b118-eb3e565bce37"}}},"id":"b51468d0-7c5f-41a5-b979-0649619c614e"}}]},"id":"76e5c4f9-a921-4b50-9bcf-c2254028d99b"}},{"resource_id":"feat","stats":{"name":{"value":"Str Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"ab89c139-6256-4d01-a0cd-34731833f906"}}]},"id":"b5abefe0-0cfb-4c84-a58d-6e94449f0219"}}]},"id":"9fba2ae1-d235-40d5-89fe-2bf6a91d90b5"}}},"type":{"value":"add_to_stat"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"c7723961-25be-4777-ae1c-067deea77cc6"}}},"id":"0fc16d21-4a17-467a-9099-4eaade6ff4ac"}}]},"id":"21dde0ab-3dae-4e83-9a32-1909a46f3f35"}}]},"updated_at":{"value":"2024-12-20T18:50:28.398902"},"id":"revenant_blade"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Revenant Blade"
+    },
+    "source": {
+      "value": "aag"
+    },
+    "prerequisites": {
+      "value": "Elf"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "- Increase your Dexterity or Strength score by 1, to a maximum of 20.\n\n- While wielding a double-bladed weapon with two hands, the weapon has the finesse trait for your attacks with it, and you gain +1 AC.\n\n- On your turn, when you use a bonus action to make a melee attack with the blade at the opposite end of the weapon, the weapon\u2019s damage die for this attack increases to 2d4, instead of 1d4"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.398899"
+            },
+            "id": "170504d8-cba5-4978-a2bc-e6bca644a885"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Two Hand Double Bladed Bonus"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "ca1a21d5-15e2-401c-ab1c-2b1a2d933649"
+                      }
+                    }
+                  },
+                  "type": {
+                    "value": "add_to_stat"
+                  },
+                  "stat": {
+                    "value": "$character.armor_class"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "dice_roll": {
+                    "value": {
+                      "resource_id": "dice_roll",
+                      "stats": {
+                        "constant": {
+                          "value": 1
+                        },
+                        "id": "a78c8326-3728-471a-b311-b2859ff118b7"
+                      }
+                    }
+                  },
+                  "id": "a0a0e2eb-b77b-4af9-805b-ec3dc746d9b8"
+                }
+              }
+            },
+            "id": "fbd0d9a9-6cfe-49c6-98b8-61e513f9bf31"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Better Bonus Action Attack"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "b8271dc8-cb80-4100-80a0-5832141a3f5d"
+                      }
+                    }
+                  },
+                  "id": "25b6aa5f-df2e-419d-8473-7071d1800f74"
+                }
+              }
+            },
+            "id": "f10b250a-7957-4757-ab66-08e341cb3b07"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "474a4501-af51-4df2-b722-819fef0fffe8"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Dex Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.dexterity_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "c61dd17f-e0c0-4609-9eea-8d011f8152df"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "5ec1144a-4669-459a-8cf4-be15913912d2"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "ed4debd4-e227-435f-a80d-d62451a8e1a2"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.dexterity_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "bd976bda-f9d6-46e2-b118-eb3e565bce37"
+                        }
+                      }
+                    },
+                    "id": "b51468d0-7c5f-41a5-b979-0649619c614e"
+                  }
+                }
+              ]
+            },
+            "id": "76e5c4f9-a921-4b50-9bcf-c2254028d99b"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Str Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "ab89c139-6256-4d01-a0cd-34731833f906"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "b5abefe0-0cfb-4c84-a58d-6e94449f0219"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "9fba2ae1-d235-40d5-89fe-2bf6a91d90b5"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "c7723961-25be-4777-ae1c-067deea77cc6"
+                        }
+                      }
+                    },
+                    "id": "0fc16d21-4a17-467a-9099-4eaade6ff4ac"
+                  }
+                }
+              ]
+            },
+            "id": "21dde0ab-3dae-4e83-9a32-1909a46f3f35"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.398902"
+    },
+    "id": "revenant_blade"
+  }
+}

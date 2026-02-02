@@ -1,1 +1,440 @@
-{"resource_id":"item","stats":{"name":{"value":"Staff of Charming"},"source":{"value":"dmg"},"description":{"value":"While holding this staff, you can use an action to expend 1 of its 10 charges to cast charm person, command, or comprehend languages from it using your spell save DC. The staff can also be used as a magic quarterstaff.\n\nIf you are holding the staff and fail a saving throw against an enchantment spell that targets only you, you can turn your failed save into a successful one. You can't use this property of the staff again until the next dawn. If you succeed on a save against an enchantment spell that targets only you, with or without the staff's intervention, you can use your reaction to expend 1 charge from the staff and turn the spell back on its caster as if you had cast the spell.\n\nThe staff regains 1d8 + 2 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff becomes a nonmagical quarterstaff."},"type":{"value":"staff"},"cost":{"value":{"resource_id":"cost","stats":{"unit":{"value":"gold"},"updated_at":{"value":"2024-12-20T18:50:35.694579"},"id":"fccb26ca-de38-4900-8b6b-5df6cfbebcfd"}}},"weight":{"value":{"resource_id":"weight","stats":{"value":{"value":4.0},"unit":{"value":"ounces"},"updated_at":{"value":"2024-12-20T18:50:35.694584"},"id":"0d9acc5d-83ed-4a56-a141-ef3f59fc66e7"}}},"rarity":{"value":"rare"},"is_magic":{"value":true},"requires_attunement":{"value":true},"effects":{"value":[{"resource_id":"effect","stats":{"name":{"value":"Charges"},"trigger_type":{"value":"active"},"has_charges":{"value":true},"recharge_type":{"value":"formula"},"recharge_event":{"value":"dawn"},"max_charges_constant":{"value":10},"recharges":{"value":{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d8"},"constant":{"value":2},"updated_at":{"value":"2024-12-20T18:50:35.694593"},"id":"499a5f06-319e-4776-ad0e-acf1f215bdb0"}}},"advantage_stat":{"value":"$character.strength_score"},"updated_at":{"value":"2024-12-20T18:50:35.694598"},"id":"2da0edb9-2bd4-4acd-9fb6-c1fa0a6ca822"}},{"resource_id":"effect","stats":{"name":{"value":"Cast Charm Person"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"d84ead1c-c74a-4af5-a618-23584f91e6d3"}}},"recharge_type":{"value":"formula"},"recharges":{"value":{"resource_id":"dice_roll","stats":{"id":"bc2faf9e-0725-4a47-88ee-a8c38a5693d5"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Charm Person"},"source":{"value":"phb"},"level":{"value":"spell_level_1"},"school":{"value":"spell_school_enchantment"},"casting_time":{"value":"1 action"},"range":{"value":"30 feet"},"duration":{"value":"1 hour"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"You attempt to charm a humanoid you can see within range. It must make a Wisdom saving throw, and does so with advantage if you or your companions are fighting it. If it fails the saving throw, it is charmed by you until the spell ends or until you or your companions do anything harmful to it. The charmed creature regards you as a friendly acquaintance. When the spell ends, the creature knows it was charmed by you."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them."},"classes":{"value":["bard","druid","sorcerer","warlock","blood_hunter","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.606207"},"id":"9df19a71-8d9d-4b56-85ca-2b58077a431a"}}},"updated_at":{"value":"2024-12-20T18:50:35.694606"},"id":"73a5deec-c3f1-4000-aa73-dd7485d9cbd9"}},{"resource_id":"effect","stats":{"name":{"value":"Cast Command"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"1653a085-98c4-495c-8f6b-a9301764a5c3"}}},"recharge_type":{"value":"formula"},"recharges":{"value":{"resource_id":"dice_roll","stats":{"id":"08192206-3a4a-4c64-acd1-5dfc56a7f84c"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Command"},"source":{"value":"phb"},"level":{"value":"spell_level_1"},"school":{"value":"spell_school_enchantment"},"casting_time":{"value":"1 action"},"range":{"value":"60 feet"},"duration":{"value":"1 round"},"verbal":{"value":true},"description":{"value":"You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. The spell has no effect if the target is Undead, if it doesn't understand your language, or if your command is directly harmful to it.\n\nSome typical commands and their Effects follow. You might issue a command other than one described here. If you do so, the GM determines how the target behaves. If the target can't follow your command, the spell ends.\n\n- Approach: The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet of you.\n\n- Drop: The target drops whatever it is holding and then ends its turn.\n\n- Flee: The target spends its turn moving away from you by the fastest available means.\n\n- Grovel: The target falls prone and then ends its turn.\n\n- Halt: The target doesn't move and takes no Actions. A flying creature stays aloft, provided that it is able to do so. If it must move to stay aloft, it flies the minimum distance needed to remain in the air."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them."},"classes":{"value":["cleric","paladin"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.607575"},"id":"5cddce4e-39c8-426e-bd49-827e241fcb12"}}},"updated_at":{"value":"2024-12-20T18:50:35.694614"},"id":"d6ef2836-626a-4f13-97d8-02ef03110c6b"}},{"resource_id":"effect","stats":{"name":{"value":"Cast Comprehend Languages"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"0411f56c-f05a-4b1b-a3d3-2b760099640e"}}},"recharge_type":{"value":"formula"},"recharges":{"value":{"resource_id":"dice_roll","stats":{"id":"d20257f8-8f43-47ae-bfc3-b0bfe0181634"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Comprehend Languages"},"source":{"value":"phb"},"level":{"value":"spell_level_1"},"school":{"value":"spell_school_divination"},"ritual":{"value":true},"casting_time":{"value":"1 action"},"range":{"value":"Self"},"duration":{"value":"1 hour"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a pinch of soot and salt"},"description":{"value":"For the duration, you understand the literal meaning of any spoken language that you hear. You also understand any written language that you see, but you must be touching the surface on which the words are written. It takes about 1 minute to read one page of text.\n\nThis spell doesn’t decode secret messages in a text or a glyph, such as an arcane sigil, that isn’t part of a written language."},"classes":{"value":["bard","sorcerer","warlock","blood_hunter","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.607929"},"id":"20c0c902-c641-42bf-8836-f2e05b891551"}}},"updated_at":{"value":"2024-12-20T18:50:35.694622"},"id":"7dd02d8f-a7cb-4c61-9111-c96fff82fe4c"}},{"resource_id":"effect","stats":{"name":{"value":"Turn Save Uses"},"trigger_type":{"value":"active"},"has_charges":{"value":true},"recharge_event":{"value":"dawn"},"max_charges_constant":{"value":1},"recharges":{"value":{"resource_id":"dice_roll","stats":{"constant":{"value":1},"updated_at":{"value":"2024-12-20T18:50:35.694630"},"id":"175ffd34-9ac4-4d03-8ec8-69df402b433d"}}},"advantage_stat":{"value":"$character.strength_score"},"updated_at":{"value":"2024-12-20T18:50:35.694634"},"id":"19f27ce3-957d-4d70-aee0-9f73d88e8088"}}]},"updated_at":{"value":"2024-12-20T18:50:35.694636"},"id":"staff_of_charming"}}
+{
+  "resource_id": "item",
+  "stats": {
+    "name": {
+      "value": "Staff of Charming"
+    },
+    "source": {
+      "value": "dmg"
+    },
+    "description": {
+      "value": "While holding this staff, you can use an action to expend 1 of its 10 charges to cast charm person, command, or comprehend languages from it using your spell save DC. The staff can also be used as a magic quarterstaff.\n\nIf you are holding the staff and fail a saving throw against an enchantment spell that targets only you, you can turn your failed save into a successful one. You can't use this property of the staff again until the next dawn. If you succeed on a save against an enchantment spell that targets only you, with or without the staff's intervention, you can use your reaction to expend 1 charge from the staff and turn the spell back on its caster as if you had cast the spell.\n\nThe staff regains 1d8 + 2 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff becomes a nonmagical quarterstaff."
+    },
+    "type": {
+      "value": "staff"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "unit": {
+            "value": "gold"
+          },
+          "updated_at": {
+            "value": "2024-12-20T18:50:35.694579"
+          },
+          "id": "fccb26ca-de38-4900-8b6b-5df6cfbebcfd"
+        }
+      }
+    },
+    "weight": {
+      "value": {
+        "resource_id": "weight",
+        "stats": {
+          "value": {
+            "value": 4.0
+          },
+          "unit": {
+            "value": "ounces"
+          },
+          "updated_at": {
+            "value": "2024-12-20T18:50:35.694584"
+          },
+          "id": "0d9acc5d-83ed-4a56-a141-ef3f59fc66e7"
+        }
+      }
+    },
+    "rarity": {
+      "value": "rare"
+    },
+    "is_magic": {
+      "value": true
+    },
+    "requires_attunement": {
+      "value": true
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Charges"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "has_charges": {
+              "value": true
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharge_event": {
+              "value": "dawn"
+            },
+            "max_charges_constant": {
+              "value": 10
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "dice_amount": {
+                    "value": 1
+                  },
+                  "dice_type": {
+                    "value": "d8"
+                  },
+                  "constant": {
+                    "value": 2
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:35.694593"
+                  },
+                  "id": "499a5f06-319e-4776-ad0e-acf1f215bdb0"
+                }
+              }
+            },
+            "advantage_stat": {
+              "value": "$character.strength_score"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.694598"
+            },
+            "id": "2da0edb9-2bd4-4acd-9fb6-c1fa0a6ca822"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Charm Person"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "d84ead1c-c74a-4af5-a618-23584f91e6d3"
+                }
+              }
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "bc2faf9e-0725-4a47-88ee-a8c38a5693d5"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Charm Person"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_1"
+                  },
+                  "school": {
+                    "value": "spell_school_enchantment"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "30 feet"
+                  },
+                  "duration": {
+                    "value": "1 hour"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "You attempt to charm a humanoid you can see within range. It must make a Wisdom saving throw, and does so with advantage if you or your companions are fighting it. If it fails the saving throw, it is charmed by you until the spell ends or until you or your companions do anything harmful to it. The charmed creature regards you as a friendly acquaintance. When the spell ends, the creature knows it was charmed by you."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "druid",
+                      "sorcerer",
+                      "warlock",
+                      "blood_hunter",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.606207"
+                  },
+                  "id": "9df19a71-8d9d-4b56-85ca-2b58077a431a"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.694606"
+            },
+            "id": "73a5deec-c3f1-4000-aa73-dd7485d9cbd9"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Command"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "1653a085-98c4-495c-8f6b-a9301764a5c3"
+                }
+              }
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "08192206-3a4a-4c64-acd1-5dfc56a7f84c"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Command"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_1"
+                  },
+                  "school": {
+                    "value": "spell_school_enchantment"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "60 feet"
+                  },
+                  "duration": {
+                    "value": "1 round"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. The spell has no effect if the target is Undead, if it doesn't understand your language, or if your command is directly harmful to it.\n\nSome typical commands and their Effects follow. You might issue a command other than one described here. If you do so, the GM determines how the target behaves. If the target can't follow your command, the spell ends.\n\n- Approach: The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet of you.\n\n- Drop: The target drops whatever it is holding and then ends its turn.\n\n- Flee: The target spends its turn moving away from you by the fastest available means.\n\n- Grovel: The target falls prone and then ends its turn.\n\n- Halt: The target doesn't move and takes no Actions. A flying creature stays aloft, provided that it is able to do so. If it must move to stay aloft, it flies the minimum distance needed to remain in the air."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them."
+                  },
+                  "classes": {
+                    "value": [
+                      "cleric",
+                      "paladin"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.607575"
+                  },
+                  "id": "5cddce4e-39c8-426e-bd49-827e241fcb12"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.694614"
+            },
+            "id": "d6ef2836-626a-4f13-97d8-02ef03110c6b"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Comprehend Languages"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "0411f56c-f05a-4b1b-a3d3-2b760099640e"
+                }
+              }
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "d20257f8-8f43-47ae-bfc3-b0bfe0181634"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Comprehend Languages"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_1"
+                  },
+                  "school": {
+                    "value": "spell_school_divination"
+                  },
+                  "ritual": {
+                    "value": true
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "Self"
+                  },
+                  "duration": {
+                    "value": "1 hour"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a pinch of soot and salt"
+                  },
+                  "description": {
+                    "value": "For the duration, you understand the literal meaning of any spoken language that you hear. You also understand any written language that you see, but you must be touching the surface on which the words are written. It takes about 1 minute to read one page of text.\n\nThis spell doesn\u2019t decode secret messages in a text or a glyph, such as an arcane sigil, that isn\u2019t part of a written language."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "sorcerer",
+                      "warlock",
+                      "blood_hunter",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.607929"
+                  },
+                  "id": "20c0c902-c641-42bf-8836-f2e05b891551"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.694622"
+            },
+            "id": "7dd02d8f-a7cb-4c61-9111-c96fff82fe4c"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Turn Save Uses"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "has_charges": {
+              "value": true
+            },
+            "recharge_event": {
+              "value": "dawn"
+            },
+            "max_charges_constant": {
+              "value": 1
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "constant": {
+                    "value": 1
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:35.694630"
+                  },
+                  "id": "175ffd34-9ac4-4d03-8ec8-69df402b433d"
+                }
+              }
+            },
+            "advantage_stat": {
+              "value": "$character.strength_score"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.694634"
+            },
+            "id": "19f27ce3-957d-4d70-aee0-9f73d88e8088"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:35.694636"
+    },
+    "id": "staff_of_charming"
+  }
+}

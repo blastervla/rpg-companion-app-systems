@@ -1,1 +1,353 @@
-{"resource_id":"feat","stats":{"name":{"value":"Knight of the Rose"},"source":{"value":"dsdq"},"prerequisites":{"value":"4th level, squire of solamnia feat"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"level":{"value":4},"description":{"value":"You are a Knight of Solamnia aligned with the Order of the Rose, a group known for leadership, justice, and wisdom. Your resolve grants you these benefits:\n\n- Ability Score Increase: Increase your Constitution, Wisdom, or Charisma by 1, to a maximum of 20.\n\n- Bolstering Rally: As a bonus action, you can encourage one creature you can see within 30 feet of yourself (you can choose yourself). If the target can see or hear you, the target gains temporary hit points equal to 1d8 + your proficiency bonus + the ability modifier of the ability score increased by this feat. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest"},"updated_at":{"value":"2024-12-20T18:50:28.403522"},"id":"05a41bab-f53b-4471-9ea7-642dff27784e"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Bolstering Rally"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"9402091e-1a47-4c68-bd82-650576b7cd7b"}}},"has_charges":{"value":true},"charge_type":{"value":"calculated"},"max_charges_levelled_formulas":{"value":[{"resource_id":"levelled_value_calculator","stats":{"calculators":{"value":[{"resource_id":"value_calculator","stats":{"operands":{"value":[{"resource_id":"operand","stats":{"stat":{"value":"$character.proficiency_bonus"},"id":"431ea47e-4c16-4c12-8ba1-b794ec69c314"}}]},"id":"be3b8f6f-f19f-437b-844a-b11946af5704"}}]},"id":"937dd653-77a9-4354-98ac-6c7789f7b8b8"}}]},"id":"223676a3-82f4-4cf9-9511-03b1a5ff05f0"}}},"id":"15d30f84-0358-4940-b471-eeae22f44ae2"}}]},"selectable_feature_amount_per_level":{"value":[{"resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"39758658-6ac5-4ae8-9cfb-cd160622bea8"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Con Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.constitution_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"1028d7ad-c1a3-41f8-9510-3fb6338d1e97"}}]},"id":"7e96c322-af20-4803-b10c-db409864a7a8"}}]},"id":"3f255082-7a91-463e-9eda-f99a939d5543"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.constitution_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"1918751f-f687-4a7a-ab55-af73be2f6e22"}}},"id":"4b6d8ad1-eeb9-4500-a010-dc1e17dd0227"}}]},"id":"2cfb707d-530f-4b9e-ba6a-70ad360ebcbc"}},{"resource_id":"feat","stats":{"name":{"value":"Wis Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.wisdom_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"526acaaa-a12c-41c3-ae9f-8e372d1e23a0"}}]},"id":"d1416a78-082f-4915-80b0-5e6398d550bc"}}]},"id":"026e306b-59b5-44e3-b6b1-83067ef99e17"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.wisdom_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"2a0a1fda-541f-4f94-961e-e144a7f644e4"}}},"id":"e04c4cf7-ec8f-4a44-b181-7ee66dd4df0d"}}]},"id":"7d11ed24-cfd9-478b-b6a8-3b2a6b81c2c1"}},{"resource_id":"feat","stats":{"name":{"value":"Cha Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.charisma_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"f1edb46c-c04a-4d65-8df4-4baa7a62c286"}}]},"id":"9a7ea58b-20be-443a-a5a8-ac4d5dc6a53d"}}]},"id":"2a6d9ed4-dc5c-4a7a-9a80-b2f92614220c"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.charisma_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"a06c3240-1341-48f3-9620-2d72ec66f129"}}},"id":"672c000b-1f28-491f-9ffe-18db68e48c49"}}]},"id":"390e9ff1-b956-4521-b930-e64e2d13574d"}}]},"updated_at":{"value":"2024-12-20T18:50:28.403526"},"id":"knight_of_the_rose__dsdq_"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Knight of the Rose"
+    },
+    "source": {
+      "value": "dsdq"
+    },
+    "prerequisites": {
+      "value": "4th level, squire of solamnia feat"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "level": {
+              "value": 4
+            },
+            "description": {
+              "value": "You are a Knight of Solamnia aligned with the Order of the Rose, a group known for leadership, justice, and wisdom. Your resolve grants you these benefits:\n\n- Ability Score Increase: Increase your Constitution, Wisdom, or Charisma by 1, to a maximum of 20.\n\n- Bolstering Rally: As a bonus action, you can encourage one creature you can see within 30 feet of yourself (you can choose yourself). If the target can see or hear you, the target gains temporary hit points equal to 1d8 + your proficiency bonus + the ability modifier of the ability score increased by this feat. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.403522"
+            },
+            "id": "05a41bab-f53b-4471-9ea7-642dff27784e"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Bolstering Rally"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "9402091e-1a47-4c68-bd82-650576b7cd7b"
+                      }
+                    }
+                  },
+                  "has_charges": {
+                    "value": true
+                  },
+                  "charge_type": {
+                    "value": "calculated"
+                  },
+                  "max_charges_levelled_formulas": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_value_calculator",
+                        "stats": {
+                          "calculators": {
+                            "value": [
+                              {
+                                "resource_id": "value_calculator",
+                                "stats": {
+                                  "operands": {
+                                    "value": [
+                                      {
+                                        "resource_id": "operand",
+                                        "stats": {
+                                          "stat": {
+                                            "value": "$character.proficiency_bonus"
+                                          },
+                                          "id": "431ea47e-4c16-4c12-8ba1-b794ec69c314"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "id": "be3b8f6f-f19f-437b-844a-b11946af5704"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "937dd653-77a9-4354-98ac-6c7789f7b8b8"
+                        }
+                      }
+                    ]
+                  },
+                  "id": "223676a3-82f4-4cf9-9511-03b1a5ff05f0"
+                }
+              }
+            },
+            "id": "15d30f84-0358-4940-b471-eeae22f44ae2"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "39758658-6ac5-4ae8-9cfb-cd160622bea8"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Con Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.constitution_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "1028d7ad-c1a3-41f8-9510-3fb6338d1e97"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "7e96c322-af20-4803-b10c-db409864a7a8"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "3f255082-7a91-463e-9eda-f99a939d5543"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.constitution_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "1918751f-f687-4a7a-ab55-af73be2f6e22"
+                        }
+                      }
+                    },
+                    "id": "4b6d8ad1-eeb9-4500-a010-dc1e17dd0227"
+                  }
+                }
+              ]
+            },
+            "id": "2cfb707d-530f-4b9e-ba6a-70ad360ebcbc"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Wis Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.wisdom_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "526acaaa-a12c-41c3-ae9f-8e372d1e23a0"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "d1416a78-082f-4915-80b0-5e6398d550bc"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "026e306b-59b5-44e3-b6b1-83067ef99e17"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.wisdom_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "2a0a1fda-541f-4f94-961e-e144a7f644e4"
+                        }
+                      }
+                    },
+                    "id": "e04c4cf7-ec8f-4a44-b181-7ee66dd4df0d"
+                  }
+                }
+              ]
+            },
+            "id": "7d11ed24-cfd9-478b-b6a8-3b2a6b81c2c1"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Cha Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.charisma_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "f1edb46c-c04a-4d65-8df4-4baa7a62c286"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "9a7ea58b-20be-443a-a5a8-ac4d5dc6a53d"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "2a6d9ed4-dc5c-4a7a-9a80-b2f92614220c"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.charisma_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "a06c3240-1341-48f3-9620-2d72ec66f129"
+                        }
+                      }
+                    },
+                    "id": "672c000b-1f28-491f-9ffe-18db68e48c49"
+                  }
+                }
+              ]
+            },
+            "id": "390e9ff1-b956-4521-b930-e64e2d13574d"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.403526"
+    },
+    "id": "knight_of_the_rose__dsdq_"
+  }
+}

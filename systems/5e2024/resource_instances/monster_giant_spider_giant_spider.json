@@ -1,1 +1,327 @@
-{"resource_id": "monster", "stats": {"id": "giant_spider", "name": {"value": "Giant Spider"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/giant_spider.png"}}, "source": {"value": "mm"}, "tag": {"value": ""}, "armor_class": {"value": 14}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 4}, "dice_type": {"value": "d10"}, "constant": {"value": 4}, "id": "6f10eb5a-8ef5-4a96-8aff-be4b26702e5f", "updated_at": {"value": "2025-04-28T21:51:12.075130"}}}}, "cr": {"value": "cr_1"}, "xp": {"value": 200}, "initiative": {"value": 3}, "speed": {"value": 30}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 30}, "fly_speed": {"value": 0}, "swim_speed": {"value": 0}, "strength_score": {"value": 14}, "dexterity_score": {"value": 16}, "constitution_score": {"value": 12}, "intelligence_score": {"value": 2}, "wisdom_score": {"value": 11}, "charisma_score": {"value": 4}, "strength_saving_throw_modifier": {"value": 2}, "dexterity_saving_throw_modifier": {"value": 3}, "constitution_saving_throw_modifier": {"value": 1}, "intelligence_saving_throw_modifier": {"value": -4}, "wisdom_saving_throw_modifier": {"value": 0}, "charisma_saving_throw_modifier": {"value": -3}, "skills": {"value": "Perception +4, Stealth +7"}, "gear": {"value": ""}, "vulnerabilities": {"value": ""}, "immunities": {"value": ""}, "resistances": {"value": ""}, "senses": {"value": "Passive Perception 14, Darkvision 60 ft."}, "languages": {"value": ""}, "size": {"value": "large"}, "type": {"value": "beast"}, "alignment": {"value": "true_neutral"}, "traits": {"value": [{"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Spider Climb"}, "trait_description": {"value": "The spider can climb difficult surfaces, including along ceilings, without needing to make an ability check."}, "id": "f69ad72c-e01d-4e1a-ba0d-190ca245e8e1", "updated_at": {"value": "2025-04-28T21:51:12.075191"}}}, {"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Web Walker"}, "trait_description": {"value": "The spider ignores movement restrictions caused by webs, and it knows the location of any other creature in contact with the same web."}, "id": "8d398a3d-5ab8-455f-9290-f98af042773a", "updated_at": {"value": "2025-04-28T21:51:12.075239"}}}]}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Bite"}, "action_description": {"value": "+5, reach 5 ft. Hit: 7 (1d8 + 3) Piercing damage plus 7 (2d6) Poison damage."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 5}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "piercing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 1}, "dice_type": {"value": "d8"}, "constant": {"value": 3}, "id": "dce993fb-9cf5-41e6-a2d4-456a57a30869", "updated_at": {"value": "2025-04-28T21:51:12.075296"}}}}, "id": "8da9f04d-e536-4f04-9155-c144b7ba5887", "updated_at": {"value": "2025-04-28T21:51:12.075300"}}}, {"resource_id": "damage_dice", "stats": {"damage_type": {"value": "poison"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 2}, "dice_type": {"value": "d6"}, "constant": {"value": 0}, "id": "1cf92ae3-ee7f-40da-8c40-21dfe03f1bf9", "updated_at": {"value": "2025-04-28T21:51:12.075306"}}}}, "id": "e292c898-7b99-4fc1-8ae9-1e00d5aa2ad2", "updated_at": {"value": "2025-04-28T21:51:12.075310"}}}]}, "id": "1f523bbb-ec5d-4972-b38d-e23a1ce2ddaf", "updated_at": {"value": "2025-04-28T21:51:12.075315"}}}]}, "id": "55632532-211d-41f6-b7a5-66870c426751", "updated_at": {"value": "2025-04-28T21:51:12.075319"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Web (Recharge 5-6)"}, "action_description": {"value": "Dexterity Saving Throw: DC 13, one creature the spider can see within 60 feet. Failure: The target has the Restrained condition until the web is destroyed (AC 10; HP 5; Vulnerability to Fire damage; Immunity to Poison and Psychic damage)."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "ca6f8acf-d3bd-415c-8721-47acb5b3e97a", "updated_at": {"value": "2025-04-28T21:51:12.075394"}}}]}, "bonus_actions": {"value": []}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["desert", "forest", "swamp", "underdark", "urban"]}, "treasure": {"value": []}, "updated_at": {"value": "2025-04-28T21:51:12.075401"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "giant_spider",
+    "name": {
+      "value": "Giant Spider"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/giant_spider.png"
+      }
+    },
+    "source": {
+      "value": "mm"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 14
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 4
+          },
+          "dice_type": {
+            "value": "d10"
+          },
+          "constant": {
+            "value": 4
+          },
+          "id": "6f10eb5a-8ef5-4a96-8aff-be4b26702e5f",
+          "updated_at": {
+            "value": "2025-04-28T21:51:12.075130"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_1"
+    },
+    "xp": {
+      "value": 200
+    },
+    "initiative": {
+      "value": 3
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 30
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_score": {
+      "value": 14
+    },
+    "dexterity_score": {
+      "value": 16
+    },
+    "constitution_score": {
+      "value": 12
+    },
+    "intelligence_score": {
+      "value": 2
+    },
+    "wisdom_score": {
+      "value": 11
+    },
+    "charisma_score": {
+      "value": 4
+    },
+    "strength_saving_throw_modifier": {
+      "value": 2
+    },
+    "dexterity_saving_throw_modifier": {
+      "value": 3
+    },
+    "constitution_saving_throw_modifier": {
+      "value": 1
+    },
+    "intelligence_saving_throw_modifier": {
+      "value": -4
+    },
+    "wisdom_saving_throw_modifier": {
+      "value": 0
+    },
+    "charisma_saving_throw_modifier": {
+      "value": -3
+    },
+    "skills": {
+      "value": "Perception +4, Stealth +7"
+    },
+    "gear": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "Passive Perception 14, Darkvision 60 ft."
+    },
+    "languages": {
+      "value": ""
+    },
+    "size": {
+      "value": "large"
+    },
+    "type": {
+      "value": "beast"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Spider Climb"
+            },
+            "trait_description": {
+              "value": "The spider can climb difficult surfaces, including along ceilings, without needing to make an ability check."
+            },
+            "id": "f69ad72c-e01d-4e1a-ba0d-190ca245e8e1",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.075191"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Web Walker"
+            },
+            "trait_description": {
+              "value": "The spider ignores movement restrictions caused by webs, and it knows the location of any other creature in contact with the same web."
+            },
+            "id": "8d398a3d-5ab8-455f-9290-f98af042773a",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.075239"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Bite"
+            },
+            "action_description": {
+              "value": "+5, reach 5 ft. Hit: 7 (1d8 + 3) Piercing damage plus 7 (2d6) Poison damage."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 5
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 1
+                                  },
+                                  "dice_type": {
+                                    "value": "d8"
+                                  },
+                                  "constant": {
+                                    "value": 3
+                                  },
+                                  "id": "dce993fb-9cf5-41e6-a2d4-456a57a30869",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.075296"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "8da9f04d-e536-4f04-9155-c144b7ba5887",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.075300"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "poison"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 2
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 0
+                                  },
+                                  "id": "1cf92ae3-ee7f-40da-8c40-21dfe03f1bf9",
+                                  "updated_at": {
+                                    "value": "2025-04-28T21:51:12.075306"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "e292c898-7b99-4fc1-8ae9-1e00d5aa2ad2",
+                            "updated_at": {
+                              "value": "2025-04-28T21:51:12.075310"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "1f523bbb-ec5d-4972-b38d-e23a1ce2ddaf",
+                    "updated_at": {
+                      "value": "2025-04-28T21:51:12.075315"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "55632532-211d-41f6-b7a5-66870c426751",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.075319"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Web (Recharge 5-6)"
+            },
+            "action_description": {
+              "value": "Dexterity Saving Throw: DC 13, one creature the spider can see within 60 feet. Failure: The target has the Restrained condition until the web is destroyed (AC 10; HP 5; Vulnerability to Fire damage; Immunity to Poison and Psychic damage)."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "ca6f8acf-d3bd-415c-8721-47acb5b3e97a",
+            "updated_at": {
+              "value": "2025-04-28T21:51:12.075394"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "desert",
+        "forest",
+        "swamp",
+        "underdark",
+        "urban"
+      ]
+    },
+    "treasure": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2025-04-28T21:51:12.075401"
+    }
+  }
+}

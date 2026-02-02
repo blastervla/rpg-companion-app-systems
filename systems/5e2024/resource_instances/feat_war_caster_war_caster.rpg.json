@@ -1,1 +1,310 @@
-{"system":"5e2024","resource_id":"feat","stats":{"name":{"value":"War Caster"},"source":{"value":"phb"},"prerequisites":{"value":"Level 4+; Spellcasting or Pact Magic Feature"},"descriptions":{"value":[{"system":"5e2024","resource_id":"levelled_description","stats":{"description":{"value":"You gain the following benefits.\n\nAbility Score Increase. Increase your Intelligence, Wisdom, or Charisma by 1, to a maximum of 20.\n\nConcentration. You have Advantage on Constitution saving throws that you make to maintain Concentration.\n\nReactive Spell. When a creature provokes an Opportunity Attack from you by leaving your reach, you can take a Reaction to cast a spell at the creature rather than making an Opportunity Attack. The spell must have a casting time of one action and must target only that creature.\n\nSomatic Components. You can perform the Somatic components of spells even when you have weapons or a Shield in one or both hands"},"updated_at":{"value":"2024-12-20T18:50:28.418719"},"id":"c6988c9f-6533-4ac1-992a-41257cb31222"}}]},"effects":{"value":[{"system":"5e2024","resource_id":"levelled_effect","stats":{"effect":{"value":{"system":"5e2024","resource_id":"effect","stats":{"name":{"value":"Con Saving Throw Advantage (when concentrating on a spell)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"system":"5e2024","resource_id":"trigger_condition_or","stats":{"id":"22f8cfba-edf7-437c-8b36-992e45f7b8a8"}}},"type":{"value":"advantage"},"advantage_stat":{"value":"$character.constitution_saving_throw"},"id":"2eae166f-6ae0-4335-a8c5-328a579674ce"}}},"id":"c77d8804-dff8-4dcd-b2c5-e397bbfea05d"}},{"system":"5e2024","resource_id":"levelled_effect","stats":{"effect":{"value":{"system":"5e2024","resource_id":"effect","stats":{"name":{"value":"Perform Somatic Components while wielding weapons / shields"},"trigger_condition":{"value":{"system":"5e2024","resource_id":"trigger_condition_or","stats":{"id":"105f33c5-51d1-410b-9a35-c2b3de119cbc"}}},"id":"8694a5d0-054f-4e2f-b04b-e3b948cce9c4"}}},"id":"0448b1aa-ecbf-4dde-ac6b-686911becb0f"}},{"system":"5e2024","resource_id":"levelled_effect","stats":{"effect":{"value":{"system":"5e2024","resource_id":"effect","stats":{"name":{"value":"Cast Spell as a Reaction"},"trigger_condition":{"value":{"system":"5e2024","resource_id":"trigger_condition_or","stats":{"id":"b8800b43-adf1-4d0e-9921-4a1e824540d5"}}},"id":"4dab3381-fdcf-46d4-b3c2-d05de4d49250"}}},"id":"effe1c2e-44f0-4397-8fbd-19ca23d89f2e"}}]},"selectable_feature_amount_per_level":{"value":[{"system":"5e2024","resource_id":"levelled_amount","stats":{"level":{"value":4},"amount":{"value":1},"id":"162d74ad-aac2-479c-9e1e-61bb5990d1b6"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"system":"5e2024","resource_id":"feat","stats":{"name":{"value":"Increase INT"},"effects":{"value":[{"system":"5e2024","resource_id":"levelled_effect","stats":{"effect":{"value":{"system":"5e2024","resource_id":"effect","stats":{"trigger_condition":{"value":{"system":"5e2024","resource_id":"trigger_condition_or","stats":{"id":"5cd16dd5-cb1b-43e9-bfb2-0d2120026d9e"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.intelligence_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"55ba1706-7d27-4be8-ad8b-0fea1de27f97"}}},"id":"fc8d2298-7a54-4daf-8a19-e8fc5ea3cd78"}}]},"id":"69a62598-231e-4a2b-8cbe-df1d67055359"}},{"system":"5e2024","resource_id":"feat","stats":{"name":{"value":"Increase WIS"},"effects":{"value":[{"system":"5e2024","resource_id":"levelled_effect","stats":{"effect":{"value":{"system":"5e2024","resource_id":"effect","stats":{"trigger_condition":{"value":{"system":"5e2024","resource_id":"trigger_condition_or","stats":{"id":"ee09be24-1c44-4b40-964d-aca5aff509b8"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.wisdom_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"33cf0906-fa04-4b0e-85e2-b1c39ecb17b9"}}},"id":"540de0ad-0f3d-4461-9265-476211927ebe"}}]},"id":"72e86859-1b0e-475e-b9f8-3e7033d285b8"}},{"system":"5e2024","resource_id":"feat","stats":{"name":{"value":"Increase CHA"},"effects":{"value":[{"system":"5e2024","resource_id":"levelled_effect","stats":{"effect":{"value":{"system":"5e2024","resource_id":"effect","stats":{"trigger_condition":{"value":{"system":"5e2024","resource_id":"trigger_condition_or","stats":{"id":"53e39d88-beea-4d3b-88cf-a65a4cff82a1"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.charisma_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"4447e493-e6c3-4cf3-840c-57f672c3235d"}}},"id":"e128c5fb-3875-415f-a096-d2adcfca5af0"}}]},"id":"08647358-2173-4796-88dc-b90bf0cbee99"}}]},"updated_at":{"value":"2024-12-20T18:50:28.418721"},"id":"war_caster"}}
+{
+  "system": "5e2024",
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "War Caster"
+    },
+    "source": {
+      "value": "phb"
+    },
+    "prerequisites": {
+      "value": "Level 4+; Spellcasting or Pact Magic Feature"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "system": "5e2024",
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "You gain the following benefits.\n\nAbility Score Increase. Increase your Intelligence, Wisdom, or Charisma by 1, to a maximum of 20.\n\nConcentration. You have Advantage on Constitution saving throws that you make to maintain Concentration.\n\nReactive Spell. When a creature provokes an Opportunity Attack from you by leaving your reach, you can take a Reaction to cast a spell at the creature rather than making an Opportunity Attack. The spell must have a casting time of one action and must target only that creature.\n\nSomatic Components. You can perform the Somatic components of spells even when you have weapons or a Shield in one or both hands"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.418719"
+            },
+            "id": "c6988c9f-6533-4ac1-992a-41257cb31222"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "system": "5e2024",
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "system": "5e2024",
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Con Saving Throw Advantage (when concentrating on a spell)"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "system": "5e2024",
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "22f8cfba-edf7-437c-8b36-992e45f7b8a8"
+                      }
+                    }
+                  },
+                  "type": {
+                    "value": "advantage"
+                  },
+                  "advantage_stat": {
+                    "value": "$character.constitution_saving_throw"
+                  },
+                  "id": "2eae166f-6ae0-4335-a8c5-328a579674ce"
+                }
+              }
+            },
+            "id": "c77d8804-dff8-4dcd-b2c5-e397bbfea05d"
+          }
+        },
+        {
+          "system": "5e2024",
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "system": "5e2024",
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Perform Somatic Components while wielding weapons / shields"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "system": "5e2024",
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "105f33c5-51d1-410b-9a35-c2b3de119cbc"
+                      }
+                    }
+                  },
+                  "id": "8694a5d0-054f-4e2f-b04b-e3b948cce9c4"
+                }
+              }
+            },
+            "id": "0448b1aa-ecbf-4dde-ac6b-686911becb0f"
+          }
+        },
+        {
+          "system": "5e2024",
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "system": "5e2024",
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Cast Spell as a Reaction"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "system": "5e2024",
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "b8800b43-adf1-4d0e-9921-4a1e824540d5"
+                      }
+                    }
+                  },
+                  "id": "4dab3381-fdcf-46d4-b3c2-d05de4d49250"
+                }
+              }
+            },
+            "id": "effe1c2e-44f0-4397-8fbd-19ca23d89f2e"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "system": "5e2024",
+          "resource_id": "levelled_amount",
+          "stats": {
+            "level": {
+              "value": 4
+            },
+            "amount": {
+              "value": 1
+            },
+            "id": "162d74ad-aac2-479c-9e1e-61bb5990d1b6"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "system": "5e2024",
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Increase INT"
+            },
+            "effects": {
+              "value": [
+                {
+                  "system": "5e2024",
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "system": "5e2024",
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "system": "5e2024",
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "id": "5cd16dd5-cb1b-43e9-bfb2-0d2120026d9e"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.intelligence_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "55ba1706-7d27-4be8-ad8b-0fea1de27f97"
+                        }
+                      }
+                    },
+                    "id": "fc8d2298-7a54-4daf-8a19-e8fc5ea3cd78"
+                  }
+                }
+              ]
+            },
+            "id": "69a62598-231e-4a2b-8cbe-df1d67055359"
+          }
+        },
+        {
+          "system": "5e2024",
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Increase WIS"
+            },
+            "effects": {
+              "value": [
+                {
+                  "system": "5e2024",
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "system": "5e2024",
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "system": "5e2024",
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "id": "ee09be24-1c44-4b40-964d-aca5aff509b8"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.wisdom_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "33cf0906-fa04-4b0e-85e2-b1c39ecb17b9"
+                        }
+                      }
+                    },
+                    "id": "540de0ad-0f3d-4461-9265-476211927ebe"
+                  }
+                }
+              ]
+            },
+            "id": "72e86859-1b0e-475e-b9f8-3e7033d285b8"
+          }
+        },
+        {
+          "system": "5e2024",
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Increase CHA"
+            },
+            "effects": {
+              "value": [
+                {
+                  "system": "5e2024",
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "system": "5e2024",
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "system": "5e2024",
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "id": "53e39d88-beea-4d3b-88cf-a65a4cff82a1"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.charisma_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "4447e493-e6c3-4cf3-840c-57f672c3235d"
+                        }
+                      }
+                    },
+                    "id": "e128c5fb-3875-415f-a096-d2adcfca5af0"
+                  }
+                }
+              ]
+            },
+            "id": "08647358-2173-4796-88dc-b90bf0cbee99"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.418721"
+    },
+    "id": "war_caster"
+  }
+}

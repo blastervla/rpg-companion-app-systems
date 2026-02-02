@@ -1,1 +1,199 @@
-{"resource_id":"item","stats":{"name":{"value":"Cubic Gate"},"source":{"value":"dmg"},"description":{"value":"This cube is 3 inches across and radiates palpable magical energy. The six sides of the cube are each keyed to a different plane of existence, one of which is the Material Plane. The other sides are linked to planes determined by the DM.\n\nYou can use an action to press one side of the cube to cast the gate spell with it, opening a portal to the plane keyed to that side. Alternatively, if you use an action to press one side twice, you can cast the plane shift spell (save DC 17) with the cube and transport the targets to the plane keyed to that side.\n\nThe cube has 3 charges. Each use of the cube expends 1 charge. The cube regains 1d3 expended charges daily at dawn."},"type":{"value":"wondrous"},"cost":{"value":{"resource_id":"cost","stats":{"unit":{"value":"gold"},"updated_at":{"value":"2024-12-20T18:50:35.645224"},"id":"b4d7c1f8-e153-44c3-b231-3b5eec3415f3"}}},"weight":{"value":{"resource_id":"weight","stats":{"updated_at":{"value":"2024-12-20T18:50:35.645229"},"id":"df3e4d09-6a91-47d4-ac7c-f8e681d028fc"}}},"rarity":{"value":"legendary"},"is_magic":{"value":true},"effects":{"value":[{"resource_id":"effect","stats":{"name":{"value":"Charges"},"trigger_type":{"value":"active"},"has_charges":{"value":true},"recharge_type":{"value":"formula"},"recharge_event":{"value":"dawn"},"max_charges_constant":{"value":3},"recharges":{"value":{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"updated_at":{"value":"2024-12-20T18:50:35.645238"},"id":"27356c9a-d15b-4f99-8088-898cb30c1545"}}},"advantage_stat":{"value":"$character.strength_score"},"updated_at":{"value":"2024-12-20T18:50:35.645244"},"id":"eed6c6ac-57cb-4523-afe4-957a84d09fc0"}},{"resource_id":"effect","stats":{"name":{"value":"Cast Plane Shift (1 Charge)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"9af50224-c2e9-41fc-94eb-dabb08a0bd26"}}},"recharge_type":{"value":"formula"},"recharges":{"value":{"resource_id":"dice_roll","stats":{"id":"66fe371c-ce49-4ccf-9ff0-06bd2fabe9f2"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Plane Shift"},"source":{"value":"phb"},"level":{"value":"spell_level_7"},"school":{"value":"spell_school_conjuration"},"casting_time":{"value":"1 action"},"range":{"value":"Touch"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a forked, metal rod worth at least 250 gp, attuned to a particular plane of existence"},"description":{"value":"You and up to eight willing creatures who link hands in a circle are transported to a different plane of existence. You can specify a target destination in general terms, such as the City of Brass on the Elemental Plane of Fire or the palace of Dispater on the second level of the Nine Hells, and you appear in or near that destination. If you are trying to reach the City of Brass, for example, you might arrive in is Street of Steel, before its Gate of Ashes, or looking at the city from across the Sea of Fire, at the GM's discretion.\n\nAlternatively, if you know the sigil sequence of a teleportation circle on another plane of existence, this spell can take you to that circle. If the teleportation circle is too small to hold all the creatures you transported, they appear in the closest unoccupied spaces next to the circle.\n\nYou can use this spell to banish an unwilling creature to another plane.  Chose a creature within your reach and make a melee spell attack against it. On a hit, the creature must make a Charisma saving throw. If the creature fails this save, it is transported to a random location on the plane of existence you specify. A creature so transported must find its own way back to your current plane of existence."},"classes":{"value":["cleric","druid","sorcerer","warlock","blood_hunter","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.645254"},"id":"f4b70c50-af2b-46a5-83c7-e94b49c100aa"}}},"updated_at":{"value":"2024-12-20T18:50:35.645253"},"id":"c55c2da2-a4ca-42b1-94a0-f8e06700b39f"}}]},"updated_at":{"value":"2024-12-20T18:50:35.645255"},"id":"cubic_gate"}}
+{
+  "resource_id": "item",
+  "stats": {
+    "name": {
+      "value": "Cubic Gate"
+    },
+    "source": {
+      "value": "dmg"
+    },
+    "description": {
+      "value": "This cube is 3 inches across and radiates palpable magical energy. The six sides of the cube are each keyed to a different plane of existence, one of which is the Material Plane. The other sides are linked to planes determined by the DM.\n\nYou can use an action to press one side of the cube to cast the gate spell with it, opening a portal to the plane keyed to that side. Alternatively, if you use an action to press one side twice, you can cast the plane shift spell (save DC 17) with the cube and transport the targets to the plane keyed to that side.\n\nThe cube has 3 charges. Each use of the cube expends 1 charge. The cube regains 1d3 expended charges daily at dawn."
+    },
+    "type": {
+      "value": "wondrous"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "unit": {
+            "value": "gold"
+          },
+          "updated_at": {
+            "value": "2024-12-20T18:50:35.645224"
+          },
+          "id": "b4d7c1f8-e153-44c3-b231-3b5eec3415f3"
+        }
+      }
+    },
+    "weight": {
+      "value": {
+        "resource_id": "weight",
+        "stats": {
+          "updated_at": {
+            "value": "2024-12-20T18:50:35.645229"
+          },
+          "id": "df3e4d09-6a91-47d4-ac7c-f8e681d028fc"
+        }
+      }
+    },
+    "rarity": {
+      "value": "legendary"
+    },
+    "is_magic": {
+      "value": true
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Charges"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "has_charges": {
+              "value": true
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharge_event": {
+              "value": "dawn"
+            },
+            "max_charges_constant": {
+              "value": 3
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "dice_amount": {
+                    "value": 1
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:35.645238"
+                  },
+                  "id": "27356c9a-d15b-4f99-8088-898cb30c1545"
+                }
+              }
+            },
+            "advantage_stat": {
+              "value": "$character.strength_score"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.645244"
+            },
+            "id": "eed6c6ac-57cb-4523-afe4-957a84d09fc0"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Plane Shift (1 Charge)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "9af50224-c2e9-41fc-94eb-dabb08a0bd26"
+                }
+              }
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "66fe371c-ce49-4ccf-9ff0-06bd2fabe9f2"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Plane Shift"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_7"
+                  },
+                  "school": {
+                    "value": "spell_school_conjuration"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "Touch"
+                  },
+                  "duration": {
+                    "value": "Instantaneous"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a forked, metal rod worth at least 250 gp, attuned to a particular plane of existence"
+                  },
+                  "description": {
+                    "value": "You and up to eight willing creatures who link hands in a circle are transported to a different plane of existence. You can specify a target destination in general terms, such as the City of Brass on the Elemental Plane of Fire or the palace of Dispater on the second level of the Nine Hells, and you appear in or near that destination. If you are trying to reach the City of Brass, for example, you might arrive in is Street of Steel, before its Gate of Ashes, or looking at the city from across the Sea of Fire, at the GM's discretion.\n\nAlternatively, if you know the sigil sequence of a teleportation circle on another plane of existence, this spell can take you to that circle. If the teleportation circle is too small to hold all the creatures you transported, they appear in the closest unoccupied spaces next to the circle.\n\nYou can use this spell to banish an unwilling creature to another plane.  Chose a creature within your reach and make a melee spell attack against it. On a hit, the creature must make a Charisma saving throw. If the creature fails this save, it is transported to a random location on the plane of existence you specify. A creature so transported must find its own way back to your current plane of existence."
+                  },
+                  "classes": {
+                    "value": [
+                      "cleric",
+                      "druid",
+                      "sorcerer",
+                      "warlock",
+                      "blood_hunter",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.645254"
+                  },
+                  "id": "f4b70c50-af2b-46a5-83c7-e94b49c100aa"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.645253"
+            },
+            "id": "c55c2da2-a4ca-42b1-94a0-f8e06700b39f"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:35.645255"
+    },
+    "id": "cubic_gate"
+  }
+}

@@ -1,1 +1,163 @@
-{"resource_id":"feat","stats":{"name":{"value":"Medic"},"source":{"value":"ua"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"You master the physician's arts, gaining the following benefits:\n\n- Increase your Wisdom score by 1, to a maximum of 20.\n\n- You gain proficiency in the Medicine skill. If you are already proficient in the skill, you add double your proficiency bonus to checks you make with it.\n\n- During a short rest, you can clean and bind the wounds of up to six willing beasts and humanoids. Make a DC 15 Medicine check for each creature. On a success, if a creature spends a Hit Die during this rest, that creature can forgo the roll and instead regain the maximum number of hit points the die can restore. A creature can do so only once per rest, regardless of how many Hit Dice it spends"},"updated_at":{"value":"2024-12-20T18:50:28.407679"},"id":"e8e7b00a-ab43-4a9e-87ce-e68efef59b6c"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.wisdom_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"b41503cc-96f2-4dfb-aa90-f55d62a62992"}}]},"id":"a9b8860a-dc15-41a3-a2be-36c9c5819fe1"}}]},"id":"7629bf37-297a-4c5f-b65e-a98bdb485bc5"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.wisdom_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"bfb0ac2a-a048-4001-bf24-0a8e3b2ca50c"}}},"id":"5a233756-4508-4769-a438-cf5794e914f2"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Medicine Proficiency"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"a74471a1-e42d-4be2-a531-9a4fcea1887f"}}},"stat":{"value":"$character.medicine"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"07199821-bc14-4473-873b-bbefb2577c84"}}},"id":"7f5f33c4-4a35-4904-bad9-5f36f667ed56"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Clean and Bind Wounds"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"dcd12915-fef4-4dea-b7be-c44106f20a77"}}},"has_charges":{"value":true},"recharge_event":{"value":"short_rest"},"id":"fbca0de7-87b5-4391-b8a7-6d98b43c81f4"}}},"id":"e2bbd55c-3583-458f-9cd3-252594c0e031"}}]},"updated_at":{"value":"2024-12-20T18:50:28.407682"},"id":"medic"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Medic"
+    },
+    "source": {
+      "value": "ua"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "You master the physician's arts, gaining the following benefits:\n\n- Increase your Wisdom score by 1, to a maximum of 20.\n\n- You gain proficiency in the Medicine skill. If you are already proficient in the skill, you add double your proficiency bonus to checks you make with it.\n\n- During a short rest, you can clean and bind the wounds of up to six willing beasts and humanoids. Make a DC 15 Medicine check for each creature. On a success, if a creature spends a Hit Die during this rest, that creature can forgo the roll and instead regain the maximum number of hit points the die can restore. A creature can do so only once per rest, regardless of how many Hit Dice it spends"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.407679"
+            },
+            "id": "e8e7b00a-ab43-4a9e-87ce-e68efef59b6c"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "terms": {
+                          "value": [
+                            {
+                              "resource_id": "trigger_condition_and",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_term",
+                                      "stats": {
+                                        "stat": {
+                                          "value": "$character.wisdom_score"
+                                        },
+                                        "condition": {
+                                          "value": "lower_than"
+                                        },
+                                        "value": {
+                                          "value": 20.0
+                                        },
+                                        "id": "b41503cc-96f2-4dfb-aa90-f55d62a62992"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "a9b8860a-dc15-41a3-a2be-36c9c5819fe1"
+                              }
+                            }
+                          ]
+                        },
+                        "id": "7629bf37-297a-4c5f-b65e-a98bdb485bc5"
+                      }
+                    }
+                  },
+                  "type": {
+                    "value": "add_to_stat"
+                  },
+                  "stat": {
+                    "value": "$character.wisdom_score"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "bfb0ac2a-a048-4001-bf24-0a8e3b2ca50c"
+                }
+              }
+            },
+            "id": "5a233756-4508-4769-a438-cf5794e914f2"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Medicine Proficiency"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "a74471a1-e42d-4be2-a531-9a4fcea1887f"
+                      }
+                    }
+                  },
+                  "stat": {
+                    "value": "$character.medicine"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "07199821-bc14-4473-873b-bbefb2577c84"
+                }
+              }
+            },
+            "id": "7f5f33c4-4a35-4904-bad9-5f36f667ed56"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Clean and Bind Wounds"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "dcd12915-fef4-4dea-b7be-c44106f20a77"
+                      }
+                    }
+                  },
+                  "has_charges": {
+                    "value": true
+                  },
+                  "recharge_event": {
+                    "value": "short_rest"
+                  },
+                  "id": "fbca0de7-87b5-4391-b8a7-6d98b43c81f4"
+                }
+              }
+            },
+            "id": "e2bbd55c-3583-458f-9cd3-252594c0e031"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.407682"
+    },
+    "id": "medic"
+  }
+}

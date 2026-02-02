@@ -1,1 +1,293 @@
-{"resource_id": "monster", "stats": {"id": "water_elemental", "name": {"value": "Water Elemental"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/water_elemental.png"}}, "source": {"value": "mm"}, "tag": {"value": null}, "armor_class": {"value": 14}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 12}, "dice_type": {"value": "d10"}, "constant": {"value": 48}, "id": "4340d21d-93e2-4c2d-8dfd-b2f456bc7f96", "updated_at": {"value": "2025-08-03T22:41:00.314616"}}}}, "cr": {"value": "cr_5"}, "xp": {"value": 1800}, "initiative": {"value": 2}, "speed": {"value": 30}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 0}, "fly_speed": {"value": 0}, "swim_speed": {"value": 90}, "strength_score": {"value": 18}, "dexterity_score": {"value": 14}, "constitution_score": {"value": 18}, "intelligence_score": {"value": 5}, "wisdom_score": {"value": 10}, "charisma_score": {"value": 8}, "skills": {"value": ""}, "vulnerabilities": {"value": ""}, "immunities": {"value": "exhaustion, grappled, paralyzed, petrified, poisoned, prone, restrained, unconscious; poison"}, "resistances": {"value": "acid; bludgeoning, piercing, and slashing from nonmagical weapons"}, "senses": {"value": "darkvision 60 ft."}, "languages": {"value": "Aquan"}, "size": {"value": "large"}, "type": {"value": "elemental"}, "alignment": {"value": "neutral"}, "traits": {"value": [{"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Water form"}, "trait_description": {"value": "The elemental can enter a hostile creature's space and stop there. It can move through a space as narrow as 1 inch wide without squeezing."}, "id": "d161c0f6-3fed-46ce-9294-f55ace7cdab3", "updated_at": {"value": "2025-08-03T22:41:00.314625"}}}, {"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Freeze"}, "trait_description": {"value": "If the elemental takes cold damage, it partially freezes; its speed is reduced by 20 ft. Until the end of its next turn."}, "id": "1f1f052b-339a-4435-b3a9-74270f3a6ed9", "updated_at": {"value": "2025-08-03T22:41:00.314630"}}}]}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Multiattack"}, "action_description": {"value": "The elemental makes two slam attacks."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "58b2207d-a8a4-41dd-947d-df52289e8940", "updated_at": {"value": "2025-08-03T22:41:00.314637"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Slam"}, "action_description": {"value": "+7 to hit, reach 5 ft., one target. Hit: 13 (2d8 + 4) bludgeoning damage."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 7}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "bludgeoning"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 2}, "dice_type": {"value": "d8"}, "constant": {"value": 4}, "id": "632899fb-d124-4281-b8fb-67be1c46c8c1", "updated_at": {"value": "2025-08-03T22:41:00.314649"}}}}, "id": "866cfac2-72a5-4475-ae24-815c5f02d1ea", "updated_at": {"value": "2025-08-03T22:41:00.314653"}}}]}, "id": "50567c8d-db49-4879-9467-f08d9559752b", "updated_at": {"value": "2025-08-03T22:41:00.314659"}}}]}, "id": "49bc7d0a-0d30-40fd-99fe-26904d0943a2", "updated_at": {"value": "2025-08-03T22:41:00.314664"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Whelm (recharge 4-6)"}, "action_description": {"value": "Each creature in the elemental's space must make a DC 15 Strength saving throw. On a failure, a target takes 13 (2d8 + 4) bludgeoning damage. If it is Large or smaller, it is also grappled (escape DC 14). Until this grapple ends, the target is restrained and unable to breathe unless it can breathe water. If the saving throw is successful, the target is pushed out of the elemental's space.The elemental can grapple one Large creature or up to two Medium or smaller creatures at one time. At the start of each of the elemental's turns, each target grappled by it takes 13 (2d8 + 4) bludgeoning damage. A creature within 5 feet of the elemental can pull a creature or object out of it by taking an action to make a DC 14 Strength and succeeding."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "8c7b95a2-9dff-40d7-834b-cb673cd95aa7", "updated_at": {"value": "2025-08-03T22:41:00.314684"}}}]}, "bonus_actions": {"value": []}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["underwater", "swamp", "coastal"]}, "updated_at": {"value": "2025-08-03T22:41:00.314692"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "water_elemental",
+    "name": {
+      "value": "Water Elemental"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/water_elemental.png"
+      }
+    },
+    "source": {
+      "value": "mm"
+    },
+    "tag": {
+      "value": null
+    },
+    "armor_class": {
+      "value": 14
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 12
+          },
+          "dice_type": {
+            "value": "d10"
+          },
+          "constant": {
+            "value": 48
+          },
+          "id": "4340d21d-93e2-4c2d-8dfd-b2f456bc7f96",
+          "updated_at": {
+            "value": "2025-08-03T22:41:00.314616"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_5"
+    },
+    "xp": {
+      "value": 1800
+    },
+    "initiative": {
+      "value": 2
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 90
+    },
+    "strength_score": {
+      "value": 18
+    },
+    "dexterity_score": {
+      "value": 14
+    },
+    "constitution_score": {
+      "value": 18
+    },
+    "intelligence_score": {
+      "value": 5
+    },
+    "wisdom_score": {
+      "value": 10
+    },
+    "charisma_score": {
+      "value": 8
+    },
+    "skills": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "exhaustion, grappled, paralyzed, petrified, poisoned, prone, restrained, unconscious; poison"
+    },
+    "resistances": {
+      "value": "acid; bludgeoning, piercing, and slashing from nonmagical weapons"
+    },
+    "senses": {
+      "value": "darkvision 60 ft."
+    },
+    "languages": {
+      "value": "Aquan"
+    },
+    "size": {
+      "value": "large"
+    },
+    "type": {
+      "value": "elemental"
+    },
+    "alignment": {
+      "value": "neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Water form"
+            },
+            "trait_description": {
+              "value": "The elemental can enter a hostile creature's space and stop there. It can move through a space as narrow as 1 inch wide without squeezing."
+            },
+            "id": "d161c0f6-3fed-46ce-9294-f55ace7cdab3",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.314625"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Freeze"
+            },
+            "trait_description": {
+              "value": "If the elemental takes cold damage, it partially freezes; its speed is reduced by 20 ft. Until the end of its next turn."
+            },
+            "id": "1f1f052b-339a-4435-b3a9-74270f3a6ed9",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.314630"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Multiattack"
+            },
+            "action_description": {
+              "value": "The elemental makes two slam attacks."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "58b2207d-a8a4-41dd-947d-df52289e8940",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.314637"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Slam"
+            },
+            "action_description": {
+              "value": "+7 to hit, reach 5 ft., one target. Hit: 13 (2d8 + 4) bludgeoning damage."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 7
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 2
+                                  },
+                                  "dice_type": {
+                                    "value": "d8"
+                                  },
+                                  "constant": {
+                                    "value": 4
+                                  },
+                                  "id": "632899fb-d124-4281-b8fb-67be1c46c8c1",
+                                  "updated_at": {
+                                    "value": "2025-08-03T22:41:00.314649"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "866cfac2-72a5-4475-ae24-815c5f02d1ea",
+                            "updated_at": {
+                              "value": "2025-08-03T22:41:00.314653"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "50567c8d-db49-4879-9467-f08d9559752b",
+                    "updated_at": {
+                      "value": "2025-08-03T22:41:00.314659"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "49bc7d0a-0d30-40fd-99fe-26904d0943a2",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.314664"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Whelm (recharge 4-6)"
+            },
+            "action_description": {
+              "value": "Each creature in the elemental's space must make a DC 15 Strength saving throw. On a failure, a target takes 13 (2d8 + 4) bludgeoning damage. If it is Large or smaller, it is also grappled (escape DC 14). Until this grapple ends, the target is restrained and unable to breathe unless it can breathe water. If the saving throw is successful, the target is pushed out of the elemental's space.The elemental can grapple one Large creature or up to two Medium or smaller creatures at one time. At the start of each of the elemental's turns, each target grappled by it takes 13 (2d8 + 4) bludgeoning damage. A creature within 5 feet of the elemental can pull a creature or object out of it by taking an action to make a DC 14 Strength and succeeding."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "8c7b95a2-9dff-40d7-834b-cb673cd95aa7",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.314684"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "underwater",
+        "swamp",
+        "coastal"
+      ]
+    },
+    "updated_at": {
+      "value": "2025-08-03T22:41:00.314692"
+    }
+  }
+}

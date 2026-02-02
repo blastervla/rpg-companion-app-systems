@@ -1,1 +1,157 @@
-{"resource_id":"feat","stats":{"name":{"value":"Diplomat"},"source":{"value":"ua"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"You master the arts of diplomacy, gaining the following benefits:\n\n- Increase your Charisma score by 1, to a maximum of 20.\n- You gain proficiency in the Persuasion skill. If you are already proficient in this skill, you add double your proficiency bonus to checks you make with it.\n- If you spend 1 minute talking to someone who can understand what you say, you can make a Persuasion check contested by the creature's Insight check. If you or your companions are fighting the creature, your check automatically fails. If your check succeeds, the target is charmed by you as long as it remains within 60 feet of you and for 1 minute thereafter"},"updated_at":{"value":"2024-12-20T18:50:28.416660"},"id":"6f19eb26-48ef-466d-b583-962239f5a143"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.charisma_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"6db1812d-1484-4fbf-80d2-1f429b6db638"}}]},"id":"feb6fdf8-a44a-4d67-9119-2b42f3d89e1b"}}]},"id":"a1398964-1aa3-445c-bf6f-4bf370b0196c"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.charisma_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"a3bc250f-1530-447d-a465-16b2d3fd9303"}}},"id":"1203b192-e9c4-410a-9871-71f5c80a85ec"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Persuation Proficiency"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"0495d902-49c5-4ceb-a3be-e2a5178fd0f3"}}},"stat":{"value":"$character.persuasion"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"945c9cdb-609b-451d-b27d-783fb4ffcfe7"}}},"id":"ca6f985a-5719-4492-8659-af35e2b1df37"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Diplomatic Talking"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"6591f000-2691-4729-a736-b5b0e5591fa4"}}},"id":"b55b84b5-be1f-49ea-8d87-88d6588722c0"}}},"id":"c57a54b1-47d4-4484-b580-ad589d563a93"}}]},"updated_at":{"value":"2024-12-20T18:50:28.416663"},"id":"diplomat"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Diplomat"
+    },
+    "source": {
+      "value": "ua"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "You master the arts of diplomacy, gaining the following benefits:\n\n- Increase your Charisma score by 1, to a maximum of 20.\n- You gain proficiency in the Persuasion skill. If you are already proficient in this skill, you add double your proficiency bonus to checks you make with it.\n- If you spend 1 minute talking to someone who can understand what you say, you can make a Persuasion check contested by the creature's Insight check. If you or your companions are fighting the creature, your check automatically fails. If your check succeeds, the target is charmed by you as long as it remains within 60 feet of you and for 1 minute thereafter"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.416660"
+            },
+            "id": "6f19eb26-48ef-466d-b583-962239f5a143"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "terms": {
+                          "value": [
+                            {
+                              "resource_id": "trigger_condition_and",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_term",
+                                      "stats": {
+                                        "stat": {
+                                          "value": "$character.charisma_score"
+                                        },
+                                        "condition": {
+                                          "value": "lower_than"
+                                        },
+                                        "value": {
+                                          "value": 20.0
+                                        },
+                                        "id": "6db1812d-1484-4fbf-80d2-1f429b6db638"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "feb6fdf8-a44a-4d67-9119-2b42f3d89e1b"
+                              }
+                            }
+                          ]
+                        },
+                        "id": "a1398964-1aa3-445c-bf6f-4bf370b0196c"
+                      }
+                    }
+                  },
+                  "type": {
+                    "value": "add_to_stat"
+                  },
+                  "stat": {
+                    "value": "$character.charisma_score"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "a3bc250f-1530-447d-a465-16b2d3fd9303"
+                }
+              }
+            },
+            "id": "1203b192-e9c4-410a-9871-71f5c80a85ec"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Persuation Proficiency"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "0495d902-49c5-4ceb-a3be-e2a5178fd0f3"
+                      }
+                    }
+                  },
+                  "stat": {
+                    "value": "$character.persuasion"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "945c9cdb-609b-451d-b27d-783fb4ffcfe7"
+                }
+              }
+            },
+            "id": "ca6f985a-5719-4492-8659-af35e2b1df37"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Diplomatic Talking"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "6591f000-2691-4729-a736-b5b0e5591fa4"
+                      }
+                    }
+                  },
+                  "id": "b55b84b5-be1f-49ea-8d87-88d6588722c0"
+                }
+              }
+            },
+            "id": "c57a54b1-47d4-4484-b580-ad589d563a93"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.416663"
+    },
+    "id": "diplomat"
+  }
+}

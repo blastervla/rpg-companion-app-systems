@@ -1,1 +1,291 @@
-{"resource_id": "monster", "stats": {"id": "dust_mephit", "name": {"value": "Dust Mephit"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/dust_mephit.png"}}, "source": {"value": "mm"}, "tag": {"value": null}, "armor_class": {"value": 12}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 5}, "dice_type": {"value": "d6"}, "constant": {"value": 0}, "id": "5be6ec37-769a-41d1-98b3-d0fa0ba8901e", "updated_at": {"value": "2025-08-03T22:41:00.231082"}}}}, "cr": {"value": "cr_1_2"}, "xp": {"value": 100}, "initiative": {"value": 2}, "speed": {"value": 30}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 0}, "fly_speed": {"value": 30}, "swim_speed": {"value": 0}, "strength_score": {"value": 5}, "dexterity_score": {"value": 14}, "constitution_score": {"value": 10}, "intelligence_score": {"value": 9}, "wisdom_score": {"value": 11}, "charisma_score": {"value": 10}, "skills": {"value": "Perception +2, Stealth +4"}, "vulnerabilities": {"value": "fire"}, "immunities": {"value": "poisoned; poison"}, "resistances": {"value": ""}, "senses": {"value": "darkvision 60 ft."}, "languages": {"value": "Auran, Terran"}, "size": {"value": "small"}, "type": {"value": "elemental"}, "alignment": {"value": "neutral_evil"}, "traits": {"value": [{"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Death burst"}, "trait_description": {"value": "When the mephit dies, it explodes in a burst of dust. Each creature within 5 ft. Of it must then succeed on a DC 10 Constitution saving throw or be blinded for 1 minute. A blinded creature can repeat the saving throw on each of its turns, ending the effect on itself on a success."}, "id": "1548c0f3-a492-46d8-91ce-247380850348", "updated_at": {"value": "2025-08-03T22:41:00.231092"}}}, {"resource_id": "monster_trait", "stats": {"trait_name": {"value": "Innate spellcasting (1/day)"}, "trait_description": {"value": "The mephit can innately cast sleep, requiring no material components. Its innate spellcasting ability is Charisma."}, "id": "e3ec1778-7bee-4040-a461-d4a08a123716", "updated_at": {"value": "2025-08-03T22:41:00.231097"}}}]}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Claws"}, "action_description": {"value": "+4 to hit, reach 5 ft., one creature. Hit: 4 (1d4 + 2) slashing damage."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 4}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "slashing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 1}, "dice_type": {"value": "d4"}, "constant": {"value": 2}, "id": "9c03658b-c965-4bba-a377-6567f3c12a4d", "updated_at": {"value": "2025-08-03T22:41:00.231108"}}}}, "id": "02555f2f-acd1-4b49-827e-007b3ab71f27", "updated_at": {"value": "2025-08-03T22:41:00.231112"}}}]}, "id": "5b6aa286-fee8-42f6-ba03-43899f55e5b6", "updated_at": {"value": "2025-08-03T22:41:00.231117"}}}]}, "id": "8663cea1-a8b5-4877-8c95-e6dfdc52539a", "updated_at": {"value": "2025-08-03T22:41:00.231121"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Blinding breath (recharge 6)"}, "action_description": {"value": "The mephit exhales a 15-foot cone of blinding dust. Each creature in that area must succeed on a DC 10 Dexterity saving throw or be blinded for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "91ead83b-d4bd-44ee-bea3-bcc243d4212d", "updated_at": {"value": "2025-08-03T22:41:00.231131"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Variant: summon mephits (1/day)"}, "action_description": {"value": "The mephit has a 25 percent chance of summoning 1d4 mephits of its kind. A summoned mephit appears in an unoccupied space within 60 feet of its summoner, acts as an ally of its summoner, and can't summon other mephits. It remains for 1 minute, until it or its summoner dies, or until its summoner dismisses it as an action."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "5f029929-f48b-4dc3-9641-2b768d0f6d8f", "updated_at": {"value": "2025-08-03T22:41:00.231142"}}}]}, "bonus_actions": {"value": []}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["desert"]}, "updated_at": {"value": "2025-08-03T22:41:00.231154"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "dust_mephit",
+    "name": {
+      "value": "Dust Mephit"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/dust_mephit.png"
+      }
+    },
+    "source": {
+      "value": "mm"
+    },
+    "tag": {
+      "value": null
+    },
+    "armor_class": {
+      "value": 12
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 5
+          },
+          "dice_type": {
+            "value": "d6"
+          },
+          "constant": {
+            "value": 0
+          },
+          "id": "5be6ec37-769a-41d1-98b3-d0fa0ba8901e",
+          "updated_at": {
+            "value": "2025-08-03T22:41:00.231082"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_1_2"
+    },
+    "xp": {
+      "value": 100
+    },
+    "initiative": {
+      "value": 2
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 30
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_score": {
+      "value": 5
+    },
+    "dexterity_score": {
+      "value": 14
+    },
+    "constitution_score": {
+      "value": 10
+    },
+    "intelligence_score": {
+      "value": 9
+    },
+    "wisdom_score": {
+      "value": 11
+    },
+    "charisma_score": {
+      "value": 10
+    },
+    "skills": {
+      "value": "Perception +2, Stealth +4"
+    },
+    "vulnerabilities": {
+      "value": "fire"
+    },
+    "immunities": {
+      "value": "poisoned; poison"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "darkvision 60 ft."
+    },
+    "languages": {
+      "value": "Auran, Terran"
+    },
+    "size": {
+      "value": "small"
+    },
+    "type": {
+      "value": "elemental"
+    },
+    "alignment": {
+      "value": "neutral_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Death burst"
+            },
+            "trait_description": {
+              "value": "When the mephit dies, it explodes in a burst of dust. Each creature within 5 ft. Of it must then succeed on a DC 10 Constitution saving throw or be blinded for 1 minute. A blinded creature can repeat the saving throw on each of its turns, ending the effect on itself on a success."
+            },
+            "id": "1548c0f3-a492-46d8-91ce-247380850348",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.231092"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Innate spellcasting (1/day)"
+            },
+            "trait_description": {
+              "value": "The mephit can innately cast sleep, requiring no material components. Its innate spellcasting ability is Charisma."
+            },
+            "id": "e3ec1778-7bee-4040-a461-d4a08a123716",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.231097"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Claws"
+            },
+            "action_description": {
+              "value": "+4 to hit, reach 5 ft., one creature. Hit: 4 (1d4 + 2) slashing damage."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 4
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 1
+                                  },
+                                  "dice_type": {
+                                    "value": "d4"
+                                  },
+                                  "constant": {
+                                    "value": 2
+                                  },
+                                  "id": "9c03658b-c965-4bba-a377-6567f3c12a4d",
+                                  "updated_at": {
+                                    "value": "2025-08-03T22:41:00.231108"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "02555f2f-acd1-4b49-827e-007b3ab71f27",
+                            "updated_at": {
+                              "value": "2025-08-03T22:41:00.231112"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "5b6aa286-fee8-42f6-ba03-43899f55e5b6",
+                    "updated_at": {
+                      "value": "2025-08-03T22:41:00.231117"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "8663cea1-a8b5-4877-8c95-e6dfdc52539a",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.231121"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Blinding breath (recharge 6)"
+            },
+            "action_description": {
+              "value": "The mephit exhales a 15-foot cone of blinding dust. Each creature in that area must succeed on a DC 10 Dexterity saving throw or be blinded for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "91ead83b-d4bd-44ee-bea3-bcc243d4212d",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.231131"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Variant: summon mephits (1/day)"
+            },
+            "action_description": {
+              "value": "The mephit has a 25 percent chance of summoning 1d4 mephits of its kind. A summoned mephit appears in an unoccupied space within 60 feet of its summoner, acts as an ally of its summoner, and can't summon other mephits. It remains for 1 minute, until it or its summoner dies, or until its summoner dismisses it as an action."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "5f029929-f48b-4dc3-9641-2b768d0f6d8f",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.231142"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "desert"
+      ]
+    },
+    "updated_at": {
+      "value": "2025-08-03T22:41:00.231154"
+    }
+  }
+}

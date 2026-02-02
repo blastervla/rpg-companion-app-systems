@@ -1,1 +1,157 @@
-{"resource_id":"feat","stats":{"name":{"value":"Historian"},"source":{"value":"ua"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"Your study of history rewards you with the following benefits:\n\n- Increase your Intelligence score by 1, to a maximum of 20.\n\n- You gain proficiency in the History skill. If you are already proficient in the skill, you add double your proficiency bonus to checks you make with it.\n\n- When you take the Help action to aid another creature's ability check, you can make a DC 15 History check. On a success, that creature's check gains a bonus equal to your proficiency bonus, as you share pertinent advice and historical examples. To receive this bonus, the creature must be able to understand what you're saying"},"updated_at":{"value":"2024-12-20T18:50:28.423083"},"id":"038ddc7f-0262-4437-8d4f-d1b5519fd5ad"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.intelligence_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"640070c1-400c-45d0-b2ac-b277809dacea"}}]},"id":"fa2e02d0-a212-4cbe-bb4c-1c1852dea29c"}}]},"id":"c4ea8db5-b6dc-44eb-95f7-ff8da6ef90cd"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.intelligence_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"91b5f654-b6e9-4f97-acbc-182d9fadd1b7"}}},"id":"4197134d-9ef2-4f31-8142-42dd5c28433f"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"History Skills Proficiency"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"6bfd6c48-5d74-4d65-90ba-d82a1e2e5dbb"}}},"stat":{"value":"$character.history"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"cc6a8901-5f0a-4525-86b4-600c940a3a84"}}},"id":"7783d5bd-6aa9-4a9e-9830-b348a1c13a08"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Help Creature's Ability Check"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"7f2789dc-53fc-4f3d-96d3-35dda513f59b"}}},"id":"df6fc319-40c3-4409-944d-a06ab72a3e1c"}}},"id":"94fd00b3-5f00-4936-8c46-a2b72bf711ee"}}]},"updated_at":{"value":"2024-12-20T18:50:28.423086"},"id":"historian"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Historian"
+    },
+    "source": {
+      "value": "ua"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "Your study of history rewards you with the following benefits:\n\n- Increase your Intelligence score by 1, to a maximum of 20.\n\n- You gain proficiency in the History skill. If you are already proficient in the skill, you add double your proficiency bonus to checks you make with it.\n\n- When you take the Help action to aid another creature's ability check, you can make a DC 15 History check. On a success, that creature's check gains a bonus equal to your proficiency bonus, as you share pertinent advice and historical examples. To receive this bonus, the creature must be able to understand what you're saying"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.423083"
+            },
+            "id": "038ddc7f-0262-4437-8d4f-d1b5519fd5ad"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "terms": {
+                          "value": [
+                            {
+                              "resource_id": "trigger_condition_and",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_term",
+                                      "stats": {
+                                        "stat": {
+                                          "value": "$character.intelligence_score"
+                                        },
+                                        "condition": {
+                                          "value": "lower_than"
+                                        },
+                                        "value": {
+                                          "value": 20.0
+                                        },
+                                        "id": "640070c1-400c-45d0-b2ac-b277809dacea"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "fa2e02d0-a212-4cbe-bb4c-1c1852dea29c"
+                              }
+                            }
+                          ]
+                        },
+                        "id": "c4ea8db5-b6dc-44eb-95f7-ff8da6ef90cd"
+                      }
+                    }
+                  },
+                  "type": {
+                    "value": "add_to_stat"
+                  },
+                  "stat": {
+                    "value": "$character.intelligence_score"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "91b5f654-b6e9-4f97-acbc-182d9fadd1b7"
+                }
+              }
+            },
+            "id": "4197134d-9ef2-4f31-8142-42dd5c28433f"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "History Skills Proficiency"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "6bfd6c48-5d74-4d65-90ba-d82a1e2e5dbb"
+                      }
+                    }
+                  },
+                  "stat": {
+                    "value": "$character.history"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "cc6a8901-5f0a-4525-86b4-600c940a3a84"
+                }
+              }
+            },
+            "id": "7783d5bd-6aa9-4a9e-9830-b348a1c13a08"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Help Creature's Ability Check"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "7f2789dc-53fc-4f3d-96d3-35dda513f59b"
+                      }
+                    }
+                  },
+                  "id": "df6fc319-40c3-4409-944d-a06ab72a3e1c"
+                }
+              }
+            },
+            "id": "94fd00b3-5f00-4936-8c46-a2b72bf711ee"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.423086"
+    },
+    "id": "historian"
+  }
+}

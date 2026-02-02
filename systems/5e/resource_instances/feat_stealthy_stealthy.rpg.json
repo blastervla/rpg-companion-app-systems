@@ -1,1 +1,157 @@
-{"resource_id":"feat","stats":{"name":{"value":"Stealthy"},"source":{"value":"ua"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"You know how best to hide. You gain the following benefits:\n\n- Increase your Dexterity score by 1, to a maximum of 20.\n\n- You gain proficiency in the Stealth skill. If you are already proficient in the skill, you add double your proficiency bonus to checks you make with it.\n\n- If you are hidden, you can move up to 10 feet in the open without revealing yourself if you end the move in a position where you're not clearly visible"},"updated_at":{"value":"2024-12-20T18:50:28.413633"},"id":"64c1c222-df2a-4cfb-b5c4-72b6ce9f297a"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.dexterity_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"39a38682-d206-41b6-ac25-fdbf1429d139"}}]},"id":"c4a8cb6b-0bf5-45a8-9428-c984058185a8"}}]},"id":"586cd92f-7768-4413-9001-a73cd88065a2"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.dexterity_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"680646a2-3747-4425-942d-c75f8207ccc4"}}},"id":"3045afa3-b899-493a-b8bf-0813a05728d5"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Stealth Proficiency"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"34385171-66bd-4503-bd26-0eb6b2ef1f8a"}}},"stat":{"value":"$character.stealth"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"e8d2c108-9b68-4e93-b566-d302f79dc1ea"}}},"id":"c66ad7e0-de76-421f-a737-1c2eb4a97684"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Stealthy"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"d02d625b-5766-41b4-a5e2-4939ca32e82b"}}},"id":"75e0fcad-b256-4264-8595-05e48bb8d41e"}}},"id":"6d3cc8a0-5683-4b39-848d-58266728e326"}}]},"updated_at":{"value":"2024-12-20T18:50:28.413636"},"id":"stealthy"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Stealthy"
+    },
+    "source": {
+      "value": "ua"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "You know how best to hide. You gain the following benefits:\n\n- Increase your Dexterity score by 1, to a maximum of 20.\n\n- You gain proficiency in the Stealth skill. If you are already proficient in the skill, you add double your proficiency bonus to checks you make with it.\n\n- If you are hidden, you can move up to 10 feet in the open without revealing yourself if you end the move in a position where you're not clearly visible"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.413633"
+            },
+            "id": "64c1c222-df2a-4cfb-b5c4-72b6ce9f297a"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "terms": {
+                          "value": [
+                            {
+                              "resource_id": "trigger_condition_and",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_term",
+                                      "stats": {
+                                        "stat": {
+                                          "value": "$character.dexterity_score"
+                                        },
+                                        "condition": {
+                                          "value": "lower_than"
+                                        },
+                                        "value": {
+                                          "value": 20.0
+                                        },
+                                        "id": "39a38682-d206-41b6-ac25-fdbf1429d139"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "c4a8cb6b-0bf5-45a8-9428-c984058185a8"
+                              }
+                            }
+                          ]
+                        },
+                        "id": "586cd92f-7768-4413-9001-a73cd88065a2"
+                      }
+                    }
+                  },
+                  "type": {
+                    "value": "add_to_stat"
+                  },
+                  "stat": {
+                    "value": "$character.dexterity_score"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "680646a2-3747-4425-942d-c75f8207ccc4"
+                }
+              }
+            },
+            "id": "3045afa3-b899-493a-b8bf-0813a05728d5"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Stealth Proficiency"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "34385171-66bd-4503-bd26-0eb6b2ef1f8a"
+                      }
+                    }
+                  },
+                  "stat": {
+                    "value": "$character.stealth"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "e8d2c108-9b68-4e93-b566-d302f79dc1ea"
+                }
+              }
+            },
+            "id": "c66ad7e0-de76-421f-a737-1c2eb4a97684"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Stealthy"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "d02d625b-5766-41b4-a5e2-4939ca32e82b"
+                      }
+                    }
+                  },
+                  "id": "75e0fcad-b256-4264-8595-05e48bb8d41e"
+                }
+              }
+            },
+            "id": "6d3cc8a0-5683-4b39-848d-58266728e326"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.413636"
+    },
+    "id": "stealthy"
+  }
+}

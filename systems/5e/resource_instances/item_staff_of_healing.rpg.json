@@ -1,1 +1,962 @@
-{"resource_id":"item","stats":{"name":{"value":"Staff of Healing"},"source":{"value":"dmg"},"description":{"value":"This staff has 10 charges. While holding it, you can use an action to expend 1 or more of its charges to cast one of the following spells from it, using your spell save DC and spellcasting ability modifier: cure wounds (1 charge per spell level, up to 4th), lesser restoration (2 charges) or mass cure wounds (5 charges).\n\nThe staff regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1. the staff vanishes in a flash of light, lost forever."},"type":{"value":"staff"},"cost":{"value":{"resource_id":"cost","stats":{"unit":{"value":"gold"},"updated_at":{"value":"2024-12-20T18:50:35.626569"},"id":"ef62768d-ad4c-4f36-847c-4937c4115f75"}}},"weight":{"value":{"resource_id":"weight","stats":{"value":{"value":4.0},"unit":{"value":"ounces"},"updated_at":{"value":"2024-12-20T18:50:35.626575"},"id":"ea3f98e7-da44-49d8-8194-930f30eb1fda"}}},"rarity":{"value":"rare"},"is_magic":{"value":true},"requires_attunement":{"value":true},"effects":{"value":[{"resource_id":"effect","stats":{"name":{"value":"Charges"},"trigger_type":{"value":"active"},"has_charges":{"value":true},"recharge_type":{"value":"formula"},"recharge_event":{"value":"dawn"},"max_charges_constant":{"value":10},"recharges":{"value":{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d6"},"constant":{"value":4},"updated_at":{"value":"2024-12-20T18:50:35.626585"},"id":"1c55db32-04e2-4185-8029-bcac0525c809"}}},"advantage_stat":{"value":"$character.strength_score"},"updated_at":{"value":"2024-12-20T18:50:35.626591"},"id":"7ce7bfe1-b645-44af-a872-89b950133ba0"}},{"resource_id":"effect","stats":{"name":{"value":"Cure Wounds (1 Charge/Spell Lvl up to 4)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"87965af4-09f5-4322-835e-71c0001fc1ae"}}},"recharge_type":{"value":"formula"},"recharges":{"value":{"resource_id":"dice_roll","stats":{"id":"38469a43-7d0a-4222-bfab-fac11d8e4080"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Cure Wounds"},"source":{"value":"phb"},"level":{"value":"spell_level_1"},"school":{"value":"spell_school_evocation"},"casting_time":{"value":"1 action"},"range":{"value":"Touch"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"A creature you touch regains a number of hit points equal to 1d8 + your spellcasting ability modifier. This spell has no effect on undead or constructs."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st."},"classes":{"value":["artificer","artificer__eb_","artificer__revised_","bard","cleric","druid","paladin","revised_ranger","ranger"]},"dice":{"value":[{"resource_id":"levelled_damage_dice","stats":{"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d8"},"updated_at":{"value":"2024-12-20T18:50:46.608287"},"id":"8b6343a6-c541-4e2a-9f14-8ebf6070db0e"}}]},"damage_type":{"value":"magic"},"updated_at":{"value":"2024-12-20T18:50:46.608297"},"id":"b7a8aa8e-c117-4894-95b0-469b8e5a0128"}}]},"updated_at":{"value":"2024-12-20T18:50:46.608305"},"id":"5dcd91e1-3fab-49b7-bdff-636203ebd975"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":2},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":2},"dice_type":{"value":"d8"},"updated_at":{"value":"2024-12-20T18:50:46.608322"},"id":"bfae216a-f09c-44e9-9ebd-8c4aa24399c2"}}]},"damage_type":{"value":"magic"},"updated_at":{"value":"2024-12-20T18:50:46.608330"},"id":"67124775-6b79-4ed1-8034-a0749de03030"}}]},"updated_at":{"value":"2024-12-20T18:50:46.608338"},"id":"b30ba167-2518-4763-a61c-94c39c78a026"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":3},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":3},"dice_type":{"value":"d8"},"id":"80ee8b3a-c383-4d55-adba-6eba1dfb9a9d"}}]},"damage_type":{"value":"magic"},"id":"440b6646-d90d-454e-8a17-0ce2e39ac302"}}]},"id":"215420a6-8dcc-4427-b6d6-e6c1a223c532"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":4},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":4},"dice_type":{"value":"d8"},"id":"2c884489-9240-4368-a4bc-2b5f08597ae0"}}]},"damage_type":{"value":"magic"},"id":"80306526-e043-458e-89b3-dffde3de8fac"}}]},"id":"a294c1ea-d18f-48a1-a8fd-b83ed058b565"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":5},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":5},"dice_type":{"value":"d8"},"id":"589e259b-566f-4964-8fa9-dcdb1b4d8ea3"}}]},"damage_type":{"value":"magic"},"id":"25925b9b-927a-47fc-992e-e9921a25351c"}}]},"id":"6be3c5ad-0102-4a8e-8277-b59974d8ad98"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":6},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":6},"dice_type":{"value":"d8"},"id":"5b9b058b-3c62-48cb-a87d-ceb95d89fd74"}}]},"damage_type":{"value":"magic"},"id":"db40b0cc-7405-4f6b-a844-090cac449cc1"}}]},"id":"866bff64-0e15-40e7-80f7-fef0b2657ff6"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":7},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":7},"dice_type":{"value":"d8"},"id":"6d54ddb6-5a35-4f2d-a9d0-b0c7b86fa548"}}]},"damage_type":{"value":"magic"},"id":"aea072c6-c57a-4269-b054-0eb5b985c342"}}]},"id":"a14525af-4345-4ae6-9386-1dddc40b1d56"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":8},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":8},"dice_type":{"value":"d8"},"id":"e9ced10b-992b-4a5c-8252-138ee08cb267"}}]},"damage_type":{"value":"magic"},"id":"183c706f-a9d6-4eef-9eb2-3ef9e8674805"}}]},"id":"a005fc4f-4e39-43ae-9303-ecd9798c62f1"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":9},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":9},"dice_type":{"value":"d8"},"id":"8f0c1e88-3b81-4f9f-b0d1-0a5030ddfb7e"}}]},"damage_type":{"value":"magic"},"id":"5df3942e-815b-41ad-be94-05346a6ec8c9"}}]},"id":"274373d2-e648-449f-9952-ff57c07ce21f"}}]},"updated_at":{"value":"2024-12-20T18:50:46.608343"},"id":"bd04830c-1425-4bdc-ba26-132c15e68a5c"}}},"updated_at":{"value":"2024-12-20T18:50:35.626601"},"id":"b031b2b8-0bf7-42f2-ac07-0ff1cece1dc0"}},{"resource_id":"effect","stats":{"name":{"value":"Cast Lesser Restoration (2 Charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"971e6335-373d-4566-b134-0bfc8b9d4b5a"}}},"recharge_type":{"value":"formula"},"recharges":{"value":{"resource_id":"dice_roll","stats":{"id":"d8f8dafb-bffb-438a-b1ec-7f470aa10c83"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Lesser Restoration"},"source":{"value":"phb"},"level":{"value":"spell_level_2"},"casting_time":{"value":"1 action"},"range":{"value":"Touch"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"You touch a creature and can end either one disease or one condition afflicting it. The condition can be blinded, deafened, paralyzed, or poisoned."},"classes":{"value":["artificer","artificer__eb_","artificer__revised_","bard","cleric","druid","paladin","ranger__revised__","revised_ranger","ranger"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.626195"},"id":"73c00cf7-7720-42dc-baf9-f520f2c1acfb"}}},"updated_at":{"value":"2024-12-20T18:50:35.626610"},"id":"e20d8b05-35bc-4a89-9782-63e6e579f6a8"}},{"resource_id":"effect","stats":{"name":{"value":"Cast Mass Cure Wounds (5 Charges)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"86f6d166-149f-4068-9957-e93171fb2545"}}},"recharge_type":{"value":"formula"},"recharges":{"value":{"resource_id":"dice_roll","stats":{"id":"80eb9684-083c-47db-839f-f91bca09fd71"}}},"type":{"value":"use_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Mass Cure Wounds"},"source":{"value":"phb"},"level":{"value":"spell_level_5"},"school":{"value":"spell_school_conjuration"},"casting_time":{"value":"1 action"},"range":{"value":"60 feet"},"duration":{"value":"Instantaneous"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"A wave of healing energy washes out from a point of your choice within range. Choose up to six creatures in a 30-foot-radius sphere centered on that point. Each target regains hit points equal to 3d8 + your spellcasting ability modifier. This spell has no effect on undead or constructs."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 6th level or higher, the healing increases by 1d8 for each slot level above 5th."},"classes":{"value":["bard","cleric","druid"]},"dice":{"value":[{"resource_id":"levelled_damage_dice","stats":{"level":{"value":5},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":3},"dice_type":{"value":"d8"},"updated_at":{"value":"2024-12-20T18:50:46.658547"},"id":"16c7ac1a-4412-4d89-ad0f-f33caa8af246"}}]},"damage_type":{"value":"magic"},"updated_at":{"value":"2024-12-20T18:50:46.658552"},"id":"1486e240-d0e9-4e32-bfe1-382e46543bbb"}}]},"updated_at":{"value":"2024-12-20T18:50:46.658557"},"id":"e3c2bb39-17e4-4604-a5a0-60f3c58c46b6"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":6},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":4},"dice_type":{"value":"d8"},"updated_at":{"value":"2024-12-20T18:50:46.658566"},"id":"91fe439e-432d-4ccd-9efa-aad19359050e"}}]},"damage_type":{"value":"magic"},"updated_at":{"value":"2024-12-20T18:50:46.658571"},"id":"eec70ba3-6147-451d-a627-9f449270bf12"}}]},"updated_at":{"value":"2024-12-20T18:50:46.658575"},"id":"b90cbd93-9892-4203-8e87-4a4e0c576a5a"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":7},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":5},"dice_type":{"value":"d8"},"id":"39a17cbf-f9a1-4a86-8bbe-85f64166ccf7"}}]},"damage_type":{"value":"magic"},"id":"6918c447-6f11-4c6c-a676-0dbd37c42d47"}}]},"id":"dfb1d324-a97a-42a3-a5ce-2b5960bec3c5"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":8},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":6},"dice_type":{"value":"d8"},"id":"f6236794-6575-4072-957c-325a859b4ec7"}}]},"damage_type":{"value":"magic"},"id":"1f16e5b3-f91f-4888-8fa4-ec87718968b6"}}]},"id":"0acd69d6-949e-446c-9848-a0a27b78e0ea"}},{"resource_id":"levelled_damage_dice","stats":{"level":{"value":9},"damage_dice":{"value":[{"resource_id":"damage_dice","stats":{"dices":{"value":[{"resource_id":"dice_roll","stats":{"dice_amount":{"value":7},"dice_type":{"value":"d8"},"id":"cccfe35a-bcce-4347-a24c-16a961c24e28"}}]},"damage_type":{"value":"magic"},"id":"e521f383-735f-4667-843a-63ee00da90f4"}}]},"id":"23b76a32-77cc-40fc-acaf-1944ea8ceac7"}}]},"updated_at":{"value":"2024-12-20T18:50:46.658578"},"id":"8803963c-771a-4a40-b60b-c05352346b21"}}},"updated_at":{"value":"2024-12-20T18:50:35.626619"},"id":"0bd60632-a111-4259-a832-56fcf0ba5bc4"}}]},"updated_at":{"value":"2024-12-20T18:50:35.626621"},"id":"staff_of_healing"}}
+{
+  "resource_id": "item",
+  "stats": {
+    "name": {
+      "value": "Staff of Healing"
+    },
+    "source": {
+      "value": "dmg"
+    },
+    "description": {
+      "value": "This staff has 10 charges. While holding it, you can use an action to expend 1 or more of its charges to cast one of the following spells from it, using your spell save DC and spellcasting ability modifier: cure wounds (1 charge per spell level, up to 4th), lesser restoration (2 charges) or mass cure wounds (5 charges).\n\nThe staff regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1. the staff vanishes in a flash of light, lost forever."
+    },
+    "type": {
+      "value": "staff"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "unit": {
+            "value": "gold"
+          },
+          "updated_at": {
+            "value": "2024-12-20T18:50:35.626569"
+          },
+          "id": "ef62768d-ad4c-4f36-847c-4937c4115f75"
+        }
+      }
+    },
+    "weight": {
+      "value": {
+        "resource_id": "weight",
+        "stats": {
+          "value": {
+            "value": 4.0
+          },
+          "unit": {
+            "value": "ounces"
+          },
+          "updated_at": {
+            "value": "2024-12-20T18:50:35.626575"
+          },
+          "id": "ea3f98e7-da44-49d8-8194-930f30eb1fda"
+        }
+      }
+    },
+    "rarity": {
+      "value": "rare"
+    },
+    "is_magic": {
+      "value": true
+    },
+    "requires_attunement": {
+      "value": true
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Charges"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "has_charges": {
+              "value": true
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharge_event": {
+              "value": "dawn"
+            },
+            "max_charges_constant": {
+              "value": 10
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "dice_amount": {
+                    "value": 1
+                  },
+                  "dice_type": {
+                    "value": "d6"
+                  },
+                  "constant": {
+                    "value": 4
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:35.626585"
+                  },
+                  "id": "1c55db32-04e2-4185-8029-bcac0525c809"
+                }
+              }
+            },
+            "advantage_stat": {
+              "value": "$character.strength_score"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.626591"
+            },
+            "id": "7ce7bfe1-b645-44af-a872-89b950133ba0"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cure Wounds (1 Charge/Spell Lvl up to 4)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "87965af4-09f5-4322-835e-71c0001fc1ae"
+                }
+              }
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "38469a43-7d0a-4222-bfab-fac11d8e4080"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Cure Wounds"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_1"
+                  },
+                  "school": {
+                    "value": "spell_school_evocation"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "Touch"
+                  },
+                  "duration": {
+                    "value": "Instantaneous"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "A creature you touch regains a number of hit points equal to 1d8 + your spellcasting ability modifier. This spell has no effect on undead or constructs."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st."
+                  },
+                  "classes": {
+                    "value": [
+                      "artificer",
+                      "artificer__eb_",
+                      "artificer__revised_",
+                      "bard",
+                      "cleric",
+                      "druid",
+                      "paladin",
+                      "revised_ranger",
+                      "ranger"
+                    ]
+                  },
+                  "dice": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 1
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.608287"
+                                          },
+                                          "id": "8b6343a6-c541-4e2a-9f14-8ebf6070db0e"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "magic"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.608297"
+                                  },
+                                  "id": "b7a8aa8e-c117-4894-95b0-469b8e5a0128"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.608305"
+                          },
+                          "id": "5dcd91e1-3fab-49b7-bdff-636203ebd975"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 2
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 2
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.608322"
+                                          },
+                                          "id": "bfae216a-f09c-44e9-9ebd-8c4aa24399c2"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "magic"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.608330"
+                                  },
+                                  "id": "67124775-6b79-4ed1-8034-a0749de03030"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.608338"
+                          },
+                          "id": "b30ba167-2518-4763-a61c-94c39c78a026"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 3
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 3
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "80ee8b3a-c383-4d55-adba-6eba1dfb9a9d"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "magic"
+                                  },
+                                  "id": "440b6646-d90d-454e-8a17-0ce2e39ac302"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "215420a6-8dcc-4427-b6d6-e6c1a223c532"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 4
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 4
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "2c884489-9240-4368-a4bc-2b5f08597ae0"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "magic"
+                                  },
+                                  "id": "80306526-e043-458e-89b3-dffde3de8fac"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "a294c1ea-d18f-48a1-a8fd-b83ed058b565"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 5
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 5
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "589e259b-566f-4964-8fa9-dcdb1b4d8ea3"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "magic"
+                                  },
+                                  "id": "25925b9b-927a-47fc-992e-e9921a25351c"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "6be3c5ad-0102-4a8e-8277-b59974d8ad98"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 6
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 6
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "5b9b058b-3c62-48cb-a87d-ceb95d89fd74"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "magic"
+                                  },
+                                  "id": "db40b0cc-7405-4f6b-a844-090cac449cc1"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "866bff64-0e15-40e7-80f7-fef0b2657ff6"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 7
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 7
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "6d54ddb6-5a35-4f2d-a9d0-b0c7b86fa548"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "magic"
+                                  },
+                                  "id": "aea072c6-c57a-4269-b054-0eb5b985c342"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "a14525af-4345-4ae6-9386-1dddc40b1d56"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 8
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 8
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "e9ced10b-992b-4a5c-8252-138ee08cb267"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "magic"
+                                  },
+                                  "id": "183c706f-a9d6-4eef-9eb2-3ef9e8674805"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "a005fc4f-4e39-43ae-9303-ecd9798c62f1"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 9
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 9
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "8f0c1e88-3b81-4f9f-b0d1-0a5030ddfb7e"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "magic"
+                                  },
+                                  "id": "5df3942e-815b-41ad-be94-05346a6ec8c9"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "274373d2-e648-449f-9952-ff57c07ce21f"
+                        }
+                      }
+                    ]
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.608343"
+                  },
+                  "id": "bd04830c-1425-4bdc-ba26-132c15e68a5c"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.626601"
+            },
+            "id": "b031b2b8-0bf7-42f2-ac07-0ff1cece1dc0"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Lesser Restoration (2 Charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "971e6335-373d-4566-b134-0bfc8b9d4b5a"
+                }
+              }
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "d8f8dafb-bffb-438a-b1ec-7f470aa10c83"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Lesser Restoration"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_2"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "Touch"
+                  },
+                  "duration": {
+                    "value": "Instantaneous"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "You touch a creature and can end either one disease or one condition afflicting it. The condition can be blinded, deafened, paralyzed, or poisoned."
+                  },
+                  "classes": {
+                    "value": [
+                      "artificer",
+                      "artificer__eb_",
+                      "artificer__revised_",
+                      "bard",
+                      "cleric",
+                      "druid",
+                      "paladin",
+                      "ranger__revised__",
+                      "revised_ranger",
+                      "ranger"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.626195"
+                  },
+                  "id": "73c00cf7-7720-42dc-baf9-f520f2c1acfb"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.626610"
+            },
+            "id": "e20d8b05-35bc-4a89-9782-63e6e579f6a8"
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Mass Cure Wounds (5 Charges)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "86f6d166-149f-4068-9957-e93171fb2545"
+                }
+              }
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharges": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "80eb9684-083c-47db-839f-f91bca09fd71"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Mass Cure Wounds"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_5"
+                  },
+                  "school": {
+                    "value": "spell_school_conjuration"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "60 feet"
+                  },
+                  "duration": {
+                    "value": "Instantaneous"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "A wave of healing energy washes out from a point of your choice within range. Choose up to six creatures in a 30-foot-radius sphere centered on that point. Each target regains hit points equal to 3d8 + your spellcasting ability modifier. This spell has no effect on undead or constructs."
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 6th level or higher, the healing increases by 1d8 for each slot level above 5th."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "cleric",
+                      "druid"
+                    ]
+                  },
+                  "dice": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 5
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 3
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.658547"
+                                          },
+                                          "id": "16c7ac1a-4412-4d89-ad0f-f33caa8af246"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "magic"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.658552"
+                                  },
+                                  "id": "1486e240-d0e9-4e32-bfe1-382e46543bbb"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.658557"
+                          },
+                          "id": "e3c2bb39-17e4-4604-a5a0-60f3c58c46b6"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 6
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 4
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "updated_at": {
+                                            "value": "2024-12-20T18:50:46.658566"
+                                          },
+                                          "id": "91fe439e-432d-4ccd-9efa-aad19359050e"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "magic"
+                                  },
+                                  "updated_at": {
+                                    "value": "2024-12-20T18:50:46.658571"
+                                  },
+                                  "id": "eec70ba3-6147-451d-a627-9f449270bf12"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2024-12-20T18:50:46.658575"
+                          },
+                          "id": "b90cbd93-9892-4203-8e87-4a4e0c576a5a"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 7
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 5
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "39a17cbf-f9a1-4a86-8bbe-85f64166ccf7"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "magic"
+                                  },
+                                  "id": "6918c447-6f11-4c6c-a676-0dbd37c42d47"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "dfb1d324-a97a-42a3-a5ce-2b5960bec3c5"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 8
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 6
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "f6236794-6575-4072-957c-325a859b4ec7"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "magic"
+                                  },
+                                  "id": "1f16e5b3-f91f-4888-8fa4-ec87718968b6"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "0acd69d6-949e-446c-9848-a0a27b78e0ea"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 9
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 7
+                                          },
+                                          "dice_type": {
+                                            "value": "d8"
+                                          },
+                                          "id": "cccfe35a-bcce-4347-a24c-16a961c24e28"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "magic"
+                                  },
+                                  "id": "e521f383-735f-4667-843a-63ee00da90f4"
+                                }
+                              }
+                            ]
+                          },
+                          "id": "23b76a32-77cc-40fc-acaf-1944ea8ceac7"
+                        }
+                      }
+                    ]
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.658578"
+                  },
+                  "id": "8803963c-771a-4a40-b60b-c05352346b21"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.626619"
+            },
+            "id": "0bd60632-a111-4259-a832-56fcf0ba5bc4"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:35.626621"
+    },
+    "id": "staff_of_healing"
+  }
+}

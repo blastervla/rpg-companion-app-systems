@@ -1,1 +1,490 @@
-{"system":"5e2024","resource_id":"item","stats":{"name":{"value":"Ring of Animal Influence"},"source":{"value":"dmg"},"description":{"value":"This ring has 3 charges, and it regains 1d3 expended charges daily at dawn. While wearing the ring, you can expend 1 charge to cast one of the following spells (save DC 13) from it:\n\n- Animal Friendship\n- Fear (affects Beasts only)\n- Speak with Animals"},"type":{"value":"ring"},"cost":{"value":{"system":"5e2024","resource_id":"cost","stats":{"unit":{"value":"gold"},"updated_at":{"value":"2024-12-20T18:50:35.724236"},"id":"dd479009-fcae-4bea-a163-f01e194bb513"}}},"weight":{"value":{"system":"5e2024","resource_id":"weight","stats":{"unit":{"value":"pounds"},"updated_at":{"value":"2024-12-20T18:50:35.724240"},"id":"55f32831-5f92-4eb4-9773-7e9db4b528c1"}}},"rarity":{"value":"rare"},"is_magic":{"value":true},"requires_attunement":{"value":false},"is_cursed":{"value":false},"is_intelligent":{"value":false},"is_spellcasting_focus":{"value":false},"effects":{"value":[{"system":"5e2024","resource_id":"effect","stats":{"name":{"value":"Charges"},"trigger_type":{"value":"active"},"has_charges":{"value":true},"charge_type":{"value":"constant"},"recharge_type":{"value":"formula"},"recharge_event":{"value":"dawn"},"max_charges_constant":{"value":3},"recharges":{"value":{"system":"5e2024","resource_id":"dice_roll","stats":{"dice_amount":{"value":1},"dice_type":{"value":"d4"},"constant":{"value":0},"updated_at":{"value":"2024-12-20T18:50:35.724247"},"id":"10d30a33-e890-4799-87b3-4ec3edc39564"}}},"type":{"value":"none"},"events":{"value":""},"stat":{"value":"$character.strength_score"},"advantage_stat":{"value":"$character.strength_score"},"updated_at":{"value":"2024-12-20T18:50:35.724252"},"id":"140e12ca-a593-4a83-8033-45d88c327030"}},{"system":"5e2024","resource_id":"effect","stats":{"name":{"value":"Cast Animal Friendship (1 Charge)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"system":"5e2024","resource_id":"trigger_condition_or","stats":{"id":"a48f2270-d880-4a38-ae41-a0e8784535cf"}}},"has_charges":{"value":false},"charge_type":{"value":"constant"},"recharge_type":{"value":"formula"},"max_charges_constant":{"value":0},"recharges":{"value":{"system":"5e2024","resource_id":"dice_roll","stats":{"id":"05a99145-2ecb-4f28-ae61-df48b536aeea"}}},"type":{"value":"use_spell"},"events":{"value":""},"stat":{"value":"$character.strength_score"},"advantage_stat":{"value":"$character.strength_modifier"},"spell":{"value":{"system":"5e2024","resource_id":"spell","stats":{"name":{"value":"Animal Friendship"},"source":{"value":"phb"},"level":{"value":"spell_level_1"},"school":{"value":"spell_school_enchantment"},"casting_time":{"value":"1 action"},"range":{"value":"30 feet"},"duration":{"value":"24 hours"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a morsel of food"},"description":{"value":"Target a Beast that you can see within range. The target must succeed on a Wisdom saving throw or have the Charmed condition for the duration. If you or one of your allies deals damage to the target, the spells ends"},"higher_level_description":{"value":"When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional beast for each slot level above 1st."},"classes":{"value":["bard","druid","ranger"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.604570"},"id":"d7586c89-fea2-4397-a829-a784482798e3"}}},"updated_at":{"value":"2024-12-20T18:50:35.724259"},"id":"9769d7e6-f262-4fac-ab96-040e4dc1e2a7"}},{"system":"5e2024","resource_id":"effect","stats":{"name":{"value":"Cast Fear (1 Charge)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"system":"5e2024","resource_id":"trigger_condition_or","stats":{"id":"b37bd04d-4776-4b21-b7fe-4ace7fbddaac"}}},"has_charges":{"value":false},"charge_type":{"value":"constant"},"recharge_type":{"value":"formula"},"max_charges_constant":{"value":0},"recharges":{"value":{"system":"5e2024","resource_id":"dice_roll","stats":{"id":"61de81f9-58ae-47b2-8fea-9d89ffaf90b3"}}},"type":{"value":"use_spell"},"events":{"value":""},"stat":{"value":"$character.strength_score"},"advantage_stat":{"value":"$character.strength_modifier"},"spell":{"value":{"system":"5e2024","resource_id":"spell","stats":{"name":{"value":"Fear"},"source":{"value":"phb"},"level":{"value":"spell_level_3"},"school":{"value":"spell_school_illusion"},"casting_time":{"value":"1 action"},"range":{"value":"Self (30-foot cone)"},"duration":{"value":"Concentration, up to 1 minute"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a white feather"},"description":{"value":"Each creature in a 30-foot Cone must succeed on a Wisdom saving throw or drop whatever it is holding and have the Frightened condition for the duration.\n\nA Frightened creature takes the Dash action and moves away from you by the safest route on each of its turns unless there is nowhere to move. If the creature ends its turn in a space where it doesn't have line of sight to you, the creature makes a Wisdom saving throw. On a successful save, the spell ends on that creature"},"classes":{"value":["bard","sorcerer","warlock","fighter","rogue","wizard"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.631835"},"id":"1bb5c148-ec89-4c08-85b1-d80818c3efab"}}},"updated_at":{"value":"2024-12-20T18:50:35.724266"},"id":"b2ad2e6d-08de-4773-83e3-9d7c3369a49d"}},{"system":"5e2024","resource_id":"effect","stats":{"name":{"value":"Cast Speak With Animals (1 Charge)"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"system":"5e2024","resource_id":"trigger_condition_or","stats":{"id":"39f48d91-6fe7-4817-946b-593614eda7b8"}}},"has_charges":{"value":false},"charge_type":{"value":"constant"},"recharge_type":{"value":"formula"},"max_charges_constant":{"value":0},"recharges":{"value":{"system":"5e2024","resource_id":"dice_roll","stats":{"id":"b686c650-c370-4fbb-8e6a-26846154321d"}}},"type":{"value":"use_spell"},"events":{"value":""},"stat":{"value":"$character.strength_score"},"advantage_stat":{"value":"$character.strength_modifier"},"spell":{"value":{"system":"5e2024","resource_id":"spell","stats":{"name":{"value":"Speak with Animals"},"source":{"value":"phb"},"level":{"value":"spell_level_1"},"school":{"value":"spell_school_divination"},"ritual":{"value":true},"casting_time":{"value":"1 action"},"range":{"value":"Self"},"duration":{"value":"10 minutes"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"For the duration, you can comprehend and verbally communicate with Beasts, and you can use any of the Influence action's skill options with them.\n\nMost Beasts have little to say about topics that don't pertain to survival or companionship, but at minimum, a Beast can give you information about nearby locations and monsters, including whatever it has perceived within the past day"},"classes":{"value":["bard","druid","ranger","warlock"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.622967"},"id":"7a78a4c4-d4f7-455e-a897-fe510c930874"}}},"updated_at":{"value":"2024-12-20T18:50:35.724273"},"id":"23043373-add9-4cee-a221-c2db91254a1e"}}]},"updated_at":{"value":"2024-12-20T18:50:35.724275"},"id":"ring_of_animal_influence"}}
+{
+  "system": "5e2024",
+  "resource_id": "item",
+  "stats": {
+    "name": {
+      "value": "Ring of Animal Influence"
+    },
+    "source": {
+      "value": "dmg"
+    },
+    "description": {
+      "value": "This ring has 3 charges, and it regains 1d3 expended charges daily at dawn. While wearing the ring, you can expend 1 charge to cast one of the following spells (save DC 13) from it:\n\n- Animal Friendship\n- Fear (affects Beasts only)\n- Speak with Animals"
+    },
+    "type": {
+      "value": "ring"
+    },
+    "cost": {
+      "value": {
+        "system": "5e2024",
+        "resource_id": "cost",
+        "stats": {
+          "unit": {
+            "value": "gold"
+          },
+          "updated_at": {
+            "value": "2024-12-20T18:50:35.724236"
+          },
+          "id": "dd479009-fcae-4bea-a163-f01e194bb513"
+        }
+      }
+    },
+    "weight": {
+      "value": {
+        "system": "5e2024",
+        "resource_id": "weight",
+        "stats": {
+          "unit": {
+            "value": "pounds"
+          },
+          "updated_at": {
+            "value": "2024-12-20T18:50:35.724240"
+          },
+          "id": "55f32831-5f92-4eb4-9773-7e9db4b528c1"
+        }
+      }
+    },
+    "rarity": {
+      "value": "rare"
+    },
+    "is_magic": {
+      "value": true
+    },
+    "requires_attunement": {
+      "value": false
+    },
+    "is_cursed": {
+      "value": false
+    },
+    "is_intelligent": {
+      "value": false
+    },
+    "is_spellcasting_focus": {
+      "value": false
+    },
+    "effects": {
+      "value": [
+        {
+          "system": "5e2024",
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Charges"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "has_charges": {
+              "value": true
+            },
+            "charge_type": {
+              "value": "constant"
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "recharge_event": {
+              "value": "dawn"
+            },
+            "max_charges_constant": {
+              "value": 3
+            },
+            "recharges": {
+              "value": {
+                "system": "5e2024",
+                "resource_id": "dice_roll",
+                "stats": {
+                  "dice_amount": {
+                    "value": 1
+                  },
+                  "dice_type": {
+                    "value": "d4"
+                  },
+                  "constant": {
+                    "value": 0
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:35.724247"
+                  },
+                  "id": "10d30a33-e890-4799-87b3-4ec3edc39564"
+                }
+              }
+            },
+            "type": {
+              "value": "none"
+            },
+            "events": {
+              "value": ""
+            },
+            "stat": {
+              "value": "$character.strength_score"
+            },
+            "advantage_stat": {
+              "value": "$character.strength_score"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.724252"
+            },
+            "id": "140e12ca-a593-4a83-8033-45d88c327030"
+          }
+        },
+        {
+          "system": "5e2024",
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Animal Friendship (1 Charge)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "system": "5e2024",
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "a48f2270-d880-4a38-ae41-a0e8784535cf"
+                }
+              }
+            },
+            "has_charges": {
+              "value": false
+            },
+            "charge_type": {
+              "value": "constant"
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "max_charges_constant": {
+              "value": 0
+            },
+            "recharges": {
+              "value": {
+                "system": "5e2024",
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "05a99145-2ecb-4f28-ae61-df48b536aeea"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "events": {
+              "value": ""
+            },
+            "stat": {
+              "value": "$character.strength_score"
+            },
+            "advantage_stat": {
+              "value": "$character.strength_modifier"
+            },
+            "spell": {
+              "value": {
+                "system": "5e2024",
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Animal Friendship"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_1"
+                  },
+                  "school": {
+                    "value": "spell_school_enchantment"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "30 feet"
+                  },
+                  "duration": {
+                    "value": "24 hours"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a morsel of food"
+                  },
+                  "description": {
+                    "value": "Target a Beast that you can see within range. The target must succeed on a Wisdom saving throw or have the Charmed condition for the duration. If you or one of your allies deals damage to the target, the spells ends"
+                  },
+                  "higher_level_description": {
+                    "value": "When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional beast for each slot level above 1st."
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "druid",
+                      "ranger"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.604570"
+                  },
+                  "id": "d7586c89-fea2-4397-a829-a784482798e3"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.724259"
+            },
+            "id": "9769d7e6-f262-4fac-ab96-040e4dc1e2a7"
+          }
+        },
+        {
+          "system": "5e2024",
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Fear (1 Charge)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "system": "5e2024",
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "b37bd04d-4776-4b21-b7fe-4ace7fbddaac"
+                }
+              }
+            },
+            "has_charges": {
+              "value": false
+            },
+            "charge_type": {
+              "value": "constant"
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "max_charges_constant": {
+              "value": 0
+            },
+            "recharges": {
+              "value": {
+                "system": "5e2024",
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "61de81f9-58ae-47b2-8fea-9d89ffaf90b3"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "events": {
+              "value": ""
+            },
+            "stat": {
+              "value": "$character.strength_score"
+            },
+            "advantage_stat": {
+              "value": "$character.strength_modifier"
+            },
+            "spell": {
+              "value": {
+                "system": "5e2024",
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Fear"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_3"
+                  },
+                  "school": {
+                    "value": "spell_school_illusion"
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "Self (30-foot cone)"
+                  },
+                  "duration": {
+                    "value": "Concentration, up to 1 minute"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": "a white feather"
+                  },
+                  "description": {
+                    "value": "Each creature in a 30-foot Cone must succeed on a Wisdom saving throw or drop whatever it is holding and have the Frightened condition for the duration.\n\nA Frightened creature takes the Dash action and moves away from you by the safest route on each of its turns unless there is nowhere to move. If the creature ends its turn in a space where it doesn't have line of sight to you, the creature makes a Wisdom saving throw. On a successful save, the spell ends on that creature"
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "sorcerer",
+                      "warlock",
+                      "fighter",
+                      "rogue",
+                      "wizard"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.631835"
+                  },
+                  "id": "1bb5c148-ec89-4c08-85b1-d80818c3efab"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.724266"
+            },
+            "id": "b2ad2e6d-08de-4773-83e3-9d7c3369a49d"
+          }
+        },
+        {
+          "system": "5e2024",
+          "resource_id": "effect",
+          "stats": {
+            "name": {
+              "value": "Cast Speak With Animals (1 Charge)"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "trigger_condition": {
+              "value": {
+                "system": "5e2024",
+                "resource_id": "trigger_condition_or",
+                "stats": {
+                  "id": "39f48d91-6fe7-4817-946b-593614eda7b8"
+                }
+              }
+            },
+            "has_charges": {
+              "value": false
+            },
+            "charge_type": {
+              "value": "constant"
+            },
+            "recharge_type": {
+              "value": "formula"
+            },
+            "max_charges_constant": {
+              "value": 0
+            },
+            "recharges": {
+              "value": {
+                "system": "5e2024",
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "b686c650-c370-4fbb-8e6a-26846154321d"
+                }
+              }
+            },
+            "type": {
+              "value": "use_spell"
+            },
+            "events": {
+              "value": ""
+            },
+            "stat": {
+              "value": "$character.strength_score"
+            },
+            "advantage_stat": {
+              "value": "$character.strength_modifier"
+            },
+            "spell": {
+              "value": {
+                "system": "5e2024",
+                "resource_id": "spell",
+                "stats": {
+                  "name": {
+                    "value": "Speak with Animals"
+                  },
+                  "source": {
+                    "value": "phb"
+                  },
+                  "level": {
+                    "value": "spell_level_1"
+                  },
+                  "school": {
+                    "value": "spell_school_divination"
+                  },
+                  "ritual": {
+                    "value": true
+                  },
+                  "casting_time": {
+                    "value": "1 action"
+                  },
+                  "range": {
+                    "value": "Self"
+                  },
+                  "duration": {
+                    "value": "10 minutes"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "description": {
+                    "value": "For the duration, you can comprehend and verbally communicate with Beasts, and you can use any of the Influence action's skill options with them.\n\nMost Beasts have little to say about topics that don't pertain to survival or companionship, but at minimum, a Beast can give you information about nearby locations and monsters, including whatever it has perceived within the past day"
+                  },
+                  "classes": {
+                    "value": [
+                      "bard",
+                      "druid",
+                      "ranger",
+                      "warlock"
+                    ]
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2024-12-20T18:50:46.622967"
+                  },
+                  "id": "7a78a4c4-d4f7-455e-a897-fe510c930874"
+                }
+              }
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:35.724273"
+            },
+            "id": "23043373-add9-4cee-a221-c2db91254a1e"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:35.724275"
+    },
+    "id": "ring_of_animal_influence"
+  }
+}

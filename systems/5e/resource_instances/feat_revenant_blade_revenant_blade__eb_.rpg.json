@@ -1,1 +1,283 @@
-{"resource_id":"feat","stats":{"name":{"value":"Revenant Blade"},"source":{"value":"eb"},"prerequisites":{"value":"Elf"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"You are descended from a master of the double-bladed scimitar, and some of that mastery has passed on to you. You gain the following benefits:\n\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n\n- While you are holding a double-bladed scimitar with two hands, you gain a +1 bonus to Armor Class.\n\n- A double-bladed scimitar has the finesse property when you wield it"},"updated_at":{"value":"2024-12-20T18:50:28.419635"},"id":"e95d4a8a-4c66-409d-9486-089d7c5bee6f"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Two Handed Dual Blade Scimitar Bonus"},"trigger_type":{"value":"active"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"7027d200-a455-402b-99d1-fcd4015adf16"}}},"type":{"value":"add_to_stat"},"events":{"value":"Dual Wielding Scimitars"},"revert_events":{"value":"Not Dual Wielding Scimitars"},"stat":{"value":"$character.armor_class"},"aggregation_type":{"value":"sum"},"dice_roll":{"value":{"resource_id":"dice_roll","stats":{"constant":{"value":1},"id":"1fde2caa-8410-4f20-9ea7-340ee412f0dd"}}},"id":"d96fb27f-bca0-4569-b177-6f3e0a272c63"}}},"id":"d16755ba-c907-48b0-a641-160655b3087d"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Dual Bladed Scimitar Gains Finesse"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"56ffd9c6-93bc-4a65-b029-fb37656e9f5d"}}},"id":"d7ab654a-b7ae-4586-82c1-5c160cda6157"}}},"id":"30f3423b-bfd6-4fda-913c-c83dfe06420a"}}]},"selectable_feature_amount_per_level":{"value":[{"resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"2ad769ae-8b7d-4e70-8eef-908158b9436a"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Str Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"3623e32e-fd57-4365-9043-93dda1b9e152"}}]},"id":"b354a5ec-994e-49fa-ab3d-81ba47be8afd"}}]},"id":"3043c0eb-4ffa-4404-90f0-14b419c53187"}}},"type":{"value":"add_to_stat"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"87784921-de49-4357-844d-f3d9f07ecf84"}}},"id":"4e37925e-60e1-43d2-8296-09846f539043"}}]},"id":"83d48691-1491-4168-a743-5f87667fd248"}},{"resource_id":"feat","stats":{"name":{"value":"Dex Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.dexterity_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"10e69314-32d2-4868-af00-a00f5746603d"}}]},"id":"bd962daf-d41a-4063-bab4-824aa603ed1f"}}]},"id":"34487824-1fd8-44ac-8e08-d237d1fa8c38"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.dexterity_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"48ebec38-5aa9-4fc4-8cbb-e9a979767e30"}}},"id":"75320cf7-855b-45dd-b207-7dd1963be723"}}]},"id":"04c7a935-498e-425c-aed0-31e022ae70a7"}}]},"updated_at":{"value":"2024-12-20T18:50:28.419639"},"id":"revenant_blade__eb_"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Revenant Blade"
+    },
+    "source": {
+      "value": "eb"
+    },
+    "prerequisites": {
+      "value": "Elf"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "You are descended from a master of the double-bladed scimitar, and some of that mastery has passed on to you. You gain the following benefits:\n\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n\n- While you are holding a double-bladed scimitar with two hands, you gain a +1 bonus to Armor Class.\n\n- A double-bladed scimitar has the finesse property when you wield it"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.419635"
+            },
+            "id": "e95d4a8a-4c66-409d-9486-089d7c5bee6f"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Two Handed Dual Blade Scimitar Bonus"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "7027d200-a455-402b-99d1-fcd4015adf16"
+                      }
+                    }
+                  },
+                  "type": {
+                    "value": "add_to_stat"
+                  },
+                  "events": {
+                    "value": "Dual Wielding Scimitars"
+                  },
+                  "revert_events": {
+                    "value": "Not Dual Wielding Scimitars"
+                  },
+                  "stat": {
+                    "value": "$character.armor_class"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "dice_roll": {
+                    "value": {
+                      "resource_id": "dice_roll",
+                      "stats": {
+                        "constant": {
+                          "value": 1
+                        },
+                        "id": "1fde2caa-8410-4f20-9ea7-340ee412f0dd"
+                      }
+                    }
+                  },
+                  "id": "d96fb27f-bca0-4569-b177-6f3e0a272c63"
+                }
+              }
+            },
+            "id": "d16755ba-c907-48b0-a641-160655b3087d"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Dual Bladed Scimitar Gains Finesse"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "56ffd9c6-93bc-4a65-b029-fb37656e9f5d"
+                      }
+                    }
+                  },
+                  "id": "d7ab654a-b7ae-4586-82c1-5c160cda6157"
+                }
+              }
+            },
+            "id": "30f3423b-bfd6-4fda-913c-c83dfe06420a"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "2ad769ae-8b7d-4e70-8eef-908158b9436a"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Str Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "3623e32e-fd57-4365-9043-93dda1b9e152"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "b354a5ec-994e-49fa-ab3d-81ba47be8afd"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "3043c0eb-4ffa-4404-90f0-14b419c53187"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "87784921-de49-4357-844d-f3d9f07ecf84"
+                        }
+                      }
+                    },
+                    "id": "4e37925e-60e1-43d2-8296-09846f539043"
+                  }
+                }
+              ]
+            },
+            "id": "83d48691-1491-4168-a743-5f87667fd248"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Dex Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.dexterity_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "10e69314-32d2-4868-af00-a00f5746603d"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "bd962daf-d41a-4063-bab4-824aa603ed1f"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "34487824-1fd8-44ac-8e08-d237d1fa8c38"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.dexterity_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "48ebec38-5aa9-4fc4-8cbb-e9a979767e30"
+                        }
+                      }
+                    },
+                    "id": "75320cf7-855b-45dd-b207-7dd1963be723"
+                  }
+                }
+              ]
+            },
+            "id": "04c7a935-498e-425c-aed0-31e022ae70a7"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.419639"
+    },
+    "id": "revenant_blade__eb_"
+  }
+}

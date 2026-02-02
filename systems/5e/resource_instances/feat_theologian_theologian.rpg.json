@@ -1,1 +1,281 @@
-{"resource_id":"feat","stats":{"name":{"value":"Theologian"},"source":{"value":"ua"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"Your extensive study of religion rewards you with the following benefits:\n\n- Increase your Intelligence score by 1, to a maximum of 20.\n\n- You gain proficiency in the Religion skill. If you are already proficient in the skill, you add double your proficiency bonus to checks you make with it.\n\n- You learn the Thaumaturgy cantrip and Detect Evil and Good spells. You can cast Detect Evil and Good once without expending a spell slot, and you regain the ability to do so when you finish a long rest"},"updated_at":{"value":"2024-12-20T18:50:28.418899"},"id":"9249401a-575e-4495-9f5b-15352ad186ff"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.intelligence_score"},"condition":{"value":"lower_than"},"value":{"value":1.0},"id":"7a8d33c4-d07e-44a4-90b1-aa0329f872d4"}}]},"id":"ce926f2f-d11b-4b16-94ff-b1fe8861203a"}}]},"id":"a0daf753-1eb1-41d8-beb6-49b895814bc6"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.intelligence_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"5170da2e-d7e5-4174-9a9e-d6189f6cd214"}}},"id":"53a03745-06c0-4d50-ae01-2680eee9ff11"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Religion Proficiency"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"f5c42b92-95b1-41ae-9fdc-0f352740e23e"}}},"stat":{"value":"$character.religion"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"7767beef-760c-4890-943f-750caf1a4acf"}}},"id":"e7166e79-caf7-4810-8118-1ba5c47d3c9c"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"6a9a0ba5-28bc-4440-b28b-b911a93691b2"}}},"type":{"value":"add_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Thaumaturgy"},"source":{"value":"phb"},"school":{"value":"spell_school_transmutation"},"casting_time":{"value":"1 action"},"range":{"value":"30 feet"},"duration":{"value":"Up to 1 minute"},"verbal":{"value":true},"description":{"value":"* Your voice booms up to three times as loud as normal for 1 minute.\n\n* You cause flames to flicker, brighten, dim, or change color for 1 minute.\n\n* You cause harmless tremors in the ground for 1 minute.\n\n* You create an instantaneous sound that originates from a point of your choice within range, such as a rumble of thunder, the cry of a raven, or ominous whispers.\n\n* You instantaneously cause an unlocked door or window to fly open or slam shut.\n\n* You alter the appearance of your eyes for 1 minute.\n\nIf you cast this spell multiple times, you can have up to three of its 1-minute effects active at a time, and you can dismiss such an effect as an action."},"classes":{"value":["cleric"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.623112"},"id":"a0978d09-d2f2-40c8-a5b2-9cfb2feda82e"}}},"id":"c8365baf-1330-45e4-a625-557bf4d29e03"}}},"id":"ce71877a-f0bf-47a9-8f08-df29c1c03af7"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"aaf696c3-ad94-4001-abfc-3d3256472a31"}}},"has_charges":{"value":true},"max_charges_constant":{"value":1},"type":{"value":"add_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Detect Evil and Good"},"source":{"value":"phb"},"level":{"value":"spell_level_1"},"school":{"value":"spell_school_divination"},"casting_time":{"value":"1 action"},"range":{"value":"Self"},"duration":{"value":"Concentration, up to 10 minutes"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"For the duration, you know if there is an aberration, celestial, elemental, fey, fiend, or undead within 30 feet of you, as well as where the creature is located. Similarly, you know if there is a place or object within 30 feet of you that has been magically consecrated or desecrated.\n\nThe spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt."},"classes":{"value":["cleric","paladin"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.608822"},"id":"3f7e770c-2e85-458b-8bbd-a3206dcafe51"}}},"id":"41c2885b-d003-4fea-b410-2c471592ae57"}}},"id":"104c2509-f244-4ee0-8255-b7fde8c2c587"}}]},"updated_at":{"value":"2024-12-20T18:50:28.418901"},"id":"theologian"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Theologian"
+    },
+    "source": {
+      "value": "ua"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "Your extensive study of religion rewards you with the following benefits:\n\n- Increase your Intelligence score by 1, to a maximum of 20.\n\n- You gain proficiency in the Religion skill. If you are already proficient in the skill, you add double your proficiency bonus to checks you make with it.\n\n- You learn the Thaumaturgy cantrip and Detect Evil and Good spells. You can cast Detect Evil and Good once without expending a spell slot, and you regain the ability to do so when you finish a long rest"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.418899"
+            },
+            "id": "9249401a-575e-4495-9f5b-15352ad186ff"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "terms": {
+                          "value": [
+                            {
+                              "resource_id": "trigger_condition_and",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_term",
+                                      "stats": {
+                                        "stat": {
+                                          "value": "$character.intelligence_score"
+                                        },
+                                        "condition": {
+                                          "value": "lower_than"
+                                        },
+                                        "value": {
+                                          "value": 1.0
+                                        },
+                                        "id": "7a8d33c4-d07e-44a4-90b1-aa0329f872d4"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "ce926f2f-d11b-4b16-94ff-b1fe8861203a"
+                              }
+                            }
+                          ]
+                        },
+                        "id": "a0daf753-1eb1-41d8-beb6-49b895814bc6"
+                      }
+                    }
+                  },
+                  "type": {
+                    "value": "add_to_stat"
+                  },
+                  "stat": {
+                    "value": "$character.intelligence_score"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "5170da2e-d7e5-4174-9a9e-d6189f6cd214"
+                }
+              }
+            },
+            "id": "53a03745-06c0-4d50-ae01-2680eee9ff11"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Religion Proficiency"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "f5c42b92-95b1-41ae-9fdc-0f352740e23e"
+                      }
+                    }
+                  },
+                  "stat": {
+                    "value": "$character.religion"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "7767beef-760c-4890-943f-750caf1a4acf"
+                }
+              }
+            },
+            "id": "e7166e79-caf7-4810-8118-1ba5c47d3c9c"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "6a9a0ba5-28bc-4440-b28b-b911a93691b2"
+                      }
+                    }
+                  },
+                  "type": {
+                    "value": "add_spell"
+                  },
+                  "spell": {
+                    "value": {
+                      "resource_id": "spell",
+                      "stats": {
+                        "name": {
+                          "value": "Thaumaturgy"
+                        },
+                        "source": {
+                          "value": "phb"
+                        },
+                        "school": {
+                          "value": "spell_school_transmutation"
+                        },
+                        "casting_time": {
+                          "value": "1 action"
+                        },
+                        "range": {
+                          "value": "30 feet"
+                        },
+                        "duration": {
+                          "value": "Up to 1 minute"
+                        },
+                        "verbal": {
+                          "value": true
+                        },
+                        "description": {
+                          "value": "* Your voice booms up to three times as loud as normal for 1 minute.\n\n* You cause flames to flicker, brighten, dim, or change color for 1 minute.\n\n* You cause harmless tremors in the ground for 1 minute.\n\n* You create an instantaneous sound that originates from a point of your choice within range, such as a rumble of thunder, the cry of a raven, or ominous whispers.\n\n* You instantaneously cause an unlocked door or window to fly open or slam shut.\n\n* You alter the appearance of your eyes for 1 minute.\n\nIf you cast this spell multiple times, you can have up to three of its 1-minute effects active at a time, and you can dismiss such an effect as an action."
+                        },
+                        "classes": {
+                          "value": [
+                            "cleric"
+                          ]
+                        },
+                        "dice": {
+                          "value": []
+                        },
+                        "updated_at": {
+                          "value": "2024-12-20T18:50:46.623112"
+                        },
+                        "id": "a0978d09-d2f2-40c8-a5b2-9cfb2feda82e"
+                      }
+                    }
+                  },
+                  "id": "c8365baf-1330-45e4-a625-557bf4d29e03"
+                }
+              }
+            },
+            "id": "ce71877a-f0bf-47a9-8f08-df29c1c03af7"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "aaf696c3-ad94-4001-abfc-3d3256472a31"
+                      }
+                    }
+                  },
+                  "has_charges": {
+                    "value": true
+                  },
+                  "max_charges_constant": {
+                    "value": 1
+                  },
+                  "type": {
+                    "value": "add_spell"
+                  },
+                  "spell": {
+                    "value": {
+                      "resource_id": "spell",
+                      "stats": {
+                        "name": {
+                          "value": "Detect Evil and Good"
+                        },
+                        "source": {
+                          "value": "phb"
+                        },
+                        "level": {
+                          "value": "spell_level_1"
+                        },
+                        "school": {
+                          "value": "spell_school_divination"
+                        },
+                        "casting_time": {
+                          "value": "1 action"
+                        },
+                        "range": {
+                          "value": "Self"
+                        },
+                        "duration": {
+                          "value": "Concentration, up to 10 minutes"
+                        },
+                        "verbal": {
+                          "value": true
+                        },
+                        "somatic": {
+                          "value": true
+                        },
+                        "description": {
+                          "value": "For the duration, you know if there is an aberration, celestial, elemental, fey, fiend, or undead within 30 feet of you, as well as where the creature is located. Similarly, you know if there is a place or object within 30 feet of you that has been magically consecrated or desecrated.\n\nThe spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt."
+                        },
+                        "classes": {
+                          "value": [
+                            "cleric",
+                            "paladin"
+                          ]
+                        },
+                        "dice": {
+                          "value": []
+                        },
+                        "updated_at": {
+                          "value": "2024-12-20T18:50:46.608822"
+                        },
+                        "id": "3f7e770c-2e85-458b-8bbd-a3206dcafe51"
+                      }
+                    }
+                  },
+                  "id": "41c2885b-d003-4fea-b410-2c471592ae57"
+                }
+              }
+            },
+            "id": "104c2509-f244-4ee0-8255-b7fde8c2c587"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.418901"
+    },
+    "id": "theologian"
+  }
+}

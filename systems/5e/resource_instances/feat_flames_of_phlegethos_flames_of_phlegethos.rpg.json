@@ -1,1 +1,260 @@
-{"resource_id":"feat","stats":{"name":{"value":"Flames of Phlegethos"},"source":{"value":"xge"},"prerequisites":{"value":"Tiefling"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"You learn to call on hellfire to serve your commands. You gain the following benefits:\n\n- Increase your Intelligence or Charisma score by 1, to a maximum of 20.\n\n- When you roll fire damage for a spell you cast, you can reroll any roll of 1 on the fire damage dice, but you must use the new roll, even if it is another 1.\n\n- Whenever you cast a spell that deals fire damage, you can cause flames to wreathe you until the end of your next turn. The flames don't harm you or your possessions, and they shed bright light out to 30 feet and dim light for an additional 30 feet. While the flames are present, any creature within 5 feet of you that hits you with a melee attack takes 1d4 fire damage"},"updated_at":{"value":"2024-12-20T18:50:28.402590"},"id":"3584c6e0-8fac-4452-869a-9a3d199f52be"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Re-roll 1s on Fire Spells"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"db7af4ab-ebb4-4ab0-944e-f0b8cf0277a9"}}},"id":"ed655fba-909f-443b-bdde-234bd33f5258"}}},"id":"df271b70-2e65-4a22-8a7c-4faf7cb9572c"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Better Flames"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"c32c15f1-e0f3-4c43-b790-6970231805c5"}}},"id":"f13b5159-1d2f-4e6c-b66f-bfdd888aec19"}}},"id":"2056ddf9-fe46-439a-a99d-7f5e79a41d89"}}]},"selectable_feature_amount_per_level":{"value":[{"resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"3a7bd91e-5659-4437-8ce7-12b5aaab3f02"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Int Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.intelligence_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"403207a8-5a0a-4a3e-abc1-a37670f2bd31"}}]},"id":"7290b8ac-4d3d-41df-a63f-88b3c686ce5a"}}]},"id":"2420ebe1-44c7-412c-bc5b-430ea38ce0d6"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.intelligence_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"e93c1671-1780-4f33-a94e-6a9aed8eb10f"}}},"id":"8d61e125-d62a-4d1f-b2e1-be6e08de3505"}}]},"id":"7ec70081-952e-4184-8d6c-e2eab1ee6fe3"}},{"resource_id":"feat","stats":{"name":{"value":"Cha Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.charisma_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"c682e8fc-1341-4f04-a873-6fcd3cc48ef9"}}]},"id":"9113896d-3bfd-4e8b-b0fd-d93a5450bb1f"}}]},"id":"e9c9bc76-83d0-4428-b1a0-ffbe2155c8f7"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.charisma_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"37e16195-0cbd-44d2-b314-3ce082dbdae8"}}},"id":"f26e804f-8b78-46c6-8f45-98d1710b5a5a"}}]},"id":"74ee8712-167d-47a5-a333-039ea957aa4d"}}]},"updated_at":{"value":"2024-12-20T18:50:28.402592"},"id":"flames_of_phlegethos"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Flames of Phlegethos"
+    },
+    "source": {
+      "value": "xge"
+    },
+    "prerequisites": {
+      "value": "Tiefling"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "You learn to call on hellfire to serve your commands. You gain the following benefits:\n\n- Increase your Intelligence or Charisma score by 1, to a maximum of 20.\n\n- When you roll fire damage for a spell you cast, you can reroll any roll of 1 on the fire damage dice, but you must use the new roll, even if it is another 1.\n\n- Whenever you cast a spell that deals fire damage, you can cause flames to wreathe you until the end of your next turn. The flames don't harm you or your possessions, and they shed bright light out to 30 feet and dim light for an additional 30 feet. While the flames are present, any creature within 5 feet of you that hits you with a melee attack takes 1d4 fire damage"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.402590"
+            },
+            "id": "3584c6e0-8fac-4452-869a-9a3d199f52be"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Re-roll 1s on Fire Spells"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "db7af4ab-ebb4-4ab0-944e-f0b8cf0277a9"
+                      }
+                    }
+                  },
+                  "id": "ed655fba-909f-443b-bdde-234bd33f5258"
+                }
+              }
+            },
+            "id": "df271b70-2e65-4a22-8a7c-4faf7cb9572c"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Better Flames"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "c32c15f1-e0f3-4c43-b790-6970231805c5"
+                      }
+                    }
+                  },
+                  "id": "f13b5159-1d2f-4e6c-b66f-bfdd888aec19"
+                }
+              }
+            },
+            "id": "2056ddf9-fe46-439a-a99d-7f5e79a41d89"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "3a7bd91e-5659-4437-8ce7-12b5aaab3f02"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Int Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.intelligence_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "403207a8-5a0a-4a3e-abc1-a37670f2bd31"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "7290b8ac-4d3d-41df-a63f-88b3c686ce5a"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "2420ebe1-44c7-412c-bc5b-430ea38ce0d6"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.intelligence_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "e93c1671-1780-4f33-a94e-6a9aed8eb10f"
+                        }
+                      }
+                    },
+                    "id": "8d61e125-d62a-4d1f-b2e1-be6e08de3505"
+                  }
+                }
+              ]
+            },
+            "id": "7ec70081-952e-4184-8d6c-e2eab1ee6fe3"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Cha Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.charisma_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "c682e8fc-1341-4f04-a873-6fcd3cc48ef9"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "9113896d-3bfd-4e8b-b0fd-d93a5450bb1f"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "e9c9bc76-83d0-4428-b1a0-ffbe2155c8f7"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.charisma_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "37e16195-0cbd-44d2-b314-3ce082dbdae8"
+                        }
+                      }
+                    },
+                    "id": "f26e804f-8b78-46c6-8f45-98d1710b5a5a"
+                  }
+                }
+              ]
+            },
+            "id": "74ee8712-167d-47a5-a333-039ea957aa4d"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.402592"
+    },
+    "id": "flames_of_phlegethos"
+  }
+}

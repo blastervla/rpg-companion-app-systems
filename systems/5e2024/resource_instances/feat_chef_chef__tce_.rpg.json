@@ -1,1 +1,318 @@
-{"system":"5e2024","resource_id":"feat","stats":{"name":{"value":"Chef"},"source":{"value":"phb"},"prerequisites":{"value":"Level 4+"},"descriptions":{"value":[{"system":"5e2024","resource_id":"levelled_description","stats":{"description":{"value":"You gain the following benefits.\n\nAbility Score Increase. Increase your Constitution or Wisdom by 1, to a maximum of 20.\n\nCook's Utensils. You gain proficiency with Cook's Utensils if you don't already have it.\n\nReplenishing Meal. As part of a Short Rest, you can cook special food if you have ingredients and Cook's Utensils on hand. You can prepare enough of this food for a number of creatures equal to 4 plus your Proficiency Bonus. At the end of the Short Rest, any creature who eats the food and spends one or more Hit Dice to regain Hit Points regains an extra 1d8 Hit Points.\n\nBolstering Treats. With 1 hour of work or when you finish a Long Rest, you can cook a number of treats equal to your Proficiency Bonus if you have ingredients and Cook's Utensils on hand. These special treats last 8 hours after being made. A creature can use a Bonus Action to eat one of those treats to gain a number of Temporary Hit Points equal to your Proficiency Bonus"},"updated_at":{"value":"2024-12-20T18:50:28.402802"},"id":"bf731ebb-e9dd-4172-a90b-91c49471efac"}}]},"effects":{"value":[{"system":"5e2024","resource_id":"levelled_effect","stats":{"effect":{"value":{"system":"5e2024","resource_id":"effect","stats":{"name":{"value":"Cooks' Utensils Proficiency "},"trigger_condition":{"value":{"system":"5e2024","resource_id":"trigger_condition_or","stats":{"id":"929e2bc1-dfb8-4838-b336-95bfeec16d87"}}},"id":"c05d8dc7-973f-41d9-9505-ef467223a29a"}}},"id":"a77b76fb-3763-4808-9442-96ad7f6d7934"}},{"system":"5e2024","resource_id":"levelled_effect","stats":{"effect":{"value":{"system":"5e2024","resource_id":"effect","stats":{"name":{"value":"Cook Special Food (on short rests)"},"trigger_condition":{"value":{"system":"5e2024","resource_id":"trigger_condition_or","stats":{"id":"78bd487e-9566-4925-9ddb-f81e43fcffdd"}}},"has_charges":{"value":true},"recharge_event":{"value":"short_rest"},"max_charges_constant":{"value":1},"id":"800dd0fe-1b5a-4b4d-b1fc-8483e4731fad"}}},"id":"0d327e25-0eb6-4d99-b6f4-171b7cd7802c"}},{"system":"5e2024","resource_id":"levelled_effect","stats":{"effect":{"value":{"system":"5e2024","resource_id":"effect","stats":{"name":{"value":"Cook Treats (1 hour or long rest)"},"trigger_condition":{"value":{"system":"5e2024","resource_id":"trigger_condition_or","stats":{"id":"e9e5a89d-4c87-4456-aca8-084b48abf16c"}}},"id":"1f4a204d-2f4e-45ea-8ab5-51617a51d9c8"}}},"id":"fe9b37b9-5088-487d-9fa3-139e0b5f63c5"}}]},"selectable_feature_amount_per_level":{"value":[{"system":"5e2024","resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"bc494d30-eb26-4757-9da3-8b4e5bad4f1a"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"system":"5e2024","resource_id":"feat","stats":{"name":{"value":"Con Increase"},"effects":{"value":[{"system":"5e2024","resource_id":"levelled_effect","stats":{"effect":{"value":{"system":"5e2024","resource_id":"effect","stats":{"trigger_condition":{"value":{"system":"5e2024","resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"system":"5e2024","resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"system":"5e2024","resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.constitution_score"},"condition":{"value":"lower_than_equal"},"value":{"value":20.0},"id":"668447d2-1df6-4b01-93b9-2587098c5339"}}]},"id":"f6c85e5d-5a99-4703-8e74-3b6d285281a3"}}]},"id":"6f763dce-f053-4c47-85ac-77851e8d0664"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.constitution_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"9527ecf8-dd2c-4eca-bb90-593eb7ff114f"}}},"id":"b24f66e4-50a2-4aa2-aa58-ed590f2ff3c8"}}]},"id":"8e460936-1694-4452-a829-b371c041d490"}},{"system":"5e2024","resource_id":"feat","stats":{"name":{"value":"Wis Increase"},"effects":{"value":[{"system":"5e2024","resource_id":"levelled_effect","stats":{"effect":{"value":{"system":"5e2024","resource_id":"effect","stats":{"trigger_condition":{"value":{"system":"5e2024","resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"system":"5e2024","resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"system":"5e2024","resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.wisdom_score"},"condition":{"value":"lower_than_equal"},"value":{"value":20.0},"id":"49df9fb8-75a4-4298-9d7f-5f5ef7ba0267"}}]},"id":"655a5695-f327-4af2-a66e-67dbe7ad940e"}}]},"id":"ddd920e1-b2a5-4771-86c2-60b8784c592a"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.wisdom_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"aaa10514-d6e1-4085-b58b-b462e29aae7c"}}},"id":"cd8acfd8-a821-4a72-b654-058ed5975960"}}]},"id":"14aacfee-982a-4b85-9661-b21f240042a7"}}]},"updated_at":{"value":"2024-12-20T18:50:28.402805"},"id":"chef__tce_"}}
+{
+  "system": "5e2024",
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Chef"
+    },
+    "source": {
+      "value": "phb"
+    },
+    "prerequisites": {
+      "value": "Level 4+"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "system": "5e2024",
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "You gain the following benefits.\n\nAbility Score Increase. Increase your Constitution or Wisdom by 1, to a maximum of 20.\n\nCook's Utensils. You gain proficiency with Cook's Utensils if you don't already have it.\n\nReplenishing Meal. As part of a Short Rest, you can cook special food if you have ingredients and Cook's Utensils on hand. You can prepare enough of this food for a number of creatures equal to 4 plus your Proficiency Bonus. At the end of the Short Rest, any creature who eats the food and spends one or more Hit Dice to regain Hit Points regains an extra 1d8 Hit Points.\n\nBolstering Treats. With 1 hour of work or when you finish a Long Rest, you can cook a number of treats equal to your Proficiency Bonus if you have ingredients and Cook's Utensils on hand. These special treats last 8 hours after being made. A creature can use a Bonus Action to eat one of those treats to gain a number of Temporary Hit Points equal to your Proficiency Bonus"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.402802"
+            },
+            "id": "bf731ebb-e9dd-4172-a90b-91c49471efac"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "system": "5e2024",
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "system": "5e2024",
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Cooks' Utensils Proficiency "
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "system": "5e2024",
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "929e2bc1-dfb8-4838-b336-95bfeec16d87"
+                      }
+                    }
+                  },
+                  "id": "c05d8dc7-973f-41d9-9505-ef467223a29a"
+                }
+              }
+            },
+            "id": "a77b76fb-3763-4808-9442-96ad7f6d7934"
+          }
+        },
+        {
+          "system": "5e2024",
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "system": "5e2024",
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Cook Special Food (on short rests)"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "system": "5e2024",
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "78bd487e-9566-4925-9ddb-f81e43fcffdd"
+                      }
+                    }
+                  },
+                  "has_charges": {
+                    "value": true
+                  },
+                  "recharge_event": {
+                    "value": "short_rest"
+                  },
+                  "max_charges_constant": {
+                    "value": 1
+                  },
+                  "id": "800dd0fe-1b5a-4b4d-b1fc-8483e4731fad"
+                }
+              }
+            },
+            "id": "0d327e25-0eb6-4d99-b6f4-171b7cd7802c"
+          }
+        },
+        {
+          "system": "5e2024",
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "system": "5e2024",
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Cook Treats (1 hour or long rest)"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "system": "5e2024",
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "e9e5a89d-4c87-4456-aca8-084b48abf16c"
+                      }
+                    }
+                  },
+                  "id": "1f4a204d-2f4e-45ea-8ab5-51617a51d9c8"
+                }
+              }
+            },
+            "id": "fe9b37b9-5088-487d-9fa3-139e0b5f63c5"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "system": "5e2024",
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "bc494d30-eb26-4757-9da3-8b4e5bad4f1a"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "system": "5e2024",
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Con Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "system": "5e2024",
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "system": "5e2024",
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "system": "5e2024",
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "system": "5e2024",
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "system": "5e2024",
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.constitution_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than_equal"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "668447d2-1df6-4b01-93b9-2587098c5339"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "f6c85e5d-5a99-4703-8e74-3b6d285281a3"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "6f763dce-f053-4c47-85ac-77851e8d0664"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.constitution_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "9527ecf8-dd2c-4eca-bb90-593eb7ff114f"
+                        }
+                      }
+                    },
+                    "id": "b24f66e4-50a2-4aa2-aa58-ed590f2ff3c8"
+                  }
+                }
+              ]
+            },
+            "id": "8e460936-1694-4452-a829-b371c041d490"
+          }
+        },
+        {
+          "system": "5e2024",
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Wis Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "system": "5e2024",
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "system": "5e2024",
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "system": "5e2024",
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "system": "5e2024",
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "system": "5e2024",
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.wisdom_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than_equal"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "49df9fb8-75a4-4298-9d7f-5f5ef7ba0267"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "655a5695-f327-4af2-a66e-67dbe7ad940e"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "ddd920e1-b2a5-4771-86c2-60b8784c592a"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.wisdom_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "aaa10514-d6e1-4085-b58b-b462e29aae7c"
+                        }
+                      }
+                    },
+                    "id": "cd8acfd8-a821-4a72-b654-058ed5975960"
+                  }
+                }
+              ]
+            },
+            "id": "14aacfee-982a-4b85-9661-b21f240042a7"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.402805"
+    },
+    "id": "chef__tce_"
+  }
+}

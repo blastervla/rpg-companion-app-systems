@@ -1,1 +1,294 @@
-{"resource_id":"feat","stats":{"name":{"value":"Barbed Hide"},"source":{"value":"ua"},"prerequisites":{"value":"Tiefling"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"One of your ancestors was a barbed devil or other spiky fiend. Barbs protrude from your head. You gain the following benefits:\n\n- Increase your Constitution or Charisma score by 1, up to a maximum of 20.\n\n- You gain proficiency in the Intimidation skill. If you're already proficient in it, your proficiency bonus is doubled for any check you make with it.\n\n- As a bonus action, you can cause small barbs to protrude all over your body or cause them to retract. At the start of each of your turns while the barbs are out, you deal 1d6 piercing damage to any creature grappling you or any creature grappled by you"},"updated_at":{"value":"2024-12-20T18:50:28.406517"},"id":"33b0813a-fb36-4597-9e55-438865dc31ea"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Charisma or Constitution Increase"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"b443a00b-87c6-4096-80ae-8bc6dd97a0aa"}}},"id":"50a7f7b7-c0a5-4e2b-b714-63d27098496c"}}},"id":"8b325831-e134-4c06-a499-8741264341e5"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Intimidation Proficiency"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"09615af0-5388-4228-b2f7-a1977abb6a69"}}},"stat":{"value":"$character.intimidation"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"46e500e2-faa7-46ee-8193-6f157f715821"}}},"id":"e02b9083-c140-4edb-ada4-4f68893dd4c1"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Special Defense (Grappling)"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"cb00efb7-11a1-49e3-b4b0-413d9978d0d8"}}},"id":"d1abfef5-76ea-45e8-84be-e231920b65f4"}}},"id":"eb5de0c3-9ee0-4d1d-8045-dc44f86b0a18"}}]},"selectable_feature_amount_per_level":{"value":[{"resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"a85b22e9-5776-4a72-80b8-e605933f07e7"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Cha Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.charisma_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"cef7c33f-8589-44b5-b75a-419678ec0ba6"}}]},"id":"de3e91b3-1f24-41e1-8ba7-90950ab5199a"}}]},"id":"7b1f9182-db33-494e-973a-ca083cd4ecfe"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.charisma_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"dcc5a0ad-4656-4547-9cf4-23d6771637f2"}}},"id":"c0a7fbf8-ff34-469a-9d27-bf6ca8783cb2"}}]},"id":"86aa9369-cdf7-46ce-bf71-e4fedd8bb3f9"}},{"resource_id":"feat","stats":{"name":{"value":"Con Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.constitution_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"0071e480-8ddc-44d8-afb7-30c8492ca1c9"}}]},"id":"94c69098-c85b-44b1-88da-90e7231d545a"}}]},"id":"33b7a898-3290-4add-83d0-582066ea8a49"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.constitution_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"f674a58f-0833-4ae1-813f-706667e79c86"}}},"id":"adfb2692-0a26-4bd9-845a-ec240ce0d47c"}}]},"id":"3f4a223a-1f4a-45f4-adaf-18eeb3f22117"}}]},"updated_at":{"value":"2024-12-20T18:50:28.406520"},"id":"barbed_hide"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Barbed Hide"
+    },
+    "source": {
+      "value": "ua"
+    },
+    "prerequisites": {
+      "value": "Tiefling"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "One of your ancestors was a barbed devil or other spiky fiend. Barbs protrude from your head. You gain the following benefits:\n\n- Increase your Constitution or Charisma score by 1, up to a maximum of 20.\n\n- You gain proficiency in the Intimidation skill. If you're already proficient in it, your proficiency bonus is doubled for any check you make with it.\n\n- As a bonus action, you can cause small barbs to protrude all over your body or cause them to retract. At the start of each of your turns while the barbs are out, you deal 1d6 piercing damage to any creature grappling you or any creature grappled by you"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.406517"
+            },
+            "id": "33b0813a-fb36-4597-9e55-438865dc31ea"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Charisma or Constitution Increase"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "b443a00b-87c6-4096-80ae-8bc6dd97a0aa"
+                      }
+                    }
+                  },
+                  "id": "50a7f7b7-c0a5-4e2b-b714-63d27098496c"
+                }
+              }
+            },
+            "id": "8b325831-e134-4c06-a499-8741264341e5"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Intimidation Proficiency"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "09615af0-5388-4228-b2f7-a1977abb6a69"
+                      }
+                    }
+                  },
+                  "stat": {
+                    "value": "$character.intimidation"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "46e500e2-faa7-46ee-8193-6f157f715821"
+                }
+              }
+            },
+            "id": "e02b9083-c140-4edb-ada4-4f68893dd4c1"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Special Defense (Grappling)"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "cb00efb7-11a1-49e3-b4b0-413d9978d0d8"
+                      }
+                    }
+                  },
+                  "id": "d1abfef5-76ea-45e8-84be-e231920b65f4"
+                }
+              }
+            },
+            "id": "eb5de0c3-9ee0-4d1d-8045-dc44f86b0a18"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "a85b22e9-5776-4a72-80b8-e605933f07e7"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Cha Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.charisma_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "cef7c33f-8589-44b5-b75a-419678ec0ba6"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "de3e91b3-1f24-41e1-8ba7-90950ab5199a"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "7b1f9182-db33-494e-973a-ca083cd4ecfe"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.charisma_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "dcc5a0ad-4656-4547-9cf4-23d6771637f2"
+                        }
+                      }
+                    },
+                    "id": "c0a7fbf8-ff34-469a-9d27-bf6ca8783cb2"
+                  }
+                }
+              ]
+            },
+            "id": "86aa9369-cdf7-46ce-bf71-e4fedd8bb3f9"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Con Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.constitution_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "0071e480-8ddc-44d8-afb7-30c8492ca1c9"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "94c69098-c85b-44b1-88da-90e7231d545a"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "33b7a898-3290-4add-83d0-582066ea8a49"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.constitution_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "f674a58f-0833-4ae1-813f-706667e79c86"
+                        }
+                      }
+                    },
+                    "id": "adfb2692-0a26-4bd9-845a-ec240ce0d47c"
+                  }
+                }
+              ]
+            },
+            "id": "3f4a223a-1f4a-45f4-adaf-18eeb3f22117"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.406520"
+    },
+    "id": "barbed_hide"
+  }
+}

@@ -1,1 +1,246 @@
-{"resource_id":"feat","stats":{"name":{"value":"Critter Friend"},"source":{"value":"ua"},"prerequisites":{"value":"Gnome (forest)"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"description":{"value":"Your friendship with animals mystically deepens. You gain the following benefits:\n\n- You gain proficiency in the Animal Handling skill. If you're already proficient in it, your proficiency bonus is doubled for any check you make with it.\n\n- You learn the Speak with Animals spell and can cast it at will, without expending a spell slot. You also learn the Animal Friendship spell, and you can cast it once with this feat, without expending a spell slot. You regain the ability to cast it in this way when you finish a long rest. Wisdom is your spellcasting ability for these spells"},"updated_at":{"value":"2024-12-20T18:50:28.420057"},"id":"ef58b464-6038-47d9-9587-0f0a4cc3a141"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Animal Handling Proficiency"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"7451f4f3-cecb-4dd4-bffd-72a333cf41bc"}}},"stat":{"value":"$character.animal_handling"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"d88a6606-5099-4d77-8a7e-ec26c09c49ac"}}},"id":"60ab46f0-a27e-4de4-8bb6-c84bbed881c2"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"3f298f67-b538-4667-bfe7-387b37b543b5"}}},"type":{"value":"add_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Speak with Animals"},"source":{"value":"phb"},"level":{"value":"spell_level_1"},"school":{"value":"spell_school_divination"},"ritual":{"value":true},"casting_time":{"value":"1 action"},"range":{"value":"Self"},"duration":{"value":"10 minutes"},"verbal":{"value":true},"somatic":{"value":true},"description":{"value":"You gain the ability to comprehend and verbally communicate with beasts for the duration. The knowledge and awareness of many beasts is limited by their intelligence, but at a minimum, beasts can give you information about nearby locations and monsters, including whatever they can perceive or have perceived within the past day. You might be able to persuade a beast to perform a small favor for you, at the GM's discretion."},"classes":{"value":["bard","druid","ranger__revised__","revised_ranger","ranger"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.622967"},"id":"5b19b8f1-4310-4bdb-904c-b1760c5f7fdf"}}},"id":"c59cd58e-36b8-4504-a374-5af93b3e7a5a"}}},"id":"cad9b8be-9b80-4434-83bf-70b7276c561a"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"36afb75d-6e00-47b1-986f-a615d1ecffa2"}}},"has_charges":{"value":true},"max_charges_constant":{"value":1},"type":{"value":"add_spell"},"spell":{"value":{"resource_id":"spell","stats":{"name":{"value":"Animal Friendship"},"source":{"value":"phb"},"level":{"value":"spell_level_1"},"school":{"value":"spell_school_enchantment"},"casting_time":{"value":"1 action"},"range":{"value":"30 feet"},"duration":{"value":"24 hours"},"verbal":{"value":true},"somatic":{"value":true},"material":{"value":true},"components":{"value":"a morsel of food"},"description":{"value":"This spell lets you convince a beast that you mean it no harm. Choose a beast that you can see within range. It must see and hear you. If the beast's Intelligence is 4 or higher, the spell fails. Otherwise, the beast must succeed on a Wisdom saving throw or be charmed by you for the spell's duration. If you or one of your companions harms the target, the spell ends."},"higher_level_description":{"value":"When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional beast for each slot level above 1st."},"classes":{"value":["bard","druid","ranger__revised__","revised_ranger","ranger"]},"dice":{"value":[]},"updated_at":{"value":"2024-12-20T18:50:46.604570"},"id":"17239576-bc91-4df5-a805-d1b826235406"}}},"id":"af9cf26b-8f2b-4058-b27b-ca6e950be56d"}}},"id":"0b252804-f1b0-4277-b866-ef7a52441c0d"}}]},"updated_at":{"value":"2024-12-20T18:50:28.420060"},"id":"critter_friend"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Critter Friend"
+    },
+    "source": {
+      "value": "ua"
+    },
+    "prerequisites": {
+      "value": "Gnome (forest)"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "description": {
+              "value": "Your friendship with animals mystically deepens. You gain the following benefits:\n\n- You gain proficiency in the Animal Handling skill. If you're already proficient in it, your proficiency bonus is doubled for any check you make with it.\n\n- You learn the Speak with Animals spell and can cast it at will, without expending a spell slot. You also learn the Animal Friendship spell, and you can cast it once with this feat, without expending a spell slot. You regain the ability to cast it in this way when you finish a long rest. Wisdom is your spellcasting ability for these spells"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.420057"
+            },
+            "id": "ef58b464-6038-47d9-9587-0f0a4cc3a141"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Animal Handling Proficiency"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "7451f4f3-cecb-4dd4-bffd-72a333cf41bc"
+                      }
+                    }
+                  },
+                  "stat": {
+                    "value": "$character.animal_handling"
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "id": "d88a6606-5099-4d77-8a7e-ec26c09c49ac"
+                }
+              }
+            },
+            "id": "60ab46f0-a27e-4de4-8bb6-c84bbed881c2"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "3f298f67-b538-4667-bfe7-387b37b543b5"
+                      }
+                    }
+                  },
+                  "type": {
+                    "value": "add_spell"
+                  },
+                  "spell": {
+                    "value": {
+                      "resource_id": "spell",
+                      "stats": {
+                        "name": {
+                          "value": "Speak with Animals"
+                        },
+                        "source": {
+                          "value": "phb"
+                        },
+                        "level": {
+                          "value": "spell_level_1"
+                        },
+                        "school": {
+                          "value": "spell_school_divination"
+                        },
+                        "ritual": {
+                          "value": true
+                        },
+                        "casting_time": {
+                          "value": "1 action"
+                        },
+                        "range": {
+                          "value": "Self"
+                        },
+                        "duration": {
+                          "value": "10 minutes"
+                        },
+                        "verbal": {
+                          "value": true
+                        },
+                        "somatic": {
+                          "value": true
+                        },
+                        "description": {
+                          "value": "You gain the ability to comprehend and verbally communicate with beasts for the duration. The knowledge and awareness of many beasts is limited by their intelligence, but at a minimum, beasts can give you information about nearby locations and monsters, including whatever they can perceive or have perceived within the past day. You might be able to persuade a beast to perform a small favor for you, at the GM's discretion."
+                        },
+                        "classes": {
+                          "value": [
+                            "bard",
+                            "druid",
+                            "ranger__revised__",
+                            "revised_ranger",
+                            "ranger"
+                          ]
+                        },
+                        "dice": {
+                          "value": []
+                        },
+                        "updated_at": {
+                          "value": "2024-12-20T18:50:46.622967"
+                        },
+                        "id": "5b19b8f1-4310-4bdb-904c-b1760c5f7fdf"
+                      }
+                    }
+                  },
+                  "id": "c59cd58e-36b8-4504-a374-5af93b3e7a5a"
+                }
+              }
+            },
+            "id": "cad9b8be-9b80-4434-83bf-70b7276c561a"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "36afb75d-6e00-47b1-986f-a615d1ecffa2"
+                      }
+                    }
+                  },
+                  "has_charges": {
+                    "value": true
+                  },
+                  "max_charges_constant": {
+                    "value": 1
+                  },
+                  "type": {
+                    "value": "add_spell"
+                  },
+                  "spell": {
+                    "value": {
+                      "resource_id": "spell",
+                      "stats": {
+                        "name": {
+                          "value": "Animal Friendship"
+                        },
+                        "source": {
+                          "value": "phb"
+                        },
+                        "level": {
+                          "value": "spell_level_1"
+                        },
+                        "school": {
+                          "value": "spell_school_enchantment"
+                        },
+                        "casting_time": {
+                          "value": "1 action"
+                        },
+                        "range": {
+                          "value": "30 feet"
+                        },
+                        "duration": {
+                          "value": "24 hours"
+                        },
+                        "verbal": {
+                          "value": true
+                        },
+                        "somatic": {
+                          "value": true
+                        },
+                        "material": {
+                          "value": true
+                        },
+                        "components": {
+                          "value": "a morsel of food"
+                        },
+                        "description": {
+                          "value": "This spell lets you convince a beast that you mean it no harm. Choose a beast that you can see within range. It must see and hear you. If the beast's Intelligence is 4 or higher, the spell fails. Otherwise, the beast must succeed on a Wisdom saving throw or be charmed by you for the spell's duration. If you or one of your companions harms the target, the spell ends."
+                        },
+                        "higher_level_description": {
+                          "value": "When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional beast for each slot level above 1st."
+                        },
+                        "classes": {
+                          "value": [
+                            "bard",
+                            "druid",
+                            "ranger__revised__",
+                            "revised_ranger",
+                            "ranger"
+                          ]
+                        },
+                        "dice": {
+                          "value": []
+                        },
+                        "updated_at": {
+                          "value": "2024-12-20T18:50:46.604570"
+                        },
+                        "id": "17239576-bc91-4df5-a805-d1b826235406"
+                      }
+                    }
+                  },
+                  "id": "af9cf26b-8f2b-4058-b27b-ca6e950be56d"
+                }
+              }
+            },
+            "id": "0b252804-f1b0-4277-b866-ef7a52441c0d"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.420060"
+    },
+    "id": "critter_friend"
+  }
+}

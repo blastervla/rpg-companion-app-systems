@@ -1,1 +1,356 @@
-{"resource_id": "monster", "stats": {"id": "bandit_captain", "name": {"value": "Bandit Captain"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/bandit_captain.png"}}, "source": {"value": "mm"}, "tag": {"value": "any race"}, "armor_class": {"value": 15}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 10}, "dice_type": {"value": "d8"}, "constant": {"value": 20}, "id": "1d91c4d5-6257-4814-aab4-c19e956ff78c", "updated_at": {"value": "2025-08-03T22:40:59.817891"}}}}, "cr": {"value": "cr_2"}, "xp": {"value": 450}, "initiative": {"value": 3}, "speed": {"value": 30}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 0}, "fly_speed": {"value": 0}, "swim_speed": {"value": 0}, "strength_score": {"value": 15}, "dexterity_score": {"value": 16}, "constitution_score": {"value": 14}, "intelligence_score": {"value": 14}, "wisdom_score": {"value": 11}, "charisma_score": {"value": 14}, "strength_saving_throw_modifier": {"value": 4}, "dexterity_saving_throw_modifier": {"value": 5}, "constitution_saving_throw_modifier": {"value": 0}, "intelligence_saving_throw_modifier": {"value": 0}, "wisdom_saving_throw_modifier": {"value": 2}, "charisma_saving_throw_modifier": {"value": 0}, "skills": {"value": "Athletics +4, Deception +4"}, "vulnerabilities": {"value": ""}, "immunities": {"value": ""}, "resistances": {"value": ""}, "senses": {"value": ""}, "languages": {"value": "any two languages"}, "size": {"value": "medium"}, "type": {"value": "humanoid"}, "alignment": {"value": "chaotic_neutral"}, "traits": {"value": []}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Multiattack"}, "action_description": {"value": "The captain makes three melee attacks: two with its scimitar and one with its dagger. Or the captain makes two ranged attacks with its daggers."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "b8c687c8-fd19-4536-be57-9275df899a7e", "updated_at": {"value": "2025-08-03T22:40:59.817921"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Scimitar"}, "action_description": {"value": "+5 to hit, reach 5 ft., one target. Hit: 6 (1d6 + 3) slashing damage."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 5}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "slashing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 1}, "dice_type": {"value": "d6"}, "constant": {"value": 3}, "id": "c8c1f34f-4ab6-45b5-9c81-ff113647abf7", "updated_at": {"value": "2025-08-03T22:40:59.817935"}}}}, "id": "48cfbcba-708a-4c7a-b4cd-7c8cf20936f6", "updated_at": {"value": "2025-08-03T22:40:59.817939"}}}]}, "id": "cb2306df-14e9-4a49-935b-fa3439ffcc52", "updated_at": {"value": "2025-08-03T22:40:59.817946"}}}]}, "id": "93acbeac-156f-4a5f-9f7a-07121ec297f2", "updated_at": {"value": "2025-08-03T22:40:59.817951"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Dagger"}, "action_description": {"value": "+5 to hit, reach 5 ft. Or range 20/60 ft., one target. Hit: 5 (1d4 + 3) piercing damage.Reactions"}, "action_type": {"value": "ranged"}, "action_attack_bonus": {"value": 5}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "piercing"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 1}, "dice_type": {"value": "d4"}, "constant": {"value": 3}, "id": "fe112a95-f516-4279-b54a-45e7661bf46f", "updated_at": {"value": "2025-08-03T22:40:59.817964"}}}}, "id": "868adc93-7fa0-40d4-a952-4a942dbf21b9", "updated_at": {"value": "2025-08-03T22:40:59.817968"}}}]}, "id": "3bce2f7e-6d27-4f56-a98d-e542d431fd8d", "updated_at": {"value": "2025-08-03T22:40:59.817975"}}}]}, "id": "2b81cfe6-5a2e-437a-b171-fa190cb46272", "updated_at": {"value": "2025-08-03T22:40:59.817980"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Parry"}, "action_description": {"value": "The captain adds 2 to its AC against one melee attack that would hit it. To do so, the captain must see the attacker and be wielding a melee weapon."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "78166a7c-3042-4906-b211-7e8bece6ddec", "updated_at": {"value": "2025-08-03T22:40:59.817989"}}}]}, "bonus_actions": {"value": []}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["coastal", "hill", "arctic", "urban", "forest", "desert"]}, "updated_at": {"value": "2025-08-03T22:40:59.818001"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "bandit_captain",
+    "name": {
+      "value": "Bandit Captain"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/bandit_captain.png"
+      }
+    },
+    "source": {
+      "value": "mm"
+    },
+    "tag": {
+      "value": "any race"
+    },
+    "armor_class": {
+      "value": 15
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 10
+          },
+          "dice_type": {
+            "value": "d8"
+          },
+          "constant": {
+            "value": 20
+          },
+          "id": "1d91c4d5-6257-4814-aab4-c19e956ff78c",
+          "updated_at": {
+            "value": "2025-08-03T22:40:59.817891"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_2"
+    },
+    "xp": {
+      "value": 450
+    },
+    "initiative": {
+      "value": 3
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_score": {
+      "value": 15
+    },
+    "dexterity_score": {
+      "value": 16
+    },
+    "constitution_score": {
+      "value": 14
+    },
+    "intelligence_score": {
+      "value": 14
+    },
+    "wisdom_score": {
+      "value": 11
+    },
+    "charisma_score": {
+      "value": 14
+    },
+    "strength_saving_throw_modifier": {
+      "value": 4
+    },
+    "dexterity_saving_throw_modifier": {
+      "value": 5
+    },
+    "constitution_saving_throw_modifier": {
+      "value": 0
+    },
+    "intelligence_saving_throw_modifier": {
+      "value": 0
+    },
+    "wisdom_saving_throw_modifier": {
+      "value": 2
+    },
+    "charisma_saving_throw_modifier": {
+      "value": 0
+    },
+    "skills": {
+      "value": "Athletics +4, Deception +4"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": ""
+    },
+    "languages": {
+      "value": "any two languages"
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "alignment": {
+      "value": "chaotic_neutral"
+    },
+    "traits": {
+      "value": []
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Multiattack"
+            },
+            "action_description": {
+              "value": "The captain makes three melee attacks: two with its scimitar and one with its dagger. Or the captain makes two ranged attacks with its daggers."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "b8c687c8-fd19-4536-be57-9275df899a7e",
+            "updated_at": {
+              "value": "2025-08-03T22:40:59.817921"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Scimitar"
+            },
+            "action_description": {
+              "value": "+5 to hit, reach 5 ft., one target. Hit: 6 (1d6 + 3) slashing damage."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 5
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 1
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 3
+                                  },
+                                  "id": "c8c1f34f-4ab6-45b5-9c81-ff113647abf7",
+                                  "updated_at": {
+                                    "value": "2025-08-03T22:40:59.817935"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "48cfbcba-708a-4c7a-b4cd-7c8cf20936f6",
+                            "updated_at": {
+                              "value": "2025-08-03T22:40:59.817939"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "cb2306df-14e9-4a49-935b-fa3439ffcc52",
+                    "updated_at": {
+                      "value": "2025-08-03T22:40:59.817946"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "93acbeac-156f-4a5f-9f7a-07121ec297f2",
+            "updated_at": {
+              "value": "2025-08-03T22:40:59.817951"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Dagger"
+            },
+            "action_description": {
+              "value": "+5 to hit, reach 5 ft. Or range 20/60 ft., one target. Hit: 5 (1d4 + 3) piercing damage.Reactions"
+            },
+            "action_type": {
+              "value": "ranged"
+            },
+            "action_attack_bonus": {
+              "value": 5
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 1
+                                  },
+                                  "dice_type": {
+                                    "value": "d4"
+                                  },
+                                  "constant": {
+                                    "value": 3
+                                  },
+                                  "id": "fe112a95-f516-4279-b54a-45e7661bf46f",
+                                  "updated_at": {
+                                    "value": "2025-08-03T22:40:59.817964"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "868adc93-7fa0-40d4-a952-4a942dbf21b9",
+                            "updated_at": {
+                              "value": "2025-08-03T22:40:59.817968"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "3bce2f7e-6d27-4f56-a98d-e542d431fd8d",
+                    "updated_at": {
+                      "value": "2025-08-03T22:40:59.817975"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "2b81cfe6-5a2e-437a-b171-fa190cb46272",
+            "updated_at": {
+              "value": "2025-08-03T22:40:59.817980"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Parry"
+            },
+            "action_description": {
+              "value": "The captain adds 2 to its AC against one melee attack that would hit it. To do so, the captain must see the attacker and be wielding a melee weapon."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "78166a7c-3042-4906-b211-7e8bece6ddec",
+            "updated_at": {
+              "value": "2025-08-03T22:40:59.817989"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "coastal",
+        "hill",
+        "arctic",
+        "urban",
+        "forest",
+        "desert"
+      ]
+    },
+    "updated_at": {
+      "value": "2025-08-03T22:40:59.818001"
+    }
+  }
+}

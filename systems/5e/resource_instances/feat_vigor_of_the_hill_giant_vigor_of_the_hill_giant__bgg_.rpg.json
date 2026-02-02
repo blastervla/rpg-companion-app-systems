@@ -1,1 +1,333 @@
-{"resource_id":"feat","stats":{"name":{"value":"Vigor of the Hill Giant"},"source":{"value":"bgg"},"prerequisites":{"value":"4th level, strike of the giants (hill strike) feat"},"descriptions":{"value":[{"resource_id":"levelled_description","stats":{"level":{"value":4},"description":{"value":"You've manifested the resilience emblematic of hill giants, granting you the following benefits:\nAbility Score Increase. Increase your Strength, Constitution, or Wisdom by 1, to a maximum of 20.\n\nBulwark: When you are subjected to an effect that would move you at least 5 feet or give you the prone condition, you can use your reaction to steady yourself. You aren't moved and don't have the prone condition.\n\nIron Stomach. Whenever you eat food as part of a short rest and spend one or more Hit Dice to regain hit points, you regain additional hit points equal to your Constitution modifier + your proficiency bonus"},"updated_at":{"value":"2024-12-20T18:50:28.425686"},"id":"910314fa-b992-422a-9f0a-651cb9a24d4b"}}]},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Bulwark"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"2d77b2fc-691f-4017-b8a3-14cf4b74cf11"}}},"id":"dc24262f-078b-4d3e-835b-d6757651aa04"}}},"id":"d36ad15c-41d1-47dd-9c02-fbcb89ca39ef"}},{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"name":{"value":"Iron Stomach"},"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"id":"27f3bab0-5d69-4d87-9100-caec3e6152a8"}}},"id":"d522d96e-faba-42c2-b989-61c2459e733d"}}},"id":"e558117e-ee0a-4034-af2f-568152ddecf6"}}]},"selectable_feature_amount_per_level":{"value":[{"resource_id":"levelled_amount","stats":{"amount":{"value":1},"id":"d05ffa71-875c-4b02-a36b-03fefdb3f426"}}]},"has_selectable_features":{"value":true},"selectable_features":{"value":[{"resource_id":"feat","stats":{"name":{"value":"Str Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"a05a78d7-6541-4766-b37b-a662de10d397"}}]},"id":"7218a34c-8195-43cc-998b-c6c3f4a2df46"}}]},"id":"c8c40228-4aca-4176-a435-86ab8d098b6f"}}},"type":{"value":"add_to_stat"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"74af1525-4850-49f0-89c2-6e1140ed94b5"}}},"id":"17ea46ed-9825-4797-a9c7-877320b3aad7"}}]},"id":"6a40b535-081c-4954-adbb-1d50bececbf6"}},{"resource_id":"feat","stats":{"name":{"value":"Con Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.constitution_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"53710cb1-6b1f-4e03-aee2-dd4f6bcde2f3"}}]},"id":"1c86ac9f-2927-42f6-8274-c851bc629d66"}}]},"id":"6ee8dfc4-1e07-492e-940d-43aa1661de52"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.constitution_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"2e8364d2-6754-481c-bc3b-ee7bfe88cbe0"}}},"id":"0b106b30-097c-47fe-a488-1d2394c3d692"}}]},"id":"176a259a-400e-440a-8d62-9300be7797d0"}},{"resource_id":"feat","stats":{"name":{"value":"Wis Increase"},"effects":{"value":[{"resource_id":"levelled_effect","stats":{"effect":{"value":{"resource_id":"effect","stats":{"trigger_condition":{"value":{"resource_id":"trigger_condition_or","stats":{"terms":{"value":[{"resource_id":"trigger_condition_and","stats":{"terms":{"value":[{"resource_id":"trigger_condition_term","stats":{"stat":{"value":"$character.wisdom_score"},"condition":{"value":"lower_than"},"value":{"value":20.0},"id":"08cd89f0-1f5d-421e-84d7-8772f3e53a42"}}]},"id":"ef3c2438-78cc-4c5d-b5fa-3f68e2595a39"}}]},"id":"05381271-1f37-4595-aa90-e842bf2b261b"}}},"type":{"value":"add_to_stat"},"stat":{"value":"$character.wisdom_score"},"aggregation_type":{"value":"sum"},"constant":{"value":1},"id":"14ffcdd9-6852-4fea-83b1-d14380bf3505"}}},"id":"e327476f-2d50-4b9c-9c06-4f5b495437d3"}}]},"id":"bd06e031-70c5-4f82-b453-6752e4448430"}}]},"updated_at":{"value":"2024-12-20T18:50:28.425688"},"id":"vigor_of_the_hill_giant__bgg_"}}
+{
+  "resource_id": "feat",
+  "stats": {
+    "name": {
+      "value": "Vigor of the Hill Giant"
+    },
+    "source": {
+      "value": "bgg"
+    },
+    "prerequisites": {
+      "value": "4th level, strike of the giants (hill strike) feat"
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "level": {
+              "value": 4
+            },
+            "description": {
+              "value": "You've manifested the resilience emblematic of hill giants, granting you the following benefits:\nAbility Score Increase. Increase your Strength, Constitution, or Wisdom by 1, to a maximum of 20.\n\nBulwark: When you are subjected to an effect that would move you at least 5 feet or give you the prone condition, you can use your reaction to steady yourself. You aren't moved and don't have the prone condition.\n\nIron Stomach. Whenever you eat food as part of a short rest and spend one or more Hit Dice to regain hit points, you regain additional hit points equal to your Constitution modifier + your proficiency bonus"
+            },
+            "updated_at": {
+              "value": "2024-12-20T18:50:28.425686"
+            },
+            "id": "910314fa-b992-422a-9f0a-651cb9a24d4b"
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Bulwark"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "2d77b2fc-691f-4017-b8a3-14cf4b74cf11"
+                      }
+                    }
+                  },
+                  "id": "dc24262f-078b-4d3e-835b-d6757651aa04"
+                }
+              }
+            },
+            "id": "d36ad15c-41d1-47dd-9c02-fbcb89ca39ef"
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "name": {
+                    "value": "Iron Stomach"
+                  },
+                  "trigger_condition": {
+                    "value": {
+                      "resource_id": "trigger_condition_or",
+                      "stats": {
+                        "id": "27f3bab0-5d69-4d87-9100-caec3e6152a8"
+                      }
+                    }
+                  },
+                  "id": "d522d96e-faba-42c2-b989-61c2459e733d"
+                }
+              }
+            },
+            "id": "e558117e-ee0a-4034-af2f-568152ddecf6"
+          }
+        }
+      ]
+    },
+    "selectable_feature_amount_per_level": {
+      "value": [
+        {
+          "resource_id": "levelled_amount",
+          "stats": {
+            "amount": {
+              "value": 1
+            },
+            "id": "d05ffa71-875c-4b02-a36b-03fefdb3f426"
+          }
+        }
+      ]
+    },
+    "has_selectable_features": {
+      "value": true
+    },
+    "selectable_features": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Str Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "a05a78d7-6541-4766-b37b-a662de10d397"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "7218a34c-8195-43cc-998b-c6c3f4a2df46"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "c8c40228-4aca-4176-a435-86ab8d098b6f"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "74af1525-4850-49f0-89c2-6e1140ed94b5"
+                        }
+                      }
+                    },
+                    "id": "17ea46ed-9825-4797-a9c7-877320b3aad7"
+                  }
+                }
+              ]
+            },
+            "id": "6a40b535-081c-4954-adbb-1d50bececbf6"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Con Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.constitution_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "53710cb1-6b1f-4e03-aee2-dd4f6bcde2f3"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "1c86ac9f-2927-42f6-8274-c851bc629d66"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "6ee8dfc4-1e07-492e-940d-43aa1661de52"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.constitution_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "2e8364d2-6754-481c-bc3b-ee7bfe88cbe0"
+                        }
+                      }
+                    },
+                    "id": "0b106b30-097c-47fe-a488-1d2394c3d692"
+                  }
+                }
+              ]
+            },
+            "id": "176a259a-400e-440a-8d62-9300be7797d0"
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "name": {
+              "value": "Wis Increase"
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "trigger_condition": {
+                            "value": {
+                              "resource_id": "trigger_condition_or",
+                              "stats": {
+                                "terms": {
+                                  "value": [
+                                    {
+                                      "resource_id": "trigger_condition_and",
+                                      "stats": {
+                                        "terms": {
+                                          "value": [
+                                            {
+                                              "resource_id": "trigger_condition_term",
+                                              "stats": {
+                                                "stat": {
+                                                  "value": "$character.wisdom_score"
+                                                },
+                                                "condition": {
+                                                  "value": "lower_than"
+                                                },
+                                                "value": {
+                                                  "value": 20.0
+                                                },
+                                                "id": "08cd89f0-1f5d-421e-84d7-8772f3e53a42"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "id": "ef3c2438-78cc-4c5d-b5fa-3f68e2595a39"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "id": "05381271-1f37-4595-aa90-e842bf2b261b"
+                              }
+                            }
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.wisdom_score"
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "id": "14ffcdd9-6852-4fea-83b1-d14380bf3505"
+                        }
+                      }
+                    },
+                    "id": "e327476f-2d50-4b9c-9c06-4f5b495437d3"
+                  }
+                }
+              ]
+            },
+            "id": "bd06e031-70c5-4f82-b453-6752e4448430"
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2024-12-20T18:50:28.425688"
+    },
+    "id": "vigor_of_the_hill_giant__bgg_"
+  }
+}

@@ -1,1 +1,310 @@
-{"resource_id": "monster", "stats": {"id": "mummy", "name": {"value": "Mummy"}, "photo": {"value": {"url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/mummy.png"}}, "source": {"value": "mm"}, "tag": {"value": null}, "armor_class": {"value": 11}, "hit_points": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 9}, "dice_type": {"value": "d8"}, "constant": {"value": 18}, "id": "f2a34e7e-2534-44bd-896f-aee5f3cda63c", "updated_at": {"value": "2025-08-03T22:41:00.308640"}}}}, "cr": {"value": "cr_3"}, "xp": {"value": 700}, "initiative": {"value": -1}, "speed": {"value": 20}, "burrow_speed": {"value": 0}, "climb_speed": {"value": 0}, "fly_speed": {"value": 0}, "swim_speed": {"value": 0}, "strength_score": {"value": 16}, "dexterity_score": {"value": 8}, "constitution_score": {"value": 15}, "intelligence_score": {"value": 6}, "wisdom_score": {"value": 10}, "charisma_score": {"value": 12}, "strength_saving_throw_modifier": {"value": 0}, "dexterity_saving_throw_modifier": {"value": 0}, "constitution_saving_throw_modifier": {"value": 0}, "intelligence_saving_throw_modifier": {"value": 0}, "wisdom_saving_throw_modifier": {"value": 2}, "charisma_saving_throw_modifier": {"value": 0}, "skills": {"value": ""}, "vulnerabilities": {"value": "fire"}, "immunities": {"value": "necrotic, poisoned; bludgeoning, piercing, and slashing from nonmagical weapons"}, "resistances": {"value": ""}, "senses": {"value": "darkvision 60 ft."}, "languages": {"value": "the languages it knew in life"}, "size": {"value": "medium"}, "type": {"value": "undead"}, "alignment": {"value": "lawful_evil"}, "traits": {"value": []}, "actions": {"value": [{"resource_id": "monster_action", "stats": {"action_name": {"value": "Multiattack"}, "action_description": {"value": "The mummy can use its Dreadful Glare and makes one attack with its rotting fist."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "bff7faf9-533a-4562-a0d2-c09c3f4f1aed", "updated_at": {"value": "2025-08-03T22:41:00.308662"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Rotting fist"}, "action_description": {"value": "+5 to hit, reach 5 ft., one target. Hit: 10 (2d6 + 3) bludgeoning damage plus 10 (3d6) necrotic damage. If the target is a creature, it must succeed on a DC 12 Constitution saving throw or be cursed with mummy rot. The cursed target can't regain hit points, and its hit point maximum decreases by 10 (3d6) for every 24 hours that elapse. If the curse reduces the target's hit point maximum to 0, the target dies, and its body turns to dust. The curse lasts until removed by the remove curse spell or other magic."}, "action_type": {"value": "melee"}, "action_attack_bonus": {"value": 5}, "action_damage_variants": {"value": [{"resource_id": "damage_variant", "stats": {"variant_name": {"value": "Default"}, "variant_damage_dice": {"value": [{"resource_id": "damage_dice", "stats": {"damage_type": {"value": "bludgeoning"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 2}, "dice_type": {"value": "d6"}, "constant": {"value": 3}, "id": "36b9e3d9-d831-4751-8986-96a433db4127", "updated_at": {"value": "2025-08-03T22:41:00.308683"}}}}, "id": "59ba31f6-8686-4e3c-b441-ceb4821afd21", "updated_at": {"value": "2025-08-03T22:41:00.308687"}}}, {"resource_id": "damage_dice", "stats": {"damage_type": {"value": "necrotic"}, "dice": {"value": {"resource_id": "dice_roll", "stats": {"dice_amount": {"value": 3}, "dice_type": {"value": "d6"}, "constant": {"value": 0}, "id": "571ab12d-beee-47c3-9899-9e861b470be0", "updated_at": {"value": "2025-08-03T22:41:00.308695"}}}}, "id": "ae5ee7b1-295a-4c4b-b4d6-89933198819c", "updated_at": {"value": "2025-08-03T22:41:00.308699"}}}]}, "id": "a1950a79-7135-4d7c-9a2b-f84e0cb09242", "updated_at": {"value": "2025-08-03T22:41:00.308728"}}}]}, "id": "87173731-5128-429a-9645-7b37b5b124ef", "updated_at": {"value": "2025-08-03T22:41:00.308733"}}}, {"resource_id": "monster_action", "stats": {"action_name": {"value": "Dreadful glare"}, "action_description": {"value": "The mummy targets one creature it can see within 60 ft. Of it. If the target can see the mummy, it must succeed on a DC 11 Wisdom saving throw against this magic or become frightened until the end of the mummy's next turn. If the target fails the saving throw by 5 or more, it is also paralyzed for the same duration. A target that succeeds on the saving throw is immune to the Dreadful Glare of all mummies (but not mummy lords) for the next 24 hours."}, "action_type": {"value": "none"}, "action_attack_bonus": {"value": 0}, "action_damage_variants": {"value": []}, "id": "4bdaf31e-642f-448c-ab3f-34b53d0e10e4", "updated_at": {"value": "2025-08-03T22:41:00.308748"}}}]}, "bonus_actions": {"value": []}, "reactions": {"value": []}, "legendary_actions": {"value": []}, "spells": {"value": []}, "habitat": {"value": ["desert"]}, "updated_at": {"value": "2025-08-03T22:41:00.308756"}}}
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "mummy",
+    "name": {
+      "value": "Mummy"
+    },
+    "photo": {
+      "value": {
+        "url": "https://dvmqshyfcptwg.cloudfront.net/5e2024/mummy.png"
+      }
+    },
+    "source": {
+      "value": "mm"
+    },
+    "tag": {
+      "value": null
+    },
+    "armor_class": {
+      "value": 11
+    },
+    "hit_points": {
+      "value": {
+        "resource_id": "dice_roll",
+        "stats": {
+          "dice_amount": {
+            "value": 9
+          },
+          "dice_type": {
+            "value": "d8"
+          },
+          "constant": {
+            "value": 18
+          },
+          "id": "f2a34e7e-2534-44bd-896f-aee5f3cda63c",
+          "updated_at": {
+            "value": "2025-08-03T22:41:00.308640"
+          }
+        }
+      }
+    },
+    "cr": {
+      "value": "cr_3"
+    },
+    "xp": {
+      "value": 700
+    },
+    "initiative": {
+      "value": -1
+    },
+    "speed": {
+      "value": 20
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_score": {
+      "value": 16
+    },
+    "dexterity_score": {
+      "value": 8
+    },
+    "constitution_score": {
+      "value": 15
+    },
+    "intelligence_score": {
+      "value": 6
+    },
+    "wisdom_score": {
+      "value": 10
+    },
+    "charisma_score": {
+      "value": 12
+    },
+    "strength_saving_throw_modifier": {
+      "value": 0
+    },
+    "dexterity_saving_throw_modifier": {
+      "value": 0
+    },
+    "constitution_saving_throw_modifier": {
+      "value": 0
+    },
+    "intelligence_saving_throw_modifier": {
+      "value": 0
+    },
+    "wisdom_saving_throw_modifier": {
+      "value": 2
+    },
+    "charisma_saving_throw_modifier": {
+      "value": 0
+    },
+    "skills": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": "fire"
+    },
+    "immunities": {
+      "value": "necrotic, poisoned; bludgeoning, piercing, and slashing from nonmagical weapons"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "darkvision 60 ft."
+    },
+    "languages": {
+      "value": "the languages it knew in life"
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "undead"
+    },
+    "alignment": {
+      "value": "lawful_evil"
+    },
+    "traits": {
+      "value": []
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Multiattack"
+            },
+            "action_description": {
+              "value": "The mummy can use its Dreadful Glare and makes one attack with its rotting fist."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "bff7faf9-533a-4562-a0d2-c09c3f4f1aed",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.308662"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Rotting fist"
+            },
+            "action_description": {
+              "value": "+5 to hit, reach 5 ft., one target. Hit: 10 (2d6 + 3) bludgeoning damage plus 10 (3d6) necrotic damage. If the target is a creature, it must succeed on a DC 12 Constitution saving throw or be cursed with mummy rot. The cursed target can't regain hit points, and its hit point maximum decreases by 10 (3d6) for every 24 hours that elapse. If the curse reduces the target's hit point maximum to 0, the target dies, and its body turns to dust. The curse lasts until removed by the remove curse spell or other magic."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_attack_bonus": {
+              "value": 5
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 2
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 3
+                                  },
+                                  "id": "36b9e3d9-d831-4751-8986-96a433db4127",
+                                  "updated_at": {
+                                    "value": "2025-08-03T22:41:00.308683"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "59ba31f6-8686-4e3c-b441-ceb4821afd21",
+                            "updated_at": {
+                              "value": "2025-08-03T22:41:00.308687"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "necrotic"
+                            },
+                            "dice": {
+                              "value": {
+                                "resource_id": "dice_roll",
+                                "stats": {
+                                  "dice_amount": {
+                                    "value": 3
+                                  },
+                                  "dice_type": {
+                                    "value": "d6"
+                                  },
+                                  "constant": {
+                                    "value": 0
+                                  },
+                                  "id": "571ab12d-beee-47c3-9899-9e861b470be0",
+                                  "updated_at": {
+                                    "value": "2025-08-03T22:41:00.308695"
+                                  }
+                                }
+                              }
+                            },
+                            "id": "ae5ee7b1-295a-4c4b-b4d6-89933198819c",
+                            "updated_at": {
+                              "value": "2025-08-03T22:41:00.308699"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "a1950a79-7135-4d7c-9a2b-f84e0cb09242",
+                    "updated_at": {
+                      "value": "2025-08-03T22:41:00.308728"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "87173731-5128-429a-9645-7b37b5b124ef",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.308733"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Dreadful glare"
+            },
+            "action_description": {
+              "value": "The mummy targets one creature it can see within 60 ft. Of it. If the target can see the mummy, it must succeed on a DC 11 Wisdom saving throw against this magic or become frightened until the end of the mummy's next turn. If the target fails the saving throw by 5 or more, it is also paralyzed for the same duration. A target that succeeds on the saving throw is immune to the Dreadful Glare of all mummies (but not mummy lords) for the next 24 hours."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "4bdaf31e-642f-448c-ab3f-34b53d0e10e4",
+            "updated_at": {
+              "value": "2025-08-03T22:41:00.308748"
+            }
+          }
+        }
+      ]
+    },
+    "bonus_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "legendary_actions": {
+      "value": []
+    },
+    "spells": {
+      "value": []
+    },
+    "habitat": {
+      "value": [
+        "desert"
+      ]
+    },
+    "updated_at": {
+      "value": "2025-08-03T22:41:00.308756"
+    }
+  }
+}
