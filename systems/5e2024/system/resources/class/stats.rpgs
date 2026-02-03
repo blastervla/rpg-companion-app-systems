@@ -77,7 +77,11 @@ calc string actual_effective_caster_level(name = "Actual effective caster level"
     then selected_archetype.effective_caster_level
     else effective_caster_level;
 
-base resource<spell>[] spells(name = "Spells") = [];
+base resource<levelled_spell>[] spells(name = "Spells") = [];
+
+calc resource<levelled_spell>[] all_spells(name = "All spells") = if selected_archetype == null
+  then spells
+  else flatAppend([spells, selected_archetype.spells]);
 
 base bool recharge_slots_on_short_rest(name = "Recharge slots on short rest") =
   false;
