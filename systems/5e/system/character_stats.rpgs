@@ -750,6 +750,13 @@ calc resource<spell>[] sorted_spells(name = "Sorted spells") =
           ),
           mapper = ($mapValue) => $mapValue.spell,
         ),
+        map(
+          filter(
+            flatMap(classes, mapper = ($class) => $class.class.all_spells),
+            filter = ($filterValue) => ($filterValue.level <= level),
+          ),
+          mapper = ($mapValue) => $mapValue.spell,
+        ),
         spells,
       ],
       treat_as_set = true,
