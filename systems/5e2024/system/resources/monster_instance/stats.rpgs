@@ -1,0 +1,52 @@
+base string name(name = "Name") = "";
+
+base integer armor_class(name = "Armor Class", abbreviation = "AC") = 10;
+
+base integer current_hp(name = "Current HP", abbreviation = "HP") = 1;
+
+base integer max_hp(name = "Max HP", abbreviation = "Max HP") = 1;
+
+base integer tag_number(name = "Tag number") = 0;
+
+calc photo photo(name="Photo") = $resource.photo;
+
+calc resource<mixed>[] all_monster_instance_combatants(name = "Monster instance combatants") =
+  filter(
+    filter(
+      $combatants ?? [], filter = ($combatant) => defined(stat = "$combatant.tag_number")
+    ),
+    filter = ($combatant) => $combatant.$resource.name == $resource.name
+  );
+
+calc integer tag_order(name = "Tag order") =
+  length(
+    filter(
+      all_monster_instance_combatants, filter = ($combatant) => $combatant.tag_number < tag_number
+    )
+  ) + 1;
+
+calc string formatted_name(name = "Formatted name") = name + " #" + tag_order;
+
+calc integer strength_score(name = "Strength", abbreviation = "STR") = $resource.strength_score;
+
+calc integer dexterity_score(name = "Dexterity", abbreviation = "DEX") = $resource.dexterity_score;
+
+calc integer constitution_score(name = "Constitution", abbreviation = "CON") = $resource.constitution_score;
+
+calc integer intelligence_score(name = "Intelligence", abbreviation = "INT") = $resource.intelligence_score;
+
+calc integer wisdom_score(name = "Wisdom", abbreviation = "WIS") = $resource.wisdom_score;
+
+calc integer charisma_score(name = "Charisma", abbreviation = "CHA") = $resource.charisma_score;
+
+calc integer initiative(name = "Initiative", abbreviation = "Ini.") = $resource.initiative;
+
+calc integer speed(name = "Speed") = $resource.speed;
+
+calc integer burrow_speed(name = "Burrow") = $resource.burrow_speed;
+
+calc integer climb_speed(name = "Climb") = $resource.climb_speed;
+
+calc integer fly_speed(name = "Fly") = $resource.fly_speed;
+
+calc integer swim_speed(name = "Swim") = $resource.swim_speed;

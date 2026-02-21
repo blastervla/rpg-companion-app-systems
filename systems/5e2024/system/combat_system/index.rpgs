@@ -1,0 +1,11 @@
+combat_system combatSystem() = combatSystem(
+    encounter_resolution_message = if encounter_finished
+        then "Encounter finished! Please deal " + xp_to_deal + " XP to all players."
+        else null,
+    difficulty_levels = [
+        difficultyLevel(id = "easy", name = "Easy"),
+        difficultyLevel(id = "medium", name = "Medium"),
+        difficultyLevel(id = "hard", name = "Hard"),
+        difficultyLevel(id = "Deadly", name = "Deadly"),
+    ]
+);

@@ -1,0 +1,25 @@
+calc resource<monster>[] enemies(name="Enemies") = filter(
+    $combatants, filter = ($combatant) => defined(stat="$combatant.tag_number")
+);
+
+calc resource<player>[] players(name="Players") = filter(
+    $combatants, filter = ($combatant) => !defined(stat="$combatant.tag_number")
+);
+
+calc bool encounter_finished(name="Encounter finished") =
+    isEmpty(
+        filter(
+            enemies,
+            filter = ($combatant) => $combatant.current_hp > 0
+        ),
+    );
+
+calc integer xp_pool(name="XP Pool") =
+    add(map(enemies, mapper = ($monster) => $monster.xp));
+
+calc integer xp_to_deal(name="XP to deal") = if length(players) > 0
+    then divide([
+            xp_pool,
+            length(players)
+        ], rounding_method = "none")
+    else xp_pool;
