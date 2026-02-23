@@ -3,9 +3,9 @@ combat_system combatSystem() = combatSystem(
         then "Encounter finished! Please deal " + xp_to_deal + " XP to all players."
         else null,
     difficulty_levels = [
-        difficultyLevel(id = "easy", name = "Easy"),
-        difficultyLevel(id = "medium", name = "Medium"),
-        difficultyLevel(id = "hard", name = "Hard"),
-        difficultyLevel(id = "Deadly", name = "Deadly"),
-    ]
+        difficultyLevel(id = "easy", name = "Low"),
+        difficultyLevel(id = "medium", name = "Moderate"),
+        difficultyLevel(id = "hard", name = "High"),
+    ],
+    is_encounter_within_difficulty_level = encounter_within_desired_difficulty,
 );

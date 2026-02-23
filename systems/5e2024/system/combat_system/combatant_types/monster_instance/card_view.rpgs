@@ -17,9 +17,10 @@ view monster_combat_card() =
           ),
           text(
             id = "monster_combat_card_name",
-            text = formatted_name,
+            text = name,
             style = "subhead",
             bold = true,
+            color = name_color,
           ),
         ],
       ),
@@ -27,7 +28,7 @@ view monster_combat_card() =
         id = "monster_combat_card_ac_pp_speed",
         alignment = "center",
         subviews = [
-           ticker(
+          ticker(
             id = "monster_combat_card_status_hp",
             margin_left = 8,
             margin_right = 12,

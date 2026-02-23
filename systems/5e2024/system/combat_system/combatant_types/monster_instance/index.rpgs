@@ -8,11 +8,6 @@ combatant monster_instance() = combatant(
     on_create = sequence(
         effects = [
             setStat(
-                stat = "name",
-                new_value = $resource.name,
-                aggregation_type = "set",
-            ),
-            setStat(
                 stat = "tag_number",
                 new_value = roll(
                     formula = "1d99999"
@@ -20,9 +15,19 @@ combatant monster_instance() = combatant(
                 aggregation_type = "set",
             ),
             setStat(
+                stat = "name",
+                new_value = $resource.name + " #" + tag_order,
+                aggregation_type = "set",
+            ),
+            setStat(
                 stat = "max_hp",
-                new_value = roll(
-                    formula = $resource.hit_points.formula
+                new_value = max(
+                    [
+                        roll(
+                            formula = $resource.hit_points.formula
+                        ),
+                        1
+                    ]
                 ),
                 aggregation_type = "set",
             ),

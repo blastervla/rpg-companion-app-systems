@@ -5,6 +5,7 @@ view monster_combat_template_entry_edit() =
         id = "monster_combat_template_entry_edit_spell_select",
         stat = "combatant",
         resource_id = "monster",
+        preserve_ids = true,
         validation_message = if ($view.monster_combat_template_entry_edit_spell_select == null)
           then "There's an empty monster. Please select a monster or remove it"
           else null,
@@ -23,7 +24,7 @@ view monster_combat_template_entry_edit() =
         edit_stat = "max",
         style = "text",
         hint = "Max",
-        max_length = 2,
+        max_length = 3,
         margin_right = 8,
       ),
       text(
