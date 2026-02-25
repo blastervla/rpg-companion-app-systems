@@ -25,7 +25,7 @@ view monster_instance_display() =
         subviews = [
           avatar(
             id = "monster_instance_display_photo",
-            photo_stat = "$resource.photo",
+            photo_stat = "photo",
             name_stat = "name",
             size = "medium",
             interactable = false,
@@ -33,10 +33,15 @@ view monster_instance_display() =
           ),
         ],
       ),
-      composite(
+      section(
         id = "monster_instance_display_ac_hp_speed",
-        alignment = "center",
-        subviews = [
+        show_divider = false,
+        content_item_min_width = 125,
+        margin_left = 8,
+        margin_right = 8,
+        collapsible = false,
+        header = [],
+        content = [
          stat(
             id = "monster_instance_instance_edit_armor_class",
             stat = "armor_class",
@@ -273,7 +278,7 @@ view monster_instance_display() =
             style = "text",
             bold = true,
           ),
-          text(id = "monster_instance_display_cr_xp", text = cr_xp, style = "text"),
+          text(id = "monster_instance_display_cr_xp", text = $resource.cr_xp, style = "text"),
         ],
       ),
       divider(id = "monster_instance_display_traits_divider"),
@@ -284,13 +289,13 @@ view monster_instance_display() =
         subviews = [
           resourceSection(
             id = "monster_instance_display_spells",
-            resource_stat = "spells",
+            resource_stat = "$resource.spells",
             resource_id = "spell",
             content_item_min_width = 1,
             read_only = true,
           ),
         ],
-        is_visible = !isEmpty(spells),
+        is_visible = !isEmpty($resource.spells),
       ),
       resourceArray(
         id = "monster_instance_display_traits",
@@ -303,9 +308,9 @@ view monster_instance_display() =
       divider(id = "monster_instance_display_actions_divider", is_visible = !isEmpty($resource.traits)),
       resourceArray(
         id = "monster_instance_display_actions",
-        resource_id = "monster_instance_action",
+        resource_id = "monster_action",
         stat = "$resource.actions",
-        view_type = "list",
+        view_type = "display",
         hide_line = true,
         left_view = text(
           id = "monster_instance_display_actions_label",
@@ -321,9 +326,9 @@ view monster_instance_display() =
       ),
       resourceArray(
         id = "monster_instance_display_bonus_actions",
-        resource_id = "monster_instance_action",
+        resource_id = "monster_action",
         stat = "$resource.bonus_actions",
-        view_type = "list",
+        view_type = "display",
         hide_line = true,
         left_view = text(
           id = "monster_instance_display_actions_label",
@@ -339,9 +344,9 @@ view monster_instance_display() =
       ),
       resourceArray(
         id = "monster_instance_display_reactions",
-        resource_id = "monster_instance_action",
+        resource_id = "monster_action",
         stat = "$resource.reactions",
-        view_type = "list",
+        view_type = "display",
         hide_line = true,
         left_view = text(
           id = "monster_instance_display_reactions_label",
@@ -357,9 +362,9 @@ view monster_instance_display() =
       ),
       resourceArray(
         id = "monster_instance_display_legendary_actions",
-        resource_id = "monster_instance_action",
+        resource_id = "monster_action",
         stat = "$resource.legendary_actions",
-        view_type = "list",
+        view_type = "display",
         hide_line = true,
         left_view = text(
           id = "monster_instance_display_actions_label",

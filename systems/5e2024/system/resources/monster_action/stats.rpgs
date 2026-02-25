@@ -24,3 +24,18 @@ calc string action_display_description(name = "Display description") =
       ],
     ),
   );
+
+calc string default_selected_damage_variant_id(name = "Default selected damage variant id") =
+  if isEmpty(action_damage_variants)
+    then ""
+    else findFirst(
+        map(action_damage_variants, mapper = ($mapValue) => $mapValue.id),
+        filter = ($findFirstValue) => true,
+      );
+
+calc resource<damage_variant> selected_damage_variant(name = "Selected damage variant") =
+  findFirst(
+    action_damage_variants,
+    filter = ($findFirstValue) => ($findFirstValue.id
+      == ($view?.monster_action_display_damage_variant_select? ?? default_selected_damage_variant_id)),
+  );
