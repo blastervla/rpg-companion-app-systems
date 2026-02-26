@@ -160,18 +160,20 @@ view spell_display() =
             id = "spell_display_cast_composite_slots_remaining_label",
             text = "Slots remaining: ",
             style = "text",
+            is_visible = character_spell_slots_defined,
           ),
           ticker(
             id = "spell_display_slots_remaining_composite_ticker",
             stat = "available_selected_slots",
             style = "headline",
-            is_visible = defined(stat = "$view.spell_display_cast_composite_ticker"),
+            is_visible = character_spell_slots_defined
+              && defined(stat = "$view.spell_display_cast_composite_ticker"),
           ),
         ],
       ),
       list(
         id = "spell_display_cast_section_list",
-        is_visible = defined(stat = "$character"),
+        is_visible = should_display_cast_controls,
         margin_top = 8,
         subviews = [
           text(
@@ -180,7 +182,7 @@ view spell_display() =
             color = "accent",
             bold = true,
             style = "text",
-            is_visible = !character_is_not_wearing_inproficient_armor,
+            is_visible = defined(stat = "$character") && !character_is_not_wearing_inproficient_armor,
           ),
           text(
             id = "spell_display_cast_explanation_spell_slots",
@@ -188,7 +190,7 @@ view spell_display() =
             color = "accent",
             bold = true,
             style = "text",
-            is_visible = !has_required_spell_slots_to_cast,
+            is_visible = defined(stat = "$character") && !has_required_spell_slots_to_cast,
           ),
           composite(
             id = "spell_display_cast_button_composite",
@@ -197,7 +199,7 @@ view spell_display() =
               button(
                 id = "spell_display_prepare_button",
                 text = prepare_button_text,
-                is_visible = !is_cantrip,
+                is_visible = defined(stat = "$character") && !is_cantrip,
                 event = event(name = "togglePrepareSpell", payload = payload()),
               ),
               spacer(id = "spell_display_cast_button_spacer"),

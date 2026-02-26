@@ -21,6 +21,8 @@ calc resource<mixed>[] all_monster_instance_combatants(name = "Monster instance 
     filter = ($combatant) => $combatant.$resource.name == $resource.name
   );
 
+calc bool in_combat(name = "In combat") = defined(stat = "$combatants");
+
 calc integer tag_order(name = "Tag order") =
   length(
     filter(

@@ -121,6 +121,8 @@ base string[] habitat(name = "Habitat") = [];
 
 base string[] treasure(name = "Treasure") = [];
 
+calc bool in_combat(name = "In combat") = $parent?.in_combat? ?? false;
+
 calc string formatted_type(name = "Formatted type") =
   enumeratedName(enumerated_type = "monster_types", id = type);
 

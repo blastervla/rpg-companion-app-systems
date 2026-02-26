@@ -11,9 +11,7 @@ mechanic spell_cast(name = "Cast spell", event_names = "castSpell") =
                   sort_by_selector = ($sortByValue) => $sortByValue.level,
                   order = "desc",
                 ),
-                filter = ($findFirstValue) => ($findFirstValue.level <= (if is_cantrip
-                  then $character.level
-                  else $view.spell_display_cast_composite_ticker)),
+                filter = ($findFirstValue) => ($findFirstValue.level <= selected_cast_level),
               ),
             ],
             mapper = ($mapValue) => (if defined(stat = "$mapValue.damage_dice")
@@ -36,7 +34,7 @@ mechanic spell_cast(name = "Cast spell", event_names = "castSpell") =
         ),
       ),
       when {
-        !is_cantrip -> addToStat(
+        character_spell_slots_defined && !is_cantrip -> addToStat(
           meta_stat = selected_spell_slots_stat_name,
           value = -1,
           aggregation_type = "set",

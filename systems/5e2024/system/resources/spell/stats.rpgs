@@ -96,11 +96,25 @@ calc bool character_spell_slots_defined(name = "Character and spell slots define
     && defined(stat = "$character.spell_slots_8")
     && defined(stat = "$character.spell_slots_9");
 
+calc bool in_combat(name = "In combat") =
+  ($parent?.in_combat? ?? false) || defined(stat = "$combatants");
+
+calc bool use_combat_free_casting(name = "Use combat free casting mode") =
+  in_combat && !defined(stat = "$character");
+
+calc bool should_display_cast_controls(name = "Should display cast controls") =
+  defined(stat = "$character") || use_combat_free_casting;
+
 calc string prepare_button_text(name = "Prepare button text") =
   if prepared then "UNPREPARE" else "PREPARE";
 
 calc integer[] available_slots_for_use(name = "Available slots for use") =
-  if character_spell_slots_defined
+  if use_combat_free_casting
+    then filter(
+        [1, 2, 3, 4, 5, 6, 7, 8, 9],
+        filter = ($filterValue) => ($filterValue >= (if num_level <= 1 then 1 else num_level)),
+      )
+    else if character_spell_slots_defined
     then filter(
         [1, 2, 3, 4, 5, 6, 7, 8, 9],
         filter = ($filterValue) => ($filterValue >= num_level
@@ -116,6 +130,14 @@ calc string selected_spell_slots_stat_name(name = "Selected spell slots stat nam
     ],
   );
 
+calc integer selected_cast_level(name = "Selected cast level") =
+  if is_cantrip && defined(stat = "$character")
+    then $character.level
+    else ($view?.spell_display_cast_composite_ticker? ?? (findFirst(
+          available_slots_for_use,
+          filter = ($findFirstValue) => true,
+        ) ?? 1));
+
 calc integer available_selected_slots(name = "Available selected spell slots") =
   if character_spell_slots_defined
     && selected_spell_slots_stat_name != "$character.spell_slots_0"
@@ -123,13 +145,15 @@ calc integer available_selected_slots(name = "Available selected spell slots") =
     else 0;
 
 calc bool should_select_spell_slot_to_cast(name = "Should select a spell slot to cast") =
-  defined(stat = "$character") && !is_cantrip && !isEmpty(available_slots_for_use);
+  should_display_cast_controls
+    && (!is_cantrip || use_combat_free_casting)
+    && !isEmpty(available_slots_for_use);
 
 calc bool character_is_not_wearing_inproficient_armor(name = "Character is not currently wear a piece of armor its not proficient with") =
   $character?.is_not_wearing_inproficient_armor ?? true;
 
 calc bool has_required_spell_slots_to_cast(name = "Has required spell slots to cast") =
-  is_cantrip || !isEmpty(available_slots_for_use);
+  use_combat_free_casting || is_cantrip || !isEmpty(available_slots_for_use);
 
 calc bool can_cast(name = "Can cast spell") =
   character_is_not_wearing_inproficient_armor && has_required_spell_slots_to_cast;
