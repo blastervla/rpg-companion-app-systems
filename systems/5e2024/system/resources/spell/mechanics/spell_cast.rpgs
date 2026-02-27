@@ -1,9 +1,20 @@
 mechanic spell_cast(name = "Cast spell", event_names = "castSpell") =
-  roll(
-    rolls = [
-      rollable(
-        formulas = [spell_attack_roll_formula],
-        text = "to hit",
+  sequence(
+    effects = [
+      roll(
+        rolls = [
+          rollable(
+            formulas = [spell_attack_roll_formula],
+            text = "to hit",
+          ),
+        ],
       ),
-    ],
+      when {
+        character_spell_slots_defined && !is_cantrip -> addToStat(
+          meta_stat = selected_spell_slots_stat_name,
+          value = -1,
+          aggregation_type = "set",
+        ),
+      },
+    ]
   );

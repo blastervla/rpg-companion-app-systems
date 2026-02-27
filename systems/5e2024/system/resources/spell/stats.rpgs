@@ -50,6 +50,17 @@ calc integer num_level(name = "Numerical level") =
 calc bool has_higher_level_description(name = "Has higher level description") =
   length(higher_level_description) > 0;
 
+calc bool has_damage_dice(name = "Has damage dice") = !isEmpty(dice);
+
+calc bool has_active_effects(name = "Has active effects") =
+  !isEmpty(filter(effects, filter = ($filterValue) => $filterValue.is_active));
+
+calc bool should_show_damage_or_effects_button(name = "Should show damage/effects button") =
+  has_damage_dice || has_active_effects;
+
+calc string damage_or_effects_button_text(name = "Damage/effects button text") =
+  if has_damage_dice then "DAMAGE" else "TRIGGER EFFECTS";
+
 calc string display_type(name = "Type") =
   concat(
     [
