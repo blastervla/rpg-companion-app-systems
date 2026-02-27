@@ -506,6 +506,22 @@ view monster_edit() =
               then "You have empty legendary actions. Please add some content to them or remove them."
               else null,
           ),
+          composite(
+            id = "monster_edit_spellcasting_ability_composite",
+            subviews = [
+              text(
+                id = "monster_edit_spellcasting_ability_label",
+                text = "Spellcasting ability: ",
+                style = "text",
+                bold = true,
+              ),
+              select(
+                id = "monster_edit_spellcasting_ability",
+                stat = "spellcasting_ability",
+                options = "ability",
+              ),
+            ],
+          ),
           resourceSection(
             id = "monster_edit_spells",
             resource_stat = "spells",

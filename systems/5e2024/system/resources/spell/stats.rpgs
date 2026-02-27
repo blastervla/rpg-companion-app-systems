@@ -265,7 +265,7 @@ calc integer available_selected_slots(name = "Available selected spell slots") =
 
 calc bool should_select_spell_slot_to_cast(name = "Should select a spell slot to cast") =
   should_display_cast_controls
-    && (!is_cantrip || use_combat_free_casting)
+    && !is_cantrip
     && !isEmpty(available_slots_for_use);
 
 calc string selected_spellcasting_ability(name = "Selected spellcasting ability") =

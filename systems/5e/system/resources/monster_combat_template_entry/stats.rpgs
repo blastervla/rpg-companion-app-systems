@@ -1,0 +1,26 @@
+base integer min(name = "Minimum", abbreviation = "Min") = null;
+
+base integer max(name = "Maximum", abbreviation = "Max") = null;
+
+base decimal weight(name = "Weight", abbreviation = "Weight") = 1;
+
+base resource<monster> combatant(name = "Monster") = null;
+
+calc string min_max_weight_description(name = "Min/Max") =
+  joinToString(
+    filter(
+      [
+        if (min != null) then "min = " + min else null,
+        if (max != null) then "max = " + max else null,
+        "Prob: " + weight,
+      ],
+      filter = ($e) => $e != null,
+    ),
+    separator = ", "
+  );
+
+calc string min_max_weight_par(name = "(Min/Max)") =
+  if (isEmpty(min_max_weight_description)) then "" else " (" + min_max_weight_description + ")";
+
+calc string description(name = "Display description") =
+  if combatant != null then concat([combatant.name, min_max_weight_par]) else "Empty";
