@@ -103,6 +103,11 @@ calc resource<race> selected_subrace(name = "Selected subrace") =
       )
     else null;
 
+calc string actual_spellcasting_ability(name = "Actual spellcasting ability") =
+  if notNull(selected_subrace) && !(selected_subrace?.same_spellcasting_ability_as_parent? ?? true)
+    then selected_subrace.spellcasting_ability
+    else spellcasting_ability;
+
 calc bool should_load_effects(name = "Should load effects") =
   !is_subrace || $character?.subrace_id == id;
 

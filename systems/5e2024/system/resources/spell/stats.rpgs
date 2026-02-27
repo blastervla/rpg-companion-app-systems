@@ -39,6 +39,9 @@ base bool prepared(name = "Prepared") = false;
 
 base integer cast_level(name = "Cast level") = 1;
 
+base string selected_spellcasting_class_id(name = "Selected spellcasting class id") =
+  "";
+
 calc bool is_cantrip(name = "Is cantrip") = level == "spell_level_0";
 
 calc integer num_level(name = "Numerical level") =
@@ -83,6 +86,111 @@ calc string full_components(name = "Full components") =
   if material
     then concat([string_components, " (", components, ")"])
     else string_components;
+
+calc resource<class_details>[] character_spellcasting_classes(name = "Character spellcasting classes") =
+  if defined(stat = "$character")
+    then filter(
+        $character.classes,
+        filter = ($filterValue) => $filterValue.show_spellcasting_details,
+      )
+    else [];
+
+calc resource<class_details>[] spell_matching_class_sources(name = "Spell matching class sources") =
+  filter(
+    character_spellcasting_classes,
+    filter = ($filterValue) => notNull(
+      findFirst(
+        filter(
+          $filterValue.class.all_spells,
+          filter = ($filterValue2) => ($filterValue2.level <= ($character?.level? ?? 1)),
+        ),
+        filter = ($findFirstValue) => ($findFirstValue.spell.id == id),
+      ),
+    ),
+  );
+
+calc resource<levelled_spell>[] character_race_levelled_spells(name = "Character race levelled spells") =
+  if defined(stat = "$character")
+    then flatAppend(
+        [
+          ($character.race?.spells ?? []),
+          ($character.race?.selected_subrace?.spells ?? []),
+        ],
+      )
+    else [];
+
+calc bool spell_has_specific_race_source(name = "Spell has specific race source") =
+  !isEmpty(character_race_levelled_spells)
+    && isEmpty(spell_matching_class_sources)
+    && notNull(
+      findFirst(
+        filter(
+          character_race_levelled_spells,
+          filter = ($filterValue) => ($filterValue.level <= ($character?.level ?? 1)),
+        ),
+        filter = ($findFirstValue) => ($findFirstValue.spell.id == id),
+      ),
+    );
+
+calc bool spell_has_specific_class_source(name = "Spell has specific class source") =
+  !spell_has_specific_race_source && length(spell_matching_class_sources) == 1;
+
+calc resource<class_details>[] selectable_spellcasting_class_sources(name = "Selectable spellcasting class sources") =
+  if !isEmpty(spell_matching_class_sources)
+    then spell_matching_class_sources
+    else character_spellcasting_classes;
+
+calc string resolved_spellcasting_class_source_id(name = "Resolved spellcasting class source id") =
+  if spell_has_specific_class_source
+    then findFirst(
+        map(spell_matching_class_sources, mapper = ($mapValue) => $mapValue.id),
+        filter = ($findFirstValue) => true,
+      )
+    else if contains(
+      haystack = map(selectable_spellcasting_class_sources, mapper = ($mapValue) => $mapValue.id),
+      needle = ($view?.spell_display_spellcasting_source_select? ?? selected_spellcasting_class_id),
+    )
+    then ($view?.spell_display_spellcasting_source_select? ?? selected_spellcasting_class_id)
+    else (findFirst(
+          map(selectable_spellcasting_class_sources, mapper = ($mapValue) => $mapValue.id),
+          filter = ($findFirstValue) => true,
+        ) ?? "");
+
+calc resource<class_details> selected_spellcasting_class_source(name = "Selected spellcasting class source") =
+  findFirst(
+    selectable_spellcasting_class_sources,
+    filter = ($findFirstValue) => ($findFirstValue.id == resolved_spellcasting_class_source_id),
+  );
+
+calc string race_spellcasting_ability(name = "Race spellcasting ability") =
+  $character?.race?.actual_spellcasting_ability ?? "intelligence";
+
+calc string selected_spellcasting_source_name(name = "Selected spellcasting source name") =
+  when {
+    spell_has_specific_race_source -> concat(
+      [
+        "Race (",
+        enumeratedAbbreviation(
+          enumerated_type = "ability",
+          id = race_spellcasting_ability,
+        ),
+        ")",
+      ],
+    ),
+    notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source.class_name_with_spellcasting_ability,
+    else -> "",
+  };
+
+calc bool should_show_spellcasting_source_select(name = "Should show spellcasting source select") =
+  defined(stat = "$character")
+    && !spell_has_specific_race_source
+    && !spell_has_specific_class_source
+    && length(selectable_spellcasting_class_sources) > 1;
+
+calc bool should_show_spellcasting_source_text(name = "Should show spellcasting source text") =
+  defined(stat = "$character")
+    && !isEmpty(selected_spellcasting_source_name)
+    && !should_show_spellcasting_source_select;
 
 calc bool character_spell_slots_defined(name = "Character and spell slots defined") =
   defined(stat = "$character")
@@ -148,6 +256,27 @@ calc bool should_select_spell_slot_to_cast(name = "Should select a spell slot to
   should_display_cast_controls
     && (!is_cantrip || use_combat_free_casting)
     && !isEmpty(available_slots_for_use);
+
+calc string selected_spellcasting_ability(name = "Selected spellcasting ability") =
+  when {
+    spell_has_specific_race_source -> race_spellcasting_ability,
+    notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source.class.actual_spellcasting_ability,
+    defined(stat = "$parent.spellcasting_ability") -> $parent.spellcasting_ability,
+    else -> "intelligence",
+  };
+
+calc integer spellcasting_modifier(name = "Spellcasting modifier") =
+  when {
+    selected_spellcasting_ability == "strength" -> ($character?.strength_modifier ?? $parent?.strength_modifier ?? 0),
+    selected_spellcasting_ability == "dexterity" -> ($character?.dexterity_modifier ?? $parent?.dexterity_modifier ?? 0),
+    selected_spellcasting_ability == "constitution" -> ($character?.constitution_modifier ?? $parent?.constitution_modifier ?? 0),
+    selected_spellcasting_ability == "wisdom" -> ($character?.wisdom_modifier ?? $parent?.wisdom_modifier ?? 0),
+    selected_spellcasting_ability == "charisma" -> ($character?.charisma_modifier ?? $parent?.charisma_modifier ?? 0),
+    else -> ($character?.intelligence_modifier ?? $parent?.intelligence_modifier ?? 0),
+  };
+
+calc string spell_attack_roll_formula(name = "Spell attack roll formula") =
+  concat(["1d20", toSignedString(spellcasting_modifier)]);
 
 calc bool character_is_not_wearing_inproficient_armor(name = "Character is not currently wear a piece of armor its not proficient with") =
   $character?.is_not_wearing_inproficient_armor ?? true;
