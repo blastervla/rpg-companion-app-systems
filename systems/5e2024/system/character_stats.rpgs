@@ -3,8 +3,10 @@ import "macros/system_common.rpgs";
 calc string created_at_display(name = "Created at display") =
   concat(["Created ", date(created_at)]);
 
+@party_visible
 base photo photo(name = "Photo") = null;
 
+@party_visible
 base string name(name = "Name") = "";
 
 base string alignment(name = "Alignment") = "true_neutral";
@@ -23,8 +25,10 @@ base resource<note>[] notes(name = "Notes") = [];
 
 base integer base_hp(name = "Base HP") = 1;
 
+@party_visible
 base integer current_hp(name = "Current HP") = 1;
 
+@party_visible
 calc integer max_hp(name = "Maximum HP") = base_hp + classes_hp_mods;
 
 base string hit_point_mode(name = "Hit point mode") = "roll";
@@ -107,6 +111,7 @@ calc integer max_d20_hit_dice(name = "Max d20 hit dice") =
     ),
   );
 
+@party_visible
 calc integer total_hit_dice(name = "Hit Dice (total)") =
   current_d4_hit_dice + current_d6_hit_dice + current_d8_hit_dice + current_d10_hit_dice + current_d12_hit_dice + current_d20_hit_dice;
 
@@ -596,18 +601,23 @@ base string equipped_armor_id(name = "Equipped armor ID") = "";
 
 base string equipped_shield_id(name = "Equipped shield ID") = "";
 
+@party_visible
 calc integer speed(name = "Speed") =
   race.current_speed + worn_armor_speed_modifier;
 
+@party_visible
 calc integer burrow_speed(name = "Burrow speed") =
   race.current_burrow_speed + worn_armor_speed_modifier;
 
+@party_visible
 calc integer climb_speed(name = "Climb speed") =
   race.current_climb_speed + worn_armor_speed_modifier;
 
+@party_visible
 calc integer fly_speed(name = "Fly speed") =
   race.current_fly_speed + worn_armor_speed_modifier;
 
+@party_visible
 calc integer swim_speed(name = "Swim speed") =
   race.current_swim_speed + worn_armor_speed_modifier;
 
@@ -616,9 +626,11 @@ calc integer worn_armor_speed_modifier(name = "Worn armor speed modifier (penalt
     then (if strength_score >= equipped_armor.required_strength then 0 else -10)
     else 0;
 
+@party_visible
 calc integer level(name = "Level", abbreviation = "Lvl.") =
   add(map(classes, mapper = ($class) => $class.class_level));
 
+@party_visible
 calc integer armor_class(name = "Armor Class", abbreviation = "AC") =
   max([equipped_armor_ac, classes_ac, race_ac]) + (if contains(
     haystack = map(armors, mapper = ($mapValue) => $mapValue.id),
@@ -677,12 +689,15 @@ calc resource<armor> equipped_shield(name = "Equipped shield") =
     filter = ($findFirstValue) => ($findFirstValue.id == equipped_shield_id),
   );
 
+@party_visible
 calc integer passive_perception(name = "Passive perception", abbreviation = "PP") =
   10 + perception;
 
+@party_visible
 calc integer initiative(name = "Initiative", abbreviation = "Ini.") =
   dexterity_modifier;
 
+@party_visible
 calc integer proficiency_bonus(name = "Proficiency Bonus", abbreviation = "PB") =
   1 + divide([level, 4], rounding_method = "up");
 
