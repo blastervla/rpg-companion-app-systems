@@ -204,7 +204,7 @@ calc integer max_charges(name = "Max charges") =
     then max_charges_constant
     else current_level_max_charges_formula?.calculated_value ?? 0;
 
-calc resource current_level_max_charges_formula(name = "Max charges formula for the current level") =
+calc resource<levelled_value_calculator> current_level_max_charges_formula(name = "Max charges formula for the current level") =
   findFirst(
     sortBy(
       max_charges_levelled_formulas,
@@ -221,7 +221,7 @@ calc integer current_level(name = "Current level") =
     else -> 1,
   };
 
-calc resource current_level_levelled_description(name = "Current level levelled_description") =
+calc resource<levelled_description> current_level_levelled_description(name = "Current level levelled_description") =
   findFirst(
     sortBy(
       description,

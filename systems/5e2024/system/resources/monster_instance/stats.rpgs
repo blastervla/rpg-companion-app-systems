@@ -11,9 +11,9 @@ calc string name_color(name = "Name color") =
 
 base integer tag_number(name = "Tag number") = 0;
 
-calc photo photo(name="Photo") = $resource.photo;
+calc photo photo(name = "Photo") = $resource.photo;
 
-calc resource<mixed>[] all_monster_instance_combatants(name = "Monster instance combatants") =
+calc resource<monster_instance>[] all_monster_instance_combatants(name = "Monster instance combatants") =
   filter(
     filter(
       $combatants ?? [], filter = ($combatant) => defined(stat = "$combatant.tag_number")

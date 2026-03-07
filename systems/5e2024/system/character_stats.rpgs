@@ -1504,25 +1504,25 @@ calc string photo_prompt(name = "Photo prompt") =
     separator = ",",
   );
 
-calc resource<mixed>[] attuned_armors(name = "Attuned armors") =
+calc resource<armor>[] attuned_armors(name = "Attuned armors") =
   filter(
     armors,
     filter = ($filterValue) => ($filterValue.requires_attunement && $filterValue.is_attuned),
   );
 
-calc resource<mixed>[] attuned_weapons(name = "Attuned weapons") =
+calc resource<weapon>[] attuned_weapons(name = "Attuned weapons") =
   filter(
     all_weapons,
     filter = ($filterValue) => ($filterValue.requires_attunement && $filterValue.is_attuned),
   );
 
-calc resource<mixed>[] attuned_items(name = "Attuned items") =
+calc resource<item>[] attuned_items(name = "Attuned items") =
   filter(
     equipment,
     filter = ($filterValue) => ($filterValue.requires_attunement && $filterValue.is_attuned),
   );
 
-calc resource<mixed>[] attuned_resources(name = "Attuned resources") =
+calc resource<armor | weapon | item>[] attuned_resources(name = "Attuned resources") =
   flatAppend([attuned_armors, attuned_weapons, attuned_items]);
 
 calc string attuned_resources_count_message(name = "Attuned resources count message") =
