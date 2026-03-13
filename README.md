@@ -24,10 +24,12 @@ You’ll find:
 
 ## 🧩 Repository Structure
 
+```
 systems/
 ├── system1/
 ├── anotherSystem/
 └── yet_another_custom_system/
+```
 
 Each system includes:
 
