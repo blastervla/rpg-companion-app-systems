@@ -106,6 +106,11 @@ calc resource<race> selected_subrace(name = "Selected subrace") =
       )
     else null;
 
+calc string actual_spellcasting_ability(name = "Actual spellcasting ability") =
+  if notNull(selected_subrace) && !(selected_subrace?.same_spellcasting_ability_as_parent? ?? true)
+    then selected_subrace.spellcasting_ability
+    else spellcasting_ability;
+
 calc bool should_load_effects(name = "Should load effects") =
   !is_subrace || $character?.subrace_id == id;
 
@@ -317,7 +322,7 @@ calc resource<feat>[] traits_with_updates_in_current_level(name = "Traits with u
 calc string display_armor_class(name = "Display armor class") =
   if is_subrace && same_ac_as_parent
     then $parent.display_armor_class
-    else joinToString(flatAppend([[base_ac], ac_modifiers]), separator = " + ");
+    else joinToString(flatAppend([["" + base_ac], ac_modifiers]), separator = " + ");
 
 calc string display_speeds(name = "Display speeds") =
   joinToString(
@@ -333,7 +338,7 @@ calc string display_speeds(name = "Display speeds") =
     separator = ", ",
   );
 
-calc resource lowest_level_unarmed_strike(name = "Lowest level unarmed strike") =
+calc resource<levelled_weapon> lowest_level_unarmed_strike(name = "Lowest level unarmed strike") =
   findFirst(
     sortBy(
       unarmed_strike,

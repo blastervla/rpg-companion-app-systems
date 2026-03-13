@@ -1,0 +1,44 @@
+view encounter_template_edit() =
+  list(
+    padding = 16,
+    subviews = [
+      text(
+        id = "encounter_template_edit_name",
+        edit_stat = "name",
+        style = "text",
+        label = "Name",
+        max_length = 140,
+        validation_message = if isEmpty($view.encounter_template_edit_name) then "Please add a name to your encounter template" else null,
+      ),
+      composite(
+        id = "encounter_template_edit_source",
+        margin_top = 4,
+        subviews = [
+          text(id = "encounter_template_edit_source_label", text = "Source: ", style = "text"),
+          select(
+            id = "encounter_template_edit_source_select",
+            options = "source",
+            options_display_stat = "abbreviation",
+            stat = "source",
+          ),
+        ],
+      ),
+      text(
+        id = "levelled_description_edit_description",
+        edit_stat = "description",
+        style = "text",
+        label = "Description",
+      ),
+      resourceArray(
+        id = "encounter_template_edit_combatants",
+        resource_id = "monster_combat_template_entry",
+        view_type = "edit",
+        stat = "combatant_pool",
+        left_view = text(
+          id = "encounter_template_edit_combatants_label",
+          text = "Monsters: ",
+          style = "text",
+        ),
+      ),
+    ],
+  );

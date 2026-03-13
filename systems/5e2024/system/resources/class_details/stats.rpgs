@@ -53,7 +53,7 @@ calc integer spell_attack_bonus(name = "Spell attack bonus") =
 calc string spell_attack_bonus_text(name = "Spell attack bonus formatted") =
   if spell_attack_bonus >= 0
     then concat(["+", spell_attack_bonus])
-    else spell_attack_bonus;
+    else "" + spell_attack_bonus;
 
 calc integer spell_save_dc(name = "Spell save DC") =
   8 + metaStat(

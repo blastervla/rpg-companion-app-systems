@@ -502,7 +502,7 @@ calc string display_hp(name = "Display hp") =
 calc string display_armor_class(name = "Display armor class") =
   if is_archetype && same_ac_as_parent
     then $parent.display_armor_class
-    else joinToString(flatAppend([[base_ac], ac_modifiers]), separator = " + ");
+    else joinToString(flatAppend([["" + base_ac], ac_modifiers]), separator = " + ");
 
 calc string display_saving_throws(name = "Display saving throws") =
   joinToString(
@@ -532,7 +532,7 @@ calc string display_caster_level(name = "Display caster level") =
         id = effective_caster_level,
       );
 
-calc resource lowest_level_weapon(name = "Lowest level weapon") =
+calc resource<levelled_weapon> lowest_level_weapon(name = "Lowest level weapon") =
   findFirst(
     sortBy(
       weapon,

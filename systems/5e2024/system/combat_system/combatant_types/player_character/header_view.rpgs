@@ -1,0 +1,122 @@
+view player_character_header() =
+  section(
+    id = "player_character_status_section",
+    show_divider = true,
+    content_item_min_width = 125,
+    collapsible = false,
+    header = [
+      avatar(
+        id = "player_character_avatar_view",
+        margin_top = 8,
+        margin_right = 8,
+        margin_left = 16,
+        photo_stat = "photo",
+        name_stat = "name",
+        size = "small",
+        interactable = false,
+        preview_enabled = true,
+      ),
+      ticker(
+        id = "player_character_status_hp",
+        margin_left = 8,
+        stat = "current_hp",
+        style = "title",
+        button_location = "right",
+        button_look = "plusMinus",
+        should_auto_save = true,
+        change_amount = 1,
+        min_value_allowed = 0,
+        label = concat(["/ ", max_hp, " HP"]),
+        label_alignment = "right",
+        edit_bottom_sheet_title = "Hit points",
+      ),
+      // text(
+      //   id = "player_character_status_name",
+      //   text = name,
+      //   style = "subhead",
+      // )
+    ],
+    content = [
+      stat(
+        id = "player_character_armor_class",
+        stat = "armor_class",
+        change_amount = 1,
+        min_value_allowed = 0,
+      ),
+      stat(
+        id = "player_character_initiative",
+        stat = "initiative",
+        change_amount = 1,
+        on_tap_event = event(
+          name = "rollStat",
+          payload = payload(stat = "initiative", statName = "Initiative"),
+        ),
+      ),
+      stat(
+        id = "player_character_speed",
+        stat = "speed",
+        change_amount = 5,
+        min_value_allowed = 0,
+        bottom_sheet_in_edit_mode = true,
+        bottom_sheet_view = section(
+          id = "speed_section",
+          header = [],
+          show_divider = false,
+          content_item_min_width = 125,
+          collapsible = false,
+          content = [
+            stat(
+              id = "player_character_speed_bottom_sheet_stat",
+              stat = "speed",
+              change_amount = 5,
+              min_value_allowed = 0,
+            ),
+            stat(
+              id = "player_character_burrow_speed_bottom_sheet_stat",
+              stat = "burrow_speed",
+              change_amount = 5,
+              min_value_allowed = 0,
+            ),
+            stat(
+              id = "player_character_climb_speed_bottom_sheet_stat",
+              stat = "climb_speed",
+              change_amount = 5,
+              min_value_allowed = 0,
+            ),
+            stat(
+              id = "player_character_fly_speed_bottom_sheet_stat",
+              stat = "fly_speed",
+              change_amount = 5,
+              min_value_allowed = 0,
+            ),
+            stat(
+              id = "player_character_swim_speed_bottom_sheet_stat",
+              stat = "swim_speed",
+              change_amount = 5,
+              min_value_allowed = 0,
+            ),
+          ],
+        ),
+        sheet_title = "Manage speeds",
+      ),
+      stat(
+        id = "player_character_passive_perception",
+        stat = "passive_perception",
+        change_amount = 1,
+        min_value_allowed = 0,
+      ),
+      stat(
+        id = "player_character_proficiency_bonus",
+        stat = "proficiency_bonus",
+        change_amount = 1,
+        min_value_allowed = 0,
+        always_show_sign = true,
+      ),
+      stat(
+        id = "player_character_hit_dice",
+        stat = "total_hit_dice",
+        change_amount = 0,
+        min_value_allowed = 0,
+      ),
+    ],
+  );

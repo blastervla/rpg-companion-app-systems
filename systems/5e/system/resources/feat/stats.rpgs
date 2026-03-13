@@ -78,7 +78,7 @@ calc string first_description_text(name = "First description text") =
 calc string list_view_description(name = "List view description") =
   if isEmpty(prerequisites) then first_description_text else prerequisites;
 
-calc resource previous_level_levelled_description(name = "Previous level levelled_description") =
+calc resource<levelled_description> previous_level_levelled_description(name = "Previous level levelled_description") =
   findFirst(
     sortBy(
       descriptions,
@@ -88,7 +88,7 @@ calc resource previous_level_levelled_description(name = "Previous level levelle
     filter = ($findFirstValue) => ($findFirstValue.level <= level - 1),
   );
 
-calc resource current_level_levelled_description(name = "Current level levelled_description") =
+calc resource<levelled_description> current_level_levelled_description(name = "Current level levelled_description") =
   findFirst(
     sortBy(
       descriptions,

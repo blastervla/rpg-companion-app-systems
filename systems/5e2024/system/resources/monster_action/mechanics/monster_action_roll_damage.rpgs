@@ -1,0 +1,8 @@
+mechanic monster_action_roll_damage(event_names = "damage") =
+  when {
+    notNull(selected_damage_variant) -> fireEvent(
+      event_names = [
+        eventName(event_name = "damage", for_resource = selected_damage_variant),
+      ],
+    ),
+  };

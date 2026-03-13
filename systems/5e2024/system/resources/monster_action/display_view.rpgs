@@ -1,0 +1,44 @@
+view monster_action_display() =
+  list(
+    id = "monster_action_display",
+    padding_left = 8,
+    padding_right = 8,
+    padding_bottom = 4,
+    subviews = [
+      text(
+        id = "monster_action_display_name",
+        text = action_name,
+        style = "text",
+        bold = true,
+      ),
+      text(
+        id = "monster_action_display_description",
+        text = action_display_description,
+        style = "text",
+      ),
+      composite(
+        id = "monster_action_display_controls",
+        alignment = "end",
+        subviews = [
+          select(
+            id = "monster_action_display_damage_variant_select",
+            stat = "default_selected_damage_variant_id",
+            resource_options = action_damage_variants,
+            options_display_stat = "variant_description",
+            is_visible = !isEmpty(action_damage_variants),
+          ),
+          button(
+            id = "monster_action_display_attack_button",
+            text = "ATTACK",
+            event = event(name = "attack"),
+          ),
+          button(
+            id = "monster_action_display_damage_button",
+            text = "DAMAGE",
+            event = event(name = "damage"),
+            is_visible = !isEmpty(action_damage_variants),
+          ),
+        ],
+      ),
+    ],
+  );

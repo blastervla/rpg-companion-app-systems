@@ -1,0 +1,9 @@
+mechanic monster_action_roll_attack(event_names = "attack") =
+  roll(
+    rolls = [
+      rollable(
+        formulas = [concat(["1d20", toSignedString(action_attack_bonus)])],
+        text = "to hit",
+      ),
+    ],
+  );

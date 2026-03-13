@@ -1,0 +1,139 @@
+calc resource<monster>[] enemies(name = "Enemies") = filter(
+    $combatants, filter = ($combatant) => defined(stat="$combatant.tag_number")
+);
+
+calc resource<player>[] players(name = "Players") = filter(
+    $combatants, filter = ($combatant) => !defined(stat="$combatant.tag_number")
+);
+
+calc bool encounter_finished(name = "Encounter finished") =
+    isEmpty(
+        filter(
+            enemies,
+            filter = ($combatant) => $combatant.current_hp > 0
+        ),
+    );
+
+calc integer xp_pool(name = "XP Pool") =
+    add(map(enemies, mapper = ($monster) => $monster.xp));
+
+calc integer xp_to_deal(name = "XP to deal") = if length(players) > 0
+    then divide([
+            xp_pool,
+            length(players)
+        ], rounding_method = "none")
+    else xp_pool;
+
+calc integer encounter_low_budget_xp(name = "Encounter low budget XP") =
+    add(
+        map(
+            players,
+            mapper = ($player) => when {
+                ($player.level ?? 1) <= 1 -> 50,
+                $player.level == 2 -> 100,
+                $player.level == 3 -> 150,
+                $player.level == 4 -> 250,
+                $player.level == 5 -> 500,
+                $player.level == 6 -> 600,
+                $player.level == 7 -> 750,
+                $player.level == 8 -> 1000,
+                $player.level == 9 -> 1300,
+                $player.level == 10 -> 1600,
+                $player.level == 11 -> 1900,
+                $player.level == 12 -> 2200,
+                $player.level == 13 -> 2600,
+                $player.level == 14 -> 2900,
+                $player.level == 15 -> 3300,
+                $player.level == 16 -> 3800,
+                $player.level == 17 -> 4500,
+                $player.level == 18 -> 5000,
+                $player.level == 19 -> 5500,
+                else -> 6400,
+            },
+        ),
+    );
+
+calc integer encounter_moderate_budget_xp(name = "Encounter moderate budget XP") =
+    add(
+        map(
+            players,
+            mapper = ($player) => when {
+                ($player.level ?? 1) <= 1 -> 75,
+                $player.level == 2 -> 150,
+                $player.level == 3 -> 225,
+                $player.level == 4 -> 375,
+                $player.level == 5 -> 750,
+                $player.level == 6 -> 1000,
+                $player.level == 7 -> 1300,
+                $player.level == 8 -> 1700,
+                $player.level == 9 -> 2000,
+                $player.level == 10 -> 2300,
+                $player.level == 11 -> 2900,
+                $player.level == 12 -> 3700,
+                $player.level == 13 -> 4200,
+                $player.level == 14 -> 4900,
+                $player.level == 15 -> 5400,
+                $player.level == 16 -> 6100,
+                $player.level == 17 -> 7200,
+                $player.level == 18 -> 8700,
+                $player.level == 19 -> 10700,
+                else -> 13200,
+            },
+        ),
+    );
+
+calc integer encounter_high_budget_xp(name = "Encounter high budget XP") =
+    add(
+        map(
+            players,
+            mapper = ($player) => when {
+                ($player.level ?? 1) <= 1 -> 100,
+                $player.level == 2 -> 200,
+                $player.level == 3 -> 400,
+                $player.level == 4 -> 500,
+                $player.level == 5 -> 1100,
+                $player.level == 6 -> 1400,
+                $player.level == 7 -> 1700,
+                $player.level == 8 -> 2100,
+                $player.level == 9 -> 2600,
+                $player.level == 10 -> 3100,
+                $player.level == 11 -> 4100,
+                $player.level == 12 -> 4700,
+                $player.level == 13 -> 5400,
+                $player.level == 14 -> 6200,
+                $player.level == 15 -> 7800,
+                $player.level == 16 -> 9800,
+                $player.level == 17 -> 11700,
+                $player.level == 18 -> 14200,
+                $player.level == 19 -> 17200,
+                else -> 22000,
+            },
+        ),
+    );
+
+calc string selected_encounter_budget_tier(name = "Selected encounter budget tier") =
+    when {
+        $combat_difficulty == "easy" -> "low",
+        $combat_difficulty == "medium" -> "moderate",
+        $combat_difficulty == "hard" -> "high",
+        $combat_difficulty == "deadly" -> "high",
+        else -> "moderate",
+    };
+
+calc integer desired_encounter_budget_xp(name = "Desired encounter budget XP") =
+    when {
+        selected_encounter_budget_tier == "low" -> encounter_low_budget_xp,
+        selected_encounter_budget_tier == "moderate" -> encounter_moderate_budget_xp,
+        else -> encounter_high_budget_xp,
+    };
+
+calc string encounter_budget_tier(name = "Encounter budget tier") =
+    when {
+        xp_pool <= encounter_low_budget_xp -> "low",
+        xp_pool <= encounter_moderate_budget_xp -> "moderate",
+        xp_pool <= encounter_high_budget_xp -> "high",
+        else -> "over_high",
+    };
+
+calc bool encounter_within_desired_difficulty(name = "Encounter within desired difficulty") =
+    xp_pool <= desired_encounter_budget_xp;

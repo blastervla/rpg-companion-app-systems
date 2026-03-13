@@ -663,13 +663,13 @@ calc integer equipped_armor_ac(name = "Equipped armor AC") =
       )
     else 0;
 
-calc resource equipped_armor(name = "Equipped armor") =
+calc resource<armor> equipped_armor(name = "Equipped armor") =
   findFirst(
     armors,
     filter = ($findFirstValue) => ($findFirstValue.id == equipped_armor_id),
   );
 
-calc resource equipped_shield(name = "Equipped shield") =
+calc resource<armor> equipped_shield(name = "Equipped shield") =
   findFirst(
     armors,
     filter = ($findFirstValue) => ($findFirstValue.id == equipped_shield_id),
@@ -1298,7 +1298,7 @@ base bool death_saving_throws_failure_2(name = "Death saving throw failure 2") =
 base bool death_saving_throws_failure_3(name = "Death saving throw failure 3") =
   false;
 
-calc resource level_up_selected_class_details(name = "Selected existing class when levelling up") =
+calc resource<class_details> level_up_selected_class_details(name = "Selected existing class when levelling up") =
   findFirst(
     classes,
     filter = ($findFirstValue) => ($findFirstValue.class.id == $view?.level_up_select_class?),
@@ -1396,7 +1396,7 @@ calc resource<levelled_choice_text>[] level_up_tool_proficiency_choices(name = "
 
 base string temp_last_level_up_class_id(name = "Last level up class ID") = null;
 
-calc resource last_level_up_class_details(name = "Last level up class") =
+calc resource<class_details> last_level_up_class_details(name = "Last level up class") =
   findFirst(
     classes,
     filter = ($findFirstValue) => ($findFirstValue.class.id == temp_last_level_up_class_id),
@@ -1492,25 +1492,25 @@ calc string photo_prompt(name = "Photo prompt") =
     separator = ",",
   );
 
-calc resource<mixed>[] attuned_armors(name = "Attuned armors") =
+calc resource<armor>[] attuned_armors(name = "Attuned armors") =
   filter(
     armors,
     filter = ($filterValue) => ($filterValue.requires_attunement && $filterValue.is_attuned),
   );
 
-calc resource<mixed>[] attuned_weapons(name = "Attuned weapons") =
+calc resource<weapon>[] attuned_weapons(name = "Attuned weapons") =
   filter(
     all_weapons,
     filter = ($filterValue) => ($filterValue.requires_attunement && $filterValue.is_attuned),
   );
 
-calc resource<mixed>[] attuned_items(name = "Attuned items") =
+calc resource<item>[] attuned_items(name = "Attuned items") =
   filter(
     equipment,
     filter = ($filterValue) => ($filterValue.requires_attunement && $filterValue.is_attuned),
   );
 
-calc resource<mixed>[] attuned_resources(name = "Attuned resources") =
+calc resource<armor | weapon | item>[] attuned_resources(name = "Attuned resources") =
   flatAppend([attuned_armors, attuned_weapons, attuned_items]);
 
 calc string attuned_resources_count_message(name = "Attuned resources count message") =
