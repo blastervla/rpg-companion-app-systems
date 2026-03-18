@@ -1,0 +1,383 @@
+view monster_display() =
+  list(
+    id = "monster_display",
+    padding = 16,
+    alignment = "start",
+    subviews = [
+      composite(
+        id = "monster_display_source_type_info",
+        subviews = [
+          text(
+            id = "monster_display_source",
+            style = "caption",
+            margin_left = 16,
+            margin_right = 4,
+            resource_id = "source",
+            resource_instance_ids_stat = "source",
+            resource_display_stat = "abbreviation",
+          ),
+          text(id = "monster_display_type_info", text = type_info, style = "caption"),
+        ],
+      ),
+      composite(
+        id = "monster_display_photo_comp",
+        alignment = "end",
+        subviews = [
+          avatar(
+            id = "monster_display_photo",
+            photo_stat = "photo",
+            name_stat = "name",
+            size = "medium",
+            interactable = false,
+            preview_enabled = true,
+          ),
+        ],
+      ),
+      composite(
+        id = "monster_display_ac_hp_speed",
+        alignment = "center",
+        subviews = [
+          text(
+            id = "monster_display_ac_label",
+            text = "AC: ",
+            style = "subhead",
+            bold = true,
+          ),
+          text(
+            id = "monster_display_ac",
+            text = armor_class,
+            style = "text",
+            margin_right = 16,
+          ),
+          text(
+            id = "monster_display_hp_label",
+            text = "HP: ",
+            style = "subhead",
+            bold = true,
+          ),
+          text(
+            id = "monster_display_hp",
+            text = hit_points_formatted,
+            style = "text",
+            margin_right = 16,
+          ),
+          text(id = "monster_display_hp", text = display_speeds, style = "text"),
+        ],
+      ),
+      composite(
+        id = "monster_display_initiative",
+        subviews = [
+          text(
+            id = "monster_display_initiative_label",
+            text = "Initiative: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "monster_display_initiative",
+            text = toSignedString(initiative),
+            style = "text",
+            margin_right = 16,
+          ),
+          text(
+            id = "monster_display_perception_label",
+            text = "Perception: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "monster_display_perception",
+            text = toSignedString(perception),
+            style = "text",
+            margin_right = 16,
+          ),
+          text(
+            id = "monster_display_actions_per_turn_label",
+            text = "Actions: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "monster_display_actions_per_turn",
+            text = max_actions_per_turn,
+            style = "text",
+            margin_right = 8,
+          ),
+          text(
+            id = "monster_display_reactions_per_round_label",
+            text = "Reactions: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "monster_display_reactions_per_round",
+            text = max_reactions_per_round,
+            style = "text",
+          ),
+        ],
+      ),
+      text(
+        id = "monster_display_ability_scores_label",
+        text = "Abilities:",
+        style = "text",
+        bold = true,
+        margin_top = 4,
+      ),
+      composite(
+        id = "monster_display_ability_scores_1",
+        alignment = "center",
+        subviews = [
+          text(
+            id = "monster_display_strength_score",
+            text = display_strength_with_mod,
+            style = "text",
+            margin_right = 16,
+          ),
+          text(
+            id = "monster_display_dexterity_score",
+            text = display_dexterity_with_mod,
+            style = "text",
+            margin_right = 16,
+          ),
+          text(
+            id = "monster_display_constitution_score",
+            text = display_constitution_with_mod,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "monster_display_ability_scores_2",
+        alignment = "center",
+        margin_top = 8,
+        subviews = [
+          text(
+            id = "monster_display_intelligence_score",
+            text = display_intelligence_with_mod,
+            style = "text",
+            margin_right = 16,
+          ),
+          text(
+            id = "monster_display_wisdom_score",
+            text = display_wisdom_with_mod,
+            style = "text",
+            margin_right = 16,
+          ),
+          text(
+            id = "monster_display_charisma_score",
+            text = display_charisma_with_mod,
+            style = "text",
+          ),
+        ],
+      ),
+      text(
+        id = "monster_display_saves_label",
+        text = "Saves:",
+        style = "text",
+        bold = true,
+      ),
+      composite(
+        id = "monster_display_saves",
+        alignment = "center",
+        subviews = [
+          text(
+            id = "monster_display_fortitude",
+            text = display_fortitude,
+            style = "text",
+            margin_right = 8,
+          ),
+          text(
+            id = "monster_display_reflex",
+            text = display_reflex,
+            style = "text",
+            margin_right = 8,
+          ),
+          text(
+            id = "monster_display_will",
+            text = display_will,
+            style = "text",
+          ),
+        ],
+      ),
+      divider(id = "monster_display_stats_senses_divider", margin_bottom = 8),
+      composite(
+        id = "monster_display_skills_comp",
+        is_visible = !isEmpty(skills),
+        subviews = [
+          text(
+            id = "monster_display_skills_label",
+            text = "Skills: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "monster_display_skills", text = skills, style = "text"),
+        ],
+      ),
+      composite(
+        id = "monster_display_gear_comp",
+        is_visible = !isEmpty(gear),
+        subviews = [
+          text(
+            id = "monster_display_gear_label",
+            text = "Gear: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "monster_display_gear", text = gear, style = "text"),
+        ],
+      ),
+      composite(
+        id = "monster_display_weaknesses_comp",
+        is_visible = !isEmpty(effective_weaknesses),
+        subviews = [
+          text(
+            id = "monster_display_weaknesses_label",
+            text = "Weaknesses: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "monster_display_weaknesses",
+            text = effective_weaknesses,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "monster_display_immunities_comp",
+        is_visible = !isEmpty(immunities),
+        subviews = [
+          text(
+            id = "monster_display_immunities_label",
+            text = "Immunities: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "monster_display_immunities", text = immunities, style = "text"),
+        ],
+      ),
+      composite(
+        id = "monster_display_resistances_comp",
+        is_visible = !isEmpty(resistances),
+        subviews = [
+          text(
+            id = "monster_display_resistances_label",
+            text = "Resistances: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "monster_display_resistances", text = resistances, style = "text"),
+        ],
+      ),
+      composite(
+        id = "monster_display_senses_comp",
+        is_visible = !isEmpty(senses),
+        subviews = [
+          text(
+            id = "monster_display_senses_label",
+            text = "Senses: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "monster_display_senses", text = senses, style = "text"),
+        ],
+      ),
+      composite(
+        id = "monster_display_languages_comp",
+        is_visible = !isEmpty(languages),
+        subviews = [
+          text(
+            id = "monster_display_languages_label",
+            text = "Languages: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "monster_display_languages", text = languages, style = "text"),
+        ],
+      ),
+      composite(
+        id = "monster_display_level_xp",
+        subviews = [
+          text(
+            id = "monster_display_level_xp_label",
+            text = "Level: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "monster_display_level_xp", text = level_xp, style = "text"),
+        ],
+      ),
+      divider(id = "monster_display_traits_divider"),
+      resourceArray(
+        id = "monster_display_traits",
+        resource_id = "monster_trait",
+        stat = "traits",
+        view_type = "list",
+        hide_line = true,
+        is_visible = !isEmpty(traits),
+      ),
+      divider(id = "monster_display_actions_divider", is_visible = !isEmpty(traits)),
+      resourceArray(
+        id = "monster_display_actions",
+        resource_id = "monster_action",
+        stat = "actions",
+        view_type = "list",
+        hide_line = true,
+        left_view = text(
+          id = "monster_display_actions_label",
+          text = "Actions",
+          style = "text",
+          bold = true,
+        ),
+        is_visible = !isEmpty(actions),
+      ),
+      divider(
+        id = "monster_display_free_actions_divider",
+        is_visible = !isEmpty(actions),
+      ),
+      resourceArray(
+        id = "monster_display_free_actions",
+        resource_id = "monster_action",
+        stat = "free_actions",
+        view_type = "list",
+        hide_line = true,
+        left_view = text(
+          id = "monster_display_actions_label",
+          text = "Free actions",
+          style = "text",
+          bold = true,
+        ),
+        is_visible = !isEmpty(free_actions),
+      ),
+      divider(
+        id = "monster_display_reactions_divider",
+        is_visible = !isEmpty(free_actions),
+      ),
+      resourceArray(
+        id = "monster_display_reactions",
+        resource_id = "monster_action",
+        stat = "reactions",
+        view_type = "list",
+        hide_line = true,
+        left_view = text(
+          id = "monster_display_reactions_label",
+          text = "Reactions",
+          style = "text",
+          bold = true,
+        ),
+        is_visible = !isEmpty(reactions),
+      ),
+      divider(
+        id = "monster_display_spellcasting_divider",
+        is_visible = !isEmpty(reactions),
+      ),
+      resourceArray(
+        id = "monster_display_spellcasting_blocks",
+        resource_id = "monster_spellcasting_block",
+        stat = "spellcasting_blocks",
+        view_type = "display",
+        hide_line = true,
+        is_visible = !isEmpty(spellcasting_blocks),
+      ),
+    ],
+  );

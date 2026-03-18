@@ -1,0 +1,37 @@
+view selectable_weapons_edit() =
+  list(
+    id = "selectable_weapons_edit",
+    subviews = [
+      composite(
+        id = "selectable_weapons_edit_amount_composite",
+        subviews = [
+          text(
+            id = "selectable_weapons_edit_amount_label",
+            text = "Amount to choose: ",
+            style = "text",
+          ),
+          text(
+            id = "selectable_weapons_edit_amount",
+            edit_stat = "amount",
+            style = "text",
+            hint = "1",
+            max_length = 2,
+          ),
+        ],
+      ),
+      resourceArray(
+        id = "selectable_weapons_edit_options",
+        resource_id = "weapon_with_amount",
+        stat = "options",
+        view_type = "edit",
+        left_view = text(
+          id = "selectable_weapons_edit_options_label",
+          text = "Options: ",
+          style = "text",
+        ),
+        validation_message = if isEmpty($view.selectable_weapons_edit_options)
+          then "You have empty weapon options. Please select some weapons or remove it."
+          else null,
+      ),
+    ],
+  );

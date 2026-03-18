@@ -1,0 +1,25 @@
+view damage_variant_edit() =
+  list(
+    id = "damage_variant_edit",
+    padding = 16,
+    subviews = [
+      text(
+        id = "damage_variant_edit_name",
+        edit_stat = "variant_name",
+        style = "text",
+        label = "Name",
+        max_length = 140,
+        validation_message = if isEmpty($view.damage_variant_edit_name)
+          then "Please add a name to the damage variant"
+          else null,
+      ),
+      resourceArray(
+        id = "damage_variant_edit_dice",
+        resource_id = "damage_dice",
+        stat = "variant_damage_dice",
+        view_type = "edit",
+        pop_up_type = "bottomSheet",
+        pop_up_button_text = display_description,
+      ),
+    ],
+  );

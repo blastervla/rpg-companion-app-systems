@@ -1,0 +1,94 @@
+view player_list() =
+  section(
+    id = "player_list",
+    show_divider = false,
+    content_item_min_width = 1,
+    collapsible = false,
+    header = [],
+    content = [
+      list(
+        id = "player_combat_card_list",
+        padding = 4,
+        subviews = [
+          composite(
+            id = "player_combat_card_status",
+            subviews = [
+              text(
+                id = "player_status_name",
+                text = name,
+                style = "subhead",
+              ),
+            ]
+          ),
+          composite(
+            id = "player_display_ac_pp_speed",
+            alignment = "center",
+            subviews = [
+              ticker(
+                id = "status_hp",
+                margin_left = 16,
+                stat = "current_hp",
+                style = "title",
+                change_amount = 0,
+                label = concat(["/ ", max_hp, " HP"]),
+              ),
+              text(
+                id = "player_display_ac_label",
+                text = "AC: ",
+                style = "subhead",
+                bold = true,
+              ),
+              text(
+                id = "player_display_ac",
+                text = armor_class,
+                style = "text",
+                margin_right = 16,
+              ),
+              text(
+                id = "player_display_pp_label",
+                text = "PER: ",
+                style = "subhead",
+                bold = true,
+              ),
+              text(
+                id = "player_display_pp",
+                text = perception,
+                style = "text",
+                margin_right = 16,
+              ),
+            ],
+          ),
+          composite(
+            id = "player_display_level_pp_speed",
+            alignment = "center",
+            subviews = [
+              text(
+                id = "player_display_level_label",
+                text = "Level: ",
+                style = "subhead",
+                bold = true,
+              ),
+              text(
+                id = "player_display_level",
+                text = level,
+                style = "text",
+                margin_right = 16,
+              ),
+              text(
+                id = "player_display_ini_label",
+                text = "Ini.: ",
+                style = "subhead",
+                bold = true,
+              ),
+              text(
+                id = "player_display_ini",
+                text = initiative,
+                style = "text",
+                margin_right = 16,
+              ),
+            ],
+          ),
+        ]
+      )
+    ],
+  );

@@ -1,0 +1,34 @@
+mechanic trigger_daily_preparations(event_names = "trigger_daily_preparations") =
+  showPopUp(
+    pop_up_view = list(
+      id = "daily_preparations_content",
+      padding = 16,
+      subviews = [
+        text(
+          id = "daily_preparations_description",
+          text = "Run daily preparations to reset core daily resources and refresh temporary daily feature choices.",
+          style = "text",
+        ),
+        text(
+          id = "daily_preparations_reselection_count",
+          text = concat(
+            [
+              "Features that will require re-selection after preparing: ",
+              daily_preparations_reselectable_features_count,
+            ],
+          ),
+          style = "caption",
+          is_visible = daily_preparations_reselectable_features_count > 0,
+        ),
+      ],
+    ),
+    pop_up_title = "Daily Preparations",
+    display_cancel_button = true,
+    extra_buttons = [
+      rPGViewBottomSheetExtraButton(
+        text = "PREPARE",
+        event = event(name = "daily_preparations", payload = payload()),
+      ),
+    ],
+    in_edit_mode = true,
+  );

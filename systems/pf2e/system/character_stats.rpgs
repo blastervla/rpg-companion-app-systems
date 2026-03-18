@@ -1,0 +1,2817 @@
+calc string created_at_display(name = "Created at display") =
+  if isNull(created_at)
+    then ""
+    else concat(["Created ", date(created_at)]);
+
+base photo photo(name = "Photo") = null;
+
+base string name(name = "Name") = "";
+
+base string alignment(name = "Alignment") = "true_neutral";
+
+base string personality_traits(name = "Personality traits") = "";
+
+base string ideals(name = "Ideals") = "";
+
+base string bonds(name = "Bonds") = "";
+
+base string flaws(name = "Flaws") = "";
+
+base string about(name = "About") = "";
+
+base resource<note>[] notes(name = "Notes") = [];
+
+base integer base_hp(name = "Base HP") = 1;
+
+base integer current_hp(name = "Current HP") = 1;
+
+calc integer max_hp(name = "Maximum HP") = base_hp + classes_hp_mods;
+
+calc integer classes_hp_mods(name = "Classes HP mods") =
+  add(
+    map(
+      classes,
+      mapper = ($class) => ($class.class_level * (
+        ($class.class.actual_class_hp_per_level ?? 0) + add(
+          map(
+            $class.class.actual_hp_modifiers,
+            mapper = ($mapValue) => metaStat(meta_stat = concat([$mapValue, "_modifier"])),
+          ),
+        )
+      )),
+    ),
+  );
+
+calc string description(name = "Description") =
+  concat(
+    [
+      (if notNull(ancestry) then (heritage?.name ?? ancestry.name) else ""),
+      (if isEmpty(classes)
+        then ""
+        else concat(
+            [
+              " ",
+              joinToString(
+                map(
+                  classes,
+                  mapper = ($class) => concat([$class.class.name, " ", $class.class_level]),
+                ),
+                separator = " / ",
+              ),
+            ],
+          )),
+    ],
+  );
+
+base resource<class_progression>[] classes(name = "Classes") = [];
+
+base resource<background> background(name = "Background") = null;
+
+base resource<ancestry> ancestry(name = "Ancestry") = null;
+
+base resource<heritage> heritage(name = "Heritage") = null;
+
+calc resource<feat>[] racial_traits(name = "Ancestry traits") =
+  sortBy(
+    filter(
+      flatAppend([(ancestry?.traits ?? []), (heritage?.traits ?? [])]),
+      filter = ($filterValue) => ($filterValue.min_level <= level),
+    ),
+    order = "asc",
+    sort_by_selector = ($sortByValue) => $sortByValue.min_level,
+  );
+
+base string[] advantages(name = "Advantages") = [];
+
+base string[] disadvantages(name = "Disadvantages") = [];
+
+calc bool is_not_wearing_inproficient_armor(name = "Character is not currently wearing a piece of armor its not proficient with") =
+  isNull(equipped_armor) || equipped_armor?.is_proficient? ?? true;
+
+calc string[] armor_disadvantages(name = "Armor disadvantages") =
+  if is_not_wearing_inproficient_armor
+    then []
+    else [
+        "strength_modifier",
+        "dexterity_modifier",
+        "reflex",
+        "athletics",
+        "acrobatics",
+        "thievery",
+        "stealth",
+      ];
+
+calc integer armor_check_penalty(name = "Armor check penalty") =
+  equipped_armor?.check_penalty ?? 0;
+
+calc string[] all_disadvantages(name = "Disadvantages") =
+  flatAppend(
+    [
+      disadvantages,
+      armor_disadvantages,
+    ],
+    treat_as_set = true,
+  );
+
+base string[] language_proficiencies(name = "Language proficiencies") = [];
+
+base string[] armor_proficiencies(name = "Armor proficiencies") = [];
+
+base string[] weapon_proficiencies(name = "Weapon proficiencies") = [];
+
+
+base resource<lore_skill>[] lore_skills(name = "Lore skills") = [];
+
+base string spellcasting_proficiency(name = "Global spellcasting proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+base string arcane_spellcasting_proficiency(name = "Arcane spellcasting proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+base string divine_spellcasting_proficiency(name = "Divine spellcasting proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+base string occult_spellcasting_proficiency(name = "Occult spellcasting proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+base string primal_spellcasting_proficiency(name = "Primal spellcasting proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc resource<lore_skill>[] granted_lore_skills(name = "Granted lore skills") =
+  flatAppend(
+    [
+      (ancestry?.lore_skills_for_current_level ?? []),
+      (background?.lore_skills_for_current_level ?? []),
+      flatMap(
+        classes,
+        mapper = ($class) => ($class.class?.lore_skills_for_current_level ?? []),
+      ),
+      flatMap(
+        all_features,
+        mapper = ($feature) => ($feature.lore_skills_for_current_level ?? []),
+      ),
+    ],
+  );
+
+calc resource<lore_skill>[] all_lore_skills(name = "All lore skills") =
+  flatAppend(
+    [
+      granted_lore_skills,
+      lore_skills,
+    ],
+  );
+
+calc string[] lore_skill_names(name = "Lore skill names") =
+  map(
+    filter(
+      all_lore_skills,
+      filter = ($filterValue) => !isEmpty($filterValue.lore_name),
+    ),
+    mapper = ($mapValue) => $mapValue.lore_name,
+  );
+base integer acrobatics_untyped_modifier(name = "Acrobatics untyped modifier") = 0;
+base integer acrobatics_status_bonus(name = "Acrobatics status bonus") = 0;
+base integer acrobatics_status_penalty(name = "Acrobatics status penalty") = 0;
+base integer acrobatics_circumstance_bonus(name = "Acrobatics circumstance bonus") = 0;
+base integer acrobatics_circumstance_penalty(name = "Acrobatics circumstance penalty") = 0;
+base integer acrobatics_item_bonus(name = "Acrobatics item bonus") = 0;
+base integer acrobatics_item_penalty(name = "Acrobatics item penalty") = 0;
+calc integer acrobatics_typed_modifier_total(name = "Acrobatics typed modifier total") =
+  acrobatics_untyped_modifier + acrobatics_status_bonus + acrobatics_status_penalty + acrobatics_circumstance_bonus + acrobatics_circumstance_penalty + acrobatics_item_bonus + acrobatics_item_penalty;
+
+base integer arcana_untyped_modifier(name = "Arcana untyped modifier") = 0;
+base integer arcana_status_bonus(name = "Arcana status bonus") = 0;
+base integer arcana_status_penalty(name = "Arcana status penalty") = 0;
+base integer arcana_circumstance_bonus(name = "Arcana circumstance bonus") = 0;
+base integer arcana_circumstance_penalty(name = "Arcana circumstance penalty") = 0;
+base integer arcana_item_bonus(name = "Arcana item bonus") = 0;
+base integer arcana_item_penalty(name = "Arcana item penalty") = 0;
+calc integer arcana_typed_modifier_total(name = "Arcana typed modifier total") =
+  arcana_untyped_modifier + arcana_status_bonus + arcana_status_penalty + arcana_circumstance_bonus + arcana_circumstance_penalty + arcana_item_bonus + arcana_item_penalty;
+
+base integer athletics_untyped_modifier(name = "Athletics untyped modifier") = 0;
+base integer athletics_status_bonus(name = "Athletics status bonus") = 0;
+base integer athletics_status_penalty(name = "Athletics status penalty") = 0;
+base integer athletics_circumstance_bonus(name = "Athletics circumstance bonus") = 0;
+base integer athletics_circumstance_penalty(name = "Athletics circumstance penalty") = 0;
+base integer athletics_item_bonus(name = "Athletics item bonus") = 0;
+base integer athletics_item_penalty(name = "Athletics item penalty") = 0;
+calc integer athletics_typed_modifier_total(name = "Athletics typed modifier total") =
+  athletics_untyped_modifier + athletics_status_bonus + athletics_status_penalty + athletics_circumstance_bonus + athletics_circumstance_penalty + athletics_item_bonus + athletics_item_penalty;
+
+base integer deception_untyped_modifier(name = "Deception untyped modifier") = 0;
+base integer deception_status_bonus(name = "Deception status bonus") = 0;
+base integer deception_status_penalty(name = "Deception status penalty") = 0;
+base integer deception_circumstance_bonus(name = "Deception circumstance bonus") = 0;
+base integer deception_circumstance_penalty(name = "Deception circumstance penalty") = 0;
+base integer deception_item_bonus(name = "Deception item bonus") = 0;
+base integer deception_item_penalty(name = "Deception item penalty") = 0;
+calc integer deception_typed_modifier_total(name = "Deception typed modifier total") =
+  deception_untyped_modifier + deception_status_bonus + deception_status_penalty + deception_circumstance_bonus + deception_circumstance_penalty + deception_item_bonus + deception_item_penalty;
+
+base integer intimidation_untyped_modifier(name = "Intimidation untyped modifier") = 0;
+base integer intimidation_status_bonus(name = "Intimidation status bonus") = 0;
+base integer intimidation_status_penalty(name = "Intimidation status penalty") = 0;
+base integer intimidation_circumstance_bonus(name = "Intimidation circumstance bonus") = 0;
+base integer intimidation_circumstance_penalty(name = "Intimidation circumstance penalty") = 0;
+base integer intimidation_item_bonus(name = "Intimidation item bonus") = 0;
+base integer intimidation_item_penalty(name = "Intimidation item penalty") = 0;
+calc integer intimidation_typed_modifier_total(name = "Intimidation typed modifier total") =
+  intimidation_untyped_modifier + intimidation_status_bonus + intimidation_status_penalty + intimidation_circumstance_bonus + intimidation_circumstance_penalty + intimidation_item_bonus + intimidation_item_penalty;
+
+base integer crafting_untyped_modifier(name = "Crafting untyped modifier") = 0;
+base integer crafting_status_bonus(name = "Crafting status bonus") = 0;
+base integer crafting_status_penalty(name = "Crafting status penalty") = 0;
+base integer crafting_circumstance_bonus(name = "Crafting circumstance bonus") = 0;
+base integer crafting_circumstance_penalty(name = "Crafting circumstance penalty") = 0;
+base integer crafting_item_bonus(name = "Crafting item bonus") = 0;
+base integer crafting_item_penalty(name = "Crafting item penalty") = 0;
+calc integer crafting_typed_modifier_total(name = "Crafting typed modifier total") =
+  crafting_untyped_modifier + crafting_status_bonus + crafting_status_penalty + crafting_circumstance_bonus + crafting_circumstance_penalty + crafting_item_bonus + crafting_item_penalty;
+
+base integer medicine_untyped_modifier(name = "Medicine untyped modifier") = 0;
+base integer medicine_status_bonus(name = "Medicine status bonus") = 0;
+base integer medicine_status_penalty(name = "Medicine status penalty") = 0;
+base integer medicine_circumstance_bonus(name = "Medicine circumstance bonus") = 0;
+base integer medicine_circumstance_penalty(name = "Medicine circumstance penalty") = 0;
+base integer medicine_item_bonus(name = "Medicine item bonus") = 0;
+base integer medicine_item_penalty(name = "Medicine item penalty") = 0;
+calc integer medicine_typed_modifier_total(name = "Medicine typed modifier total") =
+  medicine_untyped_modifier + medicine_status_bonus + medicine_status_penalty + medicine_circumstance_bonus + medicine_circumstance_penalty + medicine_item_bonus + medicine_item_penalty;
+
+base integer nature_untyped_modifier(name = "Nature untyped modifier") = 0;
+base integer nature_status_bonus(name = "Nature status bonus") = 0;
+base integer nature_status_penalty(name = "Nature status penalty") = 0;
+base integer nature_circumstance_bonus(name = "Nature circumstance bonus") = 0;
+base integer nature_circumstance_penalty(name = "Nature circumstance penalty") = 0;
+base integer nature_item_bonus(name = "Nature item bonus") = 0;
+base integer nature_item_penalty(name = "Nature item penalty") = 0;
+calc integer nature_typed_modifier_total(name = "Nature typed modifier total") =
+  nature_untyped_modifier + nature_status_bonus + nature_status_penalty + nature_circumstance_bonus + nature_circumstance_penalty + nature_item_bonus + nature_item_penalty;
+
+base integer perception_untyped_modifier(name = "Perception untyped modifier") = 0;
+base integer perception_status_bonus(name = "Perception status bonus") = 0;
+base integer perception_status_penalty(name = "Perception status penalty") = 0;
+base integer perception_circumstance_bonus(name = "Perception circumstance bonus") = 0;
+base integer perception_circumstance_penalty(name = "Perception circumstance penalty") = 0;
+base integer perception_item_bonus(name = "Perception item bonus") = 0;
+base integer perception_item_penalty(name = "Perception item penalty") = 0;
+calc integer perception_typed_modifier_total(name = "Perception typed modifier total") =
+  perception_untyped_modifier + perception_status_bonus + perception_status_penalty + perception_circumstance_bonus + perception_circumstance_penalty + perception_item_bonus + perception_item_penalty;
+
+base integer performance_untyped_modifier(name = "Performance untyped modifier") = 0;
+base integer performance_status_bonus(name = "Performance status bonus") = 0;
+base integer performance_status_penalty(name = "Performance status penalty") = 0;
+base integer performance_circumstance_bonus(name = "Performance circumstance bonus") = 0;
+base integer performance_circumstance_penalty(name = "Performance circumstance penalty") = 0;
+base integer performance_item_bonus(name = "Performance item bonus") = 0;
+base integer performance_item_penalty(name = "Performance item penalty") = 0;
+calc integer performance_typed_modifier_total(name = "Performance typed modifier total") =
+  performance_untyped_modifier + performance_status_bonus + performance_status_penalty + performance_circumstance_bonus + performance_circumstance_penalty + performance_item_bonus + performance_item_penalty;
+
+base integer diplomacy_untyped_modifier(name = "Diplomacy untyped modifier") = 0;
+base integer diplomacy_status_bonus(name = "Diplomacy status bonus") = 0;
+base integer diplomacy_status_penalty(name = "Diplomacy status penalty") = 0;
+base integer diplomacy_circumstance_bonus(name = "Diplomacy circumstance bonus") = 0;
+base integer diplomacy_circumstance_penalty(name = "Diplomacy circumstance penalty") = 0;
+base integer diplomacy_item_bonus(name = "Diplomacy item bonus") = 0;
+base integer diplomacy_item_penalty(name = "Diplomacy item penalty") = 0;
+calc integer diplomacy_typed_modifier_total(name = "Diplomacy typed modifier total") =
+  diplomacy_untyped_modifier + diplomacy_status_bonus + diplomacy_status_penalty + diplomacy_circumstance_bonus + diplomacy_circumstance_penalty + diplomacy_item_bonus + diplomacy_item_penalty;
+
+base integer religion_untyped_modifier(name = "Religion untyped modifier") = 0;
+base integer religion_status_bonus(name = "Religion status bonus") = 0;
+base integer religion_status_penalty(name = "Religion status penalty") = 0;
+base integer religion_circumstance_bonus(name = "Religion circumstance bonus") = 0;
+base integer religion_circumstance_penalty(name = "Religion circumstance penalty") = 0;
+base integer religion_item_bonus(name = "Religion item bonus") = 0;
+base integer religion_item_penalty(name = "Religion item penalty") = 0;
+calc integer religion_typed_modifier_total(name = "Religion typed modifier total") =
+  religion_untyped_modifier + religion_status_bonus + religion_status_penalty + religion_circumstance_bonus + religion_circumstance_penalty + religion_item_bonus + religion_item_penalty;
+
+base integer occultism_untyped_modifier(name = "Occultism untyped modifier") = 0;
+base integer occultism_status_bonus(name = "Occultism status bonus") = 0;
+base integer occultism_status_penalty(name = "Occultism status penalty") = 0;
+base integer occultism_circumstance_bonus(name = "Occultism circumstance bonus") = 0;
+base integer occultism_circumstance_penalty(name = "Occultism circumstance penalty") = 0;
+base integer occultism_item_bonus(name = "Occultism item bonus") = 0;
+base integer occultism_item_penalty(name = "Occultism item penalty") = 0;
+calc integer occultism_typed_modifier_total(name = "Occultism typed modifier total") =
+  occultism_untyped_modifier + occultism_status_bonus + occultism_status_penalty + occultism_circumstance_bonus + occultism_circumstance_penalty + occultism_item_bonus + occultism_item_penalty;
+
+base integer society_untyped_modifier(name = "Society untyped modifier") = 0;
+base integer society_status_bonus(name = "Society status bonus") = 0;
+base integer society_status_penalty(name = "Society status penalty") = 0;
+base integer society_circumstance_bonus(name = "Society circumstance bonus") = 0;
+base integer society_circumstance_penalty(name = "Society circumstance penalty") = 0;
+base integer society_item_bonus(name = "Society item bonus") = 0;
+base integer society_item_penalty(name = "Society item penalty") = 0;
+calc integer society_typed_modifier_total(name = "Society typed modifier total") =
+  society_untyped_modifier + society_status_bonus + society_status_penalty + society_circumstance_bonus + society_circumstance_penalty + society_item_bonus + society_item_penalty;
+
+base integer thievery_untyped_modifier(name = "Thievery untyped modifier") = 0;
+base integer thievery_status_bonus(name = "Thievery status bonus") = 0;
+base integer thievery_status_penalty(name = "Thievery status penalty") = 0;
+base integer thievery_circumstance_bonus(name = "Thievery circumstance bonus") = 0;
+base integer thievery_circumstance_penalty(name = "Thievery circumstance penalty") = 0;
+base integer thievery_item_bonus(name = "Thievery item bonus") = 0;
+base integer thievery_item_penalty(name = "Thievery item penalty") = 0;
+calc integer thievery_typed_modifier_total(name = "Thievery typed modifier total") =
+  thievery_untyped_modifier + thievery_status_bonus + thievery_status_penalty + thievery_circumstance_bonus + thievery_circumstance_penalty + thievery_item_bonus + thievery_item_penalty;
+
+base integer stealth_untyped_modifier(name = "Stealth untyped modifier") = 0;
+base integer stealth_status_bonus(name = "Stealth status bonus") = 0;
+base integer stealth_status_penalty(name = "Stealth status penalty") = 0;
+base integer stealth_circumstance_bonus(name = "Stealth circumstance bonus") = 0;
+base integer stealth_circumstance_penalty(name = "Stealth circumstance penalty") = 0;
+base integer stealth_item_bonus(name = "Stealth item bonus") = 0;
+base integer stealth_item_penalty(name = "Stealth item penalty") = 0;
+calc integer stealth_typed_modifier_total(name = "Stealth typed modifier total") =
+  stealth_untyped_modifier + stealth_status_bonus + stealth_status_penalty + stealth_circumstance_bonus + stealth_circumstance_penalty + stealth_item_bonus + stealth_item_penalty;
+
+base integer survival_untyped_modifier(name = "Survival untyped modifier") = 0;
+base integer survival_status_bonus(name = "Survival status bonus") = 0;
+base integer survival_status_penalty(name = "Survival status penalty") = 0;
+base integer survival_circumstance_bonus(name = "Survival circumstance bonus") = 0;
+base integer survival_circumstance_penalty(name = "Survival circumstance penalty") = 0;
+base integer survival_item_bonus(name = "Survival item bonus") = 0;
+base integer survival_item_penalty(name = "Survival item penalty") = 0;
+calc integer survival_typed_modifier_total(name = "Survival typed modifier total") =
+  survival_untyped_modifier + survival_status_bonus + survival_status_penalty + survival_circumstance_bonus + survival_circumstance_penalty + survival_item_bonus + survival_item_penalty;
+
+base integer armor_class_untyped_modifier(name = "Armor Class untyped modifier") = 0;
+base integer armor_class_status_bonus(name = "Armor Class status bonus") = 0;
+base integer armor_class_status_penalty(name = "Armor Class status penalty") = 0;
+base integer armor_class_circumstance_bonus(name = "Armor Class circumstance bonus") = 0;
+base integer armor_class_circumstance_penalty(name = "Armor Class circumstance penalty") = 0;
+base integer armor_class_item_bonus(name = "Armor Class item bonus") = 0;
+base integer armor_class_item_penalty(name = "Armor Class item penalty") = 0;
+calc integer armor_class_typed_modifier_total(name = "Armor Class typed modifier total") =
+  armor_class_untyped_modifier + armor_class_status_bonus + armor_class_status_penalty + armor_class_circumstance_bonus + armor_class_circumstance_penalty + armor_class_item_bonus + armor_class_item_penalty;
+
+base integer perception_dc_untyped_modifier(name = "Perception DC untyped modifier") = 0;
+base integer perception_dc_status_bonus(name = "Perception DC status bonus") = 0;
+base integer perception_dc_status_penalty(name = "Perception DC status penalty") = 0;
+base integer perception_dc_circumstance_bonus(name = "Perception DC circumstance bonus") = 0;
+base integer perception_dc_circumstance_penalty(name = "Perception DC circumstance penalty") = 0;
+base integer perception_dc_item_bonus(name = "Perception DC item bonus") = 0;
+base integer perception_dc_item_penalty(name = "Perception DC item penalty") = 0;
+calc integer perception_dc_typed_modifier_total(name = "Perception DC typed modifier total") =
+  perception_dc_untyped_modifier + perception_dc_status_bonus + perception_dc_status_penalty + perception_dc_circumstance_bonus + perception_dc_circumstance_penalty + perception_dc_item_bonus + perception_dc_item_penalty;
+
+base integer initiative_untyped_modifier(name = "Initiative untyped modifier") = 0;
+base integer initiative_status_bonus(name = "Initiative status bonus") = 0;
+base integer initiative_status_penalty(name = "Initiative status penalty") = 0;
+base integer initiative_circumstance_bonus(name = "Initiative circumstance bonus") = 0;
+base integer initiative_circumstance_penalty(name = "Initiative circumstance penalty") = 0;
+base integer initiative_item_bonus(name = "Initiative item bonus") = 0;
+base integer initiative_item_penalty(name = "Initiative item penalty") = 0;
+calc integer initiative_typed_modifier_total(name = "Initiative typed modifier total") =
+  initiative_untyped_modifier + initiative_status_bonus + initiative_status_penalty + initiative_circumstance_bonus + initiative_circumstance_penalty + initiative_item_bonus + initiative_item_penalty;
+
+base integer fortitude_untyped_modifier(name = "Fortitude untyped modifier") = 0;
+base integer fortitude_status_bonus(name = "Fortitude status bonus") = 0;
+base integer fortitude_status_penalty(name = "Fortitude status penalty") = 0;
+base integer fortitude_circumstance_bonus(name = "Fortitude circumstance bonus") = 0;
+base integer fortitude_circumstance_penalty(name = "Fortitude circumstance penalty") = 0;
+base integer fortitude_item_bonus(name = "Fortitude item bonus") = 0;
+base integer fortitude_item_penalty(name = "Fortitude item penalty") = 0;
+calc integer fortitude_typed_modifier_total(name = "Fortitude typed modifier total") =
+  fortitude_untyped_modifier + fortitude_status_bonus + fortitude_status_penalty + fortitude_circumstance_bonus + fortitude_circumstance_penalty + fortitude_item_bonus + fortitude_item_penalty;
+
+base integer reflex_untyped_modifier(name = "Reflex untyped modifier") = 0;
+base integer reflex_status_bonus(name = "Reflex status bonus") = 0;
+base integer reflex_status_penalty(name = "Reflex status penalty") = 0;
+base integer reflex_circumstance_bonus(name = "Reflex circumstance bonus") = 0;
+base integer reflex_circumstance_penalty(name = "Reflex circumstance penalty") = 0;
+base integer reflex_item_bonus(name = "Reflex item bonus") = 0;
+base integer reflex_item_penalty(name = "Reflex item penalty") = 0;
+calc integer reflex_typed_modifier_total(name = "Reflex typed modifier total") =
+  reflex_untyped_modifier + reflex_status_bonus + reflex_status_penalty + reflex_circumstance_bonus + reflex_circumstance_penalty + reflex_item_bonus + reflex_item_penalty;
+
+base integer will_untyped_modifier(name = "Will untyped modifier") = 0;
+base integer will_status_bonus(name = "Will status bonus") = 0;
+base integer will_status_penalty(name = "Will status penalty") = 0;
+base integer will_circumstance_bonus(name = "Will circumstance bonus") = 0;
+base integer will_circumstance_penalty(name = "Will circumstance penalty") = 0;
+base integer will_item_bonus(name = "Will item bonus") = 0;
+base integer will_item_penalty(name = "Will item penalty") = 0;
+calc integer will_typed_modifier_total(name = "Will typed modifier total") =
+  will_untyped_modifier + will_status_bonus + will_status_penalty + will_circumstance_bonus + will_circumstance_penalty + will_item_bonus + will_item_penalty;
+
+base integer class_dc_untyped_modifier(name = "Class DC untyped modifier") = 0;
+base integer class_dc_status_bonus(name = "Class DC status bonus") = 0;
+base integer class_dc_status_penalty(name = "Class DC status penalty") = 0;
+base integer class_dc_circumstance_bonus(name = "Class DC circumstance bonus") = 0;
+base integer class_dc_circumstance_penalty(name = "Class DC circumstance penalty") = 0;
+base integer class_dc_item_bonus(name = "Class DC item bonus") = 0;
+base integer class_dc_item_penalty(name = "Class DC item penalty") = 0;
+calc integer class_dc_typed_modifier_total(name = "Class DC typed modifier total") =
+  class_dc_untyped_modifier + class_dc_status_bonus + class_dc_status_penalty + class_dc_circumstance_bonus + class_dc_circumstance_penalty + class_dc_item_bonus + class_dc_item_penalty;
+
+base integer strike_attack_untyped_modifier(name = "Strike attack untyped modifier") = 0;
+base integer strike_attack_status_bonus(name = "Strike attack status bonus") = 0;
+base integer strike_attack_status_penalty(name = "Strike attack status penalty") = 0;
+base integer strike_attack_circumstance_bonus(name = "Strike attack circumstance bonus") = 0;
+base integer strike_attack_circumstance_penalty(name = "Strike attack circumstance penalty") = 0;
+base integer strike_attack_item_bonus(name = "Strike attack item bonus") = 0;
+base integer strike_attack_item_penalty(name = "Strike attack item penalty") = 0;
+calc integer strike_attack_typed_modifier_total(name = "Strike attack typed modifier total") =
+  strike_attack_untyped_modifier + strike_attack_status_bonus + strike_attack_status_penalty + strike_attack_circumstance_bonus + strike_attack_circumstance_penalty + strike_attack_item_bonus + strike_attack_item_penalty;
+
+base integer strike_damage_untyped_modifier(name = "Strike damage untyped modifier") = 0;
+base integer strike_damage_status_bonus(name = "Strike damage status bonus") = 0;
+base integer strike_damage_status_penalty(name = "Strike damage status penalty") = 0;
+base integer strike_damage_circumstance_bonus(name = "Strike damage circumstance bonus") = 0;
+base integer strike_damage_circumstance_penalty(name = "Strike damage circumstance penalty") = 0;
+base integer strike_damage_item_bonus(name = "Strike damage item bonus") = 0;
+base integer strike_damage_item_penalty(name = "Strike damage item penalty") = 0;
+calc integer strike_damage_typed_modifier_total(name = "Strike damage typed modifier total") =
+  strike_damage_untyped_modifier + strike_damage_status_bonus + strike_damage_status_penalty + strike_damage_circumstance_bonus + strike_damage_circumstance_penalty + strike_damage_item_bonus + strike_damage_item_penalty;
+
+base string acrobatics_proficiency(name = "Acrobatics proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc integer acrobatics(name = "Acrobatics") =
+  dexterity_modifier + when {
+    acrobatics_proficiency == "trained" -> level_bonus + 2,
+    acrobatics_proficiency == "expert" -> level_bonus + 4,
+    acrobatics_proficiency == "master" -> level_bonus + 6,
+    acrobatics_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  } + armor_check_penalty
+  + acrobatics_typed_modifier_total;
+
+calc string acrobatics_formatted(name = "Acrobatics formatted") =
+  if acrobatics > 0 then concat(["+", acrobatics]) else concat([acrobatics]);
+
+calc string acrobatics_color(name = "Acrobatics number color") =
+  if acrobatics_proficiency == "trained" || acrobatics_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string acrobatics_label_color(name = "Acrobatics label color") =
+  if acrobatics_proficiency == "expert" || acrobatics_proficiency == "master" || acrobatics_proficiency == "legendary" then "accent" else "hint";
+
+base string crafting_proficiency(name = "Crafting proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc integer crafting(name = "Crafting") =
+  intelligence_modifier + when {
+    crafting_proficiency == "trained" -> level_bonus + 2,
+    crafting_proficiency == "expert" -> level_bonus + 4,
+    crafting_proficiency == "master" -> level_bonus + 6,
+    crafting_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  }
+  + crafting_typed_modifier_total;
+
+calc string crafting_formatted(name = "Crafting formatted") =
+  if crafting > 0 then concat(["+", crafting]) else concat([crafting]);
+
+calc string crafting_color(name = "Crafting number color") =
+  if crafting_proficiency == "trained" || crafting_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string crafting_label_color(name = "Crafting label color") =
+  if crafting_proficiency == "expert" || crafting_proficiency == "master" || crafting_proficiency == "legendary" then "accent" else "hint";
+
+base string arcana_proficiency(name = "Arcana proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc integer arcana(name = "Arcana") =
+  intelligence_modifier + when {
+    arcana_proficiency == "trained" -> level_bonus + 2,
+    arcana_proficiency == "expert" -> level_bonus + 4,
+    arcana_proficiency == "master" -> level_bonus + 6,
+    arcana_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  }
+  + arcana_typed_modifier_total;
+
+calc string arcana_formatted(name = "Arcana formatted") =
+  if arcana > 0 then concat(["+", arcana]) else concat([arcana]);
+
+calc string arcana_color(name = "Arcana number color") =
+  if arcana_proficiency == "trained" || arcana_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string arcana_label_color(name = "Arcana label color") =
+  if arcana_proficiency == "expert" || arcana_proficiency == "master" || arcana_proficiency == "legendary" then "accent" else "hint";
+
+base string athletics_proficiency(name = "Athletics proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc integer athletics(name = "Athletics") =
+  strength_modifier + when {
+    athletics_proficiency == "trained" -> level_bonus + 2,
+    athletics_proficiency == "expert" -> level_bonus + 4,
+    athletics_proficiency == "master" -> level_bonus + 6,
+    athletics_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  } + armor_check_penalty
+  + athletics_typed_modifier_total;
+
+calc string athletics_formatted(name = "Athletics formatted") =
+  if athletics > 0 then concat(["+", athletics]) else concat([athletics]);
+
+calc string athletics_color(name = "Athletics number color") =
+  if athletics_proficiency == "trained" || athletics_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string athletics_label_color(name = "Athletics label color") =
+  if athletics_proficiency == "expert" || athletics_proficiency == "master" || athletics_proficiency == "legendary" then "accent" else "hint";
+
+base string deception_proficiency(name = "Deception proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc integer deception(name = "Deception") =
+  charisma_modifier + when {
+    deception_proficiency == "trained" -> level_bonus + 2,
+    deception_proficiency == "expert" -> level_bonus + 4,
+    deception_proficiency == "master" -> level_bonus + 6,
+    deception_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  }
+  + deception_typed_modifier_total;
+
+calc string deception_formatted(name = "Deception formatted") =
+  if deception > 0 then concat(["+", deception]) else concat([deception]);
+
+calc string deception_color(name = "Deception number color") =
+  if deception_proficiency == "trained" || deception_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string deception_label_color(name = "Deception label color") =
+  if deception_proficiency == "expert" || deception_proficiency == "master" || deception_proficiency == "legendary" then "accent" else "hint";
+
+base string occultism_proficiency(name = "Occultism proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc integer occultism(name = "Occultism") =
+  intelligence_modifier + when {
+    occultism_proficiency == "trained" -> level_bonus + 2,
+    occultism_proficiency == "expert" -> level_bonus + 4,
+    occultism_proficiency == "master" -> level_bonus + 6,
+    occultism_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  }
+  + occultism_typed_modifier_total;
+
+calc string occultism_formatted(name = "Occultism formatted") =
+  if occultism > 0 then concat(["+", occultism]) else concat([occultism]);
+
+calc string occultism_color(name = "Occultism number color") =
+  if occultism_proficiency == "trained" || occultism_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string occultism_label_color(name = "Occultism label color") =
+  if occultism_proficiency == "expert" || occultism_proficiency == "master" || occultism_proficiency == "legendary" then "accent" else "hint";
+
+base string society_proficiency(name = "Society proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc integer society(name = "Society") =
+  intelligence_modifier + when {
+    society_proficiency == "trained" -> level_bonus + 2,
+    society_proficiency == "expert" -> level_bonus + 4,
+    society_proficiency == "master" -> level_bonus + 6,
+    society_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  }
+  + society_typed_modifier_total;
+
+calc string society_formatted(name = "Society formatted") =
+  if society > 0 then concat(["+", society]) else concat([society]);
+
+calc string society_color(name = "Society number color") =
+  if society_proficiency == "trained" || society_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string society_label_color(name = "Society label color") =
+  if society_proficiency == "expert" || society_proficiency == "master" || society_proficiency == "legendary" then "accent" else "hint";
+
+base string intimidation_proficiency(name = "Intimidation proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc integer intimidation(name = "Intimidation") =
+  charisma_modifier + when {
+    intimidation_proficiency == "trained" -> level_bonus + 2,
+    intimidation_proficiency == "expert" -> level_bonus + 4,
+    intimidation_proficiency == "master" -> level_bonus + 6,
+    intimidation_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  }
+  + intimidation_typed_modifier_total;
+
+calc string intimidation_formatted(name = "Intimidation formatted") =
+  if intimidation > 0 then concat(["+", intimidation]) else concat([intimidation]);
+
+calc string intimidation_color(name = "Intimidation number color") =
+  if intimidation_proficiency == "trained" || intimidation_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string intimidation_label_color(name = "Intimidation label color") =
+  if intimidation_proficiency == "expert" || intimidation_proficiency == "master" || intimidation_proficiency == "legendary" then "accent" else "hint";
+
+base string medicine_proficiency(name = "Medicine proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc integer medicine(name = "Medicine") =
+  wisdom_modifier + when {
+    medicine_proficiency == "trained" -> level_bonus + 2,
+    medicine_proficiency == "expert" -> level_bonus + 4,
+    medicine_proficiency == "master" -> level_bonus + 6,
+    medicine_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  }
+  + medicine_typed_modifier_total;
+
+calc string medicine_formatted(name = "Medicine formatted") =
+  if medicine > 0 then concat(["+", medicine]) else concat([medicine]);
+
+calc string medicine_color(name = "Medicine number color") =
+  if medicine_proficiency == "trained" || medicine_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string medicine_label_color(name = "Medicine label color") =
+  if medicine_proficiency == "expert" || medicine_proficiency == "master" || medicine_proficiency == "legendary" then "accent" else "hint";
+
+base string nature_proficiency(name = "Nature proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc integer nature(name = "Nature") =
+  intelligence_modifier + when {
+    nature_proficiency == "trained" -> level_bonus + 2,
+    nature_proficiency == "expert" -> level_bonus + 4,
+    nature_proficiency == "master" -> level_bonus + 6,
+    nature_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  }
+  + nature_typed_modifier_total;
+
+calc string nature_formatted(name = "Nature formatted") =
+  if nature > 0 then concat(["+", nature]) else concat([nature]);
+
+calc string nature_color(name = "Nature number color") =
+  if nature_proficiency == "trained" || nature_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string nature_label_color(name = "Nature label color") =
+  if nature_proficiency == "expert" || nature_proficiency == "master" || nature_proficiency == "legendary" then "accent" else "hint";
+
+base string perception_proficiency(name = "Perception proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc integer perception_manual_proficiency_rank(name = "Perception manual proficiency rank") =
+  when {
+    perception_proficiency == "trained" -> 1,
+    perception_proficiency == "expert" -> 2,
+    perception_proficiency == "master" -> 3,
+    perception_proficiency == "legendary" -> 4,
+    else -> 0,
+  };
+
+calc integer perception_class_proficiency_rank(name = "Perception class proficiency rank") =
+  if isEmpty(classes)
+    then 0
+    else max(
+        map(
+          classes,
+          mapper = ($class) =>
+            when {
+              $class.class.current_level_perception_proficiency == "trained" -> 1,
+              $class.class.current_level_perception_proficiency == "expert" -> 2,
+              $class.class.current_level_perception_proficiency == "master" -> 3,
+              $class.class.current_level_perception_proficiency == "legendary" -> 4,
+              else -> 0,
+            },
+        ),
+      );
+
+calc integer effective_perception_proficiency_rank(name = "Effective perception proficiency rank") =
+  max(
+    [
+      perception_manual_proficiency_rank,
+      perception_class_proficiency_rank,
+    ],
+  );
+
+calc string effective_perception_proficiency(name = "Effective perception proficiency") =
+  when {
+    effective_perception_proficiency_rank == 4 -> "legendary",
+    effective_perception_proficiency_rank == 3 -> "master",
+    effective_perception_proficiency_rank == 2 -> "expert",
+    effective_perception_proficiency_rank == 1 -> "trained",
+    else -> "none",
+  };
+
+calc integer perception(name = "Perception") =
+  wisdom_modifier + when {
+    effective_perception_proficiency == "trained" -> level_bonus + 2,
+    effective_perception_proficiency == "expert" -> level_bonus + 4,
+    effective_perception_proficiency == "master" -> level_bonus + 6,
+    effective_perception_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  }
+  + perception_typed_modifier_total;
+
+calc string perception_formatted(name = "Perception formatted") =
+  if perception > 0 then concat(["+", perception]) else concat([perception]);
+
+calc string perception_color(name = "Perception number color") =
+  if effective_perception_proficiency == "trained" || effective_perception_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string perception_label_color(name = "Perception label color") =
+  if effective_perception_proficiency == "expert" || effective_perception_proficiency == "master" || effective_perception_proficiency == "legendary" then "accent" else "hint";
+
+base string performance_proficiency(name = "Performance proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc integer performance(name = "Performance") =
+  charisma_modifier + when {
+    performance_proficiency == "trained" -> level_bonus + 2,
+    performance_proficiency == "expert" -> level_bonus + 4,
+    performance_proficiency == "master" -> level_bonus + 6,
+    performance_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  }
+  + performance_typed_modifier_total;
+
+calc string performance_formatted(name = "Performance formatted") =
+  if performance > 0 then concat(["+", performance]) else concat([performance]);
+
+calc string performance_color(name = "Performance number color") =
+  if performance_proficiency == "trained" || performance_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string performance_label_color(name = "Performance label color") =
+  if performance_proficiency == "expert" || performance_proficiency == "master" || performance_proficiency == "legendary" then "accent" else "hint";
+
+base string diplomacy_proficiency(name = "Diplomacy proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc integer diplomacy(name = "Diplomacy") =
+  charisma_modifier + when {
+    diplomacy_proficiency == "trained" -> level_bonus + 2,
+    diplomacy_proficiency == "expert" -> level_bonus + 4,
+    diplomacy_proficiency == "master" -> level_bonus + 6,
+    diplomacy_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  }
+  + diplomacy_typed_modifier_total;
+
+calc string diplomacy_formatted(name = "Diplomacy formatted") =
+  if diplomacy > 0 then concat(["+", diplomacy]) else concat([diplomacy]);
+
+calc string diplomacy_color(name = "Diplomacy number color") =
+  if diplomacy_proficiency == "trained" || diplomacy_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string diplomacy_label_color(name = "Diplomacy label color") =
+  if diplomacy_proficiency == "expert" || diplomacy_proficiency == "master" || diplomacy_proficiency == "legendary" then "accent" else "hint";
+
+base string religion_proficiency(name = "Religion proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc integer religion(name = "Religion") =
+  intelligence_modifier + when {
+    religion_proficiency == "trained" -> level_bonus + 2,
+    religion_proficiency == "expert" -> level_bonus + 4,
+    religion_proficiency == "master" -> level_bonus + 6,
+    religion_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  }
+  + religion_typed_modifier_total;
+
+calc string religion_formatted(name = "Religion formatted") =
+  if religion > 0 then concat(["+", religion]) else concat([religion]);
+
+calc string religion_color(name = "Religion number color") =
+  if religion_proficiency == "trained" || religion_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string religion_label_color(name = "Religion label color") =
+  if religion_proficiency == "expert" || religion_proficiency == "master" || religion_proficiency == "legendary" then "accent" else "hint";
+
+base string thievery_proficiency(name = "Thievery proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc integer thievery(name = "Thievery") =
+  dexterity_modifier + when {
+    thievery_proficiency == "trained" -> level_bonus + 2,
+    thievery_proficiency == "expert" -> level_bonus + 4,
+    thievery_proficiency == "master" -> level_bonus + 6,
+    thievery_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  } + armor_check_penalty
+  + thievery_typed_modifier_total;
+
+calc string thievery_formatted(name = "Thievery formatted") =
+  if thievery > 0 then concat(["+", thievery]) else concat([thievery]);
+
+calc string thievery_color(name = "Thievery number color") =
+  if thievery_proficiency == "trained" || thievery_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string thievery_label_color(name = "Thievery label color") =
+  if thievery_proficiency == "expert" || thievery_proficiency == "master" || thievery_proficiency == "legendary" then "accent" else "hint";
+
+base string stealth_proficiency(name = "Stealth proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc integer stealth(name = "Stealth") =
+  dexterity_modifier + when {
+    stealth_proficiency == "trained" -> level_bonus + 2,
+    stealth_proficiency == "expert" -> level_bonus + 4,
+    stealth_proficiency == "master" -> level_bonus + 6,
+    stealth_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  } + armor_check_penalty
+  + stealth_typed_modifier_total;
+
+calc string stealth_formatted(name = "Stealth formatted") =
+  if stealth > 0 then concat(["+", stealth]) else concat([stealth]);
+
+calc string stealth_color(name = "Stealth number color") =
+  if stealth_proficiency == "trained" || stealth_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string stealth_label_color(name = "Stealth label color") =
+  if stealth_proficiency == "expert" || stealth_proficiency == "master" || stealth_proficiency == "legendary" then "accent" else "hint";
+
+base string survival_proficiency(name = "Survival proficiency (none, trained, expert, master, legendary)") =
+  "none";
+
+calc integer survival(name = "Survival") =
+  wisdom_modifier + when {
+    survival_proficiency == "trained" -> level_bonus + 2,
+    survival_proficiency == "expert" -> level_bonus + 4,
+    survival_proficiency == "master" -> level_bonus + 6,
+    survival_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  }
+  + survival_typed_modifier_total;
+
+calc string survival_formatted(name = "Survival formatted") =
+  if survival > 0 then concat(["+", survival]) else concat([survival]);
+
+calc string survival_color(name = "Survival number color") =
+  if survival_proficiency == "trained" || survival_proficiency == "expert"
+    then "accent"
+    else "text";
+
+calc string survival_label_color(name = "Survival label color") =
+  if survival_proficiency == "expert" || survival_proficiency == "master" || survival_proficiency == "legendary" then "accent" else "hint";
+
+base bool sort_skills_by_name(name = "Should sort skills by name") = true;
+
+base string equipped_armor_id(name = "Equipped armor ID") = "";
+
+base string equipped_shield_id(name = "Equipped shield ID") = "";
+
+calc integer speed(name = "Speed") =
+  (ancestry?.current_speed ?? 0) + worn_armor_speed_modifier;
+
+calc integer burrow_speed(name = "Burrow speed") =
+  (ancestry?.current_burrow_speed ?? 0) + worn_armor_speed_modifier;
+
+calc integer climb_speed(name = "Climb speed") =
+  (ancestry?.current_climb_speed ?? 0) + worn_armor_speed_modifier;
+
+calc integer fly_speed(name = "Fly speed") =
+  (ancestry?.current_fly_speed ?? 0) + worn_armor_speed_modifier;
+
+calc integer swim_speed(name = "Swim speed") =
+  (ancestry?.current_swim_speed ?? 0) + worn_armor_speed_modifier;
+
+calc integer worn_armor_speed_modifier(name = "Worn armor speed modifier (penalty)") =
+  if equipped_armor != null
+    then (if strength_score >= equipped_armor.required_strength
+        then 0
+        else (equipped_armor.speed_penalty * -1))
+    else 0;
+
+calc integer level(name = "Level", abbreviation = "Lvl.") =
+  add(map(classes, mapper = ($class) => $class.class_level));
+
+calc integer armor_class(name = "Armor Class", abbreviation = "AC") =
+  (if wearing_body_armor then equipped_armor_ac else unarmored_ac) + shield_ac_bonus + armor_class_typed_modifier_total;
+
+calc integer shield_ac_bonus(name = "Shield AC bonus") =
+  if contains(
+    haystack = map(armors, mapper = ($mapValue) => $mapValue.id),
+    needle = equipped_shield_id,
+  )
+    then (if equipped_shield?.is_proficient? ?? false
+        then (equipped_shield?.base_ac? ?? 0) + (equipped_shield?.total_rune_ac_bonus? ?? 0)
+        else 0)
+    else 0;
+
+calc bool wearing_body_armor(name = "Wearing body armor") =
+  if notNull(equipped_armor)
+    then contains(
+        haystack = map(armors, mapper = ($mapValue) => $mapValue.id),
+        needle = equipped_armor_id,
+      ) && equipped_armor.type != "shield"
+    else false;
+
+calc integer unarmored_ac(name = "Unarmored AC") =
+  10 + dexterity_modifier + unarmored_proficiency_bonus + legacy_unarmored_ac_adjustment;
+
+calc integer unarmored_proficiency_bonus(name = "Unarmored proficiency bonus") =
+  max(
+    [
+      unarmored_proficiency_bonus_from_rows,
+      legacy_unarmored_proficiency_bonus,
+    ],
+  );
+
+calc integer unarmored_proficiency_bonus_from_rows(name = "Unarmored proficiency bonus from rows") =
+  if isEmpty(unarmored_proficiency_rows)
+    then 0
+    else max(
+        map(
+          unarmored_proficiency_rows,
+          mapper = ($mapValue) => when {
+            $mapValue.proficiency == "trained" -> level_bonus + 2,
+            $mapValue.proficiency == "expert" -> level_bonus + 4,
+            $mapValue.proficiency == "master" -> level_bonus + 6,
+            $mapValue.proficiency == "legendary" -> level_bonus + 8,
+            else -> 0,
+          },
+        ),
+      );
+
+calc integer legacy_unarmored_proficiency_bonus(name = "Legacy unarmored proficiency bonus") =
+  if contains(haystack = armor_proficiencies, needle = "unarmored")
+    then level_bonus + 2
+    else 0;
+
+calc resource<levelled_armor_proficiency>[] unarmored_proficiency_rows(name = "Unarmored proficiency rows") =
+  flatAppend(
+    [
+      filter(
+        flatMap(
+          classes,
+          mapper = ($class) => $class.class.armor_proficiencies_for_current_level,
+        ),
+        filter = ($filterValue) => contains(
+          haystack = $filterValue.resolved_options,
+          needle = "unarmored",
+        ),
+      ),
+      filter(
+        ancestry?.armor_proficiencies_for_current_level ?? [],
+        filter = ($filterValue) => contains(
+          haystack = $filterValue.resolved_options,
+          needle = "unarmored",
+        ),
+      ),
+    ],
+  );
+
+calc integer ancestry_ac(name = "Ancestry AC") =
+  if isNull(ancestry)
+    then 0
+    else ancestry.actual_base_ac + add(
+        map(
+          ancestry.actual_ac_modifiers,
+          mapper = ($mapValue) => metaStat(meta_stat = concat([$mapValue, "_modifier"])),
+        ),
+      );
+
+calc integer classes_ac(name = "Classes AC") =
+  if isEmpty(classes)
+    then 0
+    else max(
+        map(
+          classes,
+          mapper = ($class) => ($class.class.actual_base_ac + add(
+            map(
+              $class.class.actual_ac_modifiers,
+              mapper = ($mapValue) => metaStat(meta_stat = concat([$mapValue, "_modifier"])),
+            ),
+          )),
+        ),
+      );
+
+calc integer legacy_unarmored_ac_adjustment(name = "Legacy unarmored AC adjustment") =
+  max(
+    [
+      0,
+      ancestry_ac - (10 + dexterity_modifier),
+      classes_ac - (10 + dexterity_modifier),
+    ],
+  );
+
+calc integer equipped_armor_ac(name = "Equipped armor AC") =
+  if wearing_body_armor
+    then 10 + (equipped_armor.armor_proficiency_bonus ?? 0) + (equipped_armor.base_ac + (equipped_armor.total_rune_ac_bonus ?? 0)) + min(
+        [
+          (if "none" != equipped_armor.modifier
+            then metaStat(meta_stat = concat([equipped_armor.modifier, "_modifier"]))
+            else 0),
+          (if equipped_armor.has_max_bonus then equipped_armor.max_bonus else 10000),
+        ],
+      )
+    else 0;
+
+calc resource<armor> equipped_armor(name = "Equipped armor") =
+  findFirst(
+    armors,
+    filter = ($findFirstValue) => ($findFirstValue.id == equipped_armor_id),
+  );
+
+calc resource<armor> equipped_shield(name = "Equipped shield") =
+  findFirst(
+    armors,
+    filter = ($findFirstValue) => ($findFirstValue.id == equipped_shield_id),
+  );
+
+calc integer perception_dc(name = "Perception DC", abbreviation = "PDC") =
+  10 + perception + perception_dc_typed_modifier_total;
+
+base string initiative_stat(name = "Initiative source stat") = "perception";
+
+calc string initiative_stat_display(name = "Initiative source stat display") =
+  enumeratedName(
+    enumerated_type = "initiative_sources",
+    id = initiative_stat,
+  );
+
+calc integer initiative(name = "Initiative", abbreviation = "Ini.") =
+  when {
+    initiative_stat == "perception" -> perception,
+    else -> metaStat(meta_stat = initiative_stat),
+  }
+  + initiative_typed_modifier_total;
+
+calc integer level_bonus(name = "Level Bonus", abbreviation = "LVL") =
+  level;
+
+calc string display_level_bonus(name = "Display level bonus") =
+  if level_bonus >= 0 then concat(["+", level_bonus]) else concat(["", level_bonus]);
+
+base integer strength_score(name = "Strength", abbreviation = "STR") = 8;
+
+base integer dexterity_score(name = "Dexterity", abbreviation = "DEX") = 8;
+
+base integer constitution_score(name = "Constitution", abbreviation = "CON") =
+  8;
+
+base integer intelligence_score(name = "Intelligence", abbreviation = "INT") =
+  8;
+
+base integer wisdom_score(name = "Wisdom", abbreviation = "WIS") = 8;
+
+base integer charisma_score(name = "Charisma", abbreviation = "CHA") = 8;
+
+calc integer strength_modifier(name = "Strength", abbreviation = "STR") =
+  divide([(strength_score + -10), 2], rounding_method = "down");
+
+calc integer dexterity_modifier(name = "Dexterity", abbreviation = "DEX") =
+  divide([(dexterity_score + -10), 2], rounding_method = "down");
+
+calc integer constitution_modifier(name = "Constitution", abbreviation = "CON") =
+  divide([(constitution_score + -10), 2], rounding_method = "down");
+
+calc integer intelligence_modifier(name = "Intelligence", abbreviation = "INT") =
+  divide([(intelligence_score + -10), 2], rounding_method = "down");
+
+calc integer wisdom_modifier(name = "Wisdom", abbreviation = "WIS") =
+  divide([(wisdom_score + -10), 2], rounding_method = "down");
+
+calc integer charisma_modifier(name = "Charisma", abbreviation = "CHA") =
+  divide([(charisma_score + -10), 2], rounding_method = "down");
+
+calc integer attacks_per_action(name = "Attacks per action") =
+  if isEmpty(classes)
+    then 0
+    else max(map(classes, mapper = ($class) => $class.attacks_per_action));
+
+calc resource<weapon>[] all_weapons(name = "All weapons (including racial and class weapons)") =
+  flatAppend(
+    [
+      (ancestry?.weapons ?? []),
+      flatMap(classes, mapper = ($class) => ($class.class.weapons ?? [])),
+      weapons,
+    ],
+  );
+
+base resource<weapon>[] weapons(name = "Weapons") = [];
+
+base resource<armor>[] armors(name = "Armors") = [];
+
+base resource<item>[] equipment(name = "Equipment") = [];
+
+calc resource<spell>[] sorted_spells(name = "Sorted spells") =
+  sortBy(
+    flatAppend(
+      [
+        map(
+          filter(
+            flatAppend([(ancestry?.spells ?? []), (heritage?.spells ?? [])]),
+            filter = ($filterValue) => ($filterValue.level <= level),
+          ),
+          mapper = ($mapValue) => $mapValue.spell,
+        ),
+        map(
+          filter(
+            flatMap(classes, mapper = ($class) => $class.class.all_spells),
+            filter = ($filterValue) => ($filterValue.level <= level),
+          ),
+          mapper = ($mapValue) => $mapValue.spell,
+        ),
+        spells,
+      ],
+      treat_as_set = true,
+    ),
+    sort_by_selector = ($sortByValue) => $sortByValue.name,
+  );
+
+calc resource<spell>[] cantrips(name = "Cantrips") =
+  filter(
+    sorted_spells,
+    filter = ($filterValue) => ("spell_level_0" == $filterValue.level),
+  );
+
+calc resource<spell>[] level_1_spells(name = "Level 1 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_1" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_1" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+calc resource<spell>[] level_2_spells(name = "Level 2 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_2" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_2" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+calc resource<spell>[] level_3_spells(name = "Level 3 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_3" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_3" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+calc resource<spell>[] level_4_spells(name = "Level 4 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_4" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_4" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+calc resource<spell>[] level_5_spells(name = "Level 5 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_5" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_5" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+calc resource<spell>[] level_6_spells(name = "Level 6 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_6" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_6" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+calc resource<spell>[] level_7_spells(name = "Level 7 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_7" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_7" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+calc resource<spell>[] level_8_spells(name = "Level 8 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_8" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_8" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+calc resource<spell>[] level_9_spells(name = "Level 9 spells") =
+  flatAppend(
+    [
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_9" == $filterValue.level && $filterValue.prepared),
+      ),
+      filter(
+        sorted_spells,
+        filter = ($filterValue) => ("spell_level_9" == $filterValue.level && !$filterValue.prepared),
+      ),
+    ],
+  );
+
+base resource<spell>[] spells(name = "Spells") = [];
+
+base integer max_spell_slots_1_bonus(name = "Max rank 1 slots bonus") = 0;
+
+base integer max_spell_slots_2_bonus(name = "Max rank 2 slots bonus") = 0;
+
+base integer max_spell_slots_3_bonus(name = "Max rank 3 slots bonus") = 0;
+
+base integer max_spell_slots_4_bonus(name = "Max rank 4 slots bonus") = 0;
+
+base integer max_spell_slots_5_bonus(name = "Max rank 5 slots bonus") = 0;
+
+base integer max_spell_slots_6_bonus(name = "Max rank 6 slots bonus") = 0;
+
+base integer max_spell_slots_7_bonus(name = "Max rank 7 slots bonus") = 0;
+
+base integer max_spell_slots_8_bonus(name = "Max rank 8 slots bonus") = 0;
+
+base integer max_spell_slots_9_bonus(name = "Max rank 9 slots bonus") = 0;
+
+base integer max_spell_slots_10_bonus(name = "Max rank 10 slots bonus") = 0;
+
+base integer spell_slots_1(name = "Rank 1") = 0;
+
+base integer spell_slots_2(name = "Rank 2") = 0;
+
+base integer spell_slots_3(name = "Rank 3") = 0;
+
+base integer spell_slots_4(name = "Rank 4") = 0;
+
+base integer spell_slots_5(name = "Rank 5") = 0;
+
+base integer spell_slots_6(name = "Rank 6") = 0;
+
+base integer spell_slots_7(name = "Rank 7") = 0;
+
+base integer spell_slots_8(name = "Rank 8") = 0;
+
+base integer spell_slots_9(name = "Rank 9") = 0;
+
+base integer spell_slots_10(name = "Rank 10") = 0;
+
+calc resource<heritage> creator_selected_heritage(name = "Selected creator heritage") =
+  $view?.edit_character_basics_heritage_select;
+
+calc resource<ability_score_increase>[] creator_ability_score_increases(name = "Creator ability score increases") =
+  flatAppend(
+    [
+      $view?.edit_character_basics_ancestry_select?.ability_score_increases ?? [],
+      creator_selected_heritage?.ability_score_increases ?? [],
+      $view?.edit_character_basics_background_select?.ability_score_increases ?? [],
+      flatMap(
+        classes,
+        mapper = ($mapValue) => $mapValue.class?.ability_score_increases ?? [],
+      ),
+    ],
+  );
+
+base resource<ability_score_increase>[] old_creator_ability_score_increases(name = "Old creator ability score increases") =
+  [];
+
+calc resource<levelled_choice_text>[] creator_language_proficiency_choices(name = "Creator language proficiency choices") =
+  flatAppend(
+    [
+      (ancestry?.language_proficiencies_for_current_level ?? []),
+      flatMap(
+        classes,
+        mapper = ($mapValue) => ($mapValue.class?.language_proficiencies_for_current_level ?? []),
+      ),
+      (background?.language_proficiencies_for_current_level ?? []),
+    ],
+  );
+
+calc resource<levelled_skill_proficiency>[] creator_skill_proficiency_choices(name = "Creator skill proficiency choices") =
+  flatAppend(
+    [
+      (ancestry?.skill_proficiencies_for_current_level ?? []),
+      flatMap(
+        classes,
+        mapper = ($mapValue) => ($mapValue.class?.skill_proficiencies_for_current_level ?? []),
+      ),
+      (background?.skill_proficiencies_for_current_level ?? []),
+      flatMap(
+        all_features,
+        mapper = ($mapValue) => ($mapValue.skill_proficiencies_for_current_level ?? []),
+      ),
+    ],
+  );
+
+calc resource<levelled_armor_proficiency>[] creator_armor_proficiency_choices(name = "Creator armor proficiency choices") =
+  flatAppend(
+    [
+      (ancestry?.armor_proficiencies_for_current_level ?? []),
+      flatMap(
+        classes,
+        mapper = ($mapValue) => ($mapValue.class?.armor_proficiencies_for_current_level ?? []),
+      ),
+      (background?.armor_proficiencies_for_current_level ?? []),
+      flatMap(
+        all_features,
+        mapper = ($mapValue) => ($mapValue.armor_proficiencies_for_current_level ?? []),
+      ),
+    ],
+  );
+
+calc resource<levelled_weapon_proficiency>[] creator_weapon_proficiency_choices(name = "Creator weapon proficiency choices") =
+  flatAppend(
+    [
+      (ancestry?.weapon_proficiencies_for_current_level ?? []),
+      flatMap(
+        classes,
+        mapper = ($mapValue) => ($mapValue.class?.weapon_proficiencies_for_current_level ?? []),
+      ),
+      (background?.weapon_proficiencies_for_current_level ?? []),
+      flatMap(
+        all_features,
+        mapper = ($mapValue) => ($mapValue.weapon_proficiencies_for_current_level ?? []),
+      ),
+    ],
+  );
+
+calc resource<lore_skill>[] creator_lore_skill_choices(name = "Creator lore skill choices") =
+  flatAppend(
+    [
+      (ancestry?.lore_skills_for_current_level ?? []),
+      flatMap(
+        classes,
+        mapper = ($mapValue) => ($mapValue.class?.lore_skills_for_current_level ?? []),
+      ),
+      (background?.lore_skills_for_current_level ?? []),
+      flatMap(
+        all_features,
+        mapper = ($mapValue) => ($mapValue.lore_skills_for_current_level ?? []),
+      ),
+    ],
+  );
+
+calc resource<selectable_items>[] creator_starting_equipment_choices(name = "Creator starting equipment choices") =
+  flatAppend(
+    [
+      flatMap(classes, mapper = ($mapValue) => ($mapValue.class?.selectable_equipments ?? [])),
+      (background?.selectable_equipments ?? []),
+    ],
+  );
+
+calc resource<selectable_armors>[] creator_starting_armor_choices(name = "Creator starting armor choices") =
+  flatAppend(
+    [
+      flatMap(classes, mapper = ($mapValue) => ($mapValue.class?.selectable_armors ?? [])),
+      (background?.selectable_armors ?? []),
+    ],
+  );
+
+calc resource<selectable_weapons>[] creator_starting_weapon_choices(name = "Creator starting weapon choices") =
+  flatAppend(
+    [
+      flatMap(classes, mapper = ($mapValue) => ($mapValue.class?.selectable_weapons ?? [])),
+      (background?.selectable_weapons ?? []),
+    ],
+  );
+
+base integer spell_attack_extra_bonus(name = "Extra spell attack bonus") = 0;
+
+base integer spell_attack_status_bonus(name = "Spell attack status bonus") = 0;
+
+base integer spell_attack_status_penalty(name = "Spell attack status penalty") = 0;
+
+base integer spell_attack_circumstance_bonus(name = "Spell attack circumstance bonus") = 0;
+
+base integer spell_attack_circumstance_penalty(name = "Spell attack circumstance penalty") = 0;
+
+base integer spell_attack_item_bonus(name = "Spell attack item bonus") = 0;
+
+base integer spell_attack_item_penalty(name = "Spell attack item penalty") = 0;
+
+calc integer spell_attack_typed_modifier_total(name = "Spell attack typed modifier total") =
+  spell_attack_extra_bonus
+    + spell_attack_status_bonus
+    + spell_attack_status_penalty
+    + spell_attack_circumstance_bonus
+    + spell_attack_circumstance_penalty
+    + spell_attack_item_bonus
+    + spell_attack_item_penalty;
+
+base integer spell_dc_extra_bonus(name = "Extra spell save DC bonus") = 0;
+
+base integer spell_dc_status_bonus(name = "Spell DC status bonus") = 0;
+
+base integer spell_dc_status_penalty(name = "Spell DC status penalty") = 0;
+
+base integer spell_dc_circumstance_bonus(name = "Spell DC circumstance bonus") = 0;
+
+base integer spell_dc_circumstance_penalty(name = "Spell DC circumstance penalty") = 0;
+
+base integer spell_dc_item_bonus(name = "Spell DC item bonus") = 0;
+
+base integer spell_dc_item_penalty(name = "Spell DC item penalty") = 0;
+
+calc integer spell_dc_typed_modifier_total(name = "Spell DC typed modifier total") =
+  spell_dc_extra_bonus
+    + spell_dc_status_bonus
+    + spell_dc_status_penalty
+    + spell_dc_circumstance_bonus
+    + spell_dc_circumstance_penalty
+    + spell_dc_item_bonus
+    + spell_dc_item_penalty;
+
+base string[] selected_selectable_feature_ids(name = "Selected selectable feature ids") =
+  [];
+
+calc resource<feat>[] ancestry_traits(name = "Ancestry traits") =
+  sortBy(
+    (ancestry?.current_level_traits ?? []),
+    sort_by_selector = ($sortByValue) => $sortByValue.min_level,
+  );
+
+calc resource<feat>[] background_features(name = "Background features") =
+  sortBy(
+    (background?.current_level_features ?? []),
+    sort_by_selector = ($sortByValue) => $sortByValue.min_level,
+  );
+
+base resource<feat>[] feats(name = "Feats") = [];
+
+base resource<archetype>[] archetypes(name = "Archetypes") = [];
+
+calc string[] selected_archetype_ids(name = "Selected archetype ids") =
+  map(archetypes, mapper = ($mapValue) => $mapValue.id);
+
+calc resource<archetype>[] class_archetypes_with_class_mismatch(name = "Class archetypes with class mismatch") =
+  filter(
+    archetypes,
+    filter = ($arch) => ($arch.is_class_archetype && !$arch.is_eligible_for_current_character_classes),
+  );
+
+calc string class_archetypes_with_class_mismatch_names(name = "Class archetypes with class mismatch names") =
+  joinToString(
+    map(
+      class_archetypes_with_class_mismatch,
+      mapper = ($mapValue) => $mapValue.name,
+    ),
+    separator = ", ",
+  );
+
+calc string class_archetype_mismatch_warning_text(name = "Class archetype mismatch warning text") =
+  if isEmpty(class_archetypes_with_class_mismatch_names)
+    then ""
+    else concat(
+        [
+          "Class archetype/class mismatch: ",
+          class_archetypes_with_class_mismatch_names,
+          ". Keeping this is a GM override.",
+        ],
+      );
+
+calc resource<archetype>[] spellcasting_archetypes(name = "Spellcasting archetypes") =
+  filter(archetypes, filter = ($a) => $a.grants_spellcasting);
+
+calc resource<archetype> spellcasting_archetype_1(name = "Spellcasting archetype 1") =
+  findFirst(spellcasting_archetypes, filter = ($a) => true);
+
+calc resource<archetype> spellcasting_archetype_2(name = "Spellcasting archetype 2") =
+  findFirst(
+    filter(spellcasting_archetypes, filter = ($a) => $a.id != (spellcasting_archetype_1?.id ?? "")),
+    filter = ($a) => true,
+  );
+
+calc resource<archetype> spellcasting_archetype_3(name = "Spellcasting archetype 3") =
+  findFirst(
+    filter(
+      spellcasting_archetypes,
+      filter = ($a) => $a.id != (spellcasting_archetype_1?.id ?? "")
+        && $a.id != (spellcasting_archetype_2?.id ?? ""),
+    ),
+    filter = ($a) => true,
+  );
+
+calc resource<feat>[] dedication_feats(name = "Dedication feats from archetypes") =
+  filter(
+    map(archetypes, mapper = ($arch) => $arch.dedication_feat),
+    filter = ($filterValue) => notNull($filterValue),
+  );
+
+calc resource<feat>[] non_duplicate_dedication_feats(name = "Dedication feats not already in feats") =
+  filter(
+    dedication_feats,
+    filter = ($filterValue) => !contains(
+      haystack = map(feats, mapper = ($feat) => $feat.id),
+      needle = $filterValue.id,
+    ),
+  );
+
+calc resource<feat>[] all_selected_and_dedication_feats(name = "All selected feats and missing dedication feats") =
+  flatAppend([feats, non_duplicate_dedication_feats]);
+
+calc resource<feat>[] archetype_feats_without_selected_archetype(name = "Archetype feats without selected archetype") =
+  filter(
+    feats,
+    filter = ($feat) => ($feat.type == "archetype"
+      && length(
+          filter(
+            $feat.archetypes,
+            filter = ($archetypeId) => contains(
+              haystack = selected_archetype_ids,
+              needle = $archetypeId,
+            ),
+          ),
+        ) == 0),
+  );
+
+calc string archetype_feats_without_selected_archetype_names(name = "Archetype feats without selected archetype names") =
+  joinToString(
+    map(
+      archetype_feats_without_selected_archetype,
+      mapper = ($mapValue) => $mapValue.name,
+    ),
+    separator = ", ",
+  );
+
+calc string archetype_feats_warning_text(name = "Archetype feats warning text") =
+  if isEmpty(archetype_feats_without_selected_archetype_names)
+    then ""
+    else concat(
+        [
+          "Archetype feats missing a selected archetype: ",
+          archetype_feats_without_selected_archetype_names,
+          ". Add the archetype first (dedication auto-adds) or keep as GM override.",
+        ],
+      );
+
+calc string[] selected_dedication_archetype_ids(name = "Selected dedication archetype ids") =
+  flatAppend(
+    map(
+      filter(
+        all_selected_and_dedication_feats,
+        filter = ($feat) => ($feat.type == "archetype"
+          && contains(
+              haystack = toLowerCase($feat.traits),
+              needle = "dedication",
+            )),
+      ),
+      mapper = ($feat) => $feat.archetypes,
+    ),
+    treat_as_set = true,
+  );
+
+calc resource<feat>[] archetype_feats_without_dedication(name = "Archetype feats without dedication") =
+  filter(
+    archetype_feats,
+    filter = ($feat) => (!contains(
+      haystack = toLowerCase($feat.traits),
+      needle = "dedication",
+    )
+      && length(
+          filter(
+            $feat.archetypes,
+            filter = ($id) => contains(
+              haystack = selected_archetype_ids,
+              needle = $id,
+            ),
+          ),
+        ) > 0
+      && length(
+          filter(
+            $feat.archetypes,
+            filter = ($id) => contains(
+              haystack = selected_dedication_archetype_ids,
+              needle = $id,
+            ),
+          ),
+        ) == 0),
+  );
+
+calc string archetype_feats_without_dedication_names(name = "Archetype feats without dedication names") =
+  joinToString(
+    map(
+      archetype_feats_without_dedication,
+      mapper = ($mapValue) => $mapValue.name,
+    ),
+    separator = ", ",
+  );
+
+calc string archetype_dedication_missing_warning_text(name = "Archetype dedication missing warning text") =
+  if isEmpty(archetype_feats_without_dedication_names)
+    then ""
+    else concat(
+        [
+          "Archetype feats without a matching dedication feat: ",
+          archetype_feats_without_dedication_names,
+          ". This is allowed as a GM override.",
+        ],
+      );
+
+calc resource<archetype>[] selected_dedication_archetypes(name = "Selected dedication archetypes") =
+  filter(
+    archetypes,
+    filter = ($arch) => contains(
+      haystack = selected_dedication_archetype_ids,
+      needle = $arch.id,
+    ),
+  );
+
+calc resource<archetype>[] selected_dedication_archetypes_missing_two_non_dedication_feats(name = "Selected dedication archetypes missing two non-dedication feats") =
+  filter(
+    selected_dedication_archetypes,
+    filter = ($arch) => length(
+      filter(
+        archetype_feats,
+        filter = ($feat) => (!contains(
+            haystack = toLowerCase($feat.traits),
+            needle = "dedication",
+          )
+          && contains(
+              haystack = $feat.archetypes,
+              needle = $arch.id,
+            )),
+      ),
+    ) < 2,
+  );
+
+calc string selected_dedication_archetypes_missing_two_non_dedication_feats_names(name = "Selected dedication archetypes missing two non-dedication feats names") =
+  joinToString(
+    map(
+      selected_dedication_archetypes_missing_two_non_dedication_feats,
+      mapper = ($mapValue) => $mapValue.name,
+    ),
+    separator = ", ",
+  );
+
+calc string archetype_multiple_dedications_warning_text(name = "Archetype multiple dedications warning text") =
+  if length(selected_dedication_archetypes) <= 1 || isEmpty(selected_dedication_archetypes_missing_two_non_dedication_feats_names)
+    then ""
+    else concat(
+        [
+          "Multiple dedications selected before two non-dedication archetype feats: ",
+          selected_dedication_archetypes_missing_two_non_dedication_feats_names,
+          ". This is allowed as a GM override.",
+        ],
+      );
+
+calc resource<feat>[] feats_above_current_level(name = "Feats above current level") =
+  filter(
+    feats,
+    filter = ($feat) => ($feat.min_level > level),
+  );
+
+calc string feats_above_current_level_names(name = "Feats above current level names") =
+  joinToString(
+    map(
+      feats_above_current_level,
+      mapper = ($mapValue) => $mapValue.name,
+    ),
+    separator = ", ",
+  );
+
+calc string feats_above_current_level_warning_text(name = "Feats above current level warning text") =
+  if isEmpty(feats_above_current_level_names)
+    then ""
+    else concat(
+        [
+          "Feats above current level: ",
+          feats_above_current_level_names,
+          ". Keeping these is a GM override.",
+        ],
+      );
+
+calc resource<feat> improved_flexibility_feature(name = "Improved Flexibility feature (if present)") =
+  findFirst(
+    all_features,
+    filter = ($feature) => (toLowerCase(trim($feature.name)) == "improved flexibility"),
+  );
+
+calc resource<feat>[] improved_flexibility_chosen_features(name = "Chosen Improved Flexibility selectable feats") =
+  improved_flexibility_feature?.chosen_selectable_features ?? [];
+
+calc integer improved_flexibility_chosen_features_count(name = "Chosen Improved Flexibility selectable feat count") =
+  length(improved_flexibility_chosen_features);
+
+calc integer improved_flexibility_chosen_up_to_level_8_count(name = "Chosen Improved Flexibility selectable feats up to level 8") =
+  length(
+    filter(
+      improved_flexibility_chosen_features,
+      filter = ($feat) => ($feat.min_level <= 8),
+    ),
+  );
+
+calc string improved_flexibility_warning_text(name = "Improved Flexibility warning text") =
+  when {
+    isNull(improved_flexibility_feature) -> "",
+    improved_flexibility_feature.current_allowed_amount_of_selectable_features <= 1 -> "",
+    improved_flexibility_chosen_features_count == 0 -> "",
+    improved_flexibility_chosen_features_count < improved_flexibility_feature.current_allowed_amount_of_selectable_features -> concat(
+        [
+          "Improved Flexibility pending choices: select ",
+          improved_flexibility_feature.current_allowed_amount_of_selectable_features,
+          " total options, with at least one 8th-level-or-lower class feat.",
+        ],
+      ),
+    improved_flexibility_chosen_up_to_level_8_count > 0 -> "",
+    else -> "Improved Flexibility warning: at least one chosen option should be 8th level or lower (GM override allowed).",
+  };
+
+calc resource<feat> unified_magical_theory_feature(name = "Unified Magical Theory feature (if present)") =
+  findFirst(
+    flatMap(
+      all_features,
+      mapper = ($feature) => $feature.chosen_selectable_features,
+    ),
+    filter = ($feature) => (toLowerCase(trim($feature.name)) == "unified magical theory: arcane school"
+      || contains(
+          haystack = toLowerCase($feature.id),
+          needle = "feat_unified_magical_theory_",
+        )),
+  );
+
+calc resource<feat>[] unified_magical_theory_selected_options(name = "Chosen Unified Magical Theory options") =
+  unified_magical_theory_feature?.chosen_selectable_features ?? [];
+
+calc integer unified_magical_theory_selected_option_count(name = "Chosen Unified Magical Theory option count") =
+  length(unified_magical_theory_selected_options);
+
+calc integer unified_magical_theory_spell_choice_count(name = "Chosen Unified Magical Theory spell options") =
+  length(
+    filter(
+      unified_magical_theory_selected_options,
+      filter = ($feat) => ($feat.is_spellbook_choice_option),
+    ),
+  );
+
+calc integer unified_magical_theory_feat_choice_count(name = "Chosen Unified Magical Theory feat options") =
+  max([0, unified_magical_theory_selected_option_count - unified_magical_theory_spell_choice_count]);
+
+calc string unified_magical_theory_warning_text(name = "Unified Magical Theory warning text") =
+  when {
+    isNull(unified_magical_theory_feature) -> "",
+    unified_magical_theory_feature.current_allowed_amount_of_selectable_features <= 1 -> "",
+    unified_magical_theory_selected_option_count == 0 -> "",
+    unified_magical_theory_spell_choice_count == 1
+      && unified_magical_theory_feat_choice_count == 1 -> "",
+    else -> concat(
+        [
+          "Unified Magical Theory pick mix: choose 1 wizard class feat and 1 spellbook spell (current: ",
+          unified_magical_theory_feat_choice_count,
+          " feat, ",
+          unified_magical_theory_spell_choice_count,
+          " spell). GM override allowed.",
+        ],
+      ),
+  };
+
+calc resource<feat>[] ancestry_feats(name = "Ancestry feats") =
+  filter(
+    feats,
+    filter = ($feat) => ($feat.type == "ancestry"),
+  );
+
+calc resource<feat>[] class_feats(name = "Class feats") =
+  filter(
+    feats,
+    filter = ($feat) => ($feat.type == "class"),
+  );
+
+calc resource<feat>[] skill_feats(name = "Skill feats") =
+  filter(
+    feats,
+    filter = ($feat) => ($feat.type == "skill"),
+  );
+
+calc resource<feat>[] general_feats(name = "General feats") =
+  filter(
+    feats,
+    filter = ($feat) => ($feat.type == "general"),
+  );
+
+calc resource<feat>[] archetype_feats(name = "Archetype feats") =
+  filter(
+    all_selected_and_dedication_feats,
+    filter = ($feat) => ($feat.type == "archetype"),
+  );
+
+calc resource<feat>[] bonus_feats(name = "Bonus feats") =
+  filter(
+    feats,
+    filter = ($feat) => ($feat.type == "bonus"),
+  );
+
+calc resource<feat>[] other_typed_feats(name = "Other typed feats") =
+  filter(
+    feats,
+    filter = ($feat) => !contains(
+      haystack = [
+        "ancestry",
+        "class",
+        "skill",
+        "general",
+        "archetype",
+        "bonus",
+      ],
+      needle = $feat.type,
+    ),
+  );
+
+calc resource<feat>[] selected_selectable_feats(name = "Selected selectable feats") =
+  flatMap(
+    feats,
+    mapper = ($mapValue) => flatAppend(
+      [
+        (if $mapValue.has_selectable_features
+          then filter(
+              $mapValue.selectable_features,
+              filter = ($filterValue) => contains(haystack = selected_selectable_feature_ids, needle = $filterValue.id),
+            )
+          else []),
+      ],
+    ),
+  );
+
+calc resource<feat>[] all_feats(name = "All feats (with selectable features included)") =
+  flatMap(
+    all_selected_and_dedication_feats,
+    mapper = ($mapValue) => flatAppend(
+      [
+        [$mapValue],
+        (if $mapValue.has_selectable_features
+          then filter(
+              $mapValue.selectable_features,
+              filter = ($filterValue) => contains(haystack = selected_selectable_feature_ids, needle = $filterValue.id),
+            )
+          else []),
+      ],
+    ),
+  );
+
+calc resource<progression_grant>[] class_progression_grants_for_current_level(name = "Class progression grants for current level") =
+  flatMap(
+    classes,
+    mapper = ($classProgression) => filter(
+      ($classProgression.class?.progression_grants ?? []),
+      filter = ($grant) => ($grant.level <= $classProgression.class_level),
+    ),
+  );
+
+calc resource<progression_grant>[] ancestry_progression_grants_for_current_level(name = "Ancestry progression grants for current level") =
+  if isNull(ancestry)
+    then []
+    else filter(
+        ancestry.progression_grants,
+        filter = ($grant) => ($grant.level <= level),
+      );
+
+calc resource<progression_grant>[] heritage_progression_grants_for_current_level(name = "Heritage progression grants for current level") =
+  if isNull(heritage)
+    then []
+    else filter(
+        heritage.progression_grants,
+        filter = ($grant) => ($grant.level <= level),
+      );
+
+calc resource<progression_grant>[] archetype_progression_grants_for_current_level(name = "Archetype progression grants for current level") =
+  flatMap(
+    archetypes,
+    mapper = ($arch) => filter(
+      $arch.progression_grants,
+      filter = ($grant) => ($grant.level <= level),
+    ),
+  );
+
+calc resource<progression_grant>[] all_progression_grants_for_current_level(name = "All progression grants for current level") =
+  flatAppend(
+    [
+      class_progression_grants_for_current_level,
+      ancestry_progression_grants_for_current_level,
+      heritage_progression_grants_for_current_level,
+      archetype_progression_grants_for_current_level,
+    ],
+  );
+
+calc integer granted_class_like_feat_slots(name = "Granted class-like feat slots") =
+  add(
+    map(
+      filter(
+        all_progression_grants_for_current_level,
+        filter = ($grant) => $grant.bucket == "class_like_feat",
+      ),
+      mapper = ($grant) => max([0, $grant.amount]),
+    ),
+  );
+
+calc integer granted_skill_feat_slots(name = "Granted skill feat slots") =
+  add(
+    map(
+      filter(
+        all_progression_grants_for_current_level,
+        filter = ($grant) => $grant.bucket == "skill_feat",
+      ),
+      mapper = ($grant) => max([0, $grant.amount]),
+    ),
+  );
+
+calc integer granted_general_feat_slots(name = "Granted general feat slots") =
+  add(
+    map(
+      filter(
+        all_progression_grants_for_current_level,
+        filter = ($grant) => $grant.bucket == "general_feat",
+      ),
+      mapper = ($grant) => max([0, $grant.amount]),
+    ),
+  );
+
+calc integer granted_ancestry_feat_slots(name = "Granted ancestry feat slots") =
+  add(
+    map(
+      filter(
+        all_progression_grants_for_current_level,
+        filter = ($grant) => $grant.bucket == "ancestry_feat",
+      ),
+      mapper = ($grant) => max([0, $grant.amount]),
+    ),
+  );
+
+calc integer granted_bonus_feat_slots(name = "Granted bonus feat slots") =
+  add(
+    map(
+      filter(
+        all_progression_grants_for_current_level,
+        filter = ($grant) => $grant.bucket == "bonus_feat",
+      ),
+      mapper = ($grant) => max([0, $grant.amount]),
+    ),
+  );
+
+calc integer granted_skill_increase_grants(name = "Granted skill increase grants") =
+  add(
+    map(
+      filter(
+        all_progression_grants_for_current_level,
+        filter = ($grant) => $grant.bucket == "skill_increase",
+      ),
+      mapper = ($grant) => max([0, $grant.amount]),
+    ),
+  );
+
+calc integer granted_ability_boost_grants(name = "Granted ability boost grants") =
+  add(
+    map(
+      filter(
+        all_progression_grants_for_current_level,
+        filter = ($grant) => $grant.bucket == "ability_boost",
+      ),
+      mapper = ($grant) => max([0, $grant.amount]),
+    ),
+  );
+
+calc integer spent_class_like_feat_slots(name = "Spent class-like feat slots") =
+  length(
+    filter(
+      all_selected_and_dedication_feats,
+      filter = ($feat) => ($feat.type == "class" || $feat.type == "archetype"),
+    ),
+  );
+
+calc integer spent_skill_feat_slots(name = "Spent skill feat slots") = length(skill_feats);
+
+calc integer spent_general_feat_slots(name = "Spent general feat slots") = length(general_feats);
+
+calc integer spent_ancestry_feat_slots(name = "Spent ancestry feat slots") = length(ancestry_feats);
+
+calc integer spent_bonus_feat_slots(name = "Spent bonus feat slots") = length(bonus_feats);
+
+calc integer pending_class_like_feat_slots(name = "Pending class-like feat slots") =
+  granted_class_like_feat_slots - spent_class_like_feat_slots;
+
+calc integer pending_skill_feat_slots(name = "Pending skill feat slots") =
+  granted_skill_feat_slots - spent_skill_feat_slots;
+
+calc integer pending_general_feat_slots(name = "Pending general feat slots") =
+  granted_general_feat_slots - spent_general_feat_slots;
+
+calc integer pending_ancestry_feat_slots(name = "Pending ancestry feat slots") =
+  granted_ancestry_feat_slots - spent_ancestry_feat_slots;
+
+calc integer pending_bonus_feat_slots(name = "Pending bonus feat slots") =
+  granted_bonus_feat_slots - spent_bonus_feat_slots;
+
+calc integer overspent_class_like_feat_slots(name = "Overspent class-like feat slots") =
+  max([0, -1 * pending_class_like_feat_slots]);
+
+calc integer overspent_skill_feat_slots(name = "Overspent skill feat slots") =
+  max([0, -1 * pending_skill_feat_slots]);
+
+calc integer overspent_general_feat_slots(name = "Overspent general feat slots") =
+  max([0, -1 * pending_general_feat_slots]);
+
+calc integer overspent_ancestry_feat_slots(name = "Overspent ancestry feat slots") =
+  max([0, -1 * pending_ancestry_feat_slots]);
+
+calc integer overspent_bonus_feat_slots(name = "Overspent bonus feat slots") =
+  max([0, -1 * pending_bonus_feat_slots]);
+
+calc string progression_pending_slots_summary_text(name = "Progression pending slots summary text") =
+  joinToString(
+    flatAppend(
+      [
+        (if pending_class_like_feat_slots > 0
+          then [concat(["Class-like feat slots pending: ", pending_class_like_feat_slots])]
+          else []),
+        (if pending_skill_feat_slots > 0
+          then [concat(["Skill feat slots pending: ", pending_skill_feat_slots])]
+          else []),
+        (if pending_general_feat_slots > 0
+          then [concat(["General feat slots pending: ", pending_general_feat_slots])]
+          else []),
+        (if pending_ancestry_feat_slots > 0
+          then [concat(["Ancestry feat slots pending: ", pending_ancestry_feat_slots])]
+          else []),
+        (if pending_bonus_feat_slots > 0
+          then [concat(["Bonus feat slots pending: ", pending_bonus_feat_slots])]
+          else []),
+      ],
+    ),
+    separator = "\n",
+  );
+
+calc string progression_overspent_slots_warning_text(name = "Progression overspent slots warning text") =
+  joinToString(
+    flatAppend(
+      [
+        (if overspent_class_like_feat_slots > 0
+          then [concat(["Class-like feat slots overspent: ", overspent_class_like_feat_slots])]
+          else []),
+        (if overspent_skill_feat_slots > 0
+          then [concat(["Skill feat slots overspent: ", overspent_skill_feat_slots])]
+          else []),
+        (if overspent_general_feat_slots > 0
+          then [concat(["General feat slots overspent: ", overspent_general_feat_slots])]
+          else []),
+        (if overspent_ancestry_feat_slots > 0
+          then [concat(["Ancestry feat slots overspent: ", overspent_ancestry_feat_slots])]
+          else []),
+        (if overspent_bonus_feat_slots > 0
+          then [concat(["Bonus feat slots overspent: ", overspent_bonus_feat_slots])]
+          else []),
+      ],
+    ),
+    separator = "\n",
+  );
+
+base bool blinded(name = "Blinded") = false;
+
+base bool deafened(name = "Deafened") = false;
+
+base bool grappled(name = "Grappled") = false;
+
+base bool invisible(name = "Invisible") = false;
+
+base bool paralyzed(name = "Paralyzed") = false;
+
+base bool petrified(name = "Petrified") = false;
+
+base bool prone(name = "Prone") = false;
+
+base bool unconscious(name = "Unconscious") = false;
+
+calc bool is_single_third_level_caster(name = "Is single third level caster") =
+  length(classes) == 1 && findFirst(
+    map(
+      classes,
+      mapper = ($class) => ($class.class.actual_effective_caster_level == "third"),
+    ),
+    filter = ($findFirstValue) => true,
+  );
+
+calc resource<class_progression> first_third_level_caster_class(name = "First third level caster class") =
+  if is_single_third_level_caster
+    then findFirst(classes, filter = ($findFirstValue) => true)
+    else null;
+
+calc integer spellcaster_level(name = "Spellcaster level") =
+  add(
+    map(
+      classes,
+      mapper = ($class) => when {
+        $class.class.actual_effective_caster_level == "full" -> $class.class_level,
+        $class.class.actual_effective_caster_level == "half" -> divide([$class.class_level, 2], rounding_method = "up"),
+        $class.class.actual_effective_caster_level == "third" -> divide([$class.class_level, 3], rounding_method = "down"),
+        else -> 0,
+      },
+    ),
+  );
+
+calc resource<class_progression>[] custom_spell_slot_classes(name = "Custom spell slot classes") =
+  filter(
+    classes,
+    filter = ($class) => ($class.class.actual_effective_caster_level == "custom"),
+  );
+
+base integer copper_pieces(name = "CP") = 0;
+
+base integer silver_pieces(name = "SP") = 0;
+
+base integer electrum_pieces(name = "EP") = 0;
+
+base integer gold_pieces(name = "GP") = 0;
+
+base integer platinum_pieces(name = "PP") = 0;
+
+calc resource<class_progression> level_up_selected_class_progression(name = "Selected existing class when levelling up") =
+  findFirst(
+    classes,
+    filter = ($findFirstValue) => ($findFirstValue.class?.id == $view?.level_up_select_class?),
+  );
+
+base string temp_level_up_class(name = "Temporary variable for selecting among existing classes") =
+  null;
+
+calc resource<levelled_choice_text>[] level_up_language_proficiency_choices(name = "Level up language proficiency choices") =
+  flatAppend(
+    [
+      (ancestry?.language_proficiencies_choices_in_current_level ?? []),
+      flatMap(
+        classes,
+        mapper = ($mapValue) => (if $mapValue.should_select_on_level_up
+          then ($mapValue.class?.language_proficiencies_choices_in_current_level ?? [])
+          else []),
+      ),
+      (background?.language_proficiencies_choices_in_current_level ?? []),
+    ],
+  );
+
+calc resource<levelled_skill_proficiency>[] level_up_skill_proficiency_choices(name = "Level up skill proficiency choices") =
+  flatAppend(
+    [
+      (ancestry?.skill_proficiencies_choices_in_current_level ?? []),
+      flatMap(
+        classes,
+        mapper = ($mapValue) => (if $mapValue.should_select_on_level_up
+          then ($mapValue.class?.skill_proficiencies_choices_in_current_level ?? [])
+          else []),
+      ),
+      (background?.skill_proficiencies_choices_in_current_level ?? []),
+      flatMap(
+        all_features,
+        mapper = ($mapValue) => ($mapValue.skill_proficiencies_choices_in_current_level ?? []),
+      ),
+    ],
+  );
+
+calc resource<levelled_armor_proficiency>[] level_up_armor_proficiency_choices(name = "Level up armor proficiency choices") =
+  flatAppend(
+    [
+      (ancestry?.armor_proficiencies_choices_in_current_level ?? []),
+      flatMap(
+        classes,
+        mapper = ($mapValue) => (if $mapValue.should_select_on_level_up
+          then ($mapValue.class?.armor_proficiencies_choices_in_current_level ?? [])
+          else []),
+      ),
+      (background?.armor_proficiencies_choices_in_current_level ?? []),
+      flatMap(
+        all_features,
+        mapper = ($mapValue) => ($mapValue.armor_proficiencies_choices_in_current_level ?? []),
+      ),
+    ],
+  );
+
+calc resource<levelled_weapon_proficiency>[] level_up_weapon_proficiency_choices(name = "Level up weapon proficiency choices") =
+  flatAppend(
+    [
+      (ancestry?.weapon_proficiencies_choices_in_current_level ?? []),
+      flatMap(
+        classes,
+        mapper = ($mapValue) => (if $mapValue.should_select_on_level_up
+          then ($mapValue.class?.weapon_proficiencies_choices_in_current_level ?? [])
+          else []),
+      ),
+      (background?.weapon_proficiencies_choices_in_current_level ?? []),
+      flatMap(
+        all_features,
+        mapper = ($mapValue) => ($mapValue.weapon_proficiencies_choices_in_current_level ?? []),
+      ),
+    ],
+  );
+
+calc resource<lore_skill>[] level_up_lore_skill_choices(name = "Level up lore skill choices") =
+  flatAppend(
+    [
+      (ancestry?.lore_skills_choices_in_current_level ?? []),
+      flatMap(
+        classes,
+        mapper = ($mapValue) => (if $mapValue.should_select_on_level_up
+          then ($mapValue.class?.lore_skills_choices_in_current_level ?? [])
+          else []),
+      ),
+      (background?.lore_skills_choices_in_current_level ?? []),
+      flatMap(
+        all_features,
+        mapper = ($mapValue) => ($mapValue.lore_skills_choices_in_current_level ?? []),
+      ),
+    ],
+  );
+
+base string temp_last_level_up_class_id(name = "Last level up class ID") = null;
+
+calc resource<class_progression> last_level_up_class_progression(name = "Last level up class") =
+  findFirst(
+    classes,
+    filter = ($findFirstValue) => ($findFirstValue.class?.id == temp_last_level_up_class_id),
+  );
+
+base integer spent_skill_increase_grants(name = "Spent skill increase grants") = 0;
+
+base integer spent_ability_boost_grants(name = "Spent ability boost grants") = 0;
+
+calc integer pending_skill_increase_grants(name = "Pending skill increase grants") =
+  granted_skill_increase_grants - spent_skill_increase_grants;
+
+calc integer pending_ability_boost_grants(name = "Pending ability boost grants") =
+  granted_ability_boost_grants - spent_ability_boost_grants;
+
+calc resource<levelled_rank_cap>[] class_skill_increase_rank_caps_for_current_level(name = "Class skill increase rank caps for current level") =
+  flatMap(
+    classes,
+    mapper = ($classProgression) => filter(
+      ($classProgression.class?.skill_increase_rank_caps ?? []),
+      filter = ($rankCap) => ($rankCap.level <= $classProgression.class_level),
+    ),
+  );
+
+calc resource<levelled_rank_cap> current_skill_increase_rank_cap_row(name = "Current skill increase rank cap row") =
+  findFirst(
+    sortBy(
+      class_skill_increase_rank_caps_for_current_level,
+      order = "desc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
+    filter = ($findFirstValue) => true,
+  );
+
+calc string current_skill_increase_rank_cap(name = "Current skill increase rank cap") =
+  when {
+    notNull(current_skill_increase_rank_cap_row) -> current_skill_increase_rank_cap_row.proficiency,
+    level >= 15 -> "legendary",
+    level >= 7 -> "master",
+    else -> "expert",
+  };
+
+calc integer current_skill_increase_rank_cap_value(name = "Current skill increase rank cap value") =
+  when {
+    current_skill_increase_rank_cap == "trained" -> 1,
+    current_skill_increase_rank_cap == "expert" -> 2,
+    current_skill_increase_rank_cap == "master" -> 3,
+    current_skill_increase_rank_cap == "legendary" -> 4,
+    else -> 0,
+  };
+
+base string temp_skill_increase_skill(name = "Temp skill increase skill") = "";
+
+base string temp_skill_increase_target_rank(name = "Temp skill increase target rank") = "";
+
+calc string temp_skill_increase_current_rank(name = "Temp skill increase current rank") =
+  if isEmpty(temp_skill_increase_skill)
+    then "none"
+    else (metaStat(meta_stat = concat([temp_skill_increase_skill, "_proficiency"])) ?? "none");
+
+calc integer temp_skill_increase_current_rank_value(name = "Temp skill increase current rank value") =
+  when {
+    temp_skill_increase_current_rank == "trained" -> 1,
+    temp_skill_increase_current_rank == "expert" -> 2,
+    temp_skill_increase_current_rank == "master" -> 3,
+    temp_skill_increase_current_rank == "legendary" -> 4,
+    else -> 0,
+  };
+
+calc integer temp_skill_increase_target_rank_value(name = "Temp skill increase target rank value") =
+  when {
+    temp_skill_increase_target_rank == "trained" -> 1,
+    temp_skill_increase_target_rank == "expert" -> 2,
+    temp_skill_increase_target_rank == "master" -> 3,
+    temp_skill_increase_target_rank == "legendary" -> 4,
+    else -> 0,
+  };
+
+calc bool is_temp_skill_increase_selection_valid(name = "Is temp skill increase selection valid") =
+  !isEmpty(temp_skill_increase_skill)
+    && !isEmpty(temp_skill_increase_target_rank)
+    && pending_skill_increase_grants > 0
+    && temp_skill_increase_target_rank_value == temp_skill_increase_current_rank_value + 1
+    && temp_skill_increase_target_rank_value <= current_skill_increase_rank_cap_value;
+
+calc string temp_skill_increase_validation_message(name = "Temp skill increase validation message") =
+  when {
+    is_temp_skill_increase_selection_valid -> "",
+    isEmpty(temp_skill_increase_skill) -> "Choose a skill to increase.",
+    isEmpty(temp_skill_increase_target_rank) -> "Choose the target rank.",
+    pending_skill_increase_grants <= 0 -> "No pending skill increase grants.",
+    temp_skill_increase_target_rank_value != temp_skill_increase_current_rank_value + 1 -> "Skill increases must advance exactly one proficiency rank.",
+    temp_skill_increase_target_rank_value > current_skill_increase_rank_cap_value -> concat(
+      [
+        "Current level cap is ",
+        enumeratedName(
+          enumerated_type = "skill_proficiency_types",
+          id = current_skill_increase_rank_cap,
+        ),
+        ".",
+      ],
+    ),
+    else -> "Invalid skill increase selection.",
+  };
+
+calc string temp_skill_increase_summary_text(name = "Temp skill increase summary text") =
+  if isEmpty(temp_skill_increase_skill)
+    then ""
+    else concat(
+        [
+          "Current: ",
+          enumeratedName(
+            enumerated_type = "skill_proficiency_types",
+            id = temp_skill_increase_current_rank,
+          ),
+          " | Cap: ",
+          enumeratedName(
+            enumerated_type = "skill_proficiency_types",
+            id = current_skill_increase_rank_cap,
+          ),
+        ],
+      );
+
+calc resource<progression_grant>[] level_up_progression_grants_in_new_level(name = "Level up progression grants in new level") =
+  flatAppend(
+    [
+      (last_level_up_class_progression?.progression_grants_gained_in_level ?? []),
+      (if notNull(ancestry)
+        then filter(
+            ancestry.progression_grants,
+            filter = ($grant) => ($grant.level == level),
+          )
+        else []),
+      (if notNull(heritage)
+        then filter(
+            heritage.progression_grants,
+            filter = ($grant) => ($grant.level == level),
+          )
+        else []),
+      flatMap(
+        archetypes,
+        mapper = ($arch) => filter(
+          $arch.progression_grants,
+          filter = ($grant) => ($grant.level == level),
+        ),
+      ),
+    ],
+  );
+
+calc bool should_show_progression_summary_popup(name = "Should show progression summary popup") =
+  !isEmpty(level_up_progression_grants_in_new_level);
+
+calc string level_up_progression_grants_summary_text(name = "Level up progression grants summary text") =
+  joinToString(
+    map(
+      level_up_progression_grants_in_new_level,
+      mapper = ($grant) => $grant.display_description,
+    ),
+    separator = "\n",
+  );
+
+calc bool should_show_skill_increase(name = "Should show skill increase popup") =
+  pending_skill_increase_grants > 0;
+
+calc bool should_show_asi(name = "Should show ASI") =
+  pending_ability_boost_grants > 0;
+
+base string temp_asi_selection_1(name = "Temp ASI selection") = null;
+
+base string temp_asi_selection_2(name = "Temp ASI selection") = null;
+
+base string temp_asi_selection_3(name = "Temp ASI selection") = null;
+
+base string temp_asi_selection_4(name = "Temp ASI selection") = null;
+
+calc resource<feat>[] features_with_new_descriptions_in_new_level(name = "Features with new descriptions in new level") =
+  flatAppend(
+    [
+      (ancestry?.traits_with_updates_in_current_level ?? []),
+      flatMap(
+        filter(
+          classes,
+          filter = ($filterValue) => (last_level_up_class_progression?.class?.id == $filterValue.class?.id),
+        ),
+        mapper = ($mapValue) => ($mapValue.class?.features_with_updates_in_current_level ?? []),
+      ),
+      (background?.features_with_updates_in_current_level ?? []),
+    ],
+  );
+
+base bool currently_levelling_up(name = "Currently levelling up") = false;
+
+calc resource<feat>[] selectable_features_with_new_amounts_in_new_level(name = "Selectable features with new amounts in the new level") =
+  filter(
+    flatAppend(
+        [
+          (ancestry?.current_level_traits ?? []),
+          (last_level_up_class_progression?.class.current_level_features ?? []),
+          (background?.current_level_features ?? []),
+        ],
+      ),
+    filter = ($filterValue) => $filterValue.can_choose_new_selectable_features_in_current_level,
+  );
+
+base string hair_color(name = "Hair color") = "";
+
+base string eye_color(name = "Eye color") = "";
+
+base string outfit(name = "Outfit") = "";
+
+base string appearance_weapon(name = "Appearance weapon") = "";
+
+base string sex(name = "Sex") = "";
+
+calc string photo_prompt(name = "Photo prompt") =
+  joinToString(
+    flatAppend(
+      [
+        (if (ancestry?.actual_hair_color_selectable ?? false)
+          then [concat(["(", hair_color, ":1.6)"])]
+          else []),
+        (if (ancestry?.actual_eye_color_selectable ?? false)
+          then [concat(["(", eye_color, ":1.3)"])]
+          else []),
+        (if (ancestry?.actual_outfit_selectable ?? false) then [concat(["(", outfit, ":1.3)"])] else []),
+        (if (ancestry?.actual_appearance_weapon_selectable ?? false)
+          then [concat(["(", appearance_weapon, ":1.6)"])]
+          else []),
+        (if (ancestry?.actual_sex_selectable ?? false) then [concat(["(", sex, ":1.3)"])] else []),
+        map(
+          (ancestry?.actual_visual_traits ?? []),
+          mapper = ($mapValue) => concat(
+            [
+              "(",
+              $mapValue.selected_option,
+              ":1.",
+              $mapValue.importance,
+              ")",
+            ],
+          ),
+        ),
+      ],
+    ),
+    separator = ",",
+  );
+
+calc resource<armor>[] invested_armors(name = "Invested armors") =
+  filter(
+    armors,
+    filter = ($filterValue) => ($filterValue.requires_investment && $filterValue.is_invested),
+  );
+
+calc resource<weapon>[] invested_weapons(name = "Invested weapons") =
+  filter(
+    all_weapons,
+    filter = ($filterValue) => ($filterValue.requires_investment && $filterValue.is_invested),
+  );
+
+calc resource<item>[] invested_items(name = "Invested items") =
+  filter(
+    equipment,
+    filter = ($filterValue) => ($filterValue.requires_investment && $filterValue.is_invested),
+  );
+
+calc resource<armor | weapon | item>[] invested_resources(name = "Invested resources") =
+  flatAppend([invested_armors, invested_weapons, invested_items]);
+
+calc string invested_resources_count_message(name = "Invested resources count message") =
+  concat(["Invested items: ", length(invested_resources), " / 10"]);
+
+base bool selecting(name = "Player is selecting things for this character") =
+  false;
+
+calc bool should_show_controls_for_choices(name = "Should show controls for choices (for ancestry, background, etc choices like equipments or proficiencies)") =
+  selecting || currently_levelling_up;
+
+calc resource<feat>[] all_features(name = "All features") =
+  flatAppend(
+    [
+      flatMap(classes, mapper = ($class) => $class.features),
+      all_feats,
+      ancestry_traits,
+      background_features,
+    ],
+  );
+
+calc resource<feat>[] daily_preparations_reselectable_features(name = "Features that require selectable-feature refresh on daily preparations") =
+  filter(
+    all_features,
+    filter = ($feature) => ($feature.has_selectable_features
+      && $feature.refresh_selectable_features_on_daily_preparations
+      && $feature.current_allowed_amount_of_selectable_features > 0
+      && !isEmpty($feature.available_selectable_features_for_current_level)),
+  );
+
+calc integer daily_preparations_reselectable_features_count(name = "Count of features that require selectable-feature refresh on daily preparations") =
+  length(daily_preparations_reselectable_features);
+
+calc string[] daily_preparations_reselectable_option_ids(name = "Selectable feature option IDs to clear on daily preparations") =
+  flatAppend(
+    map(
+      daily_preparations_reselectable_features,
+      mapper = ($feature) => $feature.selectable_feature_ids,
+    ),
+    treat_as_set = true,
+  );
+
+calc resource<feat>[] daily_preparations_pending_reselectable_features(name = "Features pending selectable-feature re-selection for daily preparations") =
+  filter(
+    daily_preparations_reselectable_features,
+    filter = ($feature) => (length($feature.chosen_selectable_features)
+      < $feature.current_allowed_amount_of_selectable_features),
+  );
+
+calc integer daily_preparations_pending_reselectable_features_count(name = "Count of features pending selectable-feature re-selection for daily preparations") =
+  length(daily_preparations_pending_reselectable_features);
+
+calc resource<feat> next_daily_preparations_pending_reselectable_feature(name = "Next feature pending selectable-feature re-selection for daily preparations") =
+  findFirst(
+    sortBy(
+      daily_preparations_pending_reselectable_features,
+      sort_by_selector = ($sortByValue) => $sortByValue.name,
+    ),
+    filter = ($findFirstValue) => true,
+  );
+
+base bool daily_preparations_reselection_in_progress(name = "Daily preparations selectable-feature re-selection in progress") =
+  false;
+
+calc bool has_jack_of_all_trades(name = "Has jack of all trades") =
+  or(
+    map(
+      all_features,
+      mapper = ($mapValue) => (toLowerCase($mapValue.name) == "jack of all trades"),
+    ),
+  );
+
+base bool is_new_and_should_daily_preparations(name = "Is new and should run daily preparations?") =
+  true;
+
+base resource<companion>[] companions(name = "Companions") = [];
+
+calc string companion_section_title(name = "Companion section title") =
+  if contains(
+    haystack = map(classes, mapper = ($mapValue) => toLowerCase(trim($mapValue.class?.name ?? ""))),
+    needle = "druid",
+  )
+    then "Wild shape"
+    else "Companions / familiars";
+
+
+calc integer fortitude_proficiency_rank(name = "Fortitude proficiency rank") =
+  if isEmpty(classes)
+    then 0
+    else max(
+        map(
+          classes,
+          mapper = ($class) =>
+            when {
+              $class.class.current_level_fortitude_proficiency == "trained" -> 1,
+              $class.class.current_level_fortitude_proficiency == "expert" -> 2,
+              $class.class.current_level_fortitude_proficiency == "master" -> 3,
+              $class.class.current_level_fortitude_proficiency == "legendary" -> 4,
+              else -> 0,
+            },
+        ),
+      );
+
+calc integer reflex_proficiency_rank(name = "Reflex proficiency rank") =
+  if isEmpty(classes)
+    then 0
+    else max(
+        map(
+          classes,
+          mapper = ($class) =>
+            when {
+              $class.class.current_level_reflex_proficiency == "trained" -> 1,
+              $class.class.current_level_reflex_proficiency == "expert" -> 2,
+              $class.class.current_level_reflex_proficiency == "master" -> 3,
+              $class.class.current_level_reflex_proficiency == "legendary" -> 4,
+              else -> 0,
+            },
+        ),
+      );
+
+calc integer will_proficiency_rank(name = "Will proficiency rank") =
+  if isEmpty(classes)
+    then 0
+    else max(
+        map(
+          classes,
+          mapper = ($class) =>
+            when {
+              $class.class.current_level_will_proficiency == "trained" -> 1,
+              $class.class.current_level_will_proficiency == "expert" -> 2,
+              $class.class.current_level_will_proficiency == "master" -> 3,
+              $class.class.current_level_will_proficiency == "legendary" -> 4,
+              else -> 0,
+            },
+        ),
+      );
+
+calc string fortitude_proficiency(name = "Fortitude proficiency") =
+  when {
+    fortitude_proficiency_rank == 4 -> "legendary",
+    fortitude_proficiency_rank == 3 -> "master",
+    fortitude_proficiency_rank == 2 -> "expert",
+    fortitude_proficiency_rank == 1 -> "trained",
+    else -> "none",
+  };
+
+calc string reflex_proficiency(name = "Reflex proficiency") =
+  when {
+    reflex_proficiency_rank == 4 -> "legendary",
+    reflex_proficiency_rank == 3 -> "master",
+    reflex_proficiency_rank == 2 -> "expert",
+    reflex_proficiency_rank == 1 -> "trained",
+    else -> "none",
+  };
+
+calc string will_proficiency(name = "Will proficiency") =
+  when {
+    will_proficiency_rank == 4 -> "legendary",
+    will_proficiency_rank == 3 -> "master",
+    will_proficiency_rank == 2 -> "expert",
+    will_proficiency_rank == 1 -> "trained",
+    else -> "none",
+  };
+
+calc integer fortitude_proficiency_bonus(name = "Fortitude proficiency bonus") =
+  when {
+    fortitude_proficiency == "trained" -> level_bonus + 2,
+    fortitude_proficiency == "expert" -> level_bonus + 4,
+    fortitude_proficiency == "master" -> level_bonus + 6,
+    fortitude_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  };
+
+calc integer reflex_proficiency_bonus(name = "Reflex proficiency bonus") =
+  when {
+    reflex_proficiency == "trained" -> level_bonus + 2,
+    reflex_proficiency == "expert" -> level_bonus + 4,
+    reflex_proficiency == "master" -> level_bonus + 6,
+    reflex_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  };
+
+calc integer will_proficiency_bonus(name = "Will proficiency bonus") =
+  when {
+    will_proficiency == "trained" -> level_bonus + 2,
+    will_proficiency == "expert" -> level_bonus + 4,
+    will_proficiency == "master" -> level_bonus + 6,
+    will_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  };
+
+calc integer fortitude(name = "Fortitude") =
+  constitution_modifier + fortitude_proficiency_bonus + (equipped_armor?.total_rune_save_bonus ?? 0) + fortitude_typed_modifier_total;
+
+calc integer reflex(name = "Reflex") =
+  dexterity_modifier + reflex_proficiency_bonus + (equipped_armor?.total_rune_save_bonus ?? 0) + reflex_typed_modifier_total;
+
+calc integer will(name = "Will") =
+  wisdom_modifier + will_proficiency_bonus + (equipped_armor?.total_rune_save_bonus ?? 0) + will_typed_modifier_total;
+
+calc resource<class_progression> primary_class_progression(name = "Primary class progression") =
+  findFirst(classes, filter = ($findFirstValue) => true);
+
+calc string class_dc_proficiency(name = "Class DC proficiency") =
+  primary_class_progression?.class.current_level_class_dc_proficiency ?? "none";
+
+calc string class_key_ability(name = "Class key ability") =
+  primary_class_progression?.class.actual_class_key_ability ?? "strength";
+
+calc integer class_key_ability_modifier(name = "Class key ability modifier") =
+  metaStat(meta_stat = concat([class_key_ability, "_modifier"]));
+
+calc integer class_dc_proficiency_bonus(name = "Class DC proficiency bonus") =
+  when {
+    class_dc_proficiency == "trained" -> level_bonus + 2,
+    class_dc_proficiency == "expert" -> level_bonus + 4,
+    class_dc_proficiency == "master" -> level_bonus + 6,
+    class_dc_proficiency == "legendary" -> level_bonus + 8,
+    else -> 0,
+  };
+
+calc integer class_dc(name = "Class DC") =
+  10 + class_key_ability_modifier + class_dc_proficiency_bonus + class_dc_typed_modifier_total;
+
+base integer max_actions_per_turn(name = "Max Actions Per Turn") = 3;
+
+base integer actions_remaining(name = "Actions Remaining") = 3;
+
+base integer max_reactions_per_round(name = "Max Reactions Per Round") = 1;
+
+base integer reaction_available(name = "Reaction Available") = 1;
+
+base integer hero_points(name = "Hero Points") = 1;
+
+base integer max_hero_points(name = "Max Hero Points") = 3;
+
+base integer focus_points(name = "Focus Points") = 0;
+
+base integer max_focus_points(name = "Max Focus Points") = 0;
+
+base integer dying(name = "Dying") = 0;
+
+base integer wounded(name = "Wounded") = 0;
+
+base integer doomed(name = "Doomed") = 0;
+
+base integer recovery_check_bonus(name = "Recovery Check Bonus") = 0;
+
+calc bool is_dead(name = "Is Dead") = dying >= (4 - min([doomed, 3]));
+
+base integer frightened_value(name = "Frightened") = 0;
+
+base integer sickened_value(name = "Sickened") = 0;
+
+base integer clumsy_value(name = "Clumsy") = 0;
+
+base integer enfeebled_value(name = "Enfeebled") = 0;
+
+base integer stupefied_value(name = "Stupefied") = 0;
+
+base integer drained_value(name = "Drained") = 0;
+
+base integer slowed_value(name = "Slowed") = 0;
+
+base integer stunned_value(name = "Stunned Value") = 0;
+
+base integer archetype_slot_target_rank(name = "Archetype slot target rank") = 0;

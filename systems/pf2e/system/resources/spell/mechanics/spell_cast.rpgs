@@ -1,0 +1,56 @@
+mechanic spell_cast(name = "Cast spell", event_names = "castSpell") =
+  sequence(
+    effects = [
+      when {
+        can_cast -> roll(
+          rolls = [
+            rollable(
+              formulas = [spell_attack_roll_formula],
+              text = "to hit",
+            ),
+          ],
+        ),
+      },
+      when {
+        can_cast && is_focus_spell && defined(stat = "$character.focus_points") -> addToStat(
+          stat = "$character.focus_points",
+          value = -focus_point_cost,
+          aggregation_type = "set",
+        ),
+        can_cast && is_archetype_spell && !is_cantrip && !is_focus_spell -> sequence(
+          effects = [
+            setStat(
+              stat = "$character.archetype_slot_target_rank",
+              new_value = selected_cast_level,
+              aggregation_type = "set",
+            ),
+            fireEvent(
+              event_names = [
+                eventName(
+                  event_name = "decrement_spell_slot",
+                  for_resource = selected_spellcasting_archetype_source,
+                ),
+              ],
+            ),
+          ],
+        ),
+        can_cast && is_class_spell && character_spell_slots_defined && !is_cantrip && !is_focus_spell -> addToStat(
+          meta_stat = selected_spell_slots_stat_name,
+          value = -1,
+          aggregation_type = "set",
+        ),
+      },
+      when {
+        can_cast && in_combat && action_cost_spends_reaction && defined(stat = "$character.reaction_available") -> setStat(
+          stat = "$character.reaction_available",
+          new_value = 0,
+          aggregation_type = "set",
+        ),
+        can_cast && in_combat && action_cost_actions_spent > 0 && defined(stat = "$character.actions_remaining") -> addToStat(
+          stat = "$character.actions_remaining",
+          value = action_cost_actions_spent * -1,
+          aggregation_type = "set",
+        ),
+      },
+    ]
+  );

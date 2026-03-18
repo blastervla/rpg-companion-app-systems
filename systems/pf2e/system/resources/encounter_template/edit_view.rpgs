@@ -1,0 +1,114 @@
+view encounter_template_edit() =
+  list(
+    padding = 16,
+    subviews = [
+      text(
+        id = "encounter_template_edit_name",
+        edit_stat = "name",
+        style = "text",
+        label = "Name",
+        max_length = 140,
+        validation_message = if isEmpty($view.encounter_template_edit_name) then "Please add a name to your encounter template" else null,
+      ),
+      composite(
+        id = "encounter_template_edit_source",
+        margin_top = 4,
+        subviews = [
+          text(id = "encounter_template_edit_source_label", text = "Source: ", style = "text"),
+          select(
+            id = "encounter_template_edit_source_select",
+            options = "source",
+            options_display_stat = "abbreviation",
+            stat = "source",
+          ),
+        ],
+      ),
+      text(
+        id = "encounter_template_edit_description",
+        edit_stat = "description",
+        style = "text",
+        label = "Description",
+      ),
+      section(
+        id = "encounter_template_edit_budget_section",
+        margin_top = 6,
+        show_divider = true,
+        collapsible = false,
+        content_item_min_width = 1,
+        header = [
+          text(
+            id = "encounter_template_edit_budget_header",
+            text = "PF2e Budget Preview",
+            style = "text",
+            bold = true,
+          ),
+        ],
+        content = [
+          composite(
+            id = "encounter_template_edit_budget_party",
+            subviews = [
+              text(
+                id = "encounter_template_edit_budget_party_level_label",
+                text = "Party level: ",
+                style = "text",
+                bold = true,
+              ),
+              text(
+                id = "encounter_template_edit_budget_party_level",
+                edit_stat = "expected_party_level",
+                style = "text",
+                max_length = 2,
+                margin_right = 12,
+              ),
+              text(
+                id = "encounter_template_edit_budget_party_size_label",
+                text = "Party size: ",
+                style = "text",
+                bold = true,
+              ),
+              text(
+                id = "encounter_template_edit_budget_party_size",
+                edit_stat = "expected_party_size",
+                style = "text",
+                max_length = 2,
+              ),
+            ],
+          ),
+          composite(
+            id = "encounter_template_edit_budget_target",
+            margin_top = 4,
+            subviews = [
+              text(
+                id = "encounter_template_edit_budget_target_label",
+                text = "Target difficulty: ",
+                style = "text",
+                bold = true,
+              ),
+              select(
+                id = "encounter_template_edit_budget_target_select",
+                stat = "desired_difficulty",
+                options = "encounter_difficulty_tiers",
+              ),
+            ],
+          ),
+          text(
+            id = "encounter_template_edit_budget_summary",
+            margin_top = 4,
+            text = pf2e_budget_summary,
+            style = "caption",
+          ),
+        ],
+      ),
+      resourceArray(
+        id = "encounter_template_edit_combatants",
+        resource_id = "monster_combat_template_entry",
+        view_type = "edit",
+        stat = "combatant_pool",
+        left_view = text(
+          id = "encounter_template_edit_combatants_label",
+          text = "Monsters: ",
+          style = "text",
+        ),
+      ),
+    ],
+  );

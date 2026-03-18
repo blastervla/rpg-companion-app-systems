@@ -1,0 +1,18 @@
+base string variant_name(name = "Name") = "";
+
+base resource<damage_dice>[] variant_damage_dice(name = "Damage dice", abbreviation = "Dmg Dice") =
+  [];
+
+calc string variant_description(name = "Display description") =
+  concat(
+    [
+      variant_name,
+      ": ",
+      joinToString(
+        (if !isEmpty(variant_damage_dice)
+          then map(variant_damage_dice, mapper = ($mapValue) => $mapValue.display_description)
+          else ["No damage"]),
+        separator = " + ",
+      ),
+    ],
+  );

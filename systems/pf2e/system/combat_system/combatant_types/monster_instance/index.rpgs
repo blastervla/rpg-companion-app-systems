@@ -1,0 +1,58 @@
+combatant monster_instance() = combatant(
+    id = "monster_instance",
+    name = "Monster",
+    template_resource_id = "monster",
+    instance_resource_id = "monster_instance",
+    side = "enemies",
+    shows_in_party = false,
+    on_create = sequence(
+        effects = [
+            setStat(
+                stat = "tag_number",
+                new_value = roll(
+                    formula = "1d99999"
+                ),
+                aggregation_type = "set",
+            ),
+            setStat(
+                stat = "name",
+                new_value = $resource.name + " #" + tag_order,
+                aggregation_type = "set",
+            ),
+            setStat(
+                stat = "max_hp",
+                new_value = max(
+                    [
+                        if defined(stat = "$resource.hit_points.formula")
+                            then roll(
+                                formula = $resource.hit_points.formula
+                            )
+                            else ($resource.hit_points ?? 1),
+                        1
+                    ]
+                ),
+                aggregation_type = "set",
+            ),
+            setStat(
+                stat = "current_hp",
+                new_value = max_hp,
+                aggregation_type = "set",
+            ),
+            setStat(
+                stat = "armor_class",
+                new_value = $resource.armor_class,
+                aggregation_type = "set",
+            ),
+            setStat(
+                stat = "actions_remaining",
+                new_value = max_actions_per_turn,
+                aggregation_type = "set",
+            ),
+            setStat(
+                stat = "reaction_available",
+                new_value = max_reactions_per_round,
+                aggregation_type = "set",
+            )
+        ],
+    ),
+);

@@ -1,0 +1,13 @@
+view monster_combat_template_entry_list() =
+  popUpButton(
+    id = "monster_combat_template_entry_list",
+    text = description,
+    pop_up_view = resource(
+      id = "monster_combat_template_entry_view",
+      view_type = "display",
+      resource_id = "monster",
+      stat = "combatant",
+    ),
+    pop_up_type = "bottomSheet",
+    pop_up_title = combatant?.name ?? "Monster",
+  );

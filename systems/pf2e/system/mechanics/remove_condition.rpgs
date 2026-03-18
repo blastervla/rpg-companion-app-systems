@@ -1,0 +1,12 @@
+mechanic remove_condition(event_names = "remove_condition") =
+  when {
+    $event.condition == "frightened_value" -> setStat(meta_stat = $event.condition, new_value = 0, aggregation_type = "set"),
+    $event.condition == "sickened_value" -> setStat(meta_stat = $event.condition, new_value = 0, aggregation_type = "set"),
+    $event.condition == "clumsy_value" -> setStat(meta_stat = $event.condition, new_value = 0, aggregation_type = "set"),
+    $event.condition == "enfeebled_value" -> setStat(meta_stat = $event.condition, new_value = 0, aggregation_type = "set"),
+    $event.condition == "stupefied_value" -> setStat(meta_stat = $event.condition, new_value = 0, aggregation_type = "set"),
+    $event.condition == "drained_value" -> setStat(meta_stat = $event.condition, new_value = 0, aggregation_type = "set"),
+    $event.condition == "slowed_value" -> setStat(meta_stat = $event.condition, new_value = 0, aggregation_type = "set"),
+    $event.condition == "stunned_value" -> setStat(meta_stat = $event.condition, new_value = 0, aggregation_type = "set"),
+    else -> setStat(meta_stat = $event.condition, new_value = false, aggregation_type = "set"),
+  };

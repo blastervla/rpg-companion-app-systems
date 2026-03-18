@@ -1,0 +1,40 @@
+mechanic monster_action_roll_attack(event_names = "attack") =
+  sequence(
+    effects = [
+      when {
+        can_use_action && has_attack_roll -> roll(
+          rolls = [
+            rollable(
+              formulas = [concat(["1d20", toSignedString(action_attack_bonus)])],
+              text = "to hit",
+            ),
+          ],
+        ),
+      },
+      when {
+        can_use_action
+          && in_combat
+          && action_cost_spends_reaction
+          && !isEmpty(action_spend_reaction_meta_stat) -> setStat(
+          meta_stat = action_spend_reaction_meta_stat,
+          new_value = 0,
+          aggregation_type = "set",
+        ),
+        can_use_action
+          && in_combat
+          && !action_cost_spends_reaction
+          && action_cost_actions_spent > 0
+          && !isEmpty(action_spend_actions_meta_stat) -> addToStat(
+          meta_stat = action_spend_actions_meta_stat,
+          value = action_cost_actions_spent * -1,
+          aggregation_type = "set",
+        ),
+      },
+      when {
+        in_combat && !can_use_action -> showMessage(
+          message = "Not enough actions/reaction available.",
+          message_type = "info",
+        ),
+      },
+    ],
+  );

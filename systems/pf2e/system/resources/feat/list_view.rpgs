@@ -1,0 +1,22 @@
+view feat_list() =
+  list(
+    id = "feat_list",
+    subviews = [
+      listItem(
+        id = "feat_list_data",
+        title = list_name,
+        subtitle = list_view_description,
+        first_line_extra = if defined(stat = "$parent.classes") then type_name else "",
+      ),
+      resourceArray(
+        id = "feat_list_effects",
+        resource_id = "effect",
+        stat = "active_or_charge_effects_for_current_level",
+        view_type = "display",
+        margin_left = 16,
+        is_visible = defined(stat = "$character")
+          && !defined(stat = "$character.$is_new")
+          && !is_selectable_feature,
+      ),
+    ],
+  );

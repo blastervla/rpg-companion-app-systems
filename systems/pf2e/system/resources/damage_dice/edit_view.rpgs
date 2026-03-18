@@ -1,0 +1,21 @@
+view damage_dice_edit() =
+  resourceArray(
+    id = "damage_dice_edit",
+    resource_id = "dice_roll",
+    stat = "dices",
+    view_type = "edit",
+    left_view = select(
+      id = "damage_dice_damage_type",
+      stat = "damage_type",
+      options = "damage_types",
+    ),
+    validation_message = if isEmpty($view.damage_dice_edit)
+      then concat(
+          [
+            "It seems like you left the list of dice for ",
+            enumeratedName(enumerated_type = "damage_types", id = damage_type),
+            " damage empty. Please remove it if you don't need it",
+          ],
+        )
+      else null,
+  );

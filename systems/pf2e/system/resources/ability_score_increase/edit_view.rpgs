@@ -1,0 +1,33 @@
+view edit_ability_score_increase_composite() =
+  composite(
+    id = "edit_ability_score_increase_composite",
+    subviews = [
+      text(
+        id = "edit_ability_score_increase_value_label",
+        text = "Assign ",
+        style = "text",
+      ),
+      text(
+        id = "edit_ability_score_increase_value",
+        edit_stat = "value",
+        style = "text",
+        max_length = 5,
+        hint = "1",
+      ),
+      text(
+        id = "edit_ability_score_increase_modifier_options_select_label",
+        text = " to one of ",
+        style = "text",
+      ),
+      select(
+        id = "edit_ability_score_increase_modifier_options_select",
+        margin_left = 4,
+        stat = "modifier_options",
+        multi_select = true,
+        options = "ability",
+        validation_message = if isEmpty($view.edit_ability_score_increase_modifier_options_select)
+          then "You have empty ability score increase options. Please select at least one or remove it"
+          else null,
+      ),
+    ],
+  );

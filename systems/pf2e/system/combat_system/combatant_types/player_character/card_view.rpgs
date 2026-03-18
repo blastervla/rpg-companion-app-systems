@@ -1,0 +1,62 @@
+view player_character_combat_card() =
+  list(
+    padding = 4,
+    subviews = [
+      composite(
+        id = "player_character_combat_card_status",
+        subviews = [
+          avatar(
+            id = "avatar_view",
+            margin_top = 8,
+            margin_right = 8,
+            margin_left = 8,
+            photo_stat = "photo",
+            name_stat = "name",
+            size = "small",
+          ),
+          text(
+            id = "player_character_status_name",
+            text = name,
+            style = "subhead",
+          ),
+        ]
+      ),
+      composite(
+        id = "player_character_display_ac_pp_speed",
+        subviews = [
+          ticker(
+            id = "status_hp",
+            margin_left = 8,
+            margin_right = 12,
+            stat = "current_hp",
+            style = "subhead",
+            change_amount = 0,
+            label = concat(["/ ", max_hp, " HP"]),
+          ),
+          text(
+            id = "player_character_display_ac_label",
+            text = "AC: ",
+            style = "subhead",
+            bold = true,
+          ),
+          text(
+            id = "player_character_display_ac",
+            text = armor_class,
+            style = "text",
+            margin_right = 12,
+          ),
+          text(
+            id = "player_character_display_pp_label",
+            text = "PER: ",
+            style = "subhead",
+            bold = true,
+          ),
+          text(
+            id = "player_character_display_pp",
+            text = perception,
+            style = "text",
+          ),
+        ],
+      ),
+    ]
+  );

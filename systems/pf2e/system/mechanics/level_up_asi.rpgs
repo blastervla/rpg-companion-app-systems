@@ -1,0 +1,32 @@
+mechanic level_up_asi(event_names = "level_up_asi") =
+  sequence(
+    effects = [
+      forEach(
+        flatAppend(
+          [
+            [temp_asi_selection_1],
+            [temp_asi_selection_2],
+            [temp_asi_selection_3],
+            [temp_asi_selection_4],
+          ],
+          treat_as_set = true,
+        ),
+        apply = when {
+          notNull($forEachValue) -> addToStat(
+            meta_stat = concat([$forEachValue, "_score"]),
+            value = if metaStat(meta_stat = concat([$forEachValue, "_score"])) >= 18 then 1 else 2,
+            aggregation_type = "set",
+          ),
+        },
+      ),
+      setStat(stat = "temp_asi_selection_1", new_value = null, aggregation_type = "set"),
+      setStat(stat = "temp_asi_selection_2", new_value = null, aggregation_type = "set"),
+      setStat(stat = "temp_asi_selection_3", new_value = null, aggregation_type = "set"),
+      setStat(stat = "temp_asi_selection_4", new_value = null, aggregation_type = "set"),
+      addToStat(
+        stat = "spent_ability_boost_grants",
+        value = 1,
+        aggregation_type = "set",
+      ),
+    ],
+  );

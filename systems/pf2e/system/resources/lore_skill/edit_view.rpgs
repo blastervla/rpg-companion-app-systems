@@ -1,0 +1,41 @@
+view lore_skill_edit() =
+  list(
+    id = "lore_skill_edit",
+    subviews = [
+      text(
+        id = "lore_skill_edit_level",
+        edit_stat = "level",
+        style = "text",
+        label = "Lvl",
+        max_length = 3,
+      ),
+      text(
+        id = "lore_skill_edit_options",
+        edit_stat = "options",
+        style = "text",
+        label = "Options",
+        max_length = 80,
+      ),
+      text(
+        id = "lore_skill_edit_selected_option",
+        edit_stat = "selected_option",
+        style = "text",
+        label = "Selected option",
+        max_length = 80,
+      ),
+      select(
+        id = "lore_skill_edit_proficiency",
+        stat = "proficiency",
+        options = "skill_proficiency_types",
+      ),
+      select(
+        id = "lore_skill_edit_ability",
+        stat = "ability",
+        options = "ability",
+      ),
+      stat(
+        id = "lore_skill_edit_untyped_modifier",
+        stat = "untyped_modifier",
+      ),
+    ],
+  );

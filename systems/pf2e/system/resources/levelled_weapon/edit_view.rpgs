@@ -1,0 +1,30 @@
+view levelled_weapon_edit() =
+  composite(
+    id = "levelled_weapon_edit",
+    subviews = [
+      text(
+        id = "levelled_weapon_edit_level",
+        edit_stat = "level",
+        style = "text",
+        hint = "Lvl",
+        max_length = 3,
+      ),
+      popUpButton(
+        id = "levelled_weapon_edit_weapon_button",
+        text = weapon?.damage_dice_display_description ?? "No weapon",
+        pop_up_view = resource(
+          id = "levelled_weapon_edit_weapon",
+          view_type = "edit",
+          resource_id = "weapon",
+          stat = "weapon",
+          create_if_empty = true,
+        ),
+        pop_up_title = "Edit weapon",
+        display_cancel_button = true,
+        display_save_button = true,
+        validation_message = if isNull(weapon)
+          then "You have an empty levelled weapon. Please add a weapon to it or remove it."
+          else null,
+      ),
+    ],
+  );

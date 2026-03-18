@@ -1,0 +1,54 @@
+{
+  "id": "encounter_template",
+  "name": "Encounter template",
+  "plural": "Encounter templates",
+  "is_encounter_template": true,
+  "core": true,
+  "color": "#C3F233",
+  "indexed_stats": [
+    "name",
+    "source",
+    "expected_difficulty",
+    "expected_difficulty_name",
+    "expected_xp_pool",
+    "desired_difficulty"
+  ],
+  "search_filters": [
+    {
+      "name": "Source",
+      "stat": "source",
+      "options": "source",
+      "options_display_stat": "abbreviation"
+    },
+    {
+      "name": "Expected Difficulty",
+      "stat": "expected_difficulty",
+      "options": "encounter_difficulty_tiers"
+    },
+    {
+      "name": "Target Difficulty",
+      "stat": "desired_difficulty",
+      "options": "encounter_difficulty_tiers"
+    }
+  ],
+  "sort_options": [
+    {
+      "name": "alphabetically",
+      "stat": "name"
+    },
+    {
+      "name": "by source",
+      "stat": "source",
+      "options": "source",
+      "options_display_stat": "abbreviation"
+    },
+    {
+      "name": "by expected XP",
+      "stat": "expected_xp_pool"
+    },
+    {
+      "name": "by expected difficulty",
+      "stat": "expected_difficulty"
+    }
+  ]
+}

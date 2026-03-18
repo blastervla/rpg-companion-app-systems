@@ -1,0 +1,78 @@
+character_sheet_section equipment() =
+  section(
+    id = "equipment_section",
+    show_divider = true,
+    content_item_min_width = 1,
+    collapsible = true,
+    header = [
+      icon(
+        id = "equipment_section_icon",
+        name = "ic_backpack",
+        size = "medium",
+        margin_left = 16,
+      ),
+      text(
+        id = "equipment_section_title",
+        margin_right = 16,
+        margin_left = 16,
+        text = "Equipment",
+        style = "title",
+      ),
+      spacer(id = "equipment_section_header_spacer"),
+      selectResources(
+        id = "equipment_section_add_equipment",
+        stat = "equipment",
+        resource_id = "item",
+        view_type = "icon",
+        should_append = true,
+        should_save_on_selection = true,
+      ),
+    ],
+    content = [
+      section(
+        id = "equipment_currency",
+        header = [],
+        content = [
+          stat(
+            id = "equipment_currency_cp",
+            stat = "copper_pieces",
+            min_value_allowed = 0,
+            edit_bottom_sheet_title = "Copper",
+          ),
+          stat(
+            id = "equipment_currency_sp",
+            stat = "silver_pieces",
+            min_value_allowed = 0,
+            edit_bottom_sheet_title = "Silver",
+          ),
+          stat(
+            id = "equipment_currency_ep",
+            stat = "electrum_pieces",
+            min_value_allowed = 0,
+            edit_bottom_sheet_title = "Electrum",
+          ),
+          stat(
+            id = "equipment_currency_gp",
+            stat = "gold_pieces",
+            min_value_allowed = 0,
+            edit_bottom_sheet_title = "Gold",
+          ),
+          stat(
+            id = "equipment_currency_pp",
+            stat = "platinum_pieces",
+            min_value_allowed = 0,
+            edit_bottom_sheet_title = "Platinum",
+          ),
+        ],
+        show_divider = false,
+        content_item_min_width = 75,
+        alignment = "center",
+      ),
+      resourceSection(
+        id = "equipment_list",
+        resource_stat = "equipment",
+        resource_id = "item",
+        max_items_in_preview = 5,
+      ),
+    ],
+  );

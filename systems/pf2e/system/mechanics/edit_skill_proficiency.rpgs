@@ -1,0 +1,13 @@
+mechanic edit_skill_proficiency(event_names = "editSkillProficiency") =
+  showPopUp(
+    pop_up_view = select(
+      id = "edit_skill_proficiency_select",
+      meta_stat = concat([($show_pop_up_event?.stat? ?? ""), "_proficiency"]),
+      options = "skill_proficiency_types",
+      style = "list",
+    ),
+    pop_up_title = $show_pop_up_event?.statName? ?? "",
+    display_cancel_button = true,
+    display_save_button = true,
+    should_persist_on_save = true,
+  );

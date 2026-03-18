@@ -1,0 +1,6 @@
+mechanic decrement_spell_slot(calculated_event_names = [eventName(event_name = "decrement_spell_slot")]) =
+  addToStat(
+    meta_stat = concat(["$character.spell_slots_", $event.cast_rank]),
+    value = -1,
+    aggregation_type = "set",
+  );

@@ -1,0 +1,41 @@
+character_sheet_section notes() =
+  section(
+    id = "notes_section",
+    show_divider = true,
+    content_item_min_width = 1,
+    collapsible = true,
+    header = [
+      icon(
+        id = "notes_section_icon",
+        name = "ic_notes",
+        size = "medium",
+        color = "primary",
+        margin_left = 16,
+      ),
+      text(
+        id = "notes_section_title",
+        margin_right = 16,
+        margin_left = 16,
+        text = "notes",
+        style = "title",
+      ),
+      spacer(id = "notes_section_header_spacer"),
+      selectResources(
+        id = "notes_section_add_weapon",
+        stat = "notes",
+        resource_id = "note",
+        view_type = "icon",
+        should_append = true,
+        should_save_on_selection = true,
+        create_in_place = true,
+        creation_pop_up_type = "bottomSheet",
+      ),
+    ],
+    content = [
+      resourceSection(
+        id = "notes_list",
+        resource_stat = "notes",
+        resource_id = "note",
+      ),
+    ],
+  );

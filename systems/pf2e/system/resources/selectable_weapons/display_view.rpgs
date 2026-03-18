@@ -1,0 +1,32 @@
+view selectable_weapons_display() =
+  list(
+    id = "selectable_weapons_display",
+    subviews = [
+      text(
+        id = "selectable_weapons_display_out_of_character",
+        margin_left = 4,
+        text = display_description,
+        style = "text",
+        is_visible = !($character?.should_show_controls_for_choices ?? false),
+      ),
+      composite(
+        id = "selectable_weapons_display_in_character",
+        subviews = [
+          text(
+            id = "selectable_weapons_display_choose_label",
+            text = choose_label_text,
+            style = "text",
+          ),
+          select(
+            id = "selectable_weapons_display_choose",
+            stat = "selected_options_string",
+            resource_options = options,
+            max_selection_amount = amount,
+            options_display_stat = "display_description",
+            multi_select = true,
+          ),
+        ],
+        is_visible = $character?.should_show_controls_for_choices ?? false,
+      ),
+    ],
+  );

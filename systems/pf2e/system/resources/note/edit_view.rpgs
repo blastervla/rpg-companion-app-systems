@@ -1,0 +1,24 @@
+view note_edit() =
+  list(
+    id = "note_edit",
+    padding = 16,
+    subviews = [
+      text(
+        id = "note_edit_title",
+        edit_stat = "title",
+        style = "text",
+        max_length = 80,
+        label = "Note title",
+        validation_message = if isEmpty($view.note_edit_title) && isEmpty($view.note_edit_text)
+          then "Looks like you're trying to save an empty note! Why don't you write something down?"
+          else null,
+      ),
+      text(
+        id = "note_edit_text",
+        edit_stat = "text",
+        style = "text",
+        label = "Note",
+        hint = "Jot something down...",
+      ),
+    ],
+  );

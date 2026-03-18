@@ -1,0 +1,12 @@
+base integer value(name = "Value") = 0;
+
+base string unit(name = "Unit") = "pounds";
+
+calc string description(name = "Display description") =
+  concat(
+    [
+      value,
+      " ",
+      enumeratedName(enumerated_type = "weight_units", id = unit),
+    ],
+  );
