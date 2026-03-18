@@ -1,0 +1,1390 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "khasprickle__wow2_",
+    "name": {
+      "value": "Khasprickle"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "wow2"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 28
+    },
+    "hit_points": {
+      "value": 155
+    },
+    "level": {
+      "value": 9
+    },
+    "xp": {
+      "value": 240
+    },
+    "initiative": {
+      "value": 21
+    },
+    "perception": {
+      "value": 21
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 25
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 5
+    },
+    "dexterity_modifier": {
+      "value": 7
+    },
+    "constitution_modifier": {
+      "value": 3
+    },
+    "intelligence_modifier": {
+      "value": 4
+    },
+    "wisdom_modifier": {
+      "value": 6
+    },
+    "charisma_modifier": {
+      "value": 4
+    },
+    "fortitude": {
+      "value": 16
+    },
+    "reflex": {
+      "value": 22
+    },
+    "will": {
+      "value": 19
+    },
+    "skills": {
+      "value": "Acrobatics +20, Athletics +18, Crafting +17, Deception +17, Intimidation +17, Medicine +19, Nature +19, Stealth +20, Survival +19, Thievery +20"
+    },
+    "gear": {
+      "value": "+1 armor potency, 50 gp"
+    },
+    "weaknesses": {
+      "value": "Cold Iron 12"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": "Poison 6"
+    },
+    "senses": {
+      "value": "low-light vision"
+    },
+    "languages": {
+      "value": "Common, Elven, Fey, Gnomish"
+    },
+    "size": {
+      "value": "small"
+    },
+    "type": {
+      "value": "fey"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Defensive Quills"
+            },
+            "trait_description": {
+              "value": "A creature that hits a pukwudgie with an unarmed Strike or a non-reach melee Strike takes 3d8 piercing damage (DC 28 basic Reflex save). On a critical failure, the creature also takes 1d6 persistent poison damage from the poisoned quills."
+            },
+            "id": "42b2ebe8-3ed2-42a3-b1fa-7d87d0cb405a",
+            "updated_at": {
+              "value": "2026-03-17T12:41:43.773737"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Pukwudgie Poison"
+            },
+            "trait_description": {
+              "value": "(poison); DC 28 Fortitude; Maximum Duration 6 rounds; Stage 1: 1d8 poison damage and stupefied 1 (1 round); Stage 2: 1d8 poison damage and stupefied 2 (1 round); Stage 3: 1d8 poison damage, confused, and stupefied 2 (1 round)"
+            },
+            "id": "830b4a6e-b5de-4151-9e83-ca7765df4e5d",
+            "updated_at": {
+              "value": "2026-03-17T12:41:43.773737"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Quill Fighter"
+            },
+            "trait_description": {
+              "value": "Khasprickle wields his quills like a deadly weapon. He deals an additional 3d6 precision damage with quill Strikes against off-guard targets. On a critical hit with a quill, Khasprickle pierces a pressure point or nerve cluster with pinpoint accuracy; the target becomes clumsy 2 for 1d4 rounds (or increases the value of their clumsy condition by 1)."
+            },
+            "id": "ef8d0e1e-35cb-4c44-8603-7970c848e5c6",
+            "updated_at": {
+              "value": "2026-03-17T12:41:43.773737"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "quill"
+            },
+            "action_description": {
+              "value": "(agile, finesse, magical) 2d4+10 piercing plus pukwudgie poison and quill fighter"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 21
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 10
+                                    },
+                                    "id": "b025d547-7206-4339-903f-0419c54349be",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:43.773737"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "98fc5830-06cb-474c-aa03-aefef91401e2",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:43.773737"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "a6d451f2-fb9b-4045-b846-d09fa48d669b",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:43.773737"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "78581964-4238-43e9-ba4a-a16ea6d0360c",
+            "updated_at": {
+              "value": "2026-03-17T12:41:43.773737"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "quill"
+            },
+            "action_description": {
+              "value": "(agile, magical, range increment 30 feet, thrown) 2d4+10 piercing plus pukwudgie poison and quill fighter"
+            },
+            "action_type": {
+              "value": "ranged"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 21
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 10
+                                    },
+                                    "id": "4158bf21-1dd3-4a23-9ec3-ae9daaa371cc",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:43.773737"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "8eefac39-5ad2-4573-8237-e100248ace0a",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:43.773737"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "85205107-253a-45d2-94ec-69d582ddd06f",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:43.773737"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "13b4f6e8-7e59-41f2-a2b3-d77e6e17c73a",
+            "updated_at": {
+              "value": "2026-03-17T12:41:43.773737"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Change Shape"
+            },
+            "action_description": {
+              "value": "(concentrate, polymorph, primal)\n\nKhasprickle takes on the physical form of a giant porcupine. His size changes to Medium, he loses his weapon Strikes, and he gains a quill Strike (+21 for 2d8+8 piercing plus 1d8 persistent poison)."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 8
+                                    },
+                                    "id": "8087e5fd-d477-48af-89d2-411fa2ee5a64",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:43.773737"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "94dced2c-db18-4f9c-9583-50b58a0b02c8",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:43.773737"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "untyped"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "d4eb84c1-9197-4714-b7cb-a986acac0ebc",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:43.773737"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "f14a551e-2631-49e1-9f9f-278661c24fe1",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:43.773737"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "a57f50bb-c185-4888-9200-accdf821e42d",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:43.773737"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "8e50845d-446e-4b1b-bd5c-72229b145511",
+            "updated_at": {
+              "value": "2026-03-17T12:41:43.773737"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Pincushion"
+            },
+            "action_description": {
+              "value": "Khasprickle makes three quill Strikes in quick succession. These Strikes count toward his multiple attack penalty but don't apply the multiple attack penalty until all three Strikes are complete."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "8f20ff28-8adf-4dc9-a9de-f3402d445558",
+            "updated_at": {
+              "value": "2026-03-17T12:41:43.773737"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Brush By"
+            },
+            "action_description": {
+              "value": "(flourish)\n\nTrigger: Khasprickle leaves a square adjacent to an enemy\n\nKhasprickle roughly brushes up against the enemy with his quills as he passes by. Khasprickle makes a melee quill Strike. On a success, he additionally Shoves the target."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "free_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "54a35f18-e1ba-40db-a170-ccdb01d26434",
+            "updated_at": {
+              "value": "2026-03-17T12:41:43.773737"
+            }
+          }
+        }
+      ]
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": [
+        {
+          "resource_id": "monster_spellcasting_block",
+          "stats": {
+            "block_name": {
+              "value": ""
+            },
+            "tradition": {
+              "value": "primal"
+            },
+            "spellcasting_type": {
+              "value": "innate"
+            },
+            "spell_dc": {
+              "value": 28
+            },
+            "spell_attack_bonus": {
+              "value": 20
+            },
+            "spell_levels": {
+              "value": [
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 2
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "invisibility__pc1_",
+                          "name": {
+                            "value": "Invisibility"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_2"
+                          },
+                          "school": {
+                            "value": "spell_school_illusion"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "1 touch"
+                          },
+                          "duration": {
+                            "value": "10 minutes"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 creature"
+                          },
+                          "description": {
+                            "value": "Illusions bend light around the target, rendering it invisible. This makes it undetected to all creatures, though the creatures can attempt to find the target, making it hidden to them instead. If the target uses a hostile action, the spell ends after that hostile action is completed."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (4th): The spell lasts 1 minute, but it doesn't end if the target uses a hostile action."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "manipulate",
+                              "subtle"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 20
+                          },
+                          "spell_save_dc": {
+                            "value": 28
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": "self only, at will"
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "d823ab8f-bacf-4a78-8aae-f38c990ba93e",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:43.773737"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 3
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "wall_of_thorns__crb_",
+                          "name": {
+                            "value": "Wall of Thorns"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_3"
+                          },
+                          "school": {
+                            "value": "spell_school_conjuration"
+                          },
+                          "traditions": {
+                            "value": [
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "three_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": true
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "60 feet"
+                          },
+                          "duration": {
+                            "value": "1 minute"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "Over the course of a minute, you cause a thick wall of thorny brambles to grow from the ground. You create a 5-footthick wall of brambles and thorns in a straight line up to 60 feet long and 10 feet high. You must create the wall in an unbroken open space so its edges don't pass through any creatures or objects, or the spell is lost. The wall stands vertically. If you wish, the wall can be of a shorter length or height. Everything on each side of the wall has cover from creatures on the opposite side, and the wall's spaces are 3. For every move action a creature uses to enter at least one of the wall's spaces, that creature takes 3d4 piercing damage.\n\nEach 10-foot-by-10-foot section of the wall has AC 10, Hardness 10, and 20 Hit Points. It's immune to critical hits and precision damage. A destroyed section can be moved through freely."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (+1): The Hit Points of each section of the wall increase by 5, and the piercing damage increases by 1d4."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "plant"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": [
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 3
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 3
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d4"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "59b690ec-ad4b-4fd2-9400-45d25208b67a"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "piercing"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "b9d43d15-a8a7-497d-aae5-c1ceb3324cf8"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "0e0a82eb-9faa-4b55-8282-a5fa5ab25cec"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 4
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 4
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d4"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "35c6fc5a-b257-4293-90aa-cd1eef903d0d"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "piercing"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "3c9e5f68-dd65-4dde-9928-5e9ba8c5fdb0"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "33d223f6-eeab-4f09-a8df-bf9b59061c47"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 5
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 5
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d4"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "99f4062b-c42c-4447-bc9f-1f923519b4dd"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "piercing"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "75943a04-17ce-4d25-8f63-498fbfc1a137"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "c53e1b48-e67d-4105-98b2-ab9b75677546"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 6
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 6
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d4"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "400648ba-8d93-4adc-9500-ea78c5e49957"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "piercing"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "77768aa6-d555-4502-a557-ab8e6971f2b8"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "35669926-67ab-4a2b-8b0e-6a65044e3793"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 7
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 7
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d4"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "65f09bf8-e777-417e-ba45-a0b3b5f3f0ca"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "piercing"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "d9ac6557-1ed3-4eef-854b-a02c2801287c"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "6ffdd2bb-a8a9-4b7e-b0a4-cafd159a7c1f"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 8
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 8
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d4"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "c1b7afe1-e645-40ef-b37e-b10c91dc0853"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "piercing"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "32f18683-e6f6-489c-b2df-3ab74ce7fc5a"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "bbbab88c-d255-4702-b36f-2fcedf56c75e"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 9
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 9
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d4"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "256d4c32-5032-4e57-8960-45630f99f895"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "piercing"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "14428e3f-e3d4-4171-afde-6afa798e06d6"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "36de3273-d0fc-46db-ae06-073ff6b6c3aa"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 10
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 10
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d4"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "a3ff9a4a-7845-49e7-8e01-120c53fb0861"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "piercing"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "b8a61385-02d1-4875-922c-da430612e74b"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "66c12260-5dfa-4273-a222-02a9a785a16d"
+                                }
+                              }
+                            ]
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 20
+                          },
+                          "spell_save_dc": {
+                            "value": 28
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "366dfe22-2e9b-403e-9d38-1dfae68f4750",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:43.773737"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 4
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "mirage__pc1_",
+                          "name": {
+                            "value": "Mirage"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_4"
+                          },
+                          "school": {
+                            "value": "spell_school_illusion"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "occult",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "activity"
+                          },
+                          "casting_time": {
+                            "value": "10 minutes"
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "500 feet"
+                          },
+                          "duration": {
+                            "value": "until your next daily preparations"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": "50-foot burst"
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "You create an illusion that causes natural terrain to look, sound, feel, and smell like a different kind of terrain. This doesn't disguise any structures or creatures in the area.\n\nAny creature that touches the illusion or uses the Seek action to examine it can attempt to 2."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (5th): Your image can also disguise structures or create illusory structures (but still doesn't disguise creatures)."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "concentrate",
+                              "manipulate"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 20
+                          },
+                          "spell_save_dc": {
+                            "value": 28
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "0d874b7f-89f4-49ac-a15a-c1678a47de64",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:43.773737"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 4
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "unfettered_movement__pc1_",
+                          "name": {
+                            "value": "Unfettered Movement"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_4"
+                          },
+                          "school": {
+                            "value": "none"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "divine",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "1 touch"
+                          },
+                          "duration": {
+                            "value": "10 minutes"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 creature touched"
+                          },
+                          "description": {
+                            "value": "You repel hindrances that would affect a creature. While under this spell's effect, the target ignores effects that would give them a circumstance penalty to Speed. When they attempt to Escape an effect that has them immobilized, grabbed, or restrained, they automatically succeed unless the effect is magical and of a higher rank than the unfettered movement spell."
+                          },
+                          "higher_level_description": {
+                            "value": ""
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "concentrate",
+                              "manipulate"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 20
+                          },
+                          "spell_save_dc": {
+                            "value": 28
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "b8376868-d072-499b-babe-d68b24f096cd",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:43.773737"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "efacf211-176a-438a-b49c-99018a3de0a8",
+            "updated_at": {
+              "value": "2026-03-17T12:41:43.773737"
+            }
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:43.773737"
+    }
+  }
+}

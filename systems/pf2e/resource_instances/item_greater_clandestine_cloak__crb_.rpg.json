@@ -1,0 +1,266 @@
+{
+  "resource_id": "item",
+  "stats": {
+    "id": "greater_clandestine_cloak__crb_",
+    "updated_at": {
+      "value": "2026-03-16T23:48:34.532371+00:00"
+    },
+    "name": {
+      "value": "Greater Clandestine Cloak"
+    },
+    "source": {
+      "value": "crb"
+    },
+    "description": {
+      "value": "When you pull up the hood of this nondescript gray cloak (an Interact action), you become drab and uninteresting, gaining a +1 item bonus to Stealth checks and to Deception checks to Impersonate a forgettable background character, such as a servant, but also taking a \u20131 item penalty to Diplomacy and Intimidation checks. You pull the cloak's hood up and gain the benefits of nondetection for 1 hour or until you pull the hood back down, whichever comes first. The item bonus is +2, and when you activate the cloak, you gain the benefits of 5th-level nondetection for 8 hours."
+    },
+    "type": {
+      "value": "worn"
+    },
+    "rarity": {
+      "value": "uncommon"
+    },
+    "is_magic": {
+      "value": true
+    },
+    "requires_investment": {
+      "value": true
+    },
+    "is_cursed": {
+      "value": false
+    },
+    "is_intelligent": {
+      "value": false
+    },
+    "is_spellcasting_focus": {
+      "value": false
+    },
+    "traits": {
+      "value": "uncommon, illusion, invested, magical"
+    },
+    "attachment_target": {
+      "value": "none"
+    },
+    "consumed_on_activation": {
+      "value": false
+    },
+    "rune_kind": {
+      "value": "generic"
+    },
+    "rune_tier": {
+      "value": 0
+    },
+    "required_potency_tier": {
+      "value": 0
+    },
+    "property_slots_used": {
+      "value": 1
+    },
+    "rune_attack_bonus": {
+      "value": 0
+    },
+    "rune_damage_bonus": {
+      "value": 0
+    },
+    "rune_ac_bonus": {
+      "value": 0
+    },
+    "rune_save_bonus": {
+      "value": 0
+    },
+    "ammunition_type": {
+      "value": "none"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "value": {
+            "value": 900
+          },
+          "unit": {
+            "value": "gold"
+          }
+        }
+      }
+    },
+    "weight": {
+      "value": null
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_4d282d9657bd",
+            "name": {
+              "value": "+1 Item Bonus to Deception"
+            },
+            "trigger_type": {
+              "value": "passive"
+            },
+            "type": {
+              "value": "typed_add_to_stat"
+            },
+            "typed_modifier_type": {
+              "value": "item"
+            },
+            "typed_modifier_polarity": {
+              "value": "bonus"
+            },
+            "stat": {
+              "value": "$character.deception"
+            },
+            "constant": {
+              "value": 1
+            }
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_7803fb5e2ed2",
+            "name": {
+              "value": "-1 Item Penalty to Intimidation"
+            },
+            "trigger_type": {
+              "value": "passive"
+            },
+            "type": {
+              "value": "typed_add_to_stat"
+            },
+            "typed_modifier_type": {
+              "value": "item"
+            },
+            "typed_modifier_polarity": {
+              "value": "penalty"
+            },
+            "stat": {
+              "value": "$character.intimidation"
+            },
+            "constant": {
+              "value": 1
+            }
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_bb9ba4cf2635",
+            "name": {
+              "value": "Innate: Nondetection"
+            },
+            "trigger_type": {
+              "value": "passive"
+            },
+            "type": {
+              "value": "add_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "id": "nondetection__crb_",
+                  "name": {
+                    "value": "Nondetection"
+                  },
+                  "source": {
+                    "value": "crb"
+                  },
+                  "level": {
+                    "value": "spell_level_3"
+                  },
+                  "school": {
+                    "value": "spell_school_abjuration"
+                  },
+                  "traditions": {
+                    "value": [
+                      "arcane",
+                      "occult",
+                      "primal"
+                    ]
+                  },
+                  "is_focus_spell": {
+                    "value": false
+                  },
+                  "focus_point_cost": {
+                    "value": 0
+                  },
+                  "ritual": {
+                    "value": false
+                  },
+                  "action_cost": {
+                    "value": "activity"
+                  },
+                  "casting_time": {
+                    "value": "10 minutes"
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": true
+                  },
+                  "components": {
+                    "value": ""
+                  },
+                  "range": {
+                    "value": "1 touch"
+                  },
+                  "duration": {
+                    "value": "8 hours"
+                  },
+                  "saving_throw": {
+                    "value": ""
+                  },
+                  "area": {
+                    "value": ""
+                  },
+                  "targets": {
+                    "value": "1 creature or object"
+                  },
+                  "description": {
+                    "value": "You erect protective wards that make the target difficult to detect via magic. Nondetection attempts to counteract all detection, revelation, and scrying divinations made against the target or the target's gear throughout the duration, counting cantrips as 1st-level spells for this purpose. Successfully counteracting a divination that targets an area or multiple targets negates the effects only for nondetection's target."
+                  },
+                  "higher_level_description": {
+                    "value": ""
+                  },
+                  "spell_traits": {
+                    "value": []
+                  },
+                  "classes": {
+                    "value": []
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "effects": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2026-03-14T01:32:36.044502"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "is_invested": {
+      "value": false
+    },
+    "is_equipped": {
+      "value": false
+    },
+    "quantity": {
+      "value": 1
+    },
+    "edit_quantity": {
+      "value": 1
+    }
+  }
+}

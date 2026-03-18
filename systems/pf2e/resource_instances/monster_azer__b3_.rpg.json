@@ -1,0 +1,584 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "azer__b3_",
+    "name": {
+      "value": "Azer"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b3"
+    },
+    "tag": {
+      "value": "humanoid, Fire"
+    },
+    "armor_class": {
+      "value": 17
+    },
+    "hit_points": {
+      "value": 45
+    },
+    "level": {
+      "value": 2
+    },
+    "xp": {
+      "value": 20
+    },
+    "initiative": {
+      "value": 8
+    },
+    "perception": {
+      "value": 8
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 20
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 3
+    },
+    "dexterity_modifier": {
+      "value": 1
+    },
+    "constitution_modifier": {
+      "value": 4
+    },
+    "intelligence_modifier": {
+      "value": 2
+    },
+    "wisdom_modifier": {
+      "value": 2
+    },
+    "charisma_modifier": {
+      "value": 0
+    },
+    "fortitude": {
+      "value": 10
+    },
+    "reflex": {
+      "value": 5
+    },
+    "will": {
+      "value": 8
+    },
+    "skills": {
+      "value": "Athletics +7, Crafting +10, Intimidation +4, Plane Of Fire Lore +6"
+    },
+    "gear": {
+      "value": "light hammer (5), scale mail, warhammer"
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Fire"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "darkvision"
+    },
+    "languages": {
+      "value": "Common, Ignan"
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "elemental"
+    },
+    "alignment": {
+      "value": "lawful_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Heat of the Forge"
+            },
+            "trait_description": {
+              "value": "(aura, fire)\n\n10 feet.\n\nAn azer's skin radiates heat like forge fire. A creature that starts their turn in the area must succeed at a DC 16 Fortitude save or become fatigued while they remain in the area. Creatures immune to environmental heat effects or with any fire resistance are immune."
+            },
+            "id": "e7793d41-74aa-47ea-98fd-f224409e0c49",
+            "updated_at": {
+              "value": "2026-03-17T12:41:27.494111"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Burning Touch"
+            },
+            "trait_description": {
+              "value": "(evocation, fire, primal)\n\nThe azer's Strikes deal an extra 1d6 fire damage (included above). When the azer successfully performs a Grapple or Shove action, they also deal 1d6 fire damage to their target."
+            },
+            "id": "6a1158b9-2e4b-4fc8-b4e8-6a6c580042a6",
+            "updated_at": {
+              "value": "2026-03-17T12:41:27.494111"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "warhammer"
+            },
+            "action_description": {
+              "value": "(shove) 1d8+3 bludgeoning plus 1d6 fire"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 9
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 3
+                                    },
+                                    "id": "46db846f-0f52-45fb-9bcd-28a907b6230c",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:27.494111"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "20c64aa7-3d42-4b65-b130-aa8457edc8f4",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:27.494111"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "fire"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "3aca4611-cb95-4920-a618-e7ed57ef0b73",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:27.494111"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "fb127216-77ac-4c80-8221-c18baca627c8",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:27.494111"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "651c0a38-8fcd-47a9-ba7d-ae2e6e6fd4cb",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:27.494111"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "a5a77561-70bd-4214-a9c2-7f83a9d32142",
+            "updated_at": {
+              "value": "2026-03-17T12:41:27.494111"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "light hammer"
+            },
+            "action_description": {
+              "value": "(agile) 1d6+3 bludgeoning plus 1d6 fire"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 9
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 3
+                                    },
+                                    "id": "f6d83ef4-e21d-45b3-9c06-844f26da1c50",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:27.494111"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "ea35e7a6-afcb-4e0b-b888-d7fb982ad8ca",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:27.494111"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "fire"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "95e862ec-a293-4225-a501-eee5899ef366",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:27.494111"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "78d98c41-f4c0-411c-9ac5-92ab1bff9d93",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:27.494111"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "50477bf6-3105-4086-a6f2-5c08d0929e0c",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:27.494111"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "df28f0f2-0585-45c9-a3e7-9a108c217038",
+            "updated_at": {
+              "value": "2026-03-17T12:41:27.494111"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "light hammer"
+            },
+            "action_description": {
+              "value": "(agile, thrown 20 feet) 1d6+3 bludgeoning plus 1d6 fire"
+            },
+            "action_type": {
+              "value": "ranged"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 7
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 3
+                                    },
+                                    "id": "279942bf-def4-4436-a95b-2bf7b6741faf",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:27.494111"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "bdfdd418-513a-449f-b4ef-609b64f25077",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:27.494111"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "fire"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "984b74b7-ca83-4d6c-92de-c57e08ef9607",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:27.494111"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "48eec4b3-b22e-4a9a-9d60-d802ebaf15d3",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:27.494111"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "eb592dde-da0f-4c1c-8412-cd5708bbe22c",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:27.494111"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "aeef47f9-ce24-4e55-bbf2-59ad3ba266b5",
+            "updated_at": {
+              "value": "2026-03-17T12:41:27.494111"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Scorch"
+            },
+            "action_description": {
+              "value": "(evocation, fire, primal)\n\nThe azer shrouds their light hammer in flames and hurls it forward, dealing 2d6 fire damage to each creature in a 20-foot line (DC 16 basic Reflex save)."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "fire"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "0dcade05-8266-4e6d-86ed-55ffc9070632",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:27.494111"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "e3b60cb7-6cdd-4a35-aa4f-8e7160035a97",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:27.494111"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "c70309d3-d6d1-49e9-83db-6127b514053d",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:27.494111"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "49527c64-6155-4108-8faa-0953d529cfd7",
+            "updated_at": {
+              "value": "2026-03-17T12:41:27.494111"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:27.494111"
+    }
+  }
+}

@@ -1,0 +1,519 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "gourd_leshy__b1_",
+    "name": {
+      "value": "Gourd Leshy"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b1"
+    },
+    "tag": {
+      "value": "Leshy"
+    },
+    "armor_class": {
+      "value": 17
+    },
+    "hit_points": {
+      "value": 20
+    },
+    "level": {
+      "value": 1
+    },
+    "xp": {
+      "value": 15
+    },
+    "initiative": {
+      "value": 5
+    },
+    "perception": {
+      "value": 5
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 25
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 2
+    },
+    "dexterity_modifier": {
+      "value": 4
+    },
+    "constitution_modifier": {
+      "value": 2
+    },
+    "intelligence_modifier": {
+      "value": -1
+    },
+    "wisdom_modifier": {
+      "value": 2
+    },
+    "charisma_modifier": {
+      "value": 0
+    },
+    "fortitude": {
+      "value": 5
+    },
+    "reflex": {
+      "value": 9
+    },
+    "will": {
+      "value": 7
+    },
+    "skills": {
+      "value": "Nature +5, Stealth +7"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "low-light vision"
+    },
+    "languages": {
+      "value": "Common, Druidic, Sylvan; speak with plants (gourds only)"
+    },
+    "size": {
+      "value": "small"
+    },
+    "type": {
+      "value": "plant"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Verdant Burst"
+            },
+            "trait_description": {
+              "value": "(healing)\n\nAs leaf leshy, except plants regain 1d8 Hit Points and the area sprouts gourds instead of tree saplings."
+            },
+            "id": "985d6593-482b-457c-ad8f-4c9492fda513",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Keepsake"
+            },
+            "trait_description": {
+              "value": "(abjuration, primal)\n\nThe leshy can store an item of light Bulk or less in its head, concealing it as nondetection. If stored for 24 hours, the item benefits from mending."
+            },
+            "id": "d228bbdc-97a9-4ab0-a31f-c426268cfbb9",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Ensnare"
+            },
+            "trait_description": {
+              "value": "When the gourd leshy damages a creature with a fist or seed Strike, vines lash out from the leshy (or seed) and wrap around the target's limbs. The target must attempt a DC 17 Reflex save. On a failure, the target takes a \u201310-foot status penalty to its Speed for 1 round; on a critical failure, the target is immobilized for 1 round and the penalty to Speed lasts for 1 minute."
+            },
+            "id": "734fbf00-ad6c-43a6-8581-e6fff39bdcc1",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "fist"
+            },
+            "action_description": {
+              "value": "(agile, finesse) 1d4+2 bludgeoning plus ensnare\nEffects: ensnare"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 7
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 2
+                                    },
+                                    "id": "a4f5a1f5-c6ba-4cbc-9ad7-9423c38894c5",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:25.944969"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "010198f6-936f-4e7e-a391-af432f7bc6dd",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:25.944969"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "581661f2-f0a0-4cf6-8119-4c468273817b",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:25.944969"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "dbd2777b-b670-411a-980f-9bc62f12d7ea",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "seed"
+            },
+            "action_description": {
+              "value": "(range increment 30 feet) 1d6+2 bludgeoning plus ensnare\nEffects: ensnare"
+            },
+            "action_type": {
+              "value": "ranged"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 9
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 2
+                                    },
+                                    "id": "89ad5f26-762f-4b1b-b7ce-b2d05c7886df",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:25.944969"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "aaa1ce55-b143-4117-808a-68f158533168",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:25.944969"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "a225c1fb-6f66-4607-afe2-66a9ee7b8c22",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:25.944969"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "2948c935-9861-42f5-9225-c4af7451b442",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Change Shape"
+            },
+            "action_description": {
+              "value": "(concentrate, polymorph, primal, transmutation)\n\nAs leaf leshy, except the gourd leshy transforms into a gourd-bearing plant."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "5df6bd52-188f-442c-be2f-7c272d20b93e",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": [
+        {
+          "resource_id": "monster_spellcasting_block",
+          "stats": {
+            "block_name": {
+              "value": ""
+            },
+            "tradition": {
+              "value": "primal"
+            },
+            "spellcasting_type": {
+              "value": "innate"
+            },
+            "spell_dc": {
+              "value": 15
+            },
+            "spell_attack_bonus": {
+              "value": 0
+            },
+            "spell_levels": {
+              "value": [
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 4
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "speak_with_plants__pc1_",
+                          "name": {
+                            "value": "Speak with Plants"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_3"
+                          },
+                          "school": {
+                            "value": "none"
+                          },
+                          "traditions": {
+                            "value": [
+                              "divine",
+                              "occult",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": ""
+                          },
+                          "duration": {
+                            "value": "1 hour"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "You can ask questions of and receive answers from plants and fungi, but the spell doesn't make them more friendly or intelligent than normal. Most normal plants and fungi have a distinctive view of the world around them, so they don't recognize details about creatures or know anything about the world beyond their immediate vicinity. Cunning plant monsters are likely to be terse and evasive, while less intelligent ones often make inane comments."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (4th): The duration is 8 hours."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "concentrate",
+                              "manipulate",
+                              "plant",
+                              "wood"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 15
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "5d249770-d3b5-4be0-abe8-0d340ece1c22",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:25.944969"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "64da642c-d559-431a-b9bd-ff3f088e898e",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:25.944969"
+    }
+  }
+}

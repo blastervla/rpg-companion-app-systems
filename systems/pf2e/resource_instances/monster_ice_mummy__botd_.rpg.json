@@ -1,0 +1,536 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "ice_mummy__botd_",
+    "name": {
+      "value": "Ice Mummy"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "botd"
+    },
+    "tag": {
+      "value": "Cold, Mummy"
+    },
+    "armor_class": {
+      "value": 26
+    },
+    "hit_points": {
+      "value": 130
+    },
+    "level": {
+      "value": 8
+    },
+    "xp": {
+      "value": 160
+    },
+    "initiative": {
+      "value": 16
+    },
+    "perception": {
+      "value": 16
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 20
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 5
+    },
+    "dexterity_modifier": {
+      "value": 3
+    },
+    "constitution_modifier": {
+      "value": 2
+    },
+    "intelligence_modifier": {
+      "value": 5
+    },
+    "wisdom_modifier": {
+      "value": 4
+    },
+    "charisma_modifier": {
+      "value": 6
+    },
+    "fortitude": {
+      "value": 16
+    },
+    "reflex": {
+      "value": 13
+    },
+    "will": {
+      "value": 18
+    },
+    "skills": {
+      "value": "Deception +18, Intimidation +16, Occultism +17, Stealth +17"
+    },
+    "gear": {
+      "value": "+1 striking staff"
+    },
+    "weaknesses": {
+      "value": "Fire 10"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Death Effects, Disease, Paralyzed, Poison, Unconscious"
+    },
+    "resistances": {
+      "value": "Cold 10"
+    },
+    "senses": {
+      "value": "darkvision, snow vision"
+    },
+    "languages": {
+      "value": "Common, Necril"
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "undead"
+    },
+    "alignment": {
+      "value": "neutral_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Great Despair"
+            },
+            "trait_description": {
+              "value": "(aura, emotion, enchantment, fear, incapacitation, mental, occult)\n\n30 feet. Living creatures are frightened 1 while in an ice mummy's great despair aura. They can't naturally recover from this fear while in the area but recover instantly once they leave it. When a creature first enters the area, it must succeed at a DC 24 Will save (after taking the penalty from being frightened) or be paralyzed for 1d4 rounds. The creature is then temporarily immune for 24 hours."
+            },
+            "id": "41b68e43-c878-49c8-ab21-146099d3cc35",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Snow Vision"
+            },
+            "trait_description": {
+              "value": "The ice mummy ignores the concealed condition from falling snow."
+            },
+            "id": "18d08be6-694b-43db-a90d-97f931192ba2",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Channel Rot"
+            },
+            "trait_description": {
+              "value": "(occult, necromancy)\n\nThe ice mummy can deliver cold rot through melee weapons they wield."
+            },
+            "id": "81d42188-6a75-46c5-9484-ea564b8cfc85",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Cold Rot"
+            },
+            "trait_description": {
+              "value": "(cold, curse, disease, divine, necromancy)\n\nThis affliction can't be reduced below stage 1, nor can damage from it be healed, until successfully treated with remove curse or a similar effect. The affliction can then be removed as normal for a disease. A creature killed by cold rot turns to ice crystals and can't be resurrected except by a 7th-level resurrect ritual or similar magic\n\nDC 24 Fortitude; Stage 1: slowed 1 for 1 round, then carrier with no ill effect (1 minute); Stage 2: 5d6 negative damage plus 2d6 cold damage and stupefied 2 (1 day)"
+            },
+            "id": "89c98a35-ed00-413a-99a6-10a5073819eb",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "staff"
+            },
+            "action_description": {
+              "value": "(magical, two-hand d8) 2d4+7 bludgeoning plus 1d6 cold and cold rot"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 20
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 7
+                                    },
+                                    "id": "75c756b4-3df1-420c-94ab-4e4981df71a2",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:28.527612"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "1aefedfa-83b2-4f10-b12e-8076eba5b20c",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:28.527612"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "cold"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "7a139100-e887-4eb6-823d-37ad9dc67379",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:28.527612"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "39ed54e5-27d2-4ad9-ae6d-e13316290c79",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:28.527612"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "9ac63936-6f2b-44ef-b3e4-29b75f5e9592",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:28.527612"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "c9253bf6-d592-405e-a2bd-bc7b909fb374",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "fist"
+            },
+            "action_description": {
+              "value": "(agile, magical) 2d6+7 bludgeoning plus 1d6 cold and cold rot"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 19
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 7
+                                    },
+                                    "id": "7bed6c31-e4e3-4b52-9ff2-f0fdd7a63ecd",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:28.527612"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "2b9ed230-5481-4613-8fe3-b933f2f1ce02",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:28.527612"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "cold"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "d304edff-e0b0-4655-99de-15d2b64a01d9",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:28.527612"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "5b06962a-7a7e-4e6b-acb7-d1f7fadf3324",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:28.527612"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "9b0fcbfb-8825-497f-b904-a266cdaf3761",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:28.527612"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "9618e08f-a20c-4c7e-b955-c6987a69025d",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Frozen Breath"
+            },
+            "action_description": {
+              "value": "(cold, concentrate, divine, evocation)\n\nThe ice mummy exhales a 60-foot cone of razor-sharp ice that deals 5d6 cold and 4d6 slashing damage (DC 26 basic Reflex save). The ice mummy can't use Frozen Breath again for 1d4 rounds."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "cold"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 5
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "9b6974e2-24c6-4612-a8d4-26d444e1cd25",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:28.527612"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "1b09273a-336e-4731-b8a7-816610983d36",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:28.527612"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 4
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "277ad61c-6b45-4221-bb99-f6315a8cd62e",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:28.527612"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "6d36d5d1-0d88-4730-973d-4c7b458117cd",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:28.527612"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "6f10284f-437b-4ceb-9fa6-265e67728a0e",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:28.527612"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "862e13fd-9bdc-4240-b2f7-71898f7c7508",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:28.527612"
+    }
+  }
+}

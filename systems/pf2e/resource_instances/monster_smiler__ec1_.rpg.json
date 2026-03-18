@@ -1,0 +1,473 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "smiler__ec1_",
+    "name": {
+      "value": "Smiler"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "ec1"
+    },
+    "tag": {
+      "value": "Ghoul"
+    },
+    "armor_class": {
+      "value": 19
+    },
+    "hit_points": {
+      "value": 45
+    },
+    "level": {
+      "value": 3
+    },
+    "xp": {
+      "value": 30
+    },
+    "initiative": {
+      "value": 12
+    },
+    "perception": {
+      "value": 12
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 5
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 3
+    },
+    "dexterity_modifier": {
+      "value": 4
+    },
+    "constitution_modifier": {
+      "value": 2
+    },
+    "intelligence_modifier": {
+      "value": 1
+    },
+    "wisdom_modifier": {
+      "value": 2
+    },
+    "charisma_modifier": {
+      "value": 4
+    },
+    "fortitude": {
+      "value": 9
+    },
+    "reflex": {
+      "value": 12
+    },
+    "will": {
+      "value": 8
+    },
+    "skills": {
+      "value": "Acrobatics +9, Athletics +9, Intimidation +9, Stealth +9"
+    },
+    "gear": {
+      "value": "composite shortbow (20 arrows)"
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "darkvision"
+    },
+    "languages": {
+      "value": "Common, Necril"
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "undead"
+    },
+    "alignment": {
+      "value": "chaotic_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Stench"
+            },
+            "trait_description": {
+              "value": "(aura, olfactory)\n\n10 feet. A creature entering the aura or starting its turn in the aura must succeed at a DC 18 Fortitude save or become sickened 1 (plus slowed 1 as long as it\u02bcs sickened on a critical failure). While within the aura, the creature takes a \u20132 circumstance penalty to saves against disease and to recover from the sickened condition. A creature that succeeds at its save is temporarily immune for 1 minute."
+            },
+            "id": "4e62f842-f656-42dd-b7e8-78ecd03de0ff",
+            "updated_at": {
+              "value": "2026-03-17T12:41:29.866289"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Ghast Fever"
+            },
+            "trait_description": {
+              "value": "(disease); DC 18 Fortitude; Stage 1: carrier with no ill effect (1 day); Stage 2: 3d8 negative damage and regains half as many Hit Points from all healing (1 day); Stage 3: as stage 2 (1 day); Stage 4: 3d8 negative damage and gains no benefit from healing (1 day); Stage 5: as stage 4 (1 day); Stage 6: dead, and rises as a ghast the next midnight. ()"
+            },
+            "id": "4ff6e882-1f24-4aa4-ab5e-dafa1330c2d8",
+            "updated_at": {
+              "value": "2026-03-17T12:41:29.866289"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Paralysis"
+            },
+            "trait_description": {
+              "value": "(incapacitation, occult, necromancy)\n\nAny living creature hit by Smiler's attack must succeed at a DC 18 Fortitude save or become paralyzed. It can attempt a new save at the end of each of its turns, and the DC cumulatively decreases by 1 on each such save."
+            },
+            "id": "5885e02d-1ce9-4d5f-96c8-d55757051ec8",
+            "updated_at": {
+              "value": "2026-03-17T12:41:29.866289"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "jaws"
+            },
+            "action_description": {
+              "value": "(finesse) 2d6+4 piercing plus ghast fever and paralysis\nEffects: ghast fever, paralysis"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 12
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 4
+                                    },
+                                    "id": "0b4f2358-a2c7-4c59-974a-b11ed94395e3",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:29.866289"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "f81123fc-56d7-4f0e-a6ab-bfd40ece1e08",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:29.866289"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "b59ca4cd-c5d1-4434-8b75-fbd8fa397aaa",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:29.866289"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "737c7552-3a79-41f6-92a6-2a72f23e25c7",
+            "updated_at": {
+              "value": "2026-03-17T12:41:29.866289"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "claw"
+            },
+            "action_description": {
+              "value": "(agile, finesse) 2d4+4 slashing plus paralysis\nEffects: paralysis"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 12
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 4
+                                    },
+                                    "id": "c8e0ef5d-0f0a-4ed9-9d1a-536915988246",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:29.866289"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "ca0de590-ba18-4e86-b952-4e398f1a143d",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:29.866289"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "f6e72d0d-1d14-4cab-a675-832ececcfe1e",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:29.866289"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "b46e28aa-a6bd-456d-909f-ed3658d88e7b",
+            "updated_at": {
+              "value": "2026-03-17T12:41:29.866289"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "shortbow"
+            },
+            "action_description": {
+              "value": "(deadly 1d10, propulsive, range increment 60 feet, reload 0) 1d6+4 piercing"
+            },
+            "action_type": {
+              "value": "ranged"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 12
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 4
+                                    },
+                                    "id": "41ef2f86-7112-452e-ab23-c9fc713e0cfd",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:29.866289"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "0dc39279-16c5-4818-8dad-787d130236db",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:29.866289"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "c921c670-4322-4473-922e-848de2cad62b",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:29.866289"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "a07f60bb-ee43-4256-b6c5-285814d47ff7",
+            "updated_at": {
+              "value": "2026-03-17T12:41:29.866289"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Consume Flesh"
+            },
+            "action_description": {
+              "value": "(manipulate)\n\nSmiler devours a chunk of the corpse and regains 3d6 Hit Points. He can regain Hit Points from any given corpse only once."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "40e7ce99-50df-416b-9486-f90d541f02e9",
+            "updated_at": {
+              "value": "2026-03-17T12:41:29.866289"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Swift Leap"
+            },
+            "action_description": {
+              "value": "(move)\n\nSmiler jumps up to half his Speed.\n\nThis movement doesn't trigger reactions."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "7e2da2e6-bacf-4f75-bf2e-e6e0b300539c",
+            "updated_at": {
+              "value": "2026-03-17T12:41:29.866289"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:29.866289"
+    }
+  }
+}

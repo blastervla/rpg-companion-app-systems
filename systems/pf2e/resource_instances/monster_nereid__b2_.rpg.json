@@ -1,0 +1,793 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "nereid__b2_",
+    "name": {
+      "value": "Nereid"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b2"
+    },
+    "tag": {
+      "value": "Aquatic, Water"
+    },
+    "armor_class": {
+      "value": 30
+    },
+    "hit_points": {
+      "value": 175
+    },
+    "level": {
+      "value": 10
+    },
+    "xp": {
+      "value": 320
+    },
+    "initiative": {
+      "value": 20
+    },
+    "perception": {
+      "value": 20
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 25
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 50
+    },
+    "strength_modifier": {
+      "value": 0
+    },
+    "dexterity_modifier": {
+      "value": 7
+    },
+    "constitution_modifier": {
+      "value": 5
+    },
+    "intelligence_modifier": {
+      "value": 3
+    },
+    "wisdom_modifier": {
+      "value": 5
+    },
+    "charisma_modifier": {
+      "value": 7
+    },
+    "fortitude": {
+      "value": 16
+    },
+    "reflex": {
+      "value": 22
+    },
+    "will": {
+      "value": 18
+    },
+    "skills": {
+      "value": "Athletics +12, Deception +20, Diplomacy +22, Stealth +22"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": "Cold Iron 10"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Poison"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "low-light vision"
+    },
+    "languages": {
+      "value": "Aquan, Common, Sylvan"
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "fey"
+    },
+    "alignment": {
+      "value": "chaotic_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Watery Transparency"
+            },
+            "trait_description": {
+              "value": "(primal, transmutation, water)\n\nWhen underwater, the nereid's body is invisible. The nereid can dismiss or resume this transparency as an action that has the concentrate trait."
+            },
+            "id": "7e75a196-070d-4d23-a411-865298aaa19f",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "poisonous touch"
+            },
+            "action_description": {
+              "value": "(agile, finesse, magical) 6d6 poison"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 23
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "poison"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 6
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "6ef5115a-b31e-4b13-8607-48a2a379a8a0",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:26.736825"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "21641114-9602-40cc-9635-3731c913b045",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:26.736825"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "dd384533-ff6e-4ba6-92d1-dd7022b99484",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "62380b4d-a06b-40a1-8df8-4dad40928a3a",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Drowning Touch"
+            },
+            "action_description": {
+              "value": "(conjuration, incapacitation, primal, water)\n\nThe nereid touches a creature and causes water from its own body to flow into the creature's lungs. If the creature cannot breathe water, it must attempt a DC 29 Fortitude save.\n\nSuccess: The creature is unaffected and is temporarily immune to Drowning Touch for 24 hours.\nFailure: The creature becomes sickened 3 as it chokes on the water.\nCritical Failure: The creature chokes on the water and runs out of air. It falls unconscious and starts drowning (Pathfinder Core Rulebook 478). If the creature is above water, it recovers from drowning as soon as it succeeds at a saving throw against suffocation."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "61b9a6ed-4436-4e5c-bc0b-6efbe247e78b",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Manifest Shawl"
+            },
+            "action_description": {
+              "value": "(conjuration, primal)\n\nThe nereid divests themself of part of their connection to the First World and imbues this essence into a flowing shawl that enables them to function on land. The nereid can Dismiss this effect as long as they are touching the shawl. As long as the shawl exists, the nereid gains the amphibious trait. A nonnereid who carries the shawl also gains the amphibious trait. If a nereid's shawl is destroyed rather than Dismissed, the nereid can't Manifest a Shawl for 24 hours."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "three_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "5d24c381-f884-4112-b87d-e5794e5977c8",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": [
+        {
+          "resource_id": "monster_spellcasting_block",
+          "stats": {
+            "block_name": {
+              "value": ""
+            },
+            "tradition": {
+              "value": "primal"
+            },
+            "spellcasting_type": {
+              "value": "innate"
+            },
+            "spell_dc": {
+              "value": 29
+            },
+            "spell_attack_bonus": {
+              "value": 0
+            },
+            "spell_levels": {
+              "value": [
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 4
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "suggestion__pc1_",
+                          "name": {
+                            "value": "Suggestion"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_4"
+                          },
+                          "school": {
+                            "value": "none"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": "varies"
+                          },
+                          "saving_throw": {
+                            "value": "Will"
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 creature"
+                          },
+                          "description": {
+                            "value": "Your honeyed words are difficult for creatures to resist. You suggest a course of action to the target, which must be phrased in such a way as to seem like a logical course of action to the target and can't be self-destructive or obviously against the target's self-interest. The target must attempt a Will save.\n\nCritical Success: The target is unaffected and knows you tried to control it.\nSuccess: The target is unaffected.\nFailure: The target immediately follows your suggestion. The spell has a duration of 1 minute, or until the target has completed a finite suggestion or the suggestion becomes self-destructive or has other obvious negative effects.\nCritical Failure: As failure, but the base duration is 1 hour."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (8th): You can target up to 10 creatures."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "concentrate",
+                              "incapacitation",
+                              "linguistic",
+                              "manipulate",
+                              "mental",
+                              "subtle"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 29
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "05d433d3-a429-489c-88e2-35da2d9aabc5",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 5
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "control_water__pc1_",
+                          "name": {
+                            "value": "Control Water"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_5"
+                          },
+                          "school": {
+                            "value": "none"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "500 feet"
+                          },
+                          "duration": {
+                            "value": "1 hour"
+                          },
+                          "saving_throw": {
+                            "value": "Fortitude"
+                          },
+                          "area": {
+                            "value": "50 feet long by 50 feet wide"
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "By imposing your will upon the water, you can raise or lower the level of water in the chosen area by 10 feet. Creatures that have the water and that are in the area when you Cast the Spell must attempt a Fortitude save, with the effects of the of slow spell."
+                          },
+                          "higher_level_description": {
+                            "value": ""
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "concentrate",
+                              "manipulate",
+                              "water"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 29
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "380dceaf-3326-4da7-a43d-7da6289c8626",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 5
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "elemental_form__crb_",
+                          "name": {
+                            "value": "Elemental Form"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_5"
+                          },
+                          "school": {
+                            "value": "spell_school_transmutation"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": ""
+                          },
+                          "duration": {
+                            "value": "1 minute"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "You call upon the power of the planes to transform into a Medium elemental battle form. When you cast this spell, choose air, earth, fire, or water. While in this form, you gain the corresponding trait and the elemental trait. You have hands in this battle form and can take manipulate actions.\n\nYou can Dismiss the spell.\n\nYou gain the following statistics and abilities regardless of which battle form you choose:\n\n- AC = 19 + your level. Ignore your armor's check penalty and Speed reduction.\n- 10 temporary Hit Points.\n- Darkvision.\n- One or more unarmed melee attacks specific to the battle form you choose, which are the only attacks you can Strike with. You're trained with them. Your attack modifier is +18, and your damage bonus is +9. These are Dexterity based (air or fire) or Strength based (earth or water). If your corresponding unarmed attack modifier is higher, you can use it instead.\n- Acrobatics (air or fire) or Athletics (earth or water) modifier of +20; ignore this change if your own modifier is higher.\n\nYou also gain specific abilities based on the type of elemental you choose:\n\n- Air fly Speed 80 feet, movement doesn't trigger reactions; Melee 1A gust, Damage 1d4 bludgeoning.\n- Earth Speed 20 feet, burrow Speed 20 feet; Melee 1A fist, Damage 2d10 bludgeoning.\n- Fire Speed 50 feet; fire resistance 10, weakness 5 to cold and 5 to water; Melee 1A tendril, Damage 1d8 fire plus 1d4 persistent fire.\n- Water Speed 20 feet, swim Speed 60 feet; fire resistance 5; Melee 1A wave, Damage 1d12 bludgeoning, and you can spend an action immediately after a hit to push the target 5 feet with the effects of a successful Shove."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (6th): Your battle form is Large and your attacks have 10-foot reach. You must have space to expand or the spell is lost. You instead gain AC = 22 + your level, 15 temporary HP, an attack modifier of +23, a damage bonus of +13, and Acrobatics or Athletics +23.\n\nHeightened (7th): Your battle form is Huge and your attacks have 15-foot reach. You must have space to expand or the spell is lost. You instead gain AC = 22 + your level, 20 temporary HP, an attack modifier of +25, a damage bonus of +11, double the number of damage dice (including persistent damage), and Acrobatics or Athletics +25."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "polymorph"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 29
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": "water only, 3"
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "b8e0229f-daf3-48bb-94c8-781b808311fa",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 6
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "summon_elemental__crb_",
+                          "name": {
+                            "value": "Summon Elemental"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_2"
+                          },
+                          "school": {
+                            "value": "spell_school_conjuration"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "three_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": true
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": "Sustained (1 minute)"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "You conjure an elemental to fight for you. This works like summon animal, except you summon a common creature that has the elemental trait and whose level is 1 or lower."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (3th): Level 2.\n\nHeightened (4th): Level 3.\n\nHeightened (5th): Level 5.\n\nHeightened (6th): Level 7.\n\nHeightened (7th): Level 9.\n\nHeightened (8th): Level 11.\n\nHeightened (9th): Level 13.\n\nHeightened (10th): Level 15."
+                          },
+                          "spell_traits": {
+                            "value": []
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 29
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": "water elementals only"
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "2d4b6c5c-0f56-4148-a8b9-59ce35b3a6c1",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "73a99aa7-f4e9-4ec4-8e71-370a93b6ec0e",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:26.736825"
+    }
+  }
+}

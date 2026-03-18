@@ -1,0 +1,480 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "leaf_leshy__b1_",
+    "name": {
+      "value": "Leaf Leshy"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b1"
+    },
+    "tag": {
+      "value": "Leshy"
+    },
+    "armor_class": {
+      "value": 18
+    },
+    "hit_points": {
+      "value": 15
+    },
+    "level": {
+      "value": 0
+    },
+    "xp": {
+      "value": 10
+    },
+    "initiative": {
+      "value": 4
+    },
+    "perception": {
+      "value": 4
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 25
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": -1
+    },
+    "dexterity_modifier": {
+      "value": 2
+    },
+    "constitution_modifier": {
+      "value": 2
+    },
+    "intelligence_modifier": {
+      "value": -2
+    },
+    "wisdom_modifier": {
+      "value": 2
+    },
+    "charisma_modifier": {
+      "value": 1
+    },
+    "fortitude": {
+      "value": 6
+    },
+    "reflex": {
+      "value": 6
+    },
+    "will": {
+      "value": 4
+    },
+    "skills": {
+      "value": "Acrobatics +4, Nature +4, Stealth +4"
+    },
+    "gear": {
+      "value": "longspear"
+    },
+    "weaknesses": {
+      "value": "Fire 2"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "low-light vision"
+    },
+    "languages": {
+      "value": "Common, Druidic, Sylvan; speak with plants (trees only)"
+    },
+    "size": {
+      "value": "small"
+    },
+    "type": {
+      "value": "plant"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Verdant Burst"
+            },
+            "trait_description": {
+              "value": "(healing)\n\nWhen a leaf leshy dies, a burst of primal energy explodes from its body, restoring 1d4 Hit Points to each plant creature in a 30-foot emanation. This area is filled with tree saplings, becoming 3. If the terrain is not a viable environment for these trees, they wither after 24 hours."
+            },
+            "id": "4a2dc6ef-aae8-4484-8dad-dac3ac68a31a",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Deafening Blow"
+            },
+            "trait_description": {
+              "value": "When a leaf leshy hits with its seedpod Strike, the target must attempt a DC 16 Fortitude save.\n\nCritical Success: The target is unaffected and temporarily immune for 24 hours.\nSuccess: The target is unaffected.\nFailure: The target is deafened for 1 round.\nCritical Failure: The target is deafened for 1 minute."
+            },
+            "id": "41d8f7f4-9cd7-41c5-b51a-19832f7df373",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "longspear"
+            },
+            "action_description": {
+              "value": "(reach 10 feet) 1d8-1 piercing"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 3
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "59ab4c24-b6e4-48bd-81b7-8c3835d60db6",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "seedpod"
+            },
+            "action_description": {
+              "value": "(range increment 30 feet) 1d6 bludgeoning plus deafening blow\nEffects: deafening blow"
+            },
+            "action_type": {
+              "value": "ranged"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 6
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "9f25286b-9286-425f-bbd6-ea0e17d293a7",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:25.944969"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "f9d5d266-cdec-4539-afae-a1228a787867",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:25.944969"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "c33bf508-bb7a-4a20-ac12-d465bbe00f6d",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:25.944969"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "bb5104c9-c754-4739-93b2-9af23aa1e68d",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Change Shape"
+            },
+            "action_description": {
+              "value": "(concentrate, polymorph, primal, transmutation)\n\nThe leaf leshy transforms into a Small tree. This ability otherwise uses the effects of tree shape."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "56742537-4fe7-448d-b2de-ea22cbdddb03",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Glide"
+            },
+            "action_description": {
+              "value": "(move)\n\nThe leshy glides gently through the air, moving 5 feet toward the ground and up to 25 feet forward. As long as the leshy spends at least 1 action gliding each round, it remains in the air at the end of each turn. For the purpose of determining damage from falls, a leaf leshy always treats falls as if they were 20 feet shorter."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "662a5103-2deb-4d08-a71c-75e73e19b326",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": [
+        {
+          "resource_id": "monster_spellcasting_block",
+          "stats": {
+            "block_name": {
+              "value": ""
+            },
+            "tradition": {
+              "value": "primal"
+            },
+            "spellcasting_type": {
+              "value": "innate"
+            },
+            "spell_dc": {
+              "value": 14
+            },
+            "spell_attack_bonus": {
+              "value": 0
+            },
+            "spell_levels": {
+              "value": [
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 4
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "speak_with_plants__pc1_",
+                          "name": {
+                            "value": "Speak with Plants"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_3"
+                          },
+                          "school": {
+                            "value": "none"
+                          },
+                          "traditions": {
+                            "value": [
+                              "divine",
+                              "occult",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": ""
+                          },
+                          "duration": {
+                            "value": "1 hour"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "You can ask questions of and receive answers from plants and fungi, but the spell doesn't make them more friendly or intelligent than normal. Most normal plants and fungi have a distinctive view of the world around them, so they don't recognize details about creatures or know anything about the world beyond their immediate vicinity. Cunning plant monsters are likely to be terse and evasive, while less intelligent ones often make inane comments."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (4th): The duration is 8 hours."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "concentrate",
+                              "manipulate",
+                              "plant",
+                              "wood"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 14
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "cdf6bb5a-9343-4bcd-b481-1704e92be5a6",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:25.944969"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "11a75f9e-5b4d-49be-b485-a973b9c0a0a0",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:25.944969"
+    }
+  }
+}

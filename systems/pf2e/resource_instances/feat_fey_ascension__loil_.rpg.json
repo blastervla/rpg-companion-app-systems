@@ -1,0 +1,732 @@
+{
+  "resource_id": "feat",
+  "stats": {
+    "id": "feat_fey_ascension__loil_",
+    "updated_at": {
+      "value": "2026-03-16T23:55:12.219969+00:00"
+    },
+    "name": {
+      "value": "Fey Ascension"
+    },
+    "source": {
+      "value": "loil"
+    },
+    "type": {
+      "value": "general"
+    },
+    "action_cost": {
+      "value": "passive"
+    },
+    "traits": {
+      "value": "rare"
+    },
+    "classes": {
+      "value": []
+    },
+    "ancestries": {
+      "value": []
+    },
+    "prerequisites": {
+      "value": "Fey Influence"
+    },
+    "trigger": {
+      "value": ""
+    },
+    "requirements": {
+      "value": ""
+    },
+    "frequency": {
+      "value": ""
+    },
+    "access": {
+      "value": ""
+    },
+    "special": {
+      "value": "This feat gains the trait appropriate for your ancestry (human for human, goblin for goblin, etc.)."
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "id": "levelled_description_d10a3d8b1169",
+            "level": {
+              "value": 9
+            },
+            "description": {
+              "value": "The fey influence on your form and features grows even more powerful and notable.\n\nYou gain one of the following features and abilities; this must be the same animal or fey type as you chose for Fey Influence.\n\n\u2022 Anteater You become an expert in primal DCs and spell attack rolls. You can cast slow as an innate primal spell once per day.\n\u2022 Cat Sith You laugh off the outraged curses of those you have tricked or wronged. Whenever a creature targets you with a misfortune effect, make a DC 13 flat check. On a success, you are unaffected.\n\u2022 Cursed Bluebird You have enough control over your curse to turn a bane into a minor blessing. Once per day, you can temporarily transform yourself or an ally into a blue bird, as a 4th-level pest form (bird only) targeting one willing creature.\n\u2022 Dryad Your hair becomes intermixed with delicate but razor-edged leaves that move as you command. You gain a leaves ranged unarmed attack that deals 1d6 slashing damage. Your leaves are in the dart weapon group and have the magical and unarmed traits.\n\u2022 Faun You can cast charm, sleep, and triple time as innate primal spells once per day each. Whenever you cast one of these spells, you can Step or Stride as part of the activity.\n\u2022 Gremlin You become an expert in primal DCs and spell attack rolls. You can cast mad monkeys (Advanced Player's Guide 222) as an innate primal spell once per day.\n\u2022 Monarch Once per day, you gain the ability to manifest a pair of exquisite butterfly wings. These wings remain for 10 minutes. You gain a fly Speed equal to your Speed while you've manifested your wings.\n\u2022 Unicorn You become trained in Medicine, or an expert if you were already trained. You gain a +2 status bonus to saves against poison and charm effects."
+            }
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_56d2dc80f2b5",
+            "level": {
+              "value": 9
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_c04fd48fc64a",
+                  "name": {
+                    "value": "Grant Expert in Primal Spellcasting"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "grant_proficiency"
+                  },
+                  "proficiency_stat": {
+                    "value": "$character.primal_spellcasting_proficiency"
+                  },
+                  "proficiency_rank": {
+                    "value": "expert"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_57aabbdf31c9",
+            "level": {
+              "value": 9
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_6fae021b2bd1",
+                  "name": {
+                    "value": "Grant Trained in Medicine"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "grant_proficiency"
+                  },
+                  "proficiency_stat": {
+                    "value": "$character.medicine_proficiency"
+                  },
+                  "proficiency_rank": {
+                    "value": "trained"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_9758eb159078",
+            "level": {
+              "value": 9
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_f6e3d975807c",
+                  "name": {
+                    "value": "+2 Status Bonus to Fortitude"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "typed_add_to_stat"
+                  },
+                  "typed_modifier_type": {
+                    "value": "status"
+                  },
+                  "typed_modifier_polarity": {
+                    "value": "bonus"
+                  },
+                  "stat": {
+                    "value": "$character.fortitude"
+                  },
+                  "constant": {
+                    "value": 2
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_df9d2499da7c",
+            "level": {
+              "value": 9
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_c22477f52f7f",
+                  "name": {
+                    "value": "+2 Status Bonus to Reflex"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "typed_add_to_stat"
+                  },
+                  "typed_modifier_type": {
+                    "value": "status"
+                  },
+                  "typed_modifier_polarity": {
+                    "value": "bonus"
+                  },
+                  "stat": {
+                    "value": "$character.reflex"
+                  },
+                  "constant": {
+                    "value": 2
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_c94f3f2eab55",
+            "level": {
+              "value": 9
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_40268b3d92e1",
+                  "name": {
+                    "value": "+2 Status Bonus to Will"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "typed_add_to_stat"
+                  },
+                  "typed_modifier_type": {
+                    "value": "status"
+                  },
+                  "typed_modifier_polarity": {
+                    "value": "bonus"
+                  },
+                  "stat": {
+                    "value": "$character.will"
+                  },
+                  "constant": {
+                    "value": 2
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_2cf638765f7c",
+            "level": {
+              "value": 9
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_2ec05dcab19d",
+                  "name": {
+                    "value": "Innate: Slow"
+                  },
+                  "trigger_type": {
+                    "value": "passive"
+                  },
+                  "type": {
+                    "value": "add_spell"
+                  },
+                  "spell": {
+                    "value": {
+                      "resource_id": "spell",
+                      "stats": {
+                        "id": "slow__pc1_",
+                        "name": {
+                          "value": "Slow"
+                        },
+                        "source": {
+                          "value": "pc1"
+                        },
+                        "level": {
+                          "value": "spell_level_3"
+                        },
+                        "school": {
+                          "value": "none"
+                        },
+                        "traditions": {
+                          "value": [
+                            "arcane",
+                            "occult",
+                            "primal"
+                          ]
+                        },
+                        "is_focus_spell": {
+                          "value": false
+                        },
+                        "focus_point_cost": {
+                          "value": 0
+                        },
+                        "ritual": {
+                          "value": false
+                        },
+                        "action_cost": {
+                          "value": "two_actions"
+                        },
+                        "casting_time": {
+                          "value": ""
+                        },
+                        "verbal": {
+                          "value": false
+                        },
+                        "somatic": {
+                          "value": false
+                        },
+                        "material": {
+                          "value": false
+                        },
+                        "components": {
+                          "value": ""
+                        },
+                        "range": {
+                          "value": "30 feet"
+                        },
+                        "duration": {
+                          "value": "varies"
+                        },
+                        "saving_throw": {
+                          "value": "Fortitude"
+                        },
+                        "area": {
+                          "value": ""
+                        },
+                        "targets": {
+                          "value": "1 creature"
+                        },
+                        "description": {
+                          "value": "You dilate the flow of time around the target, slowing its actions.\n\nCritical Success: The target is unaffected.\nSuccess: The target is slowed 1 for 1 round.\nFailure: The target is slowed 1 for 1 minute.\nCritical Failure: The target is slowed 2 for 1 minute."
+                        },
+                        "higher_level_description": {
+                          "value": "Heightened (6th): You can target up to 10 creatures."
+                        },
+                        "spell_traits": {
+                          "value": [
+                            "concentrate",
+                            "manipulate"
+                          ]
+                        },
+                        "classes": {
+                          "value": []
+                        },
+                        "dice": {
+                          "value": []
+                        },
+                        "effects": {
+                          "value": []
+                        },
+                        "updated_at": {
+                          "value": "2026-03-14T01:32:36.044502"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_95aeef32a3d6",
+            "level": {
+              "value": 9
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_a872cd6a3006",
+                  "name": {
+                    "value": "Innate: Pest Form"
+                  },
+                  "trigger_type": {
+                    "value": "passive"
+                  },
+                  "type": {
+                    "value": "add_spell"
+                  },
+                  "spell": {
+                    "value": {
+                      "resource_id": "spell",
+                      "stats": {
+                        "id": "pest_form__pc1_",
+                        "name": {
+                          "value": "Pest Form"
+                        },
+                        "source": {
+                          "value": "pc1"
+                        },
+                        "level": {
+                          "value": "spell_level_1"
+                        },
+                        "school": {
+                          "value": "none"
+                        },
+                        "traditions": {
+                          "value": [
+                            "arcane",
+                            "primal"
+                          ]
+                        },
+                        "is_focus_spell": {
+                          "value": false
+                        },
+                        "focus_point_cost": {
+                          "value": 0
+                        },
+                        "ritual": {
+                          "value": false
+                        },
+                        "action_cost": {
+                          "value": "two_actions"
+                        },
+                        "casting_time": {
+                          "value": ""
+                        },
+                        "verbal": {
+                          "value": false
+                        },
+                        "somatic": {
+                          "value": false
+                        },
+                        "material": {
+                          "value": false
+                        },
+                        "components": {
+                          "value": ""
+                        },
+                        "range": {
+                          "value": ""
+                        },
+                        "duration": {
+                          "value": "10 minutes"
+                        },
+                        "saving_throw": {
+                          "value": ""
+                        },
+                        "area": {
+                          "value": ""
+                        },
+                        "targets": {
+                          "value": ""
+                        },
+                        "description": {
+                          "value": "You transform into a the battle form of a Tiny animal, such as a cat, insect, lizard, or rat. You can decide the specific type of animal (such as a rat or praying mantis), but this has no effect on the form's Size or statistics. While in this form, you gain the animal trait, and you can't make Strikes. You can Dismiss the spell.\n\nYou gain the following statistics and abilities:\n\n- AC = 15 + your level. Ignore your armor's check penalty and Speed reduction.\n- Speed 20 feet.\n- Weakness 5 to physical damage. (If you take physical damage in this form, you take 5 additional damage.)\n- Low-light vision and imprecise scent 30 feet.\n- Acrobatics and Stealth modifiers of +10, unless your own modifier is higher; Athletics modifier -4."
+                        },
+                        "higher_level_description": {
+                          "value": "Heightened (4th): You can turn into a flying creature, such as a bird, which grants you a fly Speed of 20 feet."
+                        },
+                        "spell_traits": {
+                          "value": [
+                            "concentrate",
+                            "manipulate",
+                            "polymorph"
+                          ]
+                        },
+                        "classes": {
+                          "value": []
+                        },
+                        "dice": {
+                          "value": []
+                        },
+                        "effects": {
+                          "value": []
+                        },
+                        "updated_at": {
+                          "value": "2026-03-14T01:32:36.044502"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_2dda898f8689",
+            "level": {
+              "value": 9
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_24c0c8c61ffb",
+                  "name": {
+                    "value": "Innate: Charm"
+                  },
+                  "trigger_type": {
+                    "value": "passive"
+                  },
+                  "type": {
+                    "value": "add_spell"
+                  },
+                  "spell": {
+                    "value": {
+                      "resource_id": "spell",
+                      "stats": {
+                        "id": "charm__pc1_",
+                        "name": {
+                          "value": "Charm"
+                        },
+                        "source": {
+                          "value": "pc1"
+                        },
+                        "level": {
+                          "value": "spell_level_1"
+                        },
+                        "school": {
+                          "value": "none"
+                        },
+                        "traditions": {
+                          "value": [
+                            "arcane",
+                            "occult",
+                            "primal"
+                          ]
+                        },
+                        "is_focus_spell": {
+                          "value": false
+                        },
+                        "focus_point_cost": {
+                          "value": 0
+                        },
+                        "ritual": {
+                          "value": false
+                        },
+                        "action_cost": {
+                          "value": "two_actions"
+                        },
+                        "casting_time": {
+                          "value": ""
+                        },
+                        "verbal": {
+                          "value": false
+                        },
+                        "somatic": {
+                          "value": false
+                        },
+                        "material": {
+                          "value": false
+                        },
+                        "components": {
+                          "value": ""
+                        },
+                        "range": {
+                          "value": "30 feet"
+                        },
+                        "duration": {
+                          "value": "1 hour"
+                        },
+                        "saving_throw": {
+                          "value": "Will"
+                        },
+                        "area": {
+                          "value": ""
+                        },
+                        "targets": {
+                          "value": "1 creature"
+                        },
+                        "description": {
+                          "value": "To the target, your words are honey and your visage seems bathed in a dreamy haze. It must attempt a Will save, with a +4 circumstance bonus if you or your allies recently threatened it or used hostile actions against it.\n\nYou can Dismiss the spell. If you use hostile actions against the target, the spell ends. When the spell ends, the target doesn't necessarily realize it was charmed unless its friendship with you or the actions you convinced it to take clash with its expectations, meaning you could potentially convince the target to continue being your friend via mundane means.\n\nCritical Success: The target is unaffected and aware you tried to charm it.\nSuccess: The target is unaffected but thinks your spell was something harmless instead of charm, unless it identifies the spell (see Identifying Spells on page 305).\nFailure: The target's attitude becomes friendly toward you. If it was friendly, it becomes helpful. It can't use hostile actions against you.\nCritical Failure: The target's attitude becomes helpful toward you, and it can't use hostile actions against you."
+                        },
+                        "higher_level_description": {
+                          "value": "Heightened (4th): The duration lasts until your next daily preparations.\n\nHeightened (8th): The duration lasts until your next daily preparations, and you can target up to 10 creatures."
+                        },
+                        "spell_traits": {
+                          "value": [
+                            "concentrate",
+                            "emotion",
+                            "incapacitation",
+                            "manipulate",
+                            "mental"
+                          ]
+                        },
+                        "classes": {
+                          "value": []
+                        },
+                        "dice": {
+                          "value": []
+                        },
+                        "effects": {
+                          "value": []
+                        },
+                        "updated_at": {
+                          "value": "2026-03-14T01:32:36.044502"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_3ff36fe44c4b",
+            "level": {
+              "value": 9
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_48bcfe0fd5d7",
+                  "name": {
+                    "value": "Innate: Mad Monkeys"
+                  },
+                  "trigger_type": {
+                    "value": "passive"
+                  },
+                  "type": {
+                    "value": "add_spell"
+                  },
+                  "spell": {
+                    "value": {
+                      "resource_id": "spell",
+                      "stats": {
+                        "id": "mad_monkeys__apg_",
+                        "name": {
+                          "value": "Mad Monkeys"
+                        },
+                        "source": {
+                          "value": "apg"
+                        },
+                        "level": {
+                          "value": "spell_level_3"
+                        },
+                        "school": {
+                          "value": "spell_school_conjuration"
+                        },
+                        "traditions": {
+                          "value": [
+                            "primal"
+                          ]
+                        },
+                        "is_focus_spell": {
+                          "value": false
+                        },
+                        "focus_point_cost": {
+                          "value": 0
+                        },
+                        "ritual": {
+                          "value": false
+                        },
+                        "action_cost": {
+                          "value": "two_actions"
+                        },
+                        "casting_time": {
+                          "value": ""
+                        },
+                        "verbal": {
+                          "value": true
+                        },
+                        "somatic": {
+                          "value": true
+                        },
+                        "material": {
+                          "value": false
+                        },
+                        "components": {
+                          "value": ""
+                        },
+                        "range": {
+                          "value": "30 feet"
+                        },
+                        "duration": {
+                          "value": "Sustained (1 minute)"
+                        },
+                        "saving_throw": {
+                          "value": ""
+                        },
+                        "area": {
+                          "value": "5-foot burst"
+                        },
+                        "targets": {
+                          "value": ""
+                        },
+                        "description": {
+                          "value": "Magical monkey spirits fill the area as they pile and climb on top of one another. Because the monkeys are magical spirits, they can't be attacked or hurt. Casting calm emotions or a similar effect over the monkeys makes them docile, causing them to cease making mischief for the duration of mad monkeys.\n\nChoose the kind of mischief your monkeys make when you Cast the Spell. They produce the effect listed for that mischief when you Cast the Spell and the first time each round you Sustain the Spell. When you Sustain the Spell, you can move the area of the monkeys by 5 feet.\n\n- Flagrant Burglary The monkeys try to Steal any one item from one creature in the area. Use your spell DC - 10 as the monkeys' Thievery modifier. Their attempt relies more on distraction than subtlety, so the victim knows what item the monkeys were trying to take and whether it was taken. Getting a stolen item from the monkeys-even for the caster-requires Stealing it from them or Disarming them, using your spell DC. When the spell ends, any stolen items fall to the ground in any square of the spell's area you choose.\n- Raucous Din The monkeys screech loudly, potentially deafening creatures in the spell's area. Each creature in the spell's area must attempt a Fortitude save.\n\nCritical Success: The creature is unaffected and is temporarily immune for 10 minutes.\nSuccess: The creature is unaffected.\nFailure: For 1 round, the creature must succeed at a DC 5 flat check whenever it attempts a manipulate action. If it fails this check, the creature loses that action.\nCritical Failure: As failure, but the monkeys cling to the creature tenaciously, and the effect lasts until the spell ends, even if the creature leaves the spell's area."
+                        },
+                        "higher_level_description": {
+                          "value": ""
+                        },
+                        "spell_traits": {
+                          "value": []
+                        },
+                        "classes": {
+                          "value": []
+                        },
+                        "dice": {
+                          "value": []
+                        },
+                        "effects": {
+                          "value": []
+                        },
+                        "updated_at": {
+                          "value": "2026-03-14T01:32:36.044502"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "skill_proficiencies": {
+      "value": []
+    },
+    "armor_proficiencies": {
+      "value": []
+    },
+    "weapon_proficiencies": {
+      "value": []
+    },
+    "lore_skills": {
+      "value": []
+    }
+  }
+}

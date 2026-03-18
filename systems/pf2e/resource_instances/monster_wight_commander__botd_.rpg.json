@@ -1,0 +1,611 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "wight_commander__botd_",
+    "name": {
+      "value": "Wight Commander"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "botd"
+    },
+    "tag": {
+      "value": "Wight"
+    },
+    "armor_class": {
+      "value": 32
+    },
+    "hit_points": {
+      "value": 220
+    },
+    "level": {
+      "value": 12
+    },
+    "xp": {
+      "value": 640
+    },
+    "initiative": {
+      "value": 22
+    },
+    "perception": {
+      "value": 22
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 25
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 6
+    },
+    "dexterity_modifier": {
+      "value": 3
+    },
+    "constitution_modifier": {
+      "value": 4
+    },
+    "intelligence_modifier": {
+      "value": 5
+    },
+    "wisdom_modifier": {
+      "value": 3
+    },
+    "charisma_modifier": {
+      "value": 3
+    },
+    "fortitude": {
+      "value": 24
+    },
+    "reflex": {
+      "value": 19
+    },
+    "will": {
+      "value": 21
+    },
+    "skills": {
+      "value": "Athletics +24, Intimidation +25, Warfare Lore +25"
+    },
+    "gear": {
+      "value": "full plate, +1 striking longsword, standard-grade adamantine shield (Hardness 10, HP 40, BT 20)"
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Death Effects, Disease, Paralyzed, Poison, Unconscious"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "darkvision"
+    },
+    "languages": {
+      "value": "Common, Necril; tongues"
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "undead"
+    },
+    "alignment": {
+      "value": "lawful_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Conditional AC"
+            },
+            "trait_description": {
+              "value": "AC 34 with shield raised); abilities"
+            },
+            "id": "654e6829-0ecd-47fb-beff-e5f2a8adf16a",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Coordinated Strike"
+            },
+            "trait_description": {
+              "value": "The wight commander flanks with an ally as long as the target is within both their reaches, even if commander and ally aren't on opposite sides."
+            },
+            "id": "65212412-7ab2-483c-b7b2-a60ae67b2e97",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Drain Life"
+            },
+            "trait_description": {
+              "value": "(divine, necromancy)\n\nAs hunter wight, but 12 temporary Hit Points and DC 29."
+            },
+            "id": "19e60943-ef43-4312-af67-222fcd8ded70",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Spawn Wight Soldier"
+            },
+            "trait_description": {
+              "value": "(divine, necromancy)\n\nAs hunter wight, but the spawn is a different wight of the commander's level or lower, most often a hunter wight or prowler wight."
+            },
+            "id": "265fcb0c-3f66-49b5-9dfb-e3ad5add634c",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "longsword"
+            },
+            "action_description": {
+              "value": "(magical, versatile P) 2d8+14 slashing plus drain life"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 27
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 14
+                                    },
+                                    "id": "f1d95dab-9126-41c3-8e0c-7dd8217ae946",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:28.527612"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "d4c7a951-014c-4689-b274-d5589b2b6a1c",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:28.527612"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "ef8279b4-1baa-46f5-8246-5c4df6db33d1",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:28.527612"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "36338b88-6a1c-458f-b12a-f48afaf3602b",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "claw"
+            },
+            "action_description": {
+              "value": "(agile) 2d8+14 slashing plus drain life"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 26
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 14
+                                    },
+                                    "id": "afa3520f-a5ac-40ae-97cd-54cd9d7aa6dd",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:28.527612"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "f2af0553-21e5-40cf-b28a-f33ae913ef20",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:28.527612"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "42dbf4a8-f0d2-47fb-a951-a6677dbca716",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:28.527612"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "3e993d5c-fa5d-4576-a6f0-113038b7817d",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Tactical Direction"
+            },
+            "action_description": {
+              "value": "(auditory)\n\nEach wight ally in a 30-foot emanation gains the Attack of Opportunity reaction until the end of their next turn."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "169a1a92-a7a5-4037-8584-42c786ba9f4b",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Attack of Opportunity"
+            },
+            "action_description": {
+              "value": ""
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "57279f2d-5139-4175-9a0c-c38eda8f9375",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Final Spite"
+            },
+            "action_description": {
+              "value": "(auditory, divine, necromancy)\n\nTrigger: The wight commander is reduced to 0 Hit Points\n\nThe wight commander blows a battered war horn before being destroyed. The unnerving blast summons reinforcements, raising 1d4 corpses in a 200-foot emanation as wights (Bestiary 332)."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "cc011dec-d1ec-448d-9137-de3a12d685e4",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Shield Block"
+            },
+            "action_description": {
+              "value": ""
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "8fd4b3ef-8b75-4b2a-b753-7b1f026e0a66",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        }
+      ]
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": [
+        {
+          "resource_id": "monster_spellcasting_block",
+          "stats": {
+            "block_name": {
+              "value": ""
+            },
+            "tradition": {
+              "value": "divine"
+            },
+            "spellcasting_type": {
+              "value": "innate"
+            },
+            "spell_dc": {
+              "value": 29
+            },
+            "spell_attack_bonus": {
+              "value": 0
+            },
+            "spell_levels": {
+              "value": [
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 5
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "tongues__crb_",
+                          "name": {
+                            "value": "Tongues"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_5"
+                          },
+                          "school": {
+                            "value": "spell_school_divination"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "divine",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "1 touch"
+                          },
+                          "duration": {
+                            "value": "1 hour"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 creature"
+                          },
+                          "description": {
+                            "value": "The target can understand all words regardless of language and also speak the languages of other creatures. When in a mixed group of creatures, each time the target speaks, it can choose a creature and speak in a language that creature understands, even if the target doesn't know what language that is."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (7th): The duration is 8 hours."
+                          },
+                          "spell_traits": {
+                            "value": []
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 29
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": "constant"
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "7e7a1162-80cc-48d5-b687-d841153e699a",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:28.527612"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "7a7848ee-a415-4009-9961-41cccf4ce7aa",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:28.527612"
+    }
+  }
+}

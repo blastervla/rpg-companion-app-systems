@@ -1,0 +1,535 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "phytohydra__wow3_",
+    "name": {
+      "value": "Phytohydra"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "wow3"
+    },
+    "tag": {
+      "value": "plant, Wood"
+    },
+    "armor_class": {
+      "value": 32
+    },
+    "hit_points": {
+      "value": 180
+    },
+    "level": {
+      "value": 12
+    },
+    "xp": {
+      "value": 640
+    },
+    "initiative": {
+      "value": 25
+    },
+    "perception": {
+      "value": 25
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 25
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 25
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 7
+    },
+    "dexterity_modifier": {
+      "value": 3
+    },
+    "constitution_modifier": {
+      "value": 5
+    },
+    "intelligence_modifier": {
+      "value": -1
+    },
+    "wisdom_modifier": {
+      "value": 4
+    },
+    "charisma_modifier": {
+      "value": 2
+    },
+    "fortitude": {
+      "value": 25
+    },
+    "reflex": {
+      "value": 19
+    },
+    "will": {
+      "value": 22
+    },
+    "skills": {
+      "value": "Acrobatics +21, Athletics +25"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": "Fire 10, Slashing 5"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Area Damage, Bleed, Paralyzed, Poison, Sleep"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": ""
+    },
+    "languages": {
+      "value": "Arboreal, Muan"
+    },
+    "size": {
+      "value": "huge"
+    },
+    "type": {
+      "value": "elemental"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Coppice Regrowth"
+            },
+            "trait_description": {
+              "value": "A phytohydra ordinarily has five heads. A creature can attempt to sever one of the heads by specifically targeting it and dealing damage equal to the head's Hit Points. A head that isn't completely severed returns to full Hit Points at the end of any creature's turn.\n\nA phytohydra can regrow a severed head using phytohydra regeneration. A creature can prevent this regrowth by dealing fire damage to the stump, sealing it. Single-target fire effects need to be targeted at a specific stump, but effects that deal splash damage or affect areas covering the hydra's whole space seal all stumps if they deal fire damage. If the attack that severs a head deals any fire damage or was dealt by an axe, the stump is sealed instantly. If all five heads are sealed, the phytohydra dies."
+            },
+            "id": "37134f76-407b-4b6a-9af3-08b57edc9bac",
+            "updated_at": {
+              "value": "2026-03-17T12:41:44.056477"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Phytohydra Regeneration"
+            },
+            "trait_description": {
+              "value": "The phytohydra has regeneration equal to 5 \u00d7 the number of heads it has. If a phytohydra's body is missing any heads and the remaining stumps haven't been cauterized, the phytohydra attempts a DC 35 Fortitude save after it regains Hit Points from regeneration. On a success, one unsealed stump regrows two heads; on a critical success, two unsealed stumps regrow into two heads each. The phytohydra can never grow more than double the number of heads it ordinarily has. The phytohydra's regeneration only fully deactivates if all its heads are severed and all stumps are sealed, at which point it dies."
+            },
+            "id": "2d94ef05-8067-4e98-96fc-2344b5786aed",
+            "updated_at": {
+              "value": "2026-03-17T12:41:44.056477"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Reactive Heads"
+            },
+            "trait_description": {
+              "value": "A phytohydra gains an extra reaction per round for each of its heads beyond the first, which it can use only to make Reactive Strikes. It can't use more than 1 reaction on the same triggering action, even if a creature leaves several squares within its reach, and the phytohydra must use a different head for each Reactive Strike it makes. Whenever one of the phytohydra's heads is severed, the phytohydra loses one of its extra reactions per round."
+            },
+            "id": "21cdc8db-0325-4fb1-b0e9-0517b0d6855f",
+            "updated_at": {
+              "value": "2026-03-17T12:41:44.056477"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "branch"
+            },
+            "action_description": {
+              "value": "(reach 10 feet) 4d6+11 bludgeoning plus Push 10 feet"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 25
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 4
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 11
+                                    },
+                                    "id": "96aed093-7633-4cf4-bd13-fa2d4c2b2200",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:44.056477"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "eb2caba2-bb8c-4ffc-be1d-c19d16b974c5",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:44.056477"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "6c765844-fba1-4e0e-ae13-5acaaf69e104",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:44.056477"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "c0980082-8dc0-4791-912f-51c0b5e4f391",
+            "updated_at": {
+              "value": "2026-03-17T12:41:44.056477"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "fangs"
+            },
+            "action_description": {
+              "value": "(reach 10 feet) 4d6+13 piercing"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 25
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 4
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 13
+                                    },
+                                    "id": "bd80d579-8fdf-47e8-bc38-a2a39574c979",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:44.056477"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "41f1c97e-3fd4-4d6b-96b4-cbf03a55f840",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:44.056477"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "2ed3d113-40ef-42bf-8bc6-48e4e7f7bbe8",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:44.056477"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "3790b070-f913-4267-86e9-eb5710f51078",
+            "updated_at": {
+              "value": "2026-03-17T12:41:44.056477"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Focused Assault"
+            },
+            "action_description": {
+              "value": "The phytohydra attacks a single target with its many heads. The phytohydra Strikes with its branches or its fangs. On a successful attack, the phytohydra deals damage from its branches or fangs Strike to the target, plus an additional 2d6 damage for every head it has beyond the first. On a failure (but not a critical failure), the phytohydra deals the damage from one branch or fangs Strike to the target creature. This Strike counts as a number of attacks equal to the number of heads the phytohydra has toward its multiple attack penalty."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "9952699d-ea87-4ed5-ad0a-bd26760070d5",
+            "updated_at": {
+              "value": "2026-03-17T12:41:44.056477"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Splinter Breath"
+            },
+            "action_description": {
+              "value": "The phytohydra spews splinters in a 60-foot cone that deals 4d6 piercing damage to all creatures in the area (DC 32 basic Reflex save). The damage increases by 2d6 for each head the phytohydra has. The phytohydra can't use Splinter Breath again for 1d4 rounds."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 4
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "b74019c2-0e7a-45f4-af4a-0c65bbb54119",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:44.056477"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "2bc1fe41-33c4-4a06-8b20-0ec5ecc94184",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:44.056477"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "untyped"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "434dc546-81e5-4081-a34c-5f03e3d68da5",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:44.056477"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "0605bdd4-7e57-4ce5-9992-61f1b16f4317",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:44.056477"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "0e89236f-4b96-436c-8d66-2374bf207e07",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:44.056477"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "7c554e94-66b3-4a94-b9c3-207e17b8a07e",
+            "updated_at": {
+              "value": "2026-03-17T12:41:44.056477"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Storm of Branches"
+            },
+            "action_description": {
+              "value": "The phytohydra makes a number of Strikes up to its number of heads, each against a different target. These attacks count toward the phytohydra's multiple attack penalty, but the multiple attack penalty doesn't increase until after the phytohydra makes all its attacks."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "d512f255-06b5-4997-9dbb-2d0c475fb558",
+            "updated_at": {
+              "value": "2026-03-17T12:41:44.056477"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Reactive Strike"
+            },
+            "action_description": {
+              "value": "(see reactive heads)"
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "d8054473-484e-46fd-832d-8a2dac6048db",
+            "updated_at": {
+              "value": "2026-03-17T12:41:44.056477"
+            }
+          }
+        }
+      ]
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:44.056477"
+    }
+  }
+}

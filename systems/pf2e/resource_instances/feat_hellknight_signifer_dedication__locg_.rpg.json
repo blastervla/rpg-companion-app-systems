@@ -1,0 +1,171 @@
+{
+  "resource_id": "feat",
+  "stats": {
+    "id": "feat_hellknight_signifer_dedication__locg_",
+    "updated_at": {
+      "value": "2026-03-16T23:55:12.219969+00:00"
+    },
+    "name": {
+      "value": "Hellknight Signifer Dedication"
+    },
+    "source": {
+      "value": "locg"
+    },
+    "type": {
+      "value": "archetype"
+    },
+    "action_cost": {
+      "value": "passive"
+    },
+    "traits": {
+      "value": "uncommon, archetype, dedication"
+    },
+    "classes": {
+      "value": []
+    },
+    "ancestries": {
+      "value": []
+    },
+    "prerequisites": {
+      "value": "spellcasting class feature, Hellknight Armiger Dedication, lawful alignment, member of a Hellknight order, passed the Hellknight Test"
+    },
+    "trigger": {
+      "value": ""
+    },
+    "requirements": {
+      "value": ""
+    },
+    "frequency": {
+      "value": ""
+    },
+    "access": {
+      "value": ""
+    },
+    "special": {
+      "value": "You cannot select another dedication feat until you have gained two other feats from the Hellknight signifer or Hellknight armiger archetypes."
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "id": "levelled_description_159baab23194",
+            "level": {
+              "value": 6
+            },
+            "description": {
+              "value": "You have bolstered your force of will with the power of the Measure and the Chain. Upon initiation, you receive a signifer mask, often devoid of eyeholes or other decorative features. The mask doesn't obscure your vision, though it makes it impossible for others to see your eyes. While wearing your signifer's mask, you gain +1 circumstance bonus to Deception checks to Lie, Intimidation checks, and Deception DCs against Sense Motive. You gain expert proficiency in Intimidation (or in another skill in which you're trained of your choice, if you were already an expert in Intimidation) as well as in your choice of Arcana, Nature, Occultism, or Religion."
+            }
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_1b3065d0def0",
+            "level": {
+              "value": 6
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_206426d63288",
+                  "name": {
+                    "value": "Grant Expert in Intimidation"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "grant_proficiency"
+                  },
+                  "proficiency_stat": {
+                    "value": "$character.intimidation_proficiency"
+                  },
+                  "proficiency_rank": {
+                    "value": "expert"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_6165a9489da4",
+            "level": {
+              "value": 6
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_cd68284af598",
+                  "name": {
+                    "value": "+1 Circumstance Bonus to Deception"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "typed_add_to_stat"
+                  },
+                  "typed_modifier_type": {
+                    "value": "circumstance"
+                  },
+                  "typed_modifier_polarity": {
+                    "value": "bonus"
+                  },
+                  "stat": {
+                    "value": "$character.deception"
+                  },
+                  "constant": {
+                    "value": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "skill_proficiencies": {
+      "value": [
+        {
+          "resource_id": "levelled_skill_proficiency",
+          "stats": {
+            "id": "levelled_skill_proficiency_0fe5afcf0541",
+            "level": {
+              "value": 6
+            },
+            "options": {
+              "value": [
+                "arcana",
+                "nature",
+                "occultism",
+                "religion"
+              ]
+            },
+            "is_expertise": {
+              "value": true
+            }
+          }
+        }
+      ]
+    },
+    "armor_proficiencies": {
+      "value": []
+    },
+    "weapon_proficiencies": {
+      "value": []
+    },
+    "lore_skills": {
+      "value": []
+    }
+  }
+}

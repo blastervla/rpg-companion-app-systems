@@ -1,0 +1,609 @@
+{
+  "resource_id": "feat",
+  "stats": {
+    "id": "feat_ki_blast__crb_",
+    "updated_at": {
+      "value": "2026-03-16T23:55:12.219969+00:00"
+    },
+    "name": {
+      "value": "Ki Blast"
+    },
+    "source": {
+      "value": "crb"
+    },
+    "type": {
+      "value": "class"
+    },
+    "action_cost": {
+      "value": "passive"
+    },
+    "traits": {
+      "value": "monk"
+    },
+    "classes": {
+      "value": [
+        "monk__crb_"
+      ]
+    },
+    "ancestries": {
+      "value": []
+    },
+    "prerequisites": {
+      "value": "ki spells"
+    },
+    "trigger": {
+      "value": ""
+    },
+    "requirements": {
+      "value": ""
+    },
+    "frequency": {
+      "value": ""
+    },
+    "access": {
+      "value": ""
+    },
+    "special": {
+      "value": ""
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "id": "levelled_description_b3c2f6bd1d46",
+            "level": {
+              "value": 6
+            },
+            "description": {
+              "value": "You can unleash an impactful cone of force by channeling your ki. You gain the ki blast ki spell. Increase the number of Focus Points in your focus pool by 1."
+            }
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_016c63dd448b",
+            "level": {
+              "value": 6
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_1da638ca445d",
+                  "name": {
+                    "value": "+1 Max Focus Point"
+                  },
+                  "trigger_type": {
+                    "value": "passive"
+                  },
+                  "type": {
+                    "value": "add_to_stat"
+                  },
+                  "stat": {
+                    "value": "$character.max_focus_points"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_1d9b205e3e81",
+            "level": {
+              "value": 6
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_b5805dd1e524",
+                  "name": {
+                    "value": "Innate: Ki Blast"
+                  },
+                  "trigger_type": {
+                    "value": "passive"
+                  },
+                  "type": {
+                    "value": "add_spell"
+                  },
+                  "spell": {
+                    "value": {
+                      "resource_id": "spell",
+                      "stats": {
+                        "id": "ki_blast__crb_",
+                        "name": {
+                          "value": "Ki Blast"
+                        },
+                        "source": {
+                          "value": "crb"
+                        },
+                        "level": {
+                          "value": "spell_level_3"
+                        },
+                        "school": {
+                          "value": "spell_school_evocation"
+                        },
+                        "traditions": {
+                          "value": []
+                        },
+                        "is_focus_spell": {
+                          "value": true
+                        },
+                        "focus_point_cost": {
+                          "value": 1
+                        },
+                        "ritual": {
+                          "value": false
+                        },
+                        "action_cost": {
+                          "value": "activity"
+                        },
+                        "casting_time": {
+                          "value": "1A to 3A"
+                        },
+                        "verbal": {
+                          "value": true
+                        },
+                        "somatic": {
+                          "value": true
+                        },
+                        "material": {
+                          "value": false
+                        },
+                        "components": {
+                          "value": ""
+                        },
+                        "range": {
+                          "value": ""
+                        },
+                        "duration": {
+                          "value": ""
+                        },
+                        "saving_throw": {
+                          "value": "Fortitude"
+                        },
+                        "area": {
+                          "value": "15-foot cone or more"
+                        },
+                        "targets": {
+                          "value": ""
+                        },
+                        "description": {
+                          "value": "You unleash your ki as a powerful blast of force that deals 2d6 force damage. If you use 2 actions to cast ki blast, increase the size of the cone to 30 feet and the damage to 3d6. If you use 3 actions to cast ki blast, increase the size of the cone to 60 feet and the damage to 4d6. Each creature in the area must attempt a Fortitude saving throw.\n\nCritical Success: The creature is unaffected.\nSuccess: The creature takes half damage.\nFailure: The creature takes full damage and is pushed 5 feet.\nCritical Failure: The creature takes double damage and is pushed 10 feet."
+                        },
+                        "higher_level_description": {
+                          "value": "Heightened (+1): The damage increases by 1d6, or by 2d6 if you use 2 or 3 actions."
+                        },
+                        "spell_traits": {
+                          "value": [
+                            "force",
+                            "monk"
+                          ]
+                        },
+                        "classes": {
+                          "value": []
+                        },
+                        "dice": {
+                          "value": [
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 3
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 2
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "24a26d23-cb0b-4d30-90a9-0535e0dcdcce"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "force"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "f6caf6e7-9165-4b3b-a63c-ac50fe5f9015"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "1e0777c4-3ddf-473e-bcfa-2d6466f6417f"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 4
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 3
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "14b649f8-cba1-4208-b6ee-e6f4a885b81b"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "force"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "97a4109a-71d2-43a0-9777-c967dc4f0959"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "465a0587-7a9d-4955-88a8-978ec6ed445c"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 5
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 4
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "0ae68116-b2bd-4fb8-987a-2643efd28647"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "force"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "408cc86b-4a19-4ac4-8729-8a5a662102bc"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "6df9d4d2-0455-420a-9eda-18fad8404190"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 6
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 5
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "d93b2045-5142-47b3-a42a-05a4f6791d05"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "force"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "f6a092e7-8894-4e84-badc-ac13346cf720"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "a7695183-7056-447e-b0b2-e6aa8fe93cf3"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 7
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 6
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "d315b1c9-b9db-4c4e-99db-f37bad8ab8f7"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "force"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "8172447f-d7ba-4cda-89a5-d693a5c9922f"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "12e2fbab-6480-4943-ab9e-d8203150083b"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 8
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 7
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "45ceb5ed-089f-4b2f-9e7d-6164497c2667"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "force"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "300a4be3-405f-4125-83a0-605e49553700"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "2880d696-5060-45cf-b0d3-b56dd238c682"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 9
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 8
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "bcf53d22-4afb-469e-942d-5fef96bced2b"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "force"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "8514ddc8-675a-4f0c-8fb1-c447ced25058"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "d9bd590b-930f-43d5-ade8-16be457ae4cd"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 10
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 9
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "7ad7105c-53ce-47d5-b621-9c500e49e447"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "force"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "3e7dec40-ea06-43ca-927a-ad6b3a9cf17b"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "36e7ecaf-be1f-4a25-a120-472ce25e4af1"
+                              }
+                            }
+                          ]
+                        },
+                        "effects": {
+                          "value": []
+                        },
+                        "updated_at": {
+                          "value": "2026-03-14T01:32:36.044502"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "skill_proficiencies": {
+      "value": []
+    },
+    "armor_proficiencies": {
+      "value": []
+    },
+    "weapon_proficiencies": {
+      "value": []
+    },
+    "lore_skills": {
+      "value": []
+    }
+  }
+}

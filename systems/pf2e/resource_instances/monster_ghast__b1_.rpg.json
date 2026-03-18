@@ -1,0 +1,395 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "ghast__b1_",
+    "name": {
+      "value": "Ghast"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b1"
+    },
+    "tag": {
+      "value": "Ghoul"
+    },
+    "armor_class": {
+      "value": 18
+    },
+    "hit_points": {
+      "value": 30
+    },
+    "level": {
+      "value": 2
+    },
+    "xp": {
+      "value": 20
+    },
+    "initiative": {
+      "value": 8
+    },
+    "perception": {
+      "value": 8
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 5
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 3
+    },
+    "dexterity_modifier": {
+      "value": 4
+    },
+    "constitution_modifier": {
+      "value": 2
+    },
+    "intelligence_modifier": {
+      "value": 1
+    },
+    "wisdom_modifier": {
+      "value": 2
+    },
+    "charisma_modifier": {
+      "value": 3
+    },
+    "fortitude": {
+      "value": 6
+    },
+    "reflex": {
+      "value": 10
+    },
+    "will": {
+      "value": 8
+    },
+    "skills": {
+      "value": "Acrobatics +10, Athletics +7, Stealth +10, Survival +8"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Poison, Death Effects, Disease, Paralyzed, Unconscious"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "darkvision"
+    },
+    "languages": {
+      "value": "Common, Necril"
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "undead"
+    },
+    "alignment": {
+      "value": "chaotic_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Stench"
+            },
+            "trait_description": {
+              "value": "(aura, olfactory)\n\n10 feet. A creature entering the aura or starting its turn in the aura must succeed at a DC 16 Fortitude save or become sickened 1 (plus slowed 1 as long as it's sickened on a critical failure). While within the aura, the creature takes a \u20132 circumstance penalty to saves against disease and to recover from the sickened condition. A creature that succeeds at its save is temporarily immune for 1 minute."
+            },
+            "id": "25a6f749-a2cf-4ff3-811d-cfd78493f252",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Ghast Fever"
+            },
+            "trait_description": {
+              "value": "DC 16 Fortitude; Stage 1: carrier with no ill effect (1 day); Stage 2: 3d8 negative damage and regains half as many Hit Points from all healing (1 day); Stage 3: as stage 2 (1 day); Stage 4: 3d8 negative damage and gains no benefit from healing (1 day); Stage 5: as stage 4 (1 day); Stage 6: dead, and rises as a ghast the next midnight ()"
+            },
+            "id": "973b50b2-e6ec-4aa6-b770-d5393f4cd88f",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Paralysis"
+            },
+            "trait_description": {
+              "value": "(incapacitation, occult, necromancy)\n\nAny living creature hit by a ghast's attack must succeed at a DC 15 Fortitude save or become paralyzed. It can attempt a new save at the end of each of its turns, and the DC cumulatively decreases by 1 on each such save."
+            },
+            "id": "4e30f070-a450-478d-9404-8511f3d18f43",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "jaws"
+            },
+            "action_description": {
+              "value": "(finesse) 1d6+5 piercing plus ghast fever and paralysis\nEffects: ghast fever, paralysis"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 11
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 5
+                                    },
+                                    "id": "65eefdf1-1f4b-4a25-9d44-f2b063854379",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:25.944969"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "4938b3fb-77b8-4d27-a491-c4442476d4e4",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:25.944969"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "239405f5-bb50-4924-b9fb-3aaaf6cd2d5a",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:25.944969"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "1b125e3f-bde2-4821-895b-786d07eb1d8b",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "claw"
+            },
+            "action_description": {
+              "value": "(agile, finesse) 1d4+5 slashing plus paralysis\nEffects: paralysis"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 11
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 5
+                                    },
+                                    "id": "1347ada9-5321-4014-b46e-775a02f4ea4e",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:25.944969"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "2ed55782-e5cf-4424-b0a9-96b0e51e9003",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:25.944969"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "2317384f-3331-4e3e-b2b8-d35825da9336",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:25.944969"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "aa831ddf-fbb5-46b0-aef7-8fe49a2f33ba",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Consume Flesh"
+            },
+            "action_description": {
+              "value": "(manipulate)\n\nThe ghast regains 3d6 Hit Points. It can regain Hit Points from any given corpse only once."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "d40006fa-da27-4c1c-90fc-42a6ed81569c",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Swift Leap"
+            },
+            "action_description": {
+              "value": "The ghast jumps up to half its Speed. This movement doesn't trigger reactions."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "37ddd50f-6053-462d-9fd7-1dbb787c1bb3",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:25.944969"
+    }
+  }
+}

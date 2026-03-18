@@ -1,0 +1,297 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "vampiric_mist__b2_",
+    "name": {
+      "value": "Vampiric Mist"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b2"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 18
+    },
+    "hit_points": {
+      "value": 35
+    },
+    "level": {
+      "value": 3
+    },
+    "xp": {
+      "value": 30
+    },
+    "initiative": {
+      "value": 9
+    },
+    "perception": {
+      "value": 9
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 25
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 40
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": -5
+    },
+    "dexterity_modifier": {
+      "value": 5
+    },
+    "constitution_modifier": {
+      "value": 3
+    },
+    "intelligence_modifier": {
+      "value": -1
+    },
+    "wisdom_modifier": {
+      "value": 2
+    },
+    "charisma_modifier": {
+      "value": 0
+    },
+    "fortitude": {
+      "value": 8
+    },
+    "reflex": {
+      "value": 12
+    },
+    "will": {
+      "value": 9
+    },
+    "skills": {
+      "value": "Acrobatics +10, Stealth +10"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": "Fire 5"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Precision"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "darkvision, imprecise sense blood 60 ft."
+    },
+    "languages": {
+      "value": "Aklo"
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "aberration"
+    },
+    "alignment": {
+      "value": "neutral_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Misty Form"
+            },
+            "trait_description": {
+              "value": "A vampiric mist's body is composed of a semisolid red mist similar in consistency to thick foam. This enables a vampiric mist to move through spaces as narrow as 1 inch in diameter with no reduction to its Speed. However, a vampiric mist can't wear or interact with objects. It also can't enter water or other fluids, and it's treated as Tiny for the purpose of how wind affects it."
+            },
+            "id": "a2872362-d2b8-4108-ba9a-3659643b4c15",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Sense Blood"
+            },
+            "trait_description": {
+              "value": "A vampiric mist can sense creatures that have blood within 60 feet.\n\nIt can sense exposed blood within a mile."
+            },
+            "id": "2945330f-66e0-421d-a89f-c55fa1f35d66",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Blood Siphon"
+            },
+            "trait_description": {
+              "value": "When a vampiric mist damages a creature with a misty tendril Strike, the creature must attempt a DC 20 Fortitude save. If the Strike was a critical hit, the outcome of the creature's save is one degree worse than the result of the saving throw.\n\nAny temporary Hit Points the vampiric mist gains from Blood Siphon fade after 1 hour.\n\nSuccess: The creature is unaffected.\nFailure: The creature is drained 1, and the vampiric mist gains 5 temporary Hit Points.\nCritical Failure: The creature is drained 2. The vampiric mist gains 10 temporary Hit Points and takes on an intense red until the end of its next turn. During this time, it gains a +2 status bonus to AC and saves and is quickened. It can use its extra action only to Strike."
+            },
+            "id": "e013aa01-9a10-4e6e-98bd-92be107d48e5",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "misty tendril"
+            },
+            "action_description": {
+              "value": "(agile, finesse) 2d6 slashing damage plus 1d6 persistent bleed damage and blood siphon\nEffects: blood siphon"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 10
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "cbfc05b9-069d-408d-8858-73caf13d666a",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:26.736825"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "b30a2937-bab6-47fa-8fed-23b23e4fba7b",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:26.736825"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "untyped"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "fbb4c626-babd-438f-b6d2-5c59805c5297",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:26.736825"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "acb43000-d809-4578-8da7-161f1ca21753",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:26.736825"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "7137846a-1433-4b57-ba26-0bb0201bd813",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "11dccf05-db1e-4940-97dc-e2b60d756f88",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:26.736825"
+    }
+  }
+}

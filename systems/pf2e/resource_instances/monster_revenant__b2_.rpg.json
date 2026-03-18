@@ -1,0 +1,368 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "revenant__b2_",
+    "name": {
+      "value": "Revenant"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b2"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 23
+    },
+    "hit_points": {
+      "value": 115
+    },
+    "level": {
+      "value": 6
+    },
+    "xp": {
+      "value": 80
+    },
+    "initiative": {
+      "value": 14
+    },
+    "perception": {
+      "value": 14
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 25
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 5
+    },
+    "dexterity_modifier": {
+      "value": 3
+    },
+    "constitution_modifier": {
+      "value": 4
+    },
+    "intelligence_modifier": {
+      "value": 0
+    },
+    "wisdom_modifier": {
+      "value": 3
+    },
+    "charisma_modifier": {
+      "value": 2
+    },
+    "fortitude": {
+      "value": 14
+    },
+    "reflex": {
+      "value": 13
+    },
+    "will": {
+      "value": 17
+    },
+    "skills": {
+      "value": "Athletics +15, Intimidation +14"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Poison, Death Effects, Disease, Paralyzed, Sleep"
+    },
+    "resistances": {
+      "value": "Physical 5 (except slashing)"
+    },
+    "senses": {
+      "value": "darkvision, sense murderer"
+    },
+    "languages": {
+      "value": ""
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "undead"
+    },
+    "alignment": {
+      "value": "lawful_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Self-Loathing"
+            },
+            "trait_description": {
+              "value": "(emotion, mental, visual)\n\nIf a revenant sees their own reflection or any object that was important to them in life, they must attempt a DC 25 Will save.\n\nCritical Success: The revenant is unaffected and can no longer be affected by that reflection or object in this way.\nSuccess: The revenant is distracted by self-loathing and becomes slowed 1 for 1 round.\nFailure: The revenant becomes fascinated by the source that triggered their self-loathing and does everything they can to destroy it until the end of the revenant's next turn.\nCritical Failure: The revenant becomes immobilized as long as the source of their self-loathing is apparent, until they're attacked, or until they see their murderer."
+            },
+            "id": "25fed622-9f51-4cf9-8854-122bb253d81b",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Undying Vendetta"
+            },
+            "trait_description": {
+              "value": "(emotion, necromancy, occult)\n\nIf the revenant's murderer dies, the revenant is immediately destroyed. A revenant that can't sense their murderer must attempt a DC 11 flat check once every 24 hours to avoid becoming immobilized and prone; they immediately rise again once they can sense their murderer. A murderer who becomes undead does not trigger the revenant's destruction until the murderer is finally destroyed. The revenant gains a +2 status bonus to checks and DCs against their murderer."
+            },
+            "id": "9f6c5a15-a0e3-4166-a755-a21ae812bc07",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Sense Murderer"
+            },
+            "trait_description": {
+              "value": "(divination, occult, scrying)\n\nA revenant knows the direction of their murderer (as long as both are on the same plane), but not the distance."
+            },
+            "id": "f0dcc57c-bc63-44f3-af83-b2391bef67c9",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "claw"
+            },
+            "action_description": {
+              "value": "(agile) 2d8+5 slashing plus Grab\nEffects: Grab"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 17
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 5
+                                    },
+                                    "id": "6abfc836-7486-49a4-b07e-b1dce145abc3",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:26.736825"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "5ad99b8c-9291-426a-b444-144ee2a205f8",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:26.736825"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "63810a79-0e8b-4848-a017-d27b634ad8d5",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "f322827b-05ca-4e54-9388-669d71110cfe",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Baleful Shriek"
+            },
+            "action_description": {
+              "value": "(auditory, emotion, fear, incapacitation, mental)\n\nThe revenant wails horribly. Each creature within a 60-foot burst must attempt a DC 23 Will save. Regardless of the outcome of their saving throw, affected creatures are then immune to Baleful Shriek for 1 hour. The revenant's murderer never improves their degree of success due to this ability's incapacitation trait. The revenant can't use Baleful Shriek again for 1d4 rounds.\n\nCritical Success: The creature is unaffected.\nSuccess: The creature is frightened 2.\nFailure: The creature is frightened 2 and paralyzed for 1 round.\nCritical Failure: The creature is frightened 3 and paralyzed for 1d4 rounds."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "427eaa27-bb4d-46fc-8fa1-efae0bb308a8",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Constrict"
+            },
+            "action_description": {
+              "value": "2d6+5 bludgeoning, DC 24"
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 5
+                                    },
+                                    "id": "42b1e8fa-f89f-4533-8110-e4f43943ca11",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:26.736825"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "6536289c-51ad-42ae-84e6-2b8196b9817c",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:26.736825"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "13b51912-e535-4aac-8f2e-7bed87853cbc",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "b6d31f08-5211-4bad-996a-3168a3f6296e",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:26.736825"
+    }
+  }
+}

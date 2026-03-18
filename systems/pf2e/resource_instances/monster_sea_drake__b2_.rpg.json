@@ -1,0 +1,549 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "sea_drake__b2_",
+    "name": {
+      "value": "Sea Drake"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b2"
+    },
+    "tag": {
+      "value": "Amphibious, Water"
+    },
+    "armor_class": {
+      "value": 24
+    },
+    "hit_points": {
+      "value": 95
+    },
+    "level": {
+      "value": 6
+    },
+    "xp": {
+      "value": 80
+    },
+    "initiative": {
+      "value": 14
+    },
+    "perception": {
+      "value": 14
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 15
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 40
+    },
+    "swim_speed": {
+      "value": 50
+    },
+    "strength_modifier": {
+      "value": 6
+    },
+    "dexterity_modifier": {
+      "value": 2
+    },
+    "constitution_modifier": {
+      "value": 4
+    },
+    "intelligence_modifier": {
+      "value": -1
+    },
+    "wisdom_modifier": {
+      "value": 2
+    },
+    "charisma_modifier": {
+      "value": 0
+    },
+    "fortitude": {
+      "value": 16
+    },
+    "reflex": {
+      "value": 14
+    },
+    "will": {
+      "value": 12
+    },
+    "skills": {
+      "value": "Acrobatics +14, Athletics +16, Stealth +12"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Electricity, Paralyzed, Sleep"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "darkvision, imprecise scent 30 ft."
+    },
+    "languages": {
+      "value": "Draconic"
+    },
+    "size": {
+      "value": "large"
+    },
+    "type": {
+      "value": "dragon"
+    },
+    "alignment": {
+      "value": "neutral_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Briny Wound"
+            },
+            "trait_description": {
+              "value": "A sea drake's saliva carries a large quantity of salt, making its bite wounds even more painful. When a creature takes damage from a sea drake's jaws Strike, the creature must attempt a DC 24 Fortitude save; the creature is then temporarily immune to briny wound for 1 minute.\n\nCritical Success: The creature is unaffected.\nSuccess: The creature is sickened 1.\nFailure: The creature is sickened 2.\nCritical Failure: The creature is sickened 2 and slowed 1 as long as it's sickened."
+            },
+            "id": "5e709aff-aa8e-449d-bfd1-7fa12d7dcadd",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "jaws"
+            },
+            "action_description": {
+              "value": "2d8+9 piercing plus briny wound\nEffects: briny wound"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 17
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 9
+                                    },
+                                    "id": "31ca8609-e20e-4c88-a6c0-16477abbf8d4",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:26.736825"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "22897719-525d-4dd4-a9a6-3e557e2dce7a",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:26.736825"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "d038bf7f-2858-4d60-b28c-591e691787c6",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "deb34d7f-094b-4991-af2b-4561746bac00",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "tail"
+            },
+            "action_description": {
+              "value": "(agile, reach 10 feet) 2d6+9 bludgeoning"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 17
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 9
+                                    },
+                                    "id": "da9c5b5b-906f-460c-8e1a-c6c17626abfe",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:26.736825"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "dded40a4-94f0-44a8-93d9-d68bce5864e0",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:26.736825"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "37e68e57-2e94-4df8-9674-c5578b789990",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "16ca816e-f395-4ff3-8a78-1ab2d71078ce",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Ball Lightning Breath"
+            },
+            "action_description": {
+              "value": "(arcane, electricity, evocation)\n\nThe sea drake spews a ball of electricity that strikes a primary target within 100 feet, dealing 7d6 electricity damage (DC 24 basic Reflex save). The lightning then arcs to up to three secondary targets within 30 feet of the primary target, striking the closest available targets first. The secondary bolts each strike one secondary target and deal the same rolled damage value as the primary bolt (DC 22 basic Reflex save). The sea drake can't use Ball Lightning Breath again for 1d6 rounds."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "electricity"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 7
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "2b5986d5-44cf-45a7-85ba-57b1adb70d3c",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:26.736825"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "93e9a4ae-2798-4d9e-9fdf-f10533e1573f",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:26.736825"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "ef26f7e7-27dc-4d8d-9494-b30570cafb59",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "27932345-40f0-4de9-a91a-097eb1680384",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Capsize"
+            },
+            "action_description": {
+              "value": "(attack)\n\nThe drake tries to capsize an adjacent aquatic vessel of its size or smaller. The drake must succeed at an Athletics check with a DC of 25 (reduced by 5 for each size smaller the vessel is than the drake) or the pilot's Sailing Lore DC, whichever is higher."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "c1a89536-7f41-41eb-8ea2-4a2998eed41f",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Draconic Frenzy"
+            },
+            "action_description": {
+              "value": "The sea drake makes one jaws Strike and two tail Strikes in any order."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "3bf07fb6-d6a3-4ab0-8792-a5f345641e52",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Speed Surge"
+            },
+            "action_description": {
+              "value": "Frequency: 3/day\n\nThe sea drake Strides or Flies twice."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "a28293ca-5fad-415b-a6be-267a8cd96417",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Electrified Blood"
+            },
+            "action_description": {
+              "value": "(electricity)\n\nTrigger: An adjacent creature deals piercing or slashing damage to the sea drake\n\nAn arc of electricity courses through the sea drake's blood. The triggering creature takes 1d6 electricity damage."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "electricity"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "e96e8d3b-b9c9-4310-8124-49c24b444c39",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:26.736825"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "72cb19a5-c102-4c67-a73e-bda6ff6391bd",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:26.736825"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "f5dae21c-a10c-4f06-8684-5ea215d228ca",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "3383f175-57da-4110-9fd1-b23f1aaa753c",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        }
+      ]
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:26.736825"
+    }
+  }
+}

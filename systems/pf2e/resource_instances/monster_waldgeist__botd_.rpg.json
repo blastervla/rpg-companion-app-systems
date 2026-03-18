@@ -1,0 +1,1367 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "waldgeist__botd_",
+    "name": {
+      "value": "Waldgeist"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "botd"
+    },
+    "tag": {
+      "value": "undead, Incorporeal"
+    },
+    "armor_class": {
+      "value": 26
+    },
+    "hit_points": {
+      "value": 100
+    },
+    "level": {
+      "value": 8
+    },
+    "xp": {
+      "value": 160
+    },
+    "initiative": {
+      "value": 18
+    },
+    "perception": {
+      "value": 18
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 25
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 30
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": -5
+    },
+    "dexterity_modifier": {
+      "value": 6
+    },
+    "constitution_modifier": {
+      "value": 3
+    },
+    "intelligence_modifier": {
+      "value": 3
+    },
+    "wisdom_modifier": {
+      "value": 6
+    },
+    "charisma_modifier": {
+      "value": 4
+    },
+    "fortitude": {
+      "value": 13
+    },
+    "reflex": {
+      "value": 16
+    },
+    "will": {
+      "value": 18
+    },
+    "skills": {
+      "value": "Acrobatics +16, Intimidation +16, Nature +18, Stealth +18, Woodland Lore +21"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Death Effects, Disease, Paralyzed, Poison, Precision, Unconscious"
+    },
+    "resistances": {
+      "value": "All Damage 5 (except force, ghost touch, or positive; double resistance vs. non-magical)"
+    },
+    "senses": {
+      "value": "darkvision"
+    },
+    "languages": {
+      "value": "Arboreal, Common, Sylvan; speak with plants"
+    },
+    "size": {
+      "value": "small"
+    },
+    "type": {
+      "value": "spirit"
+    },
+    "alignment": {
+      "value": "neutral_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Forest Guardian"
+            },
+            "trait_description": {
+              "value": "A waldgeist is compelled to investigate the sound of wood or trees being damaged, such as by being burned or chopped down.\n\nA waldgeist that hears such a sound must succeed at a DC 26 Will save or spend all their actions moving toward the sound until they identify the cause. This can't be used to compel a waldgeist to leave their bonded woodland. A waldgeist that succeeds at their saving throw is temporarily immune for 10 minutes."
+            },
+            "id": "543d1d76-3879-40d8-a18d-9a885d08450a",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Woodland Dependent"
+            },
+            "trait_description": {
+              "value": "A waldgeist is mystically bonded to a single forest, jungle, orchard, grove, or other similar large, wooded area and must remain within it. If the waldgeist moves outside their bonded woodland, they're immediately destroyed."
+            },
+            "id": "c45658ee-f03e-4949-bbcf-4574b0bfc897",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Lignify"
+            },
+            "trait_description": {
+              "value": "(incapacitation, primal, transmutation)\n\nThe touch of a waldgeist transforms flesh into wood. A living creature damaged by the waldgeist's lignifying hand Strike must succeed at a DC 24 Fortitude save or become slowed 1 (or slowed 2 on a critical failure). Further failed saves against lignify increases the slowed condition. Once a creature's actions are reduced to 0 by lignify, that creature becomes petrified, except they're transformed into wood instead of stone."
+            },
+            "id": "e2ca9c2c-c33a-4401-9c03-7c4f8afa7d16",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "lignifying hand"
+            },
+            "action_description": {
+              "value": "(finesse, magical) 2d8+7 negative plus lignify"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 18
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "negative"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 7
+                                    },
+                                    "id": "47dc514c-879c-4e0b-abde-4a415dfb2d06",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:28.527612"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "2a8f89bc-06ac-4fa3-a71e-383d85c7b46e",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:28.527612"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "7ba9c856-c47d-4a4e-abce-34d8c40becdb",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:28.527612"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "8447de95-9c35-4ca4-9e5b-5d7f3d8f48ed",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "branch"
+            },
+            "action_description": {
+              "value": "(reach 15 feet) 2d12+9 bludgeoning. While a waldgeist possesses a tree, any damage that would be dealt to the waldgeist is instead dealt to the tree. The tree has 60 Hit Points. When the tree is reduced to 0 Hit Points, the waldgeist is immediately ejected, and the tree is destroyed."
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 20
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d12"
+                                    },
+                                    "constant": {
+                                      "value": 9
+                                    },
+                                    "id": "c40b5c82-9652-4ac7-b9ba-94bb3138c3cb",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:28.527612"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "a0dabef7-6054-484b-b6cb-0f1ea85d011a",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:28.527612"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "a601669f-2229-4749-bd95-18999a7dd722",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:28.527612"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "e46d619c-27ac-4bbf-af20-25c1a06809d9",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Possess Tree"
+            },
+            "action_description": {
+              "value": "(primal, transmutation)\n\nFrequency: 1/minute\n\nThe waldgeist touches a tree to merge with it, possessing it for up to 1 minute. They can end this possession early as a free action at the start of their turn. While the waldgeist possesses a tree, they lose the incorporeal trait, fly Speed, all resistances, their non-constant spells, and their lignifying hand Strike. Additionally, their size increases to Huge, they gain resistance 5 to bludgeoning and piercing damage, weakness 10 to fire, Speed 20 feet, and the following branch Strike."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "e532b4fa-72cb-4084-8bad-f782a85e94a8",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": [
+        {
+          "resource_id": "monster_spellcasting_block",
+          "stats": {
+            "block_name": {
+              "value": ""
+            },
+            "tradition": {
+              "value": "primal"
+            },
+            "spellcasting_type": {
+              "value": "innate"
+            },
+            "spell_dc": {
+              "value": 24
+            },
+            "spell_attack_bonus": {
+              "value": 16
+            },
+            "spell_levels": {
+              "value": [
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 2
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "entangle__crb_",
+                          "name": {
+                            "value": "Entangle"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_2"
+                          },
+                          "school": {
+                            "value": "spell_school_transmutation"
+                          },
+                          "traditions": {
+                            "value": [
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "120 feet"
+                          },
+                          "duration": {
+                            "value": "1 minute"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": "all squares in a 20-foot burst that contain plants or fungi"
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "Plants or fungi in the area entangle creatures. The area counts as 3. Each round that a creature starts its turn in the area, it must attempt a Reflex save. On a failure, it takes a -10-foot circumstance penalty to its Speeds until it leaves the area, and on a critical failure, it is also immobilized for 1 round. Creatures can attempt to Escape at entangle's DC to remove these effects."
+                          },
+                          "higher_level_description": {
+                            "value": ""
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "plant"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 16
+                          },
+                          "spell_save_dc": {
+                            "value": 24
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": "at will"
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "498b4f73-0c5f-48c3-86e4-6d238438c367",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:28.527612"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 3
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "wall_of_thorns__crb_",
+                          "name": {
+                            "value": "Wall of Thorns"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_3"
+                          },
+                          "school": {
+                            "value": "spell_school_conjuration"
+                          },
+                          "traditions": {
+                            "value": [
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "three_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": true
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "60 feet"
+                          },
+                          "duration": {
+                            "value": "1 minute"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "Over the course of a minute, you cause a thick wall of thorny brambles to grow from the ground. You create a 5-footthick wall of brambles and thorns in a straight line up to 60 feet long and 10 feet high. You must create the wall in an unbroken open space so its edges don't pass through any creatures or objects, or the spell is lost. The wall stands vertically. If you wish, the wall can be of a shorter length or height. Everything on each side of the wall has cover from creatures on the opposite side, and the wall's spaces are 3. For every move action a creature uses to enter at least one of the wall's spaces, that creature takes 3d4 piercing damage.\n\nEach 10-foot-by-10-foot section of the wall has AC 10, Hardness 10, and 20 Hit Points. It's immune to critical hits and precision damage. A destroyed section can be moved through freely."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (+1): The Hit Points of each section of the wall increase by 5, and the piercing damage increases by 1d4."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "plant"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": [
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 3
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 3
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d4"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "59b690ec-ad4b-4fd2-9400-45d25208b67a"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "piercing"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "b9d43d15-a8a7-497d-aae5-c1ceb3324cf8"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "0e0a82eb-9faa-4b55-8282-a5fa5ab25cec"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 4
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 4
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d4"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "35c6fc5a-b257-4293-90aa-cd1eef903d0d"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "piercing"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "3c9e5f68-dd65-4dde-9928-5e9ba8c5fdb0"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "33d223f6-eeab-4f09-a8df-bf9b59061c47"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 5
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 5
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d4"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "99f4062b-c42c-4447-bc9f-1f923519b4dd"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "piercing"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "75943a04-17ce-4d25-8f63-498fbfc1a137"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "c53e1b48-e67d-4105-98b2-ab9b75677546"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 6
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 6
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d4"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "400648ba-8d93-4adc-9500-ea78c5e49957"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "piercing"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "77768aa6-d555-4502-a557-ab8e6971f2b8"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "35669926-67ab-4a2b-8b0e-6a65044e3793"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 7
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 7
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d4"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "65f09bf8-e777-417e-ba45-a0b3b5f3f0ca"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "piercing"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "d9ac6557-1ed3-4eef-854b-a02c2801287c"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "6ffdd2bb-a8a9-4b7e-b0a4-cafd159a7c1f"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 8
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 8
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d4"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "c1b7afe1-e645-40ef-b37e-b10c91dc0853"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "piercing"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "32f18683-e6f6-489c-b2df-3ab74ce7fc5a"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "bbbab88c-d255-4702-b36f-2fcedf56c75e"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 9
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 9
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d4"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "256d4c32-5032-4e57-8960-45630f99f895"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "piercing"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "14428e3f-e3d4-4171-afde-6afa798e06d6"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "36de3273-d0fc-46db-ae06-073ff6b6c3aa"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 10
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 10
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d4"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "a3ff9a4a-7845-49e7-8e01-120c53fb0861"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "piercing"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "b8a61385-02d1-4875-922c-da430612e74b"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "66c12260-5dfa-4273-a222-02a9a785a16d"
+                                }
+                              }
+                            ]
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 16
+                          },
+                          "spell_save_dc": {
+                            "value": 24
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "ccd7b70c-bbf6-4521-a52d-b427717f017a",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:28.527612"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 4
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "speak_with_plants__pc1_",
+                          "name": {
+                            "value": "Speak with Plants"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_3"
+                          },
+                          "school": {
+                            "value": "none"
+                          },
+                          "traditions": {
+                            "value": [
+                              "divine",
+                              "occult",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": ""
+                          },
+                          "duration": {
+                            "value": "1 hour"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "You can ask questions of and receive answers from plants and fungi, but the spell doesn't make them more friendly or intelligent than normal. Most normal plants and fungi have a distinctive view of the world around them, so they don't recognize details about creatures or know anything about the world beyond their immediate vicinity. Cunning plant monsters are likely to be terse and evasive, while less intelligent ones often make inane comments."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (4th): The duration is 8 hours."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "concentrate",
+                              "manipulate",
+                              "plant",
+                              "wood"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 16
+                          },
+                          "spell_save_dc": {
+                            "value": 24
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": "constant"
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "186272ee-8bce-460b-83fe-c2636ea4bbe8",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:28.527612"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 4
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "tanglefoot__crb_",
+                          "name": {
+                            "value": "Tanglefoot"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_0"
+                          },
+                          "school": {
+                            "value": "spell_school_conjuration"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": ""
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 creature"
+                          },
+                          "description": {
+                            "value": "A vine covered in sticky sap appears from thin air, flicking from your hand and lashing itself to the target. Attempt a spell attack against the target.\n\nCritical Success: The target gains the immobilized condition and takes a -10-foot circumstance penalty to its Speeds for 1 round. It can attempt to Escape against your spell DC to remove the penalty and the immobilized condition.\nSuccess: The target takes a -10-foot circumstance penalty to its Speeds for 1 round. It can attempt to Escape against your spell DC to remove the penalty.\nFailure: The target is unaffected."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (2th): The effects last for 2 rounds.\n\nHeightened (4th): The effects last for 1 minute."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "attack",
+                              "plant"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 16
+                          },
+                          "spell_save_dc": {
+                            "value": 24
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "5502f15b-ab44-4b3a-903e-9417deb42756",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:28.527612"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 5
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "tree_stride__crb_",
+                          "name": {
+                            "value": "Tree Stride"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_5"
+                          },
+                          "school": {
+                            "value": "spell_school_conjuration"
+                          },
+                          "traditions": {
+                            "value": [
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "activity"
+                          },
+                          "casting_time": {
+                            "value": "1 minute"
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": true
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": ""
+                          },
+                          "duration": {
+                            "value": ""
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "You step into a living tree with a trunk big enough for you to fit inside it and instantly teleport to any tree of the same species within 5 miles that also has a sufficiently large trunk.\n\nOnce you enter the first tree, you instantly know the rough locations of other sufficiently large trees of the same species within range and can exit from the original tree, if you prefer.\n\nYou can't carry extradimensional spaces with you; if you attempt to do so, the spell fails."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (6th): The tree you exit can be up to 50 miles away.\n\nHeightened (8th): The tree you exit can be up to 500 miles away.\n\nHeightened (9th): The tree you exit can be anywhere on the same planet."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "plant",
+                              "teleportation"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 16
+                          },
+                          "spell_save_dc": {
+                            "value": 24
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "644eda98-3541-415b-8f02-0e0b4658c978",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:28.527612"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "edd4386c-5a93-45f1-8e91-f884628a8581",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.527612"
+            }
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:28.527612"
+    }
+  }
+}

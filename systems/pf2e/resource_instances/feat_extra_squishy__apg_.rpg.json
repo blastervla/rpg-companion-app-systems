@@ -1,0 +1,152 @@
+{
+  "resource_id": "feat",
+  "stats": {
+    "id": "feat_extra_squishy__apg_",
+    "updated_at": {
+      "value": "2026-03-16T23:55:12.219969+00:00"
+    },
+    "name": {
+      "value": "Extra Squishy"
+    },
+    "source": {
+      "value": "apg"
+    },
+    "type": {
+      "value": "ancestry"
+    },
+    "action_cost": {
+      "value": "passive"
+    },
+    "traits": {
+      "value": "goblin"
+    },
+    "classes": {
+      "value": []
+    },
+    "ancestries": {
+      "value": [
+        "goblin__pc1_"
+      ]
+    },
+    "prerequisites": {
+      "value": "goblin heritage"
+    },
+    "trigger": {
+      "value": ""
+    },
+    "requirements": {
+      "value": ""
+    },
+    "frequency": {
+      "value": ""
+    },
+    "access": {
+      "value": ""
+    },
+    "special": {
+      "value": ""
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "id": "levelled_description_f6176b846b82",
+            "level": {
+              "value": 1
+            },
+            "description": {
+              "value": "Your rubbery physique makes it easier for you to wedge yourself into tight spaces and more difficult for your enemies to dislodge you. You become trained in Acrobatics. If you would automatically become trained in Acrobatics (from your background or class, for example), you instead become trained in a skill of your choice. If you roll a success to Squeeze, you get a critical success instead. While you're Squeezing, you gain a +4 circumstance bonus to your Fortitude or Reflex DCs against attempts to Shove you or otherwise move you from your space."
+            }
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_b22ea71076bb",
+            "level": {
+              "value": 1
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_e960e89e9c72",
+                  "name": {
+                    "value": "Grant Trained in Acrobatics"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "grant_proficiency"
+                  },
+                  "proficiency_stat": {
+                    "value": "$character.acrobatics_proficiency"
+                  },
+                  "proficiency_rank": {
+                    "value": "trained"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_937516ae06b7",
+            "level": {
+              "value": 1
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_95b974b9fa21",
+                  "name": {
+                    "value": "+4 Circumstance Bonus to Fortitude"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "typed_add_to_stat"
+                  },
+                  "typed_modifier_type": {
+                    "value": "circumstance"
+                  },
+                  "typed_modifier_polarity": {
+                    "value": "bonus"
+                  },
+                  "stat": {
+                    "value": "$character.fortitude"
+                  },
+                  "constant": {
+                    "value": 4
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "skill_proficiencies": {
+      "value": []
+    },
+    "armor_proficiencies": {
+      "value": []
+    },
+    "weapon_proficiencies": {
+      "value": []
+    },
+    "lore_skills": {
+      "value": []
+    }
+  }
+}
