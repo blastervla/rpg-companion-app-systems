@@ -1,0 +1,18 @@
+view source_edit() =
+  list(
+    id = "source_edit",
+    padding = 32,
+    alignment = "start",
+    subviews = [
+      text(
+        id = "source_edit_abbreviation",
+        edit_stat = "abbreviation",
+        style = "text",
+        max_length = 8,
+        label = "Abbreviation",
+        validation_message = if isEmpty($view.source_edit_abbreviation)
+          then "Please fill in the abbreviation field"
+          else null,
+      ),
+    ],
+  );

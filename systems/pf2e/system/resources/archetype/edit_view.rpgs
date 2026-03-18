@@ -1,0 +1,93 @@
+view archetype_edit() =
+  list(
+    id = "archetype_edit",
+    padding = 16,
+    subviews = [
+      text(
+        id = "archetype_edit_name",
+        edit_stat = "name",
+        style = "text",
+        label = "Name",
+        max_length = 140,
+        validation_message = if isEmpty($view.archetype_edit_name)
+          then "Please add a name to your archetype"
+          else null,
+      ),
+      composite(
+        id = "archetype_edit_source",
+        margin_top = 4,
+        subviews = [
+          text(id = "archetype_edit_source_label", text = "Source: ", style = "text"),
+          select(
+            id = "archetype_edit_source_select",
+            options = "source",
+            options_display_stat = "abbreviation",
+            stat = "source",
+          ),
+        ],
+      ),
+      text(
+        id = "archetype_edit_description",
+        edit_stat = "description",
+        style = "text",
+        label = "Description",
+        margin_top = 4,
+      ),
+      checkbox(
+        id = "archetype_edit_is_class_archetype",
+        stat = "is_class_archetype",
+        label = "Is class archetype",
+        label_alignment = "right",
+        margin_top = 4,
+        style = "checkbox",
+      ),
+      composite(
+        id = "archetype_edit_required_class_id",
+        margin_top = 4,
+        subviews = [
+          text(
+            id = "archetype_edit_required_class_id_label",
+            text = "Required class: ",
+            style = "text",
+          ),
+          select(
+            id = "archetype_edit_required_class_id_select",
+            options = "class",
+            options_display_stat = "name",
+            stat = "required_class_id",
+          ),
+        ],
+        is_visible = $view.archetype_edit_is_class_archetype,
+      ),
+      composite(
+        id = "archetype_edit_dedication_feat_composite",
+        margin_top = 8,
+        subviews = [
+          text(
+            id = "archetype_edit_dedication_feat_label",
+            text = "Dedication feat: ",
+            style = "text",
+          ),
+          selectResources(
+            id = "archetype_edit_dedication_feat_select",
+            stat = "dedication_feat",
+            resource_id = "feat",
+          ),
+        ],
+      ),
+      resourceArray(
+        id = "archetype_edit_feats",
+        resource_id = "feat",
+        stat = "feats",
+        view_type = "edit",
+        left_view = text(
+          id = "archetype_edit_feats_label",
+          text = "Archetype feats: ",
+          style = "text",
+        ),
+        margin_top = 8,
+        pop_up_type = "bottomSheet",
+        pop_up_button_text = name,
+      ),
+    ],
+  );

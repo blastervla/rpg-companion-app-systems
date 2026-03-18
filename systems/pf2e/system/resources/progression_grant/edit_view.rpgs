@@ -1,0 +1,32 @@
+view progression_grant_edit() =
+  list(
+    id = "progression_grant_edit",
+    subviews = [
+      text(
+        id = "progression_grant_edit_level",
+        edit_stat = "level",
+        label = "Level",
+        style = "text",
+        max_length = 3,
+      ),
+      select(
+        id = "progression_grant_edit_bucket",
+        stat = "bucket",
+        options = "progression_bucket",
+      ),
+      text(
+        id = "progression_grant_edit_amount",
+        edit_stat = "amount",
+        label = "Amount",
+        style = "text",
+        max_length = 3,
+        signed = false,
+      ),
+      text(
+        id = "progression_grant_edit_notes",
+        edit_stat = "notes",
+        label = "Notes",
+        style = "text",
+      ),
+    ],
+  );

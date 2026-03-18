@@ -1,0 +1,29 @@
+view levelled_value_calculator_edit() =
+  resourceArray(
+    id = "levelled_value_calculator_edit",
+    resource_id = "value_calculator",
+    stat = "calculators",
+    view_type = "edit",
+    left_view = composite(
+      id = "levelled_value_calculator_edit_composite",
+      subviews = [
+        text(
+          id = "levelled_value_calculator_edit_level",
+          edit_stat = "level",
+          style = "text",
+          hint = "From lvl",
+          max_length = 6,
+        ),
+        select(
+          id = "levelled_value_calculator_edit_aggregation_type",
+          stat = "aggregation_type",
+          options = "min_max_of",
+        ),
+      ],
+    ),
+    pop_up_type = "bottomSheet",
+    pop_up_button_text = description,
+    validation_message = if isEmpty($view.levelled_value_calculator_edit)
+      then "You have an empty levelled calculator. Please add calculators to it or remove it."
+      else null,
+  );

@@ -1,0 +1,23 @@
+view monster_trait_edit() =
+  list(
+    id = "monster_trait_edit",
+    padding = 16,
+    subviews = [
+      text(
+        id = "monster_trait_edit_name",
+        edit_stat = "trait_name",
+        style = "text",
+        label = "Name",
+        max_length = 140,
+        validation_message = if isEmpty($view.monster_trait_edit_name)
+          then "Please add a name to your trait"
+          else null,
+      ),
+      text(
+        id = "monster_trait_edit_description",
+        edit_stat = "trait_description",
+        label = "Description",
+        style = "text",
+      ),
+    ],
+  );

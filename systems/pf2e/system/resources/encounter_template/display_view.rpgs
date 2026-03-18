@@ -1,0 +1,79 @@
+view encounter_template_display() =
+  list(
+    id = "encounter_template_display",
+    padding = 16,
+    alignment = "start",
+    subviews = [
+      list(
+        id = "encounter_template_display_non_level_up",
+        subviews = [
+          text(
+            margin_left = 16,
+            id = "encounter_template_display_source",
+            style = "caption",
+            resource_id = "source",
+            resource_instance_ids_stat = "source",
+            resource_display_stat = "abbreviation",
+            is_visible = !isEmpty(source),
+          ),
+          text(
+            id = "encounter_template_display_description",
+            text = description,
+            style = "text",
+          ),
+          composite(
+            id = "encounter_template_display_pf2e_budget",
+            margin_top = 8,
+            subviews = [
+              text(
+                id = "encounter_template_display_pf2e_budget_label",
+                text = "PF2e budget: ",
+                style = "text",
+                bold = true,
+              ),
+              text(
+                id = "encounter_template_display_pf2e_budget_text",
+                text = pf2e_budget_summary,
+                style = "text",
+              ),
+            ],
+          ),
+          composite(
+            id = "encounter_template_display_pf2e_details",
+            subviews = [
+              text(
+                id = "encounter_template_display_pf2e_details_counts",
+                text = concat(["Count ", combatant_count_summary, ", "]),
+                style = "caption",
+              ),
+              text(
+                id = "encounter_template_display_pf2e_details_tier",
+                text = concat(["Expected ", expected_difficulty_name]),
+                style = "caption",
+              ),
+              text(
+                id = "encounter_template_display_pf2e_details_target",
+                text = concat([" vs target ", desired_difficulty_name]),
+                style = "caption",
+              ),
+            ],
+          ),
+          text(
+            id = "encounter_template_display_pf2e_too_hard_warning",
+            margin_top = 2,
+            text = "Encounter exceeds selected target difficulty.",
+            style = "caption",
+            color = "accent",
+            is_visible = !within_desired_difficulty,
+          ),
+          resourceArray(
+            id = "encounter_template_display_combatants",
+            margin_top = 8,
+            resource_id = "monster_combat_template_entry",
+            stat = "combatant_pool",
+            view_type = "list",
+          ),
+        ],
+      ),
+    ],
+  );

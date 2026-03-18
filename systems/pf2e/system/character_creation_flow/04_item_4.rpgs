@@ -1,0 +1,97 @@
+character_creation_page edit_starting_equipment_title() =
+  characterCreationPage(
+    title = displayableData(
+      id = "edit_starting_equipment_title",
+      name = "Starting equipment",
+    ),
+    view = list(
+      id = "edit_character_starting_equipment",
+      padding = 32,
+      subviews = [
+        text(
+          id = "edit_character_starting_equipment_subheader",
+          text = "Select your starting equipment",
+          style = "subhead",
+        ),
+        resourceArray(
+          id = "edit_character_starting_equipment_equipment",
+          resource_id = "selectable_items",
+          stat = "creator_starting_equipment_choices",
+          view_type = "display",
+        ),
+        resourceArray(
+          id = "edit_character_starting_equipment_armor",
+          resource_id = "selectable_armors",
+          stat = "creator_starting_armor_choices",
+          view_type = "display",
+        ),
+        resourceArray(
+          id = "edit_character_starting_equipment_weapon",
+          resource_id = "selectable_weapons",
+          stat = "creator_starting_weapon_choices",
+          view_type = "display",
+        ),
+      ],
+    ),
+    on_page_open = setStat(stat = "selecting", new_value = true, aggregation_type = "set"),
+    on_page_close = setStat(stat = "selecting", new_value = false, aggregation_type = "set"),
+    post_edit = sequence(
+      effects = [
+        forEach(
+          flatMap(
+            creator_starting_equipment_choices,
+            mapper = ($mapValue) => $mapValue.selected_options,
+          ),
+          apply = when {
+            notNull($forEachValue.item) -> setStat(
+              stat = "$forEachValue.item.quantity",
+              new_value = $forEachValue.amount,
+              aggregation_type = "set",
+            ),
+          },
+        ),
+        addToStat(
+          stat = "equipment",
+          value = filter(
+            map(
+              flatMap(
+                creator_starting_equipment_choices,
+                mapper = ($mapValue) => $mapValue.selected_options,
+              ),
+              mapper = ($mapValue) => copyResource($mapValue.item, preserve_ids = false),
+            ),
+            filter = ($filterValue) => notNull($filterValue),
+          ),
+          aggregation_type = "set",
+        ),
+        addToStat(
+          stat = "armors",
+          value = filter(
+            map(
+              flatMap(
+                creator_starting_armor_choices,
+                mapper = ($mapValue) => $mapValue.selected_options,
+              ),
+              mapper = ($mapValue) => copyResource($mapValue.armor, preserve_ids = false),
+            ),
+            filter = ($filterValue) => notNull($filterValue),
+          ),
+          aggregation_type = "set",
+        ),
+        addToStat(
+          stat = "weapons",
+          value = filter(
+            map(
+              flatMap(
+                creator_starting_weapon_choices,
+                mapper = ($mapValue) => $mapValue.selected_options,
+              ),
+              mapper = ($mapValue) => copyResource($mapValue.weapon, preserve_ids = false),
+            ),
+            filter = ($filterValue) => notNull($filterValue),
+          ),
+          aggregation_type = "set",
+        ),
+      ],
+    ),
+  );

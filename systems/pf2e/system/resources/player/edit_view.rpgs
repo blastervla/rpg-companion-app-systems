@@ -1,0 +1,79 @@
+view player_edit() =
+  list(
+    padding = 32,
+    subviews = [
+      text(
+        id = "player_edit_name",
+        edit_stat = "name",
+        style = "text",
+        label = "Name",
+        max_length = 140,
+        validation_message = if isEmpty($view.player_edit_name)
+          then "Please add a name to your player"
+          else null,
+      ),
+      composite(
+        id = "player_edit_lvl_initiative",
+        subviews = [
+          text(
+            id = "player_edit_basics_initiative_label",
+            text = "Level: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "player_edit_basics_level_text",
+            edit_stat = "level",
+            style = "text",
+            signed = true,
+            max_length = 3,
+            margin_right = 8,
+          ),
+          text(
+            id = "player_edit_basics_initiative_label",
+            text = "Initiative: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "player_edit_basics_initiative_text",
+            edit_stat = "initiative",
+            style = "text",
+            signed = true,
+            max_length = 3,
+          ),
+        ],
+      ),
+      composite(
+        id = "player_edit_basics_armor_class",
+        subviews = [
+          text(
+            id = "player_edit_basics_armor_class_label",
+            text = "AC: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "player_edit_basics_armor_class_text",
+            edit_stat = "armor_class",
+            style = "text",
+            max_length = 2,
+            margin_right = 8,
+          ),
+          text(
+            id = "player_edit_basics_perception_label",
+            text = "Perception: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "player_edit_basics_perception_text",
+            edit_stat = "perception",
+            style = "text",
+            signed = true,
+            max_length = 3,
+          ),
+        ],
+      ),
+    ],
+  );

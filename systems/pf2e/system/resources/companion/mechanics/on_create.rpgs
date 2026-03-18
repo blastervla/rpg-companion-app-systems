@@ -1,0 +1,11 @@
+mechanic on_create(name = "On create", event_names = "rpg_onCreate") =
+  sequence(
+    effects = [
+      setStat(
+        stat = "max_hp",
+        new_value = monster.average_hp,
+        aggregation_type = "set",
+      ),
+      setStat(stat = "hp", new_value = max_hp, aggregation_type = "set"),
+    ],
+  );

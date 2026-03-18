@@ -1,0 +1,19 @@
+mechanic show_next_daily_preparations_selectable_feature(event_names = "show_next_daily_preparations_selectable_feature") =
+  when {
+    daily_preparations_reselection_in_progress && notNull(next_daily_preparations_pending_reselectable_feature) -> showResource(
+        resource = next_daily_preparations_pending_reselectable_feature,
+      ),
+    daily_preparations_reselection_in_progress -> sequence(
+        effects = [
+          setStat(
+            stat = "daily_preparations_reselection_in_progress",
+            new_value = false,
+            aggregation_type = "set",
+          ),
+          showMessage(
+            message = "Daily feature re-selection complete.",
+            message_type = "info",
+          ),
+        ],
+      ),
+  };

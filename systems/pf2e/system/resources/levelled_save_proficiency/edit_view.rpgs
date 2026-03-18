@@ -1,0 +1,20 @@
+view levelled_save_proficiency_edit() =
+  composite(
+    id = "levelled_save_proficiency_edit",
+    row_only = true,
+    subviews = [
+      text(
+        id = "levelled_save_proficiency_edit_level",
+        edit_stat = "level",
+        style = "text",
+        hint = "Lvl",
+        max_length = 3,
+      ),
+      select(
+        id = "levelled_save_proficiency_edit_proficiency",
+        stat = "proficiency",
+        options = "skill_proficiency_types",
+        margin_left = 4,
+      ),
+    ],
+  );

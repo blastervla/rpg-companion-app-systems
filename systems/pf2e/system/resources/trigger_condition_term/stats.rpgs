@@ -1,0 +1,15 @@
+base string stat(name = "Stat") = "$character.strength_score";
+
+base string condition(name = "Condition") = "lower_than_equal";
+
+base decimal value(name = "Value") = 0;
+
+calc bool evaluated_value(name = "Evaluated") =
+  when {
+    condition == "lower_than" -> metaStat(meta_stat = stat) < value,
+    condition == "lower_than_equal" -> metaStat(meta_stat = stat) <= value,
+    condition == "equal" -> metaStat(meta_stat = stat) == value,
+    condition == "not_equal" -> metaStat(meta_stat = stat) != value,
+    condition == "higher_than" -> metaStat(meta_stat = stat) > value,
+    condition == "higher_than_equal" -> metaStat(meta_stat = stat) >= value,
+  };

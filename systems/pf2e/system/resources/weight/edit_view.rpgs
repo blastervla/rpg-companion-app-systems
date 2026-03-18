@@ -1,0 +1,14 @@
+view edit_weight_composite() =
+  composite(
+    id = "edit_weight_composite",
+    subviews = [
+      text(
+        id = "edit_weight_value",
+        edit_stat = "value",
+        style = "text",
+        max_length = 5,
+        hint = "0",
+      ),
+      select(id = "edit_weight_unit_select", stat = "unit", options = "weight_units"),
+    ],
+  );

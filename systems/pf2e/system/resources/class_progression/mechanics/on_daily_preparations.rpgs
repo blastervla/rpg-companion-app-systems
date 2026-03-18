@@ -1,0 +1,52 @@
+mechanic on_daily_preparations(event_names = "daily_preparations") =
+  when {
+    show_spellcasting_details -> sequence(
+      effects = [
+        setStat(
+          stat = "$character.spell_slots_1",
+          new_value = max_class_spell_slots_1 + (metaStat(meta_stat = "$character.max_spell_slots_1_bonus") ?? 0),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "$character.spell_slots_2",
+          new_value = max_class_spell_slots_2 + (metaStat(meta_stat = "$character.max_spell_slots_2_bonus") ?? 0),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "$character.spell_slots_3",
+          new_value = max_class_spell_slots_3 + (metaStat(meta_stat = "$character.max_spell_slots_3_bonus") ?? 0),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "$character.spell_slots_4",
+          new_value = max_class_spell_slots_4 + (metaStat(meta_stat = "$character.max_spell_slots_4_bonus") ?? 0),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "$character.spell_slots_5",
+          new_value = max_class_spell_slots_5 + (metaStat(meta_stat = "$character.max_spell_slots_5_bonus") ?? 0),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "$character.spell_slots_6",
+          new_value = max_class_spell_slots_6 + (metaStat(meta_stat = "$character.max_spell_slots_6_bonus") ?? 0),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "$character.spell_slots_7",
+          new_value = max_class_spell_slots_7 + (metaStat(meta_stat = "$character.max_spell_slots_7_bonus") ?? 0),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "$character.spell_slots_8",
+          new_value = max_class_spell_slots_8 + (metaStat(meta_stat = "$character.max_spell_slots_8_bonus") ?? 0),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "$character.spell_slots_9",
+          new_value = max_class_spell_slots_9 + (metaStat(meta_stat = "$character.max_spell_slots_9_bonus") ?? 0),
+          aggregation_type = "set",
+        ),
+      ],
+    ),
+  };

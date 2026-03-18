@@ -1,0 +1,29 @@
+view levelled_skill_proficiency_edit() =
+  composite(
+    id = "levelled_skill_proficiency_edit",
+    subviews = [
+      text(
+        id = "levelled_skill_proficiency_edit_level",
+        edit_stat = "level",
+        style = "text",
+        hint = "Lvl",
+        max_length = 3,
+      ),
+      select(
+        id = "levelled_skill_proficiency_edit_options",
+        stat = "options",
+        options = "skill_types",
+        multi_select = true,
+        validation_message = if isEmpty($view.levelled_skill_proficiency_edit_options)
+          then "You have a box with empty skill proficiency options. Please add options to it or remove it"
+          else null,
+      ),
+      checkbox(
+        id = "levelled_skill_proficiency_is_expertise",
+        stat = "is_expertise",
+        label = if $view.levelled_skill_proficiency_is_expertise then "Expert" else "Regular",
+        label_alignment = "right",
+        style = "switcher",
+      ),
+    ],
+  );

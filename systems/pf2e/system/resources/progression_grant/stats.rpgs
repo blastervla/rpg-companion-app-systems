@@ -1,0 +1,35 @@
+base integer level(name = "Level", abbreviation = "Lvl") = 1;
+
+base string bucket(name = "Bucket") = "class_like_feat";
+
+base integer amount(name = "Amount") = 1;
+
+base string notes(name = "Notes") = "";
+
+calc string bucket_name(name = "Bucket name") =
+  enumeratedName(
+    enumerated_type = "progression_bucket",
+    id = bucket,
+  );
+
+calc string display_description(name = "Display description") =
+  concat(
+    [
+      "Lvl. ",
+      level,
+      ": ",
+      bucket_name,
+      " x",
+      amount,
+      (if isEmpty(notes) then "" else concat([" (", notes, ")"])),
+    ],
+  );
+
+base bool is_levelled(name = "Is levelled") = true;
+
+calc bool can_be_used(name = "Can execute") =
+  when {
+    defined(stat = "$parent.level") -> $parent.level,
+    defined(stat = "$character.level") -> $character.level,
+    else -> 1,
+  } >= level;

@@ -1,0 +1,18 @@
+view armor_search_item() =
+  listItem(
+    id = "armor_search_item",
+    title = name,
+    subtitle = properties,
+    first_line_extra = armor_class,
+    second_line_extra = required_strength_summary,
+    chips = [
+      createChip(
+        id = "spell_search_item_source_chip",
+        background_color = "hint",
+        style = "compact",
+        resource_id = "source",
+        resource_instance_ids_stat = "source",
+        resource_display_stat = "abbreviation",
+      ),
+    ],
+  );

@@ -1,0 +1,71 @@
+mechanic on_daily_preparations(event_names = "daily_preparations") =
+  sequence(
+    effects = [
+      setStat(stat = "current_hp", new_value = max_hp, aggregation_type = "set"),
+      setStat(
+        stat = "focus_points",
+        new_value = max_focus_points,
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "actions_remaining",
+        new_value = 3,
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "reaction_available",
+        new_value = 1,
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "hero_points",
+        new_value = max([1, hero_points]),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "selected_selectable_feature_ids",
+        new_value = filter(
+          selected_selectable_feature_ids,
+          filter = ($id) => !contains(
+            haystack = daily_preparations_reselectable_option_ids,
+            needle = $id,
+          ),
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "daily_preparations_reselection_in_progress",
+        new_value = daily_preparations_reselectable_features_count > 0,
+        aggregation_type = "set",
+      ),
+      when {
+        daily_preparations_reselectable_features_count > 0 -> sequence(
+            effects = [
+              showMessage(
+                message = concat(
+                  [
+                    "Daily preparations complete. Core resources were refreshed. Re-select temporary daily features (",
+                    daily_preparations_reselectable_features_count,
+                    ").",
+                  ],
+                ),
+                message_type = "info",
+              ),
+              delayed(
+                millis = 100,
+                effect = fireEvent(
+                  event = event(
+                    name = "show_next_daily_preparations_selectable_feature",
+                    payload = payload(),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        else -> showMessage(
+            message = "Daily preparations complete. HP, spell ranks, focus points and action economy were refreshed.",
+            message_type = "info",
+          ),
+      },
+    ],
+  );

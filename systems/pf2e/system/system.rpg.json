@@ -1,0 +1,859 @@
+{
+  "id": "pf2e",
+  "name": "Pathfinder 2e (Remaster)",
+  "abbreviation": "PF2e",
+  "version": "0.1.1",
+  "min_app_version": "1.0.0",
+  "character_indexed_stats": [
+    "name",
+    "created_at_display",
+    "description"
+  ],
+  "live_session_enabled": true,
+  "progression_systems": {
+    "experience_levelling_system": {
+      "level_up_view_title": {
+        "type": "concat",
+        "components": {
+          "type": "list",
+          "components": [
+            {
+              "type": "constant",
+              "value": "Level Up to ",
+              "value_type": "string"
+            },
+            {
+              "type": "add",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "stat",
+                    "stat": "level"
+                  },
+                  {
+                    "type": "constant",
+                    "value": 1,
+                    "value_type": "integer"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "level_up_button_text": "Advance Level",
+      "level_up_icon": "ic_progression",
+      "level_up_icon_color": "#FFB300",
+      "level_up_view": {
+        "id": "level_up",
+        "type": "list",
+        "padding": 16,
+        "subviews": [
+          {
+            "id": "level_up_as_comp",
+            "type": "composite",
+            "subviews": [
+              {
+                "id": "level_up_label",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value": "Level up as a ",
+                  "value_type": "string"
+                },
+                "style": "text"
+              },
+              {
+                "id": "level_up_select_class",
+                "type": "select",
+                "stat": "temp_level_up_class",
+                "resource_options": {
+                  "type": "map",
+                  "components": {
+                    "type": "stat",
+                    "stat": "classes"
+                  },
+                  "mapper": {
+                    "type": "stat",
+                    "stat": "$mapValue.class"
+                  }
+                },
+                "options_display_stat": "name"
+              }
+            ]
+          }
+        ]
+      },
+      "on_level_up_confirm": {
+        "type": "sequence",
+        "effects": [
+          {
+            "type": "setStat",
+            "stat": "currently_levelling_up",
+            "new_value": {
+              "type": "constant",
+              "value": true,
+              "value_type": "bool"
+            },
+            "aggregation_type": "set"
+          },
+          {
+            "type": "setStat",
+            "stat": "temp_last_level_up_class_id",
+            "new_value": {
+              "type": "stat",
+              "stat": "level_up_selected_class_progression.class.id"
+            },
+            "aggregation_type": "set"
+          },
+          {
+            "type": "forEach",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "level_up_selected_class_progression"
+                }
+              ]
+            },
+            "apply": {
+              "type": "sequence",
+              "effects": [
+                {
+                  "type": "addToStat",
+                  "stat": "$class_progression.class_level",
+                  "value": {
+                    "type": "constant",
+                    "value": 1,
+                    "value_type": "integer"
+                  },
+                  "aggregation_type": "set"
+                }
+              ]
+            },
+            "for_each_value_key": "$class_progression"
+          },
+          {
+            "type": "setStat",
+            "stat": "temp_level_up_class",
+            "new_value": {
+              "type": "constant",
+              "value": null,
+              "value_type": "string"
+            },
+            "aggregation_type": "set"
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "not",
+                  "components": {
+                    "type": "and",
+                    "components": {
+                      "type": "list",
+                      "components": [
+                        {
+                          "type": "isEmpty",
+                          "components": {
+                            "type": "stat",
+                            "stat": "level_up_language_proficiency_choices"
+                          }
+                        },
+                        {
+                          "type": "isEmpty",
+                          "components": {
+                            "type": "stat",
+                            "stat": "level_up_skill_proficiency_choices"
+                          }
+                        },
+                        {
+                          "type": "isEmpty",
+                          "components": {
+                            "type": "stat",
+                            "stat": "level_up_armor_proficiency_choices"
+                          }
+                        },
+                        {
+                          "type": "isEmpty",
+                          "components": {
+                            "type": "stat",
+                            "stat": "level_up_weapon_proficiency_choices"
+                          }
+                        },
+                        {
+                          "type": "isEmpty",
+                          "components": {
+                            "type": "stat",
+                            "stat": "level_up_lore_skill_choices"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "effect": {
+                  "type": "showPopUp",
+                  "pop_up_view": {
+                    "id": "level_up_select_proficiencies",
+                    "type": "list",
+                    "alignment": "start",
+                    "subviews": [
+                      {
+                        "id": "level_up_select_proficiencies_languages",
+                        "type": "resourceArray",
+                        "resource_id": "levelled_choice_text",
+                        "stat": "level_up_language_proficiency_choices",
+                        "view_type": "display",
+                        "left_view": {
+                          "id": "level_up_select_proficiencies_languages_label",
+                          "type": "text",
+                          "text": {
+                            "type": "constant",
+                            "value": "Languages proficiencies:",
+                            "value_type": "string"
+                          },
+                          "style": "text",
+                          "bold": true
+                        },
+                        "is_visible": {
+                          "type": "not",
+                          "components": {
+                            "type": "isEmpty",
+                            "components": {
+                              "type": "stat",
+                              "stat": "level_up_language_proficiency_choices"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "id": "level_up_select_proficiencies_skills",
+                        "type": "resourceArray",
+                        "resource_id": "levelled_skill_proficiency",
+                        "stat": "level_up_skill_proficiency_choices",
+                        "view_type": "display",
+                        "left_view": {
+                          "id": "level_up_select_proficiencies_skills_label",
+                          "type": "text",
+                          "text": {
+                            "type": "constant",
+                            "value": "Skill proficiencies:",
+                            "value_type": "string"
+                          },
+                          "style": "text",
+                          "bold": true
+                        },
+                        "is_visible": {
+                          "type": "not",
+                          "components": {
+                            "type": "isEmpty",
+                            "components": {
+                              "type": "stat",
+                              "stat": "level_up_skill_proficiency_choices"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "id": "level_up_select_proficiencies_armors",
+                        "type": "resourceArray",
+                        "resource_id": "levelled_armor_proficiency",
+                        "stat": "level_up_armor_proficiency_choices",
+                        "view_type": "display",
+                        "left_view": {
+                          "id": "level_up_select_proficiencies_armors_label",
+                          "type": "text",
+                          "text": {
+                            "type": "constant",
+                            "value": "Armor proficiencies:",
+                            "value_type": "string"
+                          },
+                          "style": "text",
+                          "bold": true
+                        },
+                        "is_visible": {
+                          "type": "not",
+                          "components": {
+                            "type": "isEmpty",
+                            "components": {
+                              "type": "stat",
+                              "stat": "level_up_armor_proficiency_choices"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "id": "level_up_select_proficiencies_weapons",
+                        "type": "resourceArray",
+                        "resource_id": "levelled_weapon_proficiency",
+                        "stat": "level_up_weapon_proficiency_choices",
+                        "view_type": "display",
+                        "left_view": {
+                          "id": "level_up_select_proficiencies_weapons_label",
+                          "type": "text",
+                          "text": {
+                            "type": "constant",
+                            "value": "Weapon proficiencies:",
+                            "value_type": "string"
+                          },
+                          "style": "text",
+                          "bold": true
+                        },
+                        "is_visible": {
+                          "type": "not",
+                          "components": {
+                            "type": "isEmpty",
+                            "components": {
+                              "type": "stat",
+                              "stat": "level_up_weapon_proficiency_choices"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "id": "level_up_select_proficiencies_lore_skills",
+                        "type": "resourceArray",
+                        "resource_id": "lore_skill",
+                        "stat": "level_up_lore_skill_choices",
+                        "view_type": "display",
+                        "left_view": {
+                          "id": "level_up_select_proficiencies_lore_skills_label",
+                          "type": "text",
+                          "text": {
+                            "type": "constant",
+                            "value": "Lore skills:",
+                            "value_type": "string"
+                          },
+                          "style": "text",
+                          "bold": true
+                        },
+                        "is_visible": {
+                          "type": "not",
+                          "components": {
+                            "type": "isEmpty",
+                            "components": {
+                              "type": "stat",
+                              "stat": "level_up_lore_skill_choices"
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "pop_up_title": {
+                    "type": "constant",
+                    "value": "Select additional proficiencies",
+                    "value_type": "string"
+                  },
+                  "pop_up_type": "alert",
+                  "dismissible": false,
+                  "display_cancel_button": false,
+                  "display_save_button": false,
+                  "should_persist_on_save": false,
+                  "extra_buttons": [
+                    {
+                      "text": {
+                        "type": "constant",
+                        "value": "SAVE",
+                        "value_type": "string"
+                      },
+                      "event": {
+                        "name": "level_up_set_proficiencies",
+                        "value": "level_up_set_proficiencies"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "should_show_progression_summary_popup"
+                },
+                "effect": {
+                  "type": "showPopUp",
+                  "pop_up_view": {
+                    "id": "level_up_progression_summary_list",
+                    "type": "list",
+                    "subviews": [
+                      {
+                        "id": "level_up_progression_summary_text",
+                        "type": "text",
+                        "text": {
+                          "type": "stat",
+                          "stat": "level_up_progression_grants_summary_text"
+                        },
+                        "style": "text",
+                        "is_visible": {
+                          "type": "not",
+                          "components": {
+                            "type": "isEmpty",
+                            "components": {
+                              "type": "stat",
+                              "stat": "level_up_progression_grants_summary_text"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "id": "level_up_progression_pending_text",
+                        "type": "text",
+                        "text": {
+                          "type": "stat",
+                          "stat": "progression_pending_slots_summary_text"
+                        },
+                        "style": "text",
+                        "is_visible": {
+                          "type": "not",
+                          "components": {
+                            "type": "isEmpty",
+                            "components": {
+                              "type": "stat",
+                              "stat": "progression_pending_slots_summary_text"
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "pop_up_type": "alert",
+                  "dismissible": true,
+                  "cancel_text": {
+                    "type": "constant",
+                    "value": "OK",
+                    "value_type": "string"
+                  },
+                  "pop_up_title": {
+                    "type": "constant",
+                    "value": "Progression",
+                    "value_type": "string"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "should_show_skill_increase"
+                },
+                "effect": {
+                  "type": "showPopUp",
+                  "pop_up_view": {
+                    "id": "level_up_skill_increase_list",
+                    "type": "list",
+                    "subviews": [
+                      {
+                        "id": "level_up_skill_increase_help_text",
+                        "type": "text",
+                        "text": {
+                          "type": "constant",
+                          "value": "Spend one skill increase.",
+                          "value_type": "string"
+                        },
+                        "style": "text"
+                      },
+                      {
+                        "id": "level_up_skill_increase_summary_text",
+                        "type": "text",
+                        "text": {
+                          "type": "stat",
+                          "stat": "temp_skill_increase_summary_text"
+                        },
+                        "style": "caption",
+                        "is_visible": {
+                          "type": "not",
+                          "components": {
+                            "type": "isEmpty",
+                            "components": {
+                              "type": "stat",
+                              "stat": "temp_skill_increase_summary_text"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "id": "level_up_skill_increase_skill_select",
+                        "type": "select",
+                        "stat": "temp_skill_increase_skill",
+                        "options": "skill_types"
+                      },
+                      {
+                        "id": "level_up_skill_increase_target_rank_select",
+                        "type": "select",
+                        "stat": "temp_skill_increase_target_rank",
+                        "options": "skill_proficiency_types"
+                      },
+                      {
+                        "id": "level_up_skill_increase_validation_message",
+                        "type": "text",
+                        "text": {
+                          "type": "stat",
+                          "stat": "temp_skill_increase_validation_message"
+                        },
+                        "style": "caption",
+                        "color": {
+                          "type": "constant",
+                          "value": "accent",
+                          "value_type": "string"
+                        },
+                        "is_visible": {
+                          "type": "not",
+                          "components": {
+                            "type": "isEmpty",
+                            "components": {
+                              "type": "stat",
+                              "stat": "temp_skill_increase_validation_message"
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "pop_up_type": "alert",
+                  "dismissible": false,
+                  "display_cancel_button": false,
+                  "display_save_button": false,
+                  "should_persist_on_save": false,
+                  "extra_buttons": [
+                    {
+                      "text": {
+                        "type": "constant",
+                        "value": "SAVE",
+                        "value_type": "string"
+                      },
+                      "event": {
+                        "name": "level_up_skill_increase",
+                        "value": "level_up_skill_increase"
+                      }
+                    }
+                  ],
+                  "pop_up_title": {
+                    "type": "constant",
+                    "value": "Skill Increase",
+                    "value_type": "string"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "when",
+            "clauses": [
+              {
+                "condition": {
+                  "type": "stat",
+                  "stat": "should_show_asi"
+                },
+                "effect": {
+                  "type": "showPopUp",
+                  "pop_up_view": {
+                    "id": "asi_list",
+                    "type": "list",
+                    "subviews": [
+                      {
+                        "id": "asi_help_text",
+                        "type": "text",
+                        "text": {
+                          "type": "constant",
+                          "value": "Choose 4 ability boosts.",
+                          "value_type": "string"
+                        },
+                        "style": "text"
+                      },
+                      {
+                        "id": "asi_selection_1_comp",
+                        "type": "composite",
+                        "subviews": [
+                          {
+                            "id": "asi_selection_1_label",
+                            "type": "text",
+                            "text": {
+                              "type": "constant",
+                              "value": "Boost 1: ",
+                              "value_type": "string"
+                            },
+                            "style": "text"
+                          },
+                          {
+                            "id": "asi_selection_1",
+                            "type": "select",
+                            "stat": "temp_asi_selection_1",
+                            "options": "ability"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "asi_selection_2_comp",
+                        "type": "composite",
+                        "subviews": [
+                          {
+                            "id": "asi_selection_2_label",
+                            "type": "text",
+                            "text": {
+                              "type": "constant",
+                              "value": "Boost 2: ",
+                              "value_type": "string"
+                            },
+                            "style": "text"
+                          },
+                          {
+                            "id": "asi_selection_2",
+                            "type": "select",
+                            "stat": "temp_asi_selection_2",
+                            "options": "ability"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "asi_selection_3_comp",
+                        "type": "composite",
+                        "subviews": [
+                          {
+                            "id": "asi_selection_3_label",
+                            "type": "text",
+                            "text": {
+                              "type": "constant",
+                              "value": "Boost 3: ",
+                              "value_type": "string"
+                            },
+                            "style": "text"
+                          },
+                          {
+                            "id": "asi_selection_3",
+                            "type": "select",
+                            "stat": "temp_asi_selection_3",
+                            "options": "ability"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "asi_selection_4_comp",
+                        "type": "composite",
+                        "subviews": [
+                          {
+                            "id": "asi_selection_4_label",
+                            "type": "text",
+                            "text": {
+                              "type": "constant",
+                              "value": "Boost 4: ",
+                              "value_type": "string"
+                            },
+                            "style": "text"
+                          },
+                          {
+                            "id": "asi_selection_4",
+                            "type": "select",
+                            "stat": "temp_asi_selection_4",
+                            "options": "ability"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "pop_up_type": "alert",
+                  "dismissible": false,
+                  "pop_up_title": {
+                    "type": "constant",
+                    "value": "Ability boosts",
+                    "value_type": "string"
+                  },
+                  "display_cancel_button": false,
+                  "should_persist_on_save": false,
+                  "extra_buttons": [
+                    {
+                      "text": {
+                        "type": "constant",
+                        "value": "SAVE",
+                        "value_type": "string"
+                      },
+                      "event": {
+                        "name": "level_up_asi",
+                        "value": "level_up_asi"
+                      }
+                    }
+                  ],
+                  "in_edit_mode": true
+                }
+              }
+            ]
+          },
+          {
+            "type": "forEach",
+            "components": {
+              "type": "stat",
+              "stat": "features_with_new_descriptions_in_new_level"
+            },
+            "apply": {
+              "type": "showPopUp",
+              "pop_up_view": {
+                "id": "level_up_feature_diff_text",
+                "type": "diffText",
+                "margin_top": 8,
+                "original_text": {
+                  "type": "defaultIfNull",
+                  "components": {
+                    "type": "stat",
+                    "stat": "$feat.previous_level_levelled_description?.description?"
+                  },
+                  "default_components": {
+                    "type": "constant",
+                    "value": "",
+                    "value_type": "string"
+                  }
+                },
+                "new_text": {
+                  "type": "stat",
+                  "stat": "$feat.current_level_levelled_description.description"
+                }
+              },
+              "pop_up_type": "alert",
+              "pop_up_title": {
+                "type": "stat",
+                "stat": "$feat.name"
+              },
+              "cancel_text": {
+                "type": "constant",
+                "value": "OK",
+                "value_type": "string"
+              }
+            },
+            "for_each_value_key": "$feat"
+          },
+          {
+            "type": "forEach",
+            "components": {
+              "type": "stat",
+              "stat": "selectable_features_with_new_amounts_in_new_level"
+            },
+            "apply": {
+              "type": "showResource",
+              "resource": {
+                "type": "stat",
+                "stat": "$feat"
+              }
+            },
+            "for_each_value_key": "$feat"
+          },
+          {
+            "type": "setStat",
+            "stat": "currently_levelling_up",
+            "new_value": {
+              "type": "constant",
+              "value": false,
+              "value_type": "bool"
+            },
+            "aggregation_type": "set"
+          }
+        ]
+      },
+      "experience_name": "experience",
+      "experience_abbreviation": "XP",
+      "level_stat_name": "level",
+      "milestones_system_name": "Milestones",
+      "tables": [
+        {
+          "id": "default",
+          "name": "PF2e Standard",
+          "experience_to_level_table": {
+            "-999999999": 1,
+            "0": 1,
+            "1000": 2,
+            "2000": 3,
+            "3000": 4,
+            "4000": 5,
+            "5000": 6,
+            "6000": 7,
+            "7000": 8,
+            "8000": 9,
+            "9000": 10,
+            "10000": 11,
+            "11000": 12,
+            "12000": 13,
+            "13000": 14,
+            "14000": 15,
+            "15000": 16,
+            "16000": 17,
+            "17000": 18,
+            "18000": 19,
+            "19000": 20
+          }
+        }
+      ]
+    }
+  },
+  "currencies": [
+    {
+      "id": "currencies_platinum_pieces",
+      "name": "Platinum Piece",
+      "plural": "Platinum Pieces",
+      "abbreviation": "PP",
+      "conversion": {
+        "currencies_gold_pieces": 10,
+        "currencies_electrum_pieces": 20,
+        "currencies_silver_pieces": 100,
+        "currencies_copper_pieces": 1000
+      }
+    },
+    {
+      "id": "currencies_gold_pieces",
+      "name": "Gold Piece",
+      "plural": "Gold Pieces",
+      "abbreviation": "GP",
+      "conversion": {
+        "currencies_platinum_pieces": 0.1,
+        "currencies_electrum_pieces": 2,
+        "currencies_silver_pieces": 10,
+        "currencies_copper_pieces": 100
+      }
+    },
+    {
+      "id": "currencies_electrum_pieces",
+      "name": "Electrum Piece",
+      "plural": "Electrum Pieces",
+      "abbreviation": "EP",
+      "conversion": {
+        "currencies_platinum_pieces": 0.05,
+        "currencies_gold_pieces": 0.5,
+        "currencies_silver_pieces": 5,
+        "currencies_copper_pieces": 50
+      }
+    },
+    {
+      "id": "currencies_silver_pieces",
+      "name": "Silver Piece",
+      "plural": "Silver Pieces",
+      "abbreviation": "SP",
+      "conversion": {
+        "currencies_platinum_pieces": 0.01,
+        "currencies_gold_pieces": 0.1,
+        "currencies_electrum_pieces": 0.2,
+        "currencies_copper_pieces": 10
+      }
+    },
+    {
+      "id": "currencies_copper_pieces",
+      "name": "Copper Piece",
+      "plural": "Copper Pieces",
+      "abbreviation": "CP",
+      "conversion": {
+        "currencies_platinum_pieces": 0.001,
+        "currencies_gold_pieces": 0.01,
+        "currencies_electrum_pieces": 0.02,
+        "currencies_silver_pieces": 0.1
+      }
+    }
+  ]
+}

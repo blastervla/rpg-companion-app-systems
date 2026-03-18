@@ -1,0 +1,32 @@
+view spell_list() =
+  listItem(
+    id = "spell_list",
+    title = name,
+    subtitle = display_type,
+    first_line_extra = display_requirements,
+    second_line_extra = range,
+    chips = flatAppend(
+      [
+        (if true == prepared
+          then [
+              createChip(
+                id = "prepared_chip",
+                text = "PREPARED",
+                background_color = "#4caf50",
+                style = "compact",
+              ),
+            ]
+          else []),
+        (if should_show_spellcasting_source_text && !isEmpty(selected_spellcasting_source_name)
+          then [
+              createChip(
+                id = "source_chip",
+                text = selected_spellcasting_source_name,
+                background_color = "hint",
+                style = "compact",
+              ),
+            ]
+          else []),
+      ],
+    ),
+  );

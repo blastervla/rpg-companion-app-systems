@@ -1,0 +1,53 @@
+view monster_instance_edit() =
+  list(
+    padding = 16,
+    alignment = "start",
+    subviews = [
+      composite(
+        id = "monster_instance_edit_basics",
+        subviews = [
+           avatar(
+            id = "monster_instance_edit_basics_photo",
+            photo_stat = "photo",
+            name_stat = "name",
+            size = "medium",
+            interactable = false,
+          ),
+          text(
+            id = "monster_instance_edit_name",
+            edit_stat = "name",
+            style = "text",
+            label = "Name",
+            max_length = 140,
+            validation_message = if isEmpty($view.monster_instance_edit_name)
+              then "Please add a name to your monster"
+              else null,
+          ),
+        ],
+      ),
+      section(
+        id = "monster_instance_edit",
+        show_divider = false,
+        content_item_min_width = 125,
+        collapsible = false,
+        header = [
+        ],
+        content=[
+          stat(
+            id = "monster_instance_edit_armor_class",
+            stat = "armor_class",
+            edit_stat = "armor_class",
+            change_amount = 1,
+            min_value_allowed = 0,
+          ),
+          stat(
+            id = "monster_instance_edit_current_hp",
+            stat = "current_hp",
+            edit_stat = "current_hp",
+            change_amount = 1,
+            min_value_allowed = 0,
+          ),
+        ],
+      ),
+    ],
+  );

@@ -1,0 +1,13 @@
+view lore_skill_list() =
+  button(
+    id = "lore_skill_list",
+    text = concat(
+      [
+        (if isEmpty(lore_name) then "Lore" else lore_name),
+        " (",
+        (if total_bonus > 0 then concat(["+", total_bonus]) else concat([total_bonus])),
+        ")",
+      ],
+    ),
+    event = event(name = "loreSkillTap", payload = payload()),
+  );

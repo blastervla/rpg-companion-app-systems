@@ -1,0 +1,28 @@
+view levelled_effect_edit() =
+  composite(
+    id = "levelled_effect_edit",
+    subviews = [
+      text(
+        id = "levelled_effect_edit_level",
+        edit_stat = "level",
+        style = "text",
+        hint = "Lvl",
+        max_length = 3,
+      ),
+      popUpButton(
+        id = "levelled_effect_edit_effect_bottom_sheet",
+        text = effect_only_description,
+        pop_up_view = resource(
+          id = "levelled_effect_edit_effect",
+          view_type = "edit",
+          resource_id = "effect",
+          stat = "effect",
+          create_if_empty = true,
+        ),
+        pop_up_title = "Effect",
+        display_cancel_button = true,
+        display_save_button = true,
+        should_persist_on_save = false,
+      ),
+    ],
+  );

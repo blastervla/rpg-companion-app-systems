@@ -1,0 +1,59 @@
+{
+  "id": "spell",
+  "name": "Spell",
+  "plural": "Spells",
+  "core": true,
+  "color": "#7b1fa2",
+  "indexed_stats": [
+    "name",
+    "display_type",
+    "display_requirements",
+    "range",
+    "classes",
+    "level",
+    "school",
+    "ritual",
+    "source"
+  ],
+  "search_filters": [
+    {
+      "name": "Level",
+      "stat": "level",
+      "options": "spell_level"
+    },
+    {
+      "name": "School",
+      "stat": "school",
+      "options": "spell_school"
+    },
+    {
+      "name": "Ritual",
+      "stat": "ritual",
+      "true_name": "Ritual",
+      "false_name": "Non-ritual"
+    },
+    {
+      "name": "Class",
+      "stat": "classes",
+      "options": "class",
+      "options_display_stat": "name"
+    },
+    {
+      "name": "Source",
+      "stat": "source",
+      "options": "source",
+      "options_display_stat": "abbreviation"
+    }
+  ],
+  "sort_options": [
+    {
+      "name": "by level",
+      "stat": "level",
+      "options": "spell_level"
+    },
+    {
+      "name": "alphabetically",
+      "stat": "name"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+initiative_system initiativeSystem() = initiativeSystem(
+    when_to_set = "perCombat",
+    has_turns = true,
+    roll_formula = "1d20",
+    initiative_modifier = perception,
+    initiative_tie_breakers = [
+        initiative?,
+        dexterity_score?,
+        wisdom_score?,
+        strength_score?,
+    ]
+);
