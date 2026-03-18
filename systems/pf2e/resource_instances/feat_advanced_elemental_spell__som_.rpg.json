@@ -1,0 +1,1839 @@
+{
+  "resource_id": "feat",
+  "stats": {
+    "id": "feat_advanced_elemental_spell__som_",
+    "updated_at": {
+      "value": "2026-03-16T23:55:12.219969+00:00"
+    },
+    "name": {
+      "value": "Advanced Elemental Spell"
+    },
+    "source": {
+      "value": "som"
+    },
+    "type": {
+      "value": "class"
+    },
+    "action_cost": {
+      "value": "passive"
+    },
+    "traits": {
+      "value": "druid"
+    },
+    "classes": {
+      "value": [
+        "druid__pc1_"
+      ]
+    },
+    "ancestries": {
+      "value": []
+    },
+    "prerequisites": {
+      "value": "flame order, stone order, storm order, or wave order"
+    },
+    "trigger": {
+      "value": ""
+    },
+    "requirements": {
+      "value": ""
+    },
+    "frequency": {
+      "value": ""
+    },
+    "access": {
+      "value": ""
+    },
+    "special": {
+      "value": ""
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "id": "levelled_description_f647a1faf665",
+            "level": {
+              "value": 6
+            },
+            "description": {
+              "value": "Your connection to one of the great elemental aspects of nature deepens, allowing you further control over its powers. You gain the advanced order spell associated with your order: if you're a member of the flame order, you gain combustion; if you're a member of the stone order, you gain stone lance; if you're a member of the storm order, you gain powerful inhalation; if you're a member of the wave order, you gain pulverizing cascade. Increase the number of Focus Points in your focus pool by 1."
+            }
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_7bfb791e5f04",
+            "level": {
+              "value": 6
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_fdeca3ce153b",
+                  "name": {
+                    "value": "+1 Max Focus Point"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "add_to_stat"
+                  },
+                  "stat": {
+                    "value": "$character.max_focus_points"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_d24ffecbb21b",
+            "level": {
+              "value": 6
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_e7da8c03866f",
+                  "name": {
+                    "value": "Innate: Combustion"
+                  },
+                  "trigger_type": {
+                    "value": "passive"
+                  },
+                  "type": {
+                    "value": "add_spell"
+                  },
+                  "spell": {
+                    "value": {
+                      "resource_id": "spell",
+                      "stats": {
+                        "id": "combustion__som_",
+                        "name": {
+                          "value": "Combustion"
+                        },
+                        "source": {
+                          "value": "som"
+                        },
+                        "level": {
+                          "value": "spell_level_3"
+                        },
+                        "school": {
+                          "value": "spell_school_evocation"
+                        },
+                        "traditions": {
+                          "value": []
+                        },
+                        "is_focus_spell": {
+                          "value": true
+                        },
+                        "focus_point_cost": {
+                          "value": 1
+                        },
+                        "ritual": {
+                          "value": false
+                        },
+                        "action_cost": {
+                          "value": "two_actions"
+                        },
+                        "casting_time": {
+                          "value": ""
+                        },
+                        "verbal": {
+                          "value": true
+                        },
+                        "somatic": {
+                          "value": true
+                        },
+                        "material": {
+                          "value": false
+                        },
+                        "components": {
+                          "value": ""
+                        },
+                        "range": {
+                          "value": "120 feet"
+                        },
+                        "duration": {
+                          "value": ""
+                        },
+                        "saving_throw": {
+                          "value": "Fortitude"
+                        },
+                        "area": {
+                          "value": ""
+                        },
+                        "targets": {
+                          "value": "1 creature"
+                        },
+                        "description": {
+                          "value": "You ignite a creature in lasting flames. The fire deals 4d8 fire damage and 2d6 persistent fire damage to the creature, which must attempt a Fortitude save.\n\nCritical Success: The creature is unaffected.\nSuccess: The creature takes half damage and takes no persistent damage.\nFailure: The creature takes full damage, as well as full persistent damage.\nCritical Failure: The creature takes double damage, as well as double persistent damage."
+                        },
+                        "higher_level_description": {
+                          "value": "Heightened (+1): Increase the initial damage by 1d8 and the persistent damage by 1d6."
+                        },
+                        "spell_traits": {
+                          "value": [
+                            "fire"
+                          ]
+                        },
+                        "classes": {
+                          "value": []
+                        },
+                        "dice": {
+                          "value": [
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 3
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 4
+                                                },
+                                                "dice_type": {
+                                                  "value": "d8"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "577941db-d036-44f0-80da-58fafa19d7d6"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "fire"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "d3ca6fc3-aea6-4b53-978f-2c35f66a3a80"
+                                      }
+                                    },
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 2
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "00598ccc-8cbe-4d44-8c1d-7babc4cc0e5a"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "fire"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "9f715ed9-12a8-4196-b74d-c509ee37aefa"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "a3a9aff2-1b1c-4a27-b9a1-d248f4be60e0"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 4
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 5
+                                                },
+                                                "dice_type": {
+                                                  "value": "d8"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "a330a5fb-645e-4a6e-b288-2997a12e159c"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "fire"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "c256ce82-04e4-47e6-a6d9-16db07b5c978"
+                                      }
+                                    },
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 3
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "e99387bb-a975-4aed-9714-2c355becccd9"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "fire"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "48fc0091-8ac4-410e-a792-e4cd05dee38b"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "f196dd42-6e93-4cba-a3b0-162a3b93c2c0"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 5
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 6
+                                                },
+                                                "dice_type": {
+                                                  "value": "d8"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "9a706fe3-f1a4-4e87-8de2-fa6e336897ea"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "fire"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "1d85807e-c35e-40e5-bbfc-d15d201caecb"
+                                      }
+                                    },
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 4
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "30791120-975f-44f1-9483-c5427fd9e724"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "fire"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "0f3bcabc-4262-44a1-9f26-e917cfac5bd0"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "732b32a8-bada-4fe5-92ae-2b07c3e14891"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 6
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 7
+                                                },
+                                                "dice_type": {
+                                                  "value": "d8"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "1719104e-e6ba-4ec4-9e17-c4cc523edadf"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "fire"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "7ae843cd-5c4e-4e74-8098-8bdd945b4100"
+                                      }
+                                    },
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 5
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "881b23cb-5124-42f4-97b0-517f5ae550af"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "fire"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "cf03ef91-478d-4eb0-8e5a-903633279213"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "cc9a6ea9-bd06-4b01-8bed-642d5224f5a6"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 7
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 8
+                                                },
+                                                "dice_type": {
+                                                  "value": "d8"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "64d6e85a-ba8d-45c9-906f-0d47299a5bf4"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "fire"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "4c84256d-f209-40d7-8078-9049275ded96"
+                                      }
+                                    },
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 6
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "6a6d6ae1-7d77-4038-8dcc-fe674c2b7a33"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "fire"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "37499ebd-5f20-433d-bb28-22c6feafccb9"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "a9f93c40-62d2-4e79-93db-a75cf736fdab"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 8
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 9
+                                                },
+                                                "dice_type": {
+                                                  "value": "d8"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "a3cfdb35-7a17-4fbe-881f-e02165759469"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "fire"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "308ea26e-be0c-4cb8-92e4-15d83d6a2d9a"
+                                      }
+                                    },
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 7
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "550ef196-16bc-461f-a7fe-e3a53918186f"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "fire"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "3018013b-3c87-43d6-87b2-862942b6d33b"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "83cd2b82-ec1f-42c3-a68a-28d56f04e860"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 9
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 10
+                                                },
+                                                "dice_type": {
+                                                  "value": "d8"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "9312d06d-12dd-41db-b834-c48868e2494d"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "fire"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "929cedfe-7cce-4558-a3c7-907ef5fc9c60"
+                                      }
+                                    },
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 8
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "fd6dceed-25f5-423d-868f-abb9d28d8849"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "fire"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "948dcdd7-4b5f-45bf-a61c-ef3aa0144d7e"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "3247a9a9-e375-46d0-953a-1edf2aed4535"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 10
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 11
+                                                },
+                                                "dice_type": {
+                                                  "value": "d8"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "4f1e423c-8b1b-49b6-8d13-3b1e0e44108b"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "fire"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "3f8efb41-9f2f-43d1-8b73-5810c2c311e7"
+                                      }
+                                    },
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 9
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "e73955a7-967b-4a7f-aee5-49a0cf6058b8"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "fire"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "878b880b-1a7d-4881-a9f4-e9454906886f"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "6bd5ccbf-c8a8-459c-b6f6-88eaebb5d93f"
+                              }
+                            }
+                          ]
+                        },
+                        "effects": {
+                          "value": []
+                        },
+                        "updated_at": {
+                          "value": "2026-03-14T01:32:36.044502"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_60820cec871c",
+            "level": {
+              "value": 6
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_7b23bb586ca4",
+                  "name": {
+                    "value": "Innate: Stone Lance"
+                  },
+                  "trigger_type": {
+                    "value": "passive"
+                  },
+                  "type": {
+                    "value": "add_spell"
+                  },
+                  "spell": {
+                    "value": {
+                      "resource_id": "spell",
+                      "stats": {
+                        "id": "stone_lance__som_",
+                        "name": {
+                          "value": "Stone Lance"
+                        },
+                        "source": {
+                          "value": "som"
+                        },
+                        "level": {
+                          "value": "spell_level_3"
+                        },
+                        "school": {
+                          "value": "spell_school_evocation"
+                        },
+                        "traditions": {
+                          "value": []
+                        },
+                        "is_focus_spell": {
+                          "value": true
+                        },
+                        "focus_point_cost": {
+                          "value": 1
+                        },
+                        "ritual": {
+                          "value": false
+                        },
+                        "action_cost": {
+                          "value": "two_actions"
+                        },
+                        "casting_time": {
+                          "value": ""
+                        },
+                        "verbal": {
+                          "value": true
+                        },
+                        "somatic": {
+                          "value": true
+                        },
+                        "material": {
+                          "value": false
+                        },
+                        "components": {
+                          "value": ""
+                        },
+                        "range": {
+                          "value": "120 feet"
+                        },
+                        "duration": {
+                          "value": "1 minute"
+                        },
+                        "saving_throw": {
+                          "value": ""
+                        },
+                        "area": {
+                          "value": ""
+                        },
+                        "targets": {
+                          "value": "1 creature"
+                        },
+                        "description": {
+                          "value": "You conjure a jagged lance of stone and then launch it at a foe. Make a spell attack roll against the target.\n\nOn a hit, you deal 6d6 piercing damage and the lance impales the creature, giving it a -10-foot circumstance penalty to its Speeds unless it Escapes. On a critical hit, if the creature is on the ground, the lance also embeds into the ground and immobilizes the creature until it Escapes. A creature that Escapes after being impaled takes 3 persistent bleed damage. When the spell ends, the lance crumbles into dirt, freeing the target if it hasn't Escaped."
+                        },
+                        "higher_level_description": {
+                          "value": "Heightened (+1): Increase the damage by 2d6 and the persistent bleed damage for Escapes by 1."
+                        },
+                        "spell_traits": {
+                          "value": [
+                            "attack",
+                            "earth"
+                          ]
+                        },
+                        "classes": {
+                          "value": []
+                        },
+                        "dice": {
+                          "value": [
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 3
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 6
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "0e950ace-a321-4e7a-991c-1ee1e17eb471"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "piercing"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "348d9451-dd01-4be9-9475-a0259c0a80fe"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "17f9b5bf-ce65-4360-89ae-233315163e02"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 4
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 8
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "ee14679f-7e58-4afc-827e-d0501532badc"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "piercing"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "3f3cd317-c575-45f4-99fc-ab9de7e1f63c"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "8603cdaf-b66e-440b-8f3b-62f337277286"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 5
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 10
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "f7eb6e24-eaf5-48b1-987e-b7d54ed94615"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "piercing"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "593c27a6-33ca-4515-b2e5-0a6503ad1c41"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "fa809458-171e-409a-a062-0a765e927c47"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 6
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 12
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "6c61c711-91da-47c0-9616-aac350fe7ca1"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "piercing"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "24785292-3ce2-4224-969e-b3862670c303"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "11787e33-e40e-4629-91e9-a1440eff812c"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 7
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 14
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "12d5de6c-caf7-4bbd-85b4-9e7b2ed3a05e"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "piercing"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "ba2fb0d0-68c3-47fb-8270-cf4523e48f42"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "063a4f63-8ab2-4150-9872-bf0836928793"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 8
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 16
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "5cbd7ce5-b2ed-4981-8924-7fb22be76bf5"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "piercing"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "63af892c-7d0a-431f-9f37-cc33e8de8bd5"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "b6309aec-bc37-4013-8c9d-6b06733c599f"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 9
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 18
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "adb718a8-3301-406b-974f-584f1c8af9fb"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "piercing"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "ecaf4504-bdf6-4710-a40a-162aaedfa877"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "95b3fe81-b937-4614-a628-5d3ba5dd1a4c"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 10
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 20
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "e743a151-7549-41c0-b00d-33247868262f"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "piercing"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "1e6d45b4-ce5b-4a88-a04e-610395deeb46"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "4000352e-a12e-4043-8ec0-7fc3fdf42492"
+                              }
+                            }
+                          ]
+                        },
+                        "effects": {
+                          "value": []
+                        },
+                        "updated_at": {
+                          "value": "2026-03-14T01:32:36.044502"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_b09f936639c0",
+            "level": {
+              "value": 6
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_cd52fc9359bb",
+                  "name": {
+                    "value": "Innate: Powerful Inhalation"
+                  },
+                  "trigger_type": {
+                    "value": "passive"
+                  },
+                  "type": {
+                    "value": "add_spell"
+                  },
+                  "spell": {
+                    "value": {
+                      "resource_id": "spell",
+                      "stats": {
+                        "id": "powerful_inhalation__som_",
+                        "name": {
+                          "value": "Powerful Inhalation"
+                        },
+                        "source": {
+                          "value": "som"
+                        },
+                        "level": {
+                          "value": "spell_level_3"
+                        },
+                        "school": {
+                          "value": "spell_school_evocation"
+                        },
+                        "traditions": {
+                          "value": []
+                        },
+                        "is_focus_spell": {
+                          "value": true
+                        },
+                        "focus_point_cost": {
+                          "value": 1
+                        },
+                        "ritual": {
+                          "value": false
+                        },
+                        "action_cost": {
+                          "value": "two_actions"
+                        },
+                        "casting_time": {
+                          "value": ""
+                        },
+                        "verbal": {
+                          "value": true
+                        },
+                        "somatic": {
+                          "value": true
+                        },
+                        "material": {
+                          "value": false
+                        },
+                        "components": {
+                          "value": ""
+                        },
+                        "range": {
+                          "value": ""
+                        },
+                        "duration": {
+                          "value": ""
+                        },
+                        "saving_throw": {
+                          "value": "basic Fortitude"
+                        },
+                        "area": {
+                          "value": "10-foot emanation"
+                        },
+                        "targets": {
+                          "value": ""
+                        },
+                        "description": {
+                          "value": "You rapidly draw the air from your surroundings, hoarding it for yourself. Creatures in the area when the spell is cast take 5d6 bludgeoning damage with a basic Fortitude save. A creature that fails its save can't speak above a raspy whisper for 1 round. A creature that critically fails can't speak or use abilities that require it to breathe for 1 round. This prevents it from using effects that require speech, such as casting spells with verbal components, and from using a breath weapon or similar ability.\n\nCreatures made of air (such as air elementals) attempting a save against this spell get a degree of success one worse than they rolled."
+                        },
+                        "higher_level_description": {
+                          "value": "Heightened (+1): Increase the damage by 2d6."
+                        },
+                        "spell_traits": {
+                          "value": [
+                            "air"
+                          ]
+                        },
+                        "classes": {
+                          "value": []
+                        },
+                        "dice": {
+                          "value": [
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 3
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 5
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "ba3828f3-7ba3-461b-a3e6-8363d7d3577d"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "bludgeoning"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "84bc6cf3-d3f3-431d-9166-170a6bde9223"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "42d45bf5-33a5-47c3-a811-df75006547ba"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 4
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 7
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "4e789940-e40f-4daa-88f1-1ed5f244e9d1"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "bludgeoning"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "dda9c75c-5067-4e39-b20d-e419aa303942"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "5f400c9f-be90-48cf-8858-6ef6b9e75813"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 5
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 9
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "7067f982-7019-49a7-b94d-8d778ba51302"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "bludgeoning"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "00404e8a-b394-4ce6-9a04-660730b59176"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "96ca508f-f0d2-491c-8f40-ec249c3a73f7"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 6
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 11
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "1504c444-6328-4570-9951-bc9848b6aa54"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "bludgeoning"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "2616a37c-e35b-42fa-8f68-2ab263d11aa6"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "2ae2da1e-57dd-4fa2-92dd-c4c917d9b6ad"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 7
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 13
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "30199657-13d4-4b3a-a3c6-66a51da64ac8"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "bludgeoning"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "a4130e6c-c95f-43db-a4f6-8874e2f45311"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "2834a7ca-72f6-4369-ad64-ce95a02ffe01"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 8
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 15
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "add7a798-486b-4f93-bc94-06d17b3edc0b"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "bludgeoning"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "69f538fc-2bfd-4782-8374-8b988873e79e"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "b907ee59-e257-48af-aeb0-dffcef75107d"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 9
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 17
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "69d3cc48-a3f7-4e9c-b439-6b728e02da46"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "bludgeoning"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "b34dd134-0a98-416e-a42a-1f4023fff5bd"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "6dc959e6-2268-46da-bc9f-b7ce4616346c"
+                              }
+                            },
+                            {
+                              "resource_id": "levelled_damage_dice",
+                              "stats": {
+                                "level": {
+                                  "value": 10
+                                },
+                                "damage_dice": {
+                                  "value": [
+                                    {
+                                      "resource_id": "damage_dice",
+                                      "stats": {
+                                        "dices": {
+                                          "value": [
+                                            {
+                                              "resource_id": "dice_roll",
+                                              "stats": {
+                                                "dice_amount": {
+                                                  "value": 19
+                                                },
+                                                "dice_type": {
+                                                  "value": "d6"
+                                                },
+                                                "updated_at": {
+                                                  "value": "2026-03-14T01:32:36.044502"
+                                                },
+                                                "id": "c816494c-71a5-490c-9636-2ac93d0e42aa"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "damage_type": {
+                                          "value": "bludgeoning"
+                                        },
+                                        "updated_at": {
+                                          "value": "2026-03-14T01:32:36.044502"
+                                        },
+                                        "id": "8c6b8450-b1f8-4289-b834-ee28b286a6c9"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "updated_at": {
+                                  "value": "2026-03-14T01:32:36.044502"
+                                },
+                                "id": "098a0979-6000-48da-80c9-2a861351095a"
+                              }
+                            }
+                          ]
+                        },
+                        "effects": {
+                          "value": []
+                        },
+                        "updated_at": {
+                          "value": "2026-03-14T01:32:36.044502"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "skill_proficiencies": {
+      "value": []
+    },
+    "armor_proficiencies": {
+      "value": []
+    },
+    "weapon_proficiencies": {
+      "value": []
+    },
+    "lore_skills": {
+      "value": []
+    }
+  }
+}

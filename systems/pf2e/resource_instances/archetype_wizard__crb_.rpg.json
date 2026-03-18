@@ -1,0 +1,766 @@
+{
+  "resource_id": "archetype",
+  "stats": {
+    "id": "wizard__crb_",
+    "updated_at": {
+      "value": "2026-03-16T14:51:49.570600+00:00"
+    },
+    "name": {
+      "value": "Wizard"
+    },
+    "source": {
+      "value": "crb"
+    },
+    "description": {
+      "value": "You have dabbled in the arcane arts and, through discipline and academic study, learned how to cast a few spells.\n\nThe wizard archetype grants versatile prepared spells, perfect for characters looking to add some extra utility."
+    },
+    "is_class_archetype": {
+      "value": false
+    },
+    "required_class_id": {
+      "value": ""
+    },
+    "dedication_feat": {
+      "value": {
+        "resource_id": "feat",
+        "stats": {
+          "id": "feat_wizard_dedication__pc1_",
+          "updated_at": {
+            "value": "2026-03-16T14:51:32.702359+00:00"
+          },
+          "name": {
+            "value": "Wizard Dedication"
+          },
+          "source": {
+            "value": "pc1"
+          },
+          "type": {
+            "value": "archetype"
+          },
+          "action_cost": {
+            "value": "passive"
+          },
+          "traits": {
+            "value": "archetype, dedication, multiclass"
+          },
+          "classes": {
+            "value": []
+          },
+          "ancestries": {
+            "value": []
+          },
+          "prerequisites": {
+            "value": "Intelligence +2"
+          },
+          "trigger": {
+            "value": ""
+          },
+          "requirements": {
+            "value": ""
+          },
+          "frequency": {
+            "value": ""
+          },
+          "access": {
+            "value": ""
+          },
+          "special": {
+            "value": ""
+          },
+          "descriptions": {
+            "value": [
+              {
+                "resource_id": "levelled_description",
+                "stats": {
+                  "id": "levelled_description_eb7b7d081237",
+                  "level": {
+                    "value": 2
+                  },
+                  "description": {
+                    "value": "You cast spells like a wizard, gaining a spellbook with four common arcane cantrips of your choice. You gain the Cast a Spell activity. You can prepare two cantrips each day from your spellbook. You're trained in the spell attack modifier and spell DC statistics. Your key spellcasting attribute for wizard archetype spells is Intelligence, and they are arcane wizard spells.\n\nYou become trained in Arcana; if you were already trained in Arcana, you instead become trained in a skill of your choice. Select a school; you don't gain any abilities from your choice of school, but qualify for feats as a member."
+                  }
+                }
+              }
+            ]
+          },
+          "effects": {
+            "value": [
+              {
+                "resource_id": "levelled_effect",
+                "stats": {
+                  "id": "levelled_effect_f086fcea3f39",
+                  "level": {
+                    "value": 2
+                  },
+                  "effect": {
+                    "value": {
+                      "resource_id": "effect",
+                      "stats": {
+                        "id": "effect_dfa300598346",
+                        "name": {
+                          "value": "Grant Trained in Spellcasting"
+                        },
+                        "trigger_type": {
+                          "value": "passive"
+                        },
+                        "type": {
+                          "value": "grant_proficiency"
+                        },
+                        "proficiency_stat": {
+                          "value": "$character.spellcasting_proficiency"
+                        },
+                        "proficiency_rank": {
+                          "value": "trained"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "resource_id": "levelled_effect",
+                "stats": {
+                  "id": "levelled_effect_019b92392da1",
+                  "level": {
+                    "value": 2
+                  },
+                  "effect": {
+                    "value": {
+                      "resource_id": "effect",
+                      "stats": {
+                        "id": "effect_fedcc41ce646",
+                        "name": {
+                          "value": "Grant Trained in Arcana"
+                        },
+                        "trigger_type": {
+                          "value": "active"
+                        },
+                        "type": {
+                          "value": "grant_proficiency"
+                        },
+                        "proficiency_stat": {
+                          "value": "$character.arcana_proficiency"
+                        },
+                        "proficiency_rank": {
+                          "value": "trained"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "skill_proficiencies": {
+            "value": []
+          },
+          "armor_proficiencies": {
+            "value": []
+          },
+          "weapon_proficiencies": {
+            "value": []
+          },
+          "lore_skills": {
+            "value": []
+          }
+        }
+      }
+    },
+    "feats": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_arcane_school_spell__pc1_",
+            "updated_at": {
+              "value": "2026-03-16T14:51:32.702359+00:00"
+            },
+            "name": {
+              "value": "Arcane School Spell"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Wizard Dedication"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_47388384a5ec",
+                    "level": {
+                      "value": 4
+                    },
+                    "description": {
+                      "value": "You gain your school's initial school spell. If you don't already have one, you gain a focus pool of 1 Focus Point, which you can Refocus by studying."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "id": "levelled_effect_29fdb9835d4d",
+                    "level": {
+                      "value": 4
+                    },
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "id": "effect_7067355d0282",
+                          "name": {
+                            "value": "+1 Max Focus Point"
+                          },
+                          "trigger_type": {
+                            "value": "passive"
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.max_focus_points"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_basic_arcana__pc1_",
+            "updated_at": {
+              "value": "2026-03-16T14:51:32.702359+00:00"
+            },
+            "name": {
+              "value": "Basic Arcana"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Wizard Dedication"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_a03e5c201f13",
+                    "level": {
+                      "value": 4
+                    },
+                    "description": {
+                      "value": "You gain a 1st- or 2nd-level wizard feat of your choice."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_basic_wizard_spellcasting__pc1_",
+            "updated_at": {
+              "value": "2026-03-16T14:51:32.702359+00:00"
+            },
+            "name": {
+              "value": "Basic Wizard Spellcasting"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Wizard Dedication"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_fad37a8a8da7",
+                    "level": {
+                      "value": 4
+                    },
+                    "description": {
+                      "value": "You gain the basic spellcasting benefits. Each time you gain a spell slot of a new rank from the wizard archetype, add two common spells of that rank to your spellbook."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_advanced_arcana__pc1_",
+            "updated_at": {
+              "value": "2026-03-16T14:51:32.702359+00:00"
+            },
+            "name": {
+              "value": "Advanced Arcana"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Basic Arcana"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": "You can select this feat more than once. Each time you select it, you gain another wizard feat."
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_a41406ff431b",
+                    "level": {
+                      "value": 6
+                    },
+                    "description": {
+                      "value": "You gain one wizard feat. For the purpose of meeting its prerequisites, your wizard level is equal to half your character level."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_arcane_breadth__pc1_",
+            "updated_at": {
+              "value": "2026-03-16T14:51:32.702359+00:00"
+            },
+            "name": {
+              "value": "Arcane Breadth"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Basic Wizard Spellcasting"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_94774e5cd27c",
+                    "level": {
+                      "value": 8
+                    },
+                    "description": {
+                      "value": "Your thorough studies allow you to cast more arcane spells each day. Increase the spell slots you gain from wizard archetype feats by 1 for each spell rank other than your two highest wizard spell slots."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_expert_wizard_spellcasting__pc1_",
+            "updated_at": {
+              "value": "2026-03-16T14:51:32.702359+00:00"
+            },
+            "name": {
+              "value": "Expert Wizard Spellcasting"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Basic Wizard Spellcasting, master in Arcana"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_4af3f674c771",
+                    "level": {
+                      "value": 12
+                    },
+                    "description": {
+                      "value": "You gain the expert spellcasting benefits."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_master_wizard_spellcasting__pc1_",
+            "updated_at": {
+              "value": "2026-03-16T14:51:32.702359+00:00"
+            },
+            "name": {
+              "value": "Master Wizard Spellcasting"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Expert Wizard Spellcasting, legendary in Arcana"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_f73ebc205345",
+                    "level": {
+                      "value": 18
+                    },
+                    "description": {
+                      "value": "You gain the master spellcasting benefits."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            }
+          }
+        }
+      ]
+    },
+    "progression_grants": {
+      "value": []
+    }
+  }
+}

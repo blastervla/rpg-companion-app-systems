@@ -1,0 +1,184 @@
+{
+  "resource_id": "feat",
+  "stats": {
+    "id": "feat_animal_swiftness__loag_",
+    "updated_at": {
+      "value": "2026-03-16T23:55:12.219969+00:00"
+    },
+    "name": {
+      "value": "Animal Swiftness"
+    },
+    "source": {
+      "value": "loag"
+    },
+    "type": {
+      "value": "ancestry"
+    },
+    "action_cost": {
+      "value": "passive"
+    },
+    "traits": {
+      "value": "beastkin"
+    },
+    "classes": {
+      "value": []
+    },
+    "ancestries": {
+      "value": [
+        "beastkin__loag_"
+      ]
+    },
+    "prerequisites": {
+      "value": ""
+    },
+    "trigger": {
+      "value": ""
+    },
+    "requirements": {
+      "value": ""
+    },
+    "frequency": {
+      "value": ""
+    },
+    "access": {
+      "value": ""
+    },
+    "special": {
+      "value": ""
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "id": "levelled_description_97720a9cfea6",
+            "level": {
+              "value": 17
+            },
+            "description": {
+              "value": "You move like an animal. Your Speed increases by 5 feet. In addition, you gain one of the following Speeds available to your inherent animal: climb, fly, or swim. You gain this Speed only while in your hybrid shape.\n\nThe new movement is as fast as your standard Speed; for example, if you have a 30-foot Speed, you can gain a 30-foot climb Speed. If your inherent animal doesn't typically have a specific type of Speed, you can't gain it with this feat. If your inherent animal doesn't typically have a climb, fly, or swim Speed, your Speed increases by 10 feet instead."
+            }
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_4ad10bf49fdf",
+            "level": {
+              "value": 17
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_2e3d2b8700f0",
+                  "name": {
+                    "value": "+5 Speed"
+                  },
+                  "trigger_type": {
+                    "value": "passive"
+                  },
+                  "type": {
+                    "value": "add_to_stat"
+                  },
+                  "stat": {
+                    "value": "$character.speed"
+                  },
+                  "constant": {
+                    "value": 5
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_4571192fa2fb",
+            "level": {
+              "value": 17
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_67fb5f2be095",
+                  "name": {
+                    "value": "+10 Speed"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "add_to_stat"
+                  },
+                  "stat": {
+                    "value": "$character.speed"
+                  },
+                  "constant": {
+                    "value": 10
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_e38a4f95e4b4",
+            "level": {
+              "value": 17
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_3879c9d6844c",
+                  "name": {
+                    "value": "Gain 30-foot Climb Speed"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "set_stat"
+                  },
+                  "stat": {
+                    "value": "$character.climb_speed"
+                  },
+                  "constant": {
+                    "value": 30
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "skill_proficiencies": {
+      "value": []
+    },
+    "armor_proficiencies": {
+      "value": []
+    },
+    "weapon_proficiencies": {
+      "value": []
+    },
+    "lore_skills": {
+      "value": []
+    }
+  }
+}

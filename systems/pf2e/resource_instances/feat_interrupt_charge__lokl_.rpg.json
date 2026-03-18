@@ -1,0 +1,156 @@
+{
+  "resource_id": "feat",
+  "stats": {
+    "id": "feat_interrupt_charge__lokl_",
+    "updated_at": {
+      "value": "2026-03-16T23:55:12.219969+00:00"
+    },
+    "name": {
+      "value": "Interrupt Charge"
+    },
+    "source": {
+      "value": "lokl"
+    },
+    "type": {
+      "value": "archetype"
+    },
+    "action_cost": {
+      "value": "reaction"
+    },
+    "traits": {
+      "value": "archetype"
+    },
+    "classes": {
+      "value": []
+    },
+    "ancestries": {
+      "value": []
+    },
+    "prerequisites": {
+      "value": "Knight Vigilant Dedication"
+    },
+    "trigger": {
+      "value": "A foe within reach attempts to move away from you."
+    },
+    "requirements": {
+      "value": "You have a hand free."
+    },
+    "frequency": {
+      "value": ""
+    },
+    "access": {
+      "value": ""
+    },
+    "special": {
+      "value": ""
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "id": "levelled_description_3d5b135aa294",
+            "level": {
+              "value": 8
+            },
+            "description": {
+              "value": "You attempt to snag the foe before they run away.\n\nAttempt an Athletics check against the higher of the triggering creature's Athletics DC or Fortitude DC.\n\nCritical Success: You disrupt the movement.\nSuccess: You are able to slow the triggering creature down. It takes a \u201310-foot circumstance penalty to its Speed for the rest of its triggering movement. This penalty might cause the triggering creature's movement to end immediately based on its affected Speed.\nFailure: As success, but the creature instead takes a \u20135-foot circumstance penalty to its Speed."
+            }
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_9af35adcd618",
+            "level": {
+              "value": 8
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_31b5caf4ec85",
+                  "name": {
+                    "value": "-10 Circumstance Penalty to Speed"
+                  },
+                  "trigger_type": {
+                    "value": "passive"
+                  },
+                  "type": {
+                    "value": "typed_add_to_stat"
+                  },
+                  "typed_modifier_type": {
+                    "value": "circumstance"
+                  },
+                  "typed_modifier_polarity": {
+                    "value": "penalty"
+                  },
+                  "stat": {
+                    "value": "$character.speed"
+                  },
+                  "constant": {
+                    "value": 10
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_618d64e2c44b",
+            "level": {
+              "value": 8
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_455d365c5f3a",
+                  "name": {
+                    "value": "-5 Circumstance Penalty to Speed"
+                  },
+                  "trigger_type": {
+                    "value": "passive"
+                  },
+                  "type": {
+                    "value": "typed_add_to_stat"
+                  },
+                  "typed_modifier_type": {
+                    "value": "circumstance"
+                  },
+                  "typed_modifier_polarity": {
+                    "value": "penalty"
+                  },
+                  "stat": {
+                    "value": "$character.speed"
+                  },
+                  "constant": {
+                    "value": 5
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "skill_proficiencies": {
+      "value": []
+    },
+    "armor_proficiencies": {
+      "value": []
+    },
+    "weapon_proficiencies": {
+      "value": []
+    },
+    "lore_skills": {
+      "value": []
+    }
+  }
+}

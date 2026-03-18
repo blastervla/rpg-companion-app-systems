@@ -1,0 +1,984 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "dalos__aoa4_",
+    "name": {
+      "value": "Dalos"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "aoa4"
+    },
+    "tag": {
+      "value": "Earth, Fire"
+    },
+    "armor_class": {
+      "value": 34
+    },
+    "hit_points": {
+      "value": 240
+    },
+    "level": {
+      "value": 13
+    },
+    "xp": {
+      "value": 960
+    },
+    "initiative": {
+      "value": 23
+    },
+    "perception": {
+      "value": 23
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 20
+    },
+    "climb_speed": {
+      "value": 20
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 8
+    },
+    "dexterity_modifier": {
+      "value": 4
+    },
+    "constitution_modifier": {
+      "value": 6
+    },
+    "intelligence_modifier": {
+      "value": 2
+    },
+    "wisdom_modifier": {
+      "value": 4
+    },
+    "charisma_modifier": {
+      "value": 2
+    },
+    "fortitude": {
+      "value": 27
+    },
+    "reflex": {
+      "value": 19
+    },
+    "will": {
+      "value": 23
+    },
+    "skills": {
+      "value": "Athletics +29, Nature +23, Survival +23"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": "Cold 10, Cold Iron 10"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Fire"
+    },
+    "resistances": {
+      "value": "Physical 15 (except bludgeoning)"
+    },
+    "senses": {
+      "value": "low-light vision"
+    },
+    "languages": {
+      "value": "Ignan, Sylvan, Terran"
+    },
+    "size": {
+      "value": "huge"
+    },
+    "type": {
+      "value": "fey"
+    },
+    "alignment": {
+      "value": "chaotic_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Volcanic Heat"
+            },
+            "trait_description": {
+              "value": "(aura, fire)\n\n10 feet, 3d6 fire damage (DC 29 basic Reflex save)"
+            },
+            "id": "6e9fc62c-7b76-488e-95b9-1b7d19c2b849",
+            "updated_at": {
+              "value": "2026-03-17T12:41:22.444580"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Magma Splash"
+            },
+            "trait_description": {
+              "value": "(fire)\n\nWhenever the dalos takes damage from a melee Strike, magma splashes from its open wound and sticks to nearby creatures.\n\nEach creature in a 10-foot emanation must attempt a DC 31 Reflex save. On a failure, the creature takes 3d6 persistent fire damage as the superheated rock sticks to them and cools. The DC to end this persistent damage decreases by 5 each turn after the first as the magma cools."
+            },
+            "id": "f12500e4-448a-4dd1-8102-1418627f728c",
+            "updated_at": {
+              "value": "2026-03-17T12:41:22.444580"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "fist"
+            },
+            "action_description": {
+              "value": "(reach 15 feet) 3d8+11 bludgeoning plus 2d6 fire"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 27
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 3
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 11
+                                    },
+                                    "id": "eb29f889-2006-420d-b0eb-e5f1bed16a13",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:22.444580"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "655142bf-e3f1-4f52-9725-3dd7caba2765",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:22.444580"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "fire"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "8b8409e0-1dd2-434b-88c6-e37565aa91ca",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:22.444580"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "a4d5fc18-7d32-4cc5-aad4-8177322f6d5f",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:22.444580"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "102d3d33-f001-41a5-b8c4-8623f93c0efd",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:22.444580"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "e49a6517-b8a8-492f-887b-e17e5c0d07da",
+            "updated_at": {
+              "value": "2026-03-17T12:41:22.444580"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "rock"
+            },
+            "action_description": {
+              "value": "(range increment 150 feet) 2d10+11 bludgeoning"
+            },
+            "action_type": {
+              "value": "ranged"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 25
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 11
+                                    },
+                                    "id": "f535a352-a08d-4f35-aaef-645ce094c36d",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:22.444580"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "ffefdb99-6651-4996-a6c3-b6fa7224433c",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:22.444580"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "30ede992-0d7e-42ec-8299-8f487c8b0bd6",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:22.444580"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "e664e35f-481f-4234-a566-0fcc58eef4d7",
+            "updated_at": {
+              "value": "2026-03-17T12:41:22.444580"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Belch Smoke"
+            },
+            "action_description": {
+              "value": "The dalos blasts smoke from its head, creating a 20-foot-radius cloud of smoke that drifts to a location within 120 feet. This has the effects of obscuring mist."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "three_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "4d3ba287-f4a8-4a1c-97b6-f8ca0d8b6788",
+            "updated_at": {
+              "value": "2026-03-17T12:41:22.444580"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Heat Rock"
+            },
+            "action_description": {
+              "value": "(fire)\n\nThe dalos uses an Interact action to pluck a rock from its body or the nearby environment, then uses its internal fires to heat a rock it's holding until the rock is red hot. A heated rock that hits a target on a ranged Strike deals an additional 4d6 fire damage. Once the dalos heats a rock, that rock retains its heat for 2 rounds before cooling."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "fire"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 4
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "c358813d-f7fc-409a-bcaf-db2080e9b052",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:22.444580"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "438f960a-34e9-460c-bf56-e3d8d2b7cafc",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:22.444580"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "c430957e-0d71-4733-8a0f-9b9f43a5d480",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:22.444580"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "9d6ae11f-f493-4734-b95c-aadda8f456ca",
+            "updated_at": {
+              "value": "2026-03-17T12:41:22.444580"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Lava Bomb"
+            },
+            "action_description": {
+              "value": "(earth, fire)\n\nThe dalos causes a volcanic explosion to erupt from its head, lobbing a mass of molten rock up to 100 feet. This lava bomb deals 6d8 fire damage and 6d8 bludgeoning damage to each creature in a 20-foot radius of its impact point, with a DC 33 basic Reflex save. The dalos can't use Lava Bomb again for 1d4 rounds."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "fire"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 6
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "1c13983c-f31f-4fe8-bac0-649255f84fa3",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:22.444580"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "4a4589fb-2172-473a-b3d8-5cc28d0e46a7",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:22.444580"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 6
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "88df6f3b-f41a-4f4b-9a5d-52752bcb3af0",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:22.444580"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "d2fa2379-bf2b-427d-b7b0-57438b8db212",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:22.444580"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "b04a71e0-cf0f-4099-a7bb-4b86b773af87",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:22.444580"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "2309bbb8-abec-4e06-9872-bc3b86f7d078",
+            "updated_at": {
+              "value": "2026-03-17T12:41:22.444580"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Throw Rock"
+            },
+            "action_description": {
+              "value": ""
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "36bd26c5-e542-4bdf-9f32-11e2477fe196",
+            "updated_at": {
+              "value": "2026-03-17T12:41:22.444580"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": [
+        {
+          "resource_id": "monster_spellcasting_block",
+          "stats": {
+            "block_name": {
+              "value": ""
+            },
+            "tradition": {
+              "value": "primal"
+            },
+            "spellcasting_type": {
+              "value": "innate"
+            },
+            "spell_dc": {
+              "value": 31
+            },
+            "spell_attack_bonus": {
+              "value": 0
+            },
+            "spell_levels": {
+              "value": [
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 7
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "earthbind__crb_",
+                          "name": {
+                            "value": "Earthbind"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_3"
+                          },
+                          "school": {
+                            "value": "spell_school_transmutation"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "120 feet"
+                          },
+                          "duration": {
+                            "value": "varies"
+                          },
+                          "saving_throw": {
+                            "value": "Fortitude"
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 flying creature"
+                          },
+                          "description": {
+                            "value": "Using the weight of earth, you hamper a target's flight, with effects based on its Fortitude save. If the creature reaches the ground safely, it doesn't take falling damage.\n\nCritical Success: The target is unaffected.\nSuccess: The target falls safely up to 120 feet.\nFailure: The target falls safely up to 120 feet. If it hits the ground, it can't Fly, levitate, or otherwise leave the ground for 1 round.\nCritical Failure: The target falls safely up to 120 feet. If it hits the ground, it can't Fly, levitate, or otherwise leave the ground for 1 minute."
+                          },
+                          "higher_level_description": {
+                            "value": ""
+                          },
+                          "spell_traits": {
+                            "value": []
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 31
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": "3"
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "8ed924bc-056e-4561-9205-87ce44aaa926",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:22.444580"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 7
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "slow__crb_",
+                          "name": {
+                            "value": "Slow"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_3"
+                          },
+                          "school": {
+                            "value": "spell_school_transmutation"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "occult",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": "1 minute"
+                          },
+                          "saving_throw": {
+                            "value": "Fortitude"
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 creature"
+                          },
+                          "description": {
+                            "value": "You dilate the flow of time around the target, slowing its actions.\n\nCritical Success: The target is unaffected.\nSuccess: The target is slowed 1 for 1 round.\nFailure: The target is slowed 1 for 1 minute.\nCritical Failure: The target is slowed 2 for 1 minute."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (6th): You can target up to 10 creatures."
+                          },
+                          "spell_traits": {
+                            "value": []
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 31
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "23e59e76-d96a-4f77-af34-e8fb3b007485",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:22.444580"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 7
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "stinking_cloud__crb_",
+                          "name": {
+                            "value": "Stinking Cloud"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_3"
+                          },
+                          "school": {
+                            "value": "spell_school_conjuration"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "120 feet"
+                          },
+                          "duration": {
+                            "value": "1 minute"
+                          },
+                          "saving_throw": {
+                            "value": "Fortitude"
+                          },
+                          "area": {
+                            "value": "20-foot burst"
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "You create a cloud of putrid mist in the area. The cloud functions as obscuring mist except it sickens creatures that end their turns within the cloud. (The concealed condition is not a poison effect.)\n\nCritical Success: The creature is unaffected.\nSuccess: The creature is sickened 1.\nFailure: The creature is sickened 1 and slowed 1 while in the cloud.\nCritical Failure: The creature is sickened 2 and slowed 1 until it leaves the cloud."
+                          },
+                          "higher_level_description": {
+                            "value": ""
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "poison"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 31
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "271b6221-de3b-49ac-9eb7-1dd76a4b9d18",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:22.444580"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "476b5819-b0d5-4f5b-9d14-a34e1b45d8bb",
+            "updated_at": {
+              "value": "2026-03-17T12:41:22.444580"
+            }
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:22.444580"
+    }
+  }
+}

@@ -1,0 +1,384 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "sinspawn__b1_",
+    "name": {
+      "value": "Sinspawn"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b1"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 18
+    },
+    "hit_points": {
+      "value": 30
+    },
+    "level": {
+      "value": 2
+    },
+    "xp": {
+      "value": 20
+    },
+    "initiative": {
+      "value": 10
+    },
+    "perception": {
+      "value": 10
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 4
+    },
+    "dexterity_modifier": {
+      "value": 3
+    },
+    "constitution_modifier": {
+      "value": 4
+    },
+    "intelligence_modifier": {
+      "value": 0
+    },
+    "wisdom_modifier": {
+      "value": 2
+    },
+    "charisma_modifier": {
+      "value": 1
+    },
+    "fortitude": {
+      "value": 10
+    },
+    "reflex": {
+      "value": 9
+    },
+    "will": {
+      "value": 6
+    },
+    "skills": {
+      "value": "Acrobatics +9, Athletics +8, Stealth +9, Survival +6"
+    },
+    "gear": {
+      "value": "one weapon determined by its sin"
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Controlled"
+    },
+    "resistances": {
+      "value": "Mental 5"
+    },
+    "senses": {
+      "value": "darkvision, imprecise sin scent 30 ft."
+    },
+    "languages": {
+      "value": "Aklo"
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "aberration"
+    },
+    "alignment": {
+      "value": "neutral_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Save Bonus"
+            },
+            "trait_description": {
+              "value": "+1 status to saves vs. magic, +4 status to saves vs. mental"
+            },
+            "id": "6f00c338-c863-4abd-b19c-8791f08923d7",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Sin Scent"
+            },
+            "trait_description": {
+              "value": "A sinspawn can smell creatures that reflect its sin, as the scent ability. The GM determines which creatures are appropriately sinful."
+            },
+            "id": "fa4f162c-68ee-4020-a3cb-b7a5d54a8d81",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Sinful Bite"
+            },
+            "trait_description": {
+              "value": "(arcane, emotion, mental)\n\nA creature hit by the jaws of a sinspawn must attempt a DC 18 Will save as it is assailed by sinful thoughts.\n\nSuccess: Sickened 1.\nCritical Success: Unaffected.\nFailure: Sickened 2.\nCritical Failure: Sickened 2 plus an additional penalty, determined by the sinspawn's sin, while it remains sickened."
+            },
+            "id": "d13626f9-98f8-4206-be47-c00a62567956",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Sin"
+            },
+            "trait_description": {
+              "value": "A sinspawn gains an additional skill based on its sin, as well as a weapon that reflects the preferences of its kinds' ancient creators. The seven sins and the benefits they confer upon a sinspawn are noted in the Sinspawn Sins section."
+            },
+            "id": "48767e46-ac7e-4075-8f7c-f0b201b5b4b3",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "jaws"
+            },
+            "action_description": {
+              "value": "(agile) 1d8+4 piercing plus sinful bite\nEffects: sinful bite"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 10
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 4
+                                    },
+                                    "id": "609760b5-c09b-4acb-9f1a-e00415dcaceb",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:25.944969"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "a181da2e-2775-4c7d-9c66-1e5fc400bb3d",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:25.944969"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "a12e3e6c-4509-43dc-a399-5394f4a3ce7c",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:25.944969"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "07a2c3af-c486-433f-8775-ce57ba6dd552",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "claw"
+            },
+            "action_description": {
+              "value": "1d6+4 slashing"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 10
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 4
+                                    },
+                                    "id": "a7d06d9d-b521-4fba-a89f-b465026ed1b4",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:25.944969"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "401dd55c-a364-4ac7-b4a5-8efea2c93c0f",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:25.944969"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "05602b62-78a5-4090-a970-c4752527b4d9",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:25.944969"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "5625b21e-b336-4b07-8694-efab6c5e2940",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Attack of Opportunity"
+            },
+            "action_description": {
+              "value": ""
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "096464e8-13e9-424c-ab14-a40c5aa3d97e",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:25.944969"
+    }
+  }
+}

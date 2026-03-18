@@ -1,0 +1,150 @@
+{
+  "resource_id": "feat",
+  "stats": {
+    "id": "feat_overlooked_mastermind__locg_",
+    "updated_at": {
+      "value": "2026-03-16T23:55:12.219969+00:00"
+    },
+    "name": {
+      "value": "Overlooked Mastermind"
+    },
+    "source": {
+      "value": "locg"
+    },
+    "type": {
+      "value": "ancestry"
+    },
+    "action_cost": {
+      "value": "passive"
+    },
+    "traits": {
+      "value": "half-orc"
+    },
+    "classes": {
+      "value": []
+    },
+    "ancestries": {
+      "value": []
+    },
+    "prerequisites": {
+      "value": ""
+    },
+    "trigger": {
+      "value": ""
+    },
+    "requirements": {
+      "value": ""
+    },
+    "frequency": {
+      "value": ""
+    },
+    "access": {
+      "value": ""
+    },
+    "special": {
+      "value": ""
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "id": "levelled_description_8753343ad914",
+            "level": {
+              "value": 1
+            },
+            "description": {
+              "value": "Many consider half-orcs little more than dumb brutes. This is offensive to you, but it can occasionally be useful. You are trained in Deception (or another skill of your choice if you were already trained in Deception), and you gain a +2 circumstance bonus to Deception checks to Lie when specifically claiming ignorance and to Deception DCs against Sense Motive checks to uncover such lies."
+            }
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_228fa238af1c",
+            "level": {
+              "value": 1
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_74ca9024c990",
+                  "name": {
+                    "value": "Grant Trained in Deception"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "grant_proficiency"
+                  },
+                  "proficiency_stat": {
+                    "value": "$character.deception_proficiency"
+                  },
+                  "proficiency_rank": {
+                    "value": "trained"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_c2c5d4fd3601",
+            "level": {
+              "value": 1
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_61cb6b25f62a",
+                  "name": {
+                    "value": "+2 Circumstance Bonus to Deception"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "typed_add_to_stat"
+                  },
+                  "typed_modifier_type": {
+                    "value": "circumstance"
+                  },
+                  "typed_modifier_polarity": {
+                    "value": "bonus"
+                  },
+                  "stat": {
+                    "value": "$character.deception"
+                  },
+                  "constant": {
+                    "value": 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "skill_proficiencies": {
+      "value": []
+    },
+    "armor_proficiencies": {
+      "value": []
+    },
+    "weapon_proficiencies": {
+      "value": []
+    },
+    "lore_skills": {
+      "value": []
+    }
+  }
+}

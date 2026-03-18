@@ -1,0 +1,947 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "young_blue_dragon__b1_",
+    "name": {
+      "value": "Young Blue Dragon"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b1"
+    },
+    "tag": {
+      "value": "Electricity"
+    },
+    "armor_class": {
+      "value": 28
+    },
+    "hit_points": {
+      "value": 170
+    },
+    "level": {
+      "value": 9
+    },
+    "xp": {
+      "value": 240
+    },
+    "initiative": {
+      "value": 18
+    },
+    "perception": {
+      "value": 18
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 15
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 100
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 5
+    },
+    "dexterity_modifier": {
+      "value": 2
+    },
+    "constitution_modifier": {
+      "value": 3
+    },
+    "intelligence_modifier": {
+      "value": 1
+    },
+    "wisdom_modifier": {
+      "value": 3
+    },
+    "charisma_modifier": {
+      "value": 3
+    },
+    "fortitude": {
+      "value": 19
+    },
+    "reflex": {
+      "value": 18
+    },
+    "will": {
+      "value": 19
+    },
+    "skills": {
+      "value": "Acrobatics +15, Arcana +16, Deception +18, Diplomacy +18, Intimidation +18, Society +16, Stealth +15, Survival +16"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Electricity, Paralyzed, Sleep"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "darkvision, imprecise scent 60 ft."
+    },
+    "languages": {
+      "value": "Common, Draconic"
+    },
+    "size": {
+      "value": "large"
+    },
+    "type": {
+      "value": "dragon"
+    },
+    "alignment": {
+      "value": "lawful_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Frightful Presence"
+            },
+            "trait_description": {
+              "value": "(aura, emotion, fear, mental)\n\n90 feet, DC 26"
+            },
+            "id": "1effbbda-30bb-4b1e-b171-65f345d1ce05",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Sound Imitation"
+            },
+            "trait_description": {
+              "value": "The dragon can mimic any sound it has heard. It must succeed at a Deception check with a +4 circumstance bonus to do so."
+            },
+            "id": "be979a8d-08e2-4e58-8e01-5b9d5eda6f87",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Desert Thirst"
+            },
+            "trait_description": {
+              "value": "(arcane, transmutation)\n\nWhen casting create water, the dragon can attempt to destroy liquid instead of creating it, turning an equal amount of liquid into sand. This destroys liquid magic or alchemical items if they're of a lower level than the dragon (a creature can attempt a DC 26 Will save to protect all liquids in its possession). This doesn't affect the liquids in a creature's body."
+            },
+            "id": "69244c14-4166-4416-a38b-124f4ce5d2e0",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Draconic Momentum"
+            },
+            "trait_description": {
+              "value": "The dragon recharges its Breath Weapon whenever it scores a critical hit with a Strike."
+            },
+            "id": "9d03cce3-d530-4bfe-9e73-5898093c7df1",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "jaws"
+            },
+            "action_description": {
+              "value": "(electricity, reach 10 feet) 2d8+11 piercing plus 1d12 electricity"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 21
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 11
+                                    },
+                                    "id": "1ca02792-f241-4ee5-ab4e-e15efc220540",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:25.944969"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "a93ffce9-1c70-47d5-8247-3480151051a8",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:25.944969"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "electricity"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d12"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "daab840d-ea5b-4d8c-bb8d-063d0f1b2be3",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:25.944969"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "ebdf9756-a7e4-493f-a62b-c62cb7f1ebe8",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:25.944969"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "5a1a1a43-2cb8-40e9-bb2c-dc0a6871fe82",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:25.944969"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "a7d6c2cc-6a28-43a3-bb98-924c2420b01e",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "claw"
+            },
+            "action_description": {
+              "value": "(agile) 2d8+11 slashing"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 21
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 11
+                                    },
+                                    "id": "edcbe49f-7bab-4bfd-b4f2-d3e1b0bdf58b",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:25.944969"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "6ad0614c-d9ab-4144-a667-f921a0c5f8d8",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:25.944969"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "6adcd498-d564-4fdb-84cb-bccbac8bedef",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:25.944969"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "04f1babc-32a6-44a9-8c42-be259d8936ff",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "tail"
+            },
+            "action_description": {
+              "value": "(reach 15 feet) 2d8+9 bludgeoning"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 19
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 9
+                                    },
+                                    "id": "65106747-54fe-4911-826a-d7d8b85f0f44",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:25.944969"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "62bd9fc8-b6b6-4166-b8a1-7349fb0e0758",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:25.944969"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "2d2dbb49-a06a-4b0d-af9c-fe17cc0c74ae",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:25.944969"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "418a965f-0be7-4846-8a44-c36f27537c2d",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "horns"
+            },
+            "action_description": {
+              "value": "(reach 10 feet) 1d8+9 piercing"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 19
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 9
+                                    },
+                                    "id": "627ed9ed-36ad-4d50-9048-993331ecf100",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:25.944969"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "d48bbb04-7e63-46c4-862a-9f36fe0a6c80",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:25.944969"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "99a6c895-9c70-43c1-905e-6b11636878dd",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:25.944969"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "8a028c64-6249-4edb-bd88-7eeb68c97759",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Breath Weapon"
+            },
+            "action_description": {
+              "value": "(arcane, electricity, evocation)\n\nThe dragon breathes lightning that deals 5d12 electricity damage in an 80-foot line (DC 28 basic Reflex save). It can't use Breath Weapon again for 1d4 rounds."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "electricity"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 5
+                                    },
+                                    "dice_type": {
+                                      "value": "d12"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "b946ad9b-fd71-4397-8445-67e5c9751612",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:25.944969"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "624dd816-b73a-40a5-b283-162fd51ea32b",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:25.944969"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "8fa0ccea-6974-4efb-8ff2-76b33aa674fc",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:25.944969"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "0ff1776c-27bf-492e-8cf6-d3362d96204a",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Draconic Frenzy"
+            },
+            "action_description": {
+              "value": "The dragon makes two claw Strikes and one horns Strike in any order."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "4e177e89-8b4e-4236-9d48-ef50fb2d5fe2",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Wing Deflection"
+            },
+            "action_description": {
+              "value": "Trigger: The dragon is targeted with an attack.\n\nThe dragon raises its wing, gaining a +2 circumstance bonus to AC against the triggering attack. If the dragon is Flying, it descends 10 feet after the attack is complete."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "008e56ac-b516-4dff-9c51-0bef07e6d402",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": [
+        {
+          "resource_id": "monster_spellcasting_block",
+          "stats": {
+            "block_name": {
+              "value": ""
+            },
+            "tradition": {
+              "value": "arcane"
+            },
+            "spellcasting_type": {
+              "value": "innate"
+            },
+            "spell_dc": {
+              "value": 28
+            },
+            "spell_attack_bonus": {
+              "value": 0
+            },
+            "spell_levels": {
+              "value": [
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 1
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "create_water__pc1_",
+                          "name": {
+                            "value": "Create Water"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_1"
+                          },
+                          "school": {
+                            "value": "none"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "divine",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "feet"
+                          },
+                          "duration": {
+                            "value": ""
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "As you cup your hands, water begins to flow forth from them. You create 2 gallons of water. If no one drinks it, it evaporates after 1 day."
+                          },
+                          "higher_level_description": {
+                            "value": ""
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "concentrate",
+                              "manipulate",
+                              "water"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 28
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": "see desert thirst, at will"
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "a10a32e6-4d3d-41e1-8d2f-39a598933968",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:25.944969"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 4
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "ghost_sound__crb_",
+                          "name": {
+                            "value": "Ghost Sound"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_0"
+                          },
+                          "school": {
+                            "value": "spell_school_illusion"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": "Sustained (unlimited)"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "You create an auditory illusion of simple sounds that has a maximum volume equal to four normal humans shouting.\n\nThe sounds emanate from a square you designate within range. You can't create intelligible words or other intricate sounds (such as music)."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (3th): The range increases to 60 feet.\n\nHeightened (5th): The range increases to 120 feet."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "auditory"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 28
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "4132a012-4ddc-48da-b27e-12b5f01430ba",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:25.944969"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "9a1a02b8-f667-49f2-97f9-078df1cfba6a",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:25.944969"
+    }
+  }
+}

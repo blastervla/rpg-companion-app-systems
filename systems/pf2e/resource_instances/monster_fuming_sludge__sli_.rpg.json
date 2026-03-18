@@ -1,0 +1,549 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "fuming_sludge__sli_",
+    "name": {
+      "value": "Fuming Sludge"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "sli"
+    },
+    "tag": {
+      "value": "Mindless"
+    },
+    "armor_class": {
+      "value": 16
+    },
+    "hit_points": {
+      "value": 160
+    },
+    "level": {
+      "value": 7
+    },
+    "xp": {
+      "value": 120
+    },
+    "initiative": {
+      "value": 11
+    },
+    "perception": {
+      "value": 11
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 20
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 20
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 6
+    },
+    "dexterity_modifier": {
+      "value": -3
+    },
+    "constitution_modifier": {
+      "value": 5
+    },
+    "intelligence_modifier": {
+      "value": -5
+    },
+    "wisdom_modifier": {
+      "value": 0
+    },
+    "charisma_modifier": {
+      "value": -5
+    },
+    "fortitude": {
+      "value": 18
+    },
+    "reflex": {
+      "value": 8
+    },
+    "will": {
+      "value": 11
+    },
+    "skills": {
+      "value": "Athletics +19"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": "Cold 5"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Fire, Mental, Piercing, Precision, Critical Hits"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "chemical sense 60 ft., no vision"
+    },
+    "languages": {
+      "value": ""
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "ooze"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Chemical Sense"
+            },
+            "trait_description": {
+              "value": "A fuming sludge detects nearby living and undead creatures by their complex chemical compositions, but it can't detect elementals or other creatures composed of a single element."
+            },
+            "id": "ea02dc53-c958-4c02-b176-5c0a3f2c19aa",
+            "updated_at": {
+              "value": "2026-03-17T12:41:39.415482"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Smoldering Haze"
+            },
+            "trait_description": {
+              "value": "(aura, fire)\n\n15 feet. The fuming sludge constantly emits incendiary smoke that creates concealment around it. The smoke doesn't impair the fuming sludge's chemical sense. A creature that enters the aura or begins its turn in the aura becomes sickened 1 (DC 25 Fortitude negates) and cannot recover from persistent fire damage for 1 round. It is then temporarily immune to the sickening effect of the smoldering haze for 1 minute. A creature that is currently holding its breath, that doesn't need to breathe, or that's immune to poison is immune to the aura's sickened effect but not the concealment or inability to recover from persistent fire damage."
+            },
+            "id": "78d568db-7e5e-480e-b3be-d8c21b19014f",
+            "updated_at": {
+              "value": "2026-03-17T12:41:39.415482"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Cooling Glob"
+            },
+            "trait_description": {
+              "value": "A fuming sludge's ejected globs cling to targets.\n\nA creature hit by an ejected glob Strike is encumbered for 1 round. If the attack was a critical hit, the creature is instead restrained for 1 round (Escape DC 24)."
+            },
+            "id": "2f048ca3-6f36-4102-a006-59d306a284c6",
+            "updated_at": {
+              "value": "2026-03-17T12:41:39.415482"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "pseudopod"
+            },
+            "action_description": {
+              "value": "2d10+6 bludgeoning plus 1d8 persistent fire and Grab\nEffects: Grab"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 17
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 6
+                                    },
+                                    "id": "4e132df5-7bec-4b3a-9139-63f6265730fc",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:39.415482"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "da149540-419b-4810-949f-270471f86965",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:39.415482"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "untyped"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "00261519-36a4-41f6-8fcb-717a3cd710d0",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:39.415482"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "59c6488c-6acb-4470-acc2-81d1ff89d876",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:39.415482"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "1097a7dd-0bd0-4ce6-816b-d7bf24da0eca",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:39.415482"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "3c6f10e8-ab4f-44cc-9362-e369bb3bb211",
+            "updated_at": {
+              "value": "2026-03-17T12:41:39.415482"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "ejected glob"
+            },
+            "action_description": {
+              "value": "(brutal, range increment 20 feet) 3d6+6 bludgeoning plus 1d8 persistent fire and cooling glob\nEffects: cooling glob"
+            },
+            "action_type": {
+              "value": "ranged"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 17
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 3
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 6
+                                    },
+                                    "id": "430429c5-9023-464a-a8f4-9b0b93aaa52f",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:39.415482"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "4cd89e58-bd36-4559-bc05-7690f8e683b9",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:39.415482"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "untyped"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "b94381bd-a77b-41b2-86bd-810fae10d80e",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:39.415482"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "7e745dd0-9fd5-462c-8dc5-6a1244f629b6",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:39.415482"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "1a4a67e4-83c2-4804-903a-9a607ea79b34",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:39.415482"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "d05dd9bf-7be0-4a9c-a380-89e62435da12",
+            "updated_at": {
+              "value": "2026-03-17T12:41:39.415482"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Constrict"
+            },
+            "action_description": {
+              "value": "1d8+6 bludgeoning plus 1d8 persistent fire, DC 24"
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 6
+                                    },
+                                    "id": "0f553884-d4ae-427e-928a-c4d3087336ff",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:39.415482"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "fcabc777-7a51-48d5-84d0-f213d65db721",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:39.415482"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "untyped"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "2c479aa5-c4df-457f-b45c-b6d50db1a6ca",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:39.415482"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "fdcb5d05-a2c8-459e-bdef-6abced22ebca",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:39.415482"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "3a242a7c-7b61-4817-90f7-cf96a443e632",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:39.415482"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "11958af1-8f81-43b3-bb97-87d8c6356365",
+            "updated_at": {
+              "value": "2026-03-17T12:41:39.415482"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Attack of Opportunity"
+            },
+            "action_description": {
+              "value": ""
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "69ff9b66-c9b2-46e1-bfbb-540b451227ee",
+            "updated_at": {
+              "value": "2026-03-17T12:41:39.415482"
+            }
+          }
+        }
+      ]
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:39.415482"
+    }
+  }
+}

@@ -1,0 +1,264 @@
+{
+  "resource_id": "item",
+  "stats": {
+    "id": "accompaniment_cloak__tv_",
+    "updated_at": {
+      "value": "2026-03-16T23:48:35.924495+00:00"
+    },
+    "name": {
+      "value": "Accompaniment Cloak"
+    },
+    "source": {
+      "value": "tv"
+    },
+    "description": {
+      "value": "This lush velvet capelet is embroidered with images of musicians playing a wide variety of instruments. The images animate when you make art, remaining embroidered, but smoothly unknitting and reknitting in time with your performance. The figures play music that perfectly accompanies your instrument, voice, or movements, granting you a +2 item bonus to Performance checks. You gain 1 Focus Point, which you can use only to cast a bard composition spell. If not used by the end of your turn, this Focus Point is lost. You peel the musicians from the garment and fling them around you. The cloak casts a 4th-level phantom crowd spell (DC 28); each of the 10-foot squares must be adjacent to you. The crowd looks like the musicians on the garment and continues to accompany your Performance checks. You can Sustain this effect as described in the spell."
+    },
+    "type": {
+      "value": "worn"
+    },
+    "rarity": {
+      "value": "common"
+    },
+    "is_magic": {
+      "value": true
+    },
+    "requires_investment": {
+      "value": true
+    },
+    "is_cursed": {
+      "value": false
+    },
+    "is_intelligent": {
+      "value": false
+    },
+    "is_spellcasting_focus": {
+      "value": false
+    },
+    "traits": {
+      "value": "focused, illusion, invested, occult"
+    },
+    "attachment_target": {
+      "value": "none"
+    },
+    "consumed_on_activation": {
+      "value": false
+    },
+    "rune_kind": {
+      "value": "generic"
+    },
+    "rune_tier": {
+      "value": 0
+    },
+    "required_potency_tier": {
+      "value": 0
+    },
+    "property_slots_used": {
+      "value": 1
+    },
+    "rune_attack_bonus": {
+      "value": 0
+    },
+    "rune_damage_bonus": {
+      "value": 0
+    },
+    "rune_ac_bonus": {
+      "value": 0
+    },
+    "rune_save_bonus": {
+      "value": 0
+    },
+    "ammunition_type": {
+      "value": "none"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "value": {
+            "value": 1300
+          },
+          "unit": {
+            "value": "gold"
+          }
+        }
+      }
+    },
+    "weight": {
+      "value": null
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_a7cd4f557829",
+            "name": {
+              "value": "+2 Item Bonus to Performance"
+            },
+            "trigger_type": {
+              "value": "passive"
+            },
+            "type": {
+              "value": "typed_add_to_stat"
+            },
+            "typed_modifier_type": {
+              "value": "item"
+            },
+            "typed_modifier_polarity": {
+              "value": "bonus"
+            },
+            "stat": {
+              "value": "$character.performance"
+            },
+            "constant": {
+              "value": 2
+            }
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_16ac7366707a",
+            "name": {
+              "value": "+1 Max Focus Point"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "type": {
+              "value": "add_to_stat"
+            },
+            "stat": {
+              "value": "$character.max_focus_points"
+            },
+            "constant": {
+              "value": 1
+            },
+            "aggregation_type": {
+              "value": "sum"
+            }
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_a54898d8b4cf",
+            "name": {
+              "value": "Innate: Phantom Crowd"
+            },
+            "trigger_type": {
+              "value": "passive"
+            },
+            "type": {
+              "value": "add_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "id": "phantom_crowd__som_",
+                  "name": {
+                    "value": "Phantom Crowd"
+                  },
+                  "source": {
+                    "value": "som"
+                  },
+                  "level": {
+                    "value": "spell_level_2"
+                  },
+                  "school": {
+                    "value": "spell_school_illusion"
+                  },
+                  "traditions": {
+                    "value": [
+                      "arcane",
+                      "occult"
+                    ]
+                  },
+                  "is_focus_spell": {
+                    "value": false
+                  },
+                  "focus_point_cost": {
+                    "value": 0
+                  },
+                  "ritual": {
+                    "value": false
+                  },
+                  "action_cost": {
+                    "value": "two_actions"
+                  },
+                  "casting_time": {
+                    "value": ""
+                  },
+                  "verbal": {
+                    "value": true
+                  },
+                  "somatic": {
+                    "value": true
+                  },
+                  "material": {
+                    "value": false
+                  },
+                  "components": {
+                    "value": ""
+                  },
+                  "range": {
+                    "value": "60 feet"
+                  },
+                  "duration": {
+                    "value": "Sustained (10 minutes)"
+                  },
+                  "saving_throw": {
+                    "value": ""
+                  },
+                  "area": {
+                    "value": "a 10-foot square"
+                  },
+                  "targets": {
+                    "value": ""
+                  },
+                  "description": {
+                    "value": "A tightly packed crowd of humanoids appropriate to the area appear, facing you and agreeing loudly with anything you say. A creature that touches a member of the crowd or makes a Seek action to examine the crowd can attempt to 2. The crowd is 3 for anyone who hasn't 2.\n\nWhen you spend 1 or more actions to cast a composition spell (Core Rulebook 386) or to perform an activity that includes a Performance check, you can also Sustain this Spell as part of that action."
+                  },
+                  "higher_level_description": {
+                    "value": "Heightened (+1): The crowd occupies an additional 10-foot square in range. The additional square doesn't need to be adjacent to any other square created by the spell. It can overlap, but there's no additional effect in the overlapped squares."
+                  },
+                  "spell_traits": {
+                    "value": [
+                      "visual"
+                    ]
+                  },
+                  "classes": {
+                    "value": []
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "effects": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2026-03-14T01:32:36.044502"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "is_invested": {
+      "value": false
+    },
+    "is_equipped": {
+      "value": false
+    },
+    "quantity": {
+      "value": 1
+    },
+    "edit_quantity": {
+      "value": 1
+    }
+  }
+}

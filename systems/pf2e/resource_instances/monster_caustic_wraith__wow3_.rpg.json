@@ -1,0 +1,388 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "caustic_wraith__wow3_",
+    "name": {
+      "value": "Caustic Wraith"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "wow3"
+    },
+    "tag": {
+      "value": "Incorporeal, Unholy, Wraith"
+    },
+    "armor_class": {
+      "value": 28
+    },
+    "hit_points": {
+      "value": 130
+    },
+    "level": {
+      "value": 9
+    },
+    "xp": {
+      "value": 240
+    },
+    "initiative": {
+      "value": 18
+    },
+    "perception": {
+      "value": 18
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 25
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 40
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": -5
+    },
+    "dexterity_modifier": {
+      "value": 6
+    },
+    "constitution_modifier": {
+      "value": 3
+    },
+    "intelligence_modifier": {
+      "value": 3
+    },
+    "wisdom_modifier": {
+      "value": 4
+    },
+    "charisma_modifier": {
+      "value": 6
+    },
+    "fortitude": {
+      "value": 16
+    },
+    "reflex": {
+      "value": 19
+    },
+    "will": {
+      "value": 21
+    },
+    "skills": {
+      "value": "Acrobatics +19, Intimidation +21, Stealth +19"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Acid, Death Effects, Disease, Paralyzed, Poison, Precision, Unconscious"
+    },
+    "resistances": {
+      "value": "All 10 (except force, ghost touch, spirit, or vitality; double resistance vs. non-magical)"
+    },
+    "senses": {
+      "value": "darkvision, lifesense 60 ft."
+    },
+    "languages": {
+      "value": "Common, Necril"
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "undead"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Drain Life"
+            },
+            "trait_description": {
+              "value": "(divine)\n\nWhen the caustic wraith damages a living creature with its caustic touch Strike, the wraith gains 10 temporary Hit Points, and the target must succeed at a DC 28 Fortitude save or become drained 1. Further damage dealt by the caustic wraith increases the drained condition value by 1 on a failed save, to a maximum of drained 4."
+            },
+            "id": "dcc8b674-ce7b-4424-a928-720b317831a9",
+            "updated_at": {
+              "value": "2026-03-17T12:41:44.056477"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Wraith Spawn"
+            },
+            "trait_description": {
+              "value": "(divine, unholy)\n\nA living humanoid slain by a caustic wraith rises as a wraith spawn after 1d4 rounds. This wraith spawn is under the command of the wraith that killed it. It doesn't have drain life or wraith spawn and becomes clumsy 2. After 24 hours, the wraith spawn dissipates and is destroyed."
+            },
+            "id": "bc81c8a1-c52e-49f6-9b95-594d21b206ca",
+            "updated_at": {
+              "value": "2026-03-17T12:41:44.056477"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "caustic touch"
+            },
+            "action_description": {
+              "value": "(acid, finesse, reach 10 feet, void) 2d8 void plus 1d8 acid plus drain life"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 21
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "void"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "0772d56f-74f8-40d6-8cae-29911c099507",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:44.056477"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "26c43f4a-05e5-4268-9864-7913600f0806",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:44.056477"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "acid"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "9e7dddb1-6710-4e7d-80a4-6f5588069f78",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:44.056477"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "cf7a49ca-fce4-430e-86ec-9a2dba56dedc",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:44.056477"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "9998072c-fe5d-4f4e-a1ff-8522803fcc3d",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:44.056477"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "7c3f6ac1-9e4b-42cb-b73b-585c120146df",
+            "updated_at": {
+              "value": "2026-03-17T12:41:44.056477"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Dissolve From the Inside"
+            },
+            "action_description": {
+              "value": "The caustic wraith reaches into the body of a creature within 10 feet, melting its organs and inflicting pain. The target takes 4d8 acid damage with a DC 28 basic Fortitude save. On a critical failure, the creature is also sickened 2."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "acid"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 4
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "4deb0a6c-bb4b-4c73-90f6-4c859f49a1a7",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:44.056477"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "5e5465c1-93fb-49ef-b07e-fcfd05c69924",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:44.056477"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "fca0ba90-6d55-499e-8338-cd48893fc36b",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:44.056477"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "d9d32e36-251b-4da8-a4e5-31ff27029b4e",
+            "updated_at": {
+              "value": "2026-03-17T12:41:44.056477"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Aggravating Aura"
+            },
+            "action_description": {
+              "value": "(acid, aura, mental)\n\n10 feet. Acidic vapor surrounds the caustic wraith, making other creatures' bodies feel raw and especially sensitive to pain. A creature that begins in the area must succeed at a DC 28 Will save or gain weakness 3 to all damage for 1 round (weakness 5 on a critical failure)."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "bf686148-e471-44f7-bc5d-3fcae8ffcb72",
+            "updated_at": {
+              "value": "2026-03-17T12:41:44.056477"
+            }
+          }
+        }
+      ]
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:44.056477"
+    }
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "resource_id": "feat",
+  "stats": {
+    "id": "feat_crystal_ward_spells__aoa4_",
+    "updated_at": {
+      "value": "2026-03-16T23:55:12.219969+00:00"
+    },
+    "name": {
+      "value": "Crystal Ward Spells"
+    },
+    "source": {
+      "value": "aoa4"
+    },
+    "type": {
+      "value": "archetype"
+    },
+    "action_cost": {
+      "value": "passive"
+    },
+    "traits": {
+      "value": "archetype"
+    },
+    "classes": {
+      "value": []
+    },
+    "ancestries": {
+      "value": []
+    },
+    "prerequisites": {
+      "value": "Crystal Keeper Dedication"
+    },
+    "trigger": {
+      "value": ""
+    },
+    "requirements": {
+      "value": ""
+    },
+    "frequency": {
+      "value": ""
+    },
+    "access": {
+      "value": ""
+    },
+    "special": {
+      "value": ""
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "id": "levelled_description_d26295d374dd",
+            "level": {
+              "value": 4
+            },
+            "description": {
+              "value": "Your study of crystals and the energies held within a gem's facets grants you special arcane crystal ward spells, which are a type of focus spell. It costs 1 Focus Point to cast a focus spell, and you start with a focus pool of 1 Focus Point. You refill your focus pool when you make your next daily preparations, and you can regain 1 Focus Point by spending 10 minutes using the Refocus activity to research and memorize the properties of gems.\n\nFocus spells are automatically heightened to half your level rounded up. Certain feats can give you more focus spells and increase the size of your focus pool, though your focus pool can never hold more than 3 Focus Points. You gain the electrified crystal ward focus spell, and you are trained in arcane spell attack rolls and spell DCs. Your spellcasting ability is Intelligence."
+            }
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_a4e1ffc1caf3",
+            "level": {
+              "value": 4
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_97bfa3d2877f",
+                  "name": {
+                    "value": "Grant Trained in Arcane Spellcasting"
+                  },
+                  "trigger_type": {
+                    "value": "passive"
+                  },
+                  "type": {
+                    "value": "grant_proficiency"
+                  },
+                  "proficiency_stat": {
+                    "value": "$character.arcane_spellcasting_proficiency"
+                  },
+                  "proficiency_rank": {
+                    "value": "trained"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_2092caa3dcd1",
+            "level": {
+              "value": 4
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_943fddece648",
+                  "name": {
+                    "value": "+1 Max Focus Point"
+                  },
+                  "trigger_type": {
+                    "value": "passive"
+                  },
+                  "type": {
+                    "value": "add_to_stat"
+                  },
+                  "stat": {
+                    "value": "$character.max_focus_points"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "aggregation_type": {
+                    "value": "sum"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_5c054c6f7b86",
+            "level": {
+              "value": 4
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_ec3bc0105c83",
+                  "name": {
+                    "value": "Innate: Electrified Crystal Ward"
+                  },
+                  "trigger_type": {
+                    "value": "passive"
+                  },
+                  "type": {
+                    "value": "add_spell"
+                  },
+                  "spell": {
+                    "value": {
+                      "resource_id": "spell",
+                      "stats": {
+                        "id": "electrified_crystal_ward__aoa4_",
+                        "name": {
+                          "value": "Electrified Crystal Ward"
+                        },
+                        "source": {
+                          "value": "aoa4"
+                        },
+                        "level": {
+                          "value": "spell_level_3"
+                        },
+                        "school": {
+                          "value": "spell_school_evocation"
+                        },
+                        "traditions": {
+                          "value": []
+                        },
+                        "is_focus_spell": {
+                          "value": true
+                        },
+                        "focus_point_cost": {
+                          "value": 1
+                        },
+                        "ritual": {
+                          "value": false
+                        },
+                        "action_cost": {
+                          "value": "two_actions"
+                        },
+                        "casting_time": {
+                          "value": ""
+                        },
+                        "verbal": {
+                          "value": false
+                        },
+                        "somatic": {
+                          "value": true
+                        },
+                        "material": {
+                          "value": false
+                        },
+                        "components": {
+                          "value": ""
+                        },
+                        "range": {
+                          "value": "1 touch"
+                        },
+                        "duration": {
+                          "value": ""
+                        },
+                        "saving_throw": {
+                          "value": ""
+                        },
+                        "area": {
+                          "value": ""
+                        },
+                        "targets": {
+                          "value": "1 hinge or latch"
+                        },
+                        "description": {
+                          "value": "You create an electric latch rune hazard on the target, creating a special crystalline lock on the object. You can also substitute your spell DC for any of the hazard's listed DCs. You can have only one such hazard active at a time, and if you cast this spell while a previous electric latch rune is active, the older hazard discharges harmlessly."
+                        },
+                        "higher_level_description": {
+                          "value": "Heightened (+2): The hazard's damage increases by 1d12."
+                        },
+                        "spell_traits": {
+                          "value": [
+                            "electricity"
+                          ]
+                        },
+                        "classes": {
+                          "value": []
+                        },
+                        "dice": {
+                          "value": []
+                        },
+                        "effects": {
+                          "value": []
+                        },
+                        "updated_at": {
+                          "value": "2026-03-14T01:32:36.044502"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "skill_proficiencies": {
+      "value": []
+    },
+    "armor_proficiencies": {
+      "value": []
+    },
+    "weapon_proficiencies": {
+      "value": []
+    },
+    "lore_skills": {
+      "value": []
+    }
+  }
+}

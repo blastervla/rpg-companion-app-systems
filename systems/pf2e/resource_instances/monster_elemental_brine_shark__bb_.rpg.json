@@ -1,0 +1,271 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "elemental_brine_shark__bb_",
+    "name": {
+      "value": "Elemental, Brine Shark"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "bb"
+    },
+    "tag": {
+      "value": "Aquatic, Water"
+    },
+    "armor_class": {
+      "value": 19
+    },
+    "hit_points": {
+      "value": 45
+    },
+    "level": {
+      "value": 3
+    },
+    "xp": {
+      "value": 30
+    },
+    "initiative": {
+      "value": 8
+    },
+    "perception": {
+      "value": 8
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 15
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 50
+    },
+    "strength_modifier": {
+      "value": 3
+    },
+    "dexterity_modifier": {
+      "value": 2
+    },
+    "constitution_modifier": {
+      "value": 2
+    },
+    "intelligence_modifier": {
+      "value": -4
+    },
+    "wisdom_modifier": {
+      "value": 1
+    },
+    "charisma_modifier": {
+      "value": 0
+    },
+    "fortitude": {
+      "value": 9
+    },
+    "reflex": {
+      "value": 11
+    },
+    "will": {
+      "value": 6
+    },
+    "skills": {
+      "value": "Athletics +10, Stealth +11, Survival +8"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Bleed, Poison, Sleep"
+    },
+    "resistances": {
+      "value": "Fire 5"
+    },
+    "senses": {
+      "value": "darkvision"
+    },
+    "languages": {
+      "value": ""
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "elemental"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": []
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "jaws"
+            },
+            "action_description": {
+              "value": "1d12 + 7 piercing plus Grab\nEffects: Grab"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 11
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d12"
+                                    },
+                                    "constant": {
+                                      "value": 7
+                                    },
+                                    "id": "8a092bd1-8c66-4a88-b369-e70a3ec1eac0",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:28.238636"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "4860dcdd-196c-4f68-90f4-9cb3cd9c4e7b",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:28.238636"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "ddc7abe4-efba-46b7-9d2f-5e7c62d12dab",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:28.238636"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "220dbc61-3a3f-47d4-9e97-e4ade24c0b36",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.238636"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Deep Plunge"
+            },
+            "action_description": {
+              "value": "The brine shark dives straight down into the water, swimming up to 100 feet in a straight vertical line. It can use this ability while grabbing a creature."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "205db61c-9e4b-46da-8f20-146e4d8664c3",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.238636"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Grab"
+            },
+            "action_description": {
+              "value": "When the brine shark succeeds at its jaws Strike, it can use this action immediately after to automatically give the target the grabbed condition until the end of its next turn."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "ecfbab31-080f-42ef-9d22-91762e4f6a66",
+            "updated_at": {
+              "value": "2026-03-17T12:41:28.238636"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:28.238636"
+    }
+  }
+}

@@ -1,0 +1,883 @@
+{
+  "resource_id": "item",
+  "stats": {
+    "id": "greater_trickster_s_mandolin__tv_",
+    "updated_at": {
+      "value": "2026-03-16T23:48:35.823269+00:00"
+    },
+    "name": {
+      "value": "Greater Trickster'S Mandolin"
+    },
+    "source": {
+      "value": "tv"
+    },
+    "description": {
+      "value": "Sought after by many unscrupulous bards, this instrument is surprisingly light and easy to carry, but also empowered with a number of spells carefully selected to help with fooling others or making a hasty retreat. While playing the mandolin, you gain a +1 item bonus to Deception and Performance checks. You change the instrument's color and shape to one you prefer, and you can turn it into a different handheld string instrument that takes two hands to play. You expend a number of charges from this instrument to cast a spell from its list. illusory creature, illusory disguise, invisibility, mirror image illusory disguise, phantom prison, sculpt sound"
+    },
+    "type": {
+      "value": "other"
+    },
+    "rarity": {
+      "value": "common"
+    },
+    "is_magic": {
+      "value": true
+    },
+    "requires_investment": {
+      "value": false
+    },
+    "is_cursed": {
+      "value": false
+    },
+    "is_intelligent": {
+      "value": false
+    },
+    "is_spellcasting_focus": {
+      "value": false
+    },
+    "traits": {
+      "value": "coda, illusion, occult, staff"
+    },
+    "attachment_target": {
+      "value": "none"
+    },
+    "consumed_on_activation": {
+      "value": false
+    },
+    "rune_kind": {
+      "value": "generic"
+    },
+    "rune_tier": {
+      "value": 0
+    },
+    "required_potency_tier": {
+      "value": 0
+    },
+    "property_slots_used": {
+      "value": 1
+    },
+    "rune_attack_bonus": {
+      "value": 0
+    },
+    "rune_damage_bonus": {
+      "value": 0
+    },
+    "rune_ac_bonus": {
+      "value": 0
+    },
+    "rune_save_bonus": {
+      "value": 0
+    },
+    "ammunition_type": {
+      "value": "none"
+    },
+    "cost": {
+      "value": {
+        "resource_id": "cost",
+        "stats": {
+          "value": {
+            "value": 460
+          },
+          "unit": {
+            "value": "gold"
+          }
+        }
+      }
+    },
+    "weight": {
+      "value": null
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_915d46cf7931",
+            "name": {
+              "value": "+1 Item Bonus to Performance"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "type": {
+              "value": "typed_add_to_stat"
+            },
+            "typed_modifier_type": {
+              "value": "item"
+            },
+            "typed_modifier_polarity": {
+              "value": "bonus"
+            },
+            "stat": {
+              "value": "$character.performance"
+            },
+            "constant": {
+              "value": 1
+            }
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_a2e4e7a6a379",
+            "name": {
+              "value": "Innate: Illusory Creature"
+            },
+            "trigger_type": {
+              "value": "passive"
+            },
+            "type": {
+              "value": "add_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "id": "illusory_creature__pc1_",
+                  "name": {
+                    "value": "Illusory Creature"
+                  },
+                  "source": {
+                    "value": "pc1"
+                  },
+                  "level": {
+                    "value": "spell_level_2"
+                  },
+                  "school": {
+                    "value": "spell_school_illusion"
+                  },
+                  "traditions": {
+                    "value": [
+                      "arcane",
+                      "occult"
+                    ]
+                  },
+                  "is_focus_spell": {
+                    "value": false
+                  },
+                  "focus_point_cost": {
+                    "value": 0
+                  },
+                  "ritual": {
+                    "value": false
+                  },
+                  "action_cost": {
+                    "value": "two_actions"
+                  },
+                  "casting_time": {
+                    "value": ""
+                  },
+                  "verbal": {
+                    "value": false
+                  },
+                  "somatic": {
+                    "value": false
+                  },
+                  "material": {
+                    "value": false
+                  },
+                  "components": {
+                    "value": ""
+                  },
+                  "range": {
+                    "value": "500 feet"
+                  },
+                  "duration": {
+                    "value": "Sustained (unlimited)"
+                  },
+                  "saving_throw": {
+                    "value": ""
+                  },
+                  "area": {
+                    "value": ""
+                  },
+                  "targets": {
+                    "value": ""
+                  },
+                  "description": {
+                    "value": "You create an illusory image of a Large or smaller creature. It generates the appropriate sounds, smells, and feels believable to the touch. If you and the image are ever farther than 500 feet apart, the spell ends.\n\nThe image can't speak, but you can use your actions to speak through the creature, with the spell disguising your voice as appropriate. You might need to attempt a Deception or Performance check to mimic the creature, as determined by the GM. This is especially likely if you're trying to imitate a specific person and engage with someone that person knows.\n\nIn combat, the illusion can use 2 actions per turn, which it uses when you Sustain the spell. It uses your spell attack modifier for attack rolls and your spell DC for its AC. Its saving throw modifiers are equal to your spell DC - 10. It is substantial enough that it can flank other creatures. If the image is hit by an attack or fails a save, the spell ends.\n\nThe illusion can cause damage by making the target believe the illusion's attacks are real, but it cannot otherwise directly affect the physical world. If the illusory creature hits with a Strike, the target takes 3d4 mental damage. The illusion's Strikes are nonlethal. If the damage doesn't correspond to the image of the monster-for example, if an illusory Large dragon deals only 5 damage-the GM might allow the target to attempt an immediate Perception check to disbelieve the spell. Any relevant resistances and weaknesses apply if the target thinks they do, as judged by the GM. For example, if the illusion wields a warhammer and attacks a creature resistant to bludgeoning damage, the creature would take less mental damage. However, illusory damage does not deactivate regeneration or trigger other effects that require a certain damage type. The GM should track illusory damage dealt by the illusion.\n\nAny creature that touches the image or uses the Seek action to examine it can attempt to 2. When a creature disbelieves the illusion, it recovers from half the damage it had taken from it (if any) and doesn't take any further damage from it."
+                  },
+                  "higher_level_description": {
+                    "value": "Heightened (+1): The damage of the image's Strikes increases by 1d4, and the maximum size of creature you can create increases by one (to a maximum of Gargantuan)."
+                  },
+                  "spell_traits": {
+                    "value": [
+                      "auditory",
+                      "concentrate",
+                      "manipulate",
+                      "olfactory",
+                      "visual"
+                    ]
+                  },
+                  "classes": {
+                    "value": []
+                  },
+                  "dice": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 2
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 3
+                                          },
+                                          "dice_type": {
+                                            "value": "d4"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-14T01:32:36.044502"
+                                          },
+                                          "id": "8be1cd7f-7cde-4d92-9bc1-18efe184a62f"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "mental"
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-14T01:32:36.044502"
+                                  },
+                                  "id": "5b8fca50-5099-4af5-83ce-442a7d100099"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2026-03-14T01:32:36.044502"
+                          },
+                          "id": "761ac61e-7a57-4d80-8e7e-da14b47cc3ba"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 3
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 4
+                                          },
+                                          "dice_type": {
+                                            "value": "d4"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-14T01:32:36.044502"
+                                          },
+                                          "id": "2ed59de7-1ca9-4443-af5f-de83988aa3c4"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "mental"
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-14T01:32:36.044502"
+                                  },
+                                  "id": "015f47ea-c7f9-4b58-aa2f-b0fd240a41d4"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2026-03-14T01:32:36.044502"
+                          },
+                          "id": "71e75652-f6ba-43b2-8146-8fd59ea03fd5"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 4
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 5
+                                          },
+                                          "dice_type": {
+                                            "value": "d4"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-14T01:32:36.044502"
+                                          },
+                                          "id": "f7100ef7-da22-4726-a153-dffa42243363"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "mental"
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-14T01:32:36.044502"
+                                  },
+                                  "id": "da3f455d-c6d5-4bfe-92ba-13f683d308b4"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2026-03-14T01:32:36.044502"
+                          },
+                          "id": "487affec-bf24-49ed-aa5d-896659c80e34"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 5
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 6
+                                          },
+                                          "dice_type": {
+                                            "value": "d4"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-14T01:32:36.044502"
+                                          },
+                                          "id": "daf0ce87-3685-40af-9cf8-3572aadcafc3"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "mental"
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-14T01:32:36.044502"
+                                  },
+                                  "id": "ff2ab6e8-f567-471e-ba23-1ae2acb89eab"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2026-03-14T01:32:36.044502"
+                          },
+                          "id": "fde7da3d-a3da-4de1-ba4b-fead2c3ad4e9"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 6
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 7
+                                          },
+                                          "dice_type": {
+                                            "value": "d4"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-14T01:32:36.044502"
+                                          },
+                                          "id": "f8062a1d-c117-4dbf-a831-1027b00e8953"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "mental"
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-14T01:32:36.044502"
+                                  },
+                                  "id": "d55ca671-e484-4cd2-ace4-f24f232e705a"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2026-03-14T01:32:36.044502"
+                          },
+                          "id": "dc580fc8-744b-4843-bd70-004768ce6605"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 7
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 8
+                                          },
+                                          "dice_type": {
+                                            "value": "d4"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-14T01:32:36.044502"
+                                          },
+                                          "id": "de6e539c-ba5b-4dd2-b521-a92dc1b6594e"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "mental"
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-14T01:32:36.044502"
+                                  },
+                                  "id": "eb704ebd-605a-40c2-8be5-cd7b4791f6d2"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2026-03-14T01:32:36.044502"
+                          },
+                          "id": "d3d78d2b-4167-45d5-b7b4-4d14f97e91d1"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 8
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 9
+                                          },
+                                          "dice_type": {
+                                            "value": "d4"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-14T01:32:36.044502"
+                                          },
+                                          "id": "8aaefb00-8b61-4b56-a042-b5cee073674f"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "mental"
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-14T01:32:36.044502"
+                                  },
+                                  "id": "817b66a2-c192-4865-9dca-ca3e5cee29fe"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2026-03-14T01:32:36.044502"
+                          },
+                          "id": "8760ceb7-c256-497d-9c44-20c957d89171"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 9
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 10
+                                          },
+                                          "dice_type": {
+                                            "value": "d4"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-14T01:32:36.044502"
+                                          },
+                                          "id": "6faa96f5-7342-4d50-bfc8-c3a48928f6ab"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "mental"
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-14T01:32:36.044502"
+                                  },
+                                  "id": "3c15858c-21bf-4661-8527-f21b41ee158c"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2026-03-14T01:32:36.044502"
+                          },
+                          "id": "4d20c9fb-8171-4979-8563-61bb486bff31"
+                        }
+                      },
+                      {
+                        "resource_id": "levelled_damage_dice",
+                        "stats": {
+                          "level": {
+                            "value": 10
+                          },
+                          "damage_dice": {
+                            "value": [
+                              {
+                                "resource_id": "damage_dice",
+                                "stats": {
+                                  "dices": {
+                                    "value": [
+                                      {
+                                        "resource_id": "dice_roll",
+                                        "stats": {
+                                          "dice_amount": {
+                                            "value": 11
+                                          },
+                                          "dice_type": {
+                                            "value": "d4"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-14T01:32:36.044502"
+                                          },
+                                          "id": "0bc9ccbd-eeb8-457f-816e-775068fe1272"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "damage_type": {
+                                    "value": "mental"
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-14T01:32:36.044502"
+                                  },
+                                  "id": "f2424910-4948-4f40-b6c8-de447bee2bcb"
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2026-03-14T01:32:36.044502"
+                          },
+                          "id": "32633555-13f7-40b8-8327-ce9eade00225"
+                        }
+                      }
+                    ]
+                  },
+                  "effects": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2026-03-14T01:32:36.044502"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_647a0f806534",
+            "name": {
+              "value": "Innate: Illusory Disguise"
+            },
+            "trigger_type": {
+              "value": "passive"
+            },
+            "type": {
+              "value": "add_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "id": "illusory_disguise__pc1_",
+                  "name": {
+                    "value": "Illusory Disguise"
+                  },
+                  "source": {
+                    "value": "pc1"
+                  },
+                  "level": {
+                    "value": "spell_level_1"
+                  },
+                  "school": {
+                    "value": "spell_school_illusion"
+                  },
+                  "traditions": {
+                    "value": [
+                      "arcane",
+                      "occult"
+                    ]
+                  },
+                  "is_focus_spell": {
+                    "value": false
+                  },
+                  "focus_point_cost": {
+                    "value": 0
+                  },
+                  "ritual": {
+                    "value": false
+                  },
+                  "action_cost": {
+                    "value": "two_actions"
+                  },
+                  "casting_time": {
+                    "value": ""
+                  },
+                  "verbal": {
+                    "value": false
+                  },
+                  "somatic": {
+                    "value": false
+                  },
+                  "material": {
+                    "value": false
+                  },
+                  "components": {
+                    "value": ""
+                  },
+                  "range": {
+                    "value": ""
+                  },
+                  "duration": {
+                    "value": "1 hour"
+                  },
+                  "saving_throw": {
+                    "value": ""
+                  },
+                  "area": {
+                    "value": ""
+                  },
+                  "targets": {
+                    "value": "1 willing creature"
+                  },
+                  "description": {
+                    "value": "You create an illusion that causes the target to appear as another creature of the same body shape, and with roughly similar height (within 6 inches) and weight (within 50 pounds). The disguise is typically good enough to hide their identity, but not to impersonate a specific individual. The spell changes their appearance and voice, but not mannerisms. You can change the appearance of its clothing and worn items, such as making its armor look like a dress. Held items are unaffected, and any worn item removed from the creature returns to its true appearance.\n\nCasting illusory disguise counts as setting up a disguise for the Impersonate use of Deception; it ignores any circumstance penalties you might take for disguising yourself as a dissimilar creature, gives you a +4 status bonus to Deception checks to prevent others from seeing through your disguise, and lets the target add its level even if its untrained. You can Dismiss this spell."
+                  },
+                  "higher_level_description": {
+                    "value": "Heightened (3th): The target can appear as any creature of the same size, even a specific individual. You must have seen an individual to replicate its appearance, and must have heard its voice to replicate its voice.\n\nHeightened (4th): You can target up to 10 willing creatures. If you target multiple creatures, you can choose a different disguise for each target, but none can impersonate a specific individual. You can Dismiss each disguise individually or all collectively.\n\nHeightened (7th): As 4th, but you can choose disguises that impersonate specific individuals. You must have seen an individual to replicate its appearance, and must have heard its voice to replicate its voice."
+                  },
+                  "spell_traits": {
+                    "value": [
+                      "concentrate",
+                      "manipulate",
+                      "visual"
+                    ]
+                  },
+                  "classes": {
+                    "value": []
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "effects": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2026-03-14T01:32:36.044502"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_04f115e8cbad",
+            "name": {
+              "value": "Innate: Invisibility"
+            },
+            "trigger_type": {
+              "value": "passive"
+            },
+            "type": {
+              "value": "add_spell"
+            },
+            "spell": {
+              "value": {
+                "resource_id": "spell",
+                "stats": {
+                  "id": "invisibility__pc1_",
+                  "name": {
+                    "value": "Invisibility"
+                  },
+                  "source": {
+                    "value": "pc1"
+                  },
+                  "level": {
+                    "value": "spell_level_2"
+                  },
+                  "school": {
+                    "value": "spell_school_illusion"
+                  },
+                  "traditions": {
+                    "value": [
+                      "arcane",
+                      "occult"
+                    ]
+                  },
+                  "is_focus_spell": {
+                    "value": false
+                  },
+                  "focus_point_cost": {
+                    "value": 0
+                  },
+                  "ritual": {
+                    "value": false
+                  },
+                  "action_cost": {
+                    "value": "two_actions"
+                  },
+                  "casting_time": {
+                    "value": ""
+                  },
+                  "verbal": {
+                    "value": false
+                  },
+                  "somatic": {
+                    "value": false
+                  },
+                  "material": {
+                    "value": false
+                  },
+                  "components": {
+                    "value": ""
+                  },
+                  "range": {
+                    "value": "1 touch"
+                  },
+                  "duration": {
+                    "value": "10 minutes"
+                  },
+                  "saving_throw": {
+                    "value": ""
+                  },
+                  "area": {
+                    "value": ""
+                  },
+                  "targets": {
+                    "value": "1 creature"
+                  },
+                  "description": {
+                    "value": "Illusions bend light around the target, rendering it invisible. This makes it undetected to all creatures, though the creatures can attempt to find the target, making it hidden to them instead. If the target uses a hostile action, the spell ends after that hostile action is completed."
+                  },
+                  "higher_level_description": {
+                    "value": "Heightened (4th): The spell lasts 1 minute, but it doesn't end if the target uses a hostile action."
+                  },
+                  "spell_traits": {
+                    "value": [
+                      "manipulate",
+                      "subtle"
+                    ]
+                  },
+                  "classes": {
+                    "value": []
+                  },
+                  "dice": {
+                    "value": []
+                  },
+                  "effects": {
+                    "value": []
+                  },
+                  "updated_at": {
+                    "value": "2026-03-14T01:32:36.044502"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "is_invested": {
+      "value": false
+    },
+    "is_equipped": {
+      "value": false
+    },
+    "quantity": {
+      "value": 1
+    },
+    "edit_quantity": {
+      "value": 1
+    }
+  }
+}

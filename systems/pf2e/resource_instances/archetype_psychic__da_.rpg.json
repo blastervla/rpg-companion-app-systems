@@ -1,0 +1,722 @@
+{
+  "resource_id": "archetype",
+  "stats": {
+    "id": "psychic__da_",
+    "updated_at": {
+      "value": "2026-03-16T14:51:49.570600+00:00"
+    },
+    "name": {
+      "value": "Psychic"
+    },
+    "source": {
+      "value": "da"
+    },
+    "description": {
+      "value": "You've awoken the latent abilities of your mind, taking your first steps into wielding psychic magic.\n\nPsychic is a good fit for characters who want a touch of occult power. Intelligence-based characters like investigators and alchemists, as well as Charisma-based characters like bards, can choose the path that best suits their inherent abilities."
+    },
+    "is_class_archetype": {
+      "value": false
+    },
+    "required_class_id": {
+      "value": ""
+    },
+    "dedication_feat": {
+      "value": {
+        "resource_id": "feat",
+        "stats": {
+          "id": "feat_psychic_dedication__da_",
+          "updated_at": {
+            "value": "2026-03-16T14:51:32.702359+00:00"
+          },
+          "name": {
+            "value": "Psychic Dedication"
+          },
+          "source": {
+            "value": "da"
+          },
+          "type": {
+            "value": "archetype"
+          },
+          "action_cost": {
+            "value": "passive"
+          },
+          "traits": {
+            "value": "archetype, dedication, multiclass"
+          },
+          "classes": {
+            "value": []
+          },
+          "ancestries": {
+            "value": []
+          },
+          "prerequisites": {
+            "value": "Intelligence 14 or Charisma 14"
+          },
+          "trigger": {
+            "value": ""
+          },
+          "requirements": {
+            "value": ""
+          },
+          "frequency": {
+            "value": ""
+          },
+          "access": {
+            "value": ""
+          },
+          "special": {
+            "value": "You can't select another dedication feat until you have gained two other feats from the psychic archetype."
+          },
+          "descriptions": {
+            "value": [
+              {
+                "resource_id": "levelled_description",
+                "stats": {
+                  "id": "levelled_description_1111a4913d66",
+                  "level": {
+                    "value": 2
+                  },
+                  "description": {
+                    "value": "You feel something awaken within your mind. You become trained in Occultism; if you were already trained in Occultism, you become trained in a skill of your choice. You cast spells like a psychic and gain the Cast a Spell activity; as you don't have a subconscious mind, your thought components are simple intentions. Choose a conscious mind. You gain a spell repertoire with one standard psi cantrip of your choice from your conscious mind, which you cast as a psi cantrip. You gain the normal benefits and the amp for this psi cantrip, but not any other benefits from the conscious mind. If you don't have one, you gain a focus pool of 1 Focus Point, which you can use to amp your psi cantrips, and you can Refocus by meditating on your new powers. If you already have a focus pool, increase the number of points in your pool by 1. You're trained in occult spell attack rolls and occult spell DCs. Your key spellcasting ability for psychic archetype spells is the ability you used to qualify for the archetype, and they are occult psychic spells."
+                  }
+                }
+              }
+            ]
+          },
+          "effects": {
+            "value": [
+              {
+                "resource_id": "levelled_effect",
+                "stats": {
+                  "id": "levelled_effect_571c12681380",
+                  "level": {
+                    "value": 2
+                  },
+                  "effect": {
+                    "value": {
+                      "resource_id": "effect",
+                      "stats": {
+                        "id": "effect_0333d9e149c7",
+                        "name": {
+                          "value": "Grant Trained in Occultism"
+                        },
+                        "trigger_type": {
+                          "value": "active"
+                        },
+                        "type": {
+                          "value": "grant_proficiency"
+                        },
+                        "proficiency_stat": {
+                          "value": "$character.occultism_proficiency"
+                        },
+                        "proficiency_rank": {
+                          "value": "trained"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "resource_id": "levelled_effect",
+                "stats": {
+                  "id": "levelled_effect_f2b1cb0992e8",
+                  "level": {
+                    "value": 2
+                  },
+                  "effect": {
+                    "value": {
+                      "resource_id": "effect",
+                      "stats": {
+                        "id": "effect_70441a357ba3",
+                        "name": {
+                          "value": "Grant Trained in Occult Spellcasting"
+                        },
+                        "trigger_type": {
+                          "value": "passive"
+                        },
+                        "type": {
+                          "value": "grant_proficiency"
+                        },
+                        "proficiency_stat": {
+                          "value": "$character.occult_spellcasting_proficiency"
+                        },
+                        "proficiency_rank": {
+                          "value": "trained"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "resource_id": "levelled_effect",
+                "stats": {
+                  "id": "levelled_effect_8b71f20eedf7",
+                  "level": {
+                    "value": 2
+                  },
+                  "effect": {
+                    "value": {
+                      "resource_id": "effect",
+                      "stats": {
+                        "id": "effect_f8ff63dd3add",
+                        "name": {
+                          "value": "+1 Max Focus Point"
+                        },
+                        "trigger_type": {
+                          "value": "passive"
+                        },
+                        "type": {
+                          "value": "add_to_stat"
+                        },
+                        "stat": {
+                          "value": "$character.max_focus_points"
+                        },
+                        "constant": {
+                          "value": 1
+                        },
+                        "aggregation_type": {
+                          "value": "sum"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "skill_proficiencies": {
+            "value": []
+          },
+          "armor_proficiencies": {
+            "value": []
+          },
+          "weapon_proficiencies": {
+            "value": []
+          },
+          "lore_skills": {
+            "value": []
+          }
+        }
+      }
+    },
+    "feats": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_basic_thoughtform__da_",
+            "updated_at": {
+              "value": "2026-03-16T14:51:32.702359+00:00"
+            },
+            "name": {
+              "value": "Basic Thoughtform"
+            },
+            "source": {
+              "value": "da"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Psychic Dedication"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_208b4a76b3ee",
+                    "level": {
+                      "value": 4
+                    },
+                    "description": {
+                      "value": "You gain a 1st- or 2nd-level psychic feat of your choice."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_basic_psychic_spellcasting__da_",
+            "updated_at": {
+              "value": "2026-03-16T14:51:32.702359+00:00"
+            },
+            "name": {
+              "value": "Basic Psychic Spellcasting"
+            },
+            "source": {
+              "value": "da"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Psychic Dedication"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_8c36acb7db58",
+                    "level": {
+                      "value": 4
+                    },
+                    "description": {
+                      "value": "You gain the basic spellcasting benefits. When you gain a spell slot of a new level from the psychic archetype, add a spell of the appropriate spell level to your repertoire: a common occult spell, one of the granted spells from your conscious mind, or another spell you've learned or discovered."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_advanced_thoughtform__da_",
+            "updated_at": {
+              "value": "2026-03-16T14:51:32.702359+00:00"
+            },
+            "name": {
+              "value": "Advanced Thoughtform"
+            },
+            "source": {
+              "value": "da"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Basic Thoughtform"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": "You can select this feat more than once. Each time you select it, you gain another psychic feat."
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_62c0d21581f3",
+                    "level": {
+                      "value": 6
+                    },
+                    "description": {
+                      "value": "You gain one psychic feat. For the purpose of meeting its prerequisites, your psychic level is equal to half your character level."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_psi_development__da_",
+            "updated_at": {
+              "value": "2026-03-16T14:51:32.702359+00:00"
+            },
+            "name": {
+              "value": "Psi Development"
+            },
+            "source": {
+              "value": "da"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Psychic Dedication"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_1b1a6879c157",
+                    "level": {
+                      "value": 6
+                    },
+                    "description": {
+                      "value": "You've found a new mental form. You gain another psi cantrip from your conscious mind: either the standard cantrip you didn't take with Psychic Dedication, or the unique surface psi cantrip.\n\nYou gain the benefits and the amp for this second psi cantrip. Increase the number of Focus Points in your focus pool by 1."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "id": "levelled_effect_f45800312383",
+                    "level": {
+                      "value": 6
+                    },
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "id": "effect_e35684cbd913",
+                          "name": {
+                            "value": "+1 Max Focus Point"
+                          },
+                          "trigger_type": {
+                            "value": "passive"
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.max_focus_points"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_expert_psychic_spellcasting__da_",
+            "updated_at": {
+              "value": "2026-03-16T14:51:32.702359+00:00"
+            },
+            "name": {
+              "value": "Expert Psychic Spellcasting"
+            },
+            "source": {
+              "value": "da"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Basic Psychic Spellcasting, master in Occultism"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_879a629fc4eb",
+                    "level": {
+                      "value": 12
+                    },
+                    "description": {
+                      "value": "You gain the expert spellcasting benefits."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_master_psychic_spellcasting__da_",
+            "updated_at": {
+              "value": "2026-03-16T14:51:32.702359+00:00"
+            },
+            "name": {
+              "value": "Master Psychic Spellcasting"
+            },
+            "source": {
+              "value": "da"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Expert Psychic Spellcasting, legendary in Occultism"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_09b23c9d9fde",
+                    "level": {
+                      "value": 18
+                    },
+                    "description": {
+                      "value": "You gain the master spellcasting benefits."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            }
+          }
+        }
+      ]
+    },
+    "progression_grants": {
+      "value": []
+    }
+  }
+}

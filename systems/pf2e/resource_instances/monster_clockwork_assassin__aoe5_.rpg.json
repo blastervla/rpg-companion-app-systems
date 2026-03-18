@@ -1,0 +1,621 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "clockwork_assassin__aoe5_",
+    "name": {
+      "value": "Clockwork Assassin"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "aoe5"
+    },
+    "tag": {
+      "value": "Clockwork, Mindless"
+    },
+    "armor_class": {
+      "value": 34
+    },
+    "hit_points": {
+      "value": 230
+    },
+    "level": {
+      "value": 13
+    },
+    "xp": {
+      "value": 960
+    },
+    "initiative": {
+      "value": 23
+    },
+    "perception": {
+      "value": 23
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 20
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 6
+    },
+    "dexterity_modifier": {
+      "value": 8
+    },
+    "constitution_modifier": {
+      "value": 4
+    },
+    "intelligence_modifier": {
+      "value": -5
+    },
+    "wisdom_modifier": {
+      "value": 0
+    },
+    "charisma_modifier": {
+      "value": -5
+    },
+    "fortitude": {
+      "value": 23
+    },
+    "reflex": {
+      "value": 29
+    },
+    "will": {
+      "value": 19
+    },
+    "skills": {
+      "value": "Acrobatics +29, Athletics +25, Stealth +27"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": "Electricity 15, Orichalcum 15"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Bleed, Death Effects, Disease, Doomed"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "darkvision, smoke vision"
+    },
+    "languages": {
+      "value": ""
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "construct"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Integrated Launcher"
+            },
+            "trait_description": {
+              "value": "A projectile launcher is integrated into a clockwork assassin's systems, containing 10 spinning blades and 5 smoke bombs. When the assassin is destroyed, the launcher and its ammunition are also destroyed."
+            },
+            "id": "d2943234-a2ce-4422-8dcb-e8d4cfea3817",
+            "updated_at": {
+              "value": "2026-03-17T12:41:24.358021"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Smoke Vision"
+            },
+            "trait_description": {
+              "value": "The assassin ignores the concealed condition from smoke."
+            },
+            "id": "b7c66bbc-b3ee-4e15-9b39-e532be508ac3",
+            "updated_at": {
+              "value": "2026-03-17T12:41:24.358021"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Wind-Up"
+            },
+            "trait_description": {
+              "value": "For the clockwork assassin to act, it must be wound by another creature using a unique key. This takes 1 minute. Once wound, it remains operational for 24 hours, after which time it becomes unaware of its surroundings and can't act until it's wound again.\n\nThe assassin can enter standby mode as a 3-action activity. Its operational time doesn't decrease in standby, but it can sense its surroundings (with a \u20132 penalty to Perception). It can't act, with one exception: When it perceives a creature, it can exit standby as a reaction (rolling initiative if appropriate)\n\nA creature can attempt a DC 31 Thievery check to Disable a Device to wind the clockwork down. For each success, the clockwork loses 1 hour of operational time.\n\nThis can be done even if the clockwork is in standby mode."
+            },
+            "id": "3fd308c3-718a-4627-990b-29d9e9880138",
+            "updated_at": {
+              "value": "2026-03-17T12:41:24.358021"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Sneak Attack"
+            },
+            "trait_description": {
+              "value": "The clockwork assassin's Strikes deal an additional 3d6 precision damage to flat-footed creatures."
+            },
+            "id": "011ba6d3-a44c-42e3-940d-55afd6131de8",
+            "updated_at": {
+              "value": "2026-03-17T12:41:24.358021"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Unbalancing Blow"
+            },
+            "trait_description": {
+              "value": "Creatures hit by the clockwork assassin's rapier hand Strike are flat-footed until the start of the clockwork assassin's next turn."
+            },
+            "id": "26dd435e-15fd-45e0-b7b4-ba503c3339f6",
+            "updated_at": {
+              "value": "2026-03-17T12:41:24.358021"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "rapier hand"
+            },
+            "action_description": {
+              "value": "(deadly d8, disarm, finesse, magical) 3d6+12 piercing plus unbalancing blow\nEffects: unbalancing blow"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 27
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 3
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 12
+                                    },
+                                    "id": "8785ba48-ba98-4d93-a029-018cb3fdd770",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:24.358021"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "8aa2489f-156d-46f4-a4ce-94f215359bba",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:24.358021"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "7e6703bd-5cb2-4170-a3cf-6bc0fc1f7330",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:24.358021"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Flat-footed target"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 3
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 12
+                                    },
+                                    "id": "8785ba48-ba98-4d93-a029-018cb3fdd770",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:24.358021"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "8aa2489f-156d-46f4-a4ce-94f215359bba",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:24.358021"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "precision"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 3
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "65db38b7-4d2d-41d4-9fc8-983584db56bd",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:24.358021"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "8c1ea655-895a-47e0-8ef0-61c87903fd2b",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:24.358021"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "51e2fa16-5161-44c0-bdbc-46f0d66161b7",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:24.358021"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "108efd0a-b748-40a8-82d2-55932f79a980",
+            "updated_at": {
+              "value": "2026-03-17T12:41:24.358021"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "spinning blade"
+            },
+            "action_description": {
+              "value": "(agile, deadly d10, magical, range increment 120 feet) 2d10+9 slashing"
+            },
+            "action_type": {
+              "value": "ranged"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 27
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 9
+                                    },
+                                    "id": "2fa07df8-485d-4b3e-aa7c-52f2850b0f52",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:24.358021"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "3a5956cd-48c8-419e-b353-79fc23e1c94e",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:24.358021"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "14621eeb-c4c4-449b-9a35-51ec6717c1c9",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:24.358021"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Flat-footed target"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 9
+                                    },
+                                    "id": "2fa07df8-485d-4b3e-aa7c-52f2850b0f52",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:24.358021"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "3a5956cd-48c8-419e-b353-79fc23e1c94e",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:24.358021"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "precision"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 3
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "65db38b7-4d2d-41d4-9fc8-983584db56bd",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:24.358021"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "8c1ea655-895a-47e0-8ef0-61c87903fd2b",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:24.358021"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "9c963cd7-1e7a-451d-bbf0-e6303a12d895",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:24.358021"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "47618569-13a3-4019-b494-794c1fe00df9",
+            "updated_at": {
+              "value": "2026-03-17T12:41:24.358021"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Rapid Repair"
+            },
+            "action_description": {
+              "value": "(manipulate)\n\nThe clockwork assassin reduces its operational time by 1 hour to repair itself, regaining 25 Hit Points and refilling its integrated projectile launcher with 4 spinning blades (to a maximum of 10) and 2 smoke bombs (to a maximum of 5)."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "c7c11b32-6725-4355-8d09-059b013d7c34",
+            "updated_at": {
+              "value": "2026-03-17T12:41:24.358021"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Smoke Bomb Launcher"
+            },
+            "action_description": {
+              "value": "(manipulate)\n\nThe clockwork assassin launches a smoke bomb. A screen of thick, opaque smoke fills a 10-foot burst within 60 feet of the clockwork assassin. All creatures within the area are concealed, and all other creatures are concealed to them.\n\nThe smoke lasts for 1 minute or until dispersed by a strong wind."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "be751af4-28f4-45b8-a888-cb596c5342c2",
+            "updated_at": {
+              "value": "2026-03-17T12:41:24.358021"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Attack of Opportunity"
+            },
+            "action_description": {
+              "value": ""
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "b0e29841-7c58-448c-b924-44d219055ffa",
+            "updated_at": {
+              "value": "2026-03-17T12:41:24.358021"
+            }
+          }
+        }
+      ]
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:24.358021"
+    }
+  }
+}

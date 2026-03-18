@@ -1,0 +1,287 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "cave_fisher__b2_",
+    "name": {
+      "value": "Cave Fisher"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b2"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 18
+    },
+    "hit_points": {
+      "value": 30
+    },
+    "level": {
+      "value": 2
+    },
+    "xp": {
+      "value": 20
+    },
+    "initiative": {
+      "value": 7
+    },
+    "perception": {
+      "value": 7
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 15
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 15
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 4
+    },
+    "dexterity_modifier": {
+      "value": 3
+    },
+    "constitution_modifier": {
+      "value": 3
+    },
+    "intelligence_modifier": {
+      "value": -5
+    },
+    "wisdom_modifier": {
+      "value": 1
+    },
+    "charisma_modifier": {
+      "value": -3
+    },
+    "fortitude": {
+      "value": 9
+    },
+    "reflex": {
+      "value": 9
+    },
+    "will": {
+      "value": 7
+    },
+    "skills": {
+      "value": "Athletics +10, Stealth +9"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "darkvision"
+    },
+    "languages": {
+      "value": ""
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "animal"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Sticky Filament"
+            },
+            "trait_description": {
+              "value": "Any creature hit by the cave fisher's sticky filament is grabbed.\n\nThe cave fisher can move while it has a creature grabbed with its filament, but it automatically releases the creature if the cave fisher moves beyond the filament's 60-foot length. The cave fisher can use only one filament at a time, and it can sever the filament and release any creature grabbed by it as a free action. The filament can be severed by a Strike that deals at least 10 slashing damage to it.\n\nThis doesn't deal any damage to the cave fisher itself. The filament has AC 17, and its Escape DC is 19."
+            },
+            "id": "16bc18c1-0ae1-49ce-9148-0b064d40501f",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "claw"
+            },
+            "action_description": {
+              "value": "1d10+6 slashing"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 10
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 6
+                                    },
+                                    "id": "3edba486-a1c9-4242-99c5-dc1e9f7f5d9a",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:26.736825"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "fa1502ed-5c13-4397-8ad8-ecbb35c162db",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:26.736825"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "fa0db5a1-ff55-4bb1-be58-861cb5be3df5",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "9b8cd0e0-daf3-466a-921b-2f224db3b13b",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "filament"
+            },
+            "action_description": {
+              "value": "(range 60 feet)\nEffects: sticky filament"
+            },
+            "action_type": {
+              "value": "ranged"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 11
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "651cc61a-145c-4aae-aa99-b92dc02ca8fc",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Pull Filament"
+            },
+            "action_description": {
+              "value": "The cave fisher pulls a creature grabbed by its filament toward itself, even suspending the target vertically if necessary. The cave fisher attempts an Athletics check against the creature's Fortitude DC. On a success, the cave fisher pulls the creature 15 feet closer to it (30 feet closer on a critical success)."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "732135cd-1915-426f-a2fc-eac3f827a05c",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:26.736825"
+    }
+  }
+}

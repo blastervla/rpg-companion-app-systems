@@ -1,0 +1,558 @@
+{
+  "resource_id": "archetype",
+  "stats": {
+    "id": "ranger__pc1_",
+    "updated_at": {
+      "value": "2026-03-16T14:51:49.570600+00:00"
+    },
+    "name": {
+      "value": "Ranger"
+    },
+    "source": {
+      "value": "pc1"
+    },
+    "description": {
+      "value": "You have studied hunting, tracking, and wilderness survival, adding a ranger's tools to your skill set. Your keen eyes while hunting prey help gather more information.\n\nThe ranger archetype has access to excellent options to improve a character's monster knowledge and survival skills, but ranger is of particular interest to any character wanting to become a dedicated archer.\n\n\u2022 Bard rangers support their allies and animal companions with expanded combat options. The bard's knowledge can also complement the ranger's investigation of their foes.\n\n\u2022 Cleric rangers are particularly fitting for deities who connect thematically to nature or have a bow as their favored weapon. (Or, in the case of Erastil, both!)\n\n\u2022 Druids have the most thematic overlap with rangers among the spellcasters, allowing you to create a true master of the wilderness.\n\n\u2022 Fighter rangers are among the most fearsome archers, combining the feats from both classes to create a fighting style unique to each fighter ranger. Some warden spells can also be particularly helpful to a fighter.\n\n\u2022 Rogue rangers make excellent snipers or ranged skirmishers, with their rogue skills naturally playing into the ranger's strengths.\n\n\u2022 Witch rangers add a new prowess scouting to the information they can gain through their familiar and patron.\n\n\u2022 Wizard rangers benefit greatly from ranger's feat support, backing up their spells with ranged weapon attacks."
+    },
+    "is_class_archetype": {
+      "value": false
+    },
+    "required_class_id": {
+      "value": ""
+    },
+    "dedication_feat": {
+      "value": {
+        "resource_id": "feat",
+        "stats": {
+          "id": "feat_ranger_dedication__pc1_",
+          "updated_at": {
+            "value": "2026-03-16T14:51:32.702359+00:00"
+          },
+          "name": {
+            "value": "Ranger Dedication"
+          },
+          "source": {
+            "value": "pc1"
+          },
+          "type": {
+            "value": "archetype"
+          },
+          "action_cost": {
+            "value": "passive"
+          },
+          "traits": {
+            "value": "archetype, dedication, multiclass"
+          },
+          "classes": {
+            "value": []
+          },
+          "ancestries": {
+            "value": []
+          },
+          "prerequisites": {
+            "value": "Dexterity +2"
+          },
+          "trigger": {
+            "value": ""
+          },
+          "requirements": {
+            "value": ""
+          },
+          "frequency": {
+            "value": ""
+          },
+          "access": {
+            "value": ""
+          },
+          "special": {
+            "value": ""
+          },
+          "descriptions": {
+            "value": [
+              {
+                "resource_id": "levelled_description",
+                "stats": {
+                  "id": "levelled_description_0b2fbc8d936c",
+                  "level": {
+                    "value": 2
+                  },
+                  "description": {
+                    "value": "You become trained in Survival; if you were already trained in Survival, you instead become trained in another skill of your choice. You become trained in ranger class DC. If you gain a warden spell through this archetype, you become trained in spell attacks and spell DCs. Your spellcasting attribute is Wisdom.\n\nYou can use the Hunt Prey action."
+                  }
+                }
+              }
+            ]
+          },
+          "effects": {
+            "value": [
+              {
+                "resource_id": "levelled_effect",
+                "stats": {
+                  "id": "levelled_effect_e833ab5f96d4",
+                  "level": {
+                    "value": 2
+                  },
+                  "effect": {
+                    "value": {
+                      "resource_id": "effect",
+                      "stats": {
+                        "id": "effect_1a20e6180b57",
+                        "name": {
+                          "value": "Grant Trained in Survival"
+                        },
+                        "trigger_type": {
+                          "value": "active"
+                        },
+                        "type": {
+                          "value": "grant_proficiency"
+                        },
+                        "proficiency_stat": {
+                          "value": "$character.survival_proficiency"
+                        },
+                        "proficiency_rank": {
+                          "value": "trained"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "resource_id": "levelled_effect",
+                "stats": {
+                  "id": "levelled_effect_184d4d002b5e",
+                  "level": {
+                    "value": 2
+                  },
+                  "effect": {
+                    "value": {
+                      "resource_id": "effect",
+                      "stats": {
+                        "id": "effect_27638f6af2dd",
+                        "name": {
+                          "value": "Grant Trained in Class Dc"
+                        },
+                        "trigger_type": {
+                          "value": "active"
+                        },
+                        "type": {
+                          "value": "grant_proficiency"
+                        },
+                        "proficiency_stat": {
+                          "value": "$character.class_dc_proficiency"
+                        },
+                        "proficiency_rank": {
+                          "value": "trained"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "resource_id": "levelled_effect",
+                "stats": {
+                  "id": "levelled_effect_0a7766231a11",
+                  "level": {
+                    "value": 2
+                  },
+                  "effect": {
+                    "value": {
+                      "resource_id": "effect",
+                      "stats": {
+                        "id": "effect_2a0c64542501",
+                        "name": {
+                          "value": "Grant Trained in Spellcasting"
+                        },
+                        "trigger_type": {
+                          "value": "active"
+                        },
+                        "type": {
+                          "value": "grant_proficiency"
+                        },
+                        "proficiency_stat": {
+                          "value": "$character.spellcasting_proficiency"
+                        },
+                        "proficiency_rank": {
+                          "value": "trained"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "skill_proficiencies": {
+            "value": []
+          },
+          "armor_proficiencies": {
+            "value": []
+          },
+          "weapon_proficiencies": {
+            "value": []
+          },
+          "lore_skills": {
+            "value": []
+          }
+        }
+      }
+    },
+    "feats": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_basic_hunter_s_trick__pc1_",
+            "updated_at": {
+              "value": "2026-03-16T14:51:32.702359+00:00"
+            },
+            "name": {
+              "value": "Basic Hunter's Trick"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Ranger Dedication"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_7d3710af421a",
+                    "level": {
+                      "value": 4
+                    },
+                    "description": {
+                      "value": "You gain a 1st- or 2nd-level ranger feat."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_ranger_resiliency__pc1_",
+            "updated_at": {
+              "value": "2026-03-16T14:51:32.702359+00:00"
+            },
+            "name": {
+              "value": "Ranger Resiliency"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Ranger Dedication, class granting no more Hit Points per level than 8 + your Constitution modifier"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_c06d74993346",
+                    "level": {
+                      "value": 4
+                    },
+                    "description": {
+                      "value": "You gain 3 additional Hit Points for each ranger archetype class feat you have. As you continue selecting ranger archetype class feats, you continue to gain additional Hit Points in this way."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_advanced_hunter_s_trick__pc1_",
+            "updated_at": {
+              "value": "2026-03-16T14:51:32.702359+00:00"
+            },
+            "name": {
+              "value": "Advanced Hunter's Trick"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Basic Hunter's Trick"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": "You can select this feat more than once. Each time you select it, you gain another ranger feat."
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_3cf4518b4f28",
+                    "level": {
+                      "value": 6
+                    },
+                    "description": {
+                      "value": "You gain one ranger feat. For the purpose of meeting its prerequisites, your ranger level is equal to half your character level."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_master_spotter__pc1_",
+            "updated_at": {
+              "value": "2026-03-16T14:51:32.702359+00:00"
+            },
+            "name": {
+              "value": "Master Spotter"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Ranger Dedication, expert in Perception"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_00dadbb4f48d",
+                    "level": {
+                      "value": 12
+                    },
+                    "description": {
+                      "value": "Your proficiency rank in Perception increases to master."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "id": "levelled_effect_0a5d0faf1f0e",
+                    "level": {
+                      "value": 12
+                    },
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "id": "effect_c67d5211b0f9",
+                          "name": {
+                            "value": "Grant Master in Perception"
+                          },
+                          "trigger_type": {
+                            "value": "passive"
+                          },
+                          "type": {
+                            "value": "grant_proficiency"
+                          },
+                          "proficiency_stat": {
+                            "value": "$character.perception_proficiency"
+                          },
+                          "proficiency_rank": {
+                            "value": "master"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            }
+          }
+        }
+      ]
+    },
+    "progression_grants": {
+      "value": []
+    }
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "resource_id": "feat",
+  "stats": {
+    "id": "feat_oozemorph_dedication__sli_",
+    "updated_at": {
+      "value": "2026-03-16T23:55:12.219969+00:00"
+    },
+    "name": {
+      "value": "Oozemorph Dedication"
+    },
+    "source": {
+      "value": "sli"
+    },
+    "type": {
+      "value": "archetype"
+    },
+    "action_cost": {
+      "value": "passive"
+    },
+    "traits": {
+      "value": "uncommon, archetype, dedication"
+    },
+    "classes": {
+      "value": []
+    },
+    "ancestries": {
+      "value": []
+    },
+    "prerequisites": {
+      "value": ""
+    },
+    "trigger": {
+      "value": ""
+    },
+    "requirements": {
+      "value": ""
+    },
+    "frequency": {
+      "value": ""
+    },
+    "access": {
+      "value": ""
+    },
+    "special": {
+      "value": "You can't select another dedication feat until you have gained two other feats from the oozemorph archetype."
+    },
+    "descriptions": {
+      "value": [
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "id": "levelled_description_23477b94b5d5",
+            "level": {
+              "value": 2
+            },
+            "description": {
+              "value": "You are plagued by sporadic anatomical rearrangements, which grant you insights into other creatures with unusual anatomies. You become trained in Occultism and Ooze Lore; if you were already trained, you become an expert instead. You gain a +2 circumstance bonus to Reflex saves to avoid being Engulfed by creatures, and to checks to Escape after being Engulfed.\n\nAs you develop more abilities based on your amorphous affliction, you become increasingly off-putting to mundane creatures. You take a penalty to Diplomacy checks against animals and humanoids. This penalty is equal to your number of class feats from the oozemorph archetype, to a maximum of \u20134 for four or more feats."
+            }
+          }
+        }
+      ]
+    },
+    "effects": {
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_cc4022c549c7",
+            "level": {
+              "value": 2
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_581fe2796250",
+                  "name": {
+                    "value": "Grant Trained in Occultism"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "grant_proficiency"
+                  },
+                  "proficiency_stat": {
+                    "value": "$character.occultism_proficiency"
+                  },
+                  "proficiency_rank": {
+                    "value": "trained"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_52ca9ffd732a",
+            "level": {
+              "value": 2
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_cafdfa2ec440",
+                  "name": {
+                    "value": "+2 Circumstance Bonus to Reflex"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "typed_add_to_stat"
+                  },
+                  "typed_modifier_type": {
+                    "value": "circumstance"
+                  },
+                  "typed_modifier_polarity": {
+                    "value": "bonus"
+                  },
+                  "stat": {
+                    "value": "$character.reflex"
+                  },
+                  "constant": {
+                    "value": 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "skill_proficiencies": {
+      "value": []
+    },
+    "armor_proficiencies": {
+      "value": []
+    },
+    "weapon_proficiencies": {
+      "value": []
+    },
+    "lore_skills": {
+      "value": []
+    }
+  }
+}

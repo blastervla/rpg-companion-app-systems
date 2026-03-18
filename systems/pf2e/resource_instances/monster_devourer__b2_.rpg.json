@@ -1,0 +1,1922 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "devourer__b2_",
+    "name": {
+      "value": "Devourer"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b2"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 31
+    },
+    "hit_points": {
+      "value": 175
+    },
+    "level": {
+      "value": 11
+    },
+    "xp": {
+      "value": 480
+    },
+    "initiative": {
+      "value": 22
+    },
+    "perception": {
+      "value": 22
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 30
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 7
+    },
+    "dexterity_modifier": {
+      "value": 3
+    },
+    "constitution_modifier": {
+      "value": 5
+    },
+    "intelligence_modifier": {
+      "value": 5
+    },
+    "wisdom_modifier": {
+      "value": 4
+    },
+    "charisma_modifier": {
+      "value": 5
+    },
+    "fortitude": {
+      "value": 20
+    },
+    "reflex": {
+      "value": 18
+    },
+    "will": {
+      "value": 24
+    },
+    "skills": {
+      "value": "Arcana +21, Deception +21, Intimidation +23, Occultism +23, Stealth +19"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Poison, Death Effects, Disease, Paralyzed, Spell Deflection, Unconscious"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "darkvision"
+    },
+    "languages": {
+      "value": "Abyssal, Celestial, Common, Infernal, Necril"
+    },
+    "size": {
+      "value": "large"
+    },
+    "type": {
+      "value": "undead"
+    },
+    "alignment": {
+      "value": "neutral_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Spell Deflection"
+            },
+            "trait_description": {
+              "value": "(abjuration, divine)\n\nA spellcaster who targets a devourer with a mental spell, banishment, bind soul, divine decree, divine wrath, possession, spirit blast, or spirit song can attempt a counteract check to free a soul the devourer has trapped with Devour Soul. If this counteract attempt succeeds, the trapped soul is released (though the creature remains dead), and the devourer can't use any soul charges from that creature. Devourers are otherwise immune to these spells."
+            },
+            "id": "224a60e4-9352-4cc0-a748-d96a67dc2483",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Drain Life"
+            },
+            "trait_description": {
+              "value": "(divine, necromancy)\n\nWhen the devourer damages a living creature with its claw Strike, the devourer gains 10 temporary Hit Points and the creature must succeed at a DC 24 Fortitude save or become drained 1. Further damage dealt by the devourer increases the condition value by 1 on a failed save, to a maximum of drained 4."
+            },
+            "id": "b9c2d617-7f40-47d3-96b1-2fb980ac76de",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Soul Spells"
+            },
+            "trait_description": {
+              "value": "A devourer casts occult innate spells, but to do so it must expend a number of soul charges equal to the spell's level (similar to casting a spell using charges from a staff). It can heighten any spell to a maximum of 6th level by expending more charges as it Casts the Spell. When encountered, a devourer typically has one trapped soul with 10 soul charges."
+            },
+            "id": "5e52cb21-9878-4f3e-b338-352b7d1c5299",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "claw"
+            },
+            "action_description": {
+              "value": "(agile, reach 10 feet) 2d10+13 slashing plus drain life\nEffects: drain life"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 24
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 13
+                                    },
+                                    "id": "f38b2ba3-8185-4eef-8223-fe1aae2a194c",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:26.736825"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "ac338e41-f9ac-4f72-a522-6acfc1d69f38",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:26.736825"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "12cd5802-d989-4483-8b08-fc225797a71c",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "1d760b0e-a866-42cd-ae15-3b8bfb00e3d8",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Devour Soul"
+            },
+            "action_description": {
+              "value": "(death, divine, necromancy)\n\nThe devourer touches a creature within reach, dealing 8d6 negative damage (DC 31 basic Fortitude save). If a creature is slain by this attack, its soul becomes trapped within the devourer. While its soul is trapped, a creature can't be resurrected except by powerful magic such as a wish spell. Destroying the devourer or successfully counteracting Devour Soul (see Spell Deflection above) releases the soul. The devourer can hold only one soul at a time. A soul has 5 soul charges per level of the originating creature (see Soul Spells below). The devourer can expend these charges to cast spells. If the soul is freed and the creature returns to life, the creature is drained 1 for every 5 soul charges expended. If reduced to 0 soul charges, the soul is consumed and can be restored to life only by powerful magic such as wish."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "negative"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 8
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "273c85a7-1db3-4667-8ab5-b7fc3ef3b3ea",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:26.736825"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "a9262007-9c5f-4c34-ac8a-4dc05ded36f0",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:26.736825"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "8c079f2d-c05c-416a-90b2-45e1b3529524",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "45840e1b-a375-49c6-b93e-318714ab8786",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": [
+        {
+          "resource_id": "monster_spellcasting_block",
+          "stats": {
+            "block_name": {
+              "value": ""
+            },
+            "tradition": {
+              "value": "occult"
+            },
+            "spellcasting_type": {
+              "value": "innate"
+            },
+            "spell_dc": {
+              "value": 31
+            },
+            "spell_attack_bonus": {
+              "value": 0
+            },
+            "spell_levels": {
+              "value": [
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 1
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "harm__crb_",
+                          "name": {
+                            "value": "Harm"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_1"
+                          },
+                          "school": {
+                            "value": "spell_school_necromancy"
+                          },
+                          "traditions": {
+                            "value": [
+                              "divine"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "activity"
+                          },
+                          "casting_time": {
+                            "value": "1A to 3A"
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": true
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "varies"
+                          },
+                          "duration": {
+                            "value": ""
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 living creature or 1 willing undead creature"
+                          },
+                          "description": {
+                            "value": "You channel negative energy to harm the living or heal the undead. If the target is a living creature, you deal 1d8 negative damage to it, and it gets a basic Fortitude save.\n\nIf the target is a willing undead creature, you restore that amount of Hit Points. The number of actions you spend when Casting this Spell determines its targets, range, area, and other parameters.\n\n1 (somatic) The spell has a range of touch.\n\n2 (verbal, somatic) The spell has a range of 30 feet. If you're healing an undead creature, increase the Hit Points restored by 8.\n\n3 (material, verbal, somatic) You disperse negative energy in a 30-foot emanation. This targets all living and undead creatures in the area."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (+1): The amount of healing or damage increases by 1d8, and the extra healing for the 2-action version increases by 8."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "negative"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": [
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 1
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 1
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d8"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "edaf3c6f-709f-479a-9753-ba2e463101ef"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "negative"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "3d523adf-a9d3-416c-80d2-7519e73a5a8f"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "1c5b366d-934e-440e-abf2-8919fde248a3"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 2
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 2
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d8"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "13d56e70-7619-4744-936d-0c06ed69d57c"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "negative"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "104bdac2-17aa-4aed-99f4-b83ef9633ce4"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "5c23b1dc-d32b-4fb6-bed3-a192b32430ff"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 3
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 3
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d8"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "1a80a776-7010-4666-a645-1daf949c449d"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "negative"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "40e59aa9-5461-487f-bb8e-058d15805ab2"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "781dfa28-a944-487a-82a3-06bdc5d8198c"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 4
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 4
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d8"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "14508432-fed2-43ef-9813-517189c0cbf0"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "negative"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "ce8558f2-b724-4009-a636-98705840eaf0"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "54ee5986-0f91-4ffc-b54c-ad490ec979d8"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 5
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 5
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d8"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "e96c10fa-94ca-4d00-adec-6d2e8d592f7a"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "negative"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "ad8f8118-fbdb-409b-a765-165f9977504e"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "0608a88c-3138-4595-aec6-94f770bcfda2"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 6
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 6
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d8"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "9f0811bd-db6c-47e7-a40c-d4976cfbee2d"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "negative"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "3589d185-9f09-4656-9874-145569baacdb"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "f184b49b-3d44-47a5-950e-91e5c3657cde"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 7
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 7
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d8"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "a3718317-e597-4728-8a28-dec50ce4dc53"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "negative"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "2297dda8-13ab-4c74-921a-fe51151c7c93"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "d89e6c5f-91eb-4294-9b53-79a6b5ce4cda"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 8
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 8
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d8"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "912c5c86-9cb2-4876-9585-f779a52f9e1b"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "negative"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "4c66bad5-b075-423e-a573-9562dce733f4"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "a8bc11c0-2b6a-4fce-8776-3b038962c568"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 9
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 9
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d8"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "fc39a02a-348b-48cf-a64b-0d807dc20221"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "negative"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "ab040935-2a00-4e5d-b29d-39f7cdd3e640"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "ee8b6cb0-9621-4a87-8306-600d6f610083"
+                                }
+                              },
+                              {
+                                "resource_id": "levelled_damage_dice",
+                                "stats": {
+                                  "level": {
+                                    "value": 10
+                                  },
+                                  "damage_dice": {
+                                    "value": [
+                                      {
+                                        "resource_id": "damage_dice",
+                                        "stats": {
+                                          "dices": {
+                                            "value": [
+                                              {
+                                                "resource_id": "dice_roll",
+                                                "stats": {
+                                                  "dice_amount": {
+                                                    "value": 10
+                                                  },
+                                                  "dice_type": {
+                                                    "value": "d8"
+                                                  },
+                                                  "updated_at": {
+                                                    "value": "2026-03-17T01:39:27.639838"
+                                                  },
+                                                  "id": "9b3c0341-3e3b-4b36-82d1-f9578523a834"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "damage_type": {
+                                            "value": "negative"
+                                          },
+                                          "updated_at": {
+                                            "value": "2026-03-17T01:39:27.639838"
+                                          },
+                                          "id": "cc392fb2-e0cb-4cc2-af38-b9d0aec70b9a"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "id": "8d7b802d-94a0-4a31-a04a-fa201bd4dba6"
+                                }
+                              }
+                            ]
+                          },
+                          "effects": {
+                            "value": [
+                              {
+                                "resource_id": "effect",
+                                "stats": {
+                                  "id": "effect_43f7ed85-c4de-4c6d-8943-94ce8ae60905",
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "name": {
+                                    "value": "1A version (touch): 1d8 per rank"
+                                  },
+                                  "trigger_type": {
+                                    "value": "active"
+                                  },
+                                  "type": {
+                                    "value": "roll"
+                                  },
+                                  "roll_text": {
+                                    "value": "1A version (touch): 1d8 per rank"
+                                  },
+                                  "dice_roll": {
+                                    "value": {
+                                      "resource_id": "dice_roll",
+                                      "stats": {
+                                        "id": "dice_roll_a049e8af-1cef-45ec-9884-ea75a69a4dce",
+                                        "updated_at": {
+                                          "value": "2026-03-17T01:39:27.639838"
+                                        },
+                                        "dice_amount": {
+                                          "value": 1
+                                        },
+                                        "dice_type": {
+                                          "value": "d8"
+                                        },
+                                        "constant": {
+                                          "value": 0
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "resource_id": "effect",
+                                "stats": {
+                                  "id": "effect_4cafb9dc-96a2-4c88-be81-c7201a6bf3f2",
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "name": {
+                                    "value": "2A version (30 ft): 1d8+8 per rank"
+                                  },
+                                  "trigger_type": {
+                                    "value": "active"
+                                  },
+                                  "type": {
+                                    "value": "roll"
+                                  },
+                                  "roll_text": {
+                                    "value": "2A version (30 ft): 1d8+8 per rank"
+                                  },
+                                  "dice_roll": {
+                                    "value": {
+                                      "resource_id": "dice_roll",
+                                      "stats": {
+                                        "id": "dice_roll_e242df0d-f832-43e0-8706-e71fbcc067fe",
+                                        "updated_at": {
+                                          "value": "2026-03-17T01:39:27.639838"
+                                        },
+                                        "dice_amount": {
+                                          "value": 1
+                                        },
+                                        "dice_type": {
+                                          "value": "d8"
+                                        },
+                                        "constant": {
+                                          "value": 8
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "resource_id": "effect",
+                                "stats": {
+                                  "id": "effect_18fbac2c-178d-442c-a0c0-4ded82afea4a",
+                                  "updated_at": {
+                                    "value": "2026-03-17T01:39:27.639838"
+                                  },
+                                  "name": {
+                                    "value": "3A version (emanation): 1d8 per rank"
+                                  },
+                                  "trigger_type": {
+                                    "value": "active"
+                                  },
+                                  "type": {
+                                    "value": "roll"
+                                  },
+                                  "roll_text": {
+                                    "value": "3A version (emanation): 1d8 per rank"
+                                  },
+                                  "dice_roll": {
+                                    "value": {
+                                      "resource_id": "dice_roll",
+                                      "stats": {
+                                        "id": "dice_roll_2b2325c8-278f-403a-a1ad-9753d43a51e8",
+                                        "updated_at": {
+                                          "value": "2026-03-17T01:39:27.639838"
+                                        },
+                                        "dice_amount": {
+                                          "value": 1
+                                        },
+                                        "dice_type": {
+                                          "value": "d8"
+                                        },
+                                        "constant": {
+                                          "value": 0
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 31
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "4b1e2b10-d839-4bb6-a6d2-9163ecf41e34",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 2
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "death_knell__crb_",
+                          "name": {
+                            "value": "Death Knell"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_2"
+                          },
+                          "school": {
+                            "value": "spell_school_necromancy"
+                          },
+                          "traditions": {
+                            "value": [
+                              "divine",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "1 touch"
+                          },
+                          "duration": {
+                            "value": ""
+                          },
+                          "saving_throw": {
+                            "value": "Will"
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 living creature that has 0 HP"
+                          },
+                          "description": {
+                            "value": "You snuff the life out of a creature on the brink of death. The target must attempt a Will save. If this kills it, you gain 10 temporary HP and a +1 status bonus to attack and damage rolls for 10 minutes.\n\nCritical Success: The target is unaffected.\nSuccess: The target's dying value increases by 1.\nFailure: The target dies."
+                          },
+                          "higher_level_description": {
+                            "value": ""
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "death"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 31
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "493c765b-8409-4290-acc1-73c2ee7c5a75",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 3
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "bind_undead__crb_",
+                          "name": {
+                            "value": "Bind Undead"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_3"
+                          },
+                          "school": {
+                            "value": "spell_school_necromancy"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "divine",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": "1 day"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 mindless undead creature with a level no greater than bind undead's spell level"
+                          },
+                          "description": {
+                            "value": "With a word of necromantic power, you seize control of the target. It gains the minion trait. If you or an ally uses any hostile actions against the target, the spell ends."
+                          },
+                          "higher_level_description": {
+                            "value": ""
+                          },
+                          "spell_traits": {
+                            "value": []
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 31
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "7bd1e963-b2dc-45d8-9ec7-3365899bbfed",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 3
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "paralyze__pc1_",
+                          "name": {
+                            "value": "Paralyze"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_3"
+                          },
+                          "school": {
+                            "value": "none"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": "varies"
+                          },
+                          "saving_throw": {
+                            "value": "Will"
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 creature"
+                          },
+                          "description": {
+                            "value": "You block the target's motor impulses before they can leave its mind, freezing the target in place. The target must attempt a Will save.\n\nCritical Success: The target is unaffected.\nSuccess: The target is stunned 1.\nFailure: The target is paralyzed for 1 round.\nCritical Failure: The target is paralyzed for 4 rounds. At the end of each of its turns, it can attempt a new Will save to reduce the remaining duration by 1 round, or end it entirely on a critical success."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (7th): You can target up to 10 creatures."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "concentrate",
+                              "incapacitation",
+                              "manipulate",
+                              "mental"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 31
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "90591a75-fe24-493b-b7a8-959f7244e3b6",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 4
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "confusion__pc1_",
+                          "name": {
+                            "value": "Confusion"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_4"
+                          },
+                          "school": {
+                            "value": "none"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": "1 minute"
+                          },
+                          "saving_throw": {
+                            "value": "Will"
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 creature"
+                          },
+                          "description": {
+                            "value": "You befuddle your target with strange impulses, causing it to act randomly. The effects are determined by the target's Will save. You can Dismiss the spell.\n\nCritical Success: The target is unaffected.\nSuccess: The target babbles incoherently and is stunned 1.\nFailure: The target is confused for 1 minute. It can attempt a new save at the end of each of its turns to end the confusion.\nCritical Failure: The target is confused for 1 minute, with no save to end early."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (8th): You can target up to 10 creatures."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "concentrate",
+                              "emotion",
+                              "manipulate",
+                              "mental"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 31
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "e85ad984-9698-4189-8274-9882a1d1bbc0",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 4
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "suggestion__pc1_",
+                          "name": {
+                            "value": "Suggestion"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_4"
+                          },
+                          "school": {
+                            "value": "none"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": "varies"
+                          },
+                          "saving_throw": {
+                            "value": "Will"
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 creature"
+                          },
+                          "description": {
+                            "value": "Your honeyed words are difficult for creatures to resist. You suggest a course of action to the target, which must be phrased in such a way as to seem like a logical course of action to the target and can't be self-destructive or obviously against the target's self-interest. The target must attempt a Will save.\n\nCritical Success: The target is unaffected and knows you tried to control it.\nSuccess: The target is unaffected.\nFailure: The target immediately follows your suggestion. The spell has a duration of 1 minute, or until the target has completed a finite suggestion or the suggestion becomes self-destructive or has other obvious negative effects.\nCritical Failure: As failure, but the base duration is 1 hour."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (8th): You can target up to 10 creatures."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "concentrate",
+                              "incapacitation",
+                              "linguistic",
+                              "manipulate",
+                              "mental",
+                              "subtle"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 31
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "9249921c-df25-4873-a5bd-21525e2b46db",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 6
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "feeblemind__crb_",
+                          "name": {
+                            "value": "Feeblemind"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_6"
+                          },
+                          "school": {
+                            "value": "spell_school_enchantment"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": "varies"
+                          },
+                          "saving_throw": {
+                            "value": "Will"
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 creature"
+                          },
+                          "description": {
+                            "value": "You drastically reduce the target's mental faculties. The target must attempt a Will save.\n\nCritical Success: The target is unaffected.\nSuccess: The target is stupefied 2 for 1 round.\nFailure: The target is stupefied 4 with an unlimited duration.\nCritical Failure: The target's intellect is permanently reduced below that of an animal, and it treats its Charisma, Intelligence, and Wisdom modifiers as -5. It loses all class abilities that require mental faculties, including all spellcasting. If the target is a PC, they become an NPC under the GM's control."
+                          },
+                          "higher_level_description": {
+                            "value": ""
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "curse",
+                              "incapacitation",
+                              "mental"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 31
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "d545d626-85e0-439d-b4b9-74ced164f500",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 6
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "true_seeing__crb_",
+                          "name": {
+                            "value": "True Seeing"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_6"
+                          },
+                          "school": {
+                            "value": "spell_school_divination"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "divine",
+                              "occult",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": ""
+                          },
+                          "duration": {
+                            "value": "10 minutes"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "You see things within 60 feet as they actually are. The GM rolls a secret counteract check against any illusion or transmutation in the area, but only for the purpose of determining whether you see through it (for instance, if the check succeeds against a polymorph spell, you can see the creature's true form, but you don't end the polymorph spell)."
+                          },
+                          "higher_level_description": {
+                            "value": ""
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "revelation"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 31
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "881cf0e9-1f1e-48d0-a336-c819cf55ff81",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:26.736825"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "d7be2373-0836-4c2c-b0b8-3afc0aeff1b8",
+            "updated_at": {
+              "value": "2026-03-17T12:41:26.736825"
+            }
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:26.736825"
+    }
+  }
+}

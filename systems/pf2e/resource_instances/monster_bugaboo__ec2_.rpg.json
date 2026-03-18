@@ -1,0 +1,1054 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "bugaboo__ec2_",
+    "name": {
+      "value": "Bugaboo"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "ec2"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 24
+    },
+    "hit_points": {
+      "value": 95
+    },
+    "level": {
+      "value": 6
+    },
+    "xp": {
+      "value": 80
+    },
+    "initiative": {
+      "value": 14
+    },
+    "perception": {
+      "value": 14
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 4
+    },
+    "dexterity_modifier": {
+      "value": 5
+    },
+    "constitution_modifier": {
+      "value": 3
+    },
+    "intelligence_modifier": {
+      "value": -1
+    },
+    "wisdom_modifier": {
+      "value": 2
+    },
+    "charisma_modifier": {
+      "value": 4
+    },
+    "fortitude": {
+      "value": 11
+    },
+    "reflex": {
+      "value": 17
+    },
+    "will": {
+      "value": 14
+    },
+    "skills": {
+      "value": "Acrobatics +15, Deception +14, Intimidation +14, Stealth +15, Thievery +13"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": "Cold Iron 6"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Fear"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "low-light vision"
+    },
+    "languages": {
+      "value": "Aklo, Common, Sylvan"
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "fey"
+    },
+    "alignment": {
+      "value": "neutral_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Mobility"
+            },
+            "trait_description": {
+              "value": "When the bugaboo uses a Stride action to move half their Speed or less, that movement does not trigger reactions."
+            },
+            "id": "f17e0dd4-5ddf-4502-8d7d-ff8af32c6308",
+            "updated_at": {
+              "value": "2026-03-17T12:41:30.148797"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Sneak Attack"
+            },
+            "trait_description": {
+              "value": "The bugaboo deals 1d6 extra precision damage to flat-footed creatures."
+            },
+            "id": "ba9028b1-d2b5-4880-8772-320766cfeb1b",
+            "updated_at": {
+              "value": "2026-03-17T12:41:30.148797"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Striking Fear"
+            },
+            "trait_description": {
+              "value": "(emotion, fear, mental)\n\nIf a bugaboo scores a critical hit with a claw Strike, the target must attempt a DC 24 Will save.\n\nCritical Success: The target is unaffected.\nSuccess: The target is frightened 1.\nFailure: The target is frightened 2.\nCritical Failure: The target is frightened 3 and fleeing for 1 round."
+            },
+            "id": "e13032fc-ef7d-4535-8b48-f271d9653d70",
+            "updated_at": {
+              "value": "2026-03-17T12:41:30.148797"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Surprise Attack"
+            },
+            "trait_description": {
+              "value": "On the first round of combat, creatures that haven't acted yet are flat-footed to the bogey."
+            },
+            "id": "f698318c-2166-45b7-9172-e44fce6652fb",
+            "updated_at": {
+              "value": "2026-03-17T12:41:30.148797"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "claw"
+            },
+            "action_description": {
+              "value": "(agile, finesse, magical) 2d8+6 slashing plus striking fear\nEffects: striking fear"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 15
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 6
+                                    },
+                                    "id": "e52780ec-59f3-4729-8530-56612582350f",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:30.148797"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "ba13fba9-d248-41e2-8624-b41e0e6f6fb0",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:30.148797"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "1c541342-7055-416b-bade-f94cc01e5f9d",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:30.148797"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "045c3373-e1a6-4e74-b414-7d64128b6924",
+            "updated_at": {
+              "value": "2026-03-17T12:41:30.148797"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Devour Soul"
+            },
+            "action_description": {
+              "value": "(necromancy, occult)\n\nThe bogey consumes the creature's soul. The soul is utterly destroyed\u2014nothing short of wish or a similar effect can restore it to life, and only after the bogey has been slain. The bogey regains Hit Points equal to double the level of the consumed creature. After devouring three souls within a year, the bogey transforms into a bugaboo."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "three_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "2020f9a7-b648-463c-b330-9b4b5b0859e5",
+            "updated_at": {
+              "value": "2026-03-17T12:41:30.148797"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": [
+        {
+          "resource_id": "monster_spellcasting_block",
+          "stats": {
+            "block_name": {
+              "value": ""
+            },
+            "tradition": {
+              "value": "occult"
+            },
+            "spellcasting_type": {
+              "value": "innate"
+            },
+            "spell_dc": {
+              "value": 22
+            },
+            "spell_attack_bonus": {
+              "value": 0
+            },
+            "spell_levels": {
+              "value": [
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 2
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "invisibility__pc1_",
+                          "name": {
+                            "value": "Invisibility"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_2"
+                          },
+                          "school": {
+                            "value": "spell_school_illusion"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "1 touch"
+                          },
+                          "duration": {
+                            "value": "10 minutes"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 creature"
+                          },
+                          "description": {
+                            "value": "Illusions bend light around the target, rendering it invisible. This makes it undetected to all creatures, though the creatures can attempt to find the target, making it hidden to them instead. If the target uses a hostile action, the spell ends after that hostile action is completed."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (4th): The spell lasts 1 minute, but it doesn't end if the target uses a hostile action."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "manipulate",
+                              "subtle"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 22
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "1ef34dba-7a25-4552-8942-811f2ffa0b71",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:30.148797"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 2
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "knock__pc1_",
+                          "name": {
+                            "value": "Knock"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_2"
+                          },
+                          "school": {
+                            "value": "none"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": "1 minute"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 door, lock, or container"
+                          },
+                          "description": {
+                            "value": "You make the target easier to open. Knock grants a +4 status bonus to any creature that tries to open the target door, lock, or container with an Athletics or a Thievery check. You can attempt a Thievery check to open the target as part of casting knock, and you add your level even if you're untrained.\n\nKnock counteracts lock."
+                          },
+                          "higher_level_description": {
+                            "value": ""
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "concentrate",
+                              "manipulate"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 22
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "7b12b0b9-81ae-441a-b12a-3d449e471121",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:30.148797"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 3
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "fear__crb_",
+                          "name": {
+                            "value": "Fear"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_1"
+                          },
+                          "school": {
+                            "value": "spell_school_enchantment"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "divine",
+                              "occult",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": "varies"
+                          },
+                          "saving_throw": {
+                            "value": "Will"
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 creature"
+                          },
+                          "description": {
+                            "value": "You plant fear in the target; it must attempt a Will save.\n\nCritical Success: The target is unaffected.\nSuccess: The target is frightened 1.\nFailure: The target is frightened 2.\nCritical Failure: The target is frightened 3 and fleeing for 1 round."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (3th): You can target up to five creatures."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "emotion",
+                              "fear",
+                              "mental"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 22
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "dcf0882d-2500-4572-9e26-40ea4ced7a57",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:30.148797"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 3
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "ghost_sound__crb_",
+                          "name": {
+                            "value": "Ghost Sound"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_0"
+                          },
+                          "school": {
+                            "value": "spell_school_illusion"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": "Sustained (unlimited)"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "You create an auditory illusion of simple sounds that has a maximum volume equal to four normal humans shouting.\n\nThe sounds emanate from a square you designate within range. You can't create intelligible words or other intricate sounds (such as music)."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (3th): The range increases to 60 feet.\n\nHeightened (5th): The range increases to 120 feet."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "auditory"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 22
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "6ba1c423-a175-4b8b-8e94-d5dcc4944ef3",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:30.148797"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 3
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "message__crb_",
+                          "name": {
+                            "value": "Message"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_0"
+                          },
+                          "school": {
+                            "value": "spell_school_illusion"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "divine",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "one_action"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "120 feet"
+                          },
+                          "duration": {
+                            "value": "see below"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 creature"
+                          },
+                          "description": {
+                            "value": "You mouth words quietly, but instead of coming out of your mouth, they're transferred directly to the ears of the target.\n\nWhile others can't hear your words any better than if you normally mouthed them, the target can hear your words as if they were standing next to you. The target can give a brief response as a reaction, or as a free action on their next turn if they wish, but they must be able to see you and be within range to do so. If they respond, their response is delivered directly to your ear, just like the original message."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (3th): The spell's range increases to 500 feet."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "auditory",
+                              "linguistic",
+                              "mental"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 22
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "74b3f4c5-35cb-498a-a25a-e9596e5f26cc",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:30.148797"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 3
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "paralyze__pc1_",
+                          "name": {
+                            "value": "Paralyze"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_3"
+                          },
+                          "school": {
+                            "value": "none"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": "varies"
+                          },
+                          "saving_throw": {
+                            "value": "Will"
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 creature"
+                          },
+                          "description": {
+                            "value": "You block the target's motor impulses before they can leave its mind, freezing the target in place. The target must attempt a Will save.\n\nCritical Success: The target is unaffected.\nSuccess: The target is stunned 1.\nFailure: The target is paralyzed for 1 round.\nCritical Failure: The target is paralyzed for 4 rounds. At the end of each of its turns, it can attempt a new Will save to reduce the remaining duration by 1 round, or end it entirely on a critical success."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (7th): You can target up to 10 creatures."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "concentrate",
+                              "incapacitation",
+                              "manipulate",
+                              "mental"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-03-17T01:39:27.639838"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 22
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "87911583-0b08-4119-a640-cd292ca76bec",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:30.148797"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "0fa44d45-cb02-4b19-a54a-ba927828c234",
+            "updated_at": {
+              "value": "2026-03-17T12:41:30.148797"
+            }
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:30.148797"
+    }
+  }
+}

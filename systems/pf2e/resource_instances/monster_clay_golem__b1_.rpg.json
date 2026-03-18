@@ -1,0 +1,333 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "clay_golem__b1_",
+    "name": {
+      "value": "Clay Golem"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b1"
+    },
+    "tag": {
+      "value": "Golem, Mindless"
+    },
+    "armor_class": {
+      "value": 29
+    },
+    "hit_points": {
+      "value": 175
+    },
+    "level": {
+      "value": 10
+    },
+    "xp": {
+      "value": 320
+    },
+    "initiative": {
+      "value": 16
+    },
+    "perception": {
+      "value": 16
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 20
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 6
+    },
+    "dexterity_modifier": {
+      "value": -1
+    },
+    "constitution_modifier": {
+      "value": 6
+    },
+    "intelligence_modifier": {
+      "value": -5
+    },
+    "wisdom_modifier": {
+      "value": 0
+    },
+    "charisma_modifier": {
+      "value": -5
+    },
+    "fortitude": {
+      "value": 23
+    },
+    "reflex": {
+      "value": 16
+    },
+    "will": {
+      "value": 17
+    },
+    "skills": {
+      "value": "Athletics +24"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Acid, Bleed, Mental, Poison, Death Effects, Disease, Doomed, Drained, Fatigued, Healing, Magic (see Below), Necromancy, Nonlethal Attacks, Paralyzed, Sickened, Unconscious"
+    },
+    "resistances": {
+      "value": "Physical 10 (except adamantine)"
+    },
+    "senses": {
+      "value": "darkvision"
+    },
+    "languages": {
+      "value": ""
+    },
+    "size": {
+      "value": "large"
+    },
+    "type": {
+      "value": "construct"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Berserk"
+            },
+            "trait_description": {
+              "value": "A severely damaged clay golem has a chance of going berserk. If it has 50 or fewer Hit Points at the start of its turn, the golem must succeed at a DC 5 flat check or go berserk. A berserk golem wildly attacks the nearest living creature, or the nearest object if no creatures are nearby."
+            },
+            "id": "74e49455-9cd4-4c01-987f-74500bd3fc0d",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Golem Antimagic"
+            },
+            "trait_description": {
+              "value": "harmed by cold and water (5d10, 2d6 from areas or persistent damage); healed by acid (area 2d6 HP); slowed by earth."
+            },
+            "id": "ee8cda19-5744-45cc-b8aa-5fd464487a28",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Vulnerable to Disintegrate"
+            },
+            "trait_description": {
+              "value": "A disintegrate spell affects the golem but deals half the normal amount of damage and causes the golem to become slowed 2 for 1 round."
+            },
+            "id": "8cfbf31d-9557-400e-967c-e5caf3c0fda0",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Cursed Wound"
+            },
+            "trait_description": {
+              "value": "(divine, curse, necromancy)\n\nA creature hit by the clay golem's fist must succeed at a DC 29 Fortitude save or be cursed until healed to its maximum HP. The cursed creature can't regain HP except via magic, and anyone casting a spell to heal the creature must succeed at a DC 29 counteract check or the healing has no effect. The golem's counteract level is equal to its creature level."
+            },
+            "id": "5e2fbca3-3e42-43b9-a09e-4aaf5b1dcf02",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "fist"
+            },
+            "action_description": {
+              "value": "(magical, reach 10 feet) 2d10+12 bludgeoning plus cursed wound\nEffects: cursed wound"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 24
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 12
+                                    },
+                                    "id": "44ec86e5-cb5d-43fb-be9f-133a3b36fb19",
+                                    "updated_at": {
+                                      "value": "2026-03-17T12:41:25.944969"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "faedd10d-230a-4789-9d96-302b9fc3ee0a",
+                            "updated_at": {
+                              "value": "2026-03-17T12:41:25.944969"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "2b30f8eb-52d1-4e0f-8e9b-1a4f7036b27d",
+                    "updated_at": {
+                      "value": "2026-03-17T12:41:25.944969"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "ac38e8aa-56d5-418d-bb90-f07c19a2c310",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Berserk Slam"
+            },
+            "action_description": {
+              "value": "The clay golem Strikes with its fist at a \u20131 circumstance penalty. If its Strike hits, the clay golem deals an additional 1d8 damage and knocks the target prone."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "423c477c-85ec-4fc8-82bd-d119c7b5cc87",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Quicken"
+            },
+            "action_description": {
+              "value": "(divine, transmutation)\n\nTrigger: The clay golem's turn begins.\n\nFrequency: 1/day\n\nIt can't trigger this free action on the first turn of combat. The clay golem becomes quickened for 1 minute."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "free_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "1d3fe002-a250-4889-a804-4ce51ab93b11",
+            "updated_at": {
+              "value": "2026-03-17T12:41:25.944969"
+            }
+          }
+        }
+      ]
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-03-17T12:41:25.944969"
+    }
+  }
+}
