@@ -3,7 +3,7 @@
   "stats": {
     "id": "dual_weapon_warrior__apg_",
     "updated_at": {
-      "value": "2026-03-16T14:51:49.570600+00:00"
+      "value": "2026-03-19T22:58:05.565158+00:00"
     },
     "name": {
       "value": "Dual-Weapon Warrior"
@@ -20,13 +20,28 @@
     "required_class_id": {
       "value": ""
     },
+    "grants_spellcasting": {
+      "value": false
+    },
+    "spellcasting_tradition": {
+      "value": ""
+    },
+    "spellcasting_ability": {
+      "value": ""
+    },
+    "spellcasting_mode": {
+      "value": ""
+    },
+    "spellcasting_proficiency": {
+      "value": "none"
+    },
     "dedication_feat": {
       "value": {
         "resource_id": "feat",
         "stats": {
           "id": "feat_dual_weapon_warrior_dedication__apg_",
           "updated_at": {
-            "value": "2026-03-16T14:51:32.702359+00:00"
+            "value": "2026-03-19T22:27:12.686286+00:00"
           },
           "name": {
             "value": "Dual-Weapon Warrior Dedication"
@@ -72,7 +87,7 @@
               {
                 "resource_id": "levelled_description",
                 "stats": {
-                  "id": "levelled_description_1393d99c3b25",
+                  "id": "levelled_description_cd78c07d64bd",
                   "level": {
                     "value": 2
                   },
@@ -97,6 +112,18 @@
           },
           "lore_skills": {
             "value": []
+          },
+          "spellcasting_tradition": {
+            "value": ""
+          },
+          "is_basic_spellcasting_feat": {
+            "value": false
+          },
+          "is_expert_spellcasting_feat": {
+            "value": false
+          },
+          "is_master_spellcasting_feat": {
+            "value": false
           }
         }
       }
@@ -106,9 +133,420 @@
         {
           "resource_id": "feat",
           "stats": {
+            "id": "feat_twin_parry__pc1_fighter_",
+            "updated_at": {
+              "value": "2026-03-19T22:27:12.686286+00:00"
+            },
+            "name": {
+              "value": "Twin Parry"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "class"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "traits": {
+              "value": "fighter"
+            },
+            "classes": {
+              "value": [
+                "fighter__pc1_"
+              ]
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": ""
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": "You are wielding two melee weapons, one in each hand."
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_39d7cf04e1fa",
+                    "level": {
+                      "value": 6
+                    },
+                    "description": {
+                      "value": "You use your two weapons to parry attacks. You gain a +1 circumstance bonus to AC until the start of your next turn, or a +2 circumstance bonus if either weapon has the parry trait.\n\nYou lose this circumstance bonus if you no longer meet this feat's requirement."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "id": "levelled_effect_244206ff0b9e",
+                    "level": {
+                      "value": 6
+                    },
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "id": "effect_402326ccb942",
+                          "name": {
+                            "value": "+1 Circumstance Bonus to Armor Class"
+                          },
+                          "trigger_type": {
+                            "value": "active"
+                          },
+                          "type": {
+                            "value": "typed_add_to_stat"
+                          },
+                          "typed_modifier_type": {
+                            "value": "circumstance"
+                          },
+                          "typed_modifier_polarity": {
+                            "value": "bonus"
+                          },
+                          "stat": {
+                            "value": "$character.armor_class"
+                          },
+                          "constant": {
+                            "value": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_twin_riposte__pc1_fighter_",
+            "updated_at": {
+              "value": "2026-03-19T22:27:12.686286+00:00"
+            },
+            "name": {
+              "value": "Twin Riposte"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "class"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "traits": {
+              "value": "fighter"
+            },
+            "classes": {
+              "value": [
+                "fighter__pc1_"
+              ]
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": ""
+            },
+            "trigger": {
+              "value": "A creature within your reach critically fails to Strike you."
+            },
+            "requirements": {
+              "value": "You are benefiting from Twin Parry (Fighter)."
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_ddcdf9b4d028",
+                    "level": {
+                      "value": 12
+                    },
+                    "description": {
+                      "value": "A clever parry with one weapon leaves your opponent open to an attack with the other weapon. Make a melee Strike or Disarm action against the triggering opponent."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_improved_twin_riposte__pc1_fighter_",
+            "updated_at": {
+              "value": "2026-03-19T22:27:12.686286+00:00"
+            },
+            "name": {
+              "value": "Improved Twin Riposte"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "class"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "fighter"
+            },
+            "classes": {
+              "value": [
+                "fighter__pc1_"
+              ]
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Twin Riposte (Fighter)"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_5523baabfeba",
+                    "level": {
+                      "value": 16
+                    },
+                    "description": {
+                      "value": "Your weapons are a blur, blocking and biting at your foes. You can use Twin Riposte (Fighter) even if you aren't benefiting from Twin Parry (Fighter). At the start of each of your turns, you gain an additional reaction that you can use only to make a Twin Riposte (Fighter)."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_twinned_defense__pc1_",
+            "updated_at": {
+              "value": "2026-03-19T22:27:12.686286+00:00"
+            },
+            "name": {
+              "value": "Twinned Defense"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "class"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "traits": {
+              "value": "fighter, stance"
+            },
+            "classes": {
+              "value": [
+                "fighter__pc1_"
+              ]
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Twin Parry"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": "You are wielding two melee weapons, one in each hand."
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_a52f99add4e2",
+                    "level": {
+                      "value": 18
+                    },
+                    "description": {
+                      "value": "You're always ready to use your off-hand weapon to interfere with attacks against you. While you are in this stance, you constantly gain the benefits of the Twin Parry action."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
             "id": "feat_dual_onslaught__apg_",
             "updated_at": {
-              "value": "2026-03-16T14:51:32.702359+00:00"
+              "value": "2026-03-19T22:27:12.686286+00:00"
             },
             "name": {
               "value": "Dual Onslaught"
@@ -154,7 +592,7 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_6777229b7c6d",
+                    "id": "levelled_description_73e8b76f4de3",
                     "level": {
                       "value": 14
                     },
@@ -179,6 +617,18 @@
             },
             "lore_skills": {
               "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
             }
           }
         },
@@ -187,7 +637,7 @@
           "stats": {
             "id": "feat_dual_thrower__apg_",
             "updated_at": {
-              "value": "2026-03-16T14:51:32.702359+00:00"
+              "value": "2026-03-19T22:27:12.686286+00:00"
             },
             "name": {
               "value": "Dual Thrower"
@@ -233,7 +683,7 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_3b584407b742",
+                    "id": "levelled_description_bbf9c4fcc0d4",
                     "level": {
                       "value": 4
                     },
@@ -258,6 +708,18 @@
             },
             "lore_skills": {
               "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
             }
           }
         },
@@ -266,7 +728,7 @@
           "stats": {
             "id": "feat_dual_weapon_blitz__apg_",
             "updated_at": {
-              "value": "2026-03-16T14:51:32.702359+00:00"
+              "value": "2026-03-19T22:27:12.686286+00:00"
             },
             "name": {
               "value": "Dual-Weapon Blitz"
@@ -312,7 +774,7 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_daa40179f1dc",
+                    "id": "levelled_description_477869b89d28",
                     "level": {
                       "value": 10
                     },
@@ -337,6 +799,18 @@
             },
             "lore_skills": {
               "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
             }
           }
         },
@@ -345,7 +819,7 @@
           "stats": {
             "id": "feat_dual_weapon_reload__apg_",
             "updated_at": {
-              "value": "2026-03-16T14:51:32.702359+00:00"
+              "value": "2026-03-19T22:27:12.686286+00:00"
             },
             "name": {
               "value": "Dual-Weapon Reload"
@@ -391,7 +865,7 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_b4c94db23eae",
+                    "id": "levelled_description_f6e15a46fc7f",
                     "level": {
                       "value": 4
                     },
@@ -416,6 +890,18 @@
             },
             "lore_skills": {
               "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
             }
           }
         },
@@ -424,7 +910,7 @@
           "stats": {
             "id": "feat_flensing_slice__apg_",
             "updated_at": {
-              "value": "2026-03-16T14:51:32.702359+00:00"
+              "value": "2026-03-19T22:27:12.686286+00:00"
             },
             "name": {
               "value": "Flensing Slice"
@@ -470,7 +956,7 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_77bb2cfa849f",
+                    "id": "levelled_description_eb9b91823b20",
                     "level": {
                       "value": 8
                     },
@@ -495,6 +981,18 @@
             },
             "lore_skills": {
               "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
             }
           }
         }

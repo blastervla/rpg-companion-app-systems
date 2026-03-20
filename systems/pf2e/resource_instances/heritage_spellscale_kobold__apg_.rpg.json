@@ -3,7 +3,7 @@
   "stats": {
     "id": "spellscale_kobold__apg_",
     "updated_at": {
-      "value": "2026-03-15T19:05:31.323008"
+      "value": "2026-03-19T22:58:06.786234"
     },
     "name": {
       "value": "Spellscale Kobold"
@@ -12,7 +12,7 @@
       "value": "apg"
     },
     "description": {
-      "value": "Description: A trace of draconic magic flows through your veins. Choose one cantrip from the arcane spell list. You can Cast this Spell as an arcane innate spell at will. A cantrip is heightened to a spell level equal to half your level rounded up. You gain the trained proficiency rank in arcane spell attack rolls and spell DCs, and your key spellcasting ability is Charisma."
+      "value": "### Description\nA trace of draconic magic flows through your veins. Choose one cantrip from the arcane spell list. You can Cast this Spell as an arcane innate spell at will. A cantrip is heightened to a spell level equal to half your level rounded up. You gain the trained proficiency rank in arcane spell attack rolls and spell DCs, and your key spellcasting ability is Charisma."
     },
     "is_versatile": {
       "value": false
@@ -40,7 +40,7 @@
       "value": true
     },
     "speed": {
-      "value": 30
+      "value": 25
     },
     "burrow_speed": {
       "value": 0
@@ -111,19 +111,52 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_bcc6b3f4964b",
+                    "id": "levelled_description_f2b51c6d3548",
                     "level": {
                       "value": 1
                     },
                     "description": {
-                      "value": "Description: A trace of draconic magic flows through your veins. Choose one cantrip from the arcane spell list. You can Cast this Spell as an arcane innate spell at will. A cantrip is heightened to a spell level equal to half your level rounded up. You gain the trained proficiency rank in arcane spell attack rolls and spell DCs, and your key spellcasting ability is Charisma."
+                      "value": "### Description\nA trace of draconic magic flows through your veins. Choose one cantrip from the arcane spell list. You can Cast this Spell as an arcane innate spell at will. A cantrip is heightened to a spell level equal to half your level rounded up. You gain the trained proficiency rank in arcane spell attack rolls and spell DCs, and your key spellcasting ability is Charisma."
                     }
                   }
                 }
               ]
             },
             "effects": {
-              "value": []
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "id": "levelled_effect_bd8109fcf2d3",
+                    "level": {
+                      "value": 1
+                    },
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "id": "effect_2d6e73a26148",
+                          "name": {
+                            "value": "Grant Trained in Arcane Spellcasting"
+                          },
+                          "trigger_type": {
+                            "value": "passive"
+                          },
+                          "type": {
+                            "value": "grant_proficiency"
+                          },
+                          "proficiency_stat": {
+                            "value": "$character.arcane_spellcasting_proficiency"
+                          },
+                          "proficiency_rank": {
+                            "value": "trained"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
             }
           }
         }

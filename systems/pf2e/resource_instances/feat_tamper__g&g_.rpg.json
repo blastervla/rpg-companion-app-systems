@@ -3,7 +3,7 @@
   "stats": {
     "id": "feat_tamper__g&g_",
     "updated_at": {
-      "value": "2026-03-16T23:55:12.219969+00:00"
+      "value": "2026-03-19T22:58:03.908982+00:00"
     },
     "name": {
       "value": "Tamper"
@@ -51,19 +51,58 @@
         {
           "resource_id": "levelled_description",
           "stats": {
-            "id": "levelled_description_cf32fc85696d",
+            "id": "levelled_description_7250fd868a90",
             "level": {
               "value": 1
             },
             "description": {
-              "value": "You tamper with a foe's weapon or armor, using a free hand.\n\nChoose either a weapon held by an enemy in your reach or a suit of armor worn by an enemy in your reach. Attempt a Crafting check against the enemy's Reflex DC.\n\nCritical Success: Your tampering is incredibly effective. If you tampered with a weapon, the enemy takes a \u20132 circumstance penalty to attack rolls and damage rolls with that weapon. If you tampered with armor, the armor hampers the enemy's movement, making the enemy flat-footed and inflicting a \u201310-foot penalty to its Speeds. The effect lasts until the enemy Interacts to remove it, regardless of which one you used.\nSuccess: Your tampering is temporarily effective. As critical success, but the effect ends at the start of your next turn, even if the enemy doesn't Interact to end it.\nCritical Failure: Your tampering backfires dramatically, creating a small explosion from your own tools or gear. You take fire damage equal to your level."
+              "value": "You tamper with a foe's weapon or armor, using a free hand.\n\nChoose either a weapon held by an enemy in your reach or a suit of armor worn by an enemy in your reach. Attempt a Crafting check against the enemy's Reflex DC.\n\n- **Critical Success:** Your tampering is incredibly effective. If you tampered with a weapon, the enemy takes a –2 circumstance penalty to attack rolls and damage rolls with that weapon. If you tampered with armor, the armor hampers the enemy's movement, making the enemy flat-footed and inflicting a –10-foot penalty to its Speeds. The effect lasts until the enemy Interacts to remove it, regardless of which one you used.\n- **Success:** Your tampering is temporarily effective. As critical success, but the effect ends at the start of your next turn, even if the enemy doesn't Interact to end it.\n- **Critical Failure:** Your tampering backfires dramatically, creating a small explosion from your own tools or gear. You take fire damage equal to your level."
             }
           }
         }
       ]
     },
     "effects": {
-      "value": []
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_36ae6815a201",
+            "level": {
+              "value": 1
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_747c4fad055d",
+                  "name": {
+                    "value": "-2 Circumstance Penalty to Strike Attack"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "typed_add_to_stat"
+                  },
+                  "typed_modifier_type": {
+                    "value": "circumstance"
+                  },
+                  "typed_modifier_polarity": {
+                    "value": "penalty"
+                  },
+                  "stat": {
+                    "value": "$character.strike_attack_circumstance_penalty"
+                  },
+                  "constant": {
+                    "value": 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "skill_proficiencies": {
       "value": []
@@ -76,6 +115,18 @@
     },
     "lore_skills": {
       "value": []
+    },
+    "spellcasting_tradition": {
+      "value": ""
+    },
+    "is_basic_spellcasting_feat": {
+      "value": false
+    },
+    "is_expert_spellcasting_feat": {
+      "value": false
+    },
+    "is_master_spellcasting_feat": {
+      "value": false
     }
   }
 }

@@ -3,7 +3,7 @@
   "stats": {
     "id": "jawbreaker_shield__ec4_",
     "updated_at": {
-      "value": "2026-03-16T23:48:34.843573+00:00"
+      "value": "2026-03-19T22:58:21.503645+00:00"
     },
     "name": {
       "value": "Jawbreaker Shield"
@@ -12,7 +12,7 @@
       "value": "ec4"
     },
     "description": {
-      "value": "This heavy bone shield is composed of a massive plate of dinosaur bone with jagged, tooth-like ridges ringing its edge. It has Hardness 12, HP 48, and BT 24. The ridges are unremovable +1 striking shield spikes that deal slashing damage instead of piercing damage. While holding the jawbreaker shield, you gain a +3 item bonus to your Reflex DC to resist Swallow Whole attacks. You make a shield bash Strike as a reaction against the attacker. If the shield bash hits, the target takes damage and must attempt a DC 31 Fortitude saving throw. The effects of the saving throw are determined after the effects of the triggering Strike are resolved. {'Success': 'The target is unaffected.', 'Failure': \"You wound the target's mouth. It takes 1d6 persistent bleed damage and takes a \u20132 status penalty to attack and damage rolls with jaws, fangs, or similar Strikes for 24 hours.\", 'Critical Failure': \"You break the target's jaw. As failure, and the creature can't make Strikes using its mouth for 1 minute. At the end of its turn, it can attempt a Fortitude save to regain the ability to make Strikes using its mouth.\"}"
+      "value": "This heavy bone shield is composed of a massive plate of dinosaur bone with jagged, tooth-like ridges ringing its edge. It has Hardness 12, HP 48, and BT 24. The ridges are unremovable +1 striking shield spikes that deal slashing damage instead of piercing damage.\n\nWhile holding the jawbreaker shield, you gain a +3 item bonus to your Reflex DC to resist Swallow Whole attacks.\n\nActivate (Reaction)\nTrigger: A creature attacks you with a jaws or fangs\nYou make a shield bash Strike as a reaction against the attacker. If the shield bash hits, the target takes damage and must attempt a DC 31 Fortitude saving throw. The effects of the saving throw are determined after the effects of the triggering Strike are resolved.\n\n- **Success:** The target is unaffected.\n- **Failure:** You wound the target's mouth. It takes 1d6 persistent bleed damage and takes a –2 status penalty to attack and damage rolls with jaws, fangs, or similar Strikes for 24 hours.\n- **Critical Failure:** You break the target's jaw. As failure, and the creature can't make Strikes using its mouth for 1 minute. At the end of its turn, it can attempt a Fortitude save to regain the ability to make Strikes using its mouth."
     },
     "type": {
       "value": "held"
@@ -92,12 +92,12 @@
         {
           "resource_id": "effect",
           "stats": {
-            "id": "effect_cd809725d679",
+            "id": "effect_7c640090816a",
             "name": {
               "value": "+3 Item Bonus to Reflex"
             },
             "trigger_type": {
-              "value": "active"
+              "value": "passive"
             },
             "type": {
               "value": "typed_add_to_stat"
@@ -113,33 +113,6 @@
             },
             "constant": {
               "value": 3
-            }
-          }
-        },
-        {
-          "resource_id": "effect",
-          "stats": {
-            "id": "effect_b344aeab01fd",
-            "name": {
-              "value": "-2 Status Penalty to Armor Class"
-            },
-            "trigger_type": {
-              "value": "passive"
-            },
-            "type": {
-              "value": "typed_add_to_stat"
-            },
-            "typed_modifier_type": {
-              "value": "status"
-            },
-            "typed_modifier_polarity": {
-              "value": "penalty"
-            },
-            "stat": {
-              "value": "$character.armor_class"
-            },
-            "constant": {
-              "value": 2
             }
           }
         }

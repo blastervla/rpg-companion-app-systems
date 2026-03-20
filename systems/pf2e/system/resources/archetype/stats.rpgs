@@ -132,6 +132,24 @@ calc integer max_spell_slots_8(name = "Max rank 8 spell slots") = 0;
 
 calc integer max_spell_slots_9(name = "Max rank 9 spell slots") = 0;
 
+calc resource<feat> selected_spellcasting_tradition_feat(name = "Selected spellcasting tradition feat") =
+  findFirst(
+    $character?.all_feats ?? [],
+    filter = ($f) => contains(
+      haystack = map(feats, mapper = ($fv) => $fv.id),
+      needle = $f.id,
+    ) && ($f.is_selected_selectable_feature ?? false) && !isEmpty($f.spellcasting_tradition ?? ""),
+  );
+
+calc string actual_spellcasting_tradition(name = "Actual spellcasting tradition") =
+  selected_spellcasting_tradition_feat?.spellcasting_tradition ?? spellcasting_tradition;
+
+calc string actual_spellcasting_ability(name = "Actual spellcasting ability") =
+  spellcasting_ability;
+
+calc string actual_spellcasting_mode(name = "Actual spellcasting mode") =
+  spellcasting_mode;
+
 calc string actual_spellcasting_proficiency(name = "Actual spellcasting proficiency") =
   when {
     has_master_spellcasting -> "master",
@@ -150,7 +168,7 @@ calc integer spellcasting_proficiency_bonus(name = "Spellcasting proficiency bon
   };
 
 calc integer spellcasting_modifier(name = "Spellcasting modifier") =
-  metaStat(meta_stat = concat(["$character.", spellcasting_ability, "_modifier"])) ?? 0;
+  metaStat(meta_stat = concat(["$character.", actual_spellcasting_ability, "_modifier"])) ?? 0;
 
 calc integer spell_attack_bonus(name = "Spell attack bonus") =
   spellcasting_modifier + spellcasting_proficiency_bonus;
@@ -163,7 +181,7 @@ calc string spellcasting_entry_name(name = "Spellcasting entry name") =
     [
       name,
       " (",
-      enumeratedAbbreviation(enumerated_type = "ability", id = spellcasting_ability),
+      enumeratedAbbreviation(enumerated_type = "ability", id = actual_spellcasting_ability),
       ")",
     ],
   );
