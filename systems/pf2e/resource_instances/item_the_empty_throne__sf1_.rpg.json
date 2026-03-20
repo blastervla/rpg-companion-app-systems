@@ -3,7 +3,7 @@
   "stats": {
     "id": "the_empty_throne__sf1_",
     "updated_at": {
-      "value": "2026-03-16T23:48:35.327747+00:00"
+      "value": "2026-03-19T22:58:22.171401+00:00"
     },
     "name": {
       "value": "The Empty Throne"
@@ -12,7 +12,7 @@
       "value": "sf1"
     },
     "description": {
-      "value": "Suit Crown (Cha); Alignment lawful good The Empty Throne represents great loss and wisdom from those who are now gone. As long as you have The Empty Throne invested, it grants you a +2 item bonus to Society and Lore checks made to Recall Knowledge regarding individuals who are no longer alive (such as checks to learn about Taldor's historical founder, but not to learn about its current empress). This increases to a +3 item bonus if you are at least 17th level. You overwhelm a target you can see within 60 feet with feelings of helplessness and loss. The creature must attempt a Will DC equal to your class DC. {'Critical Success': ['Once during the next month, you can reroll a failed or critically failed saving throw. This is a fortune effect.'], 'Success': ['As critical success, but you can only reroll a failed saving throw. This is a fortune effect.'], 'Failure': ['You gain no benefit from the meditation.'], 'Critical Failure': ['The next time you critically succeed at a significant or important saving throw, as determined by the GM, you must reroll that saving throw. This is a misfortune effect.']}"
+      "value": "Suit Crown (Cha); Alignment lawful good The Empty Throne represents great loss and wisdom from those who are now gone. As long as you have The Empty Throne invested, it grants you a +2 item bonus to Society and Lore checks made to Recall Knowledge regarding individuals who are no longer alive (such as checks to learn about Taldor's historical founder, but not to learn about its current empress). This increases to a +3 item bonus if you are at least 17th level.\n\nActivate (1 Action)\nFrequency: once per day\nYou overwhelm a target you can see within 60 feet with feelings of helplessness and loss. The creature must attempt a Will DC equal to your class DC.\n\n- **Critical Success:** Once during the next month, you can reroll a failed or critically failed saving throw. This is a fortune effect.\n- **Success:** As critical success, but you can only reroll a failed saving throw. This is a fortune effect.\n- **Failure:** You gain no benefit from the meditation.\n- **Critical Failure:** The next time you critically succeed at a significant or important saving throw, as determined by the GM, you must reroll that saving throw. This is a misfortune effect."
     },
     "type": {
       "value": "artifact"
@@ -78,7 +78,35 @@
       "value": null
     },
     "effects": {
-      "value": []
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_9edad5f8ed1c",
+            "name": {
+              "value": "+2 Item Bonus to Society"
+            },
+            "trigger_type": {
+              "value": "passive"
+            },
+            "type": {
+              "value": "typed_add_to_stat"
+            },
+            "typed_modifier_type": {
+              "value": "item"
+            },
+            "typed_modifier_polarity": {
+              "value": "bonus"
+            },
+            "stat": {
+              "value": "$character.society"
+            },
+            "constant": {
+              "value": 2
+            }
+          }
+        }
+      ]
     },
     "is_invested": {
       "value": false

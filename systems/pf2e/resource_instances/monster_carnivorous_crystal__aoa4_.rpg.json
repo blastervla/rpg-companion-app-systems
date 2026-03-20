@@ -124,9 +124,9 @@
             "trait_description": {
               "value": "Whenever the carnivorous crystal takes a critical hit from an attack that deals bludgeoning or sonic damage, or it critically fails its saving throw against an effect that deals bludgeoning or sonic damage, it might split. If the carnivorous crystal has at least 15 HP remaining after taking the damage, it splits into two identical crystals, each with half the original's Hit Points. When the carnivorous crystal splits, one crystal remains in the same space and the other appears in an adjacent unoccupied space. If no adjacent space is unoccupied, the crystal automatically pushes creatures out of the way to fill a space."
             },
-            "id": "8f25c76a-b739-41c6-b81a-87606d5def0a",
+            "id": "17b7a2d4-ca89-454b-9926-c8930e17d1ed",
             "updated_at": {
-              "value": "2026-03-17T12:41:22.444580"
+              "value": "2026-03-19T22:58:45.024646"
             }
           }
         },
@@ -137,11 +137,11 @@
               "value": "Subsonic Hum"
             },
             "trait_description": {
-              "value": "(auditory, aura, mental)\n\n60 feet. A creature that enters or starts its turn within the aura must succeed at a DC 28 Will save or become stunned 1."
+              "value": "(auditory, aura, mental)\n\n60 feet. A creature that enters or starts its turn within the aura must succeed at a 28 Will save or become stunned 1."
             },
-            "id": "34ef63c2-c2b9-4cc5-b701-dab945aab901",
+            "id": "e030dd51-1a63-41f3-9995-f047bfa6c54c",
             "updated_at": {
-              "value": "2026-03-17T12:41:22.444580"
+              "value": "2026-03-19T22:58:45.024646"
             }
           }
         },
@@ -154,9 +154,9 @@
             "trait_description": {
               "value": "A carnivorous crystal can sense nearby motion through vibration and air movement."
             },
-            "id": "4d837d6f-d679-4796-8609-ae27791d01e0",
+            "id": "8db0667a-6c29-41e1-96fb-96d5c2db5276",
             "updated_at": {
-              "value": "2026-03-17T12:41:22.444580"
+              "value": "2026-03-19T22:58:45.024646"
             }
           }
         },
@@ -169,9 +169,9 @@
             "trait_description": {
               "value": "If a carnivorous crystal hits with an attack and rolls a natural 19 on the d20 roll, the attack is a critical hit. This has no effect if the 19 would be a failure."
             },
-            "id": "96bc9065-6cb8-4e0d-b07f-1a44a746a296",
+            "id": "b3bb81a5-9980-4d3e-8aad-3a3f2ae99153",
             "updated_at": {
-              "value": "2026-03-17T12:41:22.444580"
+              "value": "2026-03-19T22:58:45.024646"
             }
           }
         }
@@ -227,33 +227,33 @@
                                     "constant": {
                                       "value": 7
                                     },
-                                    "id": "be9b650c-2c14-4cfd-b088-adc68669e8df",
+                                    "id": "55eb6a5b-0c11-4c28-9de5-60207ed2bfe6",
                                     "updated_at": {
-                                      "value": "2026-03-17T12:41:22.444580"
+                                      "value": "2026-03-19T22:58:45.024646"
                                     }
                                   }
                                 }
                               ]
                             },
-                            "id": "4ad9f462-7530-4137-aafc-22df551c0816",
+                            "id": "4bb2292b-a911-43bf-bcad-569fad592cec",
                             "updated_at": {
-                              "value": "2026-03-17T12:41:22.444580"
+                              "value": "2026-03-19T22:58:45.024646"
                             }
                           }
                         }
                       ]
                     },
-                    "id": "2a203702-37b8-4c83-976b-5cbc600eb6bf",
+                    "id": "5007dad0-b99c-402c-a6cc-6c9fe2fa2cb6",
                     "updated_at": {
-                      "value": "2026-03-17T12:41:22.444580"
+                      "value": "2026-03-19T22:58:45.024646"
                     }
                   }
                 }
               ]
             },
-            "id": "29ebd1ed-93ea-4030-81c9-70f935d72ed2",
+            "id": "bcfb75b3-6723-4659-b3ac-67fcf52bf752",
             "updated_at": {
-              "value": "2026-03-17T12:41:22.444580"
+              "value": "2026-03-19T22:58:45.024646"
             }
           }
         },
@@ -264,7 +264,7 @@
               "value": "Crystallize"
             },
             "action_description": {
-              "value": "(attack)\n\nThe engulfed creature must succeed at a DC 28 Fortitude save or become slowed 1 until it is no longer engulfed. If the creature is already slowed, it becomes petrified as it is turned into crystal and expelled by the carnivorous crystal onto the ground. In 1d4 hours, the petrified victim shatters and a new carnivorous crystal emerges from the remains."
+              "value": "(attack)\n\nRequirements: The crystal has a creature engulfed.\n\nThe engulfed creature must succeed at a 28 Fortitude save or become slowed 1 until it is no longer engulfed. If the creature is already slowed, it becomes petrified as it is turned into crystal and expelled by the carnivorous crystal onto the ground. In 1d4 hours, the petrified victim shatters and a new carnivorous crystal emerges from the remains."
             },
             "action_type": {
               "value": "none"
@@ -276,11 +276,62 @@
               "value": 0
             },
             "action_damage_variants": {
-              "value": []
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "untyped"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "8eb99bdb-0a70-4958-a428-7c0ae5be9a1e",
+                                    "updated_at": {
+                                      "value": "2026-03-19T22:58:45.024646"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "cb363a29-0923-42ec-ac11-c61e5dc25346",
+                            "updated_at": {
+                              "value": "2026-03-19T22:58:45.024646"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "05b8df36-4686-4d58-8eb1-6a8e9c509750",
+                    "updated_at": {
+                      "value": "2026-03-19T22:58:45.024646"
+                    }
+                  }
+                }
+              ]
             },
-            "id": "caca01e9-6918-4e6a-bfe6-9bc021b7b944",
+            "id": "f2ba2707-0e6f-4e0b-985d-274b9a6431d0",
             "updated_at": {
-              "value": "2026-03-17T12:41:22.444580"
+              "value": "2026-03-19T22:58:45.024646"
             }
           }
         },
@@ -291,7 +342,7 @@
               "value": "Engulf"
             },
             "action_description": {
-              "value": "DC 28, 2d6 slashing, Escape DC 28, Rupture 25 (bludgeoning only)."
+              "value": "28, 2d6 slashing, Escape 28, Rupture 25 (bludgeoning only)."
             },
             "action_type": {
               "value": "none"
@@ -332,33 +383,33 @@
                                     "constant": {
                                       "value": 0
                                     },
-                                    "id": "b6ddc46d-65c0-4b5e-b4b5-b687d3003585",
+                                    "id": "cbb6dfff-2305-417c-8f55-594ab3b37020",
                                     "updated_at": {
-                                      "value": "2026-03-17T12:41:22.444580"
+                                      "value": "2026-03-19T22:58:45.024646"
                                     }
                                   }
                                 }
                               ]
                             },
-                            "id": "02d1dfb9-66e3-4136-b902-b0cb29b968c3",
+                            "id": "548962f9-f7bd-45cd-b7a8-3a263ef2c030",
                             "updated_at": {
-                              "value": "2026-03-17T12:41:22.444580"
+                              "value": "2026-03-19T22:58:45.024646"
                             }
                           }
                         }
                       ]
                     },
-                    "id": "2bff9491-a7b6-4a3c-8071-57bbdb307c6b",
+                    "id": "e8270970-066a-4337-ae63-8417e1855fbc",
                     "updated_at": {
-                      "value": "2026-03-17T12:41:22.444580"
+                      "value": "2026-03-19T22:58:45.024646"
                     }
                   }
                 }
               ]
             },
-            "id": "e56acfc7-9274-415f-93cc-2d6da08b1ea0",
+            "id": "212b8f85-e294-4098-a9b5-e40eab721950",
             "updated_at": {
-              "value": "2026-03-17T12:41:22.444580"
+              "value": "2026-03-19T22:58:45.024646"
             }
           }
         },
@@ -383,9 +434,9 @@
             "action_damage_variants": {
               "value": []
             },
-            "id": "4c41f681-226f-41e2-bc56-c640411df9c9",
+            "id": "cc200808-792f-47f8-b0bb-b37946fe41f1",
             "updated_at": {
-              "value": "2026-03-17T12:41:22.444580"
+              "value": "2026-03-19T22:58:45.024646"
             }
           }
         }
@@ -404,7 +455,7 @@
       "value": []
     },
     "updated_at": {
-      "value": "2026-03-17T12:41:22.444580"
+      "value": "2026-03-19T22:58:45.024646"
     }
   }
 }

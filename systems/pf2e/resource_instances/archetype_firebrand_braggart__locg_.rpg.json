@@ -3,7 +3,7 @@
   "stats": {
     "id": "firebrand_braggart__locg_",
     "updated_at": {
-      "value": "2026-03-16T14:51:49.570600+00:00"
+      "value": "2026-03-19T22:58:05.565158+00:00"
     },
     "name": {
       "value": "Firebrand Braggart"
@@ -20,13 +20,28 @@
     "required_class_id": {
       "value": ""
     },
+    "grants_spellcasting": {
+      "value": false
+    },
+    "spellcasting_tradition": {
+      "value": ""
+    },
+    "spellcasting_ability": {
+      "value": ""
+    },
+    "spellcasting_mode": {
+      "value": ""
+    },
+    "spellcasting_proficiency": {
+      "value": "none"
+    },
     "dedication_feat": {
       "value": {
         "resource_id": "feat",
         "stats": {
           "id": "feat_firebrand_braggart_dedication__locg_",
           "updated_at": {
-            "value": "2026-03-16T14:51:32.702359+00:00"
+            "value": "2026-03-19T22:27:12.686286+00:00"
           },
           "name": {
             "value": "Firebrand Braggart Dedication"
@@ -72,12 +87,12 @@
               {
                 "resource_id": "levelled_description",
                 "stats": {
-                  "id": "levelled_description_158cc385b75f",
+                  "id": "levelled_description_3ee39592ced4",
                   "level": {
                     "value": 4
                   },
                   "description": {
-                    "value": "Your Firebrand training has taught you that achieving something is more satisfying if you boast about it first. You declare a boast about a particular skill action, such as Balance, Demoralize, or Recall Knowledge. The first time you attempt this action within the next minute in a context the GM deems both suitably challenging and meaningful, you must roll twice and use the lower result. If you succeed at this check, you gain a +1 circumstance bonus to checks to attempt the same action for 10 minutes.\n\nIf you fail this check or don't attempt the action within 1 minute, you instead take a \u20131 circumstance penalty on checks to attempt the same action for 1 hour.\n\nIf the chosen action can be used with multiple skills, such as Identify Magic or Recall Knowledge, you must specify which skill you are using for that particular action, such as using Arcana to Identify Magic, and your bonus or penalty after the boast applies only to checks using that skill for that action. Once you declare a boast about a particular action, you cannot declare a boast about the same action until the next time you make daily preparations, regardless of whether you succeed or fail at the check.\n\nTypically a challenging task is one with at least a standard DC for your level, though the difficulty may be higher depending on the situation. A meaningful context is one where the action's success or failure is relevant to the pursuit of your goals, rather than a boast you made simply to gain a bonus later."
+                    "value": "Your Firebrand training has taught you that achieving something is more satisfying if you boast about it first. You declare a boast about a particular skill action, such as Balance, Demoralize, or Recall Knowledge. The first time you attempt this action within the next minute in a context the GM deems both suitably challenging and meaningful, you must roll twice and use the lower result. If you succeed at this check, you gain a +1 circumstance bonus to checks to attempt the same action for 10 minutes.\n\nIf you fail this check or don't attempt the action within 1 minute, you instead take a –1 circumstance penalty on checks to attempt the same action for 1 hour.\n\nIf the chosen action can be used with multiple skills, such as Identify Magic or Recall Knowledge, you must specify which skill you are using for that particular action, such as using Arcana to Identify Magic, and your bonus or penalty after the boast applies only to checks using that skill for that action. Once you declare a boast about a particular action, you cannot declare a boast about the same action until the next time you make daily preparations, regardless of whether you succeed or fail at the check.\n\nTypically a challenging task is one with at least a standard DC for your level, though the difficulty may be higher depending on the situation. A meaningful context is one where the action's success or failure is relevant to the pursuit of your goals, rather than a boast you made simply to gain a bonus later."
                   }
                 }
               }
@@ -97,6 +112,18 @@
           },
           "lore_skills": {
             "value": []
+          },
+          "spellcasting_tradition": {
+            "value": ""
+          },
+          "is_basic_spellcasting_feat": {
+            "value": false
+          },
+          "is_expert_spellcasting_feat": {
+            "value": false
+          },
+          "is_master_spellcasting_feat": {
+            "value": false
           }
         }
       }
@@ -108,7 +135,7 @@
           "stats": {
             "id": "feat_boaster_s_challenge__locg_",
             "updated_at": {
-              "value": "2026-03-16T14:51:32.702359+00:00"
+              "value": "2026-03-19T22:27:12.686286+00:00"
             },
             "name": {
               "value": "Boaster's Challenge"
@@ -154,7 +181,7 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_b1964a5dfae9",
+                    "id": "levelled_description_d67d83cc4098",
                     "level": {
                       "value": 6
                     },
@@ -170,7 +197,7 @@
                 {
                   "resource_id": "levelled_effect",
                   "stats": {
-                    "id": "levelled_effect_5d0078052708",
+                    "id": "levelled_effect_2cb8d2575e57",
                     "level": {
                       "value": 6
                     },
@@ -178,7 +205,45 @@
                       "value": {
                         "resource_id": "effect",
                         "stats": {
-                          "id": "effect_4cf36b4ac510",
+                          "id": "effect_0a8b1c634521",
+                          "name": {
+                            "value": "+2 Status Bonus to Strike Damage"
+                          },
+                          "trigger_type": {
+                            "value": "active"
+                          },
+                          "type": {
+                            "value": "typed_add_to_stat"
+                          },
+                          "typed_modifier_type": {
+                            "value": "status"
+                          },
+                          "typed_modifier_polarity": {
+                            "value": "bonus"
+                          },
+                          "stat": {
+                            "value": "$character.strike_damage_status_bonus"
+                          },
+                          "constant": {
+                            "value": 2
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "id": "levelled_effect_33a1d618c905",
+                    "level": {
+                      "value": 6
+                    },
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "id": "effect_19e06948ed53",
                           "name": {
                             "value": "+4 Circumstance Bonus to Will"
                           },
@@ -218,6 +283,18 @@
             },
             "lore_skills": {
               "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
             }
           }
         },
@@ -226,7 +303,7 @@
           "stats": {
             "id": "feat_bravo_s_determination__locg_",
             "updated_at": {
-              "value": "2026-03-16T14:51:32.702359+00:00"
+              "value": "2026-03-19T22:27:12.686286+00:00"
             },
             "name": {
               "value": "Bravo's Determination"
@@ -272,12 +349,12 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_fd000761bb79",
+                    "id": "levelled_description_3183287d8dec",
                     "level": {
                       "value": 8
                     },
                     "description": {
-                      "value": "Your confidence borders on self-delusion, but it keeps you going against overwhelming odds. Attempt a Deception check against the attack DC of the triggering Strike. You take a penalty to this check equal to twice your wounded value, if any. If the triggering attack was a critical hit, use the result one degree of success worse than what you rolled.\n\nCritical Success: You avoid being knocked out and remain at 1 Hit Point.\nSuccess: You avoid being knocked out and remain at 1 Hit Point, but you increase your wounded value by 1."
+                      "value": "Your confidence borders on self-delusion, but it keeps you going against overwhelming odds. Attempt a Deception check against the attack DC of the triggering Strike. You take a penalty to this check equal to twice your wounded value, if any. If the triggering attack was a critical hit, use the result one degree of success worse than what you rolled.\n\n- **Critical Success:** You avoid being knocked out and remain at 1 Hit Point.\n- **Success:** You avoid being knocked out and remain at 1 Hit Point, but you increase your wounded value by 1."
                     }
                   }
                 }
@@ -297,6 +374,18 @@
             },
             "lore_skills": {
               "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
             }
           }
         },
@@ -305,7 +394,7 @@
           "stats": {
             "id": "feat_daredevil_s_gambit__locg_",
             "updated_at": {
-              "value": "2026-03-16T14:51:32.702359+00:00"
+              "value": "2026-03-19T22:27:12.686286+00:00"
             },
             "name": {
               "value": "Daredevil's Gambit"
@@ -351,7 +440,7 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_177b4b7da86b",
+                    "id": "levelled_description_9432300584af",
                     "level": {
                       "value": 12
                     },
@@ -367,7 +456,7 @@
                 {
                   "resource_id": "levelled_effect",
                   "stats": {
-                    "id": "levelled_effect_71d4ce8f7b65",
+                    "id": "levelled_effect_1081343dba9e",
                     "level": {
                       "value": 12
                     },
@@ -375,7 +464,7 @@
                       "value": {
                         "resource_id": "effect",
                         "stats": {
-                          "id": "effect_f15583f41e2c",
+                          "id": "effect_7e4eb09b9896",
                           "name": {
                             "value": "+2 Circumstance Bonus to Armor Class"
                           },
@@ -415,6 +504,18 @@
             },
             "lore_skills": {
               "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
             }
           }
         },
@@ -423,7 +524,7 @@
           "stats": {
             "id": "feat_daring_act__locg_",
             "updated_at": {
-              "value": "2026-03-16T14:51:32.702359+00:00"
+              "value": "2026-03-19T22:27:12.686286+00:00"
             },
             "name": {
               "value": "Daring Act"
@@ -469,7 +570,7 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_e52bb4e3f261",
+                    "id": "levelled_description_2e279284fb4f",
                     "level": {
                       "value": 6
                     },
@@ -494,6 +595,18 @@
             },
             "lore_skills": {
               "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
             }
           }
         },
@@ -502,7 +615,7 @@
           "stats": {
             "id": "feat_daring_flourish__locg_",
             "updated_at": {
-              "value": "2026-03-16T14:51:32.702359+00:00"
+              "value": "2026-03-19T22:27:12.686286+00:00"
             },
             "name": {
               "value": "Daring Flourish"
@@ -548,7 +661,7 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_45fd2872119b",
+                    "id": "levelled_description_5692b99d2c42",
                     "level": {
                       "value": 10
                     },
@@ -573,6 +686,18 @@
             },
             "lore_skills": {
               "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
             }
           }
         },
@@ -581,7 +706,7 @@
           "stats": {
             "id": "feat_demanding_challenge__locg_",
             "updated_at": {
-              "value": "2026-03-16T14:51:32.702359+00:00"
+              "value": "2026-03-19T22:27:12.686286+00:00"
             },
             "name": {
               "value": "Demanding Challenge"
@@ -627,19 +752,58 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_c032459aae1a",
+                    "id": "levelled_description_30f7eba256fa",
                     "level": {
                       "value": 10
                     },
                     "description": {
-                      "value": "If your skill check to challenge a foe is a success, the target of your challenge takes a\u20131 circumstance penalty to attack rolls (or \u20132 if you critically succeed) until the end of your next turn."
+                      "value": "If your skill check to challenge a foe is a success, the target of your challenge takes a–1 circumstance penalty to attack rolls (or –2 if you critically succeed) until the end of your next turn."
                     }
                   }
                 }
               ]
             },
             "effects": {
-              "value": []
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "id": "levelled_effect_c8a546654a15",
+                    "level": {
+                      "value": 10
+                    },
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "id": "effect_e016f38deca4",
+                          "name": {
+                            "value": "-1 Circumstance Penalty to Strike Attack"
+                          },
+                          "trigger_type": {
+                            "value": "active"
+                          },
+                          "type": {
+                            "value": "typed_add_to_stat"
+                          },
+                          "typed_modifier_type": {
+                            "value": "circumstance"
+                          },
+                          "typed_modifier_polarity": {
+                            "value": "penalty"
+                          },
+                          "stat": {
+                            "value": "$character.strike_attack_circumstance_penalty"
+                          },
+                          "constant": {
+                            "value": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
             },
             "skill_proficiencies": {
               "value": []
@@ -652,6 +816,18 @@
             },
             "lore_skills": {
               "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
             }
           }
         },
@@ -660,7 +836,7 @@
           "stats": {
             "id": "feat_great_boaster__locg_",
             "updated_at": {
-              "value": "2026-03-16T14:51:32.702359+00:00"
+              "value": "2026-03-19T22:27:12.686286+00:00"
             },
             "name": {
               "value": "Great Boaster"
@@ -706,12 +882,12 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_a2cc69c4f3c7",
+                    "id": "levelled_description_6e3d22c729ae",
                     "level": {
                       "value": 8
                     },
                     "description": {
-                      "value": "Your bragging is particularly effective. If you succeed at a boast, you can attempt a great boast about that same skill by using your Firebrand Braggart Dedication action about the same action during the duration of your original boast's circumstance bonus; this is an exception to the rule that you can't make another boast about the same action until your next daily preparations. A great boast uses the Firebrand Braggart Dedication action (page 74), except that if you succeed, your circumstance bonus increases to +2 and remains for 1 hour. If you fail the great boast, you take a \u20132 circumstance penalty to attempt the same action for 4 hours. Once you declare a great boast about a particular action, you can't declare a great boast about the same action until the next time you make daily preparations, regardless of whether you succeed or fail at the check. The minimum challenging task for a great boast is one with at least a hard DC for your level."
+                      "value": "Your bragging is particularly effective. If you succeed at a boast, you can attempt a great boast about that same skill by using your Firebrand Braggart Dedication action about the same action during the duration of your original boast's circumstance bonus; this is an exception to the rule that you can't make another boast about the same action until your next daily preparations. A great boast uses the Firebrand Braggart Dedication action (page 74), except that if you succeed, your circumstance bonus increases to +2 and remains for 1 hour. If you fail the great boast, you take a –2 circumstance penalty to attempt the same action for 4 hours. Once you declare a great boast about a particular action, you can't declare a great boast about the same action until the next time you make daily preparations, regardless of whether you succeed or fail at the check. The minimum challenging task for a great boast is one with at least a hard DC for your level."
                     }
                   }
                 }
@@ -731,6 +907,18 @@
             },
             "lore_skills": {
               "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
             }
           }
         }

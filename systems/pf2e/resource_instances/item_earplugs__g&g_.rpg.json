@@ -3,7 +3,7 @@
   "stats": {
     "id": "earplugs__g&g_",
     "updated_at": {
-      "value": "2026-03-16T23:48:34.898371+00:00"
+      "value": "2026-03-19T22:58:21.575341+00:00"
     },
     "name": {
       "value": "Earplugs"
@@ -12,7 +12,7 @@
       "value": "g&g"
     },
     "description": {
-      "value": "These small pieces of cloth and stuffing have been crafted to dramatically muffle sound and easily slide into and out of the ear canals of humanoid creatures. You can insert or remove earplugs from your ears or a willing creature's ears with a single Interact action using one hand. They take a \u20132 circumstance penalty to all auditory Perception checks but also gain a +2 circumstance bonus to saving throws against auditory effects."
+      "value": "These small pieces of cloth and stuffing have been crafted to dramatically muffle sound and easily slide into and out of the ear canals of humanoid creatures. You can insert or remove earplugs from your ears or a willing creature's ears with a single Interact action using one hand. They take a –2 circumstance penalty to all auditory Perception checks but also gain a +2 circumstance bonus to saving throws against auditory effects."
     },
     "type": {
       "value": "adventuring_gear"
@@ -92,9 +92,9 @@
         {
           "resource_id": "effect",
           "stats": {
-            "id": "effect_b1402ff39cf2",
+            "id": "effect_f16a6bdb9f55",
             "name": {
-              "value": "+2 Circumstance Bonus to Fortitude"
+              "value": "+2 Circumstance Bonus to Fortitude (against auditory effects)"
             },
             "trigger_type": {
               "value": "active"
@@ -119,9 +119,9 @@
         {
           "resource_id": "effect",
           "stats": {
-            "id": "effect_f251974da18a",
+            "id": "effect_b2f540190706",
             "name": {
-              "value": "+2 Circumstance Bonus to Reflex"
+              "value": "+2 Circumstance Bonus to Reflex (against auditory effects)"
             },
             "trigger_type": {
               "value": "active"
@@ -146,9 +146,9 @@
         {
           "resource_id": "effect",
           "stats": {
-            "id": "effect_aec0c2897a0b",
+            "id": "effect_111fe0311ead",
             "name": {
-              "value": "+2 Circumstance Bonus to Will"
+              "value": "+2 Circumstance Bonus to Will (against auditory effects)"
             },
             "trigger_type": {
               "value": "active"
@@ -164,6 +164,33 @@
             },
             "stat": {
               "value": "$character.will"
+            },
+            "constant": {
+              "value": 2
+            }
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_fc311661d2f5",
+            "name": {
+              "value": "-2 Circumstance Penalty to Perception"
+            },
+            "trigger_type": {
+              "value": "passive"
+            },
+            "type": {
+              "value": "typed_add_to_stat"
+            },
+            "typed_modifier_type": {
+              "value": "circumstance"
+            },
+            "typed_modifier_polarity": {
+              "value": "penalty"
+            },
+            "stat": {
+              "value": "$character.perception"
             },
             "constant": {
               "value": 2

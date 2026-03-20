@@ -122,11 +122,11 @@
               "value": "Springing Step"
             },
             "trait_description": {
-              "value": "When the skirmisher uses the Step action they ignore 3 and may move up to 10 feet instead of 5 feet."
+              "value": "When the skirmisher uses the Step action they ignore difficult terrain and may move up to 10 feet instead of 5 feet."
             },
-            "id": "233f46a6-ad20-4e7d-8da9-e4a827025d95",
+            "id": "d1119d9e-4f76-4eee-881e-e73dadcc1daf",
             "updated_at": {
-              "value": "2026-03-17T12:41:40.997669"
+              "value": "2026-03-19T22:59:12.999631"
             }
           }
         },
@@ -137,11 +137,11 @@
               "value": "Baneback Poison"
             },
             "trait_description": {
-              "value": "(poison); DC 21 Fortitude; Maximum Duration 6 rounds; Stage 1: 1d4 poison damage and stupefied 1 (1 round); Stage 2: 2d4 poison damage and stupefied 2 (1 round); Stage 3: 2d4 poison damage, stupefied 3, and flat-footed (1 round)"
+              "value": "**Baneback Poison**\nDC: 21\nSaving Throw: Fortitude\nMaximum Duration: 6 rounds\n- Stage 1: 1d4 poison damage and stupefied 1 (1 round)\n- Stage 2: 2d4 poison damage and stupefied 2 (1 round)\n- Stage 3: 2d4 poison damage, stupefied 3, and flat-footed (1 round)"
             },
-            "id": "2b42cb15-5e61-4770-8faf-7180bc18b3cf",
+            "id": "6eeb73ad-dfb5-41f1-b945-b9e68be4c8ae",
             "updated_at": {
-              "value": "2026-03-17T12:41:40.997669"
+              "value": "2026-03-19T22:59:12.999631"
             }
           }
         },
@@ -152,11 +152,11 @@
               "value": "Jungle Stride"
             },
             "trait_description": {
-              "value": "Gripplis ignore 3 in forests and jungles."
+              "value": "Gripplis ignore difficult terrain in forests and jungles."
             },
-            "id": "7eda8ef2-bc50-42fa-b13c-710fc8f6266f",
+            "id": "98d37c35-87f8-4de0-ac35-49577326f2d7",
             "updated_at": {
-              "value": "2026-03-17T12:41:40.997669"
+              "value": "2026-03-19T22:59:12.999631"
             }
           }
         },
@@ -169,9 +169,9 @@
             "trait_description": {
               "value": "The skirmisher deals an extra 1d6 precision damage to flat-footed creatures and creatures afflicted by a poison."
             },
-            "id": "79bc1610-6eb3-4636-9c51-b1db30bde637",
+            "id": "7d33d12d-9e01-46d2-9882-e5d70bc90497",
             "updated_at": {
-              "value": "2026-03-17T12:41:40.997669"
+              "value": "2026-03-19T22:59:12.999631"
             }
           }
         }
@@ -227,33 +227,117 @@
                                     "constant": {
                                       "value": 4
                                     },
-                                    "id": "77c1793c-60bb-4bb0-8968-4ebb4b4cd67a",
+                                    "id": "c91e687c-7b83-49bd-9b9f-cb5e74e05ebd",
                                     "updated_at": {
-                                      "value": "2026-03-17T12:41:40.997669"
+                                      "value": "2026-03-19T22:59:12.999631"
                                     }
                                   }
                                 }
                               ]
                             },
-                            "id": "9670f177-d3b8-458d-9ad5-a4cea63edf97",
+                            "id": "3301a33d-65fd-47c7-932a-f659529e48bd",
                             "updated_at": {
-                              "value": "2026-03-17T12:41:40.997669"
+                              "value": "2026-03-19T22:59:12.999631"
                             }
                           }
                         }
                       ]
                     },
-                    "id": "86da5ba3-9e3d-47ba-aa10-ef0f87c55848",
+                    "id": "0e6ecfc8-f9da-4aed-8b2a-a4f8f2abcd2f",
                     "updated_at": {
-                      "value": "2026-03-17T12:41:40.997669"
+                      "value": "2026-03-19T22:59:12.999631"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Flat-footed target"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 4
+                                    },
+                                    "id": "7f16faf1-607c-45ae-b88b-218f591d3276",
+                                    "updated_at": {
+                                      "value": "2026-03-19T22:59:12.999631"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "dc9dc095-9ca3-4ddd-a0d6-8b174e0f0651",
+                            "updated_at": {
+                              "value": "2026-03-19T22:59:12.999631"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "precision"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "5556e00b-3b72-4bde-9ae9-774e4e6e34b8",
+                                    "updated_at": {
+                                      "value": "2026-03-19T22:59:12.999631"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "53af969c-76e1-4cb4-b01e-01eb3bbf9423",
+                            "updated_at": {
+                              "value": "2026-03-19T22:59:12.999631"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "96695f70-7b9d-4adb-a904-376802b6c8b2",
+                    "updated_at": {
+                      "value": "2026-03-19T22:59:12.999631"
                     }
                   }
                 }
               ]
             },
-            "id": "41cf832b-abe7-42d2-9c18-a3cf21b3a25f",
+            "id": "b624b1c7-355c-45c8-9f9c-6a5f8d4f9c5e",
             "updated_at": {
-              "value": "2026-03-17T12:41:40.997669"
+              "value": "2026-03-19T22:59:12.999631"
             }
           }
         },
@@ -305,33 +389,117 @@
                                     "constant": {
                                       "value": 3
                                     },
-                                    "id": "70f56e13-21e9-4fba-b1b3-ff16a38a8b8a",
+                                    "id": "8478564f-accb-4672-afd6-30dccebee8cb",
                                     "updated_at": {
-                                      "value": "2026-03-17T12:41:40.997669"
+                                      "value": "2026-03-19T22:59:12.999631"
                                     }
                                   }
                                 }
                               ]
                             },
-                            "id": "99e51ade-f0c5-4056-b9e9-6a8a3596b18d",
+                            "id": "112dc697-aa01-4587-8a73-1ad8b93e9f14",
                             "updated_at": {
-                              "value": "2026-03-17T12:41:40.997669"
+                              "value": "2026-03-19T22:59:12.999631"
                             }
                           }
                         }
                       ]
                     },
-                    "id": "ab5f0c95-c829-44a1-a8f4-48693322e923",
+                    "id": "015c19fc-b13e-47bd-8c07-3c6bf694d217",
                     "updated_at": {
-                      "value": "2026-03-17T12:41:40.997669"
+                      "value": "2026-03-19T22:59:12.999631"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Flat-footed target"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 3
+                                    },
+                                    "id": "14779264-0da0-4842-90a0-fbee6c771776",
+                                    "updated_at": {
+                                      "value": "2026-03-19T22:59:12.999631"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "210644bb-d5eb-4ed0-ac2c-fd71f294641d",
+                            "updated_at": {
+                              "value": "2026-03-19T22:59:12.999631"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "precision"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "cc6f1ec1-318d-44eb-9b99-7a5ddc69cc05",
+                                    "updated_at": {
+                                      "value": "2026-03-19T22:59:12.999631"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "04d63a64-d7a8-4aa3-8eb5-46c4a3addadd",
+                            "updated_at": {
+                              "value": "2026-03-19T22:59:12.999631"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "54b17bf6-7d61-49b4-b26d-b111c1e9b3a5",
+                    "updated_at": {
+                      "value": "2026-03-19T22:59:12.999631"
                     }
                   }
                 }
               ]
             },
-            "id": "9ca6a11a-84cd-4947-a1ff-e916168739bf",
+            "id": "03510672-73fa-4657-960c-d5275aeaeaba",
             "updated_at": {
-              "value": "2026-03-17T12:41:40.997669"
+              "value": "2026-03-19T22:59:12.999631"
             }
           }
         }
@@ -363,9 +531,9 @@
             "action_damage_variants": {
               "value": []
             },
-            "id": "cf6e4f7e-8177-4be7-9c7a-7d68855ce6bf",
+            "id": "8a1c95e8-17f5-40e0-b286-b897237fae76",
             "updated_at": {
-              "value": "2026-03-17T12:41:40.997669"
+              "value": "2026-03-19T22:59:12.999631"
             }
           }
         }
@@ -378,7 +546,7 @@
       "value": []
     },
     "updated_at": {
-      "value": "2026-03-17T12:41:40.997669"
+      "value": "2026-03-19T22:59:12.999631"
     }
   }
 }

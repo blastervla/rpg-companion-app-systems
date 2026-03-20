@@ -268,7 +268,7 @@ calc bool should_show_spellcasting_source_text(name = "Should show spellcasting 
 calc string selected_spellcasting_mode(name = "Selected spellcasting mode") =
   when {
     spell_has_specific_ancestry_source -> "spontaneous",
-    is_archetype_spell -> selected_spellcasting_archetype_source.spellcasting_mode,
+    is_archetype_spell -> selected_spellcasting_archetype_source.actual_spellcasting_mode,
     notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source.class.actual_spellcasting_mode,
     else -> spellcasting_mode,
   };
@@ -290,7 +290,7 @@ calc string selected_spellcasting_tradition_for_proficiency(name = "Selected spe
   when {
     spell_has_specific_ancestry_source -> findFirst(traditions, filter = ($findFirstValue) => true)
       ?? "none",
-    is_archetype_spell -> selected_spellcasting_archetype_source.spellcasting_tradition,
+    is_archetype_spell -> selected_spellcasting_archetype_source.actual_spellcasting_tradition,
     notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source.class.actual_spellcasting_tradition,
     length(traditions) == 1 -> (findFirst(traditions, filter = ($findFirstValue) => true) ?? "none"),
     else -> "none",
@@ -508,7 +508,7 @@ calc bool should_select_spell_slot_to_cast(name = "Should select a spell slot to
 calc string selected_spellcasting_ability(name = "Selected spellcasting ability") =
   when {
     spell_has_specific_ancestry_source -> ancestry_spellcasting_ability,
-    is_archetype_spell -> selected_spellcasting_archetype_source.spellcasting_ability,
+    is_archetype_spell -> selected_spellcasting_archetype_source.actual_spellcasting_ability,
     notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source.class.actual_spellcasting_ability,
     else -> spellcasting_ability,
   };

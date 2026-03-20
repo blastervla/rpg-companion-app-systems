@@ -3,7 +3,7 @@
   "stats": {
     "id": "vaultbreaker_s_harness__tv_",
     "updated_at": {
-      "value": "2026-03-16T23:48:35.915877+00:00"
+      "value": "2026-03-19T22:58:22.902583+00:00"
     },
     "name": {
       "value": "Vaultbreaker's Harness"
@@ -12,7 +12,7 @@
       "value": "tv"
     },
     "description": {
-      "value": "A vaultbreaker's harness has four pockets across the chest. The pockets contain a set of infiltrator's thieves' tools, infiltrator picks, a levered crowbar, and a glass cutter. These items are magically bound to the harness; if they are more than 1 foot away from you, they disappear, then reappear in the harness at the next sunset. Broken or destroyed items similarly reappear, restored, in their proper pockets at sunset. You cinch the harness to prepare for mischief. You gain a +1 item bonus to Stealth checks and a +10-foot item bonus to your Speed for 1 minute."
+      "value": "A vaultbreaker's harness has four pockets across the chest. The pockets contain a set of infiltrator's thieves' tools, infiltrator picks, a levered crowbar, and a glass cutter. These items are magically bound to the harness; if they are more than 1 foot away from you, they disappear, then reappear in the harness at the next sunset. Broken or destroyed items similarly reappear, restored, in their proper pockets at sunset.\n\nActivate (1 Action)\nYou cinch the harness to prepare for mischief. You gain a +1 item bonus to Stealth checks and a +10-foot item bonus to your Speed for 1 minute."
     },
     "type": {
       "value": "worn"
@@ -92,7 +92,34 @@
         {
           "resource_id": "effect",
           "stats": {
-            "id": "effect_c98cf45a0b29",
+            "id": "effect_c75b2c79c4c9",
+            "name": {
+              "value": "+1 Item Bonus to Stealth"
+            },
+            "trigger_type": {
+              "value": "passive"
+            },
+            "type": {
+              "value": "typed_add_to_stat"
+            },
+            "typed_modifier_type": {
+              "value": "item"
+            },
+            "typed_modifier_polarity": {
+              "value": "bonus"
+            },
+            "stat": {
+              "value": "$character.stealth"
+            },
+            "constant": {
+              "value": 1
+            }
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_a47a92e60f3b",
             "name": {
               "value": "+10 Item Bonus to Speed"
             },

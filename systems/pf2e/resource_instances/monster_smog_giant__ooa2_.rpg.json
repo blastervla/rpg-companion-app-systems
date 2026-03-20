@@ -12,7 +12,7 @@
       "value": "ooa2"
     },
     "tag": {
-      "value": "Giant"
+      "value": "Rare, Giant"
     },
     "armor_class": {
       "value": 23
@@ -119,14 +119,14 @@
           "resource_id": "monster_trait",
           "stats": {
             "trait_name": {
-              "value": "DC 25"
+              "value": "25"
             },
             "trait_description": {
-              "value": "Fortitude save.\n\nCritical Success: \nSuccess: \nFailure: \nCritical Failure: "
+              "value": "Fortitude save.\n\n- **Critical Success:** The creature suffers no additional effect.\n- **Success:** The creature takes an additional 1d10 bludgeoning damage.\n- **Failure:** The creature takes an additional 2d10 bludgeoning damage and is knocked prone if it's Large or smaller.\n- **Critical Failure:** As failure, but without a size limit."
             },
-            "id": "ca638929-2d24-4c96-a62c-3a25d95fdbc2",
+            "id": "2f04e9f4-ab7b-4596-9a90-e30a1e75c8eb",
             "updated_at": {
-              "value": "2026-03-17T12:41:37.082142"
+              "value": "2026-03-19T22:59:07.192834"
             }
           }
         },
@@ -139,9 +139,9 @@
             "trait_description": {
               "value": "A smog giant has a dozen implanted knives, rocks, chunks of metal, spikes, and other adornments that they can fire from their body with great force to make ranged shrapnel Strikes. Once a smog giant has used all 12 shots, they must replace them one at a time using a 1-minute Interact activity."
             },
-            "id": "dcebfd75-ec11-416e-9c29-df027bae29b8",
+            "id": "16619e8a-5f81-4a61-91da-b16fd48c783c",
             "updated_at": {
-              "value": "2026-03-17T12:41:37.082142"
+              "value": "2026-03-19T22:59:07.192834"
             }
           }
         }
@@ -197,33 +197,201 @@
                                     "constant": {
                                       "value": 8
                                     },
-                                    "id": "e6cc53ea-d0cf-4cb9-9f7c-1b10586fac62",
+                                    "id": "9408dbe4-ac0f-4932-8f59-07ec02dbf9a8",
                                     "updated_at": {
-                                      "value": "2026-03-17T12:41:37.082142"
+                                      "value": "2026-03-19T22:59:07.192834"
                                     }
                                   }
                                 }
                               ]
                             },
-                            "id": "a84bbf25-2b1e-4b09-95fe-0d942a58c0c6",
+                            "id": "f108939a-38c7-4de2-815f-e6e838d4d213",
                             "updated_at": {
-                              "value": "2026-03-17T12:41:37.082142"
+                              "value": "2026-03-19T22:59:07.192834"
                             }
                           }
                         }
                       ]
                     },
-                    "id": "47f4854c-d189-4873-a575-a2a626216c3b",
+                    "id": "28ef8ed2-ec47-4559-9e56-f0fca4ed8635",
                     "updated_at": {
-                      "value": "2026-03-17T12:41:37.082142"
+                      "value": "2026-03-19T22:59:07.192834"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Prone target"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 8
+                                    },
+                                    "id": "4b2ddcc4-fd55-4822-9906-d62c7106e009",
+                                    "updated_at": {
+                                      "value": "2026-03-19T22:59:07.192834"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "6fa4c81d-73e2-4be6-a3d6-bb659835819c",
+                            "updated_at": {
+                              "value": "2026-03-19T22:59:07.192834"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "d236b260-cb2b-4f3f-ba7f-85f30f61193a",
+                                    "updated_at": {
+                                      "value": "2026-03-19T22:59:07.192834"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "21a43797-5b41-4c30-8955-ae9b18fc7196",
+                            "updated_at": {
+                              "value": "2026-03-19T22:59:07.192834"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "52124957-4b49-46bb-99e2-a9f4d54713ad",
+                    "updated_at": {
+                      "value": "2026-03-19T22:59:07.192834"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Prone target"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 8
+                                    },
+                                    "id": "6826f23e-beb6-4e3a-98e0-8d2a4eb75f9e",
+                                    "updated_at": {
+                                      "value": "2026-03-19T22:59:07.192834"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "479491f3-c451-4524-bc76-c4a2bff0f327",
+                            "updated_at": {
+                              "value": "2026-03-19T22:59:07.192834"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "1d5dee4c-bf4e-4348-983c-ad41c58bf1ba",
+                                    "updated_at": {
+                                      "value": "2026-03-19T22:59:07.192834"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "f60e702a-e6c7-431b-88ea-7f784efef92b",
+                            "updated_at": {
+                              "value": "2026-03-19T22:59:07.192834"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "da995018-e6e2-4a22-ad77-49f1187ea56b",
+                    "updated_at": {
+                      "value": "2026-03-19T22:59:07.192834"
                     }
                   }
                 }
               ]
             },
-            "id": "6eb15ae1-a300-4ae6-b3e6-6b287c5c1c72",
+            "id": "545921fe-74a4-48cb-93ff-d1a7168826d1",
             "updated_at": {
-              "value": "2026-03-17T12:41:37.082142"
+              "value": "2026-03-19T22:59:07.192834"
             }
           }
         },
@@ -275,33 +443,201 @@
                                     "constant": {
                                       "value": 8
                                     },
-                                    "id": "112112e9-74d6-49d9-bace-6ea864936a0f",
+                                    "id": "2a47f287-4502-471b-9315-337e28de7adb",
                                     "updated_at": {
-                                      "value": "2026-03-17T12:41:37.082142"
+                                      "value": "2026-03-19T22:59:07.192834"
                                     }
                                   }
                                 }
                               ]
                             },
-                            "id": "503b2a47-a5da-434d-8bcf-6100493118a2",
+                            "id": "2f037a40-36f8-4971-9bbc-cbc24c4cbc75",
                             "updated_at": {
-                              "value": "2026-03-17T12:41:37.082142"
+                              "value": "2026-03-19T22:59:07.192834"
                             }
                           }
                         }
                       ]
                     },
-                    "id": "99cd297f-e882-41e0-82ee-9b0801cc3d2c",
+                    "id": "e17c69c3-da34-42cb-82cd-3683de4bddcf",
                     "updated_at": {
-                      "value": "2026-03-17T12:41:37.082142"
+                      "value": "2026-03-19T22:59:07.192834"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Prone target"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 8
+                                    },
+                                    "id": "f378043f-aa58-4596-a005-26cfebf0404e",
+                                    "updated_at": {
+                                      "value": "2026-03-19T22:59:07.192834"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "ead4050d-9fe5-4863-a3f5-396f147e05ae",
+                            "updated_at": {
+                              "value": "2026-03-19T22:59:07.192834"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "6cfb556a-6886-4034-960b-de7106815575",
+                                    "updated_at": {
+                                      "value": "2026-03-19T22:59:07.192834"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "9503708e-d56b-4597-9adb-7950be783cfd",
+                            "updated_at": {
+                              "value": "2026-03-19T22:59:07.192834"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "f84ec8af-27b9-405c-80fa-248232d132f8",
+                    "updated_at": {
+                      "value": "2026-03-19T22:59:07.192834"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Prone target"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 8
+                                    },
+                                    "id": "8a7e4fb6-ea95-43ab-9a8d-dc0f29ef2892",
+                                    "updated_at": {
+                                      "value": "2026-03-19T22:59:07.192834"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "a85ced47-3156-4660-b83e-8fd9042eabfd",
+                            "updated_at": {
+                              "value": "2026-03-19T22:59:07.192834"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "8399e199-1394-4dba-9a19-da2a8de66cc3",
+                                    "updated_at": {
+                                      "value": "2026-03-19T22:59:07.192834"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "a208cd61-33c2-4913-ae5a-f360dfb57efd",
+                            "updated_at": {
+                              "value": "2026-03-19T22:59:07.192834"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "d2e4f4d8-2bbe-4a3f-914c-d637074832e4",
+                    "updated_at": {
+                      "value": "2026-03-19T22:59:07.192834"
                     }
                   }
                 }
               ]
             },
-            "id": "8f5e9f04-3cc0-4139-b145-28a4ced17fb0",
+            "id": "794a97d4-9442-45a7-95e8-88d93f4ae99c",
             "updated_at": {
-              "value": "2026-03-17T12:41:37.082142"
+              "value": "2026-03-19T22:59:07.192834"
             }
           }
         },
@@ -312,7 +648,7 @@
               "value": "shrapnel"
             },
             "action_description": {
-              "value": "(range 30 feet, versatile P) 2d4+8 bludgeoning"
+              "value": "(range 30 feet, versatile) 2d4+8 bludgeoning"
             },
             "action_type": {
               "value": "ranged"
@@ -353,33 +689,201 @@
                                     "constant": {
                                       "value": 8
                                     },
-                                    "id": "cb655475-6889-4411-8a16-3941b8215829",
+                                    "id": "28bd8a6e-1f47-47f9-9d13-06e26da968b4",
                                     "updated_at": {
-                                      "value": "2026-03-17T12:41:37.082142"
+                                      "value": "2026-03-19T22:59:07.192834"
                                     }
                                   }
                                 }
                               ]
                             },
-                            "id": "cc8fe525-9ad8-40c2-8b59-31eeb151417c",
+                            "id": "1c27c33e-b4c8-4fdc-a702-52e442342562",
                             "updated_at": {
-                              "value": "2026-03-17T12:41:37.082142"
+                              "value": "2026-03-19T22:59:07.192834"
                             }
                           }
                         }
                       ]
                     },
-                    "id": "8d0fa985-3571-42e1-9bf6-e713307bb1a1",
+                    "id": "c7cec14f-74f2-457e-bbfc-3ea80c1ed213",
                     "updated_at": {
-                      "value": "2026-03-17T12:41:37.082142"
+                      "value": "2026-03-19T22:59:07.192834"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Prone target"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 8
+                                    },
+                                    "id": "78ae4082-3c8d-4a44-afd9-24a532b2a754",
+                                    "updated_at": {
+                                      "value": "2026-03-19T22:59:07.192834"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "2f3c7e34-6469-4287-9dbe-6dc1e35e5b6f",
+                            "updated_at": {
+                              "value": "2026-03-19T22:59:07.192834"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "492d906d-578f-4b2f-a2ec-5c886fecf0b3",
+                                    "updated_at": {
+                                      "value": "2026-03-19T22:59:07.192834"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "ded0dc9d-dbbf-4c4a-a562-c6fa13cb5892",
+                            "updated_at": {
+                              "value": "2026-03-19T22:59:07.192834"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "7b394450-f25c-4ad9-941b-21ef9b6b165f",
+                    "updated_at": {
+                      "value": "2026-03-19T22:59:07.192834"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Prone target"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 8
+                                    },
+                                    "id": "1464dc50-e0f6-4e91-84e4-93469d1824af",
+                                    "updated_at": {
+                                      "value": "2026-03-19T22:59:07.192834"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "615910b1-74e3-4bad-a5ad-f17e601ddef0",
+                            "updated_at": {
+                              "value": "2026-03-19T22:59:07.192834"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "93193f33-db97-49c3-8689-b4d4781576b8",
+                                    "updated_at": {
+                                      "value": "2026-03-19T22:59:07.192834"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "7d1a866e-97cc-43d3-85a5-9cb165d059fa",
+                            "updated_at": {
+                              "value": "2026-03-19T22:59:07.192834"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "00e9f577-6961-4ad3-94ed-7e615f060062",
+                    "updated_at": {
+                      "value": "2026-03-19T22:59:07.192834"
                     }
                   }
                 }
               ]
             },
-            "id": "b15a30a3-f62f-42af-84b6-98696db5a6d7",
+            "id": "79a1b98c-0bc6-42bd-a365-72951dd1137f",
             "updated_at": {
-              "value": "2026-03-17T12:41:37.082142"
+              "value": "2026-03-19T22:59:07.192834"
             }
           }
         },
@@ -402,62 +906,11 @@
               "value": 0
             },
             "action_damage_variants": {
-              "value": [
-                {
-                  "resource_id": "damage_variant",
-                  "stats": {
-                    "variant_name": {
-                      "value": "Default"
-                    },
-                    "variant_damage_dice": {
-                      "value": [
-                        {
-                          "resource_id": "damage_dice",
-                          "stats": {
-                            "damage_type": {
-                              "value": "bludgeoning"
-                            },
-                            "dices": {
-                              "value": [
-                                {
-                                  "resource_id": "dice_roll",
-                                  "stats": {
-                                    "dice_amount": {
-                                      "value": 2
-                                    },
-                                    "dice_type": {
-                                      "value": "d10"
-                                    },
-                                    "constant": {
-                                      "value": 8
-                                    },
-                                    "id": "552c9cef-2e2b-47b1-bd38-9bebcb2fb552",
-                                    "updated_at": {
-                                      "value": "2026-03-17T12:41:37.082142"
-                                    }
-                                  }
-                                }
-                              ]
-                            },
-                            "id": "4779212f-636c-4374-98fb-f12352eea1e3",
-                            "updated_at": {
-                              "value": "2026-03-17T12:41:37.082142"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "id": "88ea8724-0777-496d-9af8-28c41cf12952",
-                    "updated_at": {
-                      "value": "2026-03-17T12:41:37.082142"
-                    }
-                  }
-                }
-              ]
+              "value": []
             },
-            "id": "43e57a83-7c90-49f8-84f3-9992008edc66",
+            "id": "27cb997c-e2d6-4681-9700-e1f71ededc91",
             "updated_at": {
-              "value": "2026-03-17T12:41:37.082142"
+              "value": "2026-03-19T22:59:07.192834"
             }
           }
         }
@@ -489,9 +942,9 @@
             "action_damage_variants": {
               "value": []
             },
-            "id": "13776e3b-9057-4ebc-a0f4-acd596093eff",
+            "id": "c5657ed1-1348-4294-b5f7-a5f040a5a689",
             "updated_at": {
-              "value": "2026-03-17T12:41:37.082142"
+              "value": "2026-03-19T22:59:07.192834"
             }
           }
         },
@@ -516,9 +969,9 @@
             "action_damage_variants": {
               "value": []
             },
-            "id": "bb364c80-5f45-45bc-b594-d44a84aaee09",
+            "id": "11372a7a-3ead-4c82-bedb-e6dbaf69e6df",
             "updated_at": {
-              "value": "2026-03-17T12:41:37.082142"
+              "value": "2026-03-19T22:59:07.192834"
             }
           }
         }
@@ -531,7 +984,7 @@
       "value": []
     },
     "updated_at": {
-      "value": "2026-03-17T12:41:37.082142"
+      "value": "2026-03-19T22:59:07.192834"
     }
   }
 }

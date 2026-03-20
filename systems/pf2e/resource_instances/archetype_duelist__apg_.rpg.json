@@ -3,7 +3,7 @@
   "stats": {
     "id": "duelist__apg_",
     "updated_at": {
-      "value": "2026-03-16T14:51:49.570600+00:00"
+      "value": "2026-03-19T22:58:05.565158+00:00"
     },
     "name": {
       "value": "Duelist"
@@ -12,7 +12,7 @@
       "value": "apg"
     },
     "description": {
-      "value": "Across the world, students in martial academies practice with their blades to master one-on-one combat. The libraries of such schools hold deep troves of information detailing hundreds of combat techniques, battle stances, and honorable rules of engagement. Those who gain admission to such schools might train in formalized duels\u2014and that's certainly the more genteel route to take. However, others assert that there's no better place to try out dueling techniques than in the life-and-death struggles common to an adventurer's life."
+      "value": "Across the world, students in martial academies practice with their blades to master one-on-one combat. The libraries of such schools hold deep troves of information detailing hundreds of combat techniques, battle stances, and honorable rules of engagement. Those who gain admission to such schools might train in formalized duels—and that's certainly the more genteel route to take. However, others assert that there's no better place to try out dueling techniques than in the life-and-death struggles common to an adventurer's life."
     },
     "is_class_archetype": {
       "value": false
@@ -20,13 +20,28 @@
     "required_class_id": {
       "value": ""
     },
+    "grants_spellcasting": {
+      "value": false
+    },
+    "spellcasting_tradition": {
+      "value": ""
+    },
+    "spellcasting_ability": {
+      "value": ""
+    },
+    "spellcasting_mode": {
+      "value": ""
+    },
+    "spellcasting_proficiency": {
+      "value": "none"
+    },
     "dedication_feat": {
       "value": {
         "resource_id": "feat",
         "stats": {
           "id": "feat_duelist_dedication__apg_",
           "updated_at": {
-            "value": "2026-03-16T14:51:32.702359+00:00"
+            "value": "2026-03-19T22:27:12.686286+00:00"
           },
           "name": {
             "value": "Duelist Dedication"
@@ -72,7 +87,7 @@
               {
                 "resource_id": "levelled_description",
                 "stats": {
-                  "id": "levelled_description_cf8fe2f39473",
+                  "id": "levelled_description_aae0f398829e",
                   "level": {
                     "value": 2
                   },
@@ -97,6 +112,18 @@
           },
           "lore_skills": {
             "value": []
+          },
+          "spellcasting_tradition": {
+            "value": ""
+          },
+          "is_basic_spellcasting_feat": {
+            "value": false
+          },
+          "is_expert_spellcasting_feat": {
+            "value": false
+          },
+          "is_master_spellcasting_feat": {
+            "value": false
           }
         }
       }
@@ -106,9 +133,776 @@
         {
           "resource_id": "feat",
           "stats": {
+            "id": "feat_dueling_parry__pc1_",
+            "updated_at": {
+              "value": "2026-03-19T22:27:12.686286+00:00"
+            },
+            "name": {
+              "value": "Dueling Parry"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "class"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "traits": {
+              "value": "fighter"
+            },
+            "classes": {
+              "value": [
+                "fighter__pc1_"
+              ]
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": ""
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": "You are wielding a single one-handed melee weapon and hold nothing else in your hands."
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_8db54e1cd308",
+                    "level": {
+                      "value": 4
+                    },
+                    "description": {
+                      "value": "You can parry attacks against you with your one-handed weapon. You gain a +2 circumstance bonus to AC until the start of your next turn as long as you continue to meet the requirements."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "id": "levelled_effect_5dd8b9a3074b",
+                    "level": {
+                      "value": 4
+                    },
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "id": "effect_216f71c98f74",
+                          "name": {
+                            "value": "+2 Circumstance Bonus to Armor Class"
+                          },
+                          "trigger_type": {
+                            "value": "active"
+                          },
+                          "type": {
+                            "value": "typed_add_to_stat"
+                          },
+                          "typed_modifier_type": {
+                            "value": "circumstance"
+                          },
+                          "typed_modifier_polarity": {
+                            "value": "bonus"
+                          },
+                          "stat": {
+                            "value": "$character.armor_class"
+                          },
+                          "constant": {
+                            "value": 2
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_disarming_stance__pc1_",
+            "updated_at": {
+              "value": "2026-03-19T22:27:12.686286+00:00"
+            },
+            "name": {
+              "value": "Disarming Stance"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "class"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "traits": {
+              "value": "fighter, stance"
+            },
+            "classes": {
+              "value": [
+                "fighter__pc1_"
+              ]
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "trained in Athletics"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": "You are wielding a single one-handed melee weapon and hold nothing else in your hands."
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_7408f686a90c",
+                    "level": {
+                      "value": 8
+                    },
+                    "description": {
+                      "value": "You adopt a fencing stance that improves your control over your weapon. While you are in this stance, you gain a +1 circumstance bonus to Athletics checks to Disarm and a +2 circumstance bonus to your Reflex DC when defending against checks to Disarm you. In addition, you can attempt to Disarm creatures up to two sizes larger than you."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "id": "levelled_effect_bb1b37f7d01a",
+                    "level": {
+                      "value": 8
+                    },
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "id": "effect_16f701e1649a",
+                          "name": {
+                            "value": "+1 Circumstance Bonus to Athletics"
+                          },
+                          "trigger_type": {
+                            "value": "active"
+                          },
+                          "type": {
+                            "value": "typed_add_to_stat"
+                          },
+                          "typed_modifier_type": {
+                            "value": "circumstance"
+                          },
+                          "typed_modifier_polarity": {
+                            "value": "bonus"
+                          },
+                          "stat": {
+                            "value": "$character.athletics"
+                          },
+                          "constant": {
+                            "value": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "id": "levelled_effect_3128f251d14e",
+                    "level": {
+                      "value": 8
+                    },
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "id": "effect_3131fbc3c979",
+                          "name": {
+                            "value": "+2 Circumstance Bonus to Reflex"
+                          },
+                          "trigger_type": {
+                            "value": "active"
+                          },
+                          "type": {
+                            "value": "typed_add_to_stat"
+                          },
+                          "typed_modifier_type": {
+                            "value": "circumstance"
+                          },
+                          "typed_modifier_polarity": {
+                            "value": "bonus"
+                          },
+                          "stat": {
+                            "value": "$character.reflex"
+                          },
+                          "constant": {
+                            "value": 2
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_dueling_riposte__pc1_",
+            "updated_at": {
+              "value": "2026-03-19T22:27:12.686286+00:00"
+            },
+            "name": {
+              "value": "Dueling Riposte"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "class"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "traits": {
+              "value": "fighter"
+            },
+            "classes": {
+              "value": [
+                "fighter__pc1_"
+              ]
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Dueling Parry"
+            },
+            "trigger": {
+              "value": "A creature within your reach critically fails a Strike against you."
+            },
+            "requirements": {
+              "value": "You are benefiting from Dueling Parry."
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_d1ed3b199008",
+                    "level": {
+                      "value": 10
+                    },
+                    "description": {
+                      "value": "You elegantly counterattack against your flailing enemy. Make a melee Strike against or attempt to Disarm the triggering creature."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_disarming_twist__pc1_",
+            "updated_at": {
+              "value": "2026-03-19T22:27:12.686286+00:00"
+            },
+            "name": {
+              "value": "Disarming Twist"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "class"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "traits": {
+              "value": "fighter, press"
+            },
+            "classes": {
+              "value": [
+                "fighter__pc1_"
+              ]
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "trained in Athletics"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": "You are wielding a single one-handed melee weapon and hold nothing else in your hands."
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": "If you're in Disarming Stance, you gain a +1 circumstance bonus to the attack roll."
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_538468416d6a",
+                    "level": {
+                      "value": 12
+                    },
+                    "description": {
+                      "value": "After your initial attack redirects your foe's defenses, your follow-up wrests their weapon from their grasp. Make a melee Strike with a one-handed melee weapon. In addition to its other effects, this Strike gains the success and critical success effects of the Disarm action. The Strike also has the following failure effect.\n\n- **Failure:** The target is off-guard until the end of your current turn."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_dueling_dance__pc1_",
+            "updated_at": {
+              "value": "2026-03-19T22:27:12.686286+00:00"
+            },
+            "name": {
+              "value": "Dueling Dance"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "class"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "traits": {
+              "value": "fighter, stance"
+            },
+            "classes": {
+              "value": [
+                "fighter__pc1_"
+              ]
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Dueling Parry"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": "You are wielding a single one-handed melee weapon and hold nothing else in your hands."
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_c3884af55a9a",
+                    "level": {
+                      "value": 14
+                    },
+                    "description": {
+                      "value": "Using a free hand as pivot and balance, you both attack and defend with your weapon. While you are in this stance, you constantly have the benefits of Dueling Parry."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_improved_dueling_riposte__pc1_",
+            "updated_at": {
+              "value": "2026-03-19T22:27:12.686286+00:00"
+            },
+            "name": {
+              "value": "Improved Dueling Riposte"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "class"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "fighter"
+            },
+            "classes": {
+              "value": [
+                "fighter__pc1_"
+              ]
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Dueling Riposte"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_291e82df8b79",
+                    "level": {
+                      "value": 14
+                    },
+                    "description": {
+                      "value": "Your weapon whirls and darts, striking foes whenever the slightest opening or moment of weakness presents itself. You can use Dueling Riposte even if you aren't benefiting from Dueling Parry. At the start of each of your turns, you gain an additional reaction that you can use only to make a Dueling Riposte."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_guiding_riposte__pc1_",
+            "updated_at": {
+              "value": "2026-03-19T22:27:12.686286+00:00"
+            },
+            "name": {
+              "value": "Guiding Riposte"
+            },
+            "source": {
+              "value": "pc1"
+            },
+            "type": {
+              "value": "class"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "fighter"
+            },
+            "classes": {
+              "value": [
+                "fighter__pc1_"
+              ]
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Dueling Riposte"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_cd5894a15329",
+                    "level": {
+                      "value": 16
+                    },
+                    "description": {
+                      "value": "By shifting your weight and angling your weapon, you guide your opponent to a more favorable position. When you use Dueling Riposte to Strike and you hit, you can Reposition up to 10 feet."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
             "id": "feat_duelist_s_challenge__apg_",
             "updated_at": {
-              "value": "2026-03-16T14:51:32.702359+00:00"
+              "value": "2026-03-19T22:27:12.686286+00:00"
             },
             "name": {
               "value": "Duelist's Challenge"
@@ -154,7 +948,7 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_0238a14d2af8",
+                    "id": "levelled_description_3be8d78b98ab",
                     "level": {
                       "value": 4
                     },
@@ -179,6 +973,18 @@
             },
             "lore_skills": {
               "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
             }
           }
         },
@@ -187,7 +993,7 @@
           "stats": {
             "id": "feat_selfless_parry__apg_",
             "updated_at": {
-              "value": "2026-03-16T14:51:32.702359+00:00"
+              "value": "2026-03-19T22:58:03.908982+00:00"
             },
             "name": {
               "value": "Selfless Parry"
@@ -233,7 +1039,7 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_339b93e4ae17",
+                    "id": "levelled_description_8080e69b745c",
                     "level": {
                       "value": 8
                     },
@@ -249,7 +1055,7 @@
                 {
                   "resource_id": "levelled_effect",
                   "stats": {
-                    "id": "levelled_effect_dd4774479b01",
+                    "id": "levelled_effect_2fa17583df14",
                     "level": {
                       "value": 8
                     },
@@ -257,7 +1063,7 @@
                       "value": {
                         "resource_id": "effect",
                         "stats": {
-                          "id": "effect_57d1a6648afa",
+                          "id": "effect_3c2fbbcfbba5",
                           "name": {
                             "value": "+1 Circumstance Bonus to Armor Class"
                           },
@@ -297,6 +1103,18 @@
             },
             "lore_skills": {
               "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
             }
           }
         },
@@ -305,7 +1123,7 @@
           "stats": {
             "id": "feat_student_of_the_dueling_arts__apg_",
             "updated_at": {
-              "value": "2026-03-16T14:51:32.702359+00:00"
+              "value": "2026-03-19T22:58:03.908982+00:00"
             },
             "name": {
               "value": "Student of the Dueling Arts"
@@ -351,7 +1169,7 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_881969feaca6",
+                    "id": "levelled_description_dc290257770d",
                     "level": {
                       "value": 12
                     },
@@ -376,6 +1194,18 @@
             },
             "lore_skills": {
               "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
             }
           }
         }

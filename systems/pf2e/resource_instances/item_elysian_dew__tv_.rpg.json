@@ -3,7 +3,7 @@
   "stats": {
     "id": "elysian_dew__tv_",
     "updated_at": {
-      "value": "2026-03-16T23:48:36.097299+00:00"
+      "value": "2026-03-19T22:58:22.550053+00:00"
     },
     "name": {
       "value": "Elysian Dew"
@@ -12,7 +12,7 @@
       "value": "tv"
     },
     "description": {
-      "value": "When you drink sweet, sky-blue Elysian dew, for 1 minute, you gain a 10-foot aura that evokes the vitality of Elysium, causing nearby objects to seem more colorful and plants to stand taller. You and any ally that starts its turn in the emanation gain 5 temporary Hit Points, a +1 item bonus to saving throws, and a +1 item bonus to Acrobatics and Athletics checks until the start of your or the ally's next turn. If you're evil and drink this potion, it fails to work, and you must succeed at a DC 30 Fortitude save or the potion renders you drained 2."
+      "value": "When you drink sweet, sky-blue Elysian dew, for 1 minute, you gain a 10-foot aura that evokes the vitality of Elysium, causing nearby objects to seem more colorful and plants to stand taller.\n\nYou and any ally that starts its turn in the emanation gain 5 temporary Hit Points, a +1 item bonus to saving throws, and a +1 item bonus to Acrobatics and Athletics checks until the start of your or the ally's next turn. If you're evil and drink this potion, it fails to work, and you must succeed at a DC 30 Fortitude save or the potion renders you drained 2.\n\nActivate (1 Action); Components Interact"
     },
     "type": {
       "value": "potion"
@@ -92,12 +92,12 @@
         {
           "resource_id": "effect",
           "stats": {
-            "id": "effect_7b4b89335caa",
+            "id": "effect_0122dbc0f6ee",
             "name": {
               "value": "+1 Item Bonus to Fortitude"
             },
             "trigger_type": {
-              "value": "active"
+              "value": "passive"
             },
             "type": {
               "value": "typed_add_to_stat"
@@ -119,12 +119,12 @@
         {
           "resource_id": "effect",
           "stats": {
-            "id": "effect_9385556bab2a",
+            "id": "effect_72d773a083f9",
             "name": {
               "value": "+1 Item Bonus to Reflex"
             },
             "trigger_type": {
-              "value": "active"
+              "value": "passive"
             },
             "type": {
               "value": "typed_add_to_stat"
@@ -146,9 +146,36 @@
         {
           "resource_id": "effect",
           "stats": {
-            "id": "effect_583e8ce9902a",
+            "id": "effect_025df9c63dda",
             "name": {
               "value": "+1 Item Bonus to Will"
+            },
+            "trigger_type": {
+              "value": "passive"
+            },
+            "type": {
+              "value": "typed_add_to_stat"
+            },
+            "typed_modifier_type": {
+              "value": "item"
+            },
+            "typed_modifier_polarity": {
+              "value": "bonus"
+            },
+            "stat": {
+              "value": "$character.will"
+            },
+            "constant": {
+              "value": 1
+            }
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_aa4855c9b9f0",
+            "name": {
+              "value": "+1 Item Bonus to Acrobatics"
             },
             "trigger_type": {
               "value": "active"
@@ -163,7 +190,7 @@
               "value": "bonus"
             },
             "stat": {
-              "value": "$character.will"
+              "value": "$character.acrobatics"
             },
             "constant": {
               "value": 1

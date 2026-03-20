@@ -3,7 +3,7 @@
   "stats": {
     "id": "stickytoe_grippli__lome_",
     "updated_at": {
-      "value": "2026-03-15T19:05:31.323008"
+      "value": "2026-03-19T22:58:06.786234"
     },
     "name": {
       "value": "Stickytoe Grippli"
@@ -12,7 +12,7 @@
       "value": "lome"
     },
     "description": {
-      "value": "Description: Your hands and feet exude a film that helps them adhere to surfaces. You gain a +2 circumstance bonus to your Fortitude and Reflex DC against attempts to Disarm, Shove, or Trip you. When ascending trees, vines, and other foliage, if you roll a success on the Athletics check to Climb, you get a critical success instead."
+      "value": "### Description\nYour hands and feet exude a film that helps them adhere to surfaces. You gain a +2 circumstance bonus to your Fortitude and Reflex DC against attempts to Disarm, Shove, or Trip you. When ascending trees, vines, and other foliage, if you roll a success on the Athletics check to Climb, you get a critical success instead."
     },
     "is_versatile": {
       "value": false
@@ -40,7 +40,7 @@
       "value": true
     },
     "speed": {
-      "value": 30
+      "value": 25
     },
     "burrow_speed": {
       "value": 0
@@ -111,19 +111,58 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_b1269e17be79",
+                    "id": "levelled_description_b17c63ca56cb",
                     "level": {
                       "value": 1
                     },
                     "description": {
-                      "value": "Description: Your hands and feet exude a film that helps them adhere to surfaces. You gain a +2 circumstance bonus to your Fortitude and Reflex DC against attempts to Disarm, Shove, or Trip you. When ascending trees, vines, and other foliage, if you roll a success on the Athletics check to Climb, you get a critical success instead."
+                      "value": "### Description\nYour hands and feet exude a film that helps them adhere to surfaces. You gain a +2 circumstance bonus to your Fortitude and Reflex DC against attempts to Disarm, Shove, or Trip you. When ascending trees, vines, and other foliage, if you roll a success on the Athletics check to Climb, you get a critical success instead."
                     }
                   }
                 }
               ]
             },
             "effects": {
-              "value": []
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "id": "levelled_effect_c76523240cb8",
+                    "level": {
+                      "value": 1
+                    },
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "id": "effect_2c02d458f605",
+                          "name": {
+                            "value": "+2 Circumstance Bonus to Fortitude"
+                          },
+                          "trigger_type": {
+                            "value": "active"
+                          },
+                          "type": {
+                            "value": "typed_add_to_stat"
+                          },
+                          "typed_modifier_type": {
+                            "value": "circumstance"
+                          },
+                          "typed_modifier_polarity": {
+                            "value": "bonus"
+                          },
+                          "stat": {
+                            "value": "$character.fortitude"
+                          },
+                          "constant": {
+                            "value": 2
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
             }
           }
         }
