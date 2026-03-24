@@ -40,6 +40,7 @@ view feat_display() =
             id = "feat_display_current_level_description",
             text = current_level_description,
             style = "text",
+            markdown = true,
           ),
           collapsible(
             id = "feat_display_all_descriptions_collapsible",
@@ -101,11 +102,12 @@ view feat_display() =
                 stat = "sorted_selectable_feature_amount_per_level",
                 view_type = "display",
               ),
-              resourceArray(
+              resourceSection(
                 id = "feat_display_selectable_features",
                 resource_id = "feat",
-                stat = "sorted_selectable_features",
-                view_type = "list",
+                resource_stat = "sorted_selectable_features",
+                content_item_min_width = 1,
+                read_only = true,
               ),
             ],
           ),
