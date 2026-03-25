@@ -911,6 +911,8 @@ calc integer worn_armor_speed_modifier(name = "Worn armor speed modifier (penalt
 calc integer level(name = "Level", abbreviation = "Lvl.") =
   add(map(classes, mapper = ($class) => $class.class_level));
 
+calc integer[] level_singleton(name = "Level as singleton array") = [level];
+
 calc integer armor_class(name = "Armor Class", abbreviation = "AC") =
   (if wearing_body_armor then equipped_armor_ac else unarmored_ac) + shield_ac_bonus + armor_class_typed_modifier_total;
 
@@ -1438,6 +1440,12 @@ calc string creator_additional_class_skill_choices_help_text(name = "Creator add
     ],
   );
 
+calc bool has_pending_proficiency_choices(name = "Has pending proficiency choices") =
+  !isEmpty(filter(
+    creator_skill_proficiency_choices,
+    filter = ($c) => isEmpty($c.selected_option) && !isEmpty($c.options),
+  )) || length(creator_additional_class_skill_choices) < creator_additional_class_skill_choices_required;
+
 calc resource<levelled_armor_proficiency>[] creator_armor_proficiency_choices(name = "Creator armor proficiency choices") =
   flatAppend(
     [
@@ -1578,10 +1586,38 @@ base resource<archetype>[] archetypes(name = "Archetypes") = [];
 calc string[] selected_archetype_ids(name = "Selected archetype ids") =
   map(archetypes, mapper = ($mapValue) => $mapValue.id);
 
+calc string[] class_archetype_ids(name = "Class archetype ids") =
+  map(
+    filter(archetypes, filter = ($arch) => $arch.is_class_archetype),
+    mapper = ($arch) => $arch.id,
+  );
+
+calc resource<archetype>[] class_archetypes(name = "Class archetypes") =
+  filter(archetypes, filter = ($arch) => $arch.is_class_archetype);
+
+calc string[] selected_multiclass_archetype_ids(name = "Selected multiclass archetype ids") =
+  map(
+    filter(archetypes, filter = ($arch) => !$arch.is_class_archetype),
+    mapper = ($arch) => $arch.id,
+  );
+
+calc string[] selected_multiclass_archetype_names(name = "Selected multiclass archetype names") =
+  map(
+    filter(archetypes, filter = ($arch) => !$arch.is_class_archetype),
+    mapper = ($arch) => $arch.name,
+  );
+
+calc resource<archetype>[] multiclass_archetypes(name = "Multiclass archetypes") =
+  filter(archetypes, filter = ($arch) => !$arch.is_class_archetype);
+
 calc resource<archetype>[] class_archetypes_with_class_mismatch(name = "Class archetypes with class mismatch") =
   filter(
     archetypes,
-    filter = ($arch) => ($arch.is_class_archetype && !$arch.is_eligible_for_current_character_classes),
+    filter = ($arch) => ($arch.is_class_archetype && !isEmpty($arch.required_class_id)
+      && !contains(
+          haystack = map(classes, mapper = ($c) => $c.class?.id ?? ""),
+          needle = $arch.required_class_id,
+        )),
   );
 
 calc string class_archetypes_with_class_mismatch_names(name = "Class archetypes with class mismatch names") =
@@ -1641,8 +1677,26 @@ calc resource<feat>[] non_duplicate_dedication_feats(name = "Dedication feats no
     ),
   );
 
+calc resource<feat>[] class_archetype_auto_feats(name = "Auto-granted feats from class archetypes") =
+  flatMap(
+    filter(archetypes, filter = ($arch) => $arch.is_class_archetype),
+    mapper = ($arch) => $arch.auto_feats_for_current_level,
+  );
+
+calc resource<feat>[] non_duplicate_class_archetype_auto_feats(name = "Class archetype auto-feats not already in feats or dedication feats") =
+  filter(
+    class_archetype_auto_feats,
+    filter = ($f) => !contains(
+      haystack = map(feats, mapper = ($feat) => $feat.id),
+      needle = $f.id,
+    ) && !contains(
+      haystack = map(dedication_feats, mapper = ($feat) => $feat.id),
+      needle = $f.id,
+    ),
+  );
+
 calc resource<feat>[] all_selected_and_dedication_feats(name = "All selected feats and missing dedication feats") =
-  flatAppend([feats, non_duplicate_dedication_feats]);
+  flatAppend([feats, non_duplicate_dedication_feats, non_duplicate_class_archetype_auto_feats]);
 
 calc resource<feat>[] archetype_feats_without_selected_archetype(name = "Archetype feats without selected archetype") =
   filter(
@@ -1929,6 +1983,15 @@ calc resource<feat>[] archetype_feats(name = "Archetype feats") =
     filter = ($feat) => ($feat.type == "archetype"),
   );
 
+calc resource<feat>[] multiclass_archetype_feats(name = "Multiclass archetype feats (excluding class archetype auto-grants)") =
+  filter(
+    archetype_feats,
+    filter = ($feat) => !contains(
+      haystack = map(non_duplicate_class_archetype_auto_feats, mapper = ($f) => $f.id),
+      needle = $feat.id,
+    ),
+  );
+
 calc resource<feat>[] bonus_feats(name = "Bonus feats") =
   filter(
     feats,
@@ -2107,9 +2170,49 @@ calc integer spent_class_like_feat_slots(name = "Spent class-like feat slots") =
   length(
     filter(
       all_selected_and_dedication_feats,
-      filter = ($feat) => ($feat.type == "class" || $feat.type == "archetype"),
+      filter = ($feat) => ($feat.type == "class" || $feat.type == "archetype")
+        && !contains(
+            haystack = map(non_duplicate_class_archetype_auto_feats, mapper = ($f) => $f.id),
+            needle = $feat.id,
+          ),
     ),
   );
+
+calc resource<feat>[] class_like_feats_for_restriction_check(name = "Class-like feats for level restriction check") =
+  filter(
+    all_selected_and_dedication_feats,
+    filter = ($feat) => ($feat.type == "class" || $feat.type == "archetype")
+      && !contains(
+          haystack = map(non_duplicate_class_archetype_auto_feats, mapper = ($f) => $f.id),
+          needle = $feat.id,
+        ),
+  );
+
+calc bool class_like_feats_violate_level_restrictions(name = "Class feat level restrictions violated") =
+  !isEmpty(
+    filter(
+      filter(
+        all_progression_grants_for_current_level,
+        filter = ($g) => $g.bucket == "class_like_feat",
+      ),
+      filter = ($grant) =>
+        length(filter(class_like_feats_for_restriction_check, filter = ($f) => $f.min_level > $grant.level))
+        > add(
+            map(
+              filter(
+                all_progression_grants_for_current_level,
+                filter = ($g) => $g.bucket == "class_like_feat" && $g.level > $grant.level,
+              ),
+              mapper = ($g) => $g.amount,
+            ),
+          ),
+    ),
+  );
+
+calc string class_like_feats_level_restriction_warning_text(name = "Class feat level restriction warning") =
+  if class_like_feats_violate_level_restrictions
+    then "Some selected feats have level requirements that exceed the level at which their slots were available. Please review your class feat selections."
+    else "";
 
 calc integer spent_skill_feat_slots(name = "Spent skill feat slots") = length(skill_feats);
 

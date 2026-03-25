@@ -28,9 +28,15 @@ base string[] heritages(name = "Heritages") = [];
 
 base string[] archetypes(name = "Archetypes") = [];
 
+calc integer[] available_at_character_levels(name = "Available at character levels") =
+  filter(
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    filter = ($l) => $l >= min_level,
+  );
+
 calc string[] ancestry_heritage_filter_tags(name = "Ancestry/heritage filter tags") =
   if isEmpty(ancestries) && isEmpty(heritages)
-    then ["__any_ancestry__"]
+    then ["any_ancestry"]
     else flatAppend(
         [
           ancestries,
@@ -38,16 +44,6 @@ calc string[] ancestry_heritage_filter_tags(name = "Ancestry/heritage filter tag
         ],
         treat_as_set = true,
       );
-
-calc bool is_eligible_for_selected_ancestry_or_heritage(name = "Eligible for selected ancestry/heritage") =
-  if !defined(stat = "$character")
-    then true
-    else when {
-      isEmpty(ancestries) && isEmpty(heritages) -> true,
-      notNull($character?.heritage) && contains(haystack = heritages, needle = $character.heritage.id) -> true,
-      notNull($character?.ancestry) && contains(haystack = ancestries, needle = $character.ancestry.id) -> true,
-      else -> false,
-    };
 
 calc bool is_eligible_for_background_selection(name = "Eligible for background selection") =
   contains(
