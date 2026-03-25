@@ -1,4 +1,4 @@
-mechanic decrement_spell_slot(calculated_event_names = [eventName(event_name = "decrement_spell_slot")]) =
+mechanic decrement_spell_slot(event_names = "decrement_spell_slot") =
   when {
     grants_spellcasting -> when {
       $character.archetype_slot_target_rank == 1 -> addToStat(stat = "spell_slots_1", value = -1, aggregation_type = "set"),

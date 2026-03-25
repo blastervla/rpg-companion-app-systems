@@ -3,7 +3,7 @@
   "stats": {
     "id": "lion_s_shield__crb_",
     "updated_at": {
-      "value": "2026-03-19T22:58:20.637376+00:00"
+      "value": "2026-03-24T01:49:06.545040+00:00"
     },
     "name": {
       "value": "Lion's Shield"
@@ -15,7 +15,7 @@
       "value": true
     },
     "description": {
-      "value": "This steel shield (Hardness 6, HP 36, BT 18) is forged into the shape of a roaring lion's head.\n\nThe lion's head functions as +1 striking shield boss that can't be removed from the shield.\n\nActivate (1 Action)\nFrequency: once per day\nYou animate the lion's head. You Raise the Shield and make a melee Strike with it as part of the same action. The shield's biting maw is a martial melee weapon that deals 2d6 piercing damage and has the deadly 1d6 trait; it can't be enhanced by runes. The shield remains animated for 1 minute, during which time you can Strike with it each time you Raise the Shield, as well as with a Strike action."
+      "value": "This steel shield (Hardness 6, HP 36, BT 18) is forged into the shape of a roaring lion's head.\n\nThe lion's head functions as +1 striking shield boss that can't be removed from the shield.\n\n- **Activate:** 1 Action\n- **Frequency:** once per day\n\nYou animate the lion's head. You Raise the Shield and make a melee Strike with it as part of the same action. The shield's biting maw is a martial melee weapon that deals 2d6 piercing damage and has the deadly 1d6 trait; it can't be enhanced by runes. The shield remains animated for 1 minute, during which time you can Strike with it each time you Raise the Shield, as well as with a Strike action."
     },
     "type": {
       "value": "shield"
@@ -57,7 +57,59 @@
       "value": false
     },
     "effects": {
-      "value": []
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_876ad8558153",
+            "name": {
+              "value": "Lion's Shield Activate Damage"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "type": {
+              "value": "roll"
+            },
+            "roll_text": {
+              "value": "activation damage"
+            },
+            "dice_roll": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "dice_roll_34ce2c7b6e08",
+                  "dice_amount": {
+                    "value": 2
+                  },
+                  "dice_type": {
+                    "value": "d6"
+                  },
+                  "constant": {
+                    "value": 0
+                  }
+                }
+              }
+            },
+            "description": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_7eca79d89e8d",
+                    "level": {
+                      "value": 6
+                    },
+                    "description": {
+                      "value": "Frequency: once per day."
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
     },
     "attached_runes": {
       "value": []

@@ -3,7 +3,7 @@
   "stats": {
     "id": "wolfjaw_armor__tv_",
     "updated_at": {
-      "value": "2026-03-19T22:58:20.637376+00:00"
+      "value": "2026-03-24T01:49:06.545040+00:00"
     },
     "name": {
       "value": "Wolfjaw Armor"
@@ -15,7 +15,7 @@
       "value": false
     },
     "description": {
-      "value": "Barbarians, druids and other outlanders are often forced to spend the harsh winter months protecting their communities from one of the deadliest predators to stalk the forests and taiga of the northern reaches, the fearsome winter wolf. This +1 hide armor is assembled from the hide and fur of a trio of winter wolves, and it conveys on the wearer both an attack akin to the winter wolves' deadly jaws and the ability to channel the frigid cold of the winter wolf's Breath Weapon.\n\nActivate (2 Actions)\nFrequency: once per day\nYou breathe a cloud of frost in a 15-foot cone that deals 5d8 cold damage (DC 23 basic Reflex save).\n\nActivate (1 Action)\nFrequency: once per hour\nYou gain a jaws unarmed attack that you make using your hands. This attack deals 1d8 piercing damage plus 1 cold damage, is in the brawling group, and has the trip and unarmed traits.\n\n**Craft Requirements:** The initial raw materials must include the hides of at least three winter wolves (Bestiary 322)."
+      "value": "Barbarians, druids and other outlanders are often forced to spend the harsh winter months protecting their communities from one of the deadliest predators to stalk the forests and taiga of the northern reaches, the fearsome winter wolf. This +1 hide armor is assembled from the hide and fur of a trio of winter wolves, and it conveys on the wearer both an attack akin to the winter wolves' deadly jaws and the ability to channel the frigid cold of the winter wolf's Breath Weapon.\n\n- **Activate:** 2 Actions\n- **Traits:** cold\n- **Frequency:** once per day\n\nYou breathe a cloud of frost in a 15-foot cone that deals 5d8 cold damage (DC 23 basic Reflex save).\n\n- **Activate:** 1 Action\n- **Frequency:** once per hour\n\nYou gain a jaws unarmed attack that you make using your hands. This attack deals 1d8 piercing damage plus 1 cold damage, is in the brawling group, and has the trip and unarmed traits.\n\n**Craft Requirements:** The initial raw materials must include the hides of at least three winter wolves (Bestiary 322)."
     },
     "type": {
       "value": "medium"
@@ -57,7 +57,110 @@
       "value": true
     },
     "effects": {
-      "value": []
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_86e57dd649bd",
+            "name": {
+              "value": "Wolfjaw Armor Activate Damage"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "type": {
+              "value": "roll"
+            },
+            "roll_text": {
+              "value": "activation damage"
+            },
+            "dice_roll": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "dice_roll_0ca8c95a23a3",
+                  "dice_amount": {
+                    "value": 5
+                  },
+                  "dice_type": {
+                    "value": "d8"
+                  },
+                  "constant": {
+                    "value": 0
+                  }
+                }
+              }
+            },
+            "description": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_4d1ad3b9f991",
+                    "level": {
+                      "value": 7
+                    },
+                    "description": {
+                      "value": "Frequency: once per day."
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_8175fa143786",
+            "name": {
+              "value": "Wolfjaw Armor Activate Damage"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "type": {
+              "value": "roll"
+            },
+            "roll_text": {
+              "value": "activation damage"
+            },
+            "dice_roll": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "dice_roll_20015a3965ee",
+                  "dice_amount": {
+                    "value": 1
+                  },
+                  "dice_type": {
+                    "value": "d8"
+                  },
+                  "constant": {
+                    "value": 0
+                  }
+                }
+              }
+            },
+            "description": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_224f6d9b4fdb",
+                    "level": {
+                      "value": 7
+                    },
+                    "description": {
+                      "value": "Frequency: once per hour."
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
     },
     "attached_runes": {
       "value": []

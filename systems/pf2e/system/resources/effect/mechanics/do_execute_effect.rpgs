@@ -6,7 +6,9 @@ mechanic do_execute_effect(
   when {
     type == "add_to_stat" -> addToStat(
       meta_stat = stat,
-      value = if is_passive then constant else roll(formula = dice_roll.formula),
+      value = if is_passive || isEmpty(effect_roll_formula)
+        then constant
+        else roll(formula = effect_roll_formula),
       calculated_aggregation_type = aggregation_type,
     ),
     type == "typed_add_to_stat" -> addToStat(
@@ -16,7 +18,9 @@ mechanic do_execute_effect(
     ),
     type == "set_stat" -> setStat(
       meta_stat = stat,
-      new_value = if is_passive then constant else roll(formula = dice_roll.formula),
+      new_value = if is_passive || isEmpty(effect_roll_formula)
+        then constant
+        else roll(formula = effect_roll_formula),
       calculated_aggregation_type = aggregation_type,
     ),
     type == "grant_proficiency" -> setStat(
@@ -84,10 +88,10 @@ mechanic do_execute_effect(
       ],
     ),
     type == "roll" -> when {
-      defined(stat = "dice_roll.formula") && !isEmpty(dice_roll.formula) -> roll(
+      !isEmpty(effect_roll_formula) -> roll(
         rolls = [
           rollable(
-            formulas = [dice_roll.formula],
+            formulas = [effect_roll_formula],
             text = if isEmpty(roll_text) then "effect roll" else roll_text,
           ),
         ],

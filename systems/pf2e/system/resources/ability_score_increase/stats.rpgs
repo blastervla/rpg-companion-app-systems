@@ -2,10 +2,35 @@ base integer value(name = "Value") = 1;
 
 base string[] modifier_options(name = "Modifier options") = [];
 
+base bool is_class_key_ability_boost(name = "Is class key ability boost") = false;
+
 calc string description(name = "Display description") =
   if isEmpty(modifier_options)
     then "Nothing to assign"
-    else concat(
+    else when {
+      is_class_key_ability_boost
+        && length(modifier_options) == 1 -> concat(
+          [
+            "Class key ability: ",
+            enumeratedName(
+              enumerated_type = "ability",
+              id = findFirst(modifier_options, filter = ($findFirstValue) => true),
+            ),
+          ],
+        ),
+      is_class_key_ability_boost -> concat(
+        [
+          "Choose class key ability: ",
+          joinToString(
+            map(
+              modifier_options,
+              mapper = ($mapValue) => enumeratedName(enumerated_type = "ability", id = $mapValue),
+            ),
+            separator = ", ",
+          ),
+        ],
+      ),
+      else -> concat(
         [
           "Assign ",
           value,
@@ -13,7 +38,10 @@ calc string description(name = "Display description") =
             then concat(
                 [
                   " to ",
-                  findFirst(modifier_options, filter = ($findFirstValue) => true),
+                  enumeratedName(
+                    enumerated_type = "ability",
+                    id = findFirst(modifier_options, filter = ($findFirstValue) => true),
+                  ),
                 ],
               )
             else concat(
@@ -29,10 +57,14 @@ calc string description(name = "Display description") =
                 ],
               )),
         ],
-      );
+      ),
+    };
 
 calc string assign_label_text(name = "Assign label text") =
-  concat(["Assign ", value, " to: "]);
+  when {
+    is_class_key_ability_boost -> "Choose class key ability: ",
+    else -> concat(["Assign ", value, " to: "]),
+  };
 
 base string temp_selected_modifier(name = "Temporal variable to hold the selected modifier") =
   "strength";

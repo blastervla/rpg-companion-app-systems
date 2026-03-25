@@ -1,6 +1,8 @@
 mechanic on_daily_preparations(event_names = "daily_preparations") =
   when {
-    show_spellcasting_details -> sequence(
+    show_spellcasting_details
+      && (isNull($character?.primary_class_progression)
+        || $character.primary_class_progression.id == id) -> sequence(
       effects = [
         setStat(
           stat = "$character.spell_slots_1",
@@ -45,6 +47,11 @@ mechanic on_daily_preparations(event_names = "daily_preparations") =
         setStat(
           stat = "$character.spell_slots_9",
           new_value = max_class_spell_slots_9 + (metaStat(meta_stat = "$character.max_spell_slots_9_bonus") ?? 0),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "$character.spell_slots_10",
+          new_value = metaStat(meta_stat = "$character.max_spell_slots_10_bonus") ?? 0,
           aggregation_type = "set",
         ),
       ],

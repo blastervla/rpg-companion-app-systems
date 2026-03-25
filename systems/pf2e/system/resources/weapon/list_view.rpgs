@@ -13,18 +13,4 @@ view weapon_list() =
       !isEmpty(effects) -> "accent",
       else -> "text",
     },
-    chips = flatAppend(
-      [
-        (if true == is_invested
-          then [
-              createChip(
-                id = "invested_chip",
-                text = "INVESTED",
-                background_color = "#4caf50",
-                style = "compact",
-              ),
-            ]
-          else []),
-      ],
-    ),
   );

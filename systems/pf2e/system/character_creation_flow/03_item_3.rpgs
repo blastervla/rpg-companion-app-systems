@@ -29,6 +29,32 @@ character_creation_page edit_proficiencies_title() =
             bold = true,
           ),
         ),
+        text(
+          id = "edit_character_proficiencies_additional_class_skills_help",
+          text = creator_additional_class_skill_choices_help_text,
+          style = "text",
+          bold = true,
+          is_visible = creator_additional_class_skill_choices_required > 0,
+        ),
+        select(
+          id = "edit_character_proficiencies_additional_class_skills",
+          stat = "creator_additional_class_skill_choices",
+          options = "skill_types",
+          allowed_options = creator_additional_class_skill_choices_allowed_options,
+          multi_select = true,
+          max_selection_amount = creator_additional_class_skill_choices_required,
+          validation_message = if length($view.edit_character_proficiencies_additional_class_skills)
+              != creator_additional_class_skill_choices_required
+            then concat(
+                [
+                  "Select exactly ",
+                  creator_additional_class_skill_choices_required,
+                  " additional class skills.",
+                ],
+              )
+            else null,
+          is_visible = creator_additional_class_skill_choices_required > 0,
+        ),
         resourceArray(
           id = "edit_character_proficiencies_armors",
           resource_id = "levelled_armor_proficiency",
@@ -108,7 +134,15 @@ character_creation_page edit_proficiencies_title() =
           creator_skill_proficiency_choices,
           apply = setStat(
             meta_stat = concat([$forEachValue.selected_option, "_proficiency"]),
-            new_value = if $forEachValue.is_expertise then "expert" else "trained",
+            new_value = $forEachValue.effective_proficiency,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          creator_additional_class_skill_choices,
+          apply = setStat(
+            meta_stat = concat([$forEachValue, "_proficiency"]),
+            new_value = "trained",
             aggregation_type = "set",
           ),
         ),

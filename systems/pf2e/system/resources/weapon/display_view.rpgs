@@ -45,14 +45,6 @@ view weapon_display() =
             color = "accent",
             is_visible = is_proficient,
           ),
-          text(
-            id = "weapon_display_invested",
-            margin_left = 16,
-            text = "Invested",
-            style = "caption",
-            color = "#4CAF50",
-            is_visible = is_invested,
-          ),
         ],
         is_visible = defined(stat = "$character"),
       ),
@@ -163,7 +155,7 @@ view weapon_display() =
         subviews = [
           text(
             id = "weapon_display_damage_label",
-            text = "Damage (two-hand trait): ",
+            text = "Damage (two-hand): ",
             style = "text",
             bold = true,
           ),
@@ -197,6 +189,7 @@ view weapon_display() =
         margin_top = 16,
         text = description,
         style = "text",
+        markdown = true,
         is_visible = !isEmpty(description),
       ),
       collapsible(
@@ -225,7 +218,7 @@ view weapon_display() =
                 id = "weapon_two_hand_trait_toggle",
                 stat = "currently_using_two_hand_trait",
                 label = if $view?.weapon_two_hand_trait_toggle? ?? false
-                  then "Using two-hand trait"
+                  then "Using two-hand"
                   else "Using base grip",
                 label_alignment = "right",
                 style = "switcher",
@@ -310,12 +303,6 @@ view weapon_display() =
                 display_cancel_button = true,
                 display_save_button = true,
                 should_persist_on_save = true,
-              ),
-              button(
-                id = "weapon_display_invest_button",
-                text = if is_invested then "UNINVEST" else "INVEST",
-                event = event(name = "toggle_investment"),
-                is_visible = requires_investment,
               ),
               button(
                 id = "weapon_display_trigger_attached_talisman_button",

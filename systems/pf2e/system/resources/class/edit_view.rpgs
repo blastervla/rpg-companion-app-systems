@@ -43,6 +43,12 @@ view class_edit() =
             label = "Description",
             style = "text",
           ),
+          checkbox(
+            id = "class_edit_requires_deity",
+            stat = "requires_deity",
+            label = "Requires deity selection",
+            label_alignment = "right",
+          ),
           resourceArray(
             id = "class_edit_ability_score_increases",
             resource_id = "ability_score_increase",
@@ -56,6 +62,41 @@ view class_edit() =
             ),
             pop_up_type = "bottomSheet",
             pop_up_button_text = description,
+          ),
+          composite(
+            id = "class_edit_additional_trained_skills_composite",
+            margin_top = 4,
+            subviews = [
+              text(
+                id = "class_edit_additional_trained_skills_base_label",
+                text = "Additional trained skills (base): ",
+                style = "text",
+                bold = true,
+              ),
+              text(
+                id = "class_edit_additional_trained_skills_base",
+                edit_stat = "additional_trained_skills_base_count",
+                style = "text",
+                max_length = 3,
+                signed = false,
+                hint = "0",
+              ),
+              text(
+                id = "class_edit_additional_trained_skills_plus_label",
+                text = " + ",
+                style = "text",
+              ),
+              select(
+                id = "class_edit_additional_trained_skills_ability_select",
+                stat = "additional_trained_skills_ability",
+                options = "ability",
+              ),
+              text(
+                id = "class_edit_additional_trained_skills_modifier_label",
+                text = " modifier",
+                style = "text",
+              ),
+            ],
           ),
           composite(
             id = "class_edit_hp_composite",
@@ -646,25 +687,13 @@ view class_edit() =
             ),
           ),
           resourceArray(
-            id = "class_edit_attacks_per_action",
-            resource_id = "levelled_amount",
-            stat = "attacks_per_action_per_level",
-            view_type = "edit",
-            left_view = text(
-              id = "class_edit_attacks_per_action_label",
-              text = "Attacks per action (by lvl): ",
-              style = "text",
-              bold = true,
-            ),
-          ),
-          resourceArray(
             id = "class_edit_selectable_armors",
             resource_id = "selectable_armors",
             stat = "selectable_armors",
             view_type = "edit",
             left_view = text(
               id = "class_edit_selectable_armors_label",
-              text = "Armor choices: ",
+              text = "Starting armor choices: ",
               style = "text",
               bold = true,
             ),
@@ -686,7 +715,7 @@ view class_edit() =
             view_type = "edit",
             left_view = text(
               id = "class_edit_selectable_weapons_label",
-              text = "Weapon choices: ",
+              text = "Starting weapon choices: ",
               style = "text",
               bold = true,
             ),
@@ -708,7 +737,7 @@ view class_edit() =
             view_type = "edit",
             left_view = text(
               id = "class_edit_selectable_equipments_label",
-              text = "Equipment choices: ",
+              text = "Starting equipment choices: ",
               style = "text",
               bold = true,
             ),

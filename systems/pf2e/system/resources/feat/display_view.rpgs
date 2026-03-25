@@ -8,129 +8,168 @@ view feat_display() =
         id = "feat_display_non_level_up",
         is_visible = !($character?.currently_levelling_up ?? false),
         subviews = [
-          composite(
+          list(
             id = "feat_display_info",
             margin_left = 16,
+            alignment = "start",
             subviews = [
-              text(
-                id = "feat_display_source",
-                style = "caption",
-                resource_id = "source",
-                resource_instance_ids_stat = "source",
-                resource_display_stat = "abbreviation",
-                is_visible = !isEmpty(source),
+              composite(
+                id = "feat_display_type_and_action",
+                subviews = [
+                  icon(
+                    id = "feat_display_action_cost_icon_one",
+                    name = "ic_action",
+                    size = "small",
+                    color = "accent",
+                    is_visible = action_cost == "one_action",
+                  ),
+                  icon(
+                    id = "feat_display_action_cost_icon_two",
+                    name = "ic_two_actions",
+                    size = "small",
+                    color = "accent",
+                    is_visible = action_cost == "two_actions",
+                  ),
+                  icon(
+                    id = "feat_display_action_cost_icon_three",
+                    name = "ic_three_actions",
+                    size = "small",
+                    color = "accent",
+                    is_visible = action_cost == "three_actions",
+                  ),
+                  icon(
+                    id = "feat_display_action_cost_icon_reaction",
+                    name = "ic_reaction",
+                    size = "small",
+                    color = "accent",
+                    is_visible = action_cost == "reaction",
+                  ),
+                  icon(
+                    id = "feat_display_action_cost_icon_free",
+                    name = "ic_free_action",
+                    size = "small",
+                    color = "accent",
+                    is_visible = action_cost == "free_action",
+                  ),
+                  text(
+                    id = "feat_display_type",
+                    style = "caption",
+                    text = display_header_type_line,
+                    margin_left = 4,
+                  ),
+                ],
               ),
-              text(
-                id = "feat_display_source_separator",
-                text = ", ",
-                style = "caption",
+              composite(
+                id = "feat_display_source_row",
                 is_visible = !isEmpty(source),
+                subviews = [
+                  text(
+                    id = "feat_display_source_label",
+                    style = "caption",
+                    bold = true,
+                    text = "Source: ",
+                  ),
+                  text(
+                    id = "feat_display_source",
+                    style = "caption",
+                    resource_id = "source",
+                    resource_instance_ids_stat = "source",
+                    resource_display_stat = "abbreviation",
+                  ),
+                ],
               ),
-              text(id = "feat_display_type", style = "caption", text = type_name),
-              text(id = "feat_display_type_separator", text = ", ", style = "caption"),
-              text(
-                id = "feat_display_classes",
-                resource_id = "class",
-                resource_instance_ids_stat = "classes",
-                resource_display_stat = "name",
-                style = "caption",
+              composite(
+                id = "feat_display_prerequisites_row",
+                is_visible = !isEmpty(prerequisites),
+                subviews = [
+                  text(
+                    id = "feat_display_prerequisites_label",
+                    style = "caption",
+                    bold = true,
+                    text = "Prerequisites: ",
+                  ),
+                  text(
+                    id = "feat_display_prerequisites",
+                    style = "caption",
+                    text = prerequisites,
+                  ),
+                ],
+              ),
+              composite(
+                id = "feat_display_classes_row",
                 is_visible = !isEmpty(classes),
+                subviews = [
+                  text(
+                    id = "feat_display_classes_label",
+                    style = "caption",
+                    bold = true,
+                    text = "Classes: ",
+                  ),
+                  text(
+                    id = "feat_display_classes",
+                    resource_id = "class",
+                    resource_instance_ids_stat = "classes",
+                    resource_display_stat = "name",
+                    style = "caption",
+                  ),
+                ],
               ),
-              text(
-                id = "feat_display_classes_separator",
-                text = " | ",
-                style = "caption",
-                is_visible = !isEmpty(classes)
-                  && (!isEmpty(ancestries) || !isEmpty(heritages) || !isEmpty(archetypes)),
-              ),
-              text(
-                id = "feat_display_ancestries",
-                resource_id = "ancestry",
-                resource_instance_ids_stat = "ancestries",
-                resource_display_stat = "name",
-                style = "caption",
+              composite(
+                id = "feat_display_ancestries_row",
                 is_visible = !isEmpty(ancestries),
+                subviews = [
+                  text(
+                    id = "feat_display_ancestries_label",
+                    style = "caption",
+                    bold = true,
+                    text = "Ancestries: ",
+                  ),
+                  text(
+                    id = "feat_display_ancestries",
+                    resource_id = "ancestry",
+                    resource_instance_ids_stat = "ancestries",
+                    resource_display_stat = "name",
+                    style = "caption",
+                  ),
+                ],
               ),
-              text(
-                id = "feat_display_ancestries_separator",
-                text = " | ",
-                style = "caption",
-                is_visible = !isEmpty(ancestries) && (!isEmpty(heritages) || !isEmpty(archetypes)),
-              ),
-              text(
-                id = "feat_display_heritages",
-                resource_id = "heritage",
-                resource_instance_ids_stat = "heritages",
-                resource_display_stat = "name",
-                style = "caption",
+              composite(
+                id = "feat_display_heritages_row",
                 is_visible = !isEmpty(heritages),
+                subviews = [
+                  text(
+                    id = "feat_display_heritages_label",
+                    style = "caption",
+                    bold = true,
+                    text = "Heritages: ",
+                  ),
+                  text(
+                    id = "feat_display_heritages",
+                    resource_id = "heritage",
+                    resource_instance_ids_stat = "heritages",
+                    resource_display_stat = "name",
+                    style = "caption",
+                  ),
+                ],
               ),
-              text(
-                id = "feat_display_heritages_separator",
-                text = " | ",
-                style = "caption",
-                is_visible = !isEmpty(heritages) && !isEmpty(archetypes),
-              ),
-              text(
-                id = "feat_display_archetypes",
-                resource_id = "archetype",
-                resource_instance_ids_stat = "archetypes",
-                resource_display_stat = "name",
-                style = "caption",
+              composite(
+                id = "feat_display_archetypes_row",
                 is_visible = !isEmpty(archetypes),
-              ),
-              icon(
-                id = "feat_display_action_cost_icon_one",
-                name = "ic_action",
-                size = "small",
-                color = "accent",
-                is_visible = action_cost == "one_action",
-              ),
-              icon(
-                id = "feat_display_action_cost_icon_two",
-                name = "ic_two_actions",
-                size = "small",
-                color = "accent",
-                is_visible = action_cost == "two_actions",
-              ),
-              icon(
-                id = "feat_display_action_cost_icon_three",
-                name = "ic_three_actions",
-                size = "small",
-                color = "accent",
-                is_visible = action_cost == "three_actions",
-              ),
-              icon(
-                id = "feat_display_action_cost_icon_reaction",
-                name = "ic_reaction",
-                size = "small",
-                color = "accent",
-                is_visible = action_cost == "reaction",
-              ),
-              icon(
-                id = "feat_display_action_cost_icon_free",
-                name = "ic_free_action",
-                size = "small",
-                color = "accent",
-                is_visible = action_cost == "free_action",
-              ),
-              text(
-                id = "feat_display_action_cost",
-                style = "caption",
-                text = action_cost_name,
-                is_visible = action_cost == "passive" || action_cost == "activity",
-              ),
-              text(
-                id = "feat_display_action_cost_separator",
-                text = ", ",
-                style = "caption",
-                is_visible = !isEmpty(prerequisites),
-              ),
-              text(
-                id = "feat_display_prerequisites",
-                text = concat(["Prerequisites: ", prerequisites]),
-                style = "caption",
-                is_visible = !isEmpty(prerequisites),
+                subviews = [
+                  text(
+                    id = "feat_display_archetypes_label",
+                    style = "caption",
+                    bold = true,
+                    text = "Archetypes: ",
+                  ),
+                  text(
+                    id = "feat_display_archetypes",
+                    resource_id = "archetype",
+                    resource_instance_ids_stat = "archetypes",
+                    resource_display_stat = "name",
+                    style = "caption",
+                  ),
+                ],
               ),
             ],
           ),
@@ -187,6 +226,7 @@ view feat_display() =
             id = "feat_display_current_level_description",
             text = current_level_description,
             style = "text",
+            markdown = true,
           ),
           collapsible(
             id = "feat_display_all_descriptions_collapsible",
@@ -287,11 +327,12 @@ view feat_display() =
                 stat = "sorted_selectable_feature_amount_per_level",
                 view_type = "display",
               ),
-              resourceArray(
+              resourceSection(
                 id = "feat_display_selectable_features",
                 resource_id = "feat",
-                stat = "sorted_selectable_features",
-                view_type = "list",
+                resource_stat = "sorted_selectable_features",
+                content_item_min_width = 1,
+                read_only = true,
               ),
             ],
           ),

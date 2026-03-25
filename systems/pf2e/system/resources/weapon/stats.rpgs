@@ -21,8 +21,6 @@ base bool add_attack_ability_to_damage(name = "Add attack ability to damage") =
 
 base string rarity(name = "Rarity") = "common";
 
-base bool requires_investment(name = "Requires investment") = false;
-
 calc string display_type(name = "Display type") =
   when {
     is_firearm && is_simple -> "simple_firearms",
@@ -60,17 +58,11 @@ base bool is_thrown(name = "Is thrown") = false;
 
 base string thrown_range(name = "Thrown range") = "80/320";
 
-base bool is_heavy(name = "Is heavy") = false;
-
-base bool is_light(name = "Is light") = false;
-
 base bool is_loading(name = "Is loading") = false;
 
 base bool is_reach(name = "Is reach") = false;
 
 base integer reach_range(name = "Reach range") = 5;
-
-base bool is_special(name = "Is special") = false;
 
 base bool is_improvised(name = "Is improvised") = false;
 
@@ -115,8 +107,6 @@ base resource<item>[] attached_runes(name = "Attached runes") = [];
 base resource<item> attached_talisman(name = "Attached talisman") = null;
 
 base bool override_is_proficient(name = "Override is proficient") = false;
-
-base bool is_invested(name = "Is invested") = false;
 
 base bool currently_using_two_hand_trait(name = "Currently using two-hand trait") =
   false;
@@ -522,11 +512,25 @@ calc integer weapon_proficiency_rank_from_legacy(name = "Weapon proficiency rank
         else 0)
     else 0;
 
+calc integer weapon_proficiency_rank_from_deity(name = "Weapon proficiency rank from deity favored weapon") =
+  if defined(stat = "$character")
+      && (contains(
+          haystack = ($character.primary_class_progression?.active_selected_deity?.favored_weapon_types ?? []),
+          needle = type,
+        )
+        || contains(
+          haystack = ($character.primary_class_progression?.active_selected_deity?.favored_weapon_ids ?? []),
+          needle = id,
+        ))
+    then 1
+    else 0;
+
 calc integer weapon_proficiency_rank(name = "Weapon proficiency rank") =
   max(
     [
       weapon_proficiency_rank_from_rows,
       weapon_proficiency_rank_from_legacy,
+      weapon_proficiency_rank_from_deity,
       (if override_is_proficient then 1 else 0),
     ],
   );
@@ -704,14 +708,10 @@ calc string properties(name = "Properties") =
         (if is_silver then ["silver"] else []),
         (if is_finesse then ["finesse"] else []),
         (if is_thrown then [concat(["thrown (", thrown_range, ")"])] else []),
-        (if is_heavy then ["heavy"] else []),
-        (if is_light then ["light"] else []),
         (if is_loading then ["loading"] else []),
-        (if is_special then ["special"] else []),
         (if is_improvised then ["improvised"] else []),
         (if is_range then [concat(["range (", range, ")"])] else []),
         (if is_reach then [concat(["reach ", reach_range, " ft."])] else []),
-        (if requires_investment then ["requires investment"] else []),
         (if !isEmpty(attached_runes_summary)
           then [concat(["runes: ", attached_runes_summary])]
           else []),
@@ -812,7 +812,7 @@ calc string display_first_line_extra(name = "Display first line extra") =
 calc string display_second_line_extra(name = "Display second line extra") =
   when {
     defined(stat = "$character") -> damage_dice_display_description,
-    !isEmpty(effects) || requires_investment -> "Magic",
+    !isEmpty(effects) -> "Magic",
     !isEmpty(attached_runes) || notNull(attached_talisman) -> "Attached runes",
     else -> "",
   };

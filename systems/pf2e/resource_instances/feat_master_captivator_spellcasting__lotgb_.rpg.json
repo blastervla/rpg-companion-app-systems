@@ -3,7 +3,7 @@
   "stats": {
     "id": "feat_master_captivator_spellcasting__lotgb_",
     "updated_at": {
-      "value": "2026-03-19T22:58:03.908982+00:00"
+      "value": "2026-03-24T18:15:48.572432+00:00"
     },
     "name": {
       "value": "Master Captivator Spellcasting"
@@ -49,7 +49,7 @@
         {
           "resource_id": "levelled_description",
           "stats": {
-            "id": "levelled_description_5bf883066629",
+            "id": "levelled_description_401d2cf926f2",
             "level": {
               "value": 16
             },
@@ -61,19 +61,64 @@
         {
           "resource_id": "levelled_description",
           "stats": {
-            "id": "levelled_description_e6d9539cc8d6",
+            "id": "levelled_description_0d36485988e8",
             "level": {
               "value": 18
             },
             "description": {
-              "value": "You learn an 8th-level spell, and at 20th level, you learn a 9th-level spell.\n\nEach of these spells must come from either the enchantment or illusion school. You cast these spells as occult innate spells.\n\nYou become a master with spell attack rolls and spell DCs for occult spells."
+              "value": "You learn an 8th-level spell"
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_description",
+          "stats": {
+            "id": "levelled_description_aec171e8f41a",
+            "level": {
+              "value": 20
+            },
+            "description": {
+              "value": "You learn a 9th-level spell.\n\nEach of these spells must come from either the enchantment or illusion school. You cast these spells as occult innate spells.\n\nYou become a master with spell attack rolls and spell DCs for occult spells."
             }
           }
         }
       ]
     },
     "effects": {
-      "value": []
+      "value": [
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_ba4e0bb89d35",
+            "level": {
+              "value": 20
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_f936e724711d",
+                  "name": {
+                    "value": "Grant Master in Occult Spellcasting"
+                  },
+                  "trigger_type": {
+                    "value": "passive"
+                  },
+                  "type": {
+                    "value": "grant_proficiency"
+                  },
+                  "proficiency_stat": {
+                    "value": "$character.occult_spellcasting_proficiency"
+                  },
+                  "proficiency_rank": {
+                    "value": "master"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "skill_proficiencies": {
       "value": []

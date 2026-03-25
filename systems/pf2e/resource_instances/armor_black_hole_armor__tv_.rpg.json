@@ -3,7 +3,7 @@
   "stats": {
     "id": "black_hole_armor__tv_",
     "updated_at": {
-      "value": "2026-03-19T22:58:20.637376+00:00"
+      "value": "2026-03-24T01:49:06.545040+00:00"
     },
     "name": {
       "value": "Black Hole Armor"
@@ -15,7 +15,7 @@
       "value": false
     },
     "description": {
-      "value": "The joints of this black +2 greater resilient fortification fortress plate look like swirling vortices of silver. Non-magical ammunition and thrown weapons aimed at you are destroyed after they hit you and deal damage or miss you. You also have resistance 10 to physical damage from ranged attacks.\n\nWhen an enemy's ranged attack misses you or hits you and deals no damage, the armor absorbs the projectile.\n\nWhen it has absorbed six projectiles, the armor glows at the joints.\n\nActivate (Reaction)\nFrequency: once per minute\nTrigger: A ranged weapon Strike targets a creature within 20 feet of you and the attacker hasn't yet rolled its attack\nThe triggering Strike targets you instead of its intended target.\n\nActivate (1 Action)\nRequirements: The black hole armor has absorbed six or more projectiles\nAll the projectiles absorbed by the armor appear out of thin air, as though transported there, falling in a 10-foot burst within 120 feet of you. Each creature in the burst takes 10d8 piercing damage with a DC 35 Reflex save. The absorbed projectiles are all expended, and the armor's joints stop glowing."
+      "value": "The joints of this black +2 greater resilient fortification fortress plate look like swirling vortices of silver. Non-magical ammunition and thrown weapons aimed at you are destroyed after they hit you and deal damage or miss you. You also have resistance 10 to physical damage from ranged attacks.\n\nWhen an enemy's ranged attack misses you or hits you and deals no damage, the armor absorbs the projectile.\n\nWhen it has absorbed six projectiles, the armor glows at the joints.\n\n- **Activate:** Reaction\n- **Frequency:** once per minute\n- **Trigger:** A ranged weapon Strike targets a creature within 20 feet of you and the attacker hasn't yet rolled its attack\n\nThe triggering Strike targets you instead of its intended target.\n\n- **Activate:** 1 Action\n- **Requirements:** The black hole armor has absorbed six or more projectiles\n\nAll the projectiles absorbed by the armor appear out of thin air, as though transported there, falling in a 10-foot burst within 120 feet of you. Each creature in the burst takes 10d8 piercing damage with a DC 35 Reflex save. The absorbed projectiles are all expended, and the armor's joints stop glowing."
     },
     "type": {
       "value": "heavy"
@@ -57,7 +57,59 @@
       "value": true
     },
     "effects": {
-      "value": []
+      "value": [
+        {
+          "resource_id": "effect",
+          "stats": {
+            "id": "effect_ed4351532af1",
+            "name": {
+              "value": "Black Hole Armor Activate Damage"
+            },
+            "trigger_type": {
+              "value": "active"
+            },
+            "type": {
+              "value": "roll"
+            },
+            "roll_text": {
+              "value": "activation damage"
+            },
+            "dice_roll": {
+              "value": {
+                "resource_id": "dice_roll",
+                "stats": {
+                  "id": "dice_roll_dd479f99d39e",
+                  "dice_amount": {
+                    "value": 10
+                  },
+                  "dice_type": {
+                    "value": "d8"
+                  },
+                  "constant": {
+                    "value": 0
+                  }
+                }
+              }
+            },
+            "description": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_199a8ff2e538",
+                    "level": {
+                      "value": 16
+                    },
+                    "description": {
+                      "value": "Requirements: The black hole armor has absorbed six or more projectiles."
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
     },
     "attached_runes": {
       "value": []

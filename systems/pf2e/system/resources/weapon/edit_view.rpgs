@@ -75,12 +75,10 @@ view weapon_edit() =
         margin_top = 4,
         subviews = [
           text(id = "weapon_edit_type_label", text = "Type: ", style = "text"),
-          text(
+          select(
             id = "weapon_edit_type",
-            edit_stat = "type",
-            style = "text",
-            hint = "weapon type id",
-            max_length = 80,
+            options = "weapon_types",
+            stat = "type",
           ),
           text(
             id = "weapon_edit_attack_ability_label",
@@ -102,17 +100,11 @@ view weapon_edit() =
         ],
       ),
       composite(
-        id = "weapon_edit_rarity_requires_investment",
+        id = "weapon_edit_rarity",
         margin_top = 4,
         subviews = [
           text(id = "weapon_edit_rarity_label", text = "Rarity: ", style = "text"),
           select(id = "weapon_edit_rarity", options = "item_rarity", stat = "rarity"),
-          checkbox(
-            id = "weapon_edit_requires_investment",
-            stat = "requires_investment",
-            label = "Requires investment",
-            label_alignment = "right",
-          ),
         ],
       ),
       text(
@@ -149,27 +141,9 @@ view weapon_edit() =
             label_alignment = "right",
           ),
           checkbox(
-            id = "weapon_edit_is_heavy",
-            stat = "is_heavy",
-            label = "Heavy",
-            label_alignment = "right",
-          ),
-          checkbox(
-            id = "weapon_edit_is_light",
-            stat = "is_light",
-            label = "Light",
-            label_alignment = "right",
-          ),
-          checkbox(
             id = "weapon_edit_is_loading",
             stat = "is_loading",
             label = "Loading",
-            label_alignment = "right",
-          ),
-          checkbox(
-            id = "weapon_edit_is_special",
-            stat = "is_special",
-            label = "Special",
             label_alignment = "right",
           ),
           checkbox(
@@ -210,13 +184,13 @@ view weapon_edit() =
           checkbox(
             id = "weapon_edit_has_two_hand_trait",
             stat = "has_two_hand_trait",
-            label = "Two-hand trait",
+            label = "Two-hand",
             label_alignment = "right",
           ),
           checkbox(
             id = "weapon_edit_has_versatile_trait",
             stat = "has_versatile_trait",
-            label = "Versatile trait",
+            label = "Versatile",
             label_alignment = "right",
           ),
           text(
@@ -234,7 +208,7 @@ view weapon_edit() =
           checkbox(
             id = "weapon_edit_has_agile_trait",
             stat = "has_agile_trait",
-            label = "Agile trait",
+            label = "Agile",
             label_alignment = "right",
           ),
         ],
@@ -312,7 +286,7 @@ view weapon_edit() =
         view_type = "edit",
         left_view = text(
           id = "weapon_edit_two_hand_trait_damage_dice_label",
-          text = "Two-hand trait damage dice: ",
+          text = "Two-hand damage dice: ",
           style = "text",
         ),
         stat = "two_hand_trait_damage_dice",

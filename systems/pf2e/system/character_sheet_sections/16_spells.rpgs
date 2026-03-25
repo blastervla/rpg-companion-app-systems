@@ -29,7 +29,12 @@ character_sheet_section spells() =
         view_type = "icon",
         should_append = true,
         should_save_on_selection = true,
-        filters = dict(classes = map(classes, mapper = ($class) => $class.class.name)),
+        filters = dict(traditions = flatAppend([
+          if arcane_spellcasting_proficiency != "none" then ["arcane"] else [],
+          if divine_spellcasting_proficiency != "none" then ["divine"] else [],
+          if occult_spellcasting_proficiency != "none" then ["occult"] else [],
+          if primal_spellcasting_proficiency != "none" then ["primal"] else [],
+        ])),
       ),
     ],
     content = [

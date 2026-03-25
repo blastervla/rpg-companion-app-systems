@@ -20,6 +20,16 @@ calc string display_casting_time(name = "Display casting time") =
 calc string action_cost_name(name = "Action cost name") =
   enumeratedName(enumerated_type = "feat_action_costs", id = action_cost);
 
+calc string action_cost_icon_name(name = "Action cost icon name") =
+  when {
+    action_cost == "one_action" -> "ic_action",
+    action_cost == "two_actions" -> "ic_two_actions",
+    action_cost == "three_actions" -> "ic_three_actions",
+    action_cost == "reaction" -> "ic_reaction",
+    action_cost == "free_action" -> "ic_free_action",
+    else -> "",
+  };
+
 base string range(name = "Range") = "";
 
 base string duration(name = "Duration") = "";

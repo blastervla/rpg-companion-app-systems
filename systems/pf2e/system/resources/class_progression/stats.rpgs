@@ -1,5 +1,9 @@
 base resource<class> class(name = "Class") = null;
 
+base resource<deity> selected_deity(name = "Deity") = null;
+
+base string selected_deity_font(name = "Selected deity font") = "";
+
 base string archetype_id(name = "Archetype ID") = null;
 
 base integer class_level(name = "Class level") = 1;
@@ -37,6 +41,43 @@ calc string class_name_with_archetype(name = "Class name with archetype") =
   if isEmpty(selected_class_archetype_names)
     then class.name
     else concat([class.name, " (", selected_class_archetype_names, ")"]);
+
+calc bool class_requires_deity(name = "Class requires deity") =
+  class?.requires_deity ?? false;
+
+calc resource<deity> active_selected_deity(name = "Active selected deity") =
+  if class_requires_deity then selected_deity else null;
+
+calc string selected_deity_name(name = "Selected deity name") =
+  active_selected_deity?.name ?? "";
+
+calc string active_selected_deity_font(name = "Active selected deity font") =
+  if contains(
+      haystack = (active_selected_deity?.font_options ?? []),
+      needle = selected_deity_font,
+    )
+    then selected_deity_font
+    else (findFirst(active_selected_deity?.font_options ?? [], filter = ($findFirstValue) => true) ?? "");
+
+calc string selected_deity_font_text(name = "Selected deity font text") =
+  if !isEmpty(active_selected_deity_font)
+    then active_selected_deity_font
+    else joinToString(active_selected_deity?.font_options ?? [], separator = ", ");
+
+calc string selected_deity_associated_skill_text(name = "Selected deity associated skill text") =
+  if !isEmpty(active_selected_deity?.divine_skill_entry ?? "")
+    then (active_selected_deity?.divine_skill_entry ?? "")
+    else joinToString(active_selected_deity?.divine_skill_options ?? [], separator = ", ");
+
+calc string selected_deity_favored_weapon_text(name = "Selected deity favored weapon text") =
+  if !isEmpty(active_selected_deity?.favored_weapon_entry ?? "")
+    then (active_selected_deity?.favored_weapon_entry ?? "")
+    else joinToString(active_selected_deity?.favored_weapon_names ?? [], separator = ", ");
+
+calc string class_name_with_archetype_and_deity(name = "Class name with archetype and deity") =
+  if class_requires_deity && !isEmpty(selected_deity_name)
+    then concat([class_name_with_archetype, " (", selected_deity_name, ")"])
+    else class_name_with_archetype;
 
 calc bool show_spellcasting_details(name = "Should show spellcasting details") =
   class.actual_effective_caster_level != "zero";
@@ -255,9 +296,6 @@ calc integer spell_save_dc(name = "Spell save DC") =
       ],
     ),
   ) + spellcasting_proficiency_bonus + $character.spell_dc_typed_modifier_total;
-
-calc integer attacks_per_action(name = "Attacks per action") =
-  class.attacks_per_action_number_for_current_level;
 
 calc integer class_level_hp_gain(name = "Class level HP gain") =
   class.actual_class_hp_per_level + add(

@@ -49,6 +49,7 @@ view archetype_display() =
         margin_top = 8,
         text = description,
         style = "text",
+        markdown = true,
         is_visible = !isEmpty(description),
       ),
       collapsible(
@@ -56,12 +57,14 @@ view archetype_display() =
         margin_top = 8,
         title = "Dedication feat",
         is_visible = notNull(dedication_feat),
+        start_expanded = true,
         subviews = [
-          resourceArray(
+          resourceSection(
             id = "archetype_display_dedication_feat",
             resource_id = "feat",
-            stat = "dedication_feat_array",
-            view_type = "display",
+            resource_stat = "dedication_feat_array",
+            content_item_min_width = 1,
+            read_only = true,
           ),
         ],
       ),
@@ -71,11 +74,12 @@ view archetype_display() =
         title = "Archetype feats",
         is_visible = !isEmpty(feats),
         subviews = [
-          resourceArray(
+          resourceSection(
             id = "archetype_display_feats",
             resource_id = "feat",
-            stat = "sorted_feats",
-            view_type = "list",
+            resource_stat = "sorted_feats",
+            content_item_min_width = 1,
+            read_only = true,
           ),
         ],
       ),

@@ -16,7 +16,45 @@ view levelled_skill_proficiency_display() =
         allowed_options = if $character?.currently_levelling_up? ?? false
           then filter(
               options,
-              filter = ($filterValue) => (metaStat(meta_stat = concat(["$character.", $filterValue, "_proficiency"])) == "none"),
+              filter = ($filterValue) => when {
+                effective_proficiency == "trained" -> (metaStat(
+                  meta_stat = concat(
+                    [
+                      "$character.",
+                      $filterValue,
+                      "_proficiency",
+                    ],
+                  ),
+                ) == "none"),
+                effective_proficiency == "expert" -> (metaStat(
+                  meta_stat = concat(
+                    [
+                      "$character.",
+                      $filterValue,
+                      "_proficiency",
+                    ],
+                  ),
+                ) == "trained"),
+                effective_proficiency == "master" -> (metaStat(
+                  meta_stat = concat(
+                    [
+                      "$character.",
+                      $filterValue,
+                      "_proficiency",
+                    ],
+                  ),
+                ) == "expert"),
+                effective_proficiency == "legendary" -> (metaStat(
+                  meta_stat = concat(
+                    [
+                      "$character.",
+                      $filterValue,
+                      "_proficiency",
+                    ],
+                  ),
+                ) == "master"),
+                else -> true,
+              },
             )
           else options,
         is_visible = $character?.should_show_controls_for_choices ?? false,
