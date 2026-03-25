@@ -46,7 +46,7 @@ mechanic level_up_set_proficiencies(event_names = "level_up_set_proficiencies") 
               "_proficiency",
             ],
           ),
-          new_value = if $forEachValue.is_expertise then "expert" else "trained",
+          new_value = $forEachValue.effective_proficiency,
           aggregation_type = "set",
         ),
       ),

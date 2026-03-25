@@ -18,12 +18,10 @@ view levelled_skill_proficiency_edit() =
           then "You have a box with empty skill proficiency options. Please add options to it or remove it"
           else null,
       ),
-      checkbox(
-        id = "levelled_skill_proficiency_is_expertise",
-        stat = "is_expertise",
-        label = if $view.levelled_skill_proficiency_is_expertise then "Expert" else "Regular",
-        label_alignment = "right",
-        style = "switcher",
+      select(
+        id = "levelled_skill_proficiency_edit_proficiency",
+        stat = "proficiency",
+        options = "skill_proficiency_types",
       ),
     ],
   );

@@ -1101,11 +1101,6 @@ calc integer wisdom_modifier(name = "Wisdom", abbreviation = "WIS") =
 calc integer charisma_modifier(name = "Charisma", abbreviation = "CHA") =
   divide([(charisma_score + -10), 2], rounding_method = "down");
 
-calc integer attacks_per_action(name = "Attacks per action") =
-  if isEmpty(classes)
-    then 0
-    else max(map(classes, mapper = ($class) => $class.attacks_per_action));
-
 calc resource<weapon>[] all_weapons(name = "All weapons (including racial and class weapons)") =
   flatAppend(
     [
@@ -1321,7 +1316,7 @@ base integer spell_slots_9(name = "Rank 9") = 0;
 base integer spell_slots_10(name = "Rank 10") = 0;
 
 calc resource<heritage> creator_selected_heritage(name = "Selected creator heritage") =
-  $view?.edit_character_basics_heritage_select;
+  $view?.edit_character_basics_heritage_select?;
 
 calc resource<ability_score_increase>[] creator_ability_score_increases(name = "Creator ability score increases") =
   flatAppend(
@@ -1364,6 +1359,82 @@ calc resource<levelled_skill_proficiency>[] creator_skill_proficiency_choices(na
         all_features,
         mapper = ($mapValue) => ($mapValue.skill_proficiencies_for_current_level ?? []),
       ),
+    ],
+  );
+
+base string[] creator_additional_class_skill_choices(name = "Creator additional class skill choices") =
+  [];
+
+calc string[] creator_selected_skill_choices(name = "Creator selected skill choices") =
+  map(
+    filter(
+      creator_skill_proficiency_choices,
+      filter = ($filterValue) => !isEmpty($filterValue.selected_option),
+    ),
+    mapper = ($mapValue) => $mapValue.selected_option,
+  );
+
+calc integer creator_additional_class_skill_choices_required(name = "Creator additional class skill choices required") =
+  max(
+    [
+      0,
+      add(
+        flatMap(
+          classes,
+          mapper = ($classProgression) => [
+            max(
+              [
+                0,
+                ($classProgression.class?.additional_trained_skills_base_count ?? 0)
+                  + metaStat(
+                    meta_stat = concat(
+                      [
+                        ($classProgression.class?.additional_trained_skills_ability ?? "intelligence"),
+                        "_modifier",
+                      ],
+                    ),
+                  ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    ],
+  );
+
+calc string[] creator_additional_class_skill_choices_allowed_options(name = "Creator additional class skill choices allowed options") =
+  filter(
+    [
+      "acrobatics",
+      "arcana",
+      "athletics",
+      "crafting",
+      "deception",
+      "diplomacy",
+      "intimidation",
+      "medicine",
+      "nature",
+      "occultism",
+      "performance",
+      "religion",
+      "society",
+      "stealth",
+      "survival",
+      "thievery",
+    ],
+    filter = ($filterValue) => (metaStat(meta_stat = concat([$filterValue, "_proficiency"])) == "none")
+      && !contains(
+        haystack = creator_selected_skill_choices,
+        needle = $filterValue,
+      ),
+  );
+
+calc string creator_additional_class_skill_choices_help_text(name = "Creator additional class skill choices help text") =
+  concat(
+    [
+      "Choose ",
+      creator_additional_class_skill_choices_required,
+      " additional trained class skills.",
     ],
   );
 
@@ -2450,6 +2521,21 @@ calc bool should_show_skill_increase(name = "Should show skill increase popup") 
 calc bool should_show_asi(name = "Should show ASI") =
   pending_ability_boost_grants > 0;
 
+calc integer asi_selection_count_required(name = "ASI selection count required") =
+  min([4, max([0, pending_ability_boost_grants])]);
+
+calc bool should_show_asi_selection_2(name = "Should show ASI selection 2") =
+  asi_selection_count_required >= 2;
+
+calc bool should_show_asi_selection_3(name = "Should show ASI selection 3") =
+  asi_selection_count_required >= 3;
+
+calc bool should_show_asi_selection_4(name = "Should show ASI selection 4") =
+  asi_selection_count_required >= 4;
+
+calc string asi_selection_help_text(name = "ASI selection help text") =
+  concat(["Choose ", asi_selection_count_required, " ability boosts."]);
+
 base string temp_asi_selection_1(name = "Temp ASI selection") = null;
 
 base string temp_asi_selection_2(name = "Temp ASI selection") = null;
@@ -2457,6 +2543,55 @@ base string temp_asi_selection_2(name = "Temp ASI selection") = null;
 base string temp_asi_selection_3(name = "Temp ASI selection") = null;
 
 base string temp_asi_selection_4(name = "Temp ASI selection") = null;
+
+calc integer temp_asi_selection_count(name = "Temp ASI selection count") =
+  length(
+    filter(
+      [
+        temp_asi_selection_1,
+        temp_asi_selection_2,
+        temp_asi_selection_3,
+        temp_asi_selection_4,
+      ],
+      filter = ($filterValue) => $filterValue != null,
+    ),
+  );
+
+calc integer temp_asi_unique_selection_count(name = "Temp ASI unique selection count") =
+  length(
+    flatAppend(
+      [
+        filter(
+          [
+            temp_asi_selection_1,
+            temp_asi_selection_2,
+            temp_asi_selection_3,
+            temp_asi_selection_4,
+          ],
+          filter = ($filterValue) => $filterValue != null,
+        ),
+      ],
+      treat_as_set = true,
+    ),
+  );
+
+calc bool is_temp_asi_selection_valid(name = "Is temp ASI selection valid") =
+  temp_asi_selection_count == asi_selection_count_required
+    && temp_asi_unique_selection_count == asi_selection_count_required;
+
+calc string temp_asi_validation_message(name = "Temp ASI validation message") =
+  when {
+    asi_selection_count_required <= 0 -> "No ability boosts are pending.",
+    temp_asi_selection_count != asi_selection_count_required -> concat(
+      [
+        "Choose exactly ",
+        asi_selection_count_required,
+        " ability boosts.",
+      ],
+    ),
+    temp_asi_unique_selection_count != asi_selection_count_required -> "Ability boosts must target different abilities.",
+    else -> "Invalid ability boost selection.",
+  };
 
 calc resource<feat>[] features_with_new_descriptions_in_new_level(name = "Features with new descriptions in new level") =
   flatAppend(

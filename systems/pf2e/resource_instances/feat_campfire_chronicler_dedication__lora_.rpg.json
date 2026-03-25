@@ -3,7 +3,7 @@
   "stats": {
     "id": "feat_campfire_chronicler_dedication__lora_",
     "updated_at": {
-      "value": "2026-03-19T22:58:03.908982+00:00"
+      "value": "2026-03-24T18:15:48.572432+00:00"
     },
     "name": {
       "value": "Campfire Chronicler Dedication"
@@ -49,12 +49,12 @@
         {
           "resource_id": "levelled_description",
           "stats": {
-            "id": "levelled_description_672c721908b7",
+            "id": "levelled_description_af7ae70aafa5",
             "level": {
               "value": 2
             },
             "description": {
-              "value": "You've gained Isthralei's attention and can now offer stories up to him, either passing on your own stories or collecting those of travelers as he did. You become trained in Religion and Survival; for either of these skills in which you were already trained, you instead become trained in a skill of your choice. You gain the Offer Story action.\n\n**Offer Story**\nActivate (1 Action)\nYou share a story of your travels with a creature within 30 feet. You gain the blessing of Isthralei as a +1 status bonus to AC and Will saves until the end of your next turn. On their next turn, the creature you shared a story with can take a single action, which has the auditory, concentrate, linguistic, and mental traits, to respond with their own story to gain the same benefits until the end of the following turn."
+              "value": "You've gained Isthralei's attention and can now offer stories up to him, either passing on your own stories or collecting those of travelers as he did. You become trained in Religion and Survival; for either of these skills in which you were already trained, you instead become trained in a skill of your choice. You gain the Offer Story action.\n\n**Offer Story**\n\n- **Activate:** 1 Action\n- **Traits:** auditory, concentrate, divine, linguistic, mental\n\nYou share a story of your travels with a creature within 30 feet. You gain the blessing of Isthralei as a +1 status bonus to AC and Will saves until the end of your next turn. On their next turn, the creature you shared a story with can take a single action, which has the auditory, concentrate, linguistic, and mental traits, to respond with their own story to gain the same benefits until the end of the following turn."
             }
           }
         }
@@ -65,7 +65,7 @@
         {
           "resource_id": "levelled_effect",
           "stats": {
-            "id": "levelled_effect_a4519b036d40",
+            "id": "levelled_effect_ca0df000307c",
             "level": {
               "value": 2
             },
@@ -73,7 +73,61 @@
               "value": {
                 "resource_id": "effect",
                 "stats": {
-                  "id": "effect_29aa2c28cb87",
+                  "id": "effect_ef0f8f37cdda",
+                  "name": {
+                    "value": "+1 Status Bonus to Armor Class"
+                  },
+                  "trigger_type": {
+                    "value": "active"
+                  },
+                  "type": {
+                    "value": "typed_add_to_stat"
+                  },
+                  "typed_modifier_type": {
+                    "value": "status"
+                  },
+                  "typed_modifier_polarity": {
+                    "value": "bonus"
+                  },
+                  "stat": {
+                    "value": "$character.armor_class"
+                  },
+                  "constant": {
+                    "value": 1
+                  },
+                  "description": {
+                    "value": [
+                      {
+                        "resource_id": "levelled_description",
+                        "stats": {
+                          "id": "levelled_description_5852ca597e0a",
+                          "level": {
+                            "value": 2
+                          },
+                          "description": {
+                            "value": "You gain the blessing of Isthralei as a +1 status bonus to AC and Will saves until the end of your next turn."
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_1af192b15ea1",
+            "level": {
+              "value": 2
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_338aa67f4e8a",
                   "name": {
                     "value": "Grant Trained in Religion"
                   },
@@ -97,7 +151,7 @@
         {
           "resource_id": "levelled_effect",
           "stats": {
-            "id": "levelled_effect_6f51a8a226bf",
+            "id": "levelled_effect_b4e2b72f743c",
             "level": {
               "value": 2
             },
@@ -105,7 +159,7 @@
               "value": {
                 "resource_id": "effect",
                 "stats": {
-                  "id": "effect_9b9087b2c0e6",
+                  "id": "effect_60dd037afefc",
                   "name": {
                     "value": "Grant Trained in Survival"
                   },
@@ -120,44 +174,6 @@
                   },
                   "proficiency_rank": {
                     "value": "trained"
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "resource_id": "levelled_effect",
-          "stats": {
-            "id": "levelled_effect_adf7bffa8dda",
-            "level": {
-              "value": 2
-            },
-            "effect": {
-              "value": {
-                "resource_id": "effect",
-                "stats": {
-                  "id": "effect_0699f590b6ec",
-                  "name": {
-                    "value": "+1 Status Bonus to Armor Class"
-                  },
-                  "trigger_type": {
-                    "value": "active"
-                  },
-                  "type": {
-                    "value": "typed_add_to_stat"
-                  },
-                  "typed_modifier_type": {
-                    "value": "status"
-                  },
-                  "typed_modifier_polarity": {
-                    "value": "bonus"
-                  },
-                  "stat": {
-                    "value": "$character.armor_class"
-                  },
-                  "constant": {
-                    "value": 1
                   }
                 }
               }

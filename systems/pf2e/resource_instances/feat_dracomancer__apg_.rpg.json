@@ -3,7 +3,7 @@
   "stats": {
     "id": "feat_dracomancer__apg_",
     "updated_at": {
-      "value": "2026-03-19T22:58:03.908982+00:00"
+      "value": "2026-03-24T18:15:48.572432+00:00"
     },
     "name": {
       "value": "Dracomancer"
@@ -51,12 +51,12 @@
         {
           "resource_id": "levelled_description",
           "stats": {
-            "id": "levelled_description_a2b8472a59ef",
+            "id": "levelled_description_f2dc53776500",
             "level": {
               "value": 9
             },
             "description": {
-              "value": "Your inborn arcane power manifests as your exemplar's most time-honored spells. Choose one 1st-level spell and one 2nd-level spell from those listed for a dragon spellcaster of your draconic exemplar's type, as presented on pages 104–126 of the Bestiary (such as alarm, blur, invisibility, and true strike for a black dragon exemplar). You can cast each of these spells once per day as arcane innate spells. You gain the trained proficiency rank in arcane spell attack rolls and spell DCs, and your key spellcasting ability is Charisma."
+              "value": "Your inborn arcane power manifests as your exemplar's most time-honored spells. Choose one 1st-level spell and one 2nd-level spell from those listed for a dragon spellcaster of your draconic exemplar's type, as presented on pages 104\u2013126 of the Bestiary (such as alarm, blur, invisibility, and true strike for a black dragon exemplar). You can cast each of these spells once per day as arcane innate spells. You gain the trained proficiency rank in arcane spell attack rolls and spell DCs, and your key spellcasting ability is Charisma."
             }
           }
         }
@@ -67,7 +67,7 @@
         {
           "resource_id": "levelled_effect",
           "stats": {
-            "id": "levelled_effect_029f8c316953",
+            "id": "levelled_effect_09979bed2f2b",
             "level": {
               "value": 9
             },
@@ -75,21 +75,121 @@
               "value": {
                 "resource_id": "effect",
                 "stats": {
-                  "id": "effect_7d7eef70449b",
+                  "id": "effect_78c3a7679c6d",
                   "name": {
-                    "value": "Grant Trained in Arcane Spellcasting"
+                    "value": "Innate: Alarm"
                   },
                   "trigger_type": {
-                    "value": "passive"
+                    "value": "active"
                   },
                   "type": {
-                    "value": "grant_proficiency"
+                    "value": "use_spell"
                   },
-                  "proficiency_stat": {
-                    "value": "$character.arcane_spellcasting_proficiency"
+                  "spell": {
+                    "value": {
+                      "resource_id": "spell",
+                      "stats": {
+                        "id": "alarm__pc1_",
+                        "name": {
+                          "value": "Alarm"
+                        },
+                        "source": {
+                          "value": "pc1"
+                        },
+                        "level": {
+                          "value": "spell_level_1"
+                        },
+                        "school": {
+                          "value": "none"
+                        },
+                        "traditions": {
+                          "value": [
+                            "arcane",
+                            "divine",
+                            "occult",
+                            "primal"
+                          ]
+                        },
+                        "is_focus_spell": {
+                          "value": false
+                        },
+                        "focus_point_cost": {
+                          "value": 0
+                        },
+                        "ritual": {
+                          "value": false
+                        },
+                        "action_cost": {
+                          "value": "activity"
+                        },
+                        "casting_time": {
+                          "value": "10 minutes"
+                        },
+                        "verbal": {
+                          "value": false
+                        },
+                        "somatic": {
+                          "value": false
+                        },
+                        "material": {
+                          "value": false
+                        },
+                        "components": {
+                          "value": ""
+                        },
+                        "range": {
+                          "value": "1 touch"
+                        },
+                        "duration": {
+                          "value": "8 hours"
+                        },
+                        "saving_throw": {
+                          "value": ""
+                        },
+                        "area": {
+                          "value": "20-foot burst"
+                        },
+                        "targets": {
+                          "value": ""
+                        },
+                        "description": {
+                          "value": "You ward an area to alert you when creatures enter without your permission. When you cast alarm, select a password. Whenever a Small or larger corporeal creature enters the spell's area without speaking the password, alarm sends your choice of a mental alert (in which case the spell gains the mental trait) or an audible alarm with the sound and volume of a hand bell (in which case the spell gains the auditory trait). Either option automatically awakens you, and the bell allows each creature in the area to attempt a DC 15 Perception check to wake up. A creature aware of the alarm must succeed at a Stealth check against the spell's DC or trigger the spell when moving into the area."
+                        },
+                        "higher_level_description": {
+                          "value": "Heightened (3rd): You can specify criteria for which creatures sound the alarm spell\u2014for instance, orcs or masked people."
+                        },
+                        "spell_traits": {
+                          "value": [
+                            "concentrate",
+                            "manipulate"
+                          ]
+                        },
+                        "classes": {
+                          "value": []
+                        },
+                        "dice": {
+                          "value": []
+                        },
+                        "effects": {
+                          "value": []
+                        },
+                        "updated_at": {
+                          "value": "2026-03-24T01:11:16.148821"
+                        }
+                      }
+                    }
                   },
-                  "proficiency_rank": {
-                    "value": "trained"
+                  "has_charges": {
+                    "value": true
+                  },
+                  "max_charges_constant": {
+                    "value": 1
+                  },
+                  "recharge_event": {
+                    "value": "daily_preparations"
+                  },
+                  "recharge_type": {
+                    "value": "all"
                   }
                 }
               }
@@ -99,7 +199,7 @@
         {
           "resource_id": "levelled_effect",
           "stats": {
-            "id": "levelled_effect_43d3240d83be",
+            "id": "levelled_effect_59508b87bef6",
             "level": {
               "value": 9
             },
@@ -107,15 +207,15 @@
               "value": {
                 "resource_id": "effect",
                 "stats": {
-                  "id": "effect_7d60d1823a14",
+                  "id": "effect_36d7e7a9dbf3",
                   "name": {
                     "value": "Innate: Blur"
                   },
                   "trigger_type": {
-                    "value": "passive"
+                    "value": "active"
                   },
                   "type": {
-                    "value": "add_spell"
+                    "value": "use_spell"
                   },
                   "spell": {
                     "value": {
@@ -203,10 +303,22 @@
                           "value": []
                         },
                         "updated_at": {
-                          "value": "2026-03-19T22:57:32.305188"
+                          "value": "2026-03-24T01:11:16.148821"
                         }
                       }
                     }
+                  },
+                  "has_charges": {
+                    "value": true
+                  },
+                  "max_charges_constant": {
+                    "value": 1
+                  },
+                  "recharge_event": {
+                    "value": "daily_preparations"
+                  },
+                  "recharge_type": {
+                    "value": "all"
                   }
                 }
               }
@@ -216,7 +328,7 @@
         {
           "resource_id": "levelled_effect",
           "stats": {
-            "id": "levelled_effect_1c7f19740071",
+            "id": "levelled_effect_2aee675225d1",
             "level": {
               "value": 9
             },
@@ -224,15 +336,15 @@
               "value": {
                 "resource_id": "effect",
                 "stats": {
-                  "id": "effect_236fb5d475f5",
+                  "id": "effect_d1530b491df3",
                   "name": {
                     "value": "Innate: Invisibility"
                   },
                   "trigger_type": {
-                    "value": "passive"
+                    "value": "active"
                   },
                   "type": {
-                    "value": "add_spell"
+                    "value": "use_spell"
                   },
                   "spell": {
                     "value": {
@@ -321,10 +433,22 @@
                           "value": []
                         },
                         "updated_at": {
-                          "value": "2026-03-19T22:57:32.305188"
+                          "value": "2026-03-24T01:11:16.148821"
                         }
                       }
                     }
+                  },
+                  "has_charges": {
+                    "value": true
+                  },
+                  "max_charges_constant": {
+                    "value": 1
+                  },
+                  "recharge_event": {
+                    "value": "daily_preparations"
+                  },
+                  "recharge_type": {
+                    "value": "all"
                   }
                 }
               }
@@ -334,7 +458,7 @@
         {
           "resource_id": "levelled_effect",
           "stats": {
-            "id": "levelled_effect_33d7c8a181e3",
+            "id": "levelled_effect_6f60ec7d9de3",
             "level": {
               "value": 9
             },
@@ -342,15 +466,15 @@
               "value": {
                 "resource_id": "effect",
                 "stats": {
-                  "id": "effect_fe3bb23566a8",
+                  "id": "effect_48fcf5f2978a",
                   "name": {
                     "value": "Innate: True Strike"
                   },
                   "trigger_type": {
-                    "value": "passive"
+                    "value": "active"
                   },
                   "type": {
-                    "value": "add_spell"
+                    "value": "use_spell"
                   },
                   "spell": {
                     "value": {
@@ -438,10 +562,54 @@
                           "value": []
                         },
                         "updated_at": {
-                          "value": "2026-03-19T22:57:32.305188"
+                          "value": "2026-03-24T01:11:16.148821"
                         }
                       }
                     }
+                  },
+                  "has_charges": {
+                    "value": true
+                  },
+                  "max_charges_constant": {
+                    "value": 1
+                  },
+                  "recharge_event": {
+                    "value": "daily_preparations"
+                  },
+                  "recharge_type": {
+                    "value": "all"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resource_id": "levelled_effect",
+          "stats": {
+            "id": "levelled_effect_f15d8f241e28",
+            "level": {
+              "value": 9
+            },
+            "effect": {
+              "value": {
+                "resource_id": "effect",
+                "stats": {
+                  "id": "effect_732f3a923511",
+                  "name": {
+                    "value": "Grant Trained in Arcane Spellcasting"
+                  },
+                  "trigger_type": {
+                    "value": "passive"
+                  },
+                  "type": {
+                    "value": "grant_proficiency"
+                  },
+                  "proficiency_stat": {
+                    "value": "$character.arcane_spellcasting_proficiency"
+                  },
+                  "proficiency_rank": {
+                    "value": "trained"
                   }
                 }
               }

@@ -222,11 +222,22 @@ calc resource<levelled_description> current_level_levelled_description(name = "C
     filter = ($findFirstValue) => ($findFirstValue.level <= level),
   );
 
+calc string[] applicable_description_texts_for_current_level(name = "Applicable description texts for current level") =
+  map(
+    filter(
+      sorted_descriptions,
+      filter = ($filterValue) => ($filterValue.level <= level),
+    ),
+    mapper = ($mapValue) => $mapValue.description,
+  );
+
 calc string current_level_description(name = "Current level description") =
   if defined(stat = "$character")
     then (if isEmpty(descriptions)
         then ""
-        else current_level_levelled_description?.description ?? first_description_text)
+        else (if isEmpty(applicable_description_texts_for_current_level)
+            then current_level_levelled_description?.description ?? first_description_text
+            else joinToString(applicable_description_texts_for_current_level, separator = "\n\n")))
     else first_description_text;
 
 calc integer min_required_level(name = "Minimum required level") =
@@ -355,6 +366,21 @@ calc string type_name(name = "Type name") =
 
 calc string action_cost_name(name = "Action cost name") =
   enumeratedName(enumerated_type = "feat_action_costs", id = action_cost);
+
+calc string action_cost_icon_name(name = "Action cost icon name") =
+  when {
+    action_cost == "one_action" -> "ic_action",
+    action_cost == "two_actions" -> "ic_two_actions",
+    action_cost == "three_actions" -> "ic_three_actions",
+    action_cost == "reaction" -> "ic_reaction",
+    action_cost == "free_action" -> "ic_free_action",
+    else -> "",
+  };
+
+calc string display_header_type_line(name = "Display header type line") =
+  if action_cost == "passive" || action_cost == "activity"
+    then concat([action_cost_name, " | ", type_name])
+    else type_name;
 
 calc integer action_cost_actions_spent(name = "Action cost spent from actions pool") =
   when {

@@ -16,6 +16,7 @@ view class_display() =
         id = "class_display_description",
         text = description,
         style = "text",
+        markdown = true,
         is_visible = !isEmpty(description),
       ),
       resourceArray(
@@ -30,6 +31,24 @@ view class_display() =
           bold = true,
         ),
         is_visible = !isEmpty(ability_score_increases),
+      ),
+      composite(
+        id = "class_display_additional_trained_skills_rule",
+        margin_top = 8,
+        subviews = [
+          text(
+            id = "class_display_additional_trained_skills_rule_label",
+            text = "Additional trained skills: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "class_display_additional_trained_skills_rule_text",
+            text = display_additional_trained_skills_rule,
+            style = "text",
+          ),
+        ],
+        is_visible = additional_trained_skills_base_count > 0,
       ),
       composite(
         id = "class_display_hp_composite",
@@ -267,19 +286,6 @@ view class_display() =
           ),
           text(id = "class_display_weapon_text", text = display_weapon, style = "text"),
         ],
-      ),
-      resourceArray(
-        id = "class_display_attacks_per_action_per_level",
-        resource_id = "levelled_amount",
-        stat = "attacks_per_action_per_level",
-        view_type = "display",
-        left_view = text(
-          id = "class_display_armor_class_label",
-          text = "Attacks per action (per level): ",
-          style = "text",
-          bold = true,
-        ),
-        is_visible = !isEmpty(attacks_per_action_per_level),
       ),
       collapsible(
         id = "class_display_equipment_choices_collapsible",

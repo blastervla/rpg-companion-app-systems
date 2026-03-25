@@ -29,5 +29,11 @@ view edit_ability_score_increase_composite() =
           then "You have empty ability score increase options. Please select at least one or remove it"
           else null,
       ),
+      checkbox(
+        id = "edit_ability_score_increase_is_class_key_ability_boost",
+        stat = "is_class_key_ability_boost",
+        label = "Use as class key ability choice",
+        label_alignment = "right",
+      ),
     ],
   );

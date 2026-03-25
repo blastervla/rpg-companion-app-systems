@@ -241,6 +241,66 @@ view edit_effect() =
         is_visible = (is_set_or_add_to_stat && $view.edit_effect_trigger_type_select != "passive")
           || is_roll_type,
       ),
+      composite(
+        id = "edit_effect_roll_scaling_toggle_composite",
+        is_visible = (is_set_or_add_to_stat && $view.edit_effect_trigger_type_select != "passive")
+          || is_roll_type,
+        subviews = [
+          checkbox(
+            id = "edit_effect_roll_scales_with_level",
+            stat = "roll_scales_with_level",
+            label = "Scale roll with level",
+            label_alignment = "right",
+          ),
+        ],
+      ),
+      composite(
+        id = "edit_effect_roll_scaling_composite",
+        is_visible = ((is_set_or_add_to_stat && $view.edit_effect_trigger_type_select != "passive")
+            || is_roll_type)
+          && $view.edit_effect_roll_scales_with_level,
+        subviews = [
+          text(
+            id = "edit_effect_roll_scale_start_level",
+            edit_stat = "roll_scale_start_level",
+            style = "text",
+            signed = false,
+            max_length = 3,
+            hint = "7",
+            label = "Start lvl",
+          ),
+          text(
+            id = "edit_effect_roll_scale_interval_levels",
+            edit_stat = "roll_scale_interval_levels",
+            style = "text",
+            signed = false,
+            max_length = 3,
+            hint = "2",
+            margin_left = 4,
+            label = "Every",
+          ),
+          text(
+            id = "edit_effect_roll_scale_dice_amount_per_step",
+            edit_stat = "roll_scale_dice_amount_per_step",
+            style = "text",
+            signed = true,
+            max_length = 3,
+            hint = "1",
+            margin_left = 4,
+            label = "Dice +/step",
+          ),
+          text(
+            id = "edit_effect_roll_scale_constant_per_step",
+            edit_stat = "roll_scale_constant_per_step",
+            style = "text",
+            signed = true,
+            max_length = 4,
+            hint = "0",
+            margin_left = 4,
+            label = "Const +/step",
+          ),
+        ],
+      ),
       text(
         id = "edit_effect_roll_text",
         edit_stat = "roll_text",

@@ -38,6 +38,18 @@ base string aggregation_type(name = "Aggregation type") = "max";
 
 base resource<dice_roll> dice_roll(name = "Dice") = null;
 
+base bool roll_scales_with_level(name = "Roll scales with level") = false;
+
+base integer roll_scale_start_level(name = "Roll scaling start level") = 1;
+
+base integer roll_scale_interval_levels(name = "Roll scaling interval levels") = 1;
+
+base integer roll_scale_dice_amount_per_step(name = "Roll scaling dice amount per step") =
+  0;
+
+base integer roll_scale_constant_per_step(name = "Roll scaling constant per step") =
+  0;
+
 base integer constant(name = "Constant") = 0;
 
 base resource<spell> spell(name = "Spell") = null;
@@ -277,6 +289,48 @@ calc bool condition_set_bool_value(name = "Condition set bool value") =
 calc integer effect_description_amount(name = "Effect description amount") =
   if is_passive then constant else 0;
 
+calc integer roll_scaling_steps(name = "Roll scaling steps") =
+  if roll_scales_with_level && current_level >= roll_scale_start_level
+    then 1 + divide(
+        [current_level - roll_scale_start_level, max([1, roll_scale_interval_levels])],
+        rounding_method = "down",
+      )
+    else 0;
+
+calc string effective_roll_dice_type(name = "Effective roll dice type") =
+  dice_roll?.dice_type ?? "d4";
+
+calc integer effective_roll_dice_amount(name = "Effective roll dice amount") =
+  max(
+    [
+      0,
+      (dice_roll?.dice_amount ?? 0) + (roll_scaling_steps * roll_scale_dice_amount_per_step),
+    ],
+  );
+
+calc integer effective_roll_constant(name = "Effective roll constant") =
+  (dice_roll?.constant ?? 0) + (roll_scaling_steps * roll_scale_constant_per_step);
+
+calc string effect_roll_formula(name = "Effect roll formula") =
+  trim(
+    concat(
+      flatAppend(
+        [
+          (if effective_roll_dice_amount != 0
+            then [effective_roll_dice_amount, effective_roll_dice_type]
+            else []),
+          (if effective_roll_constant <= 0 then [" "] else [" + "]),
+          (if effective_roll_constant != 0 || effective_roll_dice_amount == 0
+            then [effective_roll_constant]
+            else []),
+        ],
+      ),
+    ),
+  );
+
+calc string effect_amount_for_apply(name = "Effect amount for apply") =
+  if is_passive || isEmpty(effect_roll_formula) then concat(["", constant]) else effect_roll_formula;
+
 calc string effect_description(name = "Effect description") =
   when {
     type == "none" -> if defined(stat = "$character")
@@ -285,7 +339,7 @@ calc string effect_description(name = "Effect description") =
     type == "add_to_stat" -> concat(
       [
         "Add ",
-        (if is_passive then constant else dice_roll.formula),
+        effect_amount_for_apply,
         " to ",
         enumeratedName(enumerated_type = "effect_character_stats", id = stat),
       ],
@@ -313,7 +367,7 @@ calc string effect_description(name = "Effect description") =
         "Set ",
         enumeratedName(enumerated_type = "effect_character_stats", id = stat),
         " to ",
-        (if is_passive then constant else dice_roll.formula),
+        effect_amount_for_apply,
       ],
     ),
     type == "grant_proficiency" -> concat(
@@ -362,7 +416,7 @@ calc string effect_description(name = "Effect description") =
     type == "roll" -> concat(
       [
         "Roll ",
-        (if defined(stat = "dice_roll.formula") then dice_roll.formula else "dice"),
+        (if !isEmpty(effect_roll_formula) then effect_roll_formula else "dice"),
       ],
     ),
     type == "add_spell" -> concat(

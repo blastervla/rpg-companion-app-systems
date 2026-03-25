@@ -26,6 +26,56 @@ view class_progression_edit() =
           then "You have an unselected class. Select a class or remove it."
           else null,
       ),
+      popUpButton(
+        id = "class_progression_edit_see_deity_button",
+        text = "SEE DEITY",
+        pop_up_view = resource(
+          id = "class_progression_edit_see_deity_bottom_sheet",
+          view_type = "display",
+          resource_id = "deity",
+          stat = "$view.class_progression_edit_deity_select",
+        ),
+        pop_up_title = $view?.class_progression_edit_deity_select?.name ?? "Deity",
+        display_cancel_button = true,
+        cancel_text = "OK",
+        is_visible = ($view?.class_progression_edit_class_select?.requires_deity ?? false)
+          && notNull($view?.class_progression_edit_deity_select?),
+      ),
+      selectResources(
+        id = "class_progression_edit_deity_select",
+        stat = "selected_deity",
+        resource_id = "deity",
+        margin_left = 4,
+        validation_message = if ($view?.class_progression_edit_class_select?.requires_deity ?? false)
+            && isNull($view.class_progression_edit_deity_select)
+          then "This class requires selecting a deity."
+          else null,
+        is_visible = $view?.class_progression_edit_class_select?.requires_deity ?? false,
+      ),
+      text(
+        id = "class_progression_edit_deity_font_select_label",
+        margin_left = 4,
+        text = "Font: ",
+        style = "text",
+        is_visible = ($view?.class_progression_edit_class_select?.requires_deity ?? false)
+          && length($view?.class_progression_edit_deity_select?.font_options ?? []) > 1,
+      ),
+      select(
+        id = "class_progression_edit_deity_font_select",
+        stat = "selected_deity_font",
+        allowed_options = $view?.class_progression_edit_deity_select?.font_options ?? [],
+        options = "spell_font",
+        is_visible = ($view?.class_progression_edit_class_select?.requires_deity ?? false)
+          && length($view?.class_progression_edit_deity_select?.font_options ?? []) > 1,
+      ),
+      text(
+        id = "class_progression_edit_archetype_select_label",
+        margin_left = 4,
+        text = "Archetype: ",
+        style = "text",
+        is_visible = !isEmpty(($view.class_progression_edit_class_select?.archetypes ?? []))
+          && ($view.class_progression_edit_class_level? ?? 1) >= ($view.class_progression_edit_class_select?.archetype_selection_level ?? 0),
+      ),
       select(
         id = "class_progression_edit_archetype_select",
         stat = "archetype_id",
@@ -34,6 +84,13 @@ view class_progression_edit() =
         options_display_stat = "name",
         is_visible = !isEmpty(($view.class_progression_edit_class_select?.archetypes ?? []))
           && ($view.class_progression_edit_class_level? ?? 1) >= ($view.class_progression_edit_class_select?.archetype_selection_level ?? 0),
+      ),
+      text(
+        id = "class_progression_edit_class_key_ability_select_label",
+        margin_left = 4,
+        text = "Key ability: ",
+        style = "text",
+        is_visible = length($view?.class_progression_edit_class_select?.actual_class_key_ability_options ?? []) > 1,
       ),
       select(
         id = "class_progression_edit_class_key_ability_select",
