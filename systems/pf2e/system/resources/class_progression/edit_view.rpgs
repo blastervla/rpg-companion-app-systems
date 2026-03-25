@@ -69,23 +69,6 @@ view class_progression_edit() =
           && length($view?.class_progression_edit_deity_select?.font_options ?? []) > 1,
       ),
       text(
-        id = "class_progression_edit_archetype_select_label",
-        margin_left = 4,
-        text = "Archetype: ",
-        style = "text",
-        is_visible = !isEmpty(($view.class_progression_edit_class_select?.archetypes ?? []))
-          && ($view.class_progression_edit_class_level? ?? 1) >= ($view.class_progression_edit_class_select?.archetype_selection_level ?? 0),
-      ),
-      select(
-        id = "class_progression_edit_archetype_select",
-        stat = "archetype_id",
-        margin_left = 4,
-        resource_options = $view.class_progression_edit_class_select?.archetypes ?? [],
-        options_display_stat = "name",
-        is_visible = !isEmpty(($view.class_progression_edit_class_select?.archetypes ?? []))
-          && ($view.class_progression_edit_class_level? ?? 1) >= ($view.class_progression_edit_class_select?.archetype_selection_level ?? 0),
-      ),
-      text(
         id = "class_progression_edit_class_key_ability_select_label",
         margin_left = 4,
         text = "Key ability: ",

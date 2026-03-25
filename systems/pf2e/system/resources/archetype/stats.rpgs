@@ -31,18 +31,10 @@ calc resource<progression_grant>[] progression_grants_for_current_level(name = "
     filter = ($filterValue) => ($filterValue.level <= ($character?.level ?? 1)),
   );
 
-calc bool is_eligible_for_current_character_classes(name = "Eligible for current character classes") =
-  if !defined(stat = "$character")
-    then true
-    else !is_class_archetype
-      || isEmpty(required_class_id)
-      || contains(
-          haystack = map(
-            $character.classes,
-            mapper = ($mapValue) => $mapValue.class?.id ?? "",
-          ),
-          needle = required_class_id,
-        );
+calc resource<feat>[] auto_feats_for_current_level(name = "Auto-granted feats for current level") =
+  if !is_class_archetype
+    then []
+    else filter(feats, filter = ($f) => $f.min_level <= ($character?.level ?? 1));
 
 calc string list_view_description(name = "List view description") = description;
 

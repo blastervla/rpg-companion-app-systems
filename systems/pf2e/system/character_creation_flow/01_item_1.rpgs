@@ -7,7 +7,7 @@ character_creation_page edit_basics_title() =
       subviews = [
         text(
           id = "edit_character_basics_subheader",
-          text = "What's your name, ancestry, heritage and class?",
+          text = "What's your name, ancestry, background and class?",
           style = "subhead",
         ),
         text(
@@ -21,73 +21,9 @@ character_creation_page edit_basics_title() =
             else null,
         ),
         text(
-          id = "edit_character_basics_class_subheader",
-          text = "What's your class?",
-          style = "subhead",
-        ),
-        resourceArray(
-          id = "edit_character_basics_classes",
-          resource_id = "class_progression",
-          stat = "classes",
-          view_type = "edit",
-          auto_add_first = true,
-          left_view = text(
-            id = "edit_character_basics_classes_label",
-            text = "Class: ",
-            style = "text",
-          ),
-          validation_message = when {
-            isEmpty($view.edit_character_basics_classes) -> "Please pick at least one class",
-            length($view.edit_character_basics_classes) != 1 -> "Pathfinder 2e uses a single class progression. Please select exactly one class.",
-            or(
-            map(
-              $view.edit_character_basics_classes,
-              mapper = ($class) => (length(
-                filter(
-                  $view.edit_character_basics_classes,
-                  filter = ($filterValue) => ($class.$view.class_progression_edit_class_select.name == $filterValue.$view.class_progression_edit_class_select.name),
-                ),
-              ) != 1),
-            ),
-          ) -> "It looks like you have selected the same class multiple times. Please remove one of the duplicates.",
-            else -> null,
-          },
-        ),
-        text(
           id = "edit_character_basics_origin_subheader",
-          text = "What's your origin?",
+          text = "What's your ancestry & background?",
           style = "subhead",
-        ),
-        composite(
-          id = "edit_character_basics_background_composite",
-          alignment = "end",
-          margin_bottom = 4,
-          subviews = [
-            popUpButton(
-              id = "edit_character_basics_see_background_button",
-              text = "SEE DETAILS",
-              pop_up_view = resource(
-                id = "edit_character_basics_see_background_bottom_sheet",
-                view_type = "display",
-                resource_id = "background",
-                stat = "$view.edit_character_basics_background_select",
-              ),
-              pop_up_title = $view?.edit_character_basics_background_select?.name ?? "Background",
-              display_cancel_button = true,
-              cancel_text = "OK",
-              is_visible = $view?.edit_character_basics_background_select? != null,
-            ),
-            selectResources(
-              id = "edit_character_basics_background_select",
-              stat = "background",
-              resource_id = "background",
-              margin_right = 4,
-              margin_bottom = 4,
-              validation_message = if !notNull($view.edit_character_basics_background_select)
-                then "Please pick a background"
-                else null,
-            ),
-          ],
         ),
         composite(
           id = "edit_character_basics_ancestry_heritage_composite",
@@ -124,8 +60,8 @@ character_creation_page edit_basics_title() =
               filters = dict(
                 ancestry_filter_tags = filter(
                   [
-                    $view.edit_character_basics_ancestry_select?.id? ?? "",
-                    "__versatile__",
+                    $view?.edit_character_basics_ancestry_select?.name? ?? "",
+                    "versatile",
                   ],
                   filter = ($filterValue) => $filterValue != ""
                 ),
@@ -133,6 +69,70 @@ character_creation_page edit_basics_title() =
               is_visible = notNull($view.edit_character_basics_ancestry_select),
             ),
           ],
+        ),
+        composite(
+          id = "edit_character_basics_background_composite",
+          alignment = "end",
+          margin_bottom = 4,
+          subviews = [
+            popUpButton(
+              id = "edit_character_basics_see_background_button",
+              text = "SEE DETAILS",
+              pop_up_view = resource(
+                id = "edit_character_basics_see_background_bottom_sheet",
+                view_type = "display",
+                resource_id = "background",
+                stat = "$view.edit_character_basics_background_select",
+              ),
+              pop_up_title = $view?.edit_character_basics_background_select?.name ?? "Background",
+              display_cancel_button = true,
+              cancel_text = "OK",
+              is_visible = $view?.edit_character_basics_background_select? != null,
+            ),
+            selectResources(
+              id = "edit_character_basics_background_select",
+              stat = "background",
+              resource_id = "background",
+              margin_right = 4,
+              margin_bottom = 4,
+              validation_message = if !notNull($view.edit_character_basics_background_select)
+                then "Please pick a background"
+                else null,
+            ),
+          ],
+        ),
+        text(
+          id = "edit_character_basics_class_subheader",
+          text = "What's your class?",
+          style = "subhead",
+        ),
+        resourceArray(
+          id = "edit_character_basics_classes",
+          resource_id = "class_progression",
+          stat = "classes",
+          view_type = "edit",
+          auto_add_first = true,
+          left_view = text(
+            id = "edit_character_basics_classes_label",
+            text = "Class: ",
+            style = "text",
+          ),
+          validation_message = when {
+            isEmpty($view.edit_character_basics_classes) -> "Please pick at least one class",
+            length($view.edit_character_basics_classes) != 1 -> "Pathfinder 2e uses a single class progression. Please select exactly one class.",
+            or(
+            map(
+              $view.edit_character_basics_classes,
+              mapper = ($class) => (length(
+                filter(
+                  $view.edit_character_basics_classes,
+                  filter = ($filterValue) => ($class.$view.class_progression_edit_class_select.name == $filterValue.$view.class_progression_edit_class_select.name),
+                ),
+              ) != 1),
+            ),
+          ) -> "It looks like you have selected the same class multiple times. Please remove one of the duplicates.",
+            else -> null,
+          },
         ),
         composite(
           id = "edit_character_basics_hit_point_composite",

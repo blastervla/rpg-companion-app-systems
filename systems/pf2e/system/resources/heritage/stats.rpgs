@@ -12,7 +12,7 @@ calc string[] ancestry_filter_tags(name = "Ancestry filter tags") =
   flatAppend(
     [
       allowed_ancestries,
-      (if is_versatile then ["__versatile__"] else []),
+      (if is_versatile then ["versatile"] else []),
     ],
     treat_as_set = true,
   );

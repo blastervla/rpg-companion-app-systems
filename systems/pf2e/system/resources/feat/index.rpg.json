@@ -16,9 +16,9 @@
     "ancestries",
     "heritages",
     "ancestry_heritage_filter_tags",
-    "is_eligible_for_selected_ancestry_or_heritage",
     "is_eligible_for_background_selection",
-    "archetypes"
+    "archetypes",
+    "available_at_character_levels"
   ],
   "search_filters": [
     {
@@ -33,12 +33,6 @@
       "options": "feat_types"
     },
     {
-      "name": "Current ancestry/heritage eligibility",
-      "stat": "is_eligible_for_selected_ancestry_or_heritage",
-      "true_name": "Eligible for current ancestry/heritage",
-      "false_name": "Not eligible for current ancestry/heritage"
-    },
-    {
       "name": "Background-eligible",
       "stat": "is_eligible_for_background_selection",
       "true_name": "Background-eligible",
@@ -50,10 +44,18 @@
       "options": "feat_action_costs"
     },
     {
+      "name": "Ancestry",
+      "stat": "ancestries",
+      "options": "ancestry",
+      "options_display_stat": "name",
+      "extra_options": "feat_ancestry_heritage_filter_tags_extra_options"
+    },
+    {
       "name": "Heritage",
       "stat": "heritages",
       "options": "heritage",
-      "options_display_stat": "name"
+      "options_display_stat": "name",
+      "extra_options": "feat_ancestry_heritage_filter_tags_extra_options"
     },
     {
       "name": "Archetype",
