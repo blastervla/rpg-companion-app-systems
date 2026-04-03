@@ -76,7 +76,7 @@ character_creation_page edit_basics_title() =
               mapper = ($class) => (length(
                 filter(
                   classes,
-                  filter = ($filterValue) => ($class.$view.class_details_edit_class_select.name == $filterValue.class.name),
+                  filter = ($filterValue) => ($class?.$view?.class_details_edit_class_select.name == $filterValue.class.name),
                 ),
               ) == 0),
             ),
@@ -87,7 +87,7 @@ character_creation_page edit_basics_title() =
               mapper = ($class) => (length(
                 filter(
                   $view.edit_character_basics_classes,
-                  filter = ($filterValue) => ($class.$view.class_details_edit_class_select.name == $filterValue.$view.class_details_edit_class_select.name),
+                  filter = ($filterValue) => ($class?.$view?.class_details_edit_class_select.name == $filterValue?.$view?.class_details_edit_class_select.name),
                 ),
               ) != 1),
             ),
