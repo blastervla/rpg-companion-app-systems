@@ -6,8 +6,80 @@ mechanic trigger_daily_preparations(event_names = "trigger_daily_preparations") 
       subviews = [
         text(
           id = "daily_preparations_description",
-          text = "Run daily preparations to reset core daily resources and refresh temporary daily feature choices.",
+          text = "Run daily preparations to reset core daily resources, refresh temporary daily feature choices, and clear prepared spell usage counters.",
           style = "text",
+        ),
+        text(
+          id = "daily_preparations_prepared_help",
+          text = "Adjust prepared spell choices before pressing PREPARE.",
+          style = "caption",
+          is_visible = (primary_class_progression?.class?.actual_spellcasting_mode ?? "") == "prepared"
+            || (spellcasting_archetype_1?.actual_spellcasting_mode ?? "") == "prepared"
+            || (spellcasting_archetype_2?.actual_spellcasting_mode ?? "") == "prepared"
+            || (spellcasting_archetype_3?.actual_spellcasting_mode ?? "") == "prepared",
+        ),
+        popUpButton(
+          id = "daily_preparations_edit_primary_class_prepared",
+          text = concat(["Edit ", primary_class_progression?.class?.name ?? "Class", " prepared spells"]),
+          pop_up_view = resourceArray(
+            id = "daily_preparations_edit_primary_class_prepared_resource_array",
+            resource_id = "class_progression",
+            stat = "classes",
+            view_type = "edit",
+            allow_adds_and_removes = false,
+          ),
+          pop_up_title = concat(["Prepared Spells: ", primary_class_progression?.class?.name ?? "Class"]),
+          display_cancel_button = true,
+          display_save_button = true,
+          is_visible = (primary_class_progression?.class?.actual_spellcasting_mode ?? "") == "prepared",
+        ),
+        popUpButton(
+          id = "daily_preparations_edit_archetype_prepared_1",
+          text = concat(["Edit ", spellcasting_archetype_1?.name ?? "Archetype", " prepared spells"]),
+          pop_up_view = resourceArray(
+            id = "daily_preparations_edit_archetype_prepared_1_resource_array",
+            resource_id = "archetype",
+            stat = "archetypes",
+            view_type = "edit",
+            allow_adds_and_removes = false,
+          ),
+          pop_up_title = concat(["Prepared Spells: ", spellcasting_archetype_1?.name ?? "Archetype"]),
+          display_cancel_button = true,
+          display_save_button = true,
+          is_visible = notNull(spellcasting_archetype_1)
+            && (spellcasting_archetype_1?.actual_spellcasting_mode ?? "") == "prepared",
+        ),
+        popUpButton(
+          id = "daily_preparations_edit_archetype_prepared_2",
+          text = concat(["Edit ", spellcasting_archetype_2?.name ?? "Archetype", " prepared spells"]),
+          pop_up_view = resourceArray(
+            id = "daily_preparations_edit_archetype_prepared_2_resource_array",
+            resource_id = "archetype",
+            stat = "archetypes",
+            view_type = "edit",
+            allow_adds_and_removes = false,
+          ),
+          pop_up_title = concat(["Prepared Spells: ", spellcasting_archetype_2?.name ?? "Archetype"]),
+          display_cancel_button = true,
+          display_save_button = true,
+          is_visible = notNull(spellcasting_archetype_2)
+            && (spellcasting_archetype_2?.actual_spellcasting_mode ?? "") == "prepared",
+        ),
+        popUpButton(
+          id = "daily_preparations_edit_archetype_prepared_3",
+          text = concat(["Edit ", spellcasting_archetype_3?.name ?? "Archetype", " prepared spells"]),
+          pop_up_view = resourceArray(
+            id = "daily_preparations_edit_archetype_prepared_3_resource_array",
+            resource_id = "archetype",
+            stat = "archetypes",
+            view_type = "edit",
+            allow_adds_and_removes = false,
+          ),
+          pop_up_title = concat(["Prepared Spells: ", spellcasting_archetype_3?.name ?? "Archetype"]),
+          display_cancel_button = true,
+          display_save_button = true,
+          is_visible = notNull(spellcasting_archetype_3)
+            && (spellcasting_archetype_3?.actual_spellcasting_mode ?? "") == "prepared",
         ),
         text(
           id = "daily_preparations_reselection_count",

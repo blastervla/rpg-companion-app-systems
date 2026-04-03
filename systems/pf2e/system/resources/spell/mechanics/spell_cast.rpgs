@@ -17,12 +17,30 @@ mechanic spell_cast(name = "Cast spell", event_names = "castSpell") =
           value = -focus_point_cost,
           aggregation_type = "set",
         ),
-        can_cast && is_archetype_spell && !is_cantrip && !is_focus_spell -> sequence(
+        can_cast
+          && selected_spellcasting_mode == "prepared"
+          && !is_cantrip
+          && !is_focus_spell
+          && is_archetype_spell
+          && notNull(selected_spellcasting_archetype_source) -> sequence(
           effects = [
             setStat(
-              stat = "$character.archetype_slot_target_rank",
+              stat = "$character.temp_spell_cast_spell_id",
+              new_value = id,
+              aggregation_type = "set",
+            ),
+            setStat(
+              stat = "$character.temp_spell_cast_rank",
               new_value = selected_cast_level,
               aggregation_type = "set",
+            ),
+            fireEvent(
+              event_names = [
+                eventName(
+                  event_name = "consume_prepared_spell",
+                  for_resource = selected_spellcasting_archetype_source,
+                ),
+              ],
             ),
             fireEvent(
               event_names = [
@@ -34,10 +52,89 @@ mechanic spell_cast(name = "Cast spell", event_names = "castSpell") =
             ),
           ],
         ),
-        can_cast && is_class_spell && character_spell_slots_defined && !is_cantrip && !is_focus_spell -> addToStat(
+        can_cast && selected_spellcasting_mode == "prepared" && !is_cantrip && !is_focus_spell && is_class_spell
+          && notNull(selected_spellcasting_class_source) -> sequence(
+          effects = [
+            setStat(
+              stat = "$character.temp_spell_cast_spell_id",
+              new_value = id,
+              aggregation_type = "set",
+            ),
+            setStat(
+              stat = "$character.temp_spell_cast_rank",
+              new_value = selected_cast_level,
+              aggregation_type = "set",
+            ),
+            fireEvent(
+              event_names = [
+                eventName(
+                  event_name = "consume_prepared_spell",
+                  for_resource = selected_spellcasting_class_source,
+                ),
+              ],
+            ),
+            when {
+              character_spell_slots_defined -> addToStat(
+                meta_stat = selected_spell_slots_stat_name,
+                value = -1,
+                aggregation_type = "set",
+              ),
+            },
+          ],
+        ),
+        can_cast
+          && is_archetype_spell
+          && !is_cantrip
+          && !is_focus_spell
+          && notNull(selected_spellcasting_archetype_source) -> sequence(
+          effects = [
+            setStat(
+              stat = "$character.temp_spell_cast_rank",
+              new_value = selected_cast_level,
+              aggregation_type = "set",
+            ),
+            fireEvent(
+              event_names = [
+                eventName(
+                  event_name = "decrement_spell_slot",
+                  for_resource = selected_spellcasting_archetype_source,
+                ),
+              ],
+            ),
+            setStat(
+              stat = "$character.temp_spell_cast_rank",
+              new_value = 0,
+              aggregation_type = "set",
+            ),
+          ],
+        ),
+        can_cast && is_class_spell && notNull(selected_spellcasting_class_source)
+          && character_spell_slots_defined && !is_cantrip && !is_focus_spell -> addToStat(
           meta_stat = selected_spell_slots_stat_name,
           value = -1,
           aggregation_type = "set",
+        ),
+      },
+      when {
+        can_cast -> sequence(
+          effects = [
+            setStat(
+              stat = "$character.temp_spell_cast_spell_id",
+              new_value = "",
+              aggregation_type = "set",
+            ),
+            setStat(
+              stat = "$character.temp_spell_cast_rank",
+              new_value = 0,
+              aggregation_type = "set",
+            ),
+          ],
+        ),
+      },
+      when {
+        can_cast && has_restricted_slot_grant_warning -> showMessage(
+          message = restricted_slot_grant_warning_text,
+          message_type = "info",
         ),
       },
       when {

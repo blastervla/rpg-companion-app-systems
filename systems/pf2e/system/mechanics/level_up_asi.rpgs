@@ -3,19 +3,14 @@ mechanic level_up_asi(event_names = "level_up_asi") =
     is_temp_asi_selection_valid -> sequence(
       effects = [
         forEach(
-          components = flatAppend(
+          components = filter(
             [
-              filter(
-                [
-                  temp_asi_selection_1,
-                  temp_asi_selection_2,
-                  temp_asi_selection_3,
-                  temp_asi_selection_4,
-                ],
-                filter = ($filterValue) => !isEmpty($filterValue),
-              ),
+              temp_asi_selection_1,
+              temp_asi_selection_2,
+              temp_asi_selection_3,
+              temp_asi_selection_4,
             ],
-            treat_as_set = true,
+            filter = ($filterValue) => !isEmpty($filterValue),
           ),
           apply = addToStat(
             meta_stat = concat([$forEachValue, "_score"]),
@@ -28,7 +23,7 @@ mechanic level_up_asi(event_names = "level_up_asi") =
         setStat(stat = "temp_asi_selection_3", new_value = null, aggregation_type = "set"),
         setStat(stat = "temp_asi_selection_4", new_value = null, aggregation_type = "set"),
         addToStat(
-          stat = "spent_ability_boost_grants",
+          stat = "spent_ability_boost_grants_level_up",
           value = asi_selection_count_required,
           aggregation_type = "set",
         ),

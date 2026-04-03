@@ -911,7 +911,7 @@ calc integer worn_armor_speed_modifier(name = "Worn armor speed modifier (penalt
 calc integer level(name = "Level", abbreviation = "Lvl.") =
   add(map(classes, mapper = ($class) => $class.class_level));
 
-calc integer[] level_singleton(name = "Level as singleton array") = [level];
+calc string[] level_singleton(name = "Level as singleton array") = ["" + level];
 
 calc integer armor_class(name = "Armor Class", abbreviation = "AC") =
   (if wearing_body_armor then equipped_armor_ac else unarmored_ac) + shield_ac_bonus + armor_class_typed_modifier_total;
@@ -1050,18 +1050,24 @@ calc resource<armor> equipped_shield(name = "Equipped shield") =
 calc integer perception_dc(name = "Perception DC", abbreviation = "PDC") =
   10 + perception + perception_dc_typed_modifier_total;
 
-base string initiative_stat(name = "Initiative source stat") = "perception";
+base string initiative_stat(name = "Initiative source stat override") = "";
+
+calc string default_initiative_stat(name = "Default initiative source stat") =
+  if stealth > perception then "stealth" else "perception";
+
+calc string effective_initiative_stat(name = "Effective initiative source stat") =
+  if isEmpty(initiative_stat) then default_initiative_stat else initiative_stat;
 
 calc string initiative_stat_display(name = "Initiative source stat display") =
   enumeratedName(
     enumerated_type = "initiative_sources",
-    id = initiative_stat,
+    id = effective_initiative_stat,
   );
 
 calc integer initiative(name = "Initiative", abbreviation = "Ini.") =
   when {
-    initiative_stat == "perception" -> perception,
-    else -> metaStat(meta_stat = initiative_stat),
+    effective_initiative_stat == "perception" -> perception,
+    else -> metaStat(meta_stat = effective_initiative_stat),
   }
   + initiative_typed_modifier_total;
 
@@ -1102,6 +1108,147 @@ calc integer wisdom_modifier(name = "Wisdom", abbreviation = "WIS") =
 
 calc integer charisma_modifier(name = "Charisma", abbreviation = "CHA") =
   divide([(charisma_score + -10), 2], rounding_method = "down");
+
+calc string[] creator_step_2_assigned_ability_boosts(name = "Creator step 2 assigned ability boosts") =
+  flatMap(
+    filter(
+      all_interactive_progression_grants_for_current_level,
+      filter = ($grant) => $grant.bucket == "ability_boost",
+    ),
+    mapper = ($grant) => ($grant?.$view?.progression_grant_edit_ability_boost_select ?? $grant.assigned_ability_boosts),
+  );
+
+calc integer creator_preview_strength_score(name = "Creator preview STR score") =
+  strength_score
+    + add(
+        map(
+          filter(
+            creator_ability_score_increases,
+            filter = ($asi) => $asi.temp_selected_modifier == "strength",
+          ),
+          mapper = ($asi) => $asi.value,
+        ),
+      )
+    + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "strength")) * 2;
+
+calc integer creator_preview_dexterity_score(name = "Creator preview DEX score") =
+  dexterity_score
+    + add(
+        map(
+          filter(
+            creator_ability_score_increases,
+            filter = ($asi) => $asi.temp_selected_modifier == "dexterity",
+          ),
+          mapper = ($asi) => $asi.value,
+        ),
+      )
+    + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "dexterity")) * 2;
+
+calc integer creator_preview_constitution_score(name = "Creator preview CON score") =
+  constitution_score
+    + add(
+        map(
+          filter(
+            creator_ability_score_increases,
+            filter = ($asi) => $asi.temp_selected_modifier == "constitution",
+          ),
+          mapper = ($asi) => $asi.value,
+        ),
+      )
+    + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "constitution")) * 2;
+
+calc integer creator_preview_intelligence_score(name = "Creator preview INT score") =
+  intelligence_score
+    + add(
+        map(
+          filter(
+            creator_ability_score_increases,
+            filter = ($asi) => $asi.temp_selected_modifier == "intelligence",
+          ),
+          mapper = ($asi) => $asi.value,
+        ),
+      )
+    + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "intelligence")) * 2;
+
+calc integer creator_preview_wisdom_score(name = "Creator preview WIS score") =
+  wisdom_score
+    + add(
+        map(
+          filter(
+            creator_ability_score_increases,
+            filter = ($asi) => $asi.temp_selected_modifier == "wisdom",
+          ),
+          mapper = ($asi) => $asi.value,
+        ),
+      )
+    + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "wisdom")) * 2;
+
+calc integer creator_preview_charisma_score(name = "Creator preview CHA score") =
+  charisma_score
+    + add(
+        map(
+          filter(
+            creator_ability_score_increases,
+            filter = ($asi) => $asi.temp_selected_modifier == "charisma",
+          ),
+          mapper = ($asi) => $asi.value,
+        ),
+      )
+    + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "charisma")) * 2;
+
+calc integer creator_preview_strength_modifier(name = "Creator preview STR modifier") =
+  divide([(creator_preview_strength_score + -10), 2], rounding_method = "down");
+
+calc integer creator_preview_dexterity_modifier(name = "Creator preview DEX modifier") =
+  divide([(creator_preview_dexterity_score + -10), 2], rounding_method = "down");
+
+calc integer creator_preview_constitution_modifier(name = "Creator preview CON modifier") =
+  divide([(creator_preview_constitution_score + -10), 2], rounding_method = "down");
+
+calc integer creator_preview_intelligence_modifier(name = "Creator preview INT modifier") =
+  divide([(creator_preview_intelligence_score + -10), 2], rounding_method = "down");
+
+calc integer creator_preview_wisdom_modifier(name = "Creator preview WIS modifier") =
+  divide([(creator_preview_wisdom_score + -10), 2], rounding_method = "down");
+
+calc integer creator_preview_charisma_modifier(name = "Creator preview CHA modifier") =
+  divide([(creator_preview_charisma_score + -10), 2], rounding_method = "down");
+
+calc string creator_ability_modifiers_row_1(name = "Creator ability modifiers row 1") =
+  concat(
+    [
+      "STR ",
+      (if creator_preview_strength_modifier >= 0
+        then concat(["+", creator_preview_strength_modifier])
+        else concat(["", creator_preview_strength_modifier])),
+      "  ·  DEX ",
+      (if creator_preview_dexterity_modifier >= 0
+        then concat(["+", creator_preview_dexterity_modifier])
+        else concat(["", creator_preview_dexterity_modifier])),
+      "  ·  CON ",
+      (if creator_preview_constitution_modifier >= 0
+        then concat(["+", creator_preview_constitution_modifier])
+        else concat(["", creator_preview_constitution_modifier])),
+    ],
+  );
+
+calc string creator_ability_modifiers_row_2(name = "Creator ability modifiers row 2") =
+  concat(
+    [
+      "INT ",
+      (if creator_preview_intelligence_modifier >= 0
+        then concat(["+", creator_preview_intelligence_modifier])
+        else concat(["", creator_preview_intelligence_modifier])),
+      "  ·  WIS ",
+      (if creator_preview_wisdom_modifier >= 0
+        then concat(["+", creator_preview_wisdom_modifier])
+        else concat(["", creator_preview_wisdom_modifier])),
+      "  ·  CHA ",
+      (if creator_preview_charisma_modifier >= 0
+        then concat(["+", creator_preview_charisma_modifier])
+        else concat(["", creator_preview_charisma_modifier])),
+    ],
+  );
 
 calc resource<weapon>[] all_weapons(name = "All weapons (including racial and class weapons)") =
   flatAppend(
@@ -1146,136 +1293,74 @@ calc resource<spell>[] sorted_spells(name = "Sorted spells") =
 calc resource<spell>[] cantrips(name = "Cantrips") =
   filter(
     sorted_spells,
-    filter = ($filterValue) => ("spell_level_0" == $filterValue.level),
+    filter = ($filterValue) => ("spell_level_0" == $filterValue.level && $filterValue.passes_spells_section_filters),
   );
 
 calc resource<spell>[] level_1_spells(name = "Level 1 spells") =
-  flatAppend(
-    [
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_1" == $filterValue.level && $filterValue.prepared),
-      ),
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_1" == $filterValue.level && !$filterValue.prepared),
-      ),
-    ],
+  filter(
+    sorted_spells,
+    filter = ($filterValue) => ("spell_level_1" == $filterValue.level && $filterValue.passes_spells_section_filters),
   );
 
 calc resource<spell>[] level_2_spells(name = "Level 2 spells") =
-  flatAppend(
-    [
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_2" == $filterValue.level && $filterValue.prepared),
-      ),
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_2" == $filterValue.level && !$filterValue.prepared),
-      ),
-    ],
+  filter(
+    sorted_spells,
+    filter = ($filterValue) => ("spell_level_2" == $filterValue.level && $filterValue.passes_spells_section_filters),
   );
 
 calc resource<spell>[] level_3_spells(name = "Level 3 spells") =
-  flatAppend(
-    [
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_3" == $filterValue.level && $filterValue.prepared),
-      ),
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_3" == $filterValue.level && !$filterValue.prepared),
-      ),
-    ],
+  filter(
+    sorted_spells,
+    filter = ($filterValue) => ("spell_level_3" == $filterValue.level && $filterValue.passes_spells_section_filters),
   );
 
 calc resource<spell>[] level_4_spells(name = "Level 4 spells") =
-  flatAppend(
-    [
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_4" == $filterValue.level && $filterValue.prepared),
-      ),
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_4" == $filterValue.level && !$filterValue.prepared),
-      ),
-    ],
+  filter(
+    sorted_spells,
+    filter = ($filterValue) => ("spell_level_4" == $filterValue.level && $filterValue.passes_spells_section_filters),
   );
 
 calc resource<spell>[] level_5_spells(name = "Level 5 spells") =
-  flatAppend(
-    [
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_5" == $filterValue.level && $filterValue.prepared),
-      ),
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_5" == $filterValue.level && !$filterValue.prepared),
-      ),
-    ],
+  filter(
+    sorted_spells,
+    filter = ($filterValue) => ("spell_level_5" == $filterValue.level && $filterValue.passes_spells_section_filters),
   );
 
 calc resource<spell>[] level_6_spells(name = "Level 6 spells") =
-  flatAppend(
-    [
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_6" == $filterValue.level && $filterValue.prepared),
-      ),
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_6" == $filterValue.level && !$filterValue.prepared),
-      ),
-    ],
+  filter(
+    sorted_spells,
+    filter = ($filterValue) => ("spell_level_6" == $filterValue.level && $filterValue.passes_spells_section_filters),
   );
 
 calc resource<spell>[] level_7_spells(name = "Level 7 spells") =
-  flatAppend(
-    [
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_7" == $filterValue.level && $filterValue.prepared),
-      ),
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_7" == $filterValue.level && !$filterValue.prepared),
-      ),
-    ],
+  filter(
+    sorted_spells,
+    filter = ($filterValue) => ("spell_level_7" == $filterValue.level && $filterValue.passes_spells_section_filters),
   );
 
 calc resource<spell>[] level_8_spells(name = "Level 8 spells") =
-  flatAppend(
-    [
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_8" == $filterValue.level && $filterValue.prepared),
-      ),
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_8" == $filterValue.level && !$filterValue.prepared),
-      ),
-    ],
+  filter(
+    sorted_spells,
+    filter = ($filterValue) => ("spell_level_8" == $filterValue.level && $filterValue.passes_spells_section_filters),
   );
 
 calc resource<spell>[] level_9_spells(name = "Level 9 spells") =
-  flatAppend(
-    [
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_9" == $filterValue.level && $filterValue.prepared),
-      ),
-      filter(
-        sorted_spells,
-        filter = ($filterValue) => ("spell_level_9" == $filterValue.level && !$filterValue.prepared),
-      ),
-    ],
+  filter(
+    sorted_spells,
+    filter = ($filterValue) => ("spell_level_9" == $filterValue.level && $filterValue.passes_spells_section_filters),
+  );
+
+calc resource<spell>[] level_10_spells(name = "Level 10 spells") =
+  filter(
+    sorted_spells,
+    filter = ($filterValue) => ("spell_level_10" == $filterValue.level && $filterValue.passes_spells_section_filters),
   );
 
 base resource<spell>[] spells(name = "Spells") = [];
+
+base bool spells_show_prepared_only(name = "Spells section: show prepared only") = false;
+
+base bool spells_hide_fully_expended_prepared(name = "Spells section: hide fully expended prepared") = false;
 
 base integer max_spell_slots_1_bonus(name = "Max rank 1 slots bonus") = 0;
 
@@ -1317,17 +1402,26 @@ base integer spell_slots_9(name = "Rank 9") = 0;
 
 base integer spell_slots_10(name = "Rank 10") = 0;
 
+calc resource<ancestry> creator_selected_ancestry(name = "Selected creator ancestry") =
+  if notNull(ancestry) then ancestry else $view?.edit_character_basics_ancestry_select?;
+
 calc resource<heritage> creator_selected_heritage(name = "Selected creator heritage") =
-  $view?.edit_character_basics_heritage_select?;
+  if notNull(heritage) then heritage else $view?.edit_character_basics_heritage_select?;
+
+calc resource<background> creator_selected_background(name = "Selected creator background") =
+  if notNull(background) then background else $view?.edit_character_basics_background_select?;
+
+calc resource<class_progression>[] creator_selected_classes(name = "Selected creator classes") =
+  if !isEmpty(classes) then classes else ($view?.edit_character_basics_classes ?? []);
 
 calc resource<ability_score_increase>[] creator_ability_score_increases(name = "Creator ability score increases") =
   flatAppend(
     [
-      $view?.edit_character_basics_ancestry_select?.ability_score_increases ?? [],
+      creator_selected_ancestry?.ability_score_increases ?? [],
       creator_selected_heritage?.ability_score_increases ?? [],
-      $view?.edit_character_basics_background_select?.ability_score_increases ?? [],
+      creator_selected_background?.ability_score_increases ?? [],
       flatMap(
-        classes,
+        creator_selected_classes,
         mapper = ($mapValue) => $mapValue.class?.ability_score_increases ?? [],
       ),
     ],
@@ -1341,7 +1435,7 @@ calc resource<levelled_choice_text>[] creator_language_proficiency_choices(name 
     [
       (ancestry?.language_proficiencies_for_current_level ?? []),
       flatMap(
-        classes,
+        creator_selected_classes,
         mapper = ($mapValue) => ($mapValue.class?.language_proficiencies_for_current_level ?? []),
       ),
       (background?.language_proficiencies_for_current_level ?? []),
@@ -1353,7 +1447,7 @@ calc resource<levelled_skill_proficiency>[] creator_skill_proficiency_choices(na
     [
       (ancestry?.skill_proficiencies_for_current_level ?? []),
       flatMap(
-        classes,
+        creator_selected_classes,
         mapper = ($mapValue) => ($mapValue.class?.skill_proficiencies_for_current_level ?? []),
       ),
       (background?.skill_proficiencies_for_current_level ?? []),
@@ -1382,7 +1476,7 @@ calc integer creator_additional_class_skill_choices_required(name = "Creator add
       0,
       add(
         flatMap(
-          classes,
+          creator_selected_classes,
           mapper = ($classProgression) => [
             max(
               [
@@ -1424,7 +1518,11 @@ calc string[] creator_additional_class_skill_choices_allowed_options(name = "Cre
       "survival",
       "thievery",
     ],
-    filter = ($filterValue) => (metaStat(meta_stat = concat([$filterValue, "_proficiency"])) == "none")
+    filter = ($filterValue) => (metaStat(meta_stat = concat([$filterValue, "_proficiency"])) == "none"
+      || contains(
+          haystack = creator_additional_class_skill_choices,
+          needle = $filterValue,
+        ))
       && !contains(
         haystack = creator_selected_skill_choices,
         needle = $filterValue,
@@ -1451,7 +1549,7 @@ calc resource<levelled_armor_proficiency>[] creator_armor_proficiency_choices(na
     [
       (ancestry?.armor_proficiencies_for_current_level ?? []),
       flatMap(
-        classes,
+        creator_selected_classes,
         mapper = ($mapValue) => ($mapValue.class?.armor_proficiencies_for_current_level ?? []),
       ),
       (background?.armor_proficiencies_for_current_level ?? []),
@@ -1467,7 +1565,7 @@ calc resource<levelled_weapon_proficiency>[] creator_weapon_proficiency_choices(
     [
       (ancestry?.weapon_proficiencies_for_current_level ?? []),
       flatMap(
-        classes,
+        creator_selected_classes,
         mapper = ($mapValue) => ($mapValue.class?.weapon_proficiencies_for_current_level ?? []),
       ),
       (background?.weapon_proficiencies_for_current_level ?? []),
@@ -1483,7 +1581,7 @@ calc resource<lore_skill>[] creator_lore_skill_choices(name = "Creator lore skil
     [
       (ancestry?.lore_skills_for_current_level ?? []),
       flatMap(
-        classes,
+        creator_selected_classes,
         mapper = ($mapValue) => ($mapValue.class?.lore_skills_for_current_level ?? []),
       ),
       (background?.lore_skills_for_current_level ?? []),
@@ -1497,7 +1595,7 @@ calc resource<lore_skill>[] creator_lore_skill_choices(name = "Creator lore skil
 calc resource<selectable_items>[] creator_starting_equipment_choices(name = "Creator starting equipment choices") =
   flatAppend(
     [
-      flatMap(classes, mapper = ($mapValue) => ($mapValue.class?.selectable_equipments ?? [])),
+      flatMap(creator_selected_classes, mapper = ($mapValue) => ($mapValue.class?.selectable_equipments ?? [])),
       (background?.selectable_equipments ?? []),
     ],
   );
@@ -1505,7 +1603,7 @@ calc resource<selectable_items>[] creator_starting_equipment_choices(name = "Cre
 calc resource<selectable_armors>[] creator_starting_armor_choices(name = "Creator starting armor choices") =
   flatAppend(
     [
-      flatMap(classes, mapper = ($mapValue) => ($mapValue.class?.selectable_armors ?? [])),
+      flatMap(creator_selected_classes, mapper = ($mapValue) => ($mapValue.class?.selectable_armors ?? [])),
       (background?.selectable_armors ?? []),
     ],
   );
@@ -1513,7 +1611,7 @@ calc resource<selectable_armors>[] creator_starting_armor_choices(name = "Creato
 calc resource<selectable_weapons>[] creator_starting_weapon_choices(name = "Creator starting weapon choices") =
   flatAppend(
     [
-      flatMap(classes, mapper = ($mapValue) => ($mapValue.class?.selectable_weapons ?? [])),
+      flatMap(creator_selected_classes, mapper = ($mapValue) => ($mapValue.class?.selectable_weapons ?? [])),
       (background?.selectable_weapons ?? []),
     ],
   );
@@ -1583,36 +1681,121 @@ base resource<feat>[] feats(name = "Feats") = [];
 
 base resource<archetype>[] archetypes(name = "Archetypes") = [];
 
-calc string[] selected_archetype_ids(name = "Selected archetype ids") =
-  map(archetypes, mapper = ($mapValue) => $mapValue.id);
+base bool enable_optional_class_archetypes(name = "Enable optional class archetypes") = false;
 
-calc string[] class_archetype_ids(name = "Class archetype ids") =
-  map(
-    filter(archetypes, filter = ($arch) => $arch.is_class_archetype),
-    mapper = ($arch) => $arch.id,
-  );
+base resource<archetype> class_archetype(name = "Class archetype") = null;
 
 calc resource<archetype>[] class_archetypes(name = "Class archetypes") =
-  filter(archetypes, filter = ($arch) => $arch.is_class_archetype);
+  if enable_optional_class_archetypes && notNull(class_archetype) then [class_archetype] else [];
+
+calc resource<archetype>[] slot_assigned_archetypes(name = "Archetypes assigned to slots") =
+  filter(
+    flatAppend([
+      flatMap(
+        classes,
+        mapper = ($c) => map(
+          filter(
+            $c.class?.progression_grants ?? [],
+            filter = ($g) => $g.bucket == "class_like_feat"
+              && $g.slot_mode == "archetype_new"
+              && notNull($g.assigned_archetype),
+          ),
+          mapper = ($g) => $g.assigned_archetype,
+        ),
+      ),
+      map(
+        filter(
+          ancestry?.progression_grants ?? [],
+          filter = ($g) => $g.bucket == "class_like_feat"
+            && $g.slot_mode == "archetype_new"
+            && notNull($g.assigned_archetype),
+        ),
+        mapper = ($g) => $g.assigned_archetype,
+      ),
+      map(
+        filter(
+          heritage?.progression_grants ?? [],
+          filter = ($g) => $g.bucket == "class_like_feat"
+            && $g.slot_mode == "archetype_new"
+            && notNull($g.assigned_archetype),
+        ),
+        mapper = ($g) => $g.assigned_archetype,
+      ),
+    ]),
+    filter = ($a) => notNull($a),
+  );
+
+calc resource<archetype>[] multiclass_archetypes(name = "Multiclass archetypes") =
+  flatAppend([
+    slot_assigned_archetypes,
+    filter(archetypes, filter = ($a) => !$a.is_class_archetype),
+  ]);
+
+calc resource<feat>[] slot_assigned_feats(name = "Feats assigned to slots") =
+  filter(
+    flatAppend([
+      flatMap(
+        classes,
+        mapper = ($c) => map(
+          filter(
+            $c.class?.progression_grants ?? [],
+            filter = ($g) => $g.is_feat_slot && notNull($g.assigned_feat),
+          ),
+          mapper = ($g) => $g.assigned_feat,
+        ),
+      ),
+      map(
+        filter(
+          ancestry?.progression_grants ?? [],
+          filter = ($g) => $g.is_feat_slot && notNull($g.assigned_feat),
+        ),
+        mapper = ($g) => $g.assigned_feat,
+      ),
+      map(
+        filter(
+          heritage?.progression_grants ?? [],
+          filter = ($g) => $g.is_feat_slot && notNull($g.assigned_feat),
+        ),
+        mapper = ($g) => $g.assigned_feat,
+      ),
+      flatMap(
+        multiclass_archetypes,
+        mapper = ($arch) => map(
+          filter(
+            $arch.progression_grants ?? [],
+            filter = ($g) => $g.is_feat_slot && notNull($g.assigned_feat),
+          ),
+          mapper = ($g) => $g.assigned_feat,
+        ),
+      ),
+    ]),
+    filter = ($f) => notNull($f),
+  );
+
+calc resource<archetype>[] legacy_multiclass_archetypes(name = "Legacy multiclass archetypes") =
+  filter(archetypes, filter = ($a) => !$a.is_class_archetype);
+
+calc string[] selected_archetype_ids(name = "Selected archetype ids") =
+  map(
+    flatAppend([class_archetypes, archetypes, slot_assigned_archetypes]),
+    mapper = ($a) => $a.id,
+  );
 
 calc string[] selected_multiclass_archetype_ids(name = "Selected multiclass archetype ids") =
   map(
-    filter(archetypes, filter = ($arch) => !$arch.is_class_archetype),
+    multiclass_archetypes,
     mapper = ($arch) => $arch.id,
   );
 
 calc string[] selected_multiclass_archetype_names(name = "Selected multiclass archetype names") =
   map(
-    filter(archetypes, filter = ($arch) => !$arch.is_class_archetype),
+    multiclass_archetypes,
     mapper = ($arch) => $arch.name,
   );
 
-calc resource<archetype>[] multiclass_archetypes(name = "Multiclass archetypes") =
-  filter(archetypes, filter = ($arch) => !$arch.is_class_archetype);
-
 calc resource<archetype>[] class_archetypes_with_class_mismatch(name = "Class archetypes with class mismatch") =
   filter(
-    archetypes,
+    class_archetypes,
     filter = ($arch) => ($arch.is_class_archetype && !isEmpty($arch.required_class_id)
       && !contains(
           haystack = map(classes, mapper = ($c) => $c.class?.id ?? ""),
@@ -1641,7 +1824,7 @@ calc string class_archetype_mismatch_warning_text(name = "Class archetype mismat
       );
 
 calc resource<archetype>[] spellcasting_archetypes(name = "Spellcasting archetypes") =
-  filter(archetypes, filter = ($a) => $a.grants_spellcasting);
+  filter(flatAppend([class_archetypes, multiclass_archetypes]), filter = ($a) => $a.grants_spellcasting);
 
 calc resource<archetype> spellcasting_archetype_1(name = "Spellcasting archetype 1") =
   findFirst(spellcasting_archetypes, filter = ($a) => true);
@@ -1664,22 +1847,31 @@ calc resource<archetype> spellcasting_archetype_3(name = "Spellcasting archetype
 
 calc resource<feat>[] dedication_feats(name = "Dedication feats from archetypes") =
   filter(
-    map(archetypes, mapper = ($arch) => $arch.dedication_feat),
+    map(flatAppend([class_archetypes, multiclass_archetypes]), mapper = ($arch) => $arch.dedication_feat),
     filter = ($filterValue) => notNull($filterValue),
   );
+
+calc resource<feat>[] class_archetype_dedication_feats(name = "Dedication feats from class archetypes") =
+  filter(
+    map(class_archetypes, mapper = ($arch) => $arch.dedication_feat),
+    filter = ($f) => notNull($f),
+  );
+
+calc string[] class_archetype_dedication_feat_ids(name = "Dedication feat ids from class archetypes") =
+  map(class_archetype_dedication_feats, mapper = ($f) => $f.id);
 
 calc resource<feat>[] non_duplicate_dedication_feats(name = "Dedication feats not already in feats") =
   filter(
     dedication_feats,
     filter = ($filterValue) => !contains(
-      haystack = map(feats, mapper = ($feat) => $feat.id),
+      haystack = map(flatAppend([feats, slot_assigned_feats]), mapper = ($feat) => $feat.id),
       needle = $filterValue.id,
     ),
   );
 
 calc resource<feat>[] class_archetype_auto_feats(name = "Auto-granted feats from class archetypes") =
   flatMap(
-    filter(archetypes, filter = ($arch) => $arch.is_class_archetype),
+    class_archetypes,
     mapper = ($arch) => $arch.auto_feats_for_current_level,
   );
 
@@ -1687,7 +1879,7 @@ calc resource<feat>[] non_duplicate_class_archetype_auto_feats(name = "Class arc
   filter(
     class_archetype_auto_feats,
     filter = ($f) => !contains(
-      haystack = map(feats, mapper = ($feat) => $feat.id),
+      haystack = map(flatAppend([feats, slot_assigned_feats]), mapper = ($feat) => $feat.id),
       needle = $f.id,
     ) && !contains(
       haystack = map(dedication_feats, mapper = ($feat) => $feat.id),
@@ -1696,18 +1888,49 @@ calc resource<feat>[] non_duplicate_class_archetype_auto_feats(name = "Class arc
   );
 
 calc resource<feat>[] all_selected_and_dedication_feats(name = "All selected feats and missing dedication feats") =
-  flatAppend([feats, non_duplicate_dedication_feats, non_duplicate_class_archetype_auto_feats]);
+  flatAppend([feats, slot_assigned_feats, non_duplicate_dedication_feats, non_duplicate_class_archetype_auto_feats]);
+
+calc string[] all_selected_and_dedication_feat_ids(name = "All selected feat ids (with auto-included dedication feats)") =
+  map(all_selected_and_dedication_feats, mapper = ($f) => $f.id);
+
+calc resource<archetype>[] all_selected_archetypes(name = "All selected archetypes") =
+  flatAppend([class_archetypes, multiclass_archetypes]);
 
 calc resource<feat>[] archetype_feats_without_selected_archetype(name = "Archetype feats without selected archetype") =
   filter(
-    feats,
+    all_selected_and_dedication_feats,
     filter = ($feat) => ($feat.type == "archetype"
+      && (
+        !isEmpty($feat.archetypes)
+        || length(
+            filter(
+              all_selected_archetypes,
+              filter = ($arch) => contains(
+                haystack = map($arch.feats ?? [], mapper = ($f) => $f.id),
+                needle = $feat.id,
+              ),
+            ),
+          ) > 0
+      )
+      && !contains(
+          haystack = class_archetype_dedication_feat_ids,
+          needle = $feat.id,
+        )
       && length(
           filter(
             $feat.archetypes,
             filter = ($archetypeId) => contains(
               haystack = selected_archetype_ids,
               needle = $archetypeId,
+            ),
+          ),
+        ) == 0
+      && length(
+          filter(
+            all_selected_archetypes,
+            filter = ($arch) => contains(
+              haystack = map($arch.feats ?? [], mapper = ($f) => $f.id),
+              needle = $feat.id,
             ),
           ),
         ) == 0),
@@ -1734,19 +1957,15 @@ calc string archetype_feats_warning_text(name = "Archetype feats warning text") 
       );
 
 calc string[] selected_dedication_archetype_ids(name = "Selected dedication archetype ids") =
-  flatAppend(
-    map(
-      filter(
-        all_selected_and_dedication_feats,
-        filter = ($feat) => ($feat.type == "archetype"
-          && contains(
-              haystack = toLowerCase($feat.traits),
-              needle = "dedication",
-            )),
+  map(
+    filter(
+      all_selected_archetypes,
+      filter = ($arch) => notNull($arch.dedication_feat) && contains(
+        haystack = all_selected_and_dedication_feat_ids,
+        needle = $arch.dedication_feat.id,
       ),
-      mapper = ($feat) => $feat.archetypes,
     ),
-    treat_as_set = true,
+    mapper = ($arch) => $arch.id,
   );
 
 calc resource<feat>[] archetype_feats_without_dedication(name = "Archetype feats without dedication") =
@@ -1756,21 +1975,41 @@ calc resource<feat>[] archetype_feats_without_dedication(name = "Archetype feats
       haystack = toLowerCase($feat.traits),
       needle = "dedication",
     )
-      && length(
-          filter(
-            $feat.archetypes,
-            filter = ($id) => contains(
-              haystack = selected_archetype_ids,
-              needle = $id,
+      && (
+          length(
+            filter(
+              $feat.archetypes,
+              filter = ($id) => contains(
+                haystack = selected_archetype_ids,
+                needle = $id,
+              ),
             ),
-          ),
-        ) > 0
+          ) > 0
+          || length(
+              filter(
+                all_selected_archetypes,
+                filter = ($arch) => contains(
+                  haystack = map($arch.feats ?? [], mapper = ($f) => $f.id),
+                  needle = $feat.id,
+                ),
+              ),
+            ) > 0
+        )
       && length(
           filter(
-            $feat.archetypes,
-            filter = ($id) => contains(
+            all_selected_archetypes,
+            filter = ($arch) => contains(
               haystack = selected_dedication_archetype_ids,
-              needle = $id,
+              needle = $arch.id,
+            ) && (
+              contains(
+                haystack = map($arch.feats ?? [], mapper = ($f) => $f.id),
+                needle = $feat.id,
+              )
+              || contains(
+                haystack = $feat.archetypes,
+                needle = $arch.id,
+              )
             ),
           ),
         ) == 0),
@@ -1798,7 +2037,7 @@ calc string archetype_dedication_missing_warning_text(name = "Archetype dedicati
 
 calc resource<archetype>[] selected_dedication_archetypes(name = "Selected dedication archetypes") =
   filter(
-    archetypes,
+    flatAppend([class_archetypes, multiclass_archetypes]),
     filter = ($arch) => contains(
       haystack = selected_dedication_archetype_ids,
       needle = $arch.id,
@@ -1815,10 +2054,16 @@ calc resource<archetype>[] selected_dedication_archetypes_missing_two_non_dedica
             haystack = toLowerCase($feat.traits),
             needle = "dedication",
           )
-          && contains(
+          && (
+            contains(
               haystack = $feat.archetypes,
               needle = $arch.id,
-            )),
+            )
+            || contains(
+                haystack = map($arch.feats ?? [], mapper = ($f) => $f.id),
+                needle = $feat.id,
+              )
+          )),
       ),
     ) < 2,
   );
@@ -1959,9 +2204,21 @@ calc resource<feat>[] ancestry_feats(name = "Ancestry feats") =
     filter = ($feat) => ($feat.type == "ancestry"),
   );
 
+calc resource<feat>[] ancestry_feats_for_display(name = "Ancestry feats (display)") =
+  filter(
+    all_selected_and_dedication_feats,
+    filter = ($feat) => ($feat.type == "ancestry"),
+  );
+
 calc resource<feat>[] class_feats(name = "Class feats") =
   filter(
     feats,
+    filter = ($feat) => ($feat.type == "class"),
+  );
+
+calc resource<feat>[] class_feats_for_display(name = "Class feats (display)") =
+  filter(
+    all_selected_and_dedication_feats,
     filter = ($feat) => ($feat.type == "class"),
   );
 
@@ -1971,9 +2228,21 @@ calc resource<feat>[] skill_feats(name = "Skill feats") =
     filter = ($feat) => ($feat.type == "skill"),
   );
 
+calc resource<feat>[] skill_feats_for_display(name = "Skill feats (display)") =
+  filter(
+    all_selected_and_dedication_feats,
+    filter = ($feat) => ($feat.type == "skill"),
+  );
+
 calc resource<feat>[] general_feats(name = "General feats") =
   filter(
     feats,
+    filter = ($feat) => ($feat.type == "general"),
+  );
+
+calc resource<feat>[] general_feats_for_display(name = "General feats (display)") =
+  filter(
+    all_selected_and_dedication_feats,
     filter = ($feat) => ($feat.type == "general"),
   );
 
@@ -1982,6 +2251,9 @@ calc resource<feat>[] archetype_feats(name = "Archetype feats") =
     all_selected_and_dedication_feats,
     filter = ($feat) => ($feat.type == "archetype"),
   );
+
+calc resource<feat>[] archetype_feats_for_display(name = "Archetype feats (display)") =
+  archetype_feats;
 
 calc resource<feat>[] multiclass_archetype_feats(name = "Multiclass archetype feats (excluding class archetype auto-grants)") =
   filter(
@@ -2072,7 +2344,7 @@ calc resource<progression_grant>[] heritage_progression_grants_for_current_level
 
 calc resource<progression_grant>[] archetype_progression_grants_for_current_level(name = "Archetype progression grants for current level") =
   flatMap(
-    archetypes,
+    multiclass_archetypes,
     mapper = ($arch) => filter(
       $arch.progression_grants,
       filter = ($grant) => ($grant.level <= level),
@@ -2088,6 +2360,27 @@ calc resource<progression_grant>[] all_progression_grants_for_current_level(name
       archetype_progression_grants_for_current_level,
     ],
   );
+
+calc resource<progression_grant>[] feat_grant_slots_for_current_level(name = "Feat grant slots for current level") =
+  filter(
+    all_progression_grants_for_current_level,
+    filter = ($g) => $g.is_feat_slot,
+  );
+
+calc resource<progression_grant>[] all_interactive_progression_grants_for_current_level(name = "All interactive progression grants for current level") =
+  filter(
+    all_progression_grants_for_current_level,
+    filter = ($g) => $g.is_interactive_slot,
+  );
+
+calc bool has_pending_interactive_slots(name = "Has pending interactive slots") =
+  !isEmpty(filter(
+    all_interactive_progression_grants_for_current_level,
+    filter = ($g) =>
+      ($g.is_feat_slot && isNull($g.assigned_feat) && isNull($g.assigned_archetype))
+      || ($g.bucket == "ability_boost" && length($g.assigned_ability_boosts) < $g.amount)
+      || ($g.bucket == "skill_increase" && isEmpty($g.committed_skill_increase_skill)),
+  ));
 
 calc integer granted_class_like_feat_slots(name = "Granted class-like feat slots") =
   add(
@@ -2172,6 +2465,10 @@ calc integer spent_class_like_feat_slots(name = "Spent class-like feat slots") =
       all_selected_and_dedication_feats,
       filter = ($feat) => ($feat.type == "class" || $feat.type == "archetype")
         && !contains(
+            haystack = class_archetype_dedication_feat_ids,
+            needle = $feat.id,
+          )
+        && !contains(
             haystack = map(non_duplicate_class_archetype_auto_feats, mapper = ($f) => $f.id),
             needle = $feat.id,
           ),
@@ -2182,6 +2479,10 @@ calc resource<feat>[] class_like_feats_for_restriction_check(name = "Class-like 
   filter(
     all_selected_and_dedication_feats,
     filter = ($feat) => ($feat.type == "class" || $feat.type == "archetype")
+      && !contains(
+          haystack = class_archetype_dedication_feat_ids,
+          needle = $feat.id,
+        )
       && !contains(
           haystack = map(non_duplicate_class_archetype_auto_feats, mapper = ($f) => $f.id),
           needle = $feat.id,
@@ -2209,16 +2510,42 @@ calc bool class_like_feats_violate_level_restrictions(name = "Class feat level r
     ),
   );
 
+calc string class_like_feats_above_level_names(name = "Class-like feats above current level names") =
+  joinToString(
+    map(
+      filter(
+        class_like_feats_for_restriction_check,
+        filter = ($f) => $f.min_level > level,
+      ),
+      mapper = ($f) => $f.name,
+    ),
+    separator = ", ",
+  );
+
 calc string class_like_feats_level_restriction_warning_text(name = "Class feat level restriction warning") =
   if class_like_feats_violate_level_restrictions
-    then "Some selected feats have level requirements that exceed the level at which their slots were available. Please review your class feat selections."
+    then concat(
+        [
+          "Some selected feats have level requirements that exceed the level at which their slots were available.",
+          (if isEmpty(class_like_feats_above_level_names)
+            then ""
+            else concat([" Likely offenders: ", class_like_feats_above_level_names, "."])),
+          " Please review your class feat selections.",
+        ],
+      )
     else "";
 
-calc integer spent_skill_feat_slots(name = "Spent skill feat slots") = length(skill_feats);
+calc integer spent_skill_feat_slots(name = "Spent skill feat slots") =
+  length(skill_feats)
+  + length(filter(feat_grant_slots_for_current_level, filter = ($g) => $g.bucket == "skill_feat" && notNull($g.assigned_feat)));
 
-calc integer spent_general_feat_slots(name = "Spent general feat slots") = length(general_feats);
+calc integer spent_general_feat_slots(name = "Spent general feat slots") =
+  length(general_feats)
+  + length(filter(feat_grant_slots_for_current_level, filter = ($g) => $g.bucket == "general_feat" && notNull($g.assigned_feat)));
 
-calc integer spent_ancestry_feat_slots(name = "Spent ancestry feat slots") = length(ancestry_feats);
+calc integer spent_ancestry_feat_slots(name = "Spent ancestry feat slots") =
+  length(ancestry_feats)
+  + length(filter(feat_grant_slots_for_current_level, filter = ($g) => $g.bucket == "ancestry_feat" && notNull($g.assigned_feat)));
 
 calc integer spent_bonus_feat_slots(name = "Spent bonus feat slots") = length(bonus_feats);
 
@@ -2462,9 +2789,33 @@ calc resource<class_progression> last_level_up_class_progression(name = "Last le
     filter = ($findFirstValue) => ($findFirstValue.class?.id == temp_last_level_up_class_id),
   );
 
-base integer spent_skill_increase_grants(name = "Spent skill increase grants") = 0;
+base integer spent_skill_increase_grants_level_up(name = "Spent skill increase grants (level-up)") = 0;
 
-base integer spent_ability_boost_grants(name = "Spent ability boost grants") = 0;
+base integer spent_ability_boost_grants_level_up(name = "Spent ability boost grants (level-up)") = 0;
+
+calc integer spent_skill_increase_grants(name = "Spent skill increase grants") =
+  spent_skill_increase_grants_level_up
+    + length(
+        filter(
+          filter(
+            all_progression_grants_for_current_level,
+            filter = ($g) => $g.bucket == "skill_increase",
+          ),
+          filter = ($g) => !isEmpty($g.committed_skill_increase_skill),
+        ),
+      );
+
+calc integer spent_ability_boost_grants(name = "Spent ability boost grants") =
+  spent_ability_boost_grants_level_up
+    + add(
+        map(
+          filter(
+            all_progression_grants_for_current_level,
+            filter = ($g) => $g.bucket == "ability_boost",
+          ),
+          mapper = ($g) => length($g.committed_ability_boosts),
+        ),
+      );
 
 calc integer pending_skill_increase_grants(name = "Pending skill increase grants") =
   granted_skill_increase_grants - spent_skill_increase_grants;
@@ -2647,6 +2998,10 @@ base string temp_asi_selection_3(name = "Temp ASI selection") = null;
 
 base string temp_asi_selection_4(name = "Temp ASI selection") = null;
 
+base string temp_spell_cast_spell_id(name = "Temp spell cast spell ID") = "";
+
+base integer temp_spell_cast_rank(name = "Temp spell cast rank") = 0;
+
 calc integer temp_asi_selection_count(name = "Temp ASI selection count") =
   length(
     filter(
@@ -2679,8 +3034,7 @@ calc integer temp_asi_unique_selection_count(name = "Temp ASI unique selection c
   );
 
 calc bool is_temp_asi_selection_valid(name = "Is temp ASI selection valid") =
-  temp_asi_selection_count == asi_selection_count_required
-    && temp_asi_unique_selection_count == asi_selection_count_required;
+  temp_asi_selection_count == asi_selection_count_required;
 
 calc string temp_asi_validation_message(name = "Temp ASI validation message") =
   when {
@@ -2692,7 +3046,6 @@ calc string temp_asi_validation_message(name = "Temp ASI validation message") =
         " ability boosts.",
       ],
     ),
-    temp_asi_unique_selection_count != asi_selection_count_required -> "Ability boosts must target different abilities.",
     else -> "Invalid ability boost selection.",
   };
 
@@ -2770,19 +3123,25 @@ calc string photo_prompt(name = "Photo prompt") =
 calc resource<armor>[] invested_armors(name = "Invested armors") =
   filter(
     armors,
-    filter = ($filterValue) => ($filterValue.requires_investment && $filterValue.is_invested),
+    filter = ($filterValue) => (
+      defined(stat = "$filterValue.requires_investment")
+        && defined(stat = "$filterValue.is_invested")
+        && $filterValue.requires_investment
+        && $filterValue.is_invested
+    ),
   );
 
-calc resource<weapon>[] invested_weapons(name = "Invested weapons") =
-  filter(
-    all_weapons,
-    filter = ($filterValue) => ($filterValue.requires_investment && $filterValue.is_invested),
-  );
+calc resource<weapon>[] invested_weapons(name = "Invested weapons") = [];
 
 calc resource<item>[] invested_items(name = "Invested items") =
   filter(
     equipment,
-    filter = ($filterValue) => ($filterValue.requires_investment && $filterValue.is_invested),
+    filter = ($filterValue) => (
+      defined(stat = "$filterValue.requires_investment")
+        && defined(stat = "$filterValue.is_invested")
+        && $filterValue.requires_investment
+        && $filterValue.is_invested
+    ),
   );
 
 calc resource<armor | weapon | item>[] invested_resources(name = "Invested resources") =
@@ -2989,6 +3348,44 @@ calc integer will(name = "Will") =
 calc resource<class_progression> primary_class_progression(name = "Primary class progression") =
   findFirst(classes, filter = ($findFirstValue) => true);
 
+calc bool primary_class_has_warpriest_first_doctrine(name = "Primary class has Warpriest: First Doctrine") =
+  contains(
+    haystack = map(
+      all_features,
+      mapper = ($mapValue) => $mapValue.name,
+    ),
+    needle = "Warpriest: First Doctrine",
+  );
+
+calc bool primary_class_selected_deity_has_simple_or_unarmed_favored_weapon(name = "Primary class selected deity has simple or unarmed favored weapon") =
+  or(
+    map(
+      primary_class_progression?.selected_deity?.favored_weapons ?? [],
+      mapper = ($mapValue) => ($mapValue == "club"
+        || $mapValue == "dagger"
+        || $mapValue == "greatclub"
+        || $mapValue == "handaxe"
+        || $mapValue == "javelin"
+        || $mapValue == "light_hammer"
+        || $mapValue == "mace"
+        || $mapValue == "quarterstaff"
+        || $mapValue == "sickle"
+        || $mapValue == "spear"
+        || $mapValue == "crossbow_light"
+        || $mapValue == "dart"
+        || $mapValue == "shortbow"
+        || $mapValue == "sling"
+        || $mapValue == "blowgun"
+        || $mapValue == "unarmed_strike"),
+    ),
+  );
+
+calc bool warpriest_auto_grants_deadly_simplicity(name = "Warpriest auto grants Deadly Simplicity") =
+  primary_class_has_warpriest_first_doctrine && primary_class_selected_deity_has_simple_or_unarmed_favored_weapon;
+
+calc integer warpriest_auto_grants_deadly_simplicity_flag(name = "Warpriest auto grants Deadly Simplicity flag") =
+  if warpriest_auto_grants_deadly_simplicity then 1 else 0;
+
 calc string class_dc_proficiency(name = "Class DC proficiency") =
   primary_class_progression?.class.current_level_class_dc_proficiency ?? "none";
 
@@ -3018,6 +3415,12 @@ base integer max_reactions_per_round(name = "Max Reactions Per Round") = 1;
 
 base integer reaction_available(name = "Reaction Available") = 1;
 
+calc string actions_remaining_display(name = "Actions remaining display") =
+  concat([actions_remaining, " / ", max_actions_per_turn]);
+
+calc string reaction_available_display(name = "Reaction availability display") =
+  if reaction_available > 0 then "Available" else "Spent";
+
 base integer hero_points(name = "Hero Points") = 1;
 
 base integer max_hero_points(name = "Max Hero Points") = 3;
@@ -3025,6 +3428,77 @@ base integer max_hero_points(name = "Max Hero Points") = 3;
 base integer focus_points(name = "Focus Points") = 0;
 
 base integer max_focus_points(name = "Max Focus Points") = 0;
+
+calc integer focus_points_from_class_capacity_grants(name = "Focus points from class capacity grants") =
+  add(
+    map(
+      flatMap(
+        classes,
+        mapper = ($classProgression) => filter(
+          $classProgression.active_spell_capacity_grants,
+          filter = ($grant) => ($grant.capacity_type == "focus"),
+        ),
+      ),
+      mapper = ($grant) => $grant.current_quantity,
+    ),
+  );
+
+calc integer focus_points_from_archetype_capacity_grants(name = "Focus points from archetype capacity grants") =
+  add(
+    map(
+      flatMap(
+        spellcasting_archetypes,
+        mapper = ($archetype) => filter(
+          $archetype.active_spell_capacity_grants,
+          filter = ($grant) => ($grant.capacity_type == "focus"),
+        ),
+      ),
+      mapper = ($grant) => $grant.current_quantity,
+    ),
+  );
+
+calc integer effective_max_focus_points(name = "Effective max focus points") =
+  max_focus_points + focus_points_from_class_capacity_grants + focus_points_from_archetype_capacity_grants;
+
+calc integer hero_points_pip_slots(name = "Hero points pip slots") =
+  max([max_hero_points, hero_points]);
+
+calc integer focus_points_pip_slots(name = "Focus points pip slots") =
+  max([effective_max_focus_points, focus_points]);
+
+calc string hero_points_pips(name = "Hero points pips") =
+  concat(
+    [
+      (if hero_points_pip_slots >= 1 then (if hero_points >= 1 then "●" else "○") else ""),
+      (if hero_points_pip_slots >= 2 then (if hero_points >= 2 then "●" else "○") else ""),
+      (if hero_points_pip_slots >= 3 then (if hero_points >= 3 then "●" else "○") else ""),
+      (if hero_points_pip_slots >= 4 then (if hero_points >= 4 then "●" else "○") else ""),
+      (if hero_points_pip_slots >= 5 then (if hero_points >= 5 then "●" else "○") else ""),
+      (if hero_points_pip_slots >= 6 then (if hero_points >= 6 then "●" else "○") else ""),
+      (if hero_points_pip_slots >= 7 then (if hero_points >= 7 then "●" else "○") else ""),
+      (if hero_points_pip_slots >= 8 then (if hero_points >= 8 then "●" else "○") else ""),
+      (if hero_points_pip_slots >= 9 then (if hero_points >= 9 then "●" else "○") else ""),
+      (if hero_points_pip_slots >= 10 then (if hero_points >= 10 then "●" else "○") else ""),
+      (if hero_points_pip_slots > 10 then concat([" +", hero_points_pip_slots - 10]) else ""),
+    ],
+  );
+
+calc string focus_points_pips(name = "Focus points pips") =
+  concat(
+    [
+      (if focus_points_pip_slots >= 1 then (if focus_points >= 1 then "●" else "○") else ""),
+      (if focus_points_pip_slots >= 2 then (if focus_points >= 2 then "●" else "○") else ""),
+      (if focus_points_pip_slots >= 3 then (if focus_points >= 3 then "●" else "○") else ""),
+      (if focus_points_pip_slots >= 4 then (if focus_points >= 4 then "●" else "○") else ""),
+      (if focus_points_pip_slots >= 5 then (if focus_points >= 5 then "●" else "○") else ""),
+      (if focus_points_pip_slots >= 6 then (if focus_points >= 6 then "●" else "○") else ""),
+      (if focus_points_pip_slots >= 7 then (if focus_points >= 7 then "●" else "○") else ""),
+      (if focus_points_pip_slots >= 8 then (if focus_points >= 8 then "●" else "○") else ""),
+      (if focus_points_pip_slots >= 9 then (if focus_points >= 9 then "●" else "○") else ""),
+      (if focus_points_pip_slots >= 10 then (if focus_points >= 10 then "●" else "○") else ""),
+      (if focus_points_pip_slots > 10 then concat([" +", focus_points_pip_slots - 10]) else ""),
+    ],
+  );
 
 base integer dying(name = "Dying") = 0;
 

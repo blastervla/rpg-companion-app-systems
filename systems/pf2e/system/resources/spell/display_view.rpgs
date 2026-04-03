@@ -255,7 +255,7 @@ view spell_display() =
           ),
           text(
             id = "spell_display_cast_composite_slots_remaining_label",
-            text = "Ranks remaining: ",
+            text = available_selected_slots_label,
             style = "text",
             is_visible = character_spell_slots_defined,
           ),
@@ -361,14 +361,21 @@ view spell_display() =
           ),
           text(
             id = "spell_display_cast_explanation_not_prepared",
-            text = "Prepared casters must prepare this spell before casting",
+            text = "This spell is not prepared at the selected rank",
             color = "accent",
             bold = true,
             style = "text",
             is_visible = defined(stat = "$character")
               && selected_spellcasting_mode == "prepared"
-              && !is_cantrip
-              && !prepared,
+              && !has_required_prepared_cast_requirement,
+          ),
+          text(
+            id = "spell_display_cast_explanation_restricted_grants",
+            text = restricted_slot_grant_warning_text,
+            color = "accent",
+            bold = true,
+            style = "text",
+            is_visible = defined(stat = "$character") && has_restricted_slot_grant_warning,
           ),
           text(
             id = "spell_display_cast_explanation",
@@ -384,7 +391,9 @@ view spell_display() =
             color = "accent",
             bold = true,
             style = "text",
-            is_visible = defined(stat = "$character") && !has_required_spell_slots_to_cast,
+            is_visible = defined(stat = "$character")
+              && !has_required_spell_slots_to_cast
+              && has_required_prepared_cast_requirement,
           ),
           text(
             id = "spell_display_cast_explanation_actions",
@@ -399,13 +408,6 @@ view spell_display() =
             row_only = true,
             alignment = "end",
             subviews = [
-              button(
-                id = "spell_display_prepare_button",
-                text = prepare_button_text,
-                is_visible = can_toggle_preparation,
-                event = event(name = "togglePrepareSpell", payload = payload()),
-              ),
-              spacer(id = "spell_display_cast_button_spacer"),
               button(
                 id = "spell_display_cast_button",
                 text = "CAST",

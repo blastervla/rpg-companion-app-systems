@@ -1,0 +1,7 @@
+view conditional_linked_feat_display() =
+  text(
+    id = "conditional_linked_feat_display",
+    text = description,
+    style = "text",
+    color = if trigger_condition == null then "text" else (if trigger_condition_met then "text" else "accent"),
+  );

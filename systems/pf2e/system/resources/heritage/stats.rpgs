@@ -178,13 +178,9 @@ calc resource<feat>[] all_traits(name = "All traits") =
     mapper = ($mapValue) => flatAppend(
       [
         [$mapValue],
-        (if $mapValue.has_selectable_features
-          then filter(
-              $mapValue.selectable_features,
-              filter = ($filterValue) => contains(haystack = selected_selectable_feature_ids, needle = $filterValue.id),
-            )
-          else []),
+        $mapValue.granted_linked_features,
       ],
+      treat_as_set = true,
     ),
   );
 

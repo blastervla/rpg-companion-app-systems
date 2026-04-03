@@ -127,25 +127,12 @@ calc string[] selected_selectable_feature_ids(name = "Selected selectable featur
   $character?.selected_selectable_feature_ids ?? [];
 
 calc resource<feat>[] current_level_features(name = "Current level features") =
-  flatMap(
-    (if defined(stat = "$character")
-      then filter(
-          features,
-          filter = ($filterValue) => ($filterValue.min_level <= $character.level),
-        )
-      else []),
-    mapper = ($mapValue) => flatAppend(
-      [
-        [$mapValue],
-        (if $mapValue.has_selectable_features
-          then filter(
-              $mapValue.selectable_features,
-              filter = ($filterValue) => contains(haystack = selected_selectable_feature_ids, needle = $filterValue.id),
-            )
-          else []),
-      ],
-    ),
-  );
+  if !defined(stat = "$character")
+    then []
+    else filter(
+        all_features,
+        filter = ($filterValue) => ($filterValue.min_level <= $character.level),
+      );
 
 calc resource<feat>[] features_with_updates_in_current_level(name = "Features with updates in current level") =
   filter(
@@ -164,13 +151,9 @@ calc resource<feat>[] all_features(name = "All features") =
     mapper = ($mapValue) => flatAppend(
       [
         [$mapValue],
-        (if $mapValue.has_selectable_features
-          then filter(
-              $mapValue.selectable_features,
-              filter = ($filterValue) => contains(haystack = selected_selectable_feature_ids, needle = $filterValue.id),
-            )
-          else []),
+        $mapValue.granted_linked_features,
       ],
+      treat_as_set = true,
     ),
   );
 

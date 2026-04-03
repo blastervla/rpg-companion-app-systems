@@ -15,8 +15,15 @@ view lore_skill_display() =
         style = "text",
         max_length = 80,
         label = "Lore",
-        hint = options,
+        hint = if has_multiple_options then "Enter lore skill" else options,
         is_visible = $character?.should_show_controls_for_choices ?? false,
+      ),
+      text(
+        id = "lore_skill_display_in_character_options",
+        margin_left = 4,
+        text = concat(["Choices: ", options]),
+        style = "caption",
+        is_visible = ($character?.should_show_controls_for_choices ?? false) && !isEmpty(options) && has_multiple_options,
       ),
       text(
         id = "lore_skill_display_in_character_rank",

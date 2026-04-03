@@ -2,8 +2,9 @@ character_sheet_section dying_and_recovery() =
   section(
     id = "dying_section",
     show_divider = true,
-    content_item_min_width = 125,
+    content_item_min_width = 0.5,
     collapsible = true,
+    is_visible = $edit_mode || current_hp <= 0 || dying > 0 || wounded > 0 || doomed > 0,
     header = [
       icon(
         id = "dying_section_icon",
@@ -23,28 +24,52 @@ character_sheet_section dying_and_recovery() =
       ),
     ],
     content = [
-      stat(
+      ticker(
         id = "dying_value",
         stat = "dying",
+        style = "text",
+        button_location = "right",
+        button_look = "plusMinus",
+        should_auto_save = true,
         change_amount = 1,
         min_value_allowed = 0,
+        label = "Dying",
+        label_alignment = "right",
       ),
-      stat(
+      ticker(
         id = "wounded_value",
         stat = "wounded",
+        style = "text",
+        button_location = "right",
+        button_look = "plusMinus",
+        should_auto_save = true,
         change_amount = 1,
         min_value_allowed = 0,
+        label = "Wounded",
+        label_alignment = "right",
       ),
-      stat(
+      ticker(
         id = "doomed_value",
         stat = "doomed",
+        style = "text",
+        button_location = "right",
+        button_look = "plusMinus",
+        should_auto_save = true,
         change_amount = 1,
         min_value_allowed = 0,
+        label = "Doomed",
+        label_alignment = "right",
       ),
-      stat(
+      ticker(
         id = "recovery_check_bonus",
         stat = "recovery_check_bonus",
+        style = "text",
+        button_location = "right",
+        button_look = "plusMinus",
+        should_auto_save = true,
         change_amount = 1,
+        label = "Recovery Check Bonus",
+        label_alignment = "right",
       ),
       button(
         id = "recovery_check_button",
@@ -63,7 +88,7 @@ character_sheet_section dying_and_recovery() =
           else if dying > 0
             then "Character is dying. Use recovery checks each turn."
             else "Character is stable.",
-        style = "text",
+        style = "caption",
       ),
     ],
   );

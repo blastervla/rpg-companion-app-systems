@@ -1,0 +1,8 @@
+view prepared_spell_choice_list() =
+  listItem(
+    id = "prepared_spell_choice_list",
+    title = spell_name,
+    subtitle = if is_cantrip_choice
+      then "Prepared cantrip"
+      else concat(["Remaining ", remaining_quantity, " / ", effective_slot_quantity]),
+  );

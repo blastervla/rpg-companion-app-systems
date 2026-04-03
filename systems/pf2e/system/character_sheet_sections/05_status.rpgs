@@ -2,7 +2,7 @@ character_sheet_section status() =
   section(
     id = "status_section",
     show_divider = true,
-    content_item_min_width = 125,
+    content_item_min_width = 0.5,
     collapsible = false,
     header = [
       avatar(
@@ -53,37 +53,6 @@ character_sheet_section status() =
         min_value_allowed = 0,
       ),
       stat(
-        id = "initiative",
-        stat = "initiative",
-        change_amount = 1,
-        on_tap_event = event(
-          name = "rollStat",
-          payload = payload(stat = "initiative", statName = "Initiative"),
-        ),
-        bottom_sheet_in_edit_mode = true,
-        bottom_sheet_view = section(
-          id = "initiative_source_section",
-          header = [],
-          show_divider = false,
-          collapsible = false,
-          content_item_min_width = 1,
-          content = [
-            text(
-              id = "initiative_source_help_text",
-              text = "Choose which stat is used for initiative rolls.",
-              style = "text",
-            ),
-            select(
-              id = "initiative_source_select",
-              stat = "initiative_stat",
-              options = "initiative_sources",
-              should_auto_save = true,
-            ),
-          ],
-        ),
-        sheet_title = "Set initiative source",
-      ),
-      stat(
         id = "perception",
         stat = "perception",
         change_amount = 1,
@@ -92,41 +61,6 @@ character_sheet_section status() =
         id = "class_dc",
         stat = "class_dc",
         change_amount = 1,
-      ),
-      stat(
-        id = "level_bonus",
-        stat = "level_bonus",
-        change_amount = 1,
-        always_show_sign = true,
-      ),
-      stat(
-        id = "actions_remaining",
-        stat = "actions_remaining",
-        change_amount = 1,
-        min_value_allowed = 0,
-      ),
-      stat(
-        id = "reaction_available",
-        stat = "reaction_available",
-        change_amount = 1,
-        min_value_allowed = 0,
-      ),
-      button(
-        id = "reset_actions",
-        text = "RESET ACTIONS",
-        event = event(name = "refresh_actions", payload = payload()),
-      ),
-      stat(
-        id = "hero_points",
-        stat = "hero_points",
-        change_amount = 1,
-        min_value_allowed = 0,
-      ),
-      stat(
-        id = "focus_points",
-        stat = "focus_points",
-        change_amount = 1,
-        min_value_allowed = 0,
       ),
       stat(
         id = "speed",

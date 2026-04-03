@@ -5,6 +5,24 @@ character_creation_page edit_pending_choices_title() =
       id = "edit_character_pending_choices",
       padding = 32,
       subviews = [
+        text(
+          id = "edit_character_pending_choices_modifiers_header",
+          text = "Current ability modifiers (from your selections so far):",
+          style = "subhead",
+        ),
+        text(
+          id = "edit_character_pending_choices_modifiers_row_1",
+          text = creator_ability_modifiers_row_1,
+          style = "text",
+          bold = true,
+        ),
+        text(
+          id = "edit_character_pending_choices_modifiers_row_2",
+          text = creator_ability_modifiers_row_2,
+          style = "text",
+          bold = true,
+          margin_bottom = 8,
+        ),
         resourceArray(
           id = "edit_character_proficiencies_languages",
           resource_id = "levelled_choice_text",
@@ -93,7 +111,24 @@ character_creation_page edit_pending_choices_title() =
         ),
       ],
     ),
-    on_page_open = setStat(stat = "selecting", new_value = true, aggregation_type = "set"),
+    on_page_open = sequence(
+      effects = [
+        setStat(stat = "selecting", new_value = true, aggregation_type = "set"),
+        forEach(
+          components = creator_lore_skill_choices,
+          for_each_value_key = "$loreSkill",
+          apply = when {
+            isEmpty($loreSkill.selected_option)
+              && !isEmpty($loreSkill.options)
+              && !$loreSkill.has_multiple_options -> setStat(
+              stat = "$loreSkill.selected_option",
+              new_value = trim($loreSkill.options),
+              aggregation_type = "set",
+            ),
+          },
+        ),
+      ],
+    ),
     on_page_close = setStat(stat = "selecting", new_value = false, aggregation_type = "set"),
     post_edit = sequence(
       effects = [
@@ -165,20 +200,27 @@ character_creation_page edit_pending_choices_title() =
         ),
         setStat(
           stat = "lore_skills",
-          new_value = flatAppend(
-            [
-              lore_skills,
-              map(
-                filter(
-                  creator_lore_skill_choices,
-                  filter = ($filterValue) => !isEmpty($filterValue.lore_name),
-                ),
-                mapper = ($mapValue) => copyResource($mapValue, preserve_ids = false),
-              ),
-            ],
+          new_value = map(
+            filter(
+              creator_lore_skill_choices,
+              filter = ($filterValue) => !isEmpty($filterValue.lore_name),
+            ),
+            mapper = ($mapValue) => copyResource($mapValue, preserve_ids = false),
           ),
           aggregation_type = "set",
         ),
+        when {
+          is_new_and_should_daily_preparations && !isEmpty(classes) -> sequence(
+              effects = [
+                fireEvent(event = event(name = "daily_preparations", payload = payload())),
+                setStat(
+                  stat = "is_new_and_should_daily_preparations",
+                  new_value = false,
+                  aggregation_type = "set",
+                ),
+              ],
+            ),
+        },
       ],
     ),
   );

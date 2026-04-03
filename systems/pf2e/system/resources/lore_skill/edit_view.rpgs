@@ -23,7 +23,7 @@ view lore_skill_edit() =
         edit_stat = "selected_option",
         style = "text",
         label = "Selected option",
-        hint = options,
+        hint = if has_multiple_options then "Enter lore skill" else options,
         max_length = 80,
         is_visible = $character?.should_show_controls_for_choices ?? false,
       ),
@@ -31,7 +31,7 @@ view lore_skill_edit() =
         id = "lore_skill_edit_options_readonly",
         text = concat(["Options: ", options]),
         style = "caption",
-        is_visible = $character?.should_show_controls_for_choices ?? false,
+        is_visible = ($character?.should_show_controls_for_choices ?? false) && has_multiple_options,
       ),
       select(
         id = "lore_skill_edit_proficiency",
