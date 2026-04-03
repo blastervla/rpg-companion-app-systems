@@ -10,7 +10,7 @@ mechanic level_up_set_proficiencies(event_names = "level_up_set_proficiencies") 
               flatMap(
                 $view.level_up_select_proficiencies_languages,
                 mapper = ($mapValue) => split(
-                  $mapValue.$view.levelled_choice_text_display_in_character,
+                  $mapValue?.$view?.levelled_choice_text_display_in_character,
                   separator = "\\\\s*,\\\\s*",
                 ),
               ),
@@ -28,7 +28,7 @@ mechanic level_up_set_proficiencies(event_names = "level_up_set_proficiencies") 
             armor_proficiencies,
             map(
               $view.level_up_select_proficiencies_armors,
-              mapper = ($mapValue) => $mapValue.$view.levelled_armor_proficiency_display_in_character,
+              mapper = ($mapValue) => $mapValue?.$view?.levelled_armor_proficiency_display_in_character,
             ),
           ],
           treat_as_set = true,
@@ -40,7 +40,7 @@ mechanic level_up_set_proficiencies(event_names = "level_up_set_proficiencies") 
         apply = setStat(
           meta_stat = concat(
             [
-              $forEachValue.$view.levelled_skill_proficiency_display_in_character,
+              $forEachValue?.$view?.levelled_skill_proficiency_display_in_character,
               "_proficiency",
             ],
           ),
@@ -55,7 +55,7 @@ mechanic level_up_set_proficiencies(event_names = "level_up_set_proficiencies") 
             weapon_proficiencies,
             map(
               $view.level_up_select_proficiencies_weapons,
-              mapper = ($mapValue) => $mapValue.$view.levelled_weapon_proficiency_display_in_character,
+              mapper = ($mapValue) => $mapValue?.$view?.levelled_weapon_proficiency_display_in_character,
             ),
           ],
           treat_as_set = true,
@@ -71,7 +71,7 @@ mechanic level_up_set_proficiencies(event_names = "level_up_set_proficiencies") 
               flatMap(
                 $view.level_up_select_proficiencies_tools,
                 mapper = ($mapValue) => split(
-                  $mapValue.$view.levelled_choice_text_display_in_character,
+                  $mapValue?.$view?.levelled_choice_text_display_in_character,
                   separator = "\\\\s*,\\\\s*",
                 ),
               ),
