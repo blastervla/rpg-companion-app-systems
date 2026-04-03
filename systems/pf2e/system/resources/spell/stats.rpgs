@@ -161,15 +161,23 @@ calc resource<class_progression>[] character_spellcasting_classes(name = "Charac
 calc resource<class_progression>[] spell_matching_class_sources(name = "Spell matching class sources") =
   filter(
     character_spellcasting_classes,
-    filter = ($filterValue) => notNull(
-      findFirst(
-        filter(
-          $filterValue.class.all_spells,
-          filter = ($filterValue2) => ($filterValue2.level <= ($character?.level? ?? 1)),
-        ),
-        filter = ($findFirstValue) => ($findFirstValue.spell.id == id),
+    filter = ($filterValue) => (
+        notNull(
+          findFirst(
+            filter(
+              $filterValue.class.all_spells,
+              filter = ($filterValue2) => ($filterValue2.level <= ($character?.level? ?? 1)),
+            ),
+            filter = ($findFirstValue) => ($findFirstValue.spell.id == id),
+          ),
+        )
+          || ($filterValue.class.actual_spellcasting_mode == "prepared"
+            && !isEmpty($filterValue.class.actual_spellcasting_tradition)
+            && contains(
+              haystack = traditions,
+              needle = $filterValue.class.actual_spellcasting_tradition,
+            ))
       ),
-    ),
   );
 
 calc resource<levelled_spell>[] character_ancestry_levelled_spells(name = "Character ancestry levelled spells") =
@@ -205,8 +213,19 @@ calc resource<class_progression>[] selectable_spellcasting_class_sources(name = 
 
 // Resolved view-or-saved source id (supports both old selected_spellcasting_class_id and new selected_spellcasting_source_id)
 calc string view_or_saved_source_id(name = "View or saved source id") =
-  $view?.spell_display_spellcasting_source_select?
-    ?? (if !isEmpty(selected_spellcasting_source_id) then selected_spellcasting_source_id else selected_spellcasting_class_id);
+  if !isEmpty(selected_spellcasting_source_id)
+    then selected_spellcasting_source_id
+    else if !isEmpty(selected_spellcasting_class_id)
+      then selected_spellcasting_class_id
+      else (findFirst(
+            flatAppend(
+              [
+                map(selectable_spellcasting_class_sources, mapper = ($mapValue) => $mapValue.id),
+                map($character?.spellcasting_archetypes ?? [], mapper = ($mapValue) => $mapValue.id),
+              ],
+            ),
+            filter = ($findFirstValue) => true,
+          ) ?? "");
 
 calc string resolved_spellcasting_class_source_id(name = "Resolved spellcasting class source id") =
   if spell_has_specific_class_source
@@ -394,6 +413,232 @@ calc bool character_spell_slots_defined(name = "Character and spell slots define
     && defined(stat = "$character.spell_slots_9")
     && defined(stat = "$character.spell_slots_10");
 
+calc resource<prepared_spell_choice>[] selected_source_prepared_choices_rank_0(name = "Selected source prepared cantrips") =
+  when {
+    is_archetype_spell -> selected_spellcasting_archetype_source?.prepared_spell_choices_rank_0 ?? [],
+    notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source?.prepared_spell_choices_rank_0 ?? [],
+    else -> [],
+  };
+
+calc resource<prepared_spell_choice>[] selected_source_prepared_choices_rank_1(name = "Selected source prepared rank 1") =
+  when {
+    is_archetype_spell -> selected_spellcasting_archetype_source?.prepared_spell_choices_rank_1 ?? [],
+    notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source?.prepared_spell_choices_rank_1 ?? [],
+    else -> [],
+  };
+
+calc resource<prepared_spell_choice>[] selected_source_prepared_choices_rank_2(name = "Selected source prepared rank 2") =
+  when {
+    is_archetype_spell -> selected_spellcasting_archetype_source?.prepared_spell_choices_rank_2 ?? [],
+    notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source?.prepared_spell_choices_rank_2 ?? [],
+    else -> [],
+  };
+
+calc resource<prepared_spell_choice>[] selected_source_prepared_choices_rank_3(name = "Selected source prepared rank 3") =
+  when {
+    is_archetype_spell -> selected_spellcasting_archetype_source?.prepared_spell_choices_rank_3 ?? [],
+    notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source?.prepared_spell_choices_rank_3 ?? [],
+    else -> [],
+  };
+
+calc resource<prepared_spell_choice>[] selected_source_prepared_choices_rank_4(name = "Selected source prepared rank 4") =
+  when {
+    is_archetype_spell -> selected_spellcasting_archetype_source?.prepared_spell_choices_rank_4 ?? [],
+    notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source?.prepared_spell_choices_rank_4 ?? [],
+    else -> [],
+  };
+
+calc resource<prepared_spell_choice>[] selected_source_prepared_choices_rank_5(name = "Selected source prepared rank 5") =
+  when {
+    is_archetype_spell -> selected_spellcasting_archetype_source?.prepared_spell_choices_rank_5 ?? [],
+    notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source?.prepared_spell_choices_rank_5 ?? [],
+    else -> [],
+  };
+
+calc resource<prepared_spell_choice>[] selected_source_prepared_choices_rank_6(name = "Selected source prepared rank 6") =
+  when {
+    is_archetype_spell -> selected_spellcasting_archetype_source?.prepared_spell_choices_rank_6 ?? [],
+    notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source?.prepared_spell_choices_rank_6 ?? [],
+    else -> [],
+  };
+
+calc resource<prepared_spell_choice>[] selected_source_prepared_choices_rank_7(name = "Selected source prepared rank 7") =
+  when {
+    is_archetype_spell -> selected_spellcasting_archetype_source?.prepared_spell_choices_rank_7 ?? [],
+    notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source?.prepared_spell_choices_rank_7 ?? [],
+    else -> [],
+  };
+
+calc resource<prepared_spell_choice>[] selected_source_prepared_choices_rank_8(name = "Selected source prepared rank 8") =
+  when {
+    is_archetype_spell -> selected_spellcasting_archetype_source?.prepared_spell_choices_rank_8 ?? [],
+    notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source?.prepared_spell_choices_rank_8 ?? [],
+    else -> [],
+  };
+
+calc resource<prepared_spell_choice>[] selected_source_prepared_choices_rank_9(name = "Selected source prepared rank 9") =
+  when {
+    is_archetype_spell -> selected_spellcasting_archetype_source?.prepared_spell_choices_rank_9 ?? [],
+    notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source?.prepared_spell_choices_rank_9 ?? [],
+    else -> [],
+  };
+
+calc resource<prepared_spell_choice>[] selected_source_prepared_choices_rank_10(name = "Selected source prepared rank 10") =
+  when {
+    is_archetype_spell -> selected_spellcasting_archetype_source?.prepared_spell_choices_rank_10 ?? [],
+    notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source?.prepared_spell_choices_rank_10 ?? [],
+    else -> [],
+  };
+
+calc integer selected_spell_prepared_total_rank_0(name = "Selected spell prepared total cantrip rank") =
+  add(
+    map(
+      filter(selected_source_prepared_choices_rank_0, filter = ($choice) => ($choice.spell_id == id)),
+      mapper = ($choice) => $choice.slot_quantity,
+    ),
+  );
+
+calc integer selected_spell_prepared_used_rank_0(name = "Selected spell prepared used cantrip rank") =
+  add(
+    map(
+      filter(selected_source_prepared_choices_rank_0, filter = ($choice) => ($choice.spell_id == id)),
+      mapper = ($choice) => $choice.used_quantity,
+    ),
+  );
+
+calc integer selected_spell_prepared_remaining_rank_0(name = "Selected spell prepared remaining cantrip rank") =
+  max([0, selected_spell_prepared_total_rank_0 - selected_spell_prepared_used_rank_0]);
+
+calc integer selected_spell_prepared_total_rank_1(name = "Selected spell prepared total rank 1") =
+  add(map(filter(selected_source_prepared_choices_rank_1, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.slot_quantity));
+
+calc integer selected_spell_prepared_total_rank_2(name = "Selected spell prepared total rank 2") =
+  add(map(filter(selected_source_prepared_choices_rank_2, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.slot_quantity));
+
+calc integer selected_spell_prepared_total_rank_3(name = "Selected spell prepared total rank 3") =
+  add(map(filter(selected_source_prepared_choices_rank_3, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.slot_quantity));
+
+calc integer selected_spell_prepared_total_rank_4(name = "Selected spell prepared total rank 4") =
+  add(map(filter(selected_source_prepared_choices_rank_4, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.slot_quantity));
+
+calc integer selected_spell_prepared_total_rank_5(name = "Selected spell prepared total rank 5") =
+  add(map(filter(selected_source_prepared_choices_rank_5, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.slot_quantity));
+
+calc integer selected_spell_prepared_total_rank_6(name = "Selected spell prepared total rank 6") =
+  add(map(filter(selected_source_prepared_choices_rank_6, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.slot_quantity));
+
+calc integer selected_spell_prepared_total_rank_7(name = "Selected spell prepared total rank 7") =
+  add(map(filter(selected_source_prepared_choices_rank_7, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.slot_quantity));
+
+calc integer selected_spell_prepared_total_rank_8(name = "Selected spell prepared total rank 8") =
+  add(map(filter(selected_source_prepared_choices_rank_8, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.slot_quantity));
+
+calc integer selected_spell_prepared_total_rank_9(name = "Selected spell prepared total rank 9") =
+  add(map(filter(selected_source_prepared_choices_rank_9, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.slot_quantity));
+
+calc integer selected_spell_prepared_total_rank_10(name = "Selected spell prepared total rank 10") =
+  add(map(filter(selected_source_prepared_choices_rank_10, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.slot_quantity));
+
+calc integer selected_spell_prepared_used_rank_1(name = "Selected spell prepared used rank 1") =
+  add(map(filter(selected_source_prepared_choices_rank_1, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.used_quantity));
+
+calc integer selected_spell_prepared_used_rank_2(name = "Selected spell prepared used rank 2") =
+  add(map(filter(selected_source_prepared_choices_rank_2, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.used_quantity));
+
+calc integer selected_spell_prepared_used_rank_3(name = "Selected spell prepared used rank 3") =
+  add(map(filter(selected_source_prepared_choices_rank_3, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.used_quantity));
+
+calc integer selected_spell_prepared_used_rank_4(name = "Selected spell prepared used rank 4") =
+  add(map(filter(selected_source_prepared_choices_rank_4, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.used_quantity));
+
+calc integer selected_spell_prepared_used_rank_5(name = "Selected spell prepared used rank 5") =
+  add(map(filter(selected_source_prepared_choices_rank_5, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.used_quantity));
+
+calc integer selected_spell_prepared_used_rank_6(name = "Selected spell prepared used rank 6") =
+  add(map(filter(selected_source_prepared_choices_rank_6, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.used_quantity));
+
+calc integer selected_spell_prepared_used_rank_7(name = "Selected spell prepared used rank 7") =
+  add(map(filter(selected_source_prepared_choices_rank_7, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.used_quantity));
+
+calc integer selected_spell_prepared_used_rank_8(name = "Selected spell prepared used rank 8") =
+  add(map(filter(selected_source_prepared_choices_rank_8, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.used_quantity));
+
+calc integer selected_spell_prepared_used_rank_9(name = "Selected spell prepared used rank 9") =
+  add(map(filter(selected_source_prepared_choices_rank_9, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.used_quantity));
+
+calc integer selected_spell_prepared_used_rank_10(name = "Selected spell prepared used rank 10") =
+  add(map(filter(selected_source_prepared_choices_rank_10, filter = ($choice) => ($choice.spell_id == id)), mapper = ($choice) => $choice.used_quantity));
+
+calc integer selected_spell_prepared_remaining_rank_1(name = "Selected spell prepared remaining rank 1") =
+  max([0, selected_spell_prepared_total_rank_1 - selected_spell_prepared_used_rank_1]);
+
+calc integer selected_spell_prepared_remaining_rank_2(name = "Selected spell prepared remaining rank 2") =
+  max([0, selected_spell_prepared_total_rank_2 - selected_spell_prepared_used_rank_2]);
+
+calc integer selected_spell_prepared_remaining_rank_3(name = "Selected spell prepared remaining rank 3") =
+  max([0, selected_spell_prepared_total_rank_3 - selected_spell_prepared_used_rank_3]);
+
+calc integer selected_spell_prepared_remaining_rank_4(name = "Selected spell prepared remaining rank 4") =
+  max([0, selected_spell_prepared_total_rank_4 - selected_spell_prepared_used_rank_4]);
+
+calc integer selected_spell_prepared_remaining_rank_5(name = "Selected spell prepared remaining rank 5") =
+  max([0, selected_spell_prepared_total_rank_5 - selected_spell_prepared_used_rank_5]);
+
+calc integer selected_spell_prepared_remaining_rank_6(name = "Selected spell prepared remaining rank 6") =
+  max([0, selected_spell_prepared_total_rank_6 - selected_spell_prepared_used_rank_6]);
+
+calc integer selected_spell_prepared_remaining_rank_7(name = "Selected spell prepared remaining rank 7") =
+  max([0, selected_spell_prepared_total_rank_7 - selected_spell_prepared_used_rank_7]);
+
+calc integer selected_spell_prepared_remaining_rank_8(name = "Selected spell prepared remaining rank 8") =
+  max([0, selected_spell_prepared_total_rank_8 - selected_spell_prepared_used_rank_8]);
+
+calc integer selected_spell_prepared_remaining_rank_9(name = "Selected spell prepared remaining rank 9") =
+  max([0, selected_spell_prepared_total_rank_9 - selected_spell_prepared_used_rank_9]);
+
+calc integer selected_spell_prepared_remaining_rank_10(name = "Selected spell prepared remaining rank 10") =
+  max([0, selected_spell_prepared_total_rank_10 - selected_spell_prepared_used_rank_10]);
+
+calc integer selected_spell_prepared_total_all_ranks(name = "Selected spell prepared total all ranks") =
+  add(
+    [
+      selected_spell_prepared_total_rank_0,
+      selected_spell_prepared_total_rank_1,
+      selected_spell_prepared_total_rank_2,
+      selected_spell_prepared_total_rank_3,
+      selected_spell_prepared_total_rank_4,
+      selected_spell_prepared_total_rank_5,
+      selected_spell_prepared_total_rank_6,
+      selected_spell_prepared_total_rank_7,
+      selected_spell_prepared_total_rank_8,
+      selected_spell_prepared_total_rank_9,
+      selected_spell_prepared_total_rank_10,
+    ],
+  );
+
+calc integer selected_spell_prepared_remaining_all_ranks(name = "Selected spell prepared remaining all ranks") =
+  add(
+    [
+      selected_spell_prepared_remaining_rank_0,
+      selected_spell_prepared_remaining_rank_1,
+      selected_spell_prepared_remaining_rank_2,
+      selected_spell_prepared_remaining_rank_3,
+      selected_spell_prepared_remaining_rank_4,
+      selected_spell_prepared_remaining_rank_5,
+      selected_spell_prepared_remaining_rank_6,
+      selected_spell_prepared_remaining_rank_7,
+      selected_spell_prepared_remaining_rank_8,
+      selected_spell_prepared_remaining_rank_9,
+      selected_spell_prepared_remaining_rank_10,
+    ],
+  );
+
+calc bool has_any_prepared_entry_for_selected_source(name = "Has any prepared entry for selected source") =
+  selected_spell_prepared_total_all_ranks > 0;
+
+calc bool has_any_unexpended_prepared_entry_for_selected_source(name = "Has any unexpended prepared entry for selected source") =
+  selected_spell_prepared_remaining_all_ranks > 0;
+
 calc bool in_combat(name = "In combat") =
   defined(stat = "$combatants");
 
@@ -433,53 +678,6 @@ calc bool use_combat_free_casting(name = "Use combat free casting mode") =
 calc bool should_display_cast_controls(name = "Should display cast controls") =
   defined(stat = "$character") || use_combat_free_casting;
 
-calc bool can_toggle_preparation(name = "Can toggle spell preparation") =
-  defined(stat = "$character") && !is_cantrip && selected_spellcasting_mode == "prepared";
-
-calc string prepare_button_text(name = "Prepare button text") =
-  if prepared then "UNPREPARE" else "PREPARE";
-
-calc bool has_prepared_cast_requirement(name = "Has prepared cast requirement satisfied") =
-  selected_spellcasting_mode != "prepared" || is_cantrip || prepared;
-
-calc integer[] available_slots_for_use(name = "Available slots for use") =
-  if use_combat_free_casting
-    then filter(
-        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        filter = ($filterValue) => ($filterValue >= (if num_level <= 1 then 1 else num_level)),
-      )
-    else if is_archetype_spell
-    then filter(
-        [1, 2, 3, 4, 5, 6, 7, 8, 9],
-        filter = ($v) => $v >= num_level && when {
-          $v == 1 -> (selected_spellcasting_archetype_source?.spell_slots_1 ?? 0) > 0,
-          $v == 2 -> (selected_spellcasting_archetype_source?.spell_slots_2 ?? 0) > 0,
-          $v == 3 -> (selected_spellcasting_archetype_source?.spell_slots_3 ?? 0) > 0,
-          $v == 4 -> (selected_spellcasting_archetype_source?.spell_slots_4 ?? 0) > 0,
-          $v == 5 -> (selected_spellcasting_archetype_source?.spell_slots_5 ?? 0) > 0,
-          $v == 6 -> (selected_spellcasting_archetype_source?.spell_slots_6 ?? 0) > 0,
-          $v == 7 -> (selected_spellcasting_archetype_source?.spell_slots_7 ?? 0) > 0,
-          $v == 8 -> (selected_spellcasting_archetype_source?.spell_slots_8 ?? 0) > 0,
-          $v == 9 -> (selected_spellcasting_archetype_source?.spell_slots_9 ?? 0) > 0,
-          else -> false,
-        },
-      )
-    else if character_spell_slots_defined
-    then filter(
-        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        filter = ($filterValue) => ($filterValue >= num_level
-          && metaStat(meta_stat = concat(["$character.spell_slots_", $filterValue])) > 0),
-      )
-    else [];
-
-calc string selected_spell_slots_stat_name(name = "Selected spell slots stat name") =
-  concat(
-    [
-      "$character.spell_slots_",
-      selected_cast_level,
-    ],
-  );
-
 calc integer selected_cast_level(name = "Selected cast rank") =
   if is_cantrip && defined(stat = "$character")
     then min([10, divide([$character.level + 1, 2], rounding_method = "up")])
@@ -490,7 +688,145 @@ calc integer selected_cast_level(name = "Selected cast rank") =
           filter = ($findFirstValue) => true,
         ) ?? max([1, num_level])));
 
+calc integer selected_prepared_consumption_rank(name = "Selected prepared consumption rank") =
+  if is_cantrip then 0 else selected_cast_level;
+
+calc integer selected_spell_prepared_total_for_selected_cast_rank(name = "Selected spell prepared total for selected cast rank") =
+  when {
+    selected_prepared_consumption_rank == 0 -> selected_spell_prepared_total_rank_0,
+    selected_prepared_consumption_rank == 1 -> selected_spell_prepared_total_rank_1,
+    selected_prepared_consumption_rank == 2 -> selected_spell_prepared_total_rank_2,
+    selected_prepared_consumption_rank == 3 -> selected_spell_prepared_total_rank_3,
+    selected_prepared_consumption_rank == 4 -> selected_spell_prepared_total_rank_4,
+    selected_prepared_consumption_rank == 5 -> selected_spell_prepared_total_rank_5,
+    selected_prepared_consumption_rank == 6 -> selected_spell_prepared_total_rank_6,
+    selected_prepared_consumption_rank == 7 -> selected_spell_prepared_total_rank_7,
+    selected_prepared_consumption_rank == 8 -> selected_spell_prepared_total_rank_8,
+    selected_prepared_consumption_rank == 9 -> selected_spell_prepared_total_rank_9,
+    selected_prepared_consumption_rank == 10 -> selected_spell_prepared_total_rank_10,
+    else -> 0,
+  };
+
+calc integer selected_spell_prepared_remaining_for_selected_cast_rank(name = "Selected spell prepared remaining for selected cast rank") =
+  when {
+    selected_prepared_consumption_rank == 0 -> selected_spell_prepared_remaining_rank_0,
+    selected_prepared_consumption_rank == 1 -> selected_spell_prepared_remaining_rank_1,
+    selected_prepared_consumption_rank == 2 -> selected_spell_prepared_remaining_rank_2,
+    selected_prepared_consumption_rank == 3 -> selected_spell_prepared_remaining_rank_3,
+    selected_prepared_consumption_rank == 4 -> selected_spell_prepared_remaining_rank_4,
+    selected_prepared_consumption_rank == 5 -> selected_spell_prepared_remaining_rank_5,
+    selected_prepared_consumption_rank == 6 -> selected_spell_prepared_remaining_rank_6,
+    selected_prepared_consumption_rank == 7 -> selected_spell_prepared_remaining_rank_7,
+    selected_prepared_consumption_rank == 8 -> selected_spell_prepared_remaining_rank_8,
+    selected_prepared_consumption_rank == 9 -> selected_spell_prepared_remaining_rank_9,
+    selected_prepared_consumption_rank == 10 -> selected_spell_prepared_remaining_rank_10,
+    else -> 0,
+  };
+
+calc bool has_required_prepared_cast_requirement(name = "Has required prepared cast requirement") =
+  selected_spellcasting_mode != "prepared"
+    || (if is_cantrip
+      then selected_spell_prepared_total_rank_0 > 0
+      else selected_spell_prepared_remaining_for_selected_cast_rank > 0);
+
+calc integer[] available_slots_for_use(name = "Available slots for use") =
+  if use_combat_free_casting
+    then filter(
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        filter = ($filterValue) => ($filterValue >= (if num_level <= 1 then 1 else num_level)),
+      )
+    else if is_cantrip || is_focus_spell
+      then []
+    else if is_archetype_spell
+      then filter(
+          [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+          filter = ($v) => $v >= num_level && when {
+            $v == 1 -> (selected_spellcasting_archetype_source?.spell_slots_1 ?? 0) > 0
+              && (selected_spellcasting_mode != "prepared" || selected_spell_prepared_remaining_rank_1 > 0),
+            $v == 2 -> (selected_spellcasting_archetype_source?.spell_slots_2 ?? 0) > 0
+              && (selected_spellcasting_mode != "prepared" || selected_spell_prepared_remaining_rank_2 > 0),
+            $v == 3 -> (selected_spellcasting_archetype_source?.spell_slots_3 ?? 0) > 0
+              && (selected_spellcasting_mode != "prepared" || selected_spell_prepared_remaining_rank_3 > 0),
+            $v == 4 -> (selected_spellcasting_archetype_source?.spell_slots_4 ?? 0) > 0
+              && (selected_spellcasting_mode != "prepared" || selected_spell_prepared_remaining_rank_4 > 0),
+            $v == 5 -> (selected_spellcasting_archetype_source?.spell_slots_5 ?? 0) > 0
+              && (selected_spellcasting_mode != "prepared" || selected_spell_prepared_remaining_rank_5 > 0),
+            $v == 6 -> (selected_spellcasting_archetype_source?.spell_slots_6 ?? 0) > 0
+              && (selected_spellcasting_mode != "prepared" || selected_spell_prepared_remaining_rank_6 > 0),
+            $v == 7 -> (selected_spellcasting_archetype_source?.spell_slots_7 ?? 0) > 0
+              && (selected_spellcasting_mode != "prepared" || selected_spell_prepared_remaining_rank_7 > 0),
+            $v == 8 -> (selected_spellcasting_archetype_source?.spell_slots_8 ?? 0) > 0
+              && (selected_spellcasting_mode != "prepared" || selected_spell_prepared_remaining_rank_8 > 0),
+            $v == 9 -> (selected_spellcasting_archetype_source?.spell_slots_9 ?? 0) > 0
+              && (selected_spellcasting_mode != "prepared" || selected_spell_prepared_remaining_rank_9 > 0),
+            $v == 10 -> (selected_spellcasting_archetype_source?.spell_slots_10 ?? 0) > 0
+              && (selected_spellcasting_mode != "prepared" || selected_spell_prepared_remaining_rank_10 > 0),
+            else -> false,
+          },
+        )
+      else if character_spell_slots_defined
+        then filter(
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            filter = ($filterValue) => ($filterValue >= num_level
+              && metaStat(meta_stat = concat(["$character.spell_slots_", $filterValue])) > 0
+              && (selected_spellcasting_mode != "prepared" || when {
+                    $filterValue == 1 -> selected_spell_prepared_remaining_rank_1 > 0,
+                    $filterValue == 2 -> selected_spell_prepared_remaining_rank_2 > 0,
+                    $filterValue == 3 -> selected_spell_prepared_remaining_rank_3 > 0,
+                    $filterValue == 4 -> selected_spell_prepared_remaining_rank_4 > 0,
+                    $filterValue == 5 -> selected_spell_prepared_remaining_rank_5 > 0,
+                    $filterValue == 6 -> selected_spell_prepared_remaining_rank_6 > 0,
+                    $filterValue == 7 -> selected_spell_prepared_remaining_rank_7 > 0,
+                    $filterValue == 8 -> selected_spell_prepared_remaining_rank_8 > 0,
+                    $filterValue == 9 -> selected_spell_prepared_remaining_rank_9 > 0,
+                    $filterValue == 10 -> selected_spell_prepared_remaining_rank_10 > 0,
+                    else -> false,
+                  })),
+          )
+        else [];
+
+calc string selected_spell_slots_stat_name(name = "Selected spell slots stat name") =
+  concat(
+    [
+      "$character.spell_slots_",
+      selected_cast_level,
+    ],
+  );
+
 calc integer available_selected_slots(name = "Available selected spell slots") =
+  when {
+    selected_spellcasting_mode == "prepared" && selected_prepared_consumption_rank == 0 ->
+      selected_spell_prepared_remaining_for_selected_cast_rank,
+    selected_spellcasting_mode == "prepared" -> min(
+      [
+        selected_spell_prepared_remaining_for_selected_cast_rank,
+        selected_source_rank_slot_pool_remaining,
+      ],
+    ),
+    is_archetype_spell -> when {
+      selected_cast_level == 1 -> selected_spellcasting_archetype_source?.spell_slots_1 ?? 0,
+      selected_cast_level == 2 -> selected_spellcasting_archetype_source?.spell_slots_2 ?? 0,
+      selected_cast_level == 3 -> selected_spellcasting_archetype_source?.spell_slots_3 ?? 0,
+      selected_cast_level == 4 -> selected_spellcasting_archetype_source?.spell_slots_4 ?? 0,
+      selected_cast_level == 5 -> selected_spellcasting_archetype_source?.spell_slots_5 ?? 0,
+      selected_cast_level == 6 -> selected_spellcasting_archetype_source?.spell_slots_6 ?? 0,
+      selected_cast_level == 7 -> selected_spellcasting_archetype_source?.spell_slots_7 ?? 0,
+      selected_cast_level == 8 -> selected_spellcasting_archetype_source?.spell_slots_8 ?? 0,
+      selected_cast_level == 9 -> selected_spellcasting_archetype_source?.spell_slots_9 ?? 0,
+      selected_cast_level == 10 -> selected_spellcasting_archetype_source?.spell_slots_10 ?? 0,
+      else -> 0,
+    },
+    character_spell_slots_defined && selected_spell_slots_stat_name != "$character.spell_slots_0" ->
+      metaStat(meta_stat = selected_spell_slots_stat_name),
+    else -> 0,
+  };
+
+calc string available_selected_slots_label(name = "Available selected slots label") =
+  if selected_spellcasting_mode == "prepared"
+    then "Prepared casts remaining: "
+    else "Spell slots remaining: ";
+
+calc integer selected_source_rank_slot_pool_remaining(name = "Selected source rank slot pool remaining") =
   when {
     is_archetype_spell -> when {
       selected_cast_level == 1 -> selected_spellcasting_archetype_source?.spell_slots_1 ?? 0,
@@ -502,6 +838,7 @@ calc integer available_selected_slots(name = "Available selected spell slots") =
       selected_cast_level == 7 -> selected_spellcasting_archetype_source?.spell_slots_7 ?? 0,
       selected_cast_level == 8 -> selected_spellcasting_archetype_source?.spell_slots_8 ?? 0,
       selected_cast_level == 9 -> selected_spellcasting_archetype_source?.spell_slots_9 ?? 0,
+      selected_cast_level == 10 -> selected_spellcasting_archetype_source?.spell_slots_10 ?? 0,
       else -> 0,
     },
     character_spell_slots_defined && selected_spell_slots_stat_name != "$character.spell_slots_0" ->
@@ -514,6 +851,12 @@ calc bool should_select_spell_slot_to_cast(name = "Should select a spell slot to
     && !is_cantrip
     && !is_focus_spell
     && !isEmpty(available_slots_for_use);
+
+calc bool can_toggle_preparation(name = "Can toggle spell preparation") =
+  false;
+
+calc string prepare_button_text(name = "Prepare button text") =
+  if prepared then "UNPREPARE" else "PREPARE";
 
 calc string selected_spellcasting_ability(name = "Selected spellcasting ability") =
   when {
@@ -569,8 +912,184 @@ calc bool character_is_not_wearing_inproficient_armor(name = "Character is not c
     then $character.is_not_wearing_inproficient_armor
     else true;
 
+calc resource<spell_capacity_grant>[] selected_source_active_spell_capacity_grants(name = "Selected source active spell capacity grants") =
+  when {
+    is_archetype_spell -> selected_spellcasting_archetype_source?.active_spell_capacity_grants ?? [],
+    notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source?.active_spell_capacity_grants ?? [],
+    else -> [],
+  };
+
+calc integer selected_source_highest_base_spell_slot_rank(name = "Selected source highest base spell slot rank") =
+  when {
+    is_archetype_spell -> selected_spellcasting_archetype_source?.highest_base_spell_slot_rank ?? 0,
+    notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source?.highest_base_spell_slot_rank ?? 0,
+    else -> 0,
+  };
+
+calc string[] selected_source_choice_bound_slot_spell_names(name = "Selected source choice-bound slot spell names") =
+  when {
+    notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source?.selected_choice_bound_slot_spell_names
+      ?? [],
+    else -> [],
+  };
+
+calc resource<spell_capacity_grant>[] selected_cast_rank_slot_capacity_grants(name = "Selected cast rank slot capacity grants") =
+  filter(
+    selected_source_active_spell_capacity_grants,
+    filter = ($grant) => ($grant.capacity_type == "slot"
+      && (
+          ($grant.target_rank_mode == "specific" && $grant.target_rank == selected_cast_level)
+            || ($grant.target_rank_mode == "highest_available" && selected_source_highest_base_spell_slot_rank == selected_cast_level)
+        )),
+  );
+
+calc resource<spell_capacity_grant>[] selected_cast_rank_restricted_slot_grants(name = "Selected cast rank restricted slot grants") =
+  filter(
+    selected_cast_rank_slot_capacity_grants,
+    filter = ($grant) => (
+      $grant.restriction_mode != "none"
+        || ($grant.requires_spell_choice && $grant.choice_rank == selected_cast_level)
+    ),
+  );
+
+calc bool spell_matches_selected_cast_rank_restricted_slot_grants(name = "Spell matches selected cast rank restricted slot grants") =
+  isEmpty(selected_cast_rank_restricted_slot_grants)
+    || !isEmpty(
+      filter(
+        selected_cast_rank_restricted_slot_grants,
+        filter = ($grant) => (
+            ($grant.restriction_mode == "spell_name_allowlist" && contains(
+                haystack = map($grant.actual_restricted_spell_names, mapper = ($n) => toLowerCase($n)),
+                needle = toLowerCase(name),
+              ))
+              || ($grant.requires_spell_choice
+                && $grant.choice_rank == selected_cast_level
+                && contains(
+                  haystack = map(selected_source_choice_bound_slot_spell_names, mapper = ($n) => toLowerCase($n)),
+                  needle = toLowerCase(name),
+                ))
+              || ($grant.restriction_mode == "trait_allowlist"
+                && !isEmpty(
+                  filter(
+                    spell_traits,
+                    filter = ($trait) => contains(
+                        haystack = $grant.restricted_spell_traits,
+                        needle = $trait,
+                      ),
+                  ),
+                ))
+          ),
+      ),
+    );
+
+calc bool has_restricted_slot_grant_warning(name = "Has restricted slot grant warning") =
+  selected_spellcasting_mode == "spontaneous"
+    && !is_cantrip
+    && !isEmpty(selected_cast_rank_restricted_slot_grants)
+    && !spell_matches_selected_cast_rank_restricted_slot_grants;
+
+calc resource<spell_capacity_grant> selected_first_cast_rank_restricted_slot_grant(name = "Selected first cast rank restricted slot grant") =
+  findFirst(
+    selected_cast_rank_restricted_slot_grants,
+    filter = ($findFirstValue) => true,
+  );
+
+calc string[] selected_first_cast_rank_restricted_spell_names(name = "Selected first cast rank restricted spell names") =
+  selected_first_cast_rank_restricted_slot_grant?.actual_restricted_spell_names ?? [];
+
+calc string selected_first_cast_rank_restricted_spell_name_example(name = "Selected first cast rank restricted spell name example") =
+  findFirst(
+    selected_first_cast_rank_restricted_spell_names,
+    filter = ($findFirstValue) => true,
+  )
+    ?? "";
+
+calc integer selected_first_cast_rank_restricted_spell_name_count(name = "Selected first cast rank restricted spell name count") =
+  length(selected_first_cast_rank_restricted_spell_names);
+
+calc string[] selected_first_cast_rank_restricted_spell_traits(name = "Selected first cast rank restricted spell traits") =
+  selected_first_cast_rank_restricted_slot_grant?.restricted_spell_traits ?? [];
+
+calc string selected_first_cast_rank_restricted_spell_trait_example(name = "Selected first cast rank restricted spell trait example") =
+  findFirst(
+    selected_first_cast_rank_restricted_spell_traits,
+    filter = ($findFirstValue) => true,
+  )
+    ?? "";
+
+calc integer selected_first_cast_rank_restricted_spell_trait_count(name = "Selected first cast rank restricted spell trait count") =
+  length(selected_first_cast_rank_restricted_spell_traits);
+
+calc string selected_choice_bound_slot_spell_name_example(name = "Selected choice-bound slot spell name example") =
+  findFirst(
+    selected_source_choice_bound_slot_spell_names,
+    filter = ($findFirstValue) => true,
+  )
+    ?? "";
+
+calc integer selected_choice_bound_slot_spell_name_count(name = "Selected choice-bound slot spell name count") =
+  length(selected_source_choice_bound_slot_spell_names);
+
+calc string restricted_slot_grant_warning_text(name = "Restricted slot grant warning text") =
+  if has_restricted_slot_grant_warning
+    then when {
+        selected_first_cast_rank_restricted_slot_grant?.requires_spell_choice ?? false -> concat(
+          [
+            "Selected rank has choice-bound bonus slots.",
+            (if selected_choice_bound_slot_spell_name_count > 0
+              then concat(
+                  [
+                    " Chosen spell example: ",
+                    selected_choice_bound_slot_spell_name_example,
+                    (if selected_choice_bound_slot_spell_name_count > 1
+                      then concat([" (+", selected_choice_bound_slot_spell_name_count - 1, " more)"])
+                      else ""),
+                    ".",
+                  ],
+                )
+              else " Choose slot-bound spells in class progression first."),
+          ],
+        ),
+        selected_first_cast_rank_restricted_slot_grant?.restriction_mode == "spell_name_allowlist" -> concat(
+          [
+            "Selected rank has name-restricted bonus slots.",
+            (if selected_first_cast_rank_restricted_spell_name_count > 0
+              then concat(
+                  [
+                    " Allowed example: ",
+                    selected_first_cast_rank_restricted_spell_name_example,
+                    (if selected_first_cast_rank_restricted_spell_name_count > 1
+                      then concat([" (+", selected_first_cast_rank_restricted_spell_name_count - 1, " more)"])
+                      else ""),
+                    ".",
+                  ],
+                )
+              else ""),
+          ],
+        ),
+        selected_first_cast_rank_restricted_slot_grant?.restriction_mode == "trait_allowlist" -> concat(
+          [
+            "Selected rank has trait-restricted bonus slots.",
+            (if selected_first_cast_rank_restricted_spell_trait_count > 0
+              then concat(
+                  [
+                    " Required trait example: ",
+                    selected_first_cast_rank_restricted_spell_trait_example,
+                    (if selected_first_cast_rank_restricted_spell_trait_count > 1
+                      then concat([" (+", selected_first_cast_rank_restricted_spell_trait_count - 1, " more)"])
+                      else ""),
+                    ".",
+                  ],
+                )
+              else ""),
+          ],
+        ),
+        else -> "Selected rank has restricted bonus slots and this spell does not match those restrictions.",
+      }
+    else "";
+
 calc bool has_required_spell_slots_to_cast(name = "Has required spell slots to cast") =
-  if !has_prepared_cast_requirement
+  if !has_required_prepared_cast_requirement
     then false
   else if is_focus_spell
     then (when {
@@ -578,6 +1097,18 @@ calc bool has_required_spell_slots_to_cast(name = "Has required spell slots to c
           else -> 0,
         }) >= focus_point_cost
       else use_combat_free_casting || is_cantrip || !isEmpty(available_slots_for_use);
+
+calc bool is_fully_expended_prepared_for_selected_source(name = "Is fully expended prepared for selected source") =
+  selected_spellcasting_mode == "prepared"
+    && !is_cantrip
+    && has_any_prepared_entry_for_selected_source
+    && !has_any_unexpended_prepared_entry_for_selected_source;
+
+calc bool passes_spells_section_filters(name = "Passes spells section filters") =
+  (!($character?.spells_show_prepared_only ?? false)
+    || (selected_spellcasting_mode == "prepared" && has_any_prepared_entry_for_selected_source))
+    && (!($character?.spells_hide_fully_expended_prepared ?? false)
+      || !is_fully_expended_prepared_for_selected_source);
 
 calc bool can_cast(name = "Can cast spell") =
   character_is_not_wearing_inproficient_armor

@@ -21,6 +21,14 @@ base bool add_attack_ability_to_damage(name = "Add attack ability to damage") =
 
 base string rarity(name = "Rarity") = "common";
 
+base string weapon_group(name = "Weapon group") = "none";
+
+calc bool has_weapon_group(name = "Has weapon group") =
+  weapon_group != "none";
+
+calc string weapon_group_display_name(name = "Weapon group display name") =
+  enumeratedName(enumerated_type = "weapon_groups", id = weapon_group);
+
 calc string display_type(name = "Display type") =
   when {
     is_firearm && is_simple -> "simple_firearms",
@@ -390,6 +398,12 @@ calc string attachment_bonus_damage_dice_display_description(name = "Attachment 
 calc bool has_ammunition(name = "Has ammunition") =
   is_range && ammunition_type != "none";
 
+calc string weapon_group_simple_martial_unarmed_option_id(name = "Weapon group option id (simple/martial/unarmed)") =
+  concat(["group_", weapon_group, "_simple_martial_unarmed"]);
+
+calc string weapon_group_advanced_option_id(name = "Weapon group option id (advanced)") =
+  concat(["group_", weapon_group, "_advanced"]);
+
 calc resource<levelled_weapon_proficiency>[] weapon_proficiency_rows(name = "Weapon proficiency rows") =
   if defined(stat = "$character")
     then flatAppend(
@@ -464,7 +478,17 @@ calc integer weapon_proficiency_rank_from_rows(name = "Weapon proficiency rank f
                   || $option == "martial_crossbows"
                     && is_crossbow
                     && !is_simple
-                    && !is_advanced),
+                    && !is_advanced
+                  || has_weapon_group
+                    && $option == weapon_group_simple_martial_unarmed_option_id
+                    && !isEmpty($filterValue.selected_option)
+                    && $filterValue.selected_option == $option
+                    && (!is_advanced || type == "unarmed_strike")
+                  || has_weapon_group
+                    && $option == weapon_group_advanced_option_id
+                    && !isEmpty($filterValue.selected_option)
+                    && $filterValue.selected_option == $option
+                    && is_advanced),
               ),
             ),
           ),
@@ -515,7 +539,7 @@ calc integer weapon_proficiency_rank_from_legacy(name = "Weapon proficiency rank
 calc integer weapon_proficiency_rank_from_deity(name = "Weapon proficiency rank from deity favored weapon") =
   if defined(stat = "$character")
       && (contains(
-          haystack = ($character.primary_class_progression?.active_selected_deity?.favored_weapon_types ?? []),
+          haystack = ($character.primary_class_progression?.active_selected_deity?.favored_weapons ?? []),
           needle = type,
         )
         || contains(
@@ -525,15 +549,81 @@ calc integer weapon_proficiency_rank_from_deity(name = "Weapon proficiency rank 
     then 1
     else 0;
 
+calc string[] primary_class_feature_names(name = "Primary class feature names") =
+  if !defined(stat = "$character")
+    then []
+    else map(
+        ($character.primary_class_progression?.class.current_level_features ?? []),
+        mapper = ($mapValue) => $mapValue.name,
+      );
+
+calc integer weapon_proficiency_rank_from_cleric_doctrine(name = "Weapon proficiency rank from Cleric doctrine favored-weapon progression") =
+  if !defined(stat = "$character")
+      || isEmpty($character.primary_class_progression?.class?.id ?? "")
+      || ($character.primary_class_progression?.class?.id ?? "") != "cleric__pc1_"
+      || (weapon_proficiency_rank_from_deity <= 0)
+    then 0
+    else when {
+        contains(
+          haystack = primary_class_feature_names,
+          needle = "Warpriest: Final Doctrine",
+        ) -> 3,
+        contains(
+          haystack = primary_class_feature_names,
+          needle = "Warpriest: Third Doctrine",
+        )
+          || contains(
+            haystack = primary_class_feature_names,
+            needle = "Cloistered: Fourth Doctrine",
+          ) -> 2,
+        else -> 0,
+      };
+
 calc integer weapon_proficiency_rank(name = "Weapon proficiency rank") =
   max(
     [
       weapon_proficiency_rank_from_rows,
       weapon_proficiency_rank_from_legacy,
       weapon_proficiency_rank_from_deity,
+      weapon_proficiency_rank_from_cleric_doctrine,
       (if override_is_proficient then 1 else 0),
     ],
   );
+
+calc integer weapon_specialization_stage_from_features(name = "Weapon specialization stage from features") =
+  if !defined(stat = "$character")
+    then 0
+    else max(
+        flatAppend(
+          [
+            [0],
+            map(
+              $character.all_features,
+              mapper = ($feature) => when {
+                $feature.grants_greater_weapon_specialization -> 2,
+                $feature.grants_weapon_specialization -> 1,
+                else -> 0,
+              },
+            ),
+          ],
+        ),
+      );
+
+calc integer weapon_specialization_damage_bonus(name = "Weapon specialization damage bonus") =
+  when {
+    weapon_proficiency_rank < 2 -> 0,
+    weapon_specialization_stage_from_features >= 2 -> when {
+      weapon_proficiency_rank >= 4 -> 8,
+      weapon_proficiency_rank == 3 -> 6,
+      else -> 4,
+    },
+    weapon_specialization_stage_from_features == 1 -> when {
+      weapon_proficiency_rank >= 4 -> 4,
+      weapon_proficiency_rank == 3 -> 3,
+      else -> 2,
+    },
+    else -> 0,
+  };
 
 calc bool is_proficient(name = "Is proficient") =
   weapon_proficiency_rank > 0;
@@ -601,6 +691,56 @@ calc resource<damage_dice> active_primary_damage_dice(name = "Active primary dam
 calc string active_primary_damage_dice_id(name = "Active primary damage die id") =
   active_primary_damage_dice?.id ?? "";
 
+calc resource<dice_roll>[] active_primary_damage_rolls(name = "Active primary damage rolls") =
+  active_primary_damage_dice?.dices ?? [];
+
+calc resource<dice_roll> active_primary_damage_roll(name = "Active primary damage roll") =
+  findFirst(
+    active_primary_damage_rolls,
+    filter = ($findFirstValue) => true,
+  );
+
+calc string active_primary_damage_formula(name = "Active primary damage formula") =
+  active_primary_damage_roll?.formula ?? "";
+
+calc bool has_deadly_simplicity_feat(name = "Has Deadly Simplicity feat") =
+  if !defined(stat = "$character")
+    then false
+    else contains(
+        haystack = map(
+          $character.all_features,
+          mapper = ($mapValue) => $mapValue.id,
+        ),
+        needle = "feat_deadly_simplicity__pc1_",
+      );
+
+calc bool warpriest_auto_grants_deadly_simplicity(name = "Warpriest auto grants Deadly Simplicity") =
+  if !defined(stat = "$character")
+    then false
+    else ($character.warpriest_auto_grants_deadly_simplicity ?? false);
+
+calc bool is_deadly_simplicity_enabled(name = "Is Deadly Simplicity enabled") =
+  (has_deadly_simplicity_feat || warpriest_auto_grants_deadly_simplicity)
+    && (weapon_proficiency_rank_from_deity > 0)
+    && (is_simple || type == "unarmed_strike");
+
+calc string deadly_simplicity_primary_damage_formula(name = "Deadly Simplicity primary damage formula") =
+  if !is_deadly_simplicity_enabled
+    then active_primary_damage_formula
+    else when {
+        type == "unarmed_strike"
+          && (active_primary_damage_formula == "1d2"
+            || active_primary_damage_formula == "1d3"
+            || active_primary_damage_formula == "1d4") -> "1d6",
+        active_primary_damage_formula == "1d2" -> "1d3",
+        active_primary_damage_formula == "1d3" -> "1d4",
+        active_primary_damage_formula == "1d4" -> "1d6",
+        active_primary_damage_formula == "1d6" -> "1d8",
+        active_primary_damage_formula == "1d8" -> "1d10",
+        active_primary_damage_formula == "1d10" -> "1d12",
+        else -> active_primary_damage_formula,
+      };
+
 calc string active_damage_type(name = "Active primary damage type") =
   if use_versatile_damage_type
     then versatile_damage_type
@@ -657,7 +797,13 @@ calc string two_hand_trait_damage_dice_display_description(name = "Display two-h
                   mapper = ($mapValue) => concat(
                     [
                       joinToString(
-                        map($mapValue.dices, mapper = ($dice) => $dice.formula),
+                        map(
+                          $mapValue.dices,
+                          mapper = ($dice) => if is_deadly_simplicity_enabled
+                              && $mapValue.id == active_primary_damage_dice_id
+                            then deadly_simplicity_primary_damage_formula
+                            else $dice.formula,
+                        ),
                         separator = " + ",
                       ),
                       " ",
@@ -699,6 +845,7 @@ calc string properties(name = "Properties") =
               enumeratedName(enumerated_type = "item_rarity", id = rarity),
             ]
           else []),
+        (if has_weapon_group then [concat(["group ", weapon_group_display_name])] else []),
         (if !isEmpty(traits) then [traits] else []),
         (if is_firearm then ["firearm"] else []),
         (if is_crossbow then ["crossbow"] else []),
@@ -751,7 +898,7 @@ calc integer damage_bonus(name = "Damage bonus") =
         ),
       )
     else 0
-  ) + total_attachment_damage_bonus + (if defined(stat = "$character") then $character.strike_damage_typed_modifier_total else 0);
+  ) + total_attachment_damage_bonus + weapon_specialization_damage_bonus + (if defined(stat = "$character") then $character.strike_damage_typed_modifier_total else 0);
 
 calc string display_attack_bonus(name = "Display attack bonus") =
   if defined(stat = "$character")

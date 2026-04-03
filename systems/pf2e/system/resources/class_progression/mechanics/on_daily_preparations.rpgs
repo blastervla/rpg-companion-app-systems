@@ -51,8 +51,107 @@ mechanic on_daily_preparations(event_names = "daily_preparations") =
         ),
         setStat(
           stat = "$character.spell_slots_10",
-          new_value = metaStat(meta_stat = "$character.max_spell_slots_10_bonus") ?? 0,
+          new_value = max_class_spell_slots_10 + (metaStat(meta_stat = "$character.max_spell_slots_10_bonus") ?? 0),
           aggregation_type = "set",
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_0,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_1,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_2,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_3,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_4,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_5,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_6,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_7,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_8,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_9,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_10,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
         ),
       ],
     ),

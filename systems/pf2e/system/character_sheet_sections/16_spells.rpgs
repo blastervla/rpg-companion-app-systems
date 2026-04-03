@@ -22,6 +22,14 @@ character_sheet_section spells() =
         style = "title",
       ),
       spacer(id = "spells_section_header_spacer"),
+      menuButton(
+        id = "spells_section_menu",
+        margin_right = 8,
+        icon_name = "ic_sort",
+        icon_size = "small",
+        icon_color = "accent",
+        options = "spells_section_menu",
+      ),
       selectResources(
         id = "spells_section_add_spell",
         stat = "spells",
@@ -29,12 +37,28 @@ character_sheet_section spells() =
         view_type = "icon",
         should_append = true,
         should_save_on_selection = true,
-        filters = dict(traditions = flatAppend([
-          if arcane_spellcasting_proficiency != "none" then ["arcane"] else [],
-          if divine_spellcasting_proficiency != "none" then ["divine"] else [],
-          if occult_spellcasting_proficiency != "none" then ["occult"] else [],
-          if primal_spellcasting_proficiency != "none" then ["primal"] else [],
-        ])),
+        filters = dict(
+          traditions = flatAppend(
+            [
+              map(
+                filter(
+                  classes,
+                  filter = ($classProgression) => ($classProgression.show_spellcasting_details
+                    && !isEmpty($classProgression.class.actual_spellcasting_tradition)),
+                ),
+                mapper = ($classProgression) => [$classProgression.class.actual_spellcasting_tradition],
+              ),
+              map(
+                filter(
+                  spellcasting_archetypes,
+                  filter = ($archetype) => !isEmpty($archetype.actual_spellcasting_tradition),
+                ),
+                mapper = ($archetype) => [$archetype.actual_spellcasting_tradition],
+              ),
+            ],
+            treat_as_set = true,
+          ),
+        ),
       ),
     ],
     content = [
@@ -173,6 +197,19 @@ character_sheet_section spells() =
           text = "Rank 9",
           style = "subhead",
           is_visible = !isEmpty(level_9_spells),
+        ),
+      ),
+      resourceSection(
+        id = "level_10_spells_list",
+        resource_stat = "level_10_spells",
+        resource_set_stat = "spells",
+        resource_id = "spell",
+        header_view = text(
+          id = "level_10_title",
+          margin_left = 12,
+          text = "Rank 10",
+          style = "subhead",
+          is_visible = !isEmpty(level_10_spells),
         ),
       ),
     ],

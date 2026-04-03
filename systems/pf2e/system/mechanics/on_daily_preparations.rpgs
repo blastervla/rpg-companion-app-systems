@@ -4,7 +4,7 @@ mechanic on_daily_preparations(event_names = "daily_preparations") =
       setStat(stat = "current_hp", new_value = max_hp, aggregation_type = "set"),
       setStat(
         stat = "focus_points",
-        new_value = max_focus_points,
+        new_value = effective_max_focus_points,
         aggregation_type = "set",
       ),
       setStat(
@@ -21,6 +21,90 @@ mechanic on_daily_preparations(event_names = "daily_preparations") =
         stat = "hero_points",
         new_value = max([1, hero_points]),
         aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_1",
+        new_value = (primary_class_progression?.max_class_spell_slots_1 ?? 0)
+          + (max_spell_slots_1_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_2",
+        new_value = (primary_class_progression?.max_class_spell_slots_2 ?? 0)
+          + (max_spell_slots_2_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_3",
+        new_value = (primary_class_progression?.max_class_spell_slots_3 ?? 0)
+          + (max_spell_slots_3_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_4",
+        new_value = (primary_class_progression?.max_class_spell_slots_4 ?? 0)
+          + (max_spell_slots_4_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_5",
+        new_value = (primary_class_progression?.max_class_spell_slots_5 ?? 0)
+          + (max_spell_slots_5_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_6",
+        new_value = (primary_class_progression?.max_class_spell_slots_6 ?? 0)
+          + (max_spell_slots_6_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_7",
+        new_value = (primary_class_progression?.max_class_spell_slots_7 ?? 0)
+          + (max_spell_slots_7_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_8",
+        new_value = (primary_class_progression?.max_class_spell_slots_8 ?? 0)
+          + (max_spell_slots_8_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_9",
+        new_value = (primary_class_progression?.max_class_spell_slots_9 ?? 0)
+          + (max_spell_slots_9_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_10",
+        new_value = (primary_class_progression?.max_class_spell_slots_10 ?? 0)
+          + (max_spell_slots_10_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      forEach(
+        components = classes,
+        for_each_value_key = "$class_progression",
+        apply = fireEvent(
+          event_names = [
+            eventName(
+              event_name = "resource_daily_preparations",
+              for_resource = $class_progression,
+            ),
+          ],
+        ),
+      ),
+      forEach(
+        components = archetypes,
+        for_each_value_key = "$archetype",
+        apply = fireEvent(
+          event_names = [
+            eventName(
+              event_name = "resource_daily_preparations",
+              for_resource = $archetype,
+            ),
+          ],
+        ),
       ),
       setStat(
         stat = "selected_selectable_feature_ids",

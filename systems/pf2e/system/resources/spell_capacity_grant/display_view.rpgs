@@ -1,0 +1,35 @@
+view spell_capacity_grant_display() =
+  list(
+    id = "spell_capacity_grant_display",
+    subviews = [
+      text(
+        id = "spell_capacity_grant_display_description",
+        text = display_description,
+        style = "text",
+      ),
+      text(
+        id = "spell_capacity_grant_display_restricted_spell_names",
+        text = joinToString(actual_restricted_spell_names, separator = ", "),
+        style = "caption",
+        is_visible = restriction_mode == "spell_name_allowlist" && !isEmpty(actual_restricted_spell_names),
+      ),
+      text(
+        id = "spell_capacity_grant_display_restricted_traits",
+        text = joinToString(
+          map(
+            restricted_spell_traits,
+            mapper = ($mapValue) => enumeratedName(enumerated_type = "spell_traits", id = $mapValue),
+          ),
+          separator = ", ",
+        ),
+        style = "caption",
+        is_visible = restriction_mode == "trait_allowlist" && !isEmpty(restricted_spell_traits),
+      ),
+      text(
+        id = "spell_capacity_grant_display_choice_requirement",
+        text = concat(["Choose ", required_choice_count, " spell(s) at rank ", choice_rank, "."]),
+        style = "caption",
+        is_visible = requires_spell_choice,
+      ),
+    ],
+  );

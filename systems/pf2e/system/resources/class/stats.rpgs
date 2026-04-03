@@ -83,6 +83,8 @@ base string spellcasting_tradition(name = "Spellcasting tradition") =
 
 base string spellcasting_mode(name = "Spellcasting mode") = "prepared";
 
+base string spellcasting_progression_kind(name = "Spellcasting progression") = "none";
+
 calc string actual_spellcasting_ability(name = "Actual spellcasting ability") =
   spellcasting_ability;
 
@@ -110,10 +112,25 @@ calc string actual_spellcasting_proficiency(name = "Actual spellcasting proficie
 calc resource<levelled_save_proficiency>[] actual_spellcasting_proficiency_per_level(name = "Actual spellcasting proficiency by level") =
   spellcasting_proficiency_per_level;
 
-base string effective_caster_level(name = "Spellcasting progression") = "zero";
+base string effective_caster_level(name = "Spellcasting progression (legacy)") = "zero";
+
+calc string actual_spellcasting_progression_kind(name = "Actual spellcasting progression kind") =
+  when {
+    !isEmpty(spellcasting_progression_kind) -> spellcasting_progression_kind,
+    effective_caster_level == "full" -> "full",
+    effective_caster_level == "half" -> "bounded",
+    effective_caster_level == "third" -> "bounded",
+    effective_caster_level == "custom" -> "custom",
+    else -> "none",
+  };
 
 calc string actual_effective_caster_level(name = "Actual spellcasting progression") =
-  effective_caster_level;
+  when {
+    actual_spellcasting_progression_kind == "full" -> "full",
+    actual_spellcasting_progression_kind == "bounded" -> "half",
+    actual_spellcasting_progression_kind == "custom" -> "custom",
+    else -> "zero",
+  };
 
 base resource<levelled_spell>[] spells(name = "Spells") = [];
 
@@ -127,6 +144,12 @@ calc resource<levelled_spell>[] all_spells(name = "All spells") =
 
 base bool recharge_slots_on_refocus(name = "Recharge spell ranks on refocus") =
   false;
+
+base resource<levelled_amount>[] cantrip_quantity_per_level(name = "Cantrip quantity per level") =
+  [];
+
+base resource<spell_capacity_grant>[] spell_capacity_grants(name = "Spell capacity grants") =
+  [];
 
 base resource<levelled_amount>[] spell_slots_level_1_per_level(name = "Spell ranks level 1 (per level)") =
   [];
@@ -185,6 +208,12 @@ calc resource<levelled_amount>[] actual_spell_slots_level_8_per_level(name = "Ac
 calc resource<levelled_amount>[] actual_spell_slots_level_9_per_level(name = "Actual spell ranks level 9 (per level)") =
   spell_slots_level_9_per_level;
 
+calc resource<levelled_amount>[] actual_cantrip_quantity_per_level(name = "Actual cantrip quantity per level") =
+  cantrip_quantity_per_level;
+
+calc resource<spell_capacity_grant>[] actual_spell_capacity_grants(name = "Actual spell capacity grants") =
+  spell_capacity_grants;
+
 base resource<levelled_weapon>[] weapon(name = "Weapon") = [];
 
 base resource<levelled_choice_text>[] language_proficiencies(name = "Language proficiencies") =
@@ -223,17 +252,49 @@ calc string selected_deity_name(name = "Selected deity name") =
 calc string[] selected_deity_divine_skill_options(name = "Selected deity divine skill options") =
   selected_deity?.divine_skill_options ?? [];
 
-calc string[] selected_deity_favored_weapon_ids(name = "Selected deity favored weapon ids") =
-  selected_deity?.favored_weapon_ids ?? [];
-
-calc string[] selected_deity_favored_weapon_names(name = "Selected deity favored weapon names") =
-  selected_deity?.favored_weapon_names ?? [];
-
 calc string[] selected_deity_font_options(name = "Selected deity font options") =
   selected_deity?.font_options ?? [];
 
 calc string selected_deity_font(name = "Selected deity font") =
   current_class_progression?.active_selected_deity_font ?? "";
+
+calc bool has_warpriest_first_doctrine(name = "Has Warpriest First Doctrine") =
+  contains(
+    haystack = map(
+      current_level_features,
+      mapper = ($mapValue) => $mapValue.name,
+    ),
+    needle = "Warpriest: First Doctrine",
+  );
+
+calc bool selected_deity_has_simple_or_unarmed_favored_weapon(name = "Selected deity has simple or unarmed favored weapon") =
+  or(
+    map(
+      selected_deity?.favored_weapons ?? [],
+      mapper = ($mapValue) => ($mapValue == "club"
+        || $mapValue == "dagger"
+        || $mapValue == "greatclub"
+        || $mapValue == "handaxe"
+        || $mapValue == "javelin"
+        || $mapValue == "light_hammer"
+        || $mapValue == "mace"
+        || $mapValue == "quarterstaff"
+        || $mapValue == "sickle"
+        || $mapValue == "spear"
+        || $mapValue == "crossbow_light"
+        || $mapValue == "dart"
+        || $mapValue == "shortbow"
+        || $mapValue == "sling"
+        || $mapValue == "blowgun"
+        || $mapValue == "unarmed_strike"),
+    ),
+  );
+
+calc bool warpriest_auto_grants_deadly_simplicity(name = "Warpriest auto grants Deadly Simplicity") =
+  has_warpriest_first_doctrine && selected_deity_has_simple_or_unarmed_favored_weapon;
+
+calc integer warpriest_auto_grants_deadly_simplicity_flag(name = "Warpriest auto grants Deadly Simplicity flag") =
+  if warpriest_auto_grants_deadly_simplicity then 1 else 0;
 
 calc resource<levelled_weapon> current_level_weapon(name = "Current level weapon") =
   findFirst(
@@ -251,7 +312,7 @@ calc resource<weapon>[] weapons(name = "Weapons") =
   if notNull(current_level_weapon) then [current_level_weapon.weapon] else [];
 
 calc bool should_fill_custom_spell_slots(name = "Should fill custom spell slots") =
-  effective_caster_level == "custom";
+  actual_spellcasting_progression_kind == "custom";
 
 calc integer level(name = "Current class level") =
   current_class_progression?.class_level? ?? 1;
@@ -510,13 +571,9 @@ calc resource<feat>[] all_features(name = "All features") =
     mapper = ($mapValue) => flatAppend(
       [
         [$mapValue],
-        (if $mapValue.has_selectable_features
-          then filter(
-              $mapValue.selectable_features,
-              filter = ($filterValue) => contains(haystack = selected_selectable_feature_ids, needle = $filterValue.id),
-            )
-          else []),
+        $mapValue.granted_linked_features,
       ],
+      treat_as_set = true,
     ),
   );
 
@@ -649,8 +706,8 @@ calc string display_spellcasting_mode(name = "Display spellcasting mode") =
 
 calc string display_caster_level(name = "Display caster level") =
   enumeratedName(
-    enumerated_type = "effective_caster_level_types",
-    id = effective_caster_level,
+    enumerated_type = "spellcasting_progression_kinds",
+    id = actual_spellcasting_progression_kind,
   );
 
 calc resource<levelled_weapon> lowest_level_weapon(name = "Lowest level weapon") =

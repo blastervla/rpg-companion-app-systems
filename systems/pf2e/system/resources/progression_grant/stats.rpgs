@@ -27,9 +27,50 @@ calc string display_description(name = "Display description") =
 
 base bool is_levelled(name = "Is levelled") = true;
 
+calc bool is_feat_slot(name = "Is feat slot") =
+  bucket == "class_like_feat"
+    || bucket == "skill_feat"
+    || bucket == "ancestry_feat"
+    || bucket == "general_feat";
+
+calc bool is_interactive_slot(name = "Is interactive slot") =
+  is_feat_slot || bucket == "ability_boost" || bucket == "skill_increase";
+
+base string[] assigned_ability_boosts(name = "Assigned ability boosts") = [];
+
+base string[] committed_ability_boosts(name = "Committed ability boosts") = [];
+
+base string assigned_skill_increase_skill(name = "Assigned skill increase skill") = "";
+
+base string assigned_skill_increase_rank(name = "Assigned skill increase rank") = "";
+
+base string committed_skill_increase_skill(name = "Committed skill increase skill") = "";
+
+base string slot_mode(name = "Slot mode") = "class";
+
+base resource<feat> assigned_feat(name = "Assigned feat") = null;
+
+base resource<archetype> assigned_archetype(name = "Assigned archetype") = null;
+
+calc string[] level_singleton(name = "Level as singleton") = ["" + level];
+
+calc string bucket_to_feat_type(name = "Bucket to feat type") =
+  when {
+    bucket == "class_like_feat" -> "class",
+    bucket == "skill_feat" -> "skill",
+    bucket == "ancestry_feat" -> "ancestry",
+    bucket == "general_feat" -> "general",
+    else -> "class",
+  };
+
 calc bool can_be_used(name = "Can execute") =
   when {
     defined(stat = "$parent.level") -> $parent.level,
     defined(stat = "$character.level") -> $character.level,
     else -> 1,
   } >= level;
+
+calc string character_heritage_filter(name = "Character heritage filter") =
+  if $character?.heritage?.is_versatile == true
+    then null
+    else $character?.heritage?.name;

@@ -129,27 +129,5 @@ view deity_display() =
         ],
         is_visible = !isEmpty(granted_spells),
       ),
-      text(
-        id = "deity_display_spell_grants_fallback",
-        text = concat(["**Granted Spells:**\n", display_spell_grants]),
-        style = "text",
-        markdown = true,
-        margin_top = 8,
-        is_visible = isEmpty(granted_spells) && !isEmpty(display_spell_grants),
-      ),
-      resourceArray(
-        id = "deity_display_skill_proficiencies",
-        resource_id = "levelled_skill_proficiency",
-        stat = "skill_proficiencies",
-        view_type = "display",
-        margin_top = 8,
-        left_view = text(
-          id = "deity_display_skill_proficiencies_label",
-          text = "**Skill Proficiencies:**",
-          style = "text",
-          markdown = true,
-        ),
-        is_visible = !isEmpty(skill_proficiencies),
-      ),
     ],
   );

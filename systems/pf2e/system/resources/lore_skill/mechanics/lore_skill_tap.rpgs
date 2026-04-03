@@ -1,6 +1,6 @@
 mechanic lore_skill_tap(event_names = "loreSkillTap") =
   when {
-    $edit_mode -> showPopUp(
+    (($character?.$edit_mode ?? false) || ($event.force_edit ?? false)) -> showPopUp(
       pop_up_view = list(
         id = "lore_skill_tap_edit_view",
         padding = 8,
@@ -10,8 +10,14 @@ mechanic lore_skill_tap(event_names = "loreSkillTap") =
             edit_stat = "selected_option",
             style = "text",
             label = "Lore skill",
-            hint = options,
+            hint = if has_multiple_options then "Enter lore skill" else options,
             max_length = 80,
+          ),
+          text(
+            id = "lore_skill_tap_options",
+            text = concat(["Choices: ", options]),
+            style = "caption",
+            is_visible = !isEmpty(options) && has_multiple_options,
           ),
           select(
             id = "lore_skill_tap_proficiency",
@@ -41,7 +47,7 @@ mechanic lore_skill_tap(event_names = "loreSkillTap") =
       display_save_button = true,
       should_persist_on_save = true,
     ),
-    !$edit_mode -> roll(
+    !(($character?.$edit_mode ?? false) || ($event.force_edit ?? false)) -> roll(
       rolls = [
         rollable(
           formulas = [concat(["1d20 + ", total_bonus])],

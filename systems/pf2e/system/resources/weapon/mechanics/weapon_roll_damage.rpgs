@@ -12,7 +12,13 @@ mechanic weapon_roll_damage(event_names = "damage") =
           mapper = ($mapValue) => rollable(
             formulas = flatAppend(
               [
-                map($mapValue.dices, mapper = ($mapValue) => $mapValue.formula),
+                map(
+                  $mapValue.dices,
+                  mapper = ($dice) => if is_deadly_simplicity_enabled
+                      && $mapValue.id == active_primary_damage_dice_id
+                    then deadly_simplicity_primary_damage_formula
+                    else $dice.formula,
+                ),
                 (if damage_bonus != 0 then [toSignedString(damage_bonus)] else []),
               ],
             ),

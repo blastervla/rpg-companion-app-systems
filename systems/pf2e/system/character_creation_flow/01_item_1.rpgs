@@ -126,7 +126,7 @@ character_creation_page edit_basics_title() =
               mapper = ($class) => (length(
                 filter(
                   $view.edit_character_basics_classes,
-                  filter = ($filterValue) => ($class.$view.class_progression_edit_class_select.name == $filterValue.$view.class_progression_edit_class_select.name),
+                  filter = ($filterValue) => ($class?.$view?.class_progression_edit_class_select.name == $filterValue?.$view?.class_progression_edit_class_select.name),
                 ),
               ) != 1),
             ),

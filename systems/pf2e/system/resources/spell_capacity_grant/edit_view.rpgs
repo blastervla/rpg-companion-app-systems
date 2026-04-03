@@ -1,0 +1,92 @@
+view spell_capacity_grant_edit() =
+  list(
+    id = "spell_capacity_grant_edit",
+    subviews = [
+      text(
+        id = "spell_capacity_grant_edit_level",
+        edit_stat = "level",
+        label = "Level",
+        style = "text",
+        max_length = 3,
+      ),
+      select(
+        id = "spell_capacity_grant_edit_capacity_type",
+        stat = "capacity_type",
+        options = "spell_capacity_types",
+      ),
+      select(
+        id = "spell_capacity_grant_edit_target_rank_mode",
+        stat = "target_rank_mode",
+        options = "spell_capacity_target_rank_modes",
+      ),
+      text(
+        id = "spell_capacity_grant_edit_target_rank",
+        edit_stat = "target_rank",
+        label = "Target rank",
+        style = "text",
+        max_length = 3,
+        signed = false,
+        is_visible = $view.spell_capacity_grant_edit_target_rank_mode == "specific",
+      ),
+      resourceArray(
+        id = "spell_capacity_grant_edit_quantity_per_level",
+        resource_id = "levelled_amount",
+        stat = "quantity_per_level",
+        view_type = "edit",
+        left_view = text(
+          id = "spell_capacity_grant_edit_quantity_per_level_label",
+          text = "Quantity per level:",
+          style = "text",
+          bold = true,
+        ),
+      ),
+      select(
+        id = "spell_capacity_grant_edit_restriction_mode",
+        stat = "restriction_mode",
+        options = "spell_capacity_restriction_modes",
+      ),
+      checkbox(
+        id = "spell_capacity_grant_edit_requires_spell_choice",
+        stat = "requires_spell_choice",
+        label = "Requires spell choice",
+      ),
+      text(
+        id = "spell_capacity_grant_edit_required_choice_count",
+        edit_stat = "required_choice_count",
+        label = "Required choices",
+        style = "text",
+        max_length = 2,
+        signed = false,
+        is_visible = $view.spell_capacity_grant_edit_requires_spell_choice,
+      ),
+      text(
+        id = "spell_capacity_grant_edit_choice_rank",
+        edit_stat = "choice_rank",
+        label = "Choice rank",
+        style = "text",
+        max_length = 2,
+        signed = false,
+        is_visible = $view.spell_capacity_grant_edit_requires_spell_choice,
+      ),
+      selectResources(
+        id = "spell_capacity_grant_edit_restricted_spells",
+        stat = "restricted_spells_for_edit",
+        resource_id = "spell",
+        should_append = true,
+        is_visible = $view.spell_capacity_grant_edit_restriction_mode == "spell_name_allowlist",
+      ),
+      select(
+        id = "spell_capacity_grant_edit_restricted_spell_traits",
+        stat = "restricted_spell_traits",
+        options = "spell_traits",
+        multi_select = true,
+        is_visible = $view.spell_capacity_grant_edit_restriction_mode == "trait_allowlist",
+      ),
+      text(
+        id = "spell_capacity_grant_edit_notes",
+        edit_stat = "notes",
+        style = "text",
+        label = "Notes",
+      ),
+    ],
+  );

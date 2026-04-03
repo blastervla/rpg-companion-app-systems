@@ -165,6 +165,17 @@ view feat_edit() =
         ),
       ),
       resourceArray(
+        id = "feat_edit_conditional_linked_feats",
+        resource_id = "conditional_linked_feat",
+        view_type = "edit",
+        stat = "conditional_linked_feats",
+        left_view = text(
+          id = "feat_edit_conditional_linked_feats_label",
+          text = "Conditional linked feats: ",
+          style = "text",
+        ),
+      ),
+      resourceArray(
         id = "feat_edit_armor_proficiencies",
         resource_id = "levelled_armor_proficiency",
         stat = "armor_proficiencies",
@@ -223,6 +234,20 @@ view feat_edit() =
         label_alignment = "right",
         style = "checkbox",
         is_visible = $view.feat_edit_has_selectable_features,
+      ),
+      checkbox(
+        id = "feat_edit_grants_weapon_specialization",
+        stat = "grants_weapon_specialization",
+        label = "Grants weapon specialization damage scaling",
+        label_alignment = "right",
+        style = "checkbox",
+      ),
+      checkbox(
+        id = "feat_edit_grants_greater_weapon_specialization",
+        stat = "grants_greater_weapon_specialization",
+        label = "Grants greater weapon specialization damage scaling",
+        label_alignment = "right",
+        style = "checkbox",
       ),
       resourceArray(
         id = "feat_edit_selectable_features",

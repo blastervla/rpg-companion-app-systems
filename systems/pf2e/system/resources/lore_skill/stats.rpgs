@@ -30,6 +30,10 @@ calc string lore_name(name = "Lore name") =
     then trim(options)
     else trim(selected_option);
 
+calc bool has_multiple_options(name = "Has multiple options") =
+  contains(haystack = options, needle = ",")
+    || contains(haystack = toLowerCase(options), needle = " or ");
+
 calc integer level_bonus(name = "Level bonus") =
   if defined(stat = "$character.level") then $character.level else 0;
 

@@ -3,7 +3,7 @@ mechanic on_refocus(event_names = "refocus") =
     effects = [
       setStat(
         stat = "focus_points",
-        new_value = min([max_focus_points, focus_points + 1]),
+        new_value = min([effective_max_focus_points, focus_points + 1]),
         aggregation_type = "set",
       ),
     ],

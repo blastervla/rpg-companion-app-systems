@@ -6,50 +6,36 @@ base string category(name = "Category") = "";
 
 base string description(name = "Description") = "";
 
-base string[] areas_of_concern(name = "Areas of concern") = [];
+base string areas_of_concern(name = "Areas of concern") = "";
 
-base string[] edicts(name = "Edicts") = [];
+base string edicts(name = "Edicts") = "";
 
-base string[] anathema(name = "Anathema") = [];
+base string anathema(name = "Anathema") = "";
 
-base string[] domains(name = "Domains") = [];
+base string domains(name = "Domains") = "";
 
-base string[] alternate_domains(name = "Alternate domains") = [];
+base string alternate_domains(name = "Alternate domains") = "";
 
 base string[] font_options(name = "Divine font options") = [];
 
 base string[] divine_skill_options(name = "Divine skill options") = [];
 
-base string divine_skill_entry(name = "Divine skill entry") = "";
-
 base string[] divine_ability_options(name = "Divine ability options") = [];
 
-base string divine_ability_entry(name = "Divine ability entry") = "";
+base string[] favored_weapons(name = "Favored weapons") = [];
 
-base string[] favored_weapon_ids(name = "Favored weapon ids") = [];
-
-base string[] favored_weapon_types(name = "Favored weapon types") = [];
-
-base string[] favored_weapon_names(name = "Favored weapon names") = [];
-
-base string favored_weapon_entry(name = "Favored weapon entry") = "";
+base string[] favored_weapon_ids(name = "Favored weapon ids (internal)") = [];
 
 base resource<levelled_skill_proficiency>[] skill_proficiencies(name = "Skill proficiencies") =
   [];
 
 base resource<levelled_spell>[] granted_spells(name = "Granted spells") = [];
 
-base string[] spell_grants(name = "Granted spells") = [];
-
-base string alignment_entry(name = "Alignment entry") = "";
-
 base string[] alignment_options(name = "Alignment options") = [];
 
 base string[] follower_alignment_options(name = "Follower alignment options") = [];
 
-base string sanctification_entry(name = "Sanctification entry") = "";
-
-base string[] sanctification_options(name = "Sanctification options") = [];
+base string sanctification_options(name = "Sanctification options") = "";
 
 calc string display_secondary(name = "Display secondary") =
   joinToString(
@@ -64,48 +50,54 @@ calc string display_secondary(name = "Display secondary") =
   );
 
 calc string display_areas_of_concern(name = "Display areas of concern") =
-  joinToString(areas_of_concern, separator = ", ");
+  areas_of_concern;
 
 calc string display_edicts(name = "Display edicts") =
-  joinToString(edicts, separator = ", ");
+  edicts;
 
 calc string display_anathema(name = "Display anathema") =
-  joinToString(anathema, separator = ", ");
+  anathema;
 
 calc string display_domains(name = "Display domains") =
-  joinToString(domains, separator = ", ");
+  domains;
 
 calc string display_alternate_domains(name = "Display alternate domains") =
-  joinToString(alternate_domains, separator = ", ");
+  alternate_domains;
 
 calc string display_font_options(name = "Display divine font options") =
-  joinToString(font_options, separator = ", ");
-
-calc string display_divine_skill(name = "Display divine skill") =
-  if !isEmpty(divine_skill_entry)
-    then divine_skill_entry
-    else joinToString(divine_skill_options, separator = ", ");
-
-calc string display_divine_ability(name = "Display divine ability") =
-  if !isEmpty(divine_ability_entry)
-    then divine_ability_entry
-    else joinToString(divine_ability_options, separator = ", ");
-
-calc string display_favored_weapon(name = "Display favored weapon") =
-  if !isEmpty(favored_weapon_entry)
-    then favored_weapon_entry
-    else joinToString(favored_weapon_names, separator = ", ");
-
-calc resource<levelled_skill_proficiency>[] skill_proficiencies_for_current_level(name = "Skill proficiencies for current level") =
-  filter(
-    skill_proficiencies,
-    filter = ($filterValue) => ($filterValue.level <= ($character?.level ?? 1)),
+  joinToString(
+    map(
+      font_options,
+      mapper = ($mapValue) => enumeratedName(enumerated_type = "spell_font", id = $mapValue),
+    ),
+    separator = ", ",
   );
 
-calc resource<levelled_skill_proficiency>[] skill_proficiencies_choices_in_current_level(name = "Skill proficiencies choices in current level") =
-  filter(
-    skill_proficiencies,
-    filter = ($filterValue) => ($filterValue.level == ($character?.level ?? 1)),
+calc string display_divine_skill(name = "Display divine skill") =
+  joinToString(
+    map(
+      divine_skill_options,
+      mapper = ($mapValue) => enumeratedName(enumerated_type = "skill_types", id = $mapValue),
+    ),
+    separator = ", ",
+  );
+
+calc string display_divine_ability(name = "Display divine ability") =
+  joinToString(
+    map(
+      divine_ability_options,
+      mapper = ($mapValue) => enumeratedName(enumerated_type = "ability", id = $mapValue),
+    ),
+    separator = ", ",
+  );
+
+calc string display_favored_weapon(name = "Display favored weapon") =
+  joinToString(
+    map(
+      favored_weapons,
+      mapper = ($mapValue) => enumeratedName(enumerated_type = "weapon_types", id = $mapValue),
+    ),
+    separator = ", ",
   );
 
 calc resource<levelled_spell>[] granted_spells_for_current_level(name = "Granted spells for current level") =
@@ -114,18 +106,23 @@ calc resource<levelled_spell>[] granted_spells_for_current_level(name = "Granted
     filter = ($filterValue) => ($filterValue.level <= ($character?.level ?? 1)),
   );
 
-calc string display_spell_grants(name = "Display spell grants") =
-  joinToString(spell_grants, separator = "\n");
-
 calc string display_alignment(name = "Display alignment") =
-  if !isEmpty(alignment_entry)
-    then alignment_entry
-    else joinToString(alignment_options, separator = ", ");
+  joinToString(
+    map(
+      alignment_options,
+      mapper = ($mapValue) => enumeratedName(enumerated_type = "alignments", id = $mapValue),
+    ),
+    separator = ", ",
+  );
 
 calc string display_follower_alignment(name = "Display follower alignment") =
-  joinToString(follower_alignment_options, separator = ", ");
+  joinToString(
+    map(
+      follower_alignment_options,
+      mapper = ($mapValue) => enumeratedName(enumerated_type = "alignments", id = $mapValue),
+    ),
+    separator = ", ",
+  );
 
 calc string display_sanctification(name = "Display sanctification") =
-  if !isEmpty(sanctification_entry)
-    then sanctification_entry
-    else joinToString(sanctification_options, separator = ", ");
+  sanctification_options;

@@ -460,20 +460,53 @@ view class_edit() =
             ),
           ),
           composite(
-            id = "class_edit_effective_caster_level_composite",
+            id = "class_edit_spellcasting_progression_kind_composite",
             subviews = [
               text(
-                id = "class_edit_effective_caster_level_label",
+                id = "class_edit_spellcasting_progression_kind_label",
                 text = "Spellcasting progression: ",
                 style = "text",
                 bold = true,
               ),
               select(
-                id = "class_edit_effective_caster_level",
-                stat = "effective_caster_level",
-                options = "effective_caster_level_types",
+                id = "class_edit_spellcasting_progression_kind",
+                stat = "spellcasting_progression_kind",
+                options = "spellcasting_progression_kinds",
               ),
             ],
+          ),
+          popUpButton(
+            id = "class_edit_cantrip_quantity_per_level_bottom_sheet_button",
+            text = "Cantrip cap by level",
+            pop_up_view = resourceArray(
+              id = "class_edit_cantrip_quantity_per_level",
+              resource_id = "levelled_amount",
+              stat = "cantrip_quantity_per_level",
+              view_type = "edit",
+              left_view = text(
+                id = "class_edit_cantrip_quantity_per_level_label",
+                text = "Cantrip quantity by level: ",
+                style = "text",
+              ),
+            ),
+            pop_up_title = "Edit Cantrip Quantity by Level",
+            display_cancel_button = true,
+            display_save_button = true,
+          ),
+          resourceArray(
+            id = "class_edit_spell_capacity_grants",
+            margin_top = 8,
+            resource_id = "spell_capacity_grant",
+            stat = "spell_capacity_grants",
+            view_type = "edit",
+            left_view = text(
+              id = "class_edit_spell_capacity_grants_label",
+              text = "Spell capacity grants: ",
+              style = "text",
+              bold = true,
+            ),
+            pop_up_type = "bottomSheet",
+            pop_up_button_text = display_description,
           ),
           list(
             id = "class_edit_spell_slots_per_level",

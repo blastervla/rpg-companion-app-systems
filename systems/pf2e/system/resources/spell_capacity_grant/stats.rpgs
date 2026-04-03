@@ -1,0 +1,92 @@
+base string capacity_type(name = "Capacity type") = "slot";
+
+base integer level(name = "Level", abbreviation = "Lvl") = 1;
+
+base string target_rank_mode(name = "Target rank mode") = "specific";
+
+base integer target_rank(name = "Target rank") = 1;
+
+base resource<levelled_amount>[] quantity_per_level(name = "Quantity per level") =
+  [];
+
+base string restriction_mode(name = "Restriction mode") = "none";
+
+base string[] restricted_spell_names(name = "Restricted spell names") = [];
+
+base resource<spell>[] restricted_spells_for_edit(name = "Restricted spells (edit helper)") =
+  [];
+
+base string[] restricted_spell_traits(name = "Restricted spell traits") = [];
+
+base bool requires_spell_choice(name = "Requires spell choice") = false;
+
+base integer required_choice_count(name = "Required spell choices") = 0;
+
+base integer choice_rank(name = "Choice rank") = 10;
+
+base string notes(name = "Notes") = "";
+
+calc integer owner_level(name = "Owner level") =
+  when {
+    defined(stat = "$parent.class_level") -> $parent.class_level,
+    defined(stat = "$parent.level") -> $parent.level,
+    defined(stat = "$character.level") -> $character.level,
+    else -> 1,
+  };
+
+calc resource<levelled_amount> quantity_row_for_owner_level(name = "Quantity row for owner level") =
+  findFirst(
+    sortBy(
+      quantity_per_level,
+      order = "desc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
+    filter = ($findFirstValue) => ($findFirstValue.level <= owner_level),
+  );
+
+calc integer current_quantity(name = "Current quantity") =
+  quantity_row_for_owner_level?.amount ?? 0;
+
+calc string capacity_type_name(name = "Capacity type name") =
+  enumeratedName(
+    enumerated_type = "spell_capacity_types",
+    id = capacity_type,
+  );
+
+calc string target_rank_mode_name(name = "Target rank mode name") =
+  enumeratedName(
+    enumerated_type = "spell_capacity_target_rank_modes",
+    id = target_rank_mode,
+  );
+
+calc string restriction_mode_name(name = "Restriction mode name") =
+  enumeratedName(
+    enumerated_type = "spell_capacity_restriction_modes",
+    id = restriction_mode,
+  );
+
+calc string[] actual_restricted_spell_names(name = "Actual restricted spell names") =
+  if !isEmpty(restricted_spell_names)
+    then restricted_spell_names
+    else map(
+        restricted_spells_for_edit,
+        mapper = ($mapValue) => $mapValue.name,
+      );
+
+calc string display_description(name = "Display description") =
+  concat(
+    [
+      "Lvl. ",
+      level,
+      ": ",
+      capacity_type_name,
+      " +",
+      current_quantity,
+      " (",
+      (if target_rank_mode == "specific" then concat(["Rank ", target_rank]) else "Highest rank"),
+      ")",
+      (if restriction_mode == "none" then "" else concat([" · ", restriction_mode_name])),
+      (if requires_spell_choice then concat([" · Choose ", required_choice_count, " spell(s) at rank ", choice_rank]) else ""),
+      (if isEmpty(notes) then "" else concat([" · ", notes])),
+    ],
+  );

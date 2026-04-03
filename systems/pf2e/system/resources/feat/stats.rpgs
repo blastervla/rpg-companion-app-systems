@@ -28,22 +28,24 @@ base string[] heritages(name = "Heritages") = [];
 
 base string[] archetypes(name = "Archetypes") = [];
 
-calc integer[] available_at_character_levels(name = "Available at character levels") =
-  filter(
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    filter = ($l) => $l >= min_level,
+calc string[] available_at_character_levels(name = "Available at character levels") =
+  map(
+    filter(
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+      filter = ($l) => $l >= min_level,
+    ),
+    mapper = ($l) => "" + $l,
   );
 
-calc string[] ancestry_heritage_filter_tags(name = "Ancestry/heritage filter tags") =
+calc string[] ancestry_filter_tags(name = "Ancestry filter tags") =
   if isEmpty(ancestries) && isEmpty(heritages)
     then ["any_ancestry"]
-    else flatAppend(
-        [
-          ancestries,
-          heritages,
-        ],
-        treat_as_set = true,
-      );
+    else ancestries;
+
+calc string[] heritage_filter_tags(name = "Heritage filter tags") =
+  if isEmpty(ancestries) && isEmpty(heritages)
+    then ["any_ancestry"]
+    else heritages;
 
 calc bool is_eligible_for_background_selection(name = "Eligible for background selection") =
   contains(
@@ -58,6 +60,9 @@ calc bool is_eligible_for_background_selection(name = "Eligible for background s
 base resource<levelled_description>[] descriptions(name = "Descriptions") = [];
 
 base resource<levelled_effect>[] effects(name = "Effects") = [];
+
+base resource<conditional_linked_feat>[] conditional_linked_feats(name = "Conditional linked feats") =
+  [];
 
 base resource<levelled_armor_proficiency>[] armor_proficiencies(name = "Armor proficiencies") =
   [];
@@ -133,6 +138,12 @@ base bool is_basic_spellcasting_feat(name = "Is basic spellcasting feat") = fals
 base bool is_expert_spellcasting_feat(name = "Is expert spellcasting feat") = false;
 
 base bool is_master_spellcasting_feat(name = "Is master spellcasting feat") = false;
+
+base bool grants_weapon_specialization(name = "Grants weapon specialization damage scaling") =
+  false;
+
+base bool grants_greater_weapon_specialization(name = "Grants greater weapon specialization damage scaling") =
+  false;
 
 base bool refresh_selectable_features_on_daily_preparations(name = "Refresh selectable features on daily preparations") =
   false;
@@ -320,6 +331,43 @@ calc resource<feat>[] available_selectable_features_for_current_level(name = "Av
   filter(
     sorted_selectable_features,
     filter = ($filterValue) => ($filterValue.min_level <= level),
+  );
+
+calc resource<feat>[] selected_selectable_features(name = "Selected selectable features for current level") =
+  filter(
+    available_selectable_features_for_current_level,
+    filter = ($filterValue) => contains(
+      haystack = selected_selectable_feature_ids,
+      needle = $filterValue.id,
+    ),
+  );
+
+calc resource<conditional_linked_feat>[] active_conditional_linked_feat_rows(name = "Active conditional linked feat rows") =
+  filter(
+    conditional_linked_feats,
+    filter = ($filterValue) => ($filterValue.should_grant ?? false),
+  );
+
+calc resource<feat>[] active_conditional_linked_features(name = "Active conditional linked feats") =
+  map(
+    active_conditional_linked_feat_rows,
+    mapper = ($mapValue) => $mapValue.feat,
+  );
+
+calc resource<feat>[] active_conditional_linked_features_from_selected_selectable_features(name = "Active conditional linked feats from selected selectable features") =
+  flatMap(
+    selected_selectable_features,
+    mapper = ($mapValue) => $mapValue.active_conditional_linked_features,
+  );
+
+calc resource<feat>[] granted_linked_features(name = "Granted linked features") =
+  flatAppend(
+    [
+      selected_selectable_features,
+      active_conditional_linked_features,
+      active_conditional_linked_features_from_selected_selectable_features,
+    ],
+    treat_as_set = true,
   );
 
 calc string current_allowed_amount_of_selectable_features_label_text(name = "Current allowed amount of selectable features label text") =

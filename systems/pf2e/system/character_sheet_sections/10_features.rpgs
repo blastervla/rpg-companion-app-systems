@@ -152,6 +152,31 @@ character_sheet_section features() =
         always_show_collapse_icon = true,
       ),
       section(
+        id = "ancestry_feats_subsection",
+        is_visible = !isEmpty(ancestry_feats_for_display),
+        header = [
+          text(
+            id = "ancestry_feats_label",
+            margin_left = 24,
+            text = "Ancestry feats",
+            style = "section",
+          ),
+        ],
+        content = [
+          resourceSection(
+            id = "ancestry_feats_list",
+            resource_stat = "ancestry_feats_for_display",
+            read_only = true,
+            resource_id = "feat",
+          ),
+        ],
+        show_divider = false,
+        content_item_min_width = 1,
+        collapsible = true,
+        start_collapsed = true,
+        always_show_collapse_icon = true,
+      ),
+      section(
         id = "background_subsection",
         is_visible = !isEmpty(background_features),
         header = [
@@ -177,135 +202,22 @@ character_sheet_section features() =
         always_show_collapse_icon = true,
       ),
       section(
-        id = "ancestry_feats_subsection",
-        header = [
-          text(
-            id = "ancestry_feats_label",
-            margin_left = 24,
-            text = "Ancestry feats",
-            style = "section",
-          ),
-          spacer(id = "ancestry_feats_header_spacer"),
-          selectResources(
-            id = "ancestry_feats_add_feat",
-            stat = "feats",
-            resource_id = "feat",
-            view_type = "icon",
-            should_append = true,
-            should_save_on_selection = true,
-            filters = dict(
-              type = "ancestry",
-              ancestry = filter([
-                  ancestry?.name?
-                ],
-                filter = ($filterValue) => $filterValue != null
-              ),
-              heritage = filter([
-                  heritage?.name?
-                ],
-                filter = ($filterValue) => $filterValue != null
-              ),
-              available_at_character_levels = level_singleton,
-            ),
-            is_visible = notNull(ancestry),
-          ),
-        ],
-        content = [
-          text(
-            id = "ancestry_feats_no_ancestry_hint",
-            text = "Choose an ancestry first to pick ancestry feats.",
-            style = "caption",
-            margin_left = 16,
-            margin_bottom = 6,
-            is_visible = isNull(ancestry),
-          ),
-          resourceSection(
-            id = "ancestry_feats_list",
-            resource_stat = "ancestry_feats",
-            read_only = false,
-            resource_id = "feat",
-          ),
-        ],
-        show_divider = false,
-        content_item_min_width = 1,
-        collapsible = true,
-        start_collapsed = true,
-        always_show_collapse_icon = true,
-      ),
-      section(
         id = "class_feats_subsection",
+        is_visible = !isEmpty(class_feats_for_display),
         header = [
           text(
             id = "class_feats_label",
             margin_left = 24,
-            text = "Class feat slots",
+            text = "Class feats",
             style = "section",
-          ),
-          text(
-            id = "class_feats_pending_count",
-            margin_left = 8,
-            text = concat(["(", pending_class_like_feat_slots, " pending)"]),
-            style = "caption",
-            color = "accent",
-            is_visible = pending_class_like_feat_slots > 0,
-          ),
-          spacer(id = "class_feats_header_spacer"),
-          selectResources(
-            id = "class_feats_add_feat",
-            stat = "feats",
-            resource_id = "feat",
-            view_type = "icon",
-            should_append = true,
-            should_save_on_selection = true,
-            filters = dict(
-              type = "class",
-              available_at_character_levels = level_singleton,
-            ),
           ),
         ],
         content = [
           resourceSection(
             id = "class_feats_list",
-            resource_stat = "class_feats",
-            read_only = false,
+            resource_stat = "class_feats_for_display",
+            read_only = true,
             resource_id = "feat",
-          ),
-          text(
-            id = "archetype_feats_subheader",
-            margin_left = 24,
-            margin_top = 8,
-            text = "Archetype feats",
-            style = "section",
-            is_visible = !isEmpty(selected_multiclass_archetype_ids),
-          ),
-          text(
-            id = "archetype_feats_dedication_info",
-            text = "Dedication feats from selected archetypes are auto-included.",
-            style = "caption",
-            margin_left = 16,
-            margin_bottom = 6,
-            is_visible = !isEmpty(selected_multiclass_archetype_ids),
-          ),
-          selectResources(
-            id = "archetype_feats_add_feat",
-            stat = "feats",
-            resource_id = "feat",
-            view_type = "icon",
-            should_append = true,
-            should_save_on_selection = true,
-            filters = dict(
-              type = "archetype",
-              archetypes = selected_multiclass_archetype_names,
-              available_at_character_levels = level_singleton,
-            ),
-            is_visible = !isEmpty(selected_multiclass_archetype_ids),
-          ),
-          resourceSection(
-            id = "archetype_feats_list",
-            resource_stat = "multiclass_archetype_feats",
-            read_only = false,
-            resource_id = "feat",
-            is_visible = !isEmpty(selected_multiclass_archetype_ids),
           ),
         ],
         show_divider = false,
@@ -316,6 +228,7 @@ character_sheet_section features() =
       ),
       section(
         id = "skill_feats_subsection",
+        is_visible = !isEmpty(skill_feats_for_display),
         header = [
           text(
             id = "skill_feats_label",
@@ -323,25 +236,12 @@ character_sheet_section features() =
             text = "Skill feats",
             style = "section",
           ),
-          spacer(id = "skill_feats_header_spacer"),
-          selectResources(
-            id = "skill_feats_add_feat",
-            stat = "feats",
-            resource_id = "feat",
-            view_type = "icon",
-            should_append = true,
-            should_save_on_selection = true,
-            filters = dict(
-              type = "skill",
-              available_at_character_levels = level_singleton,
-            ),
-          ),
         ],
         content = [
           resourceSection(
             id = "skill_feats_list",
-            resource_stat = "skill_feats",
-            read_only = false,
+            resource_stat = "skill_feats_for_display",
+            read_only = true,
             resource_id = "feat",
           ),
         ],
@@ -353,7 +253,7 @@ character_sheet_section features() =
       ),
       section(
         id = "general_feats_subsection",
-        is_visible = granted_general_feat_slots > 0,
+        is_visible = !isEmpty(general_feats_for_display),
         header = [
           text(
             id = "general_feats_label",
@@ -361,25 +261,37 @@ character_sheet_section features() =
             text = "General feats",
             style = "section",
           ),
-          spacer(id = "general_feats_header_spacer"),
-          selectResources(
-            id = "general_feats_add_feat",
-            stat = "feats",
-            resource_id = "feat",
-            view_type = "icon",
-            should_append = true,
-            should_save_on_selection = true,
-            filters = dict(
-              type = "general",
-              available_at_character_levels = level_singleton,
-            ),
-          ),
         ],
         content = [
           resourceSection(
             id = "general_feats_list",
-            resource_stat = "general_feats",
-            read_only = false,
+            resource_stat = "general_feats_for_display",
+            read_only = true,
+            resource_id = "feat",
+          ),
+        ],
+        show_divider = false,
+        content_item_min_width = 1,
+        collapsible = true,
+        start_collapsed = true,
+        always_show_collapse_icon = true,
+      ),
+      section(
+        id = "archetype_feats_subsection",
+        is_visible = !isEmpty(archetype_feats_for_display),
+        header = [
+          text(
+            id = "archetype_feats_label",
+            margin_left = 24,
+            text = "Archetype feats",
+            style = "section",
+          ),
+        ],
+        content = [
+          resourceSection(
+            id = "archetype_feats_list",
+            resource_stat = "archetype_feats_for_display",
+            read_only = true,
             resource_id = "feat",
           ),
         ],
@@ -415,66 +327,19 @@ character_sheet_section features() =
             margin_bottom = 6,
             is_visible = isEmpty(selected_multiclass_archetype_ids),
           ),
-          selectResources(
-            id = "archetypes_add_multiclass_archetype",
-            stat = "archetypes",
-            resource_id = "archetype",
-            view_type = "icon",
-            should_append = true,
-            should_save_on_selection = true,
-            filters = dict(is_class_archetype = false),
-          ),
           resourceSection(
-            id = "archetypes_multiclass_list",
-            resource_stat = "multiclass_archetypes",
-            read_only = false,
-            resource_id = "archetype",
-          ),
-          text(
-            id = "archetypes_class_header",
-            margin_left = 24,
-            margin_top = 8,
-            text = "Class archetypes",
-            style = "section",
-          ),
-          text(
-            id = "archetypes_class_hint",
-            text = "No class archetypes selected.",
-            style = "caption",
-            margin_left = 16,
-            margin_bottom = 6,
-            is_visible = isEmpty(class_archetype_ids),
-          ),
-          selectResources(
-            id = "archetypes_add_class_archetype",
-            stat = "archetypes",
-            resource_id = "archetype",
-            view_type = "icon",
-            should_append = true,
-            should_save_on_selection = true,
-            filters = dict(is_class_archetype = true),
-          ),
-          resourceSection(
-            id = "archetypes_class_list",
-            resource_stat = "class_archetypes",
-            read_only = false,
-            resource_id = "archetype",
-            is_visible = !isEmpty(class_archetype_ids),
-          ),
-          text(
-            id = "archetypes_class_auto_feats_header",
-            margin_left = 24,
-            margin_top = 8,
-            text = "Class archetype feats (auto-granted)",
-            style = "section",
-            is_visible = !isEmpty(class_archetype_ids),
-          ),
-          resourceSection(
-            id = "archetypes_class_auto_feats_list",
-            resource_stat = "class_archetype_auto_feats",
+            id = "archetypes_multiclass_slot_list",
+            resource_stat = "slot_assigned_archetypes",
             read_only = true,
-            resource_id = "feat",
-            is_visible = !isEmpty(class_archetype_ids),
+            resource_id = "archetype",
+            is_visible = !isEmpty(slot_assigned_archetypes),
+          ),
+          resourceSection(
+            id = "archetypes_multiclass_legacy_list",
+            resource_stat = "legacy_multiclass_archetypes",
+            read_only = false,
+            resource_id = "archetype",
+            is_visible = !isEmpty(legacy_multiclass_archetypes),
           ),
         ],
         show_divider = false,
