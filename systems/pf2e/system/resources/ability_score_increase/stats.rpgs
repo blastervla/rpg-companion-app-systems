@@ -67,4 +67,17 @@ calc string assign_label_text(name = "Assign label text") =
   };
 
 base string temp_selected_modifier(name = "Temporal variable to hold the selected modifier") =
-  "strength";
+  "";
+
+calc string selected_modifier_from_view(name = "Selected modifier from view") =
+  $view?.ability_score_increase_select? ?? "";
+
+calc string selected_modifier_effective(name = "Selected modifier (effective)") =
+  when {
+    !isEmpty(selected_modifier_from_view)
+      && contains(haystack = modifier_options, needle = selected_modifier_from_view) -> selected_modifier_from_view,
+    !isEmpty(temp_selected_modifier)
+      && contains(haystack = modifier_options, needle = temp_selected_modifier) -> temp_selected_modifier,
+    !isEmpty(modifier_options) -> findFirst(modifier_options, filter = ($findFirstValue) => true) ?? "",
+    else -> "",
+  };

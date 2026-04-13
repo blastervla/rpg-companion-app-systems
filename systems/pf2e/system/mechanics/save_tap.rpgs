@@ -1,0 +1,5 @@
+mechanic save_tap(event_names = "saveTap") =
+  when {
+    $edit_mode -> forwardEvent(new_event_names = ["editSaveProficiency"]),
+    !$edit_mode -> forwardEvent(new_event_names = ["rollStat"]),
+  };

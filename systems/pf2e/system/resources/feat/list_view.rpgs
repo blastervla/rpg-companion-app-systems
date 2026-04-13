@@ -17,7 +17,7 @@ view feat_list() =
         view_type = "display",
         margin_left = 16,
         is_visible = defined(stat = "$character")
-          && !defined(stat = "$character.$is_new")
+          && !($character?.$is_new? ?? false)
           && !is_selectable_feature,
       ),
     ],

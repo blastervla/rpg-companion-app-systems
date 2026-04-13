@@ -26,24 +26,60 @@ character_sheet_section saving_throws() =
         id = "fortitude",
         stat = "fortitude",
         on_tap_event = event(
-          name = "rollStat",
-          payload = payload(stat = "fortitude", statName = "Fortitude save"),
+          name = "saveTap",
+          payload = payload(
+            stat = "fortitude",
+            statName = "Fortitude save",
+            proficiency_stat = "fortitude_proficiency_override",
+            proficiency_name = "Fortitude proficiency",
+          ),
+        ),
+        on_long_tap_event = event(
+          name = "editSaveProficiency",
+          payload = payload(
+            proficiency_stat = "fortitude_proficiency_override",
+            proficiency_name = "Fortitude proficiency",
+          ),
         ),
       ),
       stat(
         id = "reflex",
         stat = "reflex",
         on_tap_event = event(
-          name = "rollStat",
-          payload = payload(stat = "reflex", statName = "Reflex save"),
+          name = "saveTap",
+          payload = payload(
+            stat = "reflex",
+            statName = "Reflex save",
+            proficiency_stat = "reflex_proficiency_override",
+            proficiency_name = "Reflex proficiency",
+          ),
+        ),
+        on_long_tap_event = event(
+          name = "editSaveProficiency",
+          payload = payload(
+            proficiency_stat = "reflex_proficiency_override",
+            proficiency_name = "Reflex proficiency",
+          ),
         ),
       ),
       stat(
         id = "will",
         stat = "will",
         on_tap_event = event(
-          name = "rollStat",
-          payload = payload(stat = "will", statName = "Will save"),
+          name = "saveTap",
+          payload = payload(
+            stat = "will",
+            statName = "Will save",
+            proficiency_stat = "will_proficiency_override",
+            proficiency_name = "Will proficiency",
+          ),
+        ),
+        on_long_tap_event = event(
+          name = "editSaveProficiency",
+          payload = payload(
+            proficiency_stat = "will_proficiency_override",
+            proficiency_name = "Will proficiency",
+          ),
         ),
       ),
     ],

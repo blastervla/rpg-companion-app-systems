@@ -5,7 +5,7 @@ view class_progression_edit() =
         id = "class_progression_edit",
         alignment = "end",
         margin_bottom = 4,
-        is_visible = ($character?.$is_new? ?? false),
+        is_visible = defined(stat = "$character.$is_new"),
         subviews = [
           popUpButton(
             id = "edit_character_basics_see_class_button",
@@ -111,7 +111,7 @@ view class_progression_edit() =
         margin_left = 4,
         margin_top = 8,
         alignment = "start",
-        is_visible = !($character?.$is_new? ?? false)
+        is_visible = !defined(stat = "$character.$is_new")
         && (class?.actual_spellcasting_mode ?? "") == "prepared",
         subviews = [
           text(
@@ -227,7 +227,7 @@ view class_progression_edit() =
         margin_left = 4,
         margin_top = 8,
         alignment = "start",
-        is_visible = !($character?.$is_new? ?? false)
+        is_visible = !defined(stat = "$character.$is_new")
         && required_choice_bound_rank_10_slot_spell_count > 0,
         subviews = [
           text(

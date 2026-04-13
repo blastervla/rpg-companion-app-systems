@@ -714,13 +714,8 @@ calc bool has_deadly_simplicity_feat(name = "Has Deadly Simplicity feat") =
         needle = "feat_deadly_simplicity__pc1_",
       );
 
-calc bool warpriest_auto_grants_deadly_simplicity(name = "Warpriest auto grants Deadly Simplicity") =
-  if !defined(stat = "$character")
-    then false
-    else ($character.warpriest_auto_grants_deadly_simplicity ?? false);
-
 calc bool is_deadly_simplicity_enabled(name = "Is Deadly Simplicity enabled") =
-  (has_deadly_simplicity_feat || warpriest_auto_grants_deadly_simplicity)
+  has_deadly_simplicity_feat
     && (weapon_proficiency_rank_from_deity > 0)
     && (is_simple || type == "unarmed_strike");
 

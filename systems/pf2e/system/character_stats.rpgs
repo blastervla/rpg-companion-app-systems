@@ -154,11 +154,34 @@ calc resource<lore_skill>[] granted_lore_skills(name = "Granted lore skills") =
   );
 
 calc resource<lore_skill>[] all_lore_skills(name = "All lore skills") =
-  flatAppend(
-    [
-      granted_lore_skills,
-      lore_skills,
-    ],
+  map(
+    flatAppend(
+      [
+        map(
+          filter(
+            flatAppend(
+              [
+                granted_lore_skills,
+                lore_skills,
+              ],
+            ),
+            filter = ($filterValue) => !isEmpty($filterValue.lore_name),
+          ),
+          mapper = ($mapValue) => $mapValue.lore_name,
+        ),
+      ],
+      treat_as_set = true,
+    ),
+    mapper = ($mapValue) =>
+      findFirst(
+        flatAppend(
+          [
+            granted_lore_skills,
+            lore_skills,
+          ],
+        ),
+        filter = ($findFirstValue) => $findFirstValue.lore_name == $mapValue,
+      ),
   );
 
 calc string[] lore_skill_names(name = "Lore skill names") =
@@ -669,18 +692,6 @@ calc string nature_color(name = "Nature number color") =
 calc string nature_label_color(name = "Nature label color") =
   if nature_proficiency == "expert" || nature_proficiency == "master" || nature_proficiency == "legendary" then "accent" else "hint";
 
-base string perception_proficiency(name = "Perception proficiency (none, trained, expert, master, legendary)") =
-  "none";
-
-calc integer perception_manual_proficiency_rank(name = "Perception manual proficiency rank") =
-  when {
-    perception_proficiency == "trained" -> 1,
-    perception_proficiency == "expert" -> 2,
-    perception_proficiency == "master" -> 3,
-    perception_proficiency == "legendary" -> 4,
-    else -> 0,
-  };
-
 calc integer perception_class_proficiency_rank(name = "Perception class proficiency rank") =
   if isEmpty(classes)
     then 0
@@ -697,6 +708,24 @@ calc integer perception_class_proficiency_rank(name = "Perception class proficie
             },
         ),
       );
+
+calc string perception_proficiency(name = "Perception proficiency (none, trained, expert, master, legendary)") =
+  when {
+    perception_class_proficiency_rank == 4 -> "legendary",
+    perception_class_proficiency_rank == 3 -> "master",
+    perception_class_proficiency_rank == 2 -> "expert",
+    perception_class_proficiency_rank == 1 -> "trained",
+    else -> "none",
+  };
+
+calc integer perception_manual_proficiency_rank(name = "Perception manual proficiency rank") =
+  when {
+    perception_proficiency == "trained" -> 1,
+    perception_proficiency == "expert" -> 2,
+    perception_proficiency == "master" -> 3,
+    perception_proficiency == "legendary" -> 4,
+    else -> 0,
+  };
 
 calc integer effective_perception_proficiency_rank(name = "Effective perception proficiency rank") =
   max(
@@ -1115,86 +1144,187 @@ calc string[] creator_step_2_assigned_ability_boosts(name = "Creator step 2 assi
       all_interactive_progression_grants_for_current_level,
       filter = ($grant) => $grant.bucket == "ability_boost",
     ),
-    mapper = ($grant) => ($grant?.$view?.progression_grant_edit_ability_boost_select ?? $grant.assigned_ability_boosts),
+    mapper = ($grant) => $grant.assigned_ability_boosts_effective,
   );
 
+calc string[] creator_step_2_level_1_assigned_ability_boosts(name = "Creator step 2 level-1 assigned ability boosts") =
+  flatMap(
+    filter(
+      all_interactive_progression_grants_for_current_level,
+      filter = ($grant) => $grant.bucket == "ability_boost" && $grant.level == 1,
+    ),
+    mapper = ($grant) => $grant.assigned_ability_boosts_effective,
+  );
+
+calc integer creator_step_2_level_1_strength_boost_count(name = "Creator step 2 level-1 STR boost count") =
+  length(filter(creator_step_2_level_1_assigned_ability_boosts, filter = ($v) => $v == "strength"));
+
+calc integer creator_step_2_level_1_dexterity_boost_count(name = "Creator step 2 level-1 DEX boost count") =
+  length(filter(creator_step_2_level_1_assigned_ability_boosts, filter = ($v) => $v == "dexterity"));
+
+calc integer creator_step_2_level_1_constitution_boost_count(name = "Creator step 2 level-1 CON boost count") =
+  length(filter(creator_step_2_level_1_assigned_ability_boosts, filter = ($v) => $v == "constitution"));
+
+calc integer creator_step_2_level_1_intelligence_boost_count(name = "Creator step 2 level-1 INT boost count") =
+  length(filter(creator_step_2_level_1_assigned_ability_boosts, filter = ($v) => $v == "intelligence"));
+
+calc integer creator_step_2_level_1_wisdom_boost_count(name = "Creator step 2 level-1 WIS boost count") =
+  length(filter(creator_step_2_level_1_assigned_ability_boosts, filter = ($v) => $v == "wisdom"));
+
+calc integer creator_step_2_level_1_charisma_boost_count(name = "Creator step 2 level-1 CHA boost count") =
+  length(filter(creator_step_2_level_1_assigned_ability_boosts, filter = ($v) => $v == "charisma"));
+
+calc bool creator_has_duplicate_level_1_ability_boost_selection(name = "Creator has duplicate level-1 ability boost selection") =
+  creator_step_2_level_1_strength_boost_count > 1
+    || creator_step_2_level_1_dexterity_boost_count > 1
+    || creator_step_2_level_1_constitution_boost_count > 1
+    || creator_step_2_level_1_intelligence_boost_count > 1
+    || creator_step_2_level_1_wisdom_boost_count > 1
+    || creator_step_2_level_1_charisma_boost_count > 1;
+
+calc integer creator_preview_strength_total_boosts(name = "Creator preview STR total boosts") =
+  add(
+    map(
+      filter(
+        creator_ability_score_increases,
+        filter = ($asi) => $asi.selected_modifier_effective == "strength",
+      ),
+      mapper = ($asi) => $asi.value,
+    ),
+  )
+  + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "strength"));
+
+calc integer creator_preview_dexterity_total_boosts(name = "Creator preview DEX total boosts") =
+  add(
+    map(
+      filter(
+        creator_ability_score_increases,
+        filter = ($asi) => $asi.selected_modifier_effective == "dexterity",
+      ),
+      mapper = ($asi) => $asi.value,
+    ),
+  )
+  + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "dexterity"));
+
+calc integer creator_preview_constitution_total_boosts(name = "Creator preview CON total boosts") =
+  add(
+    map(
+      filter(
+        creator_ability_score_increases,
+        filter = ($asi) => $asi.selected_modifier_effective == "constitution",
+      ),
+      mapper = ($asi) => $asi.value,
+    ),
+  )
+  + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "constitution"));
+
+calc integer creator_preview_intelligence_total_boosts(name = "Creator preview INT total boosts") =
+  add(
+    map(
+      filter(
+        creator_ability_score_increases,
+        filter = ($asi) => $asi.selected_modifier_effective == "intelligence",
+      ),
+      mapper = ($asi) => $asi.value,
+    ),
+  )
+  + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "intelligence"));
+
+calc integer creator_preview_wisdom_total_boosts(name = "Creator preview WIS total boosts") =
+  add(
+    map(
+      filter(
+        creator_ability_score_increases,
+        filter = ($asi) => $asi.selected_modifier_effective == "wisdom",
+      ),
+      mapper = ($asi) => $asi.value,
+    ),
+  )
+  + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "wisdom"));
+
+calc integer creator_preview_charisma_total_boosts(name = "Creator preview CHA total boosts") =
+  add(
+    map(
+      filter(
+        creator_ability_score_increases,
+        filter = ($asi) => $asi.selected_modifier_effective == "charisma",
+      ),
+      mapper = ($asi) => $asi.value,
+    ),
+  )
+  + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "charisma"));
+
 calc integer creator_preview_strength_score(name = "Creator preview STR score") =
-  strength_score
-    + add(
-        map(
-          filter(
-            creator_ability_score_increases,
-            filter = ($asi) => $asi.temp_selected_modifier == "strength",
-          ),
-          mapper = ($asi) => $asi.value,
-        ),
-      )
-    + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "strength")) * 2;
+  strength_score + when {
+    creator_preview_strength_total_boosts <= 0 -> 0,
+    strength_score >= 18 -> creator_preview_strength_total_boosts,
+    creator_preview_strength_total_boosts <= divide([(18 - strength_score), 2], rounding_method = "up")
+      -> creator_preview_strength_total_boosts * 2,
+    else
+      -> divide([(18 - strength_score), 2], rounding_method = "up") * 2
+      + (creator_preview_strength_total_boosts
+          - divide([(18 - strength_score), 2], rounding_method = "up")),
+  };
 
 calc integer creator_preview_dexterity_score(name = "Creator preview DEX score") =
-  dexterity_score
-    + add(
-        map(
-          filter(
-            creator_ability_score_increases,
-            filter = ($asi) => $asi.temp_selected_modifier == "dexterity",
-          ),
-          mapper = ($asi) => $asi.value,
-        ),
-      )
-    + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "dexterity")) * 2;
+  dexterity_score + when {
+    creator_preview_dexterity_total_boosts <= 0 -> 0,
+    dexterity_score >= 18 -> creator_preview_dexterity_total_boosts,
+    creator_preview_dexterity_total_boosts <= divide([(18 - dexterity_score), 2], rounding_method = "up")
+      -> creator_preview_dexterity_total_boosts * 2,
+    else
+      -> divide([(18 - dexterity_score), 2], rounding_method = "up") * 2
+      + (creator_preview_dexterity_total_boosts
+          - divide([(18 - dexterity_score), 2], rounding_method = "up")),
+  };
 
 calc integer creator_preview_constitution_score(name = "Creator preview CON score") =
-  constitution_score
-    + add(
-        map(
-          filter(
-            creator_ability_score_increases,
-            filter = ($asi) => $asi.temp_selected_modifier == "constitution",
-          ),
-          mapper = ($asi) => $asi.value,
-        ),
-      )
-    + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "constitution")) * 2;
+  constitution_score + when {
+    creator_preview_constitution_total_boosts <= 0 -> 0,
+    constitution_score >= 18 -> creator_preview_constitution_total_boosts,
+    creator_preview_constitution_total_boosts <= divide([(18 - constitution_score), 2], rounding_method = "up")
+      -> creator_preview_constitution_total_boosts * 2,
+    else
+      -> divide([(18 - constitution_score), 2], rounding_method = "up") * 2
+      + (creator_preview_constitution_total_boosts
+          - divide([(18 - constitution_score), 2], rounding_method = "up")),
+  };
 
 calc integer creator_preview_intelligence_score(name = "Creator preview INT score") =
-  intelligence_score
-    + add(
-        map(
-          filter(
-            creator_ability_score_increases,
-            filter = ($asi) => $asi.temp_selected_modifier == "intelligence",
-          ),
-          mapper = ($asi) => $asi.value,
-        ),
-      )
-    + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "intelligence")) * 2;
+  intelligence_score + when {
+    creator_preview_intelligence_total_boosts <= 0 -> 0,
+    intelligence_score >= 18 -> creator_preview_intelligence_total_boosts,
+    creator_preview_intelligence_total_boosts <= divide([(18 - intelligence_score), 2], rounding_method = "up")
+      -> creator_preview_intelligence_total_boosts * 2,
+    else
+      -> divide([(18 - intelligence_score), 2], rounding_method = "up") * 2
+      + (creator_preview_intelligence_total_boosts
+          - divide([(18 - intelligence_score), 2], rounding_method = "up")),
+  };
 
 calc integer creator_preview_wisdom_score(name = "Creator preview WIS score") =
-  wisdom_score
-    + add(
-        map(
-          filter(
-            creator_ability_score_increases,
-            filter = ($asi) => $asi.temp_selected_modifier == "wisdom",
-          ),
-          mapper = ($asi) => $asi.value,
-        ),
-      )
-    + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "wisdom")) * 2;
+  wisdom_score + when {
+    creator_preview_wisdom_total_boosts <= 0 -> 0,
+    wisdom_score >= 18 -> creator_preview_wisdom_total_boosts,
+    creator_preview_wisdom_total_boosts <= divide([(18 - wisdom_score), 2], rounding_method = "up")
+      -> creator_preview_wisdom_total_boosts * 2,
+    else
+      -> divide([(18 - wisdom_score), 2], rounding_method = "up") * 2
+      + (creator_preview_wisdom_total_boosts
+          - divide([(18 - wisdom_score), 2], rounding_method = "up")),
+  };
 
 calc integer creator_preview_charisma_score(name = "Creator preview CHA score") =
-  charisma_score
-    + add(
-        map(
-          filter(
-            creator_ability_score_increases,
-            filter = ($asi) => $asi.temp_selected_modifier == "charisma",
-          ),
-          mapper = ($asi) => $asi.value,
-        ),
-      )
-    + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "charisma")) * 2;
+  charisma_score + when {
+    creator_preview_charisma_total_boosts <= 0 -> 0,
+    charisma_score >= 18 -> creator_preview_charisma_total_boosts,
+    creator_preview_charisma_total_boosts <= divide([(18 - charisma_score), 2], rounding_method = "up")
+      -> creator_preview_charisma_total_boosts * 2,
+    else
+      -> divide([(18 - charisma_score), 2], rounding_method = "up") * 2
+      + (creator_preview_charisma_total_boosts
+          - divide([(18 - charisma_score), 2], rounding_method = "up")),
+  };
 
 calc integer creator_preview_strength_modifier(name = "Creator preview STR modifier") =
   divide([(creator_preview_strength_score + -10), 2], rounding_method = "down");
@@ -1403,16 +1533,16 @@ base integer spell_slots_9(name = "Rank 9") = 0;
 base integer spell_slots_10(name = "Rank 10") = 0;
 
 calc resource<ancestry> creator_selected_ancestry(name = "Selected creator ancestry") =
-  if notNull(ancestry) then ancestry else $view?.edit_character_basics_ancestry_select?;
+  if notNull(ancestry) then ancestry else $view.edit_character_basics_ancestry_select?;
 
 calc resource<heritage> creator_selected_heritage(name = "Selected creator heritage") =
-  if notNull(heritage) then heritage else $view?.edit_character_basics_heritage_select?;
+  if notNull(heritage) then heritage else $view.edit_character_basics_heritage_select?;
 
 calc resource<background> creator_selected_background(name = "Selected creator background") =
-  if notNull(background) then background else $view?.edit_character_basics_background_select?;
+  if notNull(background) then background else $view.edit_character_basics_background_select?;
 
 calc resource<class_progression>[] creator_selected_classes(name = "Selected creator classes") =
-  if !isEmpty(classes) then classes else ($view?.edit_character_basics_classes ?? []);
+  if !isEmpty(classes) then classes else ($view.edit_character_basics_classes? ?? []);
 
 calc resource<ability_score_increase>[] creator_ability_score_increases(name = "Creator ability score increases") =
   flatAppend(
@@ -1697,29 +1827,29 @@ calc resource<archetype>[] slot_assigned_archetypes(name = "Archetypes assigned 
           filter(
             $c.class?.progression_grants ?? [],
             filter = ($g) => $g.bucket == "class_like_feat"
-              && $g.slot_mode == "archetype_new"
-              && notNull($g.assigned_archetype),
+              && $g.slot_mode_effective == "archetype_new"
+              && notNull($g.assigned_archetype_effective),
           ),
-          mapper = ($g) => $g.assigned_archetype,
+          mapper = ($g) => $g.assigned_archetype_effective,
         ),
       ),
       map(
         filter(
           ancestry?.progression_grants ?? [],
           filter = ($g) => $g.bucket == "class_like_feat"
-            && $g.slot_mode == "archetype_new"
-            && notNull($g.assigned_archetype),
+            && $g.slot_mode_effective == "archetype_new"
+            && notNull($g.assigned_archetype_effective),
         ),
-        mapper = ($g) => $g.assigned_archetype,
+        mapper = ($g) => $g.assigned_archetype_effective,
       ),
       map(
         filter(
           heritage?.progression_grants ?? [],
           filter = ($g) => $g.bucket == "class_like_feat"
-            && $g.slot_mode == "archetype_new"
-            && notNull($g.assigned_archetype),
+            && $g.slot_mode_effective == "archetype_new"
+            && notNull($g.assigned_archetype_effective),
         ),
-        mapper = ($g) => $g.assigned_archetype,
+        mapper = ($g) => $g.assigned_archetype_effective,
       ),
     ]),
     filter = ($a) => notNull($a),
@@ -1739,33 +1869,33 @@ calc resource<feat>[] slot_assigned_feats(name = "Feats assigned to slots") =
         mapper = ($c) => map(
           filter(
             $c.class?.progression_grants ?? [],
-            filter = ($g) => $g.is_feat_slot && notNull($g.assigned_feat),
+            filter = ($g) => $g.is_feat_slot && notNull($g.assigned_feat_effective),
           ),
-          mapper = ($g) => $g.assigned_feat,
+          mapper = ($g) => $g.assigned_feat_effective,
         ),
       ),
       map(
         filter(
           ancestry?.progression_grants ?? [],
-          filter = ($g) => $g.is_feat_slot && notNull($g.assigned_feat),
+          filter = ($g) => $g.is_feat_slot && notNull($g.assigned_feat_effective),
         ),
-        mapper = ($g) => $g.assigned_feat,
+        mapper = ($g) => $g.assigned_feat_effective,
       ),
       map(
         filter(
           heritage?.progression_grants ?? [],
-          filter = ($g) => $g.is_feat_slot && notNull($g.assigned_feat),
+          filter = ($g) => $g.is_feat_slot && notNull($g.assigned_feat_effective),
         ),
-        mapper = ($g) => $g.assigned_feat,
+        mapper = ($g) => $g.assigned_feat_effective,
       ),
       flatMap(
         multiclass_archetypes,
         mapper = ($arch) => map(
           filter(
             $arch.progression_grants ?? [],
-            filter = ($g) => $g.is_feat_slot && notNull($g.assigned_feat),
+            filter = ($g) => $g.is_feat_slot && notNull($g.assigned_feat_effective),
           ),
-          mapper = ($g) => $g.assigned_feat,
+          mapper = ($g) => $g.assigned_feat_effective,
         ),
       ),
     ]),
@@ -2121,7 +2251,7 @@ calc resource<feat> improved_flexibility_feature(name = "Improved Flexibility fe
   );
 
 calc resource<feat>[] improved_flexibility_chosen_features(name = "Chosen Improved Flexibility selectable feats") =
-  improved_flexibility_feature?.chosen_selectable_features ?? [];
+  improved_flexibility_feature?.selected_selectable_features ?? [];
 
 calc integer improved_flexibility_chosen_features_count(name = "Chosen Improved Flexibility selectable feat count") =
   length(improved_flexibility_chosen_features);
@@ -2154,7 +2284,9 @@ calc resource<feat> unified_magical_theory_feature(name = "Unified Magical Theor
   findFirst(
     flatMap(
       all_features,
-      mapper = ($feature) => $feature.chosen_selectable_features,
+      mapper = ($feature) => (if defined(stat = "$feature.selected_selectable_features")
+        then $feature.selected_selectable_features
+        else []),
     ),
     filter = ($feature) => (toLowerCase(trim($feature.name)) == "unified magical theory: arcane school"
       || contains(
@@ -2164,7 +2296,7 @@ calc resource<feat> unified_magical_theory_feature(name = "Unified Magical Theor
   );
 
 calc resource<feat>[] unified_magical_theory_selected_options(name = "Chosen Unified Magical Theory options") =
-  unified_magical_theory_feature?.chosen_selectable_features ?? [];
+  unified_magical_theory_feature?.selected_selectable_features ?? [];
 
 calc integer unified_magical_theory_selected_option_count(name = "Chosen Unified Magical Theory option count") =
   length(unified_magical_theory_selected_options);
@@ -2377,7 +2509,7 @@ calc bool has_pending_interactive_slots(name = "Has pending interactive slots") 
   !isEmpty(filter(
     all_interactive_progression_grants_for_current_level,
     filter = ($g) =>
-      ($g.is_feat_slot && isNull($g.assigned_feat) && isNull($g.assigned_archetype))
+      ($g.is_feat_slot && isNull($g.assigned_feat_effective) && isNull($g.assigned_archetype_effective))
       || ($g.bucket == "ability_boost" && length($g.assigned_ability_boosts) < $g.amount)
       || ($g.bucket == "skill_increase" && isEmpty($g.committed_skill_increase_skill)),
   ));
@@ -2537,15 +2669,15 @@ calc string class_like_feats_level_restriction_warning_text(name = "Class feat l
 
 calc integer spent_skill_feat_slots(name = "Spent skill feat slots") =
   length(skill_feats)
-  + length(filter(feat_grant_slots_for_current_level, filter = ($g) => $g.bucket == "skill_feat" && notNull($g.assigned_feat)));
+  + length(filter(feat_grant_slots_for_current_level, filter = ($g) => $g.bucket == "skill_feat" && notNull($g.assigned_feat_effective)));
 
 calc integer spent_general_feat_slots(name = "Spent general feat slots") =
   length(general_feats)
-  + length(filter(feat_grant_slots_for_current_level, filter = ($g) => $g.bucket == "general_feat" && notNull($g.assigned_feat)));
+  + length(filter(feat_grant_slots_for_current_level, filter = ($g) => $g.bucket == "general_feat" && notNull($g.assigned_feat_effective)));
 
 calc integer spent_ancestry_feat_slots(name = "Spent ancestry feat slots") =
   length(ancestry_feats)
-  + length(filter(feat_grant_slots_for_current_level, filter = ($g) => $g.bucket == "ancestry_feat" && notNull($g.assigned_feat)));
+  + length(filter(feat_grant_slots_for_current_level, filter = ($g) => $g.bucket == "ancestry_feat" && notNull($g.assigned_feat_effective)));
 
 calc integer spent_bonus_feat_slots(name = "Spent bonus feat slots") = length(bonus_feats);
 
@@ -2689,11 +2821,20 @@ base integer platinum_pieces(name = "PP") = 0;
 calc resource<class_progression> level_up_selected_class_progression(name = "Selected existing class when levelling up") =
   findFirst(
     classes,
-    filter = ($findFirstValue) => ($findFirstValue.class?.id == $view?.level_up_select_class?),
+    filter = ($findFirstValue) => ($findFirstValue.class?.id == $view.level_up_select_class?),
   );
 
 base string temp_level_up_class(name = "Temporary variable for selecting among existing classes") =
   null;
+
+calc resource<feat>[] level_up_selected_grant_feats(name = "Level up selected grant feats") =
+  map(
+    filter(
+      level_up_interactive_progression_grants_in_new_level,
+      filter = ($grant) => notNull($grant.assigned_feat_effective),
+    ),
+    mapper = ($grant) => $grant.assigned_feat_effective,
+  );
 
 calc resource<levelled_choice_text>[] level_up_language_proficiency_choices(name = "Level up language proficiency choices") =
   flatAppend(
@@ -2706,7 +2847,19 @@ calc resource<levelled_choice_text>[] level_up_language_proficiency_choices(name
           else []),
       ),
       (background?.language_proficiencies_choices_in_current_level ?? []),
+      flatMap(
+        level_up_selected_grant_feats,
+        mapper = ($feat) => if defined(stat = "$feat.language_proficiencies_choices_in_current_level")
+          then ($feat.language_proficiencies_choices_in_current_level ?? [])
+          else [],
+      ),
     ],
+  );
+
+calc resource<levelled_choice_text>[] level_up_language_proficiency_choices_effective(name = "Level up language proficiency choices (effective)") =
+  filter(
+    level_up_language_proficiency_choices,
+    filter = ($choice) => !isEmpty(trim($choice.options)),
   );
 
 calc resource<levelled_skill_proficiency>[] level_up_skill_proficiency_choices(name = "Level up skill proficiency choices") =
@@ -2724,7 +2877,19 @@ calc resource<levelled_skill_proficiency>[] level_up_skill_proficiency_choices(n
         all_features,
         mapper = ($mapValue) => ($mapValue.skill_proficiencies_choices_in_current_level ?? []),
       ),
+      flatMap(
+        level_up_selected_grant_feats,
+        mapper = ($feat) => if defined(stat = "$feat.skill_proficiencies_choices_in_current_level")
+          then ($feat.skill_proficiencies_choices_in_current_level ?? [])
+          else [],
+      ),
     ],
+  );
+
+calc resource<levelled_skill_proficiency>[] level_up_skill_proficiency_choices_effective(name = "Level up skill proficiency choices (effective)") =
+  filter(
+    level_up_skill_proficiency_choices,
+    filter = ($choice) => !isEmpty($choice.options),
   );
 
 calc resource<levelled_armor_proficiency>[] level_up_armor_proficiency_choices(name = "Level up armor proficiency choices") =
@@ -2742,7 +2907,19 @@ calc resource<levelled_armor_proficiency>[] level_up_armor_proficiency_choices(n
         all_features,
         mapper = ($mapValue) => ($mapValue.armor_proficiencies_choices_in_current_level ?? []),
       ),
+      flatMap(
+        level_up_selected_grant_feats,
+        mapper = ($feat) => if defined(stat = "$feat.armor_proficiencies_choices_in_current_level")
+          then ($feat.armor_proficiencies_choices_in_current_level ?? [])
+          else [],
+      ),
     ],
+  );
+
+calc resource<levelled_armor_proficiency>[] level_up_armor_proficiency_choices_effective(name = "Level up armor proficiency choices (effective)") =
+  filter(
+    level_up_armor_proficiency_choices,
+    filter = ($choice) => !isEmpty($choice.options),
   );
 
 calc resource<levelled_weapon_proficiency>[] level_up_weapon_proficiency_choices(name = "Level up weapon proficiency choices") =
@@ -2760,7 +2937,19 @@ calc resource<levelled_weapon_proficiency>[] level_up_weapon_proficiency_choices
         all_features,
         mapper = ($mapValue) => ($mapValue.weapon_proficiencies_choices_in_current_level ?? []),
       ),
+      flatMap(
+        level_up_selected_grant_feats,
+        mapper = ($feat) => if defined(stat = "$feat.weapon_proficiencies_choices_in_current_level")
+          then ($feat.weapon_proficiencies_choices_in_current_level ?? [])
+          else [],
+      ),
     ],
+  );
+
+calc resource<levelled_weapon_proficiency>[] level_up_weapon_proficiency_choices_effective(name = "Level up weapon proficiency choices (effective)") =
+  filter(
+    level_up_weapon_proficiency_choices,
+    filter = ($choice) => !isEmpty($choice.options),
   );
 
 calc resource<lore_skill>[] level_up_lore_skill_choices(name = "Level up lore skill choices") =
@@ -2778,7 +2967,19 @@ calc resource<lore_skill>[] level_up_lore_skill_choices(name = "Level up lore sk
         all_features,
         mapper = ($mapValue) => ($mapValue.lore_skills_choices_in_current_level ?? []),
       ),
+      flatMap(
+        level_up_selected_grant_feats,
+        mapper = ($feat) => if defined(stat = "$feat.lore_skills_choices_in_current_level")
+          then ($feat.lore_skills_choices_in_current_level ?? [])
+          else [],
+      ),
     ],
+  );
+
+calc resource<lore_skill>[] level_up_lore_skill_choices_effective(name = "Level up lore skill choices (effective)") =
+  filter(
+    level_up_lore_skill_choices,
+    filter = ($choice) => !isEmpty(trim($choice.options)),
   );
 
 base string temp_last_level_up_class_id(name = "Last level up class ID") = null;
@@ -2863,10 +3064,47 @@ base string temp_skill_increase_skill(name = "Temp skill increase skill") = "";
 
 base string temp_skill_increase_target_rank(name = "Temp skill increase target rank") = "";
 
+calc string temp_skill_increase_skill_effective(name = "Temp skill increase selected skill (effective)") =
+  when {
+    defined(stat = "$view.level_up_skill_increase_skill_select") -> if isEmpty($view.level_up_skill_increase_skill_select)
+        then temp_skill_increase_skill
+        else $view.level_up_skill_increase_skill_select,
+    else -> temp_skill_increase_skill,
+  };
+
+calc string[] temp_skill_increase_skill_options(name = "Temp skill increase eligible skills") =
+  filter(
+    [
+      "acrobatics",
+      "arcana",
+      "athletics",
+      "crafting",
+      "deception",
+      "diplomacy",
+      "intimidation",
+      "medicine",
+      "nature",
+      "occultism",
+      "performance",
+      "religion",
+      "society",
+      "stealth",
+      "survival",
+      "thievery",
+    ],
+    filter = ($filterValue) => when {
+      (metaStat(meta_stat = concat([$filterValue, "_proficiency"])) ?? "none") == "trained" -> 1,
+      (metaStat(meta_stat = concat([$filterValue, "_proficiency"])) ?? "none") == "expert" -> 2,
+      (metaStat(meta_stat = concat([$filterValue, "_proficiency"])) ?? "none") == "master" -> 3,
+      (metaStat(meta_stat = concat([$filterValue, "_proficiency"])) ?? "none") == "legendary" -> 4,
+      else -> 0,
+    } < current_skill_increase_rank_cap_value,
+  );
+
 calc string temp_skill_increase_current_rank(name = "Temp skill increase current rank") =
-  if isEmpty(temp_skill_increase_skill)
+  if isEmpty(temp_skill_increase_skill_effective)
     then "none"
-    else (metaStat(meta_stat = concat([temp_skill_increase_skill, "_proficiency"])) ?? "none");
+    else (metaStat(meta_stat = concat([temp_skill_increase_skill_effective, "_proficiency"])) ?? "none");
 
 calc integer temp_skill_increase_current_rank_value(name = "Temp skill increase current rank value") =
   when {
@@ -2876,6 +3114,31 @@ calc integer temp_skill_increase_current_rank_value(name = "Temp skill increase 
     temp_skill_increase_current_rank == "legendary" -> 4,
     else -> 0,
   };
+
+calc string temp_skill_increase_next_rank(name = "Temp skill increase next rank") =
+  when {
+    temp_skill_increase_current_rank == "none" -> "trained",
+    temp_skill_increase_current_rank == "trained" -> "expert",
+    temp_skill_increase_current_rank == "expert" -> "master",
+    temp_skill_increase_current_rank == "master" -> "legendary",
+    else -> "",
+  };
+
+calc string temp_skill_increase_target_rank_auto(name = "Temp skill increase target rank auto") =
+  if isEmpty(temp_skill_increase_skill_effective)
+    then ""
+    else if temp_skill_increase_current_rank_value >= current_skill_increase_rank_cap_value
+      then ""
+      else temp_skill_increase_next_rank;
+
+calc string[] temp_skill_increase_target_rank_options(name = "Temp skill increase target rank options") =
+  if isEmpty(temp_skill_increase_skill_effective)
+    then []
+    else if temp_skill_increase_current_rank_value >= current_skill_increase_rank_cap_value
+      then []
+      else if isEmpty(temp_skill_increase_next_rank)
+        then []
+        else [temp_skill_increase_next_rank];
 
 calc integer temp_skill_increase_target_rank_value(name = "Temp skill increase target rank value") =
   when {
@@ -2887,35 +3150,52 @@ calc integer temp_skill_increase_target_rank_value(name = "Temp skill increase t
   };
 
 calc bool is_temp_skill_increase_selection_valid(name = "Is temp skill increase selection valid") =
-  !isEmpty(temp_skill_increase_skill)
-    && !isEmpty(temp_skill_increase_target_rank)
+  !isEmpty(temp_skill_increase_skill_effective)
+    && !isEmpty(temp_skill_increase_target_rank_auto)
     && pending_skill_increase_grants > 0
-    && temp_skill_increase_target_rank_value == temp_skill_increase_current_rank_value + 1
-    && temp_skill_increase_target_rank_value <= current_skill_increase_rank_cap_value;
+    && temp_skill_increase_target_rank_auto == temp_skill_increase_next_rank
+    && temp_skill_increase_current_rank_value < current_skill_increase_rank_cap_value;
 
 calc string temp_skill_increase_validation_message(name = "Temp skill increase validation message") =
   when {
     is_temp_skill_increase_selection_valid -> "",
-    isEmpty(temp_skill_increase_skill) -> "Choose a skill to increase.",
-    isEmpty(temp_skill_increase_target_rank) -> "Choose the target rank.",
-    pending_skill_increase_grants <= 0 -> "No pending skill increase grants.",
-    temp_skill_increase_target_rank_value != temp_skill_increase_current_rank_value + 1 -> "Skill increases must advance exactly one proficiency rank.",
-    temp_skill_increase_target_rank_value > current_skill_increase_rank_cap_value -> concat(
+    isEmpty(temp_skill_increase_skill_options) -> concat(
       [
-        "Current level cap is ",
+        "No eligible skills can be increased at this level (cap: ",
         enumeratedName(
           enumerated_type = "skill_proficiency_types",
           id = current_skill_increase_rank_cap,
         ),
-        ".",
+        ").",
+      ],
+    ),
+    isEmpty(temp_skill_increase_skill_effective) -> "Choose a skill to increase.",
+    pending_skill_increase_grants <= 0 -> "No pending skill increase grants.",
+    temp_skill_increase_current_rank_value >= current_skill_increase_rank_cap_value -> concat(
+      [
+        "Selected skill is already at the current cap (",
+        enumeratedName(
+          enumerated_type = "skill_proficiency_types",
+          id = current_skill_increase_rank_cap,
+        ),
+        ").",
       ],
     ),
     else -> "Invalid skill increase selection.",
   };
 
 calc string temp_skill_increase_summary_text(name = "Temp skill increase summary text") =
-  if isEmpty(temp_skill_increase_skill)
-    then ""
+  if isEmpty(temp_skill_increase_skill_effective)
+    then concat(
+        [
+          "Select a skill to preview rank increase. Cap: ",
+          enumeratedName(
+            enumerated_type = "skill_proficiency_types",
+            id = current_skill_increase_rank_cap,
+          ),
+          ".",
+        ],
+      )
     else concat(
         [
           "Current: ",
@@ -2923,6 +3203,13 @@ calc string temp_skill_increase_summary_text(name = "Temp skill increase summary
             enumerated_type = "skill_proficiency_types",
             id = temp_skill_increase_current_rank,
           ),
+          " -> ",
+          (if isEmpty(temp_skill_increase_target_rank_auto)
+            then "No increase available"
+            else enumeratedName(
+                enumerated_type = "skill_proficiency_types",
+                id = temp_skill_increase_target_rank_auto,
+              )),
           " | Cap: ",
           enumeratedName(
             enumerated_type = "skill_proficiency_types",
@@ -2957,8 +3244,14 @@ calc resource<progression_grant>[] level_up_progression_grants_in_new_level(name
     ],
   );
 
+calc resource<progression_grant>[] level_up_interactive_progression_grants_in_new_level(name = "Level up interactive progression grants in new level") =
+  filter(
+    level_up_progression_grants_in_new_level,
+    filter = ($grant) => $grant.is_feat_slot,
+  );
+
 calc bool should_show_progression_summary_popup(name = "Should show progression summary popup") =
-  !isEmpty(level_up_progression_grants_in_new_level);
+  !isEmpty(level_up_interactive_progression_grants_in_new_level);
 
 calc string level_up_progression_grants_summary_text(name = "Level up progression grants summary text") =
   joinToString(
@@ -3050,18 +3343,21 @@ calc string temp_asi_validation_message(name = "Temp ASI validation message") =
   };
 
 calc resource<feat>[] features_with_new_descriptions_in_new_level(name = "Features with new descriptions in new level") =
-  flatAppend(
-    [
-      (ancestry?.traits_with_updates_in_current_level ?? []),
-      flatMap(
-        filter(
-          classes,
-          filter = ($filterValue) => (last_level_up_class_progression?.class?.id == $filterValue.class?.id),
+  filter(
+    flatAppend(
+      [
+        (ancestry?.traits_with_updates_in_current_level ?? []),
+        flatMap(
+          filter(
+            classes,
+            filter = ($filterValue) => (last_level_up_class_progression?.class?.id == $filterValue.class?.id),
+          ),
+          mapper = ($mapValue) => ($mapValue.class?.features_with_updates_in_current_level ?? []),
         ),
-        mapper = ($mapValue) => ($mapValue.class?.features_with_updates_in_current_level ?? []),
-      ),
-      (background?.features_with_updates_in_current_level ?? []),
-    ],
+        (background?.features_with_updates_in_current_level ?? []),
+      ],
+    ),
+    filter = ($filterValue) => (!isEmpty($filterValue.current_level_levelled_description?.description ?? "")),
   );
 
 base bool currently_levelling_up(name = "Currently levelling up") = false;
@@ -3075,7 +3371,10 @@ calc resource<feat>[] selectable_features_with_new_amounts_in_new_level(name = "
           (background?.current_level_features ?? []),
         ],
       ),
-    filter = ($filterValue) => $filterValue.can_choose_new_selectable_features_in_current_level,
+    filter = ($filterValue) => $filterValue.can_choose_new_selectable_features_in_current_level
+      && $filterValue.has_selectable_features
+      && $filterValue.current_allowed_amount_of_selectable_features > 0
+      && !isEmpty($filterValue.available_selectable_features_for_current_level),
   );
 
 base string hair_color(name = "Hair color") = "";
@@ -3230,8 +3529,7 @@ calc string companion_section_title(name = "Companion section title") =
     then "Wild shape"
     else "Companions / familiars";
 
-
-calc integer fortitude_proficiency_rank(name = "Fortitude proficiency rank") =
+calc integer class_fortitude_proficiency_rank(name = "Class fortitude proficiency rank") =
   if isEmpty(classes)
     then 0
     else max(
@@ -3248,7 +3546,7 @@ calc integer fortitude_proficiency_rank(name = "Fortitude proficiency rank") =
         ),
       );
 
-calc integer reflex_proficiency_rank(name = "Reflex proficiency rank") =
+calc integer class_reflex_proficiency_rank(name = "Class reflex proficiency rank") =
   if isEmpty(classes)
     then 0
     else max(
@@ -3265,7 +3563,7 @@ calc integer reflex_proficiency_rank(name = "Reflex proficiency rank") =
         ),
       );
 
-calc integer will_proficiency_rank(name = "Will proficiency rank") =
+calc integer class_will_proficiency_rank(name = "Class will proficiency rank") =
   if isEmpty(classes)
     then 0
     else max(
@@ -3281,6 +3579,66 @@ calc integer will_proficiency_rank(name = "Will proficiency rank") =
             },
         ),
       );
+
+calc string fortitude_proficiency_override(name = "Fortitude proficiency override") =
+  when {
+    class_fortitude_proficiency_rank == 4 -> "legendary",
+    class_fortitude_proficiency_rank == 3 -> "master",
+    class_fortitude_proficiency_rank == 2 -> "expert",
+    class_fortitude_proficiency_rank == 1 -> "trained",
+    else -> "none",
+  };
+
+calc string reflex_proficiency_override(name = "Reflex proficiency override") =
+  when {
+    class_reflex_proficiency_rank == 4 -> "legendary",
+    class_reflex_proficiency_rank == 3 -> "master",
+    class_reflex_proficiency_rank == 2 -> "expert",
+    class_reflex_proficiency_rank == 1 -> "trained",
+    else -> "none",
+  };
+
+calc string will_proficiency_override(name = "Will proficiency override") =
+  when {
+    class_will_proficiency_rank == 4 -> "legendary",
+    class_will_proficiency_rank == 3 -> "master",
+    class_will_proficiency_rank == 2 -> "expert",
+    class_will_proficiency_rank == 1 -> "trained",
+    else -> "none",
+  };
+
+calc integer fortitude_proficiency_rank(name = "Fortitude proficiency rank") =
+  if isEmpty(fortitude_proficiency_override)
+    then class_fortitude_proficiency_rank
+    else when {
+        fortitude_proficiency_override == "trained" -> 1,
+        fortitude_proficiency_override == "expert" -> 2,
+        fortitude_proficiency_override == "master" -> 3,
+        fortitude_proficiency_override == "legendary" -> 4,
+        else -> 0,
+      };
+
+calc integer reflex_proficiency_rank(name = "Reflex proficiency rank") =
+  if isEmpty(reflex_proficiency_override)
+    then class_reflex_proficiency_rank
+    else when {
+        reflex_proficiency_override == "trained" -> 1,
+        reflex_proficiency_override == "expert" -> 2,
+        reflex_proficiency_override == "master" -> 3,
+        reflex_proficiency_override == "legendary" -> 4,
+        else -> 0,
+      };
+
+calc integer will_proficiency_rank(name = "Will proficiency rank") =
+  if isEmpty(will_proficiency_override)
+    then class_will_proficiency_rank
+    else when {
+        will_proficiency_override == "trained" -> 1,
+        will_proficiency_override == "expert" -> 2,
+        will_proficiency_override == "master" -> 3,
+        will_proficiency_override == "legendary" -> 4,
+        else -> 0,
+      };
 
 calc string fortitude_proficiency(name = "Fortitude proficiency") =
   when {
@@ -3347,44 +3705,6 @@ calc integer will(name = "Will") =
 
 calc resource<class_progression> primary_class_progression(name = "Primary class progression") =
   findFirst(classes, filter = ($findFirstValue) => true);
-
-calc bool primary_class_has_warpriest_first_doctrine(name = "Primary class has Warpriest: First Doctrine") =
-  contains(
-    haystack = map(
-      all_features,
-      mapper = ($mapValue) => $mapValue.name,
-    ),
-    needle = "Warpriest: First Doctrine",
-  );
-
-calc bool primary_class_selected_deity_has_simple_or_unarmed_favored_weapon(name = "Primary class selected deity has simple or unarmed favored weapon") =
-  or(
-    map(
-      primary_class_progression?.selected_deity?.favored_weapons ?? [],
-      mapper = ($mapValue) => ($mapValue == "club"
-        || $mapValue == "dagger"
-        || $mapValue == "greatclub"
-        || $mapValue == "handaxe"
-        || $mapValue == "javelin"
-        || $mapValue == "light_hammer"
-        || $mapValue == "mace"
-        || $mapValue == "quarterstaff"
-        || $mapValue == "sickle"
-        || $mapValue == "spear"
-        || $mapValue == "crossbow_light"
-        || $mapValue == "dart"
-        || $mapValue == "shortbow"
-        || $mapValue == "sling"
-        || $mapValue == "blowgun"
-        || $mapValue == "unarmed_strike"),
-    ),
-  );
-
-calc bool warpriest_auto_grants_deadly_simplicity(name = "Warpriest auto grants Deadly Simplicity") =
-  primary_class_has_warpriest_first_doctrine && primary_class_selected_deity_has_simple_or_unarmed_favored_weapon;
-
-calc integer warpriest_auto_grants_deadly_simplicity_flag(name = "Warpriest auto grants Deadly Simplicity flag") =
-  if warpriest_auto_grants_deadly_simplicity then 1 else 0;
 
 calc string class_dc_proficiency(name = "Class DC proficiency") =
   primary_class_progression?.class.current_level_class_dc_proficiency ?? "none";
