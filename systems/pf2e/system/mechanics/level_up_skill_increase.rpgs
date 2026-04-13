@@ -3,8 +3,8 @@ mechanic level_up_skill_increase(event_names = "level_up_skill_increase") =
     is_temp_skill_increase_selection_valid -> sequence(
       effects = [
         setStat(
-          meta_stat = concat([temp_skill_increase_skill, "_proficiency"]),
-          new_value = temp_skill_increase_target_rank,
+          meta_stat = concat([temp_skill_increase_skill_effective, "_proficiency"]),
+          new_value = temp_skill_increase_target_rank_auto,
           aggregation_type = "set",
         ),
         addToStat(

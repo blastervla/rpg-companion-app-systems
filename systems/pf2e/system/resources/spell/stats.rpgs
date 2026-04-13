@@ -99,7 +99,14 @@ calc bool has_targets(name = "Has targets") = length(targets) > 0;
 calc bool has_damage_dice(name = "Has damage dice") = !isEmpty(dice);
 
 calc bool has_active_effects(name = "Has active effects") =
-  !isEmpty(filter(effects, filter = ($filterValue) => $filterValue.is_active));
+  !isEmpty(
+    filter(
+      effects,
+      filter = ($filterValue) => $filterValue.is_active
+        && $filterValue.type != "roll"
+        && $filterValue.type != "roll_dice",
+    ),
+  );
 
 calc bool should_show_damage_or_effects_button(name = "Should show damage/effects button") =
   has_damage_dice || has_active_effects;
@@ -678,15 +685,28 @@ calc bool use_combat_free_casting(name = "Use combat free casting mode") =
 calc bool should_display_cast_controls(name = "Should display cast controls") =
   defined(stat = "$character") || use_combat_free_casting;
 
+calc integer requested_cast_level(name = "Requested cast rank") =
+  $view?.spell_display_cast_composite_ticker? ?? (findFirst(
+        available_slots_for_use,
+        filter = ($findFirstValue) => true,
+      ) ?? max([1, num_level]));
+
 calc integer selected_cast_level(name = "Selected cast rank") =
   if is_cantrip && defined(stat = "$character")
     then min([10, divide([$character.level + 1, 2], rounding_method = "up")])
     else if is_focus_spell && defined(stat = "$character")
       then min([10, divide([$character.level + 1, 2], rounding_method = "up")])
-    else ($view?.spell_display_cast_composite_ticker? ?? (findFirst(
-          available_slots_for_use,
-          filter = ($findFirstValue) => true,
-        ) ?? max([1, num_level])));
+    else if !isEmpty(available_slots_for_use)
+      then (if contains(
+          haystack = available_slots_for_use,
+          needle = requested_cast_level,
+        )
+        then requested_cast_level
+        else (findFirst(
+            available_slots_for_use,
+            filter = ($findFirstValue) => true,
+          ) ?? max([1, num_level])))
+      else requested_cast_level;
 
 calc integer selected_prepared_consumption_rank(name = "Selected prepared consumption rank") =
   if is_cantrip then 0 else selected_cast_level;
@@ -1007,6 +1027,17 @@ calc string selected_first_cast_rank_restricted_spell_name_example(name = "Selec
 calc integer selected_first_cast_rank_restricted_spell_name_count(name = "Selected first cast rank restricted spell name count") =
   length(selected_first_cast_rank_restricted_spell_names);
 
+calc string selected_first_cast_rank_restricted_spell_names_lines(name = "Selected first cast rank restricted spell names lines") =
+  concat(
+    map(
+      sortBy(
+        selected_first_cast_rank_restricted_spell_names,
+        sort_by_selector = ($sortByValue) => $sortByValue,
+      ),
+      mapper = ($n) => concat(["\n- ", $n]),
+    ),
+  );
+
 calc string[] selected_first_cast_rank_restricted_spell_traits(name = "Selected first cast rank restricted spell traits") =
   selected_first_cast_rank_restricted_slot_grant?.restricted_spell_traits ?? [];
 
@@ -1020,6 +1051,17 @@ calc string selected_first_cast_rank_restricted_spell_trait_example(name = "Sele
 calc integer selected_first_cast_rank_restricted_spell_trait_count(name = "Selected first cast rank restricted spell trait count") =
   length(selected_first_cast_rank_restricted_spell_traits);
 
+calc string selected_first_cast_rank_restricted_spell_traits_lines(name = "Selected first cast rank restricted spell traits lines") =
+  concat(
+    map(
+      sortBy(
+        selected_first_cast_rank_restricted_spell_traits,
+        sort_by_selector = ($sortByValue) => $sortByValue,
+      ),
+      mapper = ($t) => concat(["\n- ", $t]),
+    ),
+  );
+
 calc string selected_choice_bound_slot_spell_name_example(name = "Selected choice-bound slot spell name example") =
   findFirst(
     selected_source_choice_bound_slot_spell_names,
@@ -1030,23 +1072,25 @@ calc string selected_choice_bound_slot_spell_name_example(name = "Selected choic
 calc integer selected_choice_bound_slot_spell_name_count(name = "Selected choice-bound slot spell name count") =
   length(selected_source_choice_bound_slot_spell_names);
 
+calc string selected_choice_bound_slot_spell_names_lines(name = "Selected choice-bound slot spell names lines") =
+  concat(
+    map(
+      sortBy(
+        selected_source_choice_bound_slot_spell_names,
+        sort_by_selector = ($sortByValue) => $sortByValue,
+      ),
+      mapper = ($n) => concat(["\n- ", $n]),
+    ),
+  );
+
 calc string restricted_slot_grant_warning_text(name = "Restricted slot grant warning text") =
   if has_restricted_slot_grant_warning
     then when {
         selected_first_cast_rank_restricted_slot_grant?.requires_spell_choice ?? false -> concat(
           [
-            "Selected rank has choice-bound bonus slots.",
+            "Selected rank has choice-bound bonus slots. Allowed chosen spell(s):",
             (if selected_choice_bound_slot_spell_name_count > 0
-              then concat(
-                  [
-                    " Chosen spell example: ",
-                    selected_choice_bound_slot_spell_name_example,
-                    (if selected_choice_bound_slot_spell_name_count > 1
-                      then concat([" (+", selected_choice_bound_slot_spell_name_count - 1, " more)"])
-                      else ""),
-                    ".",
-                  ],
-                )
+              then selected_choice_bound_slot_spell_names_lines
               else " Choose slot-bound spells in class progression first."),
           ],
         ),
@@ -1054,16 +1098,7 @@ calc string restricted_slot_grant_warning_text(name = "Restricted slot grant war
           [
             "Selected rank has name-restricted bonus slots.",
             (if selected_first_cast_rank_restricted_spell_name_count > 0
-              then concat(
-                  [
-                    " Allowed example: ",
-                    selected_first_cast_rank_restricted_spell_name_example,
-                    (if selected_first_cast_rank_restricted_spell_name_count > 1
-                      then concat([" (+", selected_first_cast_rank_restricted_spell_name_count - 1, " more)"])
-                      else ""),
-                    ".",
-                  ],
-                )
+              then concat([" Allowed names:", selected_first_cast_rank_restricted_spell_names_lines])
               else ""),
           ],
         ),
@@ -1071,16 +1106,7 @@ calc string restricted_slot_grant_warning_text(name = "Restricted slot grant war
           [
             "Selected rank has trait-restricted bonus slots.",
             (if selected_first_cast_rank_restricted_spell_trait_count > 0
-              then concat(
-                  [
-                    " Required trait example: ",
-                    selected_first_cast_rank_restricted_spell_trait_example,
-                    (if selected_first_cast_rank_restricted_spell_trait_count > 1
-                      then concat([" (+", selected_first_cast_rank_restricted_spell_trait_count - 1, " more)"])
-                      else ""),
-                    ".",
-                  ],
-                )
+              then concat([" Required traits:", selected_first_cast_rank_restricted_spell_traits_lines])
               else ""),
           ],
         ),

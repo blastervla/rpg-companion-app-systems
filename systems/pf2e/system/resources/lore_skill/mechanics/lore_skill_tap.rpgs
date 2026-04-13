@@ -1,53 +1,18 @@
 mechanic lore_skill_tap(event_names = "loreSkillTap") =
   when {
-    (($character?.$edit_mode ?? false) || ($event.force_edit ?? false)) -> showPopUp(
-      pop_up_view = list(
-        id = "lore_skill_tap_edit_view",
-        padding = 8,
-        subviews = [
-          text(
-            id = "lore_skill_tap_name",
-            edit_stat = "selected_option",
-            style = "text",
-            label = "Lore skill",
-            hint = if has_multiple_options then "Enter lore skill" else options,
-            max_length = 80,
-          ),
-          text(
-            id = "lore_skill_tap_options",
-            text = concat(["Choices: ", options]),
-            style = "caption",
-            is_visible = !isEmpty(options) && has_multiple_options,
-          ),
-          select(
-            id = "lore_skill_tap_proficiency",
-            stat = "proficiency",
-            options = "skill_proficiency_types",
-          ),
-          select(
-            id = "lore_skill_tap_ability",
-            stat = "ability",
-            options = "ability",
-          ),
-          ticker(
-            id = "lore_skill_tap_untyped_modifier",
-            stat = "untyped_modifier",
-            style = "title",
-            button_look = "plusMinus",
-            button_location = "right",
-            should_auto_save = true,
-            change_amount = 1,
-            label = "Misc modifier",
-            label_alignment = "right",
-          ),
-        ],
+    (($event.force_edit? ?? false) || ($character?.$edit_mode? ?? false)) -> showPopUp(
+      pop_up_view = select(
+        id = "edit_lore_skill_proficiency_select",
+        stat = "proficiency",
+        options = "skill_proficiency_types",
+        style = "list",
       ),
       pop_up_title = if isEmpty(lore_name) then "Lore" else lore_name,
       display_cancel_button = true,
       display_save_button = true,
       should_persist_on_save = true,
     ),
-    !(($character?.$edit_mode ?? false) || ($event.force_edit ?? false)) -> roll(
+    !(($character?.$edit_mode? ?? false) || ($event.force_edit? ?? false)) -> roll(
       rolls = [
         rollable(
           formulas = [concat(["1d20 + ", total_bonus])],

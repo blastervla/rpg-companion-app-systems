@@ -119,8 +119,7 @@ character_creation_page edit_pending_choices_title() =
           for_each_value_key = "$loreSkill",
           apply = when {
             isEmpty($loreSkill.selected_option)
-              && !isEmpty($loreSkill.options)
-              && !$loreSkill.has_multiple_options -> setStat(
+              && !isEmpty($loreSkill.options) -> setStat(
               stat = "$loreSkill.selected_option",
               new_value = trim($loreSkill.options),
               aggregation_type = "set",

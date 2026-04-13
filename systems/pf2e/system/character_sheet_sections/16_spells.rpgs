@@ -29,6 +29,10 @@ character_sheet_section spells() =
         icon_size = "small",
         icon_color = "accent",
         options = "spells_section_menu",
+        allowed_options = [
+          (if spells_show_prepared_only then "toggle_spells_show_prepared_only_selected" else "toggle_spells_show_prepared_only_deselected"),
+          (if spells_hide_fully_expended_prepared then "toggle_spells_hide_fully_expended_prepared_selected" else "toggle_spells_hide_fully_expended_prepared_deselected"),
+        ],
       ),
       selectResources(
         id = "spells_section_add_spell",

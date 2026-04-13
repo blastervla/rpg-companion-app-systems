@@ -140,28 +140,38 @@ calc bool has_master_spellcasting(name = "Has master spellcasting feat") =
     ),
   );
 
+calc bool has_dedication_feat_selected(name = "Has dedication feat selected") =
+  notNull(dedication_feat)
+    && !isEmpty(
+      filter(
+        $character?.all_feats ?? [],
+        filter = ($f) => $f.id == dedication_feat.id,
+      ),
+    );
+
 calc integer max_spell_slots_1(name = "Max rank 1 spell slots") =
-  if has_basic_spellcasting then 2 else 0;
+  if has_basic_spellcasting && ($character?.level ?? 0) >= 4 then 1 else 0;
 
 calc integer max_spell_slots_2(name = "Max rank 2 spell slots") =
-  if has_basic_spellcasting && ($character?.level ?? 0) >= 8 then 2 else 0;
+  if has_basic_spellcasting && ($character?.level ?? 0) >= 6 then 1 else 0;
 
 calc integer max_spell_slots_3(name = "Max rank 3 spell slots") =
-  if has_expert_spellcasting then 2 else 0;
+  if has_basic_spellcasting && ($character?.level ?? 0) >= 8 then 1 else 0;
 
 calc integer max_spell_slots_4(name = "Max rank 4 spell slots") =
-  if has_expert_spellcasting && ($character?.level ?? 0) >= 14 then 2 else 0;
+  if has_expert_spellcasting && ($character?.level ?? 0) >= 12 then 1 else 0;
 
 calc integer max_spell_slots_5(name = "Max rank 5 spell slots") =
-  if has_master_spellcasting then 2 else 0;
+  if has_expert_spellcasting && ($character?.level ?? 0) >= 14 then 1 else 0;
 
 calc integer max_spell_slots_6(name = "Max rank 6 spell slots") =
-  if has_master_spellcasting && ($character?.level ?? 0) >= 16 then 2 else 0;
+  if has_expert_spellcasting && ($character?.level ?? 0) >= 16 then 1 else 0;
 
 calc integer max_spell_slots_7(name = "Max rank 7 spell slots") =
-  if has_master_spellcasting && ($character?.level ?? 0) >= 18 then 2 else 0;
+  if has_master_spellcasting && ($character?.level ?? 0) >= 18 then 1 else 0;
 
-calc integer max_spell_slots_8(name = "Max rank 8 spell slots") = 0;
+calc integer max_spell_slots_8(name = "Max rank 8 spell slots") =
+  if has_master_spellcasting && ($character?.level ?? 0) >= 20 then 1 else 0;
 
 calc integer max_spell_slots_9(name = "Max rank 9 spell slots") = 0;
 
@@ -414,7 +424,7 @@ calc string actual_spellcasting_proficiency(name = "Actual spellcasting proficie
   when {
     has_master_spellcasting -> "master",
     has_expert_spellcasting -> "expert",
-    has_basic_spellcasting -> spellcasting_proficiency,
+    has_basic_spellcasting || has_dedication_feat_selected -> spellcasting_proficiency,
     else -> "none",
   };
 

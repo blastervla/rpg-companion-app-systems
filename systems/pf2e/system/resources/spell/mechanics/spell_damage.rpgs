@@ -32,7 +32,12 @@ mechanic spell_damage(name = "Spell damage", event_names = "damageSpell") =
       when {
         has_active_effects -> fireEvent(
           event_names = map(
-            filter(effects, filter = ($filterValue) => $filterValue.is_active),
+            filter(
+              effects,
+              filter = ($filterValue) => $filterValue.is_active
+                && $filterValue.type != "roll"
+                && $filterValue.type != "roll_dice",
+            ),
             mapper = ($mapValue) => eventName(event_name = "use", for_resource = $mapValue),
           ),
         ),

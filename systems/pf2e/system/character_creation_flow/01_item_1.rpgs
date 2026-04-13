@@ -266,23 +266,66 @@ character_creation_page edit_basics_title() =
         )
       ],
     ),
-    post_edit = sequence(
-      effects = [
-        when {
-          notNull(ancestry)
-            && notNull(heritage)
-            && !(heritage.is_versatile || contains(haystack = heritage.allowed_ancestries, needle = ancestry.id)) -> setStat(
-              stat = "heritage",
-              new_value = null,
+    on_page_open = when {
+      $is_new -> forEach(
+          creator_ability_score_increases,
+          for_each_value_key = "$asi",
+          apply = when {
+            (isEmpty($asi.temp_selected_modifier)
+                  || !contains(haystack = $asi.modifier_options, needle = $asi.temp_selected_modifier))
+              && !isEmpty($asi.selected_modifier_effective) -> setStat(
+              stat = "$asi.temp_selected_modifier",
+              new_value = $asi.selected_modifier_effective,
               aggregation_type = "set",
             ),
-        },
+          },
+        ),
+    },
+    post_edit = sequence(
+      effects = [
         when {
           $is_new -> forEach(
             creator_ability_score_increases,
             apply = addToStat(
-              meta_stat = concat([$forEachValue.temp_selected_modifier, "_score"]),
-              value = $forEachValue.value,
+              meta_stat = concat([$forEachValue.selected_modifier_effective, "_score"]),
+              value = if metaStat(
+                  meta_stat = concat([$forEachValue.selected_modifier_effective, "_score"]),
+                )
+                >= 18
+                then $forEachValue.value
+                else if $forEachValue.value
+                    <= divide(
+                        [
+                          18
+                            - metaStat(
+                              meta_stat = concat([$forEachValue.selected_modifier_effective, "_score"]),
+                            ),
+                          2,
+                        ],
+                        rounding_method = "up",
+                      )
+                  then ($forEachValue.value * 2)
+                  else divide(
+                      [
+                        18
+                          - metaStat(
+                            meta_stat = concat([$forEachValue.selected_modifier_effective, "_score"]),
+                          ),
+                        2,
+                      ],
+                      rounding_method = "up",
+                    ) * 2
+                  + ($forEachValue.value
+                      - divide(
+                          [
+                            18
+                              - metaStat(
+                                meta_stat = concat([$forEachValue.selected_modifier_effective, "_score"]),
+                              ),
+                            2,
+                          ],
+                          rounding_method = "up",
+                        )),
               aggregation_type = "set",
             ),
           ),
@@ -293,7 +336,7 @@ character_creation_page edit_basics_title() =
             for_each_value_key = "$asiRow",
             apply = when {
               $asiRow.is_class_key_ability_boost
-                && !isEmpty($asiRow.temp_selected_modifier) -> forEach(
+                && !isEmpty($asiRow.selected_modifier_effective) -> forEach(
                   components = classes,
                   for_each_value_key = "$classProgression",
                   apply = when {
@@ -305,7 +348,7 @@ character_creation_page edit_basics_title() =
                       needle = $asiRow.id,
                     ) -> setStat(
                       stat = "$classProgression.selected_class_key_ability",
-                      new_value = $asiRow.temp_selected_modifier,
+                      new_value = $asiRow.selected_modifier_effective,
                       aggregation_type = "set",
                     ),
                   },

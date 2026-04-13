@@ -139,6 +139,21 @@ base bool is_expert_spellcasting_feat(name = "Is expert spellcasting feat") = fa
 
 base bool is_master_spellcasting_feat(name = "Is master spellcasting feat") = false;
 
+calc bool has_any_archetype_spellcasting_flag(name = "Has any archetype spellcasting progression flag") =
+  is_basic_spellcasting_feat || is_expert_spellcasting_feat || is_master_spellcasting_feat;
+
+calc string archetype_spellcasting_flags_text(name = "Archetype spellcasting progression flags text") =
+  joinToString(
+    flatAppend(
+      [
+        (if is_basic_spellcasting_feat then ["Basic spellcasting feat"] else []),
+        (if is_expert_spellcasting_feat then ["Expert spellcasting feat"] else []),
+        (if is_master_spellcasting_feat then ["Master spellcasting feat"] else []),
+      ],
+    ),
+    separator = ", ",
+  );
+
 base bool grants_weapon_specialization(name = "Grants weapon specialization damage scaling") =
   false;
 
@@ -163,7 +178,11 @@ calc bool can_have_selectable_features(name = "Can have selectable features?") =
   !is_selectable_feature;
 
 calc integer level(name = "Level to use for determining what effects to trigger") =
-  $character?.level ?? 1;
+  when {
+    defined(stat = "$parent.level") -> $parent.level,
+    defined(stat = "$character.level") -> $character.level,
+    else -> 1,
+  };
 
 calc string levelled_description(name = "Levelled description") =
   if isEmpty(descriptions)
@@ -330,7 +349,7 @@ calc resource<feat>[] sorted_selectable_features(name = "Sorted selectable featu
 calc resource<feat>[] available_selectable_features_for_current_level(name = "Available selectable features for current level") =
   filter(
     sorted_selectable_features,
-    filter = ($filterValue) => ($filterValue.min_level <= level),
+    filter = ($filterValue) => (($filterValue.min_level ?? 1) <= level),
   );
 
 calc resource<feat>[] selected_selectable_features(name = "Selected selectable features for current level") =
@@ -449,7 +468,7 @@ calc bool has_required_action_economy(name = "Has required action economy to use
 
 calc bool can_use_active_effects(name = "Can use feat active effects right now") =
   defined(stat = "$character")
-    && !defined(stat = "$character.$is_new")
+    && !($character?.$is_new? ?? false)
     && !isEmpty(active_or_charge_effects_for_current_level)
     && can_be_used
     && has_required_action_economy;

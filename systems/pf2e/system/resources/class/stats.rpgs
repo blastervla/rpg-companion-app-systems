@@ -258,44 +258,6 @@ calc string[] selected_deity_font_options(name = "Selected deity font options") 
 calc string selected_deity_font(name = "Selected deity font") =
   current_class_progression?.active_selected_deity_font ?? "";
 
-calc bool has_warpriest_first_doctrine(name = "Has Warpriest First Doctrine") =
-  contains(
-    haystack = map(
-      current_level_features,
-      mapper = ($mapValue) => $mapValue.name,
-    ),
-    needle = "Warpriest: First Doctrine",
-  );
-
-calc bool selected_deity_has_simple_or_unarmed_favored_weapon(name = "Selected deity has simple or unarmed favored weapon") =
-  or(
-    map(
-      selected_deity?.favored_weapons ?? [],
-      mapper = ($mapValue) => ($mapValue == "club"
-        || $mapValue == "dagger"
-        || $mapValue == "greatclub"
-        || $mapValue == "handaxe"
-        || $mapValue == "javelin"
-        || $mapValue == "light_hammer"
-        || $mapValue == "mace"
-        || $mapValue == "quarterstaff"
-        || $mapValue == "sickle"
-        || $mapValue == "spear"
-        || $mapValue == "crossbow_light"
-        || $mapValue == "dart"
-        || $mapValue == "shortbow"
-        || $mapValue == "sling"
-        || $mapValue == "blowgun"
-        || $mapValue == "unarmed_strike"),
-    ),
-  );
-
-calc bool warpriest_auto_grants_deadly_simplicity(name = "Warpriest auto grants Deadly Simplicity") =
-  has_warpriest_first_doctrine && selected_deity_has_simple_or_unarmed_favored_weapon;
-
-calc integer warpriest_auto_grants_deadly_simplicity_flag(name = "Warpriest auto grants Deadly Simplicity flag") =
-  if warpriest_auto_grants_deadly_simplicity then 1 else 0;
-
 calc resource<levelled_weapon> current_level_weapon(name = "Current level weapon") =
   findFirst(
     sortBy(
