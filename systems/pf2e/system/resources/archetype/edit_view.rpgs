@@ -10,8 +10,8 @@ view archetype_edit() =
         label = "Name",
         max_length = 140,
         validation_message = if isEmpty($view.archetype_edit_name)
-          then "Please add a name to your archetype"
-          else null,
+        then "Please add a name to your archetype"
+        else null,
       ),
       composite(
         id = "archetype_edit_source",
@@ -102,25 +102,43 @@ view archetype_edit() =
         margin_top = 4,
         is_visible = $view.archetype_edit_grants_spellcasting,
         subviews = [
-          select(
-            id = "archetype_edit_spellcasting_tradition",
-            stat = "spellcasting_tradition",
-            options = "spell_traditions",
+          composite(
+            id = "archetype_edit_spellcasting_details_composite",
+            subviews = [
+              select(
+                id = "archetype_edit_spellcasting_tradition",
+                stat = "spellcasting_tradition",
+                options = "spell_traditions",
+                margin_right = 4,
+              ),
+              select(
+                id = "archetype_edit_spellcasting_mode",
+                stat = "spellcasting_mode",
+                options = "spellcasting_modes",
+                margin_right = 4,
+              ),
+              select(
+                id = "archetype_edit_spellcasting_proficiency",
+                stat = "spellcasting_proficiency",
+                options = "skill_proficiency_types",
+              ),
+            ],
           ),
-          select(
-            id = "archetype_edit_spellcasting_ability",
-            stat = "spellcasting_ability",
-            options = "ability",
-          ),
-          select(
-            id = "archetype_edit_spellcasting_mode",
-            stat = "spellcasting_mode",
-            options = "spellcasting_modes",
-          ),
-          select(
-            id = "archetype_edit_spellcasting_proficiency",
-            stat = "spellcasting_proficiency",
-            options = "skill_proficiency_types",
+          composite(
+            id = "archetype_edit_spellcasting_details_ability_composite",
+            margin_top = 4,
+            subviews = [
+              text(
+                id = "archetype_edit_spellcasting_ability_label",
+                text = "Ability: ",
+                style = "text"
+              ),
+              select(
+                id = "archetype_edit_spellcasting_ability",
+                stat = "spellcasting_ability",
+                options = "ability",
+              ),
+            ]
           ),
           resourceArray(
             id = "archetype_edit_cantrip_quantity_per_level",
@@ -152,7 +170,7 @@ view archetype_edit() =
             style = "caption",
             color = "accent",
             is_visible = !isEmpty(prepared_capacity_warning_text)
-              && $view.archetype_edit_spellcasting_mode == "prepared",
+            && $view.archetype_edit_spellcasting_mode == "prepared",
           ),
           resourceArray(
             id = "archetype_edit_prepared_spells_rank_0_array",

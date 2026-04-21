@@ -64,7 +64,7 @@ base bool is_silver(name = "Is silver") = false;
 
 base bool is_thrown(name = "Is thrown") = false;
 
-base string thrown_range(name = "Thrown range") = "80/320";
+base string thrown_range(name = "Thrown range") = "20 ft.";
 
 base bool is_loading(name = "Is loading") = false;
 
@@ -76,7 +76,7 @@ base bool is_improvised(name = "Is improvised") = false;
 
 base bool is_range(name = "Is range") = false;
 
-base string range(name = "Range") = "80/320";
+base string range(name = "Range") = "30 ft.";
 
 base string ammunition_type(name = "Ammunition type") = "none";
 
@@ -125,6 +125,9 @@ base bool currently_using_versatile_trait(name = "Currently using versatile dama
 base bool has_agile_trait(name = "Has agile trait") = false;
 
 base string selected_strike_number(name = "Selected strike number") = "first";
+
+calc string selected_strike_number_effective(name = "Selected strike number (effective)") =
+  $view?.weapon_display_strike_number_select? ?? selected_strike_number;
 
 calc resource<item>[] attachable_runes_for_character(name = "Attachable runes for this weapon") =
   if defined(stat = "$character")
@@ -377,6 +380,9 @@ calc resource<effect>[] attached_active_effects(name = "Attached active effects"
 calc bool has_attached_talisman(name = "Has attached talisman") =
   notNull(attached_talisman);
 
+calc bool attached_talisman_consumed_on_activation(name = "Attached talisman consumed on activation") =
+  attached_talisman?.consumed_on_activation ?? false;
+
 calc string attached_runes_summary(name = "Attached rune summary") =
   joinToString(
     map(attached_runes, mapper = ($mapValue) => $mapValue.name),
@@ -539,11 +545,11 @@ calc integer weapon_proficiency_rank_from_legacy(name = "Weapon proficiency rank
 calc integer weapon_proficiency_rank_from_deity(name = "Weapon proficiency rank from deity favored weapon") =
   if defined(stat = "$character")
       && (contains(
-          haystack = ($character.primary_class_progression?.active_selected_deity?.favored_weapons ?? []),
+          haystack = ($character.primary_class_progression?.active_selected_deity?.favored_weapons? ?? []),
           needle = type,
         )
         || contains(
-          haystack = ($character.primary_class_progression?.active_selected_deity?.favored_weapon_ids ?? []),
+          haystack = ($character.primary_class_progression?.active_selected_deity?.favored_weapon_ids? ?? []),
           needle = id,
         ))
     then 1
@@ -650,10 +656,10 @@ calc integer weapon_proficiency_bonus(name = "Weapon proficiency bonus") =
 
 calc integer map_penalty(name = "Multiple attack penalty") =
   when {
-    selected_strike_number == "second" && has_agile_trait -> -4,
-    selected_strike_number == "third" && has_agile_trait -> -8,
-    selected_strike_number == "second" -> -5,
-    selected_strike_number == "third" -> -10,
+    selected_strike_number_effective == "second" && has_agile_trait -> -4,
+    selected_strike_number_effective == "third" && has_agile_trait -> -8,
+    selected_strike_number_effective == "second" -> -5,
+    selected_strike_number_effective == "third" -> -10,
     else -> 0,
   };
 

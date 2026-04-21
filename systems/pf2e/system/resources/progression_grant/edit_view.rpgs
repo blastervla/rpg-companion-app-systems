@@ -4,14 +4,14 @@ view progression_grant_edit() =
     subviews = [
 
       // ── Compendium mode (no character context) ─────────────────────────────
-      list(
+      composite(
         id = "progression_grant_edit_compendium",
         is_visible = !defined(stat = "$character"),
         subviews = [
           text(
             id = "progression_grant_edit_level",
             edit_stat = "level",
-            label = "Level",
+            hint = "Lvl",
             style = "text",
             max_length = 3,
           ),
@@ -19,6 +19,8 @@ view progression_grant_edit() =
             id = "progression_grant_edit_bucket",
             stat = "bucket",
             options = "progression_bucket",
+            margin_left = 4,
+            margin_right = 4,
           ),
           text(
             id = "progression_grant_edit_amount",
@@ -119,7 +121,7 @@ view progression_grant_edit() =
           composite(
             id = "progression_grant_edit_class_feat_composite",
             alignment = "end",
-            is_visible = ($view.progression_grant_edit_slot_mode ?? slot_mode) == "class" || bucket != "class_like_feat",
+            is_visible = ($view?.progression_grant_edit_slot_mode? ?? slot_mode) == "class" || bucket != "class_like_feat",
             subviews = [
               popUpButton(
                 id = "progression_grant_edit_class_feat_see_details",
@@ -194,7 +196,7 @@ view progression_grant_edit() =
           composite(
             id = "progression_grant_edit_archetype_new_composite",
             alignment = "end",
-            is_visible = bucket == "class_like_feat" && ($view.progression_grant_edit_slot_mode ?? slot_mode) == "archetype_new",
+            is_visible = bucket == "class_like_feat" && ($view?.progression_grant_edit_slot_mode? ?? slot_mode) == "archetype_new",
             subviews = [
               popUpButton(
                 id = "progression_grant_edit_archetype_new_see_details",
@@ -223,26 +225,14 @@ view progression_grant_edit() =
           composite(
             id = "progression_grant_edit_archetype_existing_composite",
             alignment = "end",
-            is_visible = bucket == "class_like_feat" && ($view.progression_grant_edit_slot_mode ?? slot_mode) == "archetype_existing",
+            is_visible = bucket == "class_like_feat" && ($view?.progression_grant_edit_slot_mode? ?? slot_mode) == "archetype_existing",
             subviews = [
               text(
                 id = "progression_grant_edit_archetype_existing_no_archetype_hint",
                 text = "You haven't chosen any archetype yet. Switch a class feat slot to 'Archetype (new)' and select one before picking an archetype feat here.",
                 style = "caption",
                 color = "accent",
-                is_visible = isEmpty(filter(
-                  flatAppend([
-                    flatMap(
-                      $character?.classes ?? [],
-                      mapper = ($c) => $c.class?.progression_grants ?? [],
-                    ),
-                    $character?.ancestry?.progression_grants ?? [],
-                    $character?.heritage?.progression_grants ?? [],
-                  ]),
-                  filter = ($g) => $g?.$view?.progression_grant_edit_slot_mode == "archetype_new"
-                    && notNull($g?.$view?.progression_grant_edit_archetype_new_select)
-                    && $g.level <= level,
-                )),
+                is_visible = isEmpty(archetype_existing_source_grants),
               ),
               popUpButton(
                 id = "progression_grant_edit_archetype_existing_see_details",
@@ -260,60 +250,15 @@ view progression_grant_edit() =
               ),
               select(
                 id = "progression_grant_edit_archetype_existing_select",
-                stat = "assigned_feat",
-                resource_options = filter(
-                  flatMap(
-                    filter(
-                      flatAppend([
-                        flatMap(
-                          $character?.classes ?? [],
-                          mapper = ($c) => $c.class?.progression_grants ?? [],
-                        ),
-                        $character?.ancestry?.progression_grants ?? [],
-                        $character?.heritage?.progression_grants ?? [],
-                      ]),
-                      filter = ($g) => $g?.$view?.progression_grant_edit_slot_mode == "archetype_new"
-                        && notNull($g?.$view?.progression_grant_edit_archetype_new_select)
-                        && $g.level <= level,
-                    ),
-                    mapper = ($g) => $g?.$view?.progression_grant_edit_archetype_new_select?.feats ?? [],
-                  ),
-                  filter = ($f) => $f.min_level <= level,
-                ),
+                stat = "assigned_archetype_existing_feat_id",
+                resource_options = archetype_existing_available_feats,
                 options_display_stat = "name",
-                is_visible = !isEmpty(filter(
-                  flatAppend([
-                    flatMap(
-                      $character?.classes ?? [],
-                      mapper = ($c) => $c.class?.progression_grants ?? [],
-                    ),
-                    $character?.ancestry?.progression_grants ?? [],
-                    $character?.heritage?.progression_grants ?? [],
-                  ]),
-                  filter = ($g) => $g?.$view?.progression_grant_edit_slot_mode == "archetype_new"
-                    && notNull($g?.$view?.progression_grant_edit_archetype_new_select)
-                    && $g.level <= level,
-                )),
+                is_visible = !isEmpty(archetype_existing_source_grants),
                 validation_message = if notNull(assigned_feat)
                   && isEmpty(filter(
                       assigned_feat?.archetypes ?? [],
                       filter = ($arcId) => contains(
-                        haystack = map(
-                          filter(
-                            flatAppend([
-                              flatMap(
-                                $character?.classes ?? [],
-                                mapper = ($c) => $c.class?.progression_grants ?? [],
-                              ),
-                              $character?.ancestry?.progression_grants ?? [],
-                              $character?.heritage?.progression_grants ?? [],
-                            ]),
-                            filter = ($g) => $g?.$view?.progression_grant_edit_slot_mode == "archetype_new"
-                              && notNull($g?.$view?.progression_grant_edit_archetype_new_select)
-                              && $g.level <= level,
-                          ),
-                          mapper = ($g) => $g?.$view?.progression_grant_edit_archetype_new_select?.id ?? "",
-                        ),
+                        haystack = archetype_existing_selected_archetype_ids,
                         needle = $arcId,
                       ),
                     ))

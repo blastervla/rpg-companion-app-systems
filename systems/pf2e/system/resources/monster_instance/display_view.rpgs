@@ -305,15 +305,15 @@ view monster_instance_display() =
         title = "Spells",
         start_expanded = false,
         subviews = [
-          resourceSection(
+          resourceArray(
             id = "monster_instance_display_spells",
-            resource_stat = "$resource.spells",
-            resource_id = "spell",
-            content_item_min_width = 1,
-            read_only = true,
+            resource_id = "monster_spellcasting_block",
+            stat = "$resource.spellcasting_blocks",
+            view_type = "display",
+            hide_line = true,
           ),
         ],
-        is_visible = !isEmpty($resource.spells),
+        is_visible = !isEmpty($resource.spellcasting_blocks?),
       ),
       resourceArray(
         id = "monster_instance_display_traits",
@@ -373,31 +373,6 @@ view monster_instance_display() =
           bold = true,
         ),
         is_visible = !isEmpty($resource.reactions),
-      ),
-      composite(
-        id = "monster_instance_display_habitat",
-        margin_top = 12,
-        subviews = [
-          text(
-            id = "monster_instance_display_habitat_label",
-            text = "Habitat: ",
-            style = "text",
-            bold = true,
-          ),
-          text(id = "monster_instance_display_habitat", text = $resource.formatted_habitats, style = "text"),
-        ],
-      ),
-      composite(
-        id = "monster_instance_display_treasure",
-        subviews = [
-          text(
-            id = "monster_instance_display_treasure_label",
-            text = "Treasure: ",
-            style = "text",
-            bold = true,
-          ),
-          text(id = "monster_instance_display_treasure", text = $resource.formatted_treasure, style = "text"),
-        ],
       ),
     ],
   );

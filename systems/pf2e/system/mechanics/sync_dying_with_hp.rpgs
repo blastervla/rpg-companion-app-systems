@@ -1,0 +1,22 @@
+mechanic sync_dying_with_hp(event_names = "set_current_hp") =
+  when {
+    current_hp <= 0 && dying <= 0 && !is_dead -> setStat(
+      stat = "dying",
+      new_value = max([1, 1 + wounded]),
+      aggregation_type = "set",
+    ),
+    current_hp > 0 && dying > 0 -> sequence(
+      effects = [
+        setStat(
+          stat = "dying",
+          new_value = 0,
+          aggregation_type = "set",
+        ),
+        addToStat(
+          stat = "wounded",
+          value = 1,
+          aggregation_type = "set",
+        ),
+      ],
+    ),
+  };

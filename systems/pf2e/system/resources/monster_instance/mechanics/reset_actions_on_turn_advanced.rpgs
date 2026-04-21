@@ -1,4 +1,4 @@
-mechanic monster_instance_reset_actions_on_turn_advanced(event_names = "turnAdvanced") =
+mechanic monster_instance_reset_actions_on_turn_advanced(calculated_event_names = next_turn_event_name) =
   when {
     $event.combatant.id == id -> sequence(
       effects = [

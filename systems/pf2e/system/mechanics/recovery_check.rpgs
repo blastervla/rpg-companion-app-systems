@@ -62,4 +62,12 @@ mechanic recovery_check(event_names = "recovery_check") =
         ),
       },
     ),
+    is_dead -> showMessage(
+      message = "Character is dead and can't attempt recovery checks.",
+      message_type = "info",
+    ),
+    dying <= 0 && !is_dead -> showMessage(
+      message = "Your character isn't dying.",
+      message_type = "info",
+    ),
   };

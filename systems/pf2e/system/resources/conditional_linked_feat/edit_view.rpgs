@@ -1,31 +1,19 @@
 view conditional_linked_feat_edit() =
-  list(
+  composite(
     id = "conditional_linked_feat_edit",
     subviews = [
       text(
         id = "conditional_linked_feat_edit_level",
         edit_stat = "level",
         style = "text",
-        label = "Level",
+        hint = "Lvl",
         max_length = 3,
         signed = false,
       ),
-      composite(
-        id = "conditional_linked_feat_edit_feat",
-        margin_top = 4,
-        subviews = [
-          text(
-            id = "conditional_linked_feat_edit_feat_label",
-            text = "Feat: ",
-            style = "text",
-          ),
-          select(
-            id = "conditional_linked_feat_edit_feat_select",
-            options = "feat",
-            options_display_stat = "name",
-            stat = "feat",
-          ),
-        ],
+      selectResources(
+        id = "conditional_linked_feat_edit_feat_select",
+        resource_id = "feat",
+        stat = "feat",
       ),
       popUpButton(
         id = "conditional_linked_feat_edit_trigger_condition_button",

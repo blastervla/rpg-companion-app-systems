@@ -25,7 +25,7 @@ mechanic weapon_roll_attack(event_names = "attack") =
         ),
       },
       when {
-        can_attack && has_attached_talisman && attached_talisman.consumed_on_activation -> sequence(
+        can_attack && has_attached_talisman && attached_talisman_consumed_on_activation -> sequence(
           effects = [
             addToStat(
               stat = "attached_talisman.quantity",

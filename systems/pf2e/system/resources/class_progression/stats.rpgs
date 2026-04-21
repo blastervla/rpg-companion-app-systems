@@ -6,6 +6,12 @@ base string selected_deity_font(name = "Selected deity font") = "";
 
 base integer class_level(name = "Class level") = 1;
 
+calc resource<class> class_effective(name = "Class (effective)") =
+  $view?.class_progression_edit_class_select? ?? class;
+
+calc integer class_level_effective(name = "Class level (effective)") =
+  $view?.class_progression_edit_class_level? ?? class_level;
+
 base resource<prepared_spell_choice>[] prepared_spell_choices_rank_0(name = "Prepared cantrips") =
   [];
 

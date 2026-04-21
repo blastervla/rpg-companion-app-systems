@@ -150,62 +150,9 @@ view class_edit() =
           text(
             id = "class_edit_saving_throw_proficiencies_label",
             margin_top = 4,
-            text = "Saving proficiencies:",
+            text = "Saving proficiencies by level:",
             style = "text",
             bold = true,
-          ),
-          composite(
-            id = "class_edit_saving_throws_composite",
-            margin_top = 4,
-            subviews = [
-              text(
-                id = "class_edit_fortitude_saving_throw_proficiency_label",
-                text = "Fortitude: ",
-                style = "text",
-                bold = true,
-              ),
-              select(
-                id = "class_edit_fortitude_saving_throw_proficiency_select",
-                stat = "fortitude_proficiency",
-                options = "skill_proficiency_types",
-              ),
-              text(
-                id = "class_edit_reflex_saving_throw_proficiency_label",
-                margin_left = 8,
-                text = "Reflex: ",
-                style = "text",
-                bold = true,
-              ),
-              select(
-                id = "class_edit_reflex_saving_throw_proficiency_select",
-                stat = "reflex_proficiency",
-                options = "skill_proficiency_types",
-              ),
-              text(
-                id = "class_edit_will_saving_throw_proficiency_label",
-                margin_left = 8,
-                text = "Will: ",
-                style = "text",
-                bold = true,
-              ),
-              select(
-                id = "class_edit_will_saving_throw_proficiency_select",
-                stat = "will_proficiency",
-                options = "skill_proficiency_types",
-              ),
-              text(
-                id = "class_edit_perception_proficiency_label",
-                margin_left = 8,
-                text = "Perception: ",
-                style = "text",
-                bold = true,
-              ),
-              select(
-                id = "class_edit_perception_proficiency_select",
-                stat = "perception_proficiency",
-                options = "skill_proficiency_types",
-              ),
-            ],
           ),
           resourceArray(
             id = "class_edit_fortitude_saving_throw_by_level",
@@ -314,8 +261,6 @@ view class_edit() =
               style = "text",
               bold = true,
             ),
-            pop_up_type = "bottomSheet",
-            pop_up_button_text = display_description,
           ),
         ],
       ),
@@ -380,9 +325,8 @@ view class_edit() =
             subviews = [
               text(
                 id = "class_edit_spellcasting_proficiency_label",
-                text = "Spellcasting proficiency: ",
+                text = "Fallback spellcasting proficiency: ",
                 style = "text",
-                bold = true,
               ),
               select(
                 id = "class_edit_spellcasting_proficiency_select",
@@ -399,10 +343,17 @@ view class_edit() =
             view_type = "edit",
             left_view = text(
               id = "class_edit_spellcasting_proficiency_by_level_label",
-              text = "Spellcasting proficiency by level: ",
+              text = "Spellcasting proficiency progression: ",
               style = "text",
               bold = true,
             ),
+          ),
+          text(
+            id = "class_edit_spellcasting_proficiency_note",
+            text = "Use progression rows for PF2e scaling. Fallback applies only if no row matches.",
+            style = "caption",
+            margin_top = 4,
+            margin_bottom = 4,
           ),
           composite(
             id = "class_edit_class_dc_composite",
@@ -435,9 +386,8 @@ view class_edit() =
               text(
                 id = "class_edit_class_dc_proficiency_label",
                 margin_left = 8,
-                text = "Class DC proficiency: ",
+                text = "Fallback class DC proficiency: ",
                 style = "text",
-                bold = true,
               ),
               select(
                 id = "class_edit_class_dc_proficiency_select",
@@ -454,10 +404,17 @@ view class_edit() =
             view_type = "edit",
             left_view = text(
               id = "class_edit_class_dc_proficiency_by_level_label",
-              text = "Class DC by level: ",
+              text = "Class DC progression: ",
               style = "text",
               bold = true,
             ),
+          ),
+          text(
+            id = "class_edit_class_dc_proficiency_note",
+            text = "Use progression rows for PF2e scaling. Fallback applies only if no row matches.",
+            style = "caption",
+            margin_top = 4,
+            margin_bottom = 4,
           ),
           composite(
             id = "class_edit_spellcasting_progression_kind_composite",
@@ -511,7 +468,7 @@ view class_edit() =
           list(
             id = "class_edit_spell_slots_per_level",
             padding = 0,
-            is_visible = should_fill_custom_spell_slots,
+            is_visible = ($view?.class_edit_spellcasting_progression_kind? ?? spellcasting_progression_kind) == "custom",
             subviews = [
               checkbox(
                 id = "class_edit_spell_recharge_slots_on_refocus",

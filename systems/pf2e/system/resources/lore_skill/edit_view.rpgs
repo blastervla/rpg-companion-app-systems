@@ -1,22 +1,26 @@
 view lore_skill_edit() =
-  list(
+  composite(
     id = "lore_skill_edit",
     subviews = [
-      text(
-        id = "lore_skill_edit_level",
-        edit_stat = "level",
-        style = "text",
-        label = "Lvl",
-        max_length = 3,
+      composite(
+        id = "lore_skill_edit_level_options_composite",
+        row_only = true,
         is_visible = !($character?.should_show_controls_for_choices ?? false),
-      ),
-      text(
-        id = "lore_skill_edit_options",
-        edit_stat = "options",
-        style = "text",
-        label = "Options",
-        max_length = 80,
-        is_visible = !($character?.should_show_controls_for_choices ?? false),
+        subviews = [
+          text(
+            id = "lore_skill_edit_level",
+            edit_stat = "level",
+            style = "text",
+            hint = "Lvl",
+            max_length = 3,
+          ),
+          text(
+            id = "lore_skill_edit_options",
+            edit_stat = "options",
+            style = "text",
+            label = "Options",
+          ),
+        ],
       ),
       text(
         id = "lore_skill_edit_selected_option",
@@ -60,7 +64,7 @@ view lore_skill_edit() =
         id = "lore_skill_edit_untyped_modifier",
         edit_stat = "untyped_modifier",
         style = "text",
-        label = "Untyped modifier",
+        label = "Mod",
         max_length = 4,
         is_visible = !($character?.should_show_controls_for_choices ?? false),
       ),

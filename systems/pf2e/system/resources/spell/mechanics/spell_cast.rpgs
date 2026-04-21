@@ -12,15 +12,28 @@ mechanic spell_cast(name = "Cast spell", event_names = "castSpell") =
         ),
       },
       when {
-        can_cast && is_focus_spell && defined(stat = "$character.focus_points") -> addToStat(
+        can_cast
+          && is_monster_spell_context
+          && monster_context_has_daily_cast_limit
+          && defined(stat = "$parent.casts_used_today") -> addToStat(
+          stat = "$parent.casts_used_today",
+          value = 1,
+          aggregation_type = "set",
+        ),
+      },
+      when {
+        can_cast && !is_monster_spell_context && is_focus_spell && !is_effect_use_spell_free_cast
+          && defined(stat = "$character.focus_points") -> addToStat(
           stat = "$character.focus_points",
           value = -focus_point_cost,
           aggregation_type = "set",
         ),
         can_cast
+          && !is_monster_spell_context
           && selected_spellcasting_mode == "prepared"
           && !is_cantrip
           && !is_focus_spell
+          && !is_effect_use_spell_free_cast
           && is_archetype_spell
           && notNull(selected_spellcasting_archetype_source) -> sequence(
           effects = [
@@ -52,7 +65,7 @@ mechanic spell_cast(name = "Cast spell", event_names = "castSpell") =
             ),
           ],
         ),
-        can_cast && selected_spellcasting_mode == "prepared" && !is_cantrip && !is_focus_spell && is_class_spell
+        can_cast && !is_monster_spell_context && selected_spellcasting_mode == "prepared" && !is_cantrip && !is_focus_spell && !is_effect_use_spell_free_cast && is_class_spell
           && notNull(selected_spellcasting_class_source) -> sequence(
           effects = [
             setStat(
@@ -83,9 +96,11 @@ mechanic spell_cast(name = "Cast spell", event_names = "castSpell") =
           ],
         ),
         can_cast
+          && !is_monster_spell_context
           && is_archetype_spell
           && !is_cantrip
           && !is_focus_spell
+          && !is_effect_use_spell_free_cast
           && notNull(selected_spellcasting_archetype_source) -> sequence(
           effects = [
             setStat(
@@ -108,7 +123,7 @@ mechanic spell_cast(name = "Cast spell", event_names = "castSpell") =
             ),
           ],
         ),
-        can_cast && is_class_spell && notNull(selected_spellcasting_class_source)
+        can_cast && !is_monster_spell_context && is_class_spell && notNull(selected_spellcasting_class_source) && !is_effect_use_spell_free_cast
           && character_spell_slots_defined && !is_cantrip && !is_focus_spell -> addToStat(
           meta_stat = selected_spell_slots_stat_name,
           value = -1,
@@ -116,7 +131,7 @@ mechanic spell_cast(name = "Cast spell", event_names = "castSpell") =
         ),
       },
       when {
-        can_cast -> sequence(
+        can_cast && !is_monster_spell_context && defined(stat = "$character") -> sequence(
           effects = [
             setStat(
               stat = "$character.temp_spell_cast_spell_id",
@@ -132,19 +147,25 @@ mechanic spell_cast(name = "Cast spell", event_names = "castSpell") =
         ),
       },
       when {
-        can_cast && has_restricted_slot_grant_warning -> showMessage(
+        can_cast && !is_monster_spell_context && has_restricted_slot_grant_warning && !is_effect_use_spell_free_cast -> showMessage(
           message = restricted_slot_grant_warning_text,
           message_type = "info",
         ),
       },
       when {
-        can_cast && in_combat && action_cost_spends_reaction && defined(stat = "$character.reaction_available") -> setStat(
-          stat = "$character.reaction_available",
+        can_cast
+          && in_combat
+          && action_cost_spends_reaction
+          && !isEmpty(action_spend_reaction_meta_stat) -> setStat(
+          meta_stat = action_spend_reaction_meta_stat,
           new_value = 0,
           aggregation_type = "set",
         ),
-        can_cast && in_combat && action_cost_actions_spent > 0 && defined(stat = "$character.actions_remaining") -> addToStat(
-          stat = "$character.actions_remaining",
+        can_cast
+          && in_combat
+          && action_cost_actions_spent > 0
+          && !isEmpty(action_spend_actions_meta_stat) -> addToStat(
+          meta_stat = action_spend_actions_meta_stat,
           value = action_cost_actions_spent * -1,
           aggregation_type = "set",
         ),

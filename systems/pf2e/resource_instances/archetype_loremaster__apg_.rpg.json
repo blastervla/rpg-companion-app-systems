@@ -3,7 +3,7 @@
   "stats": {
     "id": "loremaster__apg_",
     "updated_at": {
-      "value": "2026-04-03T23:58:55.283854+00:00"
+      "value": "2026-04-20T18:20:02.406153+00:00"
     },
     "name": {
       "value": "Loremaster"
@@ -80,7 +80,7 @@
         "stats": {
           "id": "feat_loremaster_dedication__apg_",
           "updated_at": {
-            "value": "2026-04-03T23:32:17.666089+00:00"
+            "value": "2026-04-20T18:19:21.487806+00:00"
           },
           "name": {
             "value": "Loremaster Dedication"
@@ -119,14 +119,14 @@
             "value": ""
           },
           "special": {
-            "value": "You can't select another dedication feat until you have gained two other feats from the loremaster archetype."
+            "value": "You can't select another dedication feat until you have gained two other feats from the loremaster archetype.\nLeads to: Magical Edification|APG, Greater Magical Edification|APG, Orthographic Mastery|APG, Quick Study|APG"
           },
           "descriptions": {
             "value": [
               {
                 "resource_id": "levelled_description",
                 "stats": {
-                  "id": "levelled_description_5f87fa9805af",
+                  "id": "levelled_description_406fb03ce0fb",
                   "level": {
                     "value": 2
                   },
@@ -154,7 +154,7 @@
               {
                 "resource_id": "lore_skill",
                 "stats": {
-                  "id": "lore_skill_cb7a990e9f9d",
+                  "id": "lore_skill_faad0865a29f",
                   "level": {
                     "value": 2
                   },
@@ -191,15 +191,15 @@
         {
           "resource_id": "feat",
           "stats": {
-            "id": "feat_loremaster_s_etude__pc1_",
+            "id": "feat_loremaster_s_etude__crb_",
             "updated_at": {
-              "value": "2026-04-03T23:32:17.666089+00:00"
+              "value": "2026-04-20T18:19:21.487806+00:00"
             },
             "name": {
               "value": "Loremaster's Etude"
             },
             "source": {
-              "value": "pc1"
+              "value": "crb"
             },
             "type": {
               "value": "class"
@@ -212,14 +212,14 @@
             },
             "classes": {
               "value": [
-                "bard__pc1_"
+                "bard__crb_"
               ]
             },
             "ancestries": {
               "value": []
             },
             "prerequisites": {
-              "value": "enigma muse"
+              "value": "Enigma muse"
             },
             "trigger": {
               "value": ""
@@ -241,12 +241,12 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_2a0dffde229c",
+                    "id": "levelled_description_84e57a100403",
                     "level": {
                       "value": 4
                     },
                     "description": {
-                      "value": "You magically unlock memories, making them easier to recall. You learn the loremaster's etude composition spell."
+                      "value": "You magically unlock memories, making them easier to recall. You learn the loremaster's etude composition spell. Increase the number of Focus Points in your focus pool by 1."
                     }
                   }
                 }
@@ -257,7 +257,7 @@
                 {
                   "resource_id": "levelled_effect",
                   "stats": {
-                    "id": "levelled_effect_2f7271fc301b",
+                    "id": "levelled_effect_fd6d61b32e11",
                     "level": {
                       "value": 4
                     },
@@ -265,7 +265,42 @@
                       "value": {
                         "resource_id": "effect",
                         "stats": {
-                          "id": "effect_23bc503d26f2",
+                          "id": "effect_2822e6d111d9",
+                          "name": {
+                            "value": "+1 Max Focus Point"
+                          },
+                          "trigger_type": {
+                            "value": "passive"
+                          },
+                          "type": {
+                            "value": "add_to_stat"
+                          },
+                          "stat": {
+                            "value": "$character.max_focus_points"
+                          },
+                          "constant": {
+                            "value": 1
+                          },
+                          "aggregation_type": {
+                            "value": "sum"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "id": "levelled_effect_49eb439b9235",
+                    "level": {
+                      "value": 4
+                    },
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "id": "effect_562c8159e03e",
                           "name": {
                             "value": "Innate: Loremaster's Etude"
                           },
@@ -279,18 +314,18 @@
                             "value": {
                               "resource_id": "spell",
                               "stats": {
-                                "id": "loremasters_etude__pc1_",
+                                "id": "loremasters_etude__crb_",
                                 "name": {
                                   "value": "Loremaster's Etude"
                                 },
                                 "source": {
-                                  "value": "pc1"
+                                  "value": "crb"
                                 },
                                 "level": {
                                   "value": "spell_level_1"
                                 },
                                 "school": {
-                                  "value": "none"
+                                  "value": "spell_school_divination"
                                 },
                                 "traditions": {
                                   "value": []
@@ -314,7 +349,7 @@
                                   "value": false
                                 },
                                 "somatic": {
-                                  "value": false
+                                  "value": true
                                 },
                                 "material": {
                                   "value": false
@@ -338,7 +373,7 @@
                                   "value": "you or the triggering ally"
                                 },
                                 "description": {
-                                  "value": "**Trigger:** You or an ally within range attempts a skill check to Recall Knowledge\n\nYou call upon your muse's deep mysteries, granting the target a greater ability to think and recall information. Roll the triggering Recall Knowledge skill check twice and use the higher result."
+                                  "value": "**Trigger:** You or an ally within range attempts a skill check to Recall Knowledge\n\nYou call upon your muse's deep mysteries, granting the target a greater ability to think and recall information. Roll the triggering Recall Knowledge skill check twice and use the better result."
                                 },
                                 "higher_level_description": {
                                   "value": ""
@@ -346,8 +381,7 @@
                                 "spell_traits": {
                                   "value": [
                                     "bard",
-                                    "fortune",
-                                    "manipulate"
+                                    "fortune"
                                   ]
                                 },
                                 "classes": {
@@ -360,7 +394,7 @@
                                   "value": []
                                 },
                                 "updated_at": {
-                                  "value": "2026-03-29T00:32:31.947973"
+                                  "value": "2026-04-15T14:24:10.661932"
                                 }
                               }
                             }
@@ -401,15 +435,15 @@
         {
           "resource_id": "feat",
           "stats": {
-            "id": "feat_assured_knowledge__pc1_",
+            "id": "feat_assured_knowledge__apg_",
             "updated_at": {
-              "value": "2026-04-03T23:32:17.666089+00:00"
+              "value": "2026-04-20T18:19:21.487806+00:00"
             },
             "name": {
               "value": "Assured Knowledge"
             },
             "source": {
-              "value": "pc1"
+              "value": "apg"
             },
             "type": {
               "value": "class"
@@ -418,7 +452,7 @@
               "value": "passive"
             },
             "traits": {
-              "value": "bard, fortune"
+              "value": "bard"
             },
             "classes": {
               "value": [
@@ -444,19 +478,19 @@
               "value": ""
             },
             "special": {
-              "value": ""
+              "value": "Leads to: Enigma's Knowledge|APG"
             },
             "descriptions": {
               "value": [
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_2e54a0fd447f",
+                    "id": "levelled_description_d75b10dd4df2",
                     "level": {
                       "value": 8
                     },
                     "description": {
-                      "value": "You can procure information with confidence. Whenever you Recall Knowledge using any skill (including Bardic Lore), you can forgo rolling your check to instead receive a result of 10 + your proficiency bonus (don't apply any other bonuses, penalties, or modifiers).\n\nAs long as you are an expert in a skill, you meet the prerequisites for the Automatic Knowledge skill feat for that skill, even if you don't have the Assurance feat for that skill."
+                      "value": "You can procure information with confidence. Whenever you Recall Knowledge using any skill (including Bardic Lore), you can forgo rolling your check to instead receive a result of 10 + your proficiency bonus (don't apply any other bonuses, penalties, or modifiers). As long as you are an expert in a skill, you meet the prerequisites for the Automatic Knowledge skill feat in that skill, even if you don't have Assurance in that skill."
                     }
                   }
                 }
@@ -494,15 +528,15 @@
         {
           "resource_id": "feat",
           "stats": {
-            "id": "feat_enigma_s_knowledge__pc1_",
+            "id": "feat_enigma_s_knowledge__apg_",
             "updated_at": {
-              "value": "2026-04-03T23:32:17.666089+00:00"
+              "value": "2026-04-20T18:19:21.487806+00:00"
             },
             "name": {
               "value": "Enigma's Knowledge"
             },
             "source": {
-              "value": "pc1"
+              "value": "apg"
             },
             "type": {
               "value": "class"
@@ -544,12 +578,12 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_8135653fe8a0",
+                    "id": "levelled_description_ebf45682f72c",
                     "level": {
                       "value": 14
                     },
                     "description": {
-                      "value": "Your muse whispers knowledge to you at all the right times. You gain the benefits of the Automatic Knowledge skill feat with any skill you can use to Recall Knowledge. As per the special clause in the Automatic Knowledge feat, you can still only use Automatic Knowledge once per round."
+                      "value": "Your muse whispers knowledge to you at all the right times.\n\nYou gain the benefits of the Automatic Knowledge skill feat with any skill you can use to Recall Knowledge. As per the special clause in the Automatic Knowledge feat, you can still only use Automatic Knowledge once per round."
                     }
                   }
                 }
@@ -587,15 +621,15 @@
         {
           "resource_id": "feat",
           "stats": {
-            "id": "feat_true_hypercognition__pc1_",
+            "id": "feat_true_hypercognition__crb_",
             "updated_at": {
-              "value": "2026-04-03T23:32:17.666089+00:00"
+              "value": "2026-04-20T18:19:21.487806+00:00"
             },
             "name": {
               "value": "True Hypercognition"
             },
             "source": {
-              "value": "pc1"
+              "value": "crb"
             },
             "type": {
               "value": "class"
@@ -608,14 +642,14 @@
             },
             "classes": {
               "value": [
-                "bard__pc1_"
+                "bard__crb_"
               ]
             },
             "ancestries": {
               "value": []
             },
             "prerequisites": {
-              "value": "enigma muse"
+              "value": "Enigma muse"
             },
             "trigger": {
               "value": ""
@@ -637,7 +671,7 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_d6df4f599aa1",
+                    "id": "levelled_description_4a38c2cdf1f7",
                     "level": {
                       "value": 16
                     },
@@ -682,7 +716,7 @@
           "stats": {
             "id": "feat_greater_magical_edification__apg_",
             "updated_at": {
-              "value": "2026-04-03T23:32:17.666089+00:00"
+              "value": "2026-04-20T18:19:21.487806+00:00"
             },
             "name": {
               "value": "Greater Magical Edification"
@@ -728,7 +762,7 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_953218ffaeb9",
+                    "id": "levelled_description_5fa61606b862",
                     "level": {
                       "value": 10
                     },
@@ -773,7 +807,7 @@
           "stats": {
             "id": "feat_magical_edification__apg_",
             "updated_at": {
-              "value": "2026-04-03T23:32:17.666089+00:00"
+              "value": "2026-04-20T18:19:21.487806+00:00"
             },
             "name": {
               "value": "Magical Edification"
@@ -812,14 +846,14 @@
               "value": ""
             },
             "special": {
-              "value": ""
+              "value": "Leads to: Greater Magical Edification|APG"
             },
             "descriptions": {
               "value": [
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_d5ffad800c67",
+                    "id": "levelled_description_d68024a6dc76",
                     "level": {
                       "value": 4
                     },
@@ -835,7 +869,7 @@
                 {
                   "resource_id": "levelled_effect",
                   "stats": {
-                    "id": "levelled_effect_9c6be3af639d",
+                    "id": "levelled_effect_64426b716097",
                     "level": {
                       "value": 4
                     },
@@ -843,7 +877,7 @@
                       "value": {
                         "resource_id": "effect",
                         "stats": {
-                          "id": "effect_51ac594b7967",
+                          "id": "effect_4cc46f7267ee",
                           "name": {
                             "value": "Innate: Guidance"
                           },
@@ -857,18 +891,18 @@
                             "value": {
                               "resource_id": "spell",
                               "stats": {
-                                "id": "guidance__pc1_",
+                                "id": "guidance__crb_",
                                 "name": {
                                   "value": "Guidance"
                                 },
                                 "source": {
-                                  "value": "pc1"
+                                  "value": "crb"
                                 },
                                 "level": {
                                   "value": "spell_level_0"
                                 },
                                 "school": {
-                                  "value": "none"
+                                  "value": "spell_school_divination"
                                 },
                                 "traditions": {
                                   "value": [
@@ -893,7 +927,7 @@
                                   "value": ""
                                 },
                                 "verbal": {
-                                  "value": false
+                                  "value": true
                                 },
                                 "somatic": {
                                   "value": false
@@ -920,15 +954,14 @@
                                   "value": "1 creature"
                                 },
                                 "description": {
-                                  "value": "You ask for divine guidance, granting the target a +1 status bonus to one attack roll, Perception check, saving throw, or skill check the target attempts before the duration ends. The target chooses which roll to use the bonus on before rolling. If the target uses the bonus, the spell ends. Either way, the target is then temporarily immune for 1 hour."
+                                  "value": "You ask for divine guidance, granting the target a +1 status bonus to one attack roll, Perception check, saving throw, or skill check the target attempts before the duration ends. The target chooses which roll to use the bonus on before rolling.\n\nIf the target uses the bonus, the spell ends. Either way, the target is then temporarily immune for 1 hour."
                                 },
                                 "higher_level_description": {
                                   "value": ""
                                 },
                                 "spell_traits": {
                                   "value": [
-                                    "cantrip",
-                                    "concentrate"
+                                    "cantrip"
                                   ]
                                 },
                                 "classes": {
@@ -941,7 +974,7 @@
                                   "value": []
                                 },
                                 "updated_at": {
-                                  "value": "2026-03-29T00:32:31.947973"
+                                  "value": "2026-04-15T14:24:10.661932"
                                 }
                               }
                             }
@@ -954,7 +987,7 @@
                 {
                   "resource_id": "levelled_effect",
                   "stats": {
-                    "id": "levelled_effect_b66df5cc8a5d",
+                    "id": "levelled_effect_7a5600c6c25e",
                     "level": {
                       "value": 4
                     },
@@ -962,7 +995,7 @@
                       "value": {
                         "resource_id": "effect",
                         "stats": {
-                          "id": "effect_86594d1db123",
+                          "id": "effect_1e80d7f4ba3b",
                           "name": {
                             "value": "Innate: Message"
                           },
@@ -976,12 +1009,12 @@
                             "value": {
                               "resource_id": "spell",
                               "stats": {
-                                "id": "message__pc1_",
+                                "id": "message__crb_",
                                 "name": {
                                   "value": "Message"
                                 },
                                 "source": {
-                                  "value": "pc1"
+                                  "value": "crb"
                                 },
                                 "level": {
                                   "value": "spell_level_0"
@@ -1012,7 +1045,7 @@
                                   "value": ""
                                 },
                                 "verbal": {
-                                  "value": false
+                                  "value": true
                                 },
                                 "somatic": {
                                   "value": false
@@ -1039,7 +1072,7 @@
                                   "value": "1 creature"
                                 },
                                 "description": {
-                                  "value": "You mouth words quietly, but instead of coming out of your mouth, they're transferred directly to the ears of the target. While others can't hear your words any better than if you normally mouthed them, the target can hear your words as if they were standing next to you. The target can give a brief response as a reaction, or as a free action on their next turn if they wish, but they must be able to see you and be within range to do so. If they respond, their response is delivered directly to your ear, just like the original message."
+                                  "value": "You mouth words quietly, but instead of coming out of your mouth, they're transferred directly to the ears of the target.\n\nWhile others can't hear your words any better than if you normally mouthed them, the target can hear your words as if they were standing next to you. The target can give a brief response as a reaction, or as a free action on their next turn if they wish, but they must be able to see you and be within range to do so. If they respond, their response is delivered directly to your ear, just like the original message."
                                 },
                                 "higher_level_description": {
                                   "value": "Heightened (3rd): The spell's range increases to 500 feet."
@@ -1048,10 +1081,8 @@
                                   "value": [
                                     "auditory",
                                     "cantrip",
-                                    "concentrate",
                                     "linguistic",
-                                    "mental",
-                                    "subtle"
+                                    "mental"
                                   ]
                                 },
                                 "classes": {
@@ -1064,7 +1095,7 @@
                                   "value": []
                                 },
                                 "updated_at": {
-                                  "value": "2026-03-29T00:32:31.947973"
+                                  "value": "2026-04-15T14:24:10.661932"
                                 }
                               }
                             }
@@ -1107,7 +1138,7 @@
           "stats": {
             "id": "feat_orthographic_mastery__apg_",
             "updated_at": {
-              "value": "2026-04-03T23:32:17.666089+00:00"
+              "value": "2026-04-20T18:19:21.487806+00:00"
             },
             "name": {
               "value": "Orthographic Mastery"
@@ -1153,7 +1184,7 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_f27d6d0d3b2b",
+                    "id": "levelled_description_05516358d9ba",
                     "level": {
                       "value": 4
                     },
@@ -1198,7 +1229,7 @@
           "stats": {
             "id": "feat_quick_study__apg_",
             "updated_at": {
-              "value": "2026-04-03T23:32:17.666089+00:00"
+              "value": "2026-04-20T18:19:21.487806+00:00"
             },
             "name": {
               "value": "Quick Study"
@@ -1244,7 +1275,7 @@
                 {
                   "resource_id": "levelled_description",
                   "stats": {
-                    "id": "levelled_description_5270e3dda12a",
+                    "id": "levelled_description_47d3d43b5dc0",
                     "level": {
                       "value": 4
                     },

@@ -134,69 +134,69 @@ character_creation_page edit_feats_title() =
               (if length(filter(
                   filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "class_like_feat"),
                   filter = ($g) => isNull(when {
-                    ($g?.$view?.progression_grant_edit_slot_mode ?? $g.slot_mode) == "archetype_new"
-                      -> ($g?.$view?.progression_grant_edit_archetype_new_select ?? $g.assigned_archetype),
-                    ($g?.$view?.progression_grant_edit_slot_mode ?? $g.slot_mode) == "archetype_existing"
-                      -> ($g?.$view?.progression_grant_edit_archetype_existing_select ?? $g.assigned_feat),
+                    ($g?.$view?.progression_grant_edit_slot_mode? ?? $g.slot_mode) == "archetype_new"
+                      -> ($g?.$view?.progression_grant_edit_archetype_new_select? ?? $g.assigned_archetype),
+                    ($g?.$view?.progression_grant_edit_slot_mode? ?? $g.slot_mode) == "archetype_existing"
+                      -> $g.assigned_feat_effective,
                     else
-                      -> ($g?.$view?.progression_grant_edit_class_feat_select_non_ancestry ?? $g.assigned_feat),
+                      -> ($g?.$view?.progression_grant_edit_class_feat_select_non_ancestry? ?? $g.assigned_feat),
                   }),
                 )) > 0
                 then [concat(["Class-like feat slots pending: ", length(filter(
                     filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "class_like_feat"),
                     filter = ($g) => isNull(when {
-                      ($g?.$view?.progression_grant_edit_slot_mode ?? $g.slot_mode) == "archetype_new"
-                        -> ($g?.$view?.progression_grant_edit_archetype_new_select ?? $g.assigned_archetype),
-                      ($g?.$view?.progression_grant_edit_slot_mode ?? $g.slot_mode) == "archetype_existing"
-                        -> ($g?.$view?.progression_grant_edit_archetype_existing_select ?? $g.assigned_feat),
+                      ($g?.$view?.progression_grant_edit_slot_mode? ?? $g.slot_mode) == "archetype_new"
+                        -> ($g?.$view?.progression_grant_edit_archetype_new_select? ?? $g.assigned_archetype),
+                      ($g?.$view?.progression_grant_edit_slot_mode? ?? $g.slot_mode) == "archetype_existing"
+                        -> $g.assigned_feat_effective,
                       else
-                        -> ($g?.$view?.progression_grant_edit_class_feat_select_non_ancestry ?? $g.assigned_feat),
+                        -> ($g?.$view?.progression_grant_edit_class_feat_select_non_ancestry? ?? $g.assigned_feat),
                     }),
                   ))])]
                 else []),
               (if length(filter(
                   filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "skill_feat"),
-                  filter = ($g) => isNull($g?.$view?.progression_grant_edit_skill_feat_select ?? $g.assigned_feat),
+                  filter = ($g) => isNull($g?.$view?.progression_grant_edit_skill_feat_select? ?? $g.assigned_feat),
                 )) > 0
                 then [concat(["Skill feat slots pending: ", length(filter(
                     filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "skill_feat"),
-                    filter = ($g) => isNull($g?.$view?.progression_grant_edit_skill_feat_select ?? $g.assigned_feat),
+                    filter = ($g) => isNull($g?.$view?.progression_grant_edit_skill_feat_select? ?? $g.assigned_feat),
                   ))])]
                 else []),
               (if length(filter(
                   filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "general_feat"),
-                  filter = ($g) => isNull($g?.$view?.progression_grant_edit_general_feat_select ?? $g.assigned_feat),
+                  filter = ($g) => isNull($g?.$view?.progression_grant_edit_general_feat_select? ?? $g.assigned_feat),
                 )) > 0
                 then [concat(["General feat slots pending: ", length(filter(
                     filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "general_feat"),
-                    filter = ($g) => isNull($g?.$view?.progression_grant_edit_general_feat_select ?? $g.assigned_feat),
+                    filter = ($g) => isNull($g?.$view?.progression_grant_edit_general_feat_select? ?? $g.assigned_feat),
                   ))])]
                 else []),
               (if length(filter(
                   filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "ancestry_feat"),
-                  filter = ($g) => isNull($g?.$view?.progression_grant_edit_class_feat_select ?? $g.assigned_feat),
+                  filter = ($g) => isNull($g?.$view?.progression_grant_edit_class_feat_select? ?? $g.assigned_feat),
                 )) > 0
                 then [concat(["Ancestry feat slots pending: ", length(filter(
                     filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "ancestry_feat"),
-                    filter = ($g) => isNull($g?.$view?.progression_grant_edit_class_feat_select ?? $g.assigned_feat),
+                    filter = ($g) => isNull($g?.$view?.progression_grant_edit_class_feat_select? ?? $g.assigned_feat),
                   ))])]
                 else []),
               (if length(filter(
                   filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "ability_boost"),
-                  filter = ($g) => length($g?.$view?.progression_grant_edit_ability_boost_select ?? $g.assigned_ability_boosts) < $g.amount,
+                  filter = ($g) => length($g?.$view?.progression_grant_edit_ability_boost_select? ?? $g.assigned_ability_boosts) < $g.amount,
                 )) > 0
                 then [concat(["Ability boost slots pending: ", length(filter(
                     filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "ability_boost"),
-                    filter = ($g) => length($g?.$view?.progression_grant_edit_ability_boost_select ?? $g.assigned_ability_boosts) < $g.amount,
+                    filter = ($g) => length($g?.$view?.progression_grant_edit_ability_boost_select? ?? $g.assigned_ability_boosts) < $g.amount,
                   ))])]
                 else []),
               (if length(filter(
                   filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "skill_increase"),
-                  filter = ($g) => isEmpty($g?.$view?.progression_grant_edit_skill_increase_skill_select ?? $g.assigned_skill_increase_skill),
+                  filter = ($g) => isEmpty($g?.$view?.progression_grant_edit_skill_increase_skill_select? ?? $g.assigned_skill_increase_skill),
                 )) > 0
                 then [concat(["Skill increase slots pending: ", length(filter(
                     filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "skill_increase"),
-                    filter = ($g) => isEmpty($g?.$view?.progression_grant_edit_skill_increase_skill_select ?? $g.assigned_skill_increase_skill),
+                    filter = ($g) => isEmpty($g?.$view?.progression_grant_edit_skill_increase_skill_select? ?? $g.assigned_skill_increase_skill),
                   ))])]
                 else []),
             ]),
@@ -325,5 +325,15 @@ character_creation_page edit_feats_title() =
             && notNull($view.edit_character_feats_class_archetype_add),
         ),
       ],
+    ),
+    on_page_open = setStat(
+      stat = "creation_feats_page_open",
+      new_value = true,
+      aggregation_type = "set",
+    ),
+    on_page_close = setStat(
+      stat = "creation_feats_page_open",
+      new_value = false,
+      aggregation_type = "set",
     ),
   );

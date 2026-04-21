@@ -9,7 +9,7 @@ mechanic weapon_trigger_attached_talisman(event_names = "trigger_attached_talism
           ),
         ),
         when {
-          attached_talisman.consumed_on_activation -> sequence(
+          has_attached_talisman && attached_talisman_consumed_on_activation -> sequence(
             effects = [
               addToStat(
                 stat = "attached_talisman.quantity",
