@@ -19,4 +19,16 @@ mechanic spend_hero_point_stabilize(event_names = "spend_hero_point_stabilize") 
         ),
       ],
     ),
+    is_dead -> showMessage(
+      message = "Character is dead and can't stabilize with Hero Points.",
+      message_type = "info",
+    ),
+    hero_points <= 0 && dying > 0 && !is_dead -> showMessage(
+      message = "You don't have any Hero Points to spend.",
+      message_type = "info",
+    ),
+    dying <= 0 && !is_dead -> showMessage(
+      message = "Your character isn't dying.",
+      message_type = "info",
+    ),
   };

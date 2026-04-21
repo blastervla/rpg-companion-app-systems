@@ -44,30 +44,15 @@ view player_character_header() =
         min_value_allowed = 0,
       ),
       stat(
-        id = "player_character_initiative",
-        stat = "initiative",
+        id = "player_character_perception",
+        stat = "perception",
         change_amount = 1,
-        on_tap_event = event(
-          name = "rollStat",
-          payload = payload(stat = "initiative", statName = "Initiative"),
-        ),
-        bottom_sheet_in_edit_mode = true,
-        bottom_sheet_view = section(
-          id = "player_character_initiative_source_section",
-          header = [],
-          show_divider = false,
-          collapsible = false,
-          content_item_min_width = 1,
-          content = [
-            select(
-              id = "player_character_initiative_source_select",
-              stat = "initiative_stat",
-              options = "initiative_sources",
-              should_auto_save = true,
-            ),
-          ],
-        ),
-        sheet_title = "Set initiative source",
+        min_value_allowed = 0,
+      ),
+      stat(
+        id = "class_dc",
+        stat = "class_dc",
+        change_amount = 1,
       ),
       stat(
         id = "player_character_speed",
@@ -117,19 +102,6 @@ view player_character_header() =
         sheet_title = "Manage speeds",
       ),
       stat(
-        id = "player_character_perception",
-        stat = "perception",
-        change_amount = 1,
-        min_value_allowed = 0,
-      ),
-      stat(
-        id = "player_character_level_bonus",
-        stat = "level_bonus",
-        change_amount = 1,
-        min_value_allowed = 0,
-        always_show_sign = true,
-      ),
-      stat(
         id = "player_character_actions_remaining",
         stat = "actions_remaining",
         change_amount = 1,
@@ -140,11 +112,6 @@ view player_character_header() =
         stat = "reaction_available",
         change_amount = 1,
         min_value_allowed = 0,
-      ),
-      button(
-        id = "player_character_reset_actions",
-        text = "RESET ACTIONS",
-        event = event(name = "refresh_actions", payload = payload()),
       ),
     ],
   );

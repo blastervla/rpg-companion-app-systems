@@ -59,11 +59,14 @@ view monster_spellcasting_block_edit() =
           ),
         ],
       ),
-      resourceSection(
+      resourceArray(
         id = "monster_spellcasting_block_edit_spell_levels",
-        resource_stat = "spell_levels",
+        stat = "spell_levels",
         resource_id = "levelled_spell",
-        header_view = text(
+        view_type = "edit",
+        pop_up_type = "bottomSheet",
+        pop_up_button_text = description,
+        left_view = text(
           id = "monster_spellcasting_block_edit_spell_levels_label",
           text = "Spell levels: ",
           style = "text",

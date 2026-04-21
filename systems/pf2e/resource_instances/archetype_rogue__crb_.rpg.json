@@ -1,0 +1,875 @@
+{
+  "resource_id": "archetype",
+  "stats": {
+    "id": "rogue__crb_",
+    "updated_at": {
+      "value": "2026-04-20T18:20:02.406153+00:00"
+    },
+    "name": {
+      "value": "Rogue"
+    },
+    "source": {
+      "value": "crb"
+    },
+    "description": {
+      "value": "You've learned to sneak, steal, and disable traps. With time and luck, you'll become capable of moving through the shadows, striking unseen, and escaping without notice.\n\n**Multiclass Rogue characters:**\nNearly any character can benefit from the many skills and tricks the rogue archetype grants.\n\n- Alchemist rogues can use the rogue's Poison Weapon to great effect with their daily poisons, and sneak attack is a nice boost to bomb damage.\n- Barbarian rogues can become masters in every save and diversify their skills.\n- Champion rogues add damage from sneak attack while protecting their flanking partners from harm.\n- Fighter rogues combine the fighter's accuracy with extra damage, a deadly combination for archers or finesse fighters.\n- Monk rogues have great synergy, since many stances grant powerful Strikes that work with sneak attack.\n- Ranger rogues benefit from the shared focus on trailing foes and catching them flat-footed. The flurry edge can get you many sneak attacks, and the precision edge doubles down on precision damage.\n- Spellcaster rogues use the rogue multiclass to shore up skills or to pick up tricky rogue feats like Mobility to help keep them safe."
+    },
+    "is_class_archetype": {
+      "value": false
+    },
+    "required_class_id": {
+      "value": ""
+    },
+    "grants_spellcasting": {
+      "value": false
+    },
+    "spellcasting_tradition": {
+      "value": ""
+    },
+    "spellcasting_ability": {
+      "value": ""
+    },
+    "spellcasting_mode": {
+      "value": ""
+    },
+    "spellcasting_proficiency": {
+      "value": "none"
+    },
+    "cantrip_quantity_per_level": {
+      "value": []
+    },
+    "spell_capacity_grants": {
+      "value": []
+    },
+    "prepared_spell_choices_rank_0": {
+      "value": []
+    },
+    "prepared_spell_choices_rank_1": {
+      "value": []
+    },
+    "prepared_spell_choices_rank_2": {
+      "value": []
+    },
+    "prepared_spell_choices_rank_3": {
+      "value": []
+    },
+    "prepared_spell_choices_rank_4": {
+      "value": []
+    },
+    "prepared_spell_choices_rank_5": {
+      "value": []
+    },
+    "prepared_spell_choices_rank_6": {
+      "value": []
+    },
+    "prepared_spell_choices_rank_7": {
+      "value": []
+    },
+    "prepared_spell_choices_rank_8": {
+      "value": []
+    },
+    "prepared_spell_choices_rank_9": {
+      "value": []
+    },
+    "prepared_spell_choices_rank_10": {
+      "value": []
+    },
+    "dedication_feat": {
+      "value": {
+        "resource_id": "feat",
+        "stats": {
+          "id": "feat_rogue_dedication__crb_",
+          "updated_at": {
+            "value": "2026-04-20T18:19:21.487806+00:00"
+          },
+          "name": {
+            "value": "Rogue Dedication"
+          },
+          "source": {
+            "value": "crb"
+          },
+          "type": {
+            "value": "archetype"
+          },
+          "action_cost": {
+            "value": "passive"
+          },
+          "traits": {
+            "value": "archetype, dedication, multiclass"
+          },
+          "classes": {
+            "value": []
+          },
+          "ancestries": {
+            "value": []
+          },
+          "prerequisites": {
+            "value": "Dexterity 14"
+          },
+          "trigger": {
+            "value": ""
+          },
+          "requirements": {
+            "value": ""
+          },
+          "frequency": {
+            "value": ""
+          },
+          "access": {
+            "value": ""
+          },
+          "special": {
+            "value": "You cannot gain another dedication feat until you have gained two other feats from the rogue archetype.\nLeads to: Basic Trickery, Advanced Trickery, Evasiveness, Skill Mastery, Sneak Attacker, Uncanny Dodge"
+          },
+          "descriptions": {
+            "value": [
+              {
+                "resource_id": "levelled_description",
+                "stats": {
+                  "id": "levelled_description_af02383231e7",
+                  "level": {
+                    "value": 2
+                  },
+                  "description": {
+                    "value": "You gain a skill feat and the rogue's surprise attack class feature. You become trained in light armor. In addition, you become trained in Stealth or Thievery plus one skill of your choice; if you are already trained in both Stealth and Thievery, you become trained in an additional skill of your choice. You become trained in rogue class DC."
+                  }
+                }
+              }
+            ]
+          },
+          "effects": {
+            "value": [
+              {
+                "resource_id": "levelled_effect",
+                "stats": {
+                  "id": "levelled_effect_6fac95a132e9",
+                  "level": {
+                    "value": 2
+                  },
+                  "effect": {
+                    "value": {
+                      "resource_id": "effect",
+                      "stats": {
+                        "id": "effect_133d710eafd3",
+                        "name": {
+                          "value": "Grant Trained in Stealth"
+                        },
+                        "trigger_type": {
+                          "value": "passive"
+                        },
+                        "type": {
+                          "value": "grant_proficiency"
+                        },
+                        "proficiency_stat": {
+                          "value": "$character.stealth_proficiency"
+                        },
+                        "proficiency_rank": {
+                          "value": "trained"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "resource_id": "levelled_effect",
+                "stats": {
+                  "id": "levelled_effect_f69a39be0088",
+                  "level": {
+                    "value": 2
+                  },
+                  "effect": {
+                    "value": {
+                      "resource_id": "effect",
+                      "stats": {
+                        "id": "effect_a79cc4bbeab9",
+                        "name": {
+                          "value": "Grant Trained in Thievery"
+                        },
+                        "trigger_type": {
+                          "value": "passive"
+                        },
+                        "type": {
+                          "value": "grant_proficiency"
+                        },
+                        "proficiency_stat": {
+                          "value": "$character.thievery_proficiency"
+                        },
+                        "proficiency_rank": {
+                          "value": "trained"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "resource_id": "levelled_effect",
+                "stats": {
+                  "id": "levelled_effect_6c5033a4e100",
+                  "level": {
+                    "value": 2
+                  },
+                  "effect": {
+                    "value": {
+                      "resource_id": "effect",
+                      "stats": {
+                        "id": "effect_40d43c73355d",
+                        "name": {
+                          "value": "Grant Trained in Class Dc"
+                        },
+                        "trigger_type": {
+                          "value": "passive"
+                        },
+                        "type": {
+                          "value": "grant_proficiency"
+                        },
+                        "proficiency_stat": {
+                          "value": "$character.class_dc_proficiency"
+                        },
+                        "proficiency_rank": {
+                          "value": "trained"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "skill_proficiencies": {
+            "value": []
+          },
+          "armor_proficiencies": {
+            "value": [
+              {
+                "resource_id": "levelled_armor_proficiency",
+                "stats": {
+                  "id": "levelled_armor_proficiency_7083e0960438",
+                  "level": {
+                    "value": 2
+                  },
+                  "options": {
+                    "value": [
+                      "light"
+                    ]
+                  },
+                  "selected_option": {
+                    "value": ""
+                  },
+                  "proficiency": {
+                    "value": "trained"
+                  }
+                }
+              }
+            ]
+          },
+          "weapon_proficiencies": {
+            "value": []
+          },
+          "lore_skills": {
+            "value": []
+          },
+          "spellcasting_tradition": {
+            "value": ""
+          },
+          "is_basic_spellcasting_feat": {
+            "value": false
+          },
+          "is_expert_spellcasting_feat": {
+            "value": false
+          },
+          "is_master_spellcasting_feat": {
+            "value": false
+          }
+        }
+      }
+    },
+    "feats": {
+      "value": [
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_advanced_trickery__crb_",
+            "updated_at": {
+              "value": "2026-04-20T18:19:21.487806+00:00"
+            },
+            "name": {
+              "value": "Advanced Trickery"
+            },
+            "source": {
+              "value": "crb"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Basic Trickery"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": "You can select this feat more than once. Each time you select it, you gain another rogue feat (levels 1-10)."
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_3255c498b669",
+                    "level": {
+                      "value": 6
+                    },
+                    "description": {
+                      "value": "You gain one rogue feat (levels 1-10) feat. For the purpose of meeting its prerequisites, your rogue level is equal to half your character level."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_basic_trickery__crb_",
+            "updated_at": {
+              "value": "2026-04-20T18:19:21.487806+00:00"
+            },
+            "name": {
+              "value": "Basic Trickery"
+            },
+            "source": {
+              "value": "crb"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Rogue Dedication"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": "Leads to: Advanced Trickery"
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_cd877fd47a28",
+                    "level": {
+                      "value": 4
+                    },
+                    "description": {
+                      "value": "You gain a 1st- or 2nd-level rogue feat."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_evasiveness__crb_",
+            "updated_at": {
+              "value": "2026-04-20T18:19:21.487806+00:00"
+            },
+            "name": {
+              "value": "Evasiveness"
+            },
+            "source": {
+              "value": "crb"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Rogue Dedication, expert in Reflex saves"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_3c7795b2611b",
+                    "level": {
+                      "value": 12
+                    },
+                    "description": {
+                      "value": "Your proficiency rank for Reflex saves increases to master."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": [
+                {
+                  "resource_id": "levelled_effect",
+                  "stats": {
+                    "id": "levelled_effect_353b7e31cde7",
+                    "level": {
+                      "value": 12
+                    },
+                    "effect": {
+                      "value": {
+                        "resource_id": "effect",
+                        "stats": {
+                          "id": "effect_7a4c0c3935dc",
+                          "name": {
+                            "value": "Grant Master in Reflex"
+                          },
+                          "trigger_type": {
+                            "value": "passive"
+                          },
+                          "type": {
+                            "value": "grant_proficiency"
+                          },
+                          "proficiency_stat": {
+                            "value": "$character.reflex_proficiency"
+                          },
+                          "proficiency_rank": {
+                            "value": "master"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_skill_mastery__crb_",
+            "updated_at": {
+              "value": "2026-04-20T18:19:21.487806+00:00"
+            },
+            "name": {
+              "value": "Skill Mastery"
+            },
+            "source": {
+              "value": "crb"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Rogue Dedication, trained in at least one skill and expert in at least one skill"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": "You can select this feat up to five times."
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_e0e5edeb4033",
+                    "level": {
+                      "value": 8
+                    },
+                    "description": {
+                      "value": "Increase your proficiency rank in one of your skills from expert to master and in another of your skills from trained to expert. You gain a skill feat associated with one of the skills you chose."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_sneak_attacker__crb_",
+            "updated_at": {
+              "value": "2026-04-20T18:19:21.487806+00:00"
+            },
+            "name": {
+              "value": "Sneak Attacker"
+            },
+            "source": {
+              "value": "crb"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Rogue Dedication"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_32c4e53f9ad2",
+                    "level": {
+                      "value": 4
+                    },
+                    "description": {
+                      "value": "You gain the sneak attack class feature (page 181), except it deals 1d4 damage, increasing to 1d6 at 6th level. You don't increase the number of dice as you gain levels."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
+            }
+          }
+        },
+        {
+          "resource_id": "feat",
+          "stats": {
+            "id": "feat_uncanny_dodge__crb_",
+            "updated_at": {
+              "value": "2026-04-20T18:19:21.487806+00:00"
+            },
+            "name": {
+              "value": "Uncanny Dodge"
+            },
+            "source": {
+              "value": "crb"
+            },
+            "type": {
+              "value": "archetype"
+            },
+            "action_cost": {
+              "value": "passive"
+            },
+            "traits": {
+              "value": "archetype"
+            },
+            "classes": {
+              "value": []
+            },
+            "ancestries": {
+              "value": []
+            },
+            "prerequisites": {
+              "value": "Rogue Dedication"
+            },
+            "trigger": {
+              "value": ""
+            },
+            "requirements": {
+              "value": ""
+            },
+            "frequency": {
+              "value": ""
+            },
+            "access": {
+              "value": ""
+            },
+            "special": {
+              "value": ""
+            },
+            "descriptions": {
+              "value": [
+                {
+                  "resource_id": "levelled_description",
+                  "stats": {
+                    "id": "levelled_description_a63144149912",
+                    "level": {
+                      "value": 10
+                    },
+                    "description": {
+                      "value": "You gain the deny advantage class feature (page 181)."
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "value": []
+            },
+            "skill_proficiencies": {
+              "value": []
+            },
+            "armor_proficiencies": {
+              "value": []
+            },
+            "weapon_proficiencies": {
+              "value": []
+            },
+            "lore_skills": {
+              "value": []
+            },
+            "spellcasting_tradition": {
+              "value": ""
+            },
+            "is_basic_spellcasting_feat": {
+              "value": false
+            },
+            "is_expert_spellcasting_feat": {
+              "value": false
+            },
+            "is_master_spellcasting_feat": {
+              "value": false
+            }
+          }
+        }
+      ]
+    },
+    "progression_grants": {
+      "value": []
+    }
+  }
+}

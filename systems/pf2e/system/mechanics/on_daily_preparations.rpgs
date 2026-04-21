@@ -95,13 +95,47 @@ mechanic on_daily_preparations(event_names = "daily_preparations") =
         ),
       ),
       forEach(
-        components = archetypes,
+        components = all_selected_archetypes,
         for_each_value_key = "$archetype",
         apply = fireEvent(
           event_names = [
             eventName(
               event_name = "resource_daily_preparations",
               for_resource = $archetype,
+            ),
+          ],
+        ),
+      ),
+      forEach(
+        components = companions,
+        for_each_value_key = "$companion",
+        apply = forEach(
+          components = ($companion.monster?.spellcasting_blocks ?? []),
+          for_each_value_key = "$block",
+          apply = forEach(
+            components = ($block.spell_levels ?? []),
+            for_each_value_key = "$levelled_spell",
+            apply = setStat(
+              stat = "$levelled_spell.casts_used_today",
+              new_value = 0,
+              aggregation_type = "set",
+            ),
+          ),
+        ),
+      ),
+      // Also refresh archetypes assigned through progression-grant slots directly.
+      // This avoids missing embedded slot-assigned archetype instances.
+      forEach(
+        components = filter(
+          all_progression_grants_for_current_level,
+          filter = ($g) => ($g.slot_mode == "archetype_new") && notNull($g.assigned_archetype),
+        ),
+        for_each_value_key = "$grant",
+        apply = fireEvent(
+          event_names = [
+            eventName(
+              event_name = "resource_daily_preparations",
+              for_resource = $grant.assigned_archetype,
             ),
           ],
         ),

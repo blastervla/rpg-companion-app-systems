@@ -169,7 +169,13 @@ calc string[] selectable_feature_ids(name = "Selectable feature ids") =
   map(selectable_features, mapper = ($mapValue) => $mapValue.id);
 
 calc string[] selected_selectable_feature_ids(name = "Selected selectable feature ids") =
-  $character?.selected_selectable_feature_ids ?? [];
+  flatAppend(
+    [
+      ($character?.selected_selectable_feature_ids? ?? []),
+      ($parent?.selected_selectable_feature_ids? ?? []),
+    ],
+    treat_as_set = true,
+  );
 
 calc bool selected(name = "Selected") =
   contains(haystack = selected_selectable_feature_ids, needle = id);

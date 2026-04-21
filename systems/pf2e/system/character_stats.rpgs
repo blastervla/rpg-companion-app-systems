@@ -1533,16 +1533,16 @@ base integer spell_slots_9(name = "Rank 9") = 0;
 base integer spell_slots_10(name = "Rank 10") = 0;
 
 calc resource<ancestry> creator_selected_ancestry(name = "Selected creator ancestry") =
-  if notNull(ancestry) then ancestry else $view.edit_character_basics_ancestry_select?;
+  $view?.edit_character_basics_ancestry_select? ?? ancestry;
 
 calc resource<heritage> creator_selected_heritage(name = "Selected creator heritage") =
-  if notNull(heritage) then heritage else $view.edit_character_basics_heritage_select?;
+  $view?.edit_character_basics_heritage_select? ?? heritage;
 
 calc resource<background> creator_selected_background(name = "Selected creator background") =
-  if notNull(background) then background else $view.edit_character_basics_background_select?;
+  $view?.edit_character_basics_background_select? ?? background;
 
 calc resource<class_progression>[] creator_selected_classes(name = "Selected creator classes") =
-  if !isEmpty(classes) then classes else ($view.edit_character_basics_classes? ?? []);
+  $view?.edit_character_basics_classes? ?? classes;
 
 calc resource<ability_score_increase>[] creator_ability_score_increases(name = "Creator ability score increases") =
   flatAppend(
@@ -1673,6 +1673,44 @@ calc bool has_pending_proficiency_choices(name = "Has pending proficiency choice
     creator_skill_proficiency_choices,
     filter = ($c) => isEmpty($c.selected_option) && !isEmpty($c.options),
   )) || length(creator_additional_class_skill_choices) < creator_additional_class_skill_choices_required;
+
+calc resource<levelled_skill_proficiency>[] pending_creator_skill_proficiency_choices(name = "Pending creator skill proficiency choices") =
+  filter(
+    creator_skill_proficiency_choices,
+    filter = ($choice) => isEmpty($choice.selected_option) && !isEmpty($choice.options),
+  );
+
+calc integer pending_additional_class_skill_choices_count(name = "Pending additional class skill choices count") =
+  max(
+    [
+      0,
+      creator_additional_class_skill_choices_required - length(creator_additional_class_skill_choices),
+    ],
+  );
+
+calc string pending_proficiency_choices_warning_text(name = "Pending proficiency choices warning text") =
+  joinToString(
+    flatAppend(
+      [
+        map(
+          pending_creator_skill_proficiency_choices,
+          mapper = ($choice) => concat(["- ", $choice.description]),
+        ),
+        (if pending_additional_class_skill_choices_count > 0
+          then [
+              concat(
+                [
+                  "- Additional trained class skills pending: choose ",
+                  pending_additional_class_skill_choices_count,
+                  " more.",
+                ],
+              ),
+            ]
+          else []),
+      ],
+    ),
+    separator = "\n",
+  );
 
 calc resource<levelled_armor_proficiency>[] creator_armor_proficiency_choices(name = "Creator armor proficiency choices") =
   flatAppend(
@@ -1901,9 +1939,6 @@ calc resource<feat>[] slot_assigned_feats(name = "Feats assigned to slots") =
     ]),
     filter = ($f) => notNull($f),
   );
-
-calc resource<archetype>[] legacy_multiclass_archetypes(name = "Legacy multiclass archetypes") =
-  filter(archetypes, filter = ($a) => !$a.is_class_archetype);
 
 calc string[] selected_archetype_ids(name = "Selected archetype ids") =
   map(
@@ -2433,6 +2468,42 @@ calc resource<feat>[] selected_selectable_feats(name = "Selected selectable feat
     ),
   );
 
+calc resource<feat>[] selectable_features_with_pending_choices(name = "Selectable features with pending choices") =
+  filter(
+    flatAppend(
+      [
+        (ancestry?.current_level_traits ?? []),
+        flatMap(
+          classes,
+          mapper = ($classProgression) => ($classProgression.class?.current_level_features ?? []),
+        ),
+        (background?.current_level_features ?? []),
+        all_selected_and_dedication_feats,
+      ],
+      treat_as_set = true,
+    ),
+    filter = ($feature) => ($feature.has_selectable_features
+      && $feature.current_allowed_amount_of_selectable_features > 0
+      && length($feature.chosen_selectable_features) < $feature.current_allowed_amount_of_selectable_features),
+  );
+
+calc string pending_selectable_feature_choices_warning_text(name = "Pending selectable feature choices warning text") =
+  joinToString(
+    map(
+      selectable_features_with_pending_choices,
+      mapper = ($feature) => concat(
+        [
+          "- ",
+          $feature.name,
+          ": choose ",
+          max([0, $feature.current_allowed_amount_of_selectable_features - length($feature.chosen_selectable_features)]),
+          " more.",
+        ],
+      ),
+    ),
+    separator = "\n",
+  );
+
 calc resource<feat>[] all_feats(name = "All feats (with selectable features included)") =
   flatMap(
     all_selected_and_dedication_feats,
@@ -2451,27 +2522,49 @@ calc resource<feat>[] all_feats(name = "All feats (with selectable features incl
 
 calc resource<progression_grant>[] class_progression_grants_for_current_level(name = "Class progression grants for current level") =
   flatMap(
-    classes,
+    (if creation_feats_page_open then creator_selected_classes else classes),
     mapper = ($classProgression) => filter(
-      ($classProgression.class?.progression_grants ?? []),
-      filter = ($grant) => ($grant.level <= $classProgression.class_level),
+      ((if creation_feats_page_open
+          then ($classProgression.class_effective?.progression_grants ?? [])
+          else ($classProgression.class?.progression_grants ?? []))),
+      filter = ($grant) => ($grant.level <= (if creation_feats_page_open
+        then $classProgression.class_level_effective
+        else $classProgression.class_level)),
     ),
   );
 
 calc resource<progression_grant>[] ancestry_progression_grants_for_current_level(name = "Ancestry progression grants for current level") =
-  if isNull(ancestry)
+  if isNull(if creation_feats_page_open then creator_selected_ancestry else ancestry)
     then []
     else filter(
-        ancestry.progression_grants,
-        filter = ($grant) => ($grant.level <= level),
+        (if creation_feats_page_open then creator_selected_ancestry?.progression_grants else ancestry.progression_grants),
+        filter = ($grant) => ($grant.level <= (if !isEmpty(if creation_feats_page_open then creator_selected_classes else classes)
+          then max(
+              map(
+                (if creation_feats_page_open then creator_selected_classes else classes),
+                mapper = ($cp) => (if creation_feats_page_open
+                  then $cp.class_level_effective
+                  else $cp.class_level),
+              ),
+            )
+          else level)),
       );
 
 calc resource<progression_grant>[] heritage_progression_grants_for_current_level(name = "Heritage progression grants for current level") =
-  if isNull(heritage)
+  if isNull(if creation_feats_page_open then creator_selected_heritage else heritage)
     then []
     else filter(
-        heritage.progression_grants,
-        filter = ($grant) => ($grant.level <= level),
+        (if creation_feats_page_open then creator_selected_heritage?.progression_grants else heritage.progression_grants),
+        filter = ($grant) => ($grant.level <= (if !isEmpty(if creation_feats_page_open then creator_selected_classes else classes)
+          then max(
+              map(
+                (if creation_feats_page_open then creator_selected_classes else classes),
+                mapper = ($cp) => (if creation_feats_page_open
+                  then $cp.class_level_effective
+                  else $cp.class_level),
+              ),
+            )
+          else level)),
       );
 
 calc resource<progression_grant>[] archetype_progression_grants_for_current_level(name = "Archetype progression grants for current level") =
@@ -2976,12 +3069,6 @@ calc resource<lore_skill>[] level_up_lore_skill_choices(name = "Level up lore sk
     ],
   );
 
-calc resource<lore_skill>[] level_up_lore_skill_choices_effective(name = "Level up lore skill choices (effective)") =
-  filter(
-    level_up_lore_skill_choices,
-    filter = ($choice) => !isEmpty(trim($choice.options)),
-  );
-
 base string temp_last_level_up_class_id(name = "Last level up class ID") = null;
 
 calc resource<class_progression> last_level_up_class_progression(name = "Last level up class") =
@@ -3452,13 +3539,19 @@ calc string invested_resources_count_message(name = "Invested resources count me
 base bool selecting(name = "Player is selecting things for this character") =
   false;
 
+base bool creation_feats_page_open(name = "Character creation Feats & Archetypes page is open") =
+  false;
+
 calc bool should_show_controls_for_choices(name = "Should show controls for choices (for ancestry, background, etc choices like equipments or proficiencies)") =
   selecting || currently_levelling_up;
 
 calc resource<feat>[] all_features(name = "All features") =
   flatAppend(
     [
-      flatMap(classes, mapper = ($class) => $class.features),
+      flatMap(
+        classes,
+        mapper = ($class) => ($class.class?.all_features ?? []),
+      ),
       all_feats,
       ancestry_traits,
       background_features,

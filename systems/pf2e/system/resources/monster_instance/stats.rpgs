@@ -16,12 +16,12 @@ calc photo photo(name = "Photo") = $resource.photo;
 calc resource<monster_instance>[] all_monster_instance_combatants(name = "Monster instance combatants") =
   filter(
     filter(
-      $combatants ?? [], filter = ($combatant) => defined(stat = "$combatant.tag_number")
+      $combatants? ?? [], filter = ($combatant) => defined(stat = "$combatant.tag_number")
     ),
     filter = ($combatant) => $combatant.$resource.name == $resource.name
   );
 
-calc bool in_combat(name = "In combat") = defined(stat = "$combatants");
+calc bool in_combat(name = "In combat") = defined(stat = "$combatants?");
 
 base integer actions_remaining(name = "Actions Remaining") = 3;
 
@@ -78,3 +78,5 @@ calc integer xp(name = "Experience") = $resource.xp;
 
 calc string effective_weaknesses(name = "Effective weaknesses") =
   $resource.effective_weaknesses;
+
+base string[] next_turn_event_name(name = "Next turn event") = ["turnAdvanced"];

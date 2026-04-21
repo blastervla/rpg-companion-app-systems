@@ -525,7 +525,13 @@ calc resource<lore_skill>[] lore_skills_choices_in_current_level(name = "Lore sk
   );
 
 calc string[] selected_selectable_feature_ids(name = "Selected selectable feature ids") =
-  current_class_progression?.selected_selectable_feature_ids? ?? [];
+  flatAppend(
+    [
+      (current_class_progression?.selected_selectable_feature_ids? ?? []),
+      ($character?.selected_selectable_feature_ids? ?? []),
+    ],
+    treat_as_set = true,
+  );
 
 calc resource<feat>[] all_features(name = "All features") =
   flatMap(
@@ -661,10 +667,12 @@ calc string display_spellcasting_proficiency(name = "Display spellcasting profic
   );
 
 calc string display_spellcasting_mode(name = "Display spellcasting mode") =
-  enumeratedName(
-    enumerated_type = "spellcasting_modes",
-    id = actual_spellcasting_mode,
-  );
+  if actual_spellcasting_mode == "none" || isEmpty(actual_spellcasting_mode)
+    then "None"
+    else enumeratedName(
+        enumerated_type = "spellcasting_modes",
+        id = actual_spellcasting_mode,
+      );
 
 calc string display_caster_level(name = "Display caster level") =
   enumeratedName(

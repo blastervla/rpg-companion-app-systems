@@ -108,34 +108,11 @@ view monster_instance_header() =
             ),
             sheet_title = "Manage speeds",
           ),
-          stat(
-            id = "monster_instance_initiative",
-            stat = "initiative",
-            change_amount = 1,
-          ),
-          stat(
-            id = "monster_instance_perception",
-            stat = "perception",
-            change_amount = 1,
-          ),
-          stat(
-            id = "monster_instance_actions_remaining",
-            stat = "actions_remaining",
-            change_amount = 1,
-            min_value_allowed = 0,
-          ),
-          stat(
-            id = "monster_instance_reaction_available",
-            stat = "reaction_available",
-            change_amount = 1,
-            min_value_allowed = 0,
-          ),
         ],
       ),
       composite(
         id = "monster_instance_display_ability_scores_1",
         alignment = "center",
-        margin_top = 16,
         subviews = [
           text(
             id = "monster_instance_display_strength_score",
@@ -154,13 +131,20 @@ view monster_instance_header() =
             text = $resource.display_constitution_with_mod,
             style = "text",
           ),
+          ticker(
+            id = "monster_instance_actions_remaining",
+            stat = "actions_remaining",
+            button_location = "sideToSide",
+            button_look = "plusMinus",
+            min_value_allowed = 0,
+            label = "actions",
+            margin_left = 4,
+          )
         ],
       ),
       composite(
         id = "monster_instance_display_ability_scores_2",
         alignment = "center",
-        margin_top = 8,
-        margin_bottom = 14,
         subviews = [
           text(
             id = "monster_instance_display_intelligence_score",
@@ -178,6 +162,15 @@ view monster_instance_header() =
             id = "monster_instance_display_charisma_score",
             text = $resource.display_charisma_with_mod,
             style = "text",
+          ),
+          ticker(
+            id = "monster_instance_reaction_available",
+            stat = "reaction_available",
+            button_location = "sideToSide",
+            button_look = "plusMinus",
+            min_value_allowed = 0,
+            label = "reactions",
+            margin_left = 4,
           ),
         ],
       ),

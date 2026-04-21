@@ -20,7 +20,7 @@ calc integer expected_count(name = "Expected count") =
   };
 
 calc integer party_level_for_budgeting(name = "Party level for budgeting") =
-  $parent?.expected_party_level ?? 1;
+  $parent?.expected_party_level_effective ?? $parent?.expected_party_level ?? 1;
 
 calc integer level_delta(name = "Level delta") =
   (combatant?.level ?? party_level_for_budgeting) - party_level_for_budgeting;

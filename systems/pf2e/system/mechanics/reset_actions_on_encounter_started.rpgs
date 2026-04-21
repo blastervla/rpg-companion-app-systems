@@ -1,0 +1,26 @@
+mechanic reset_actions_on_encounter_started(event_names = "encounterStarted") =
+  when {
+    ($event.encounter.current_combatant_resource_id == id)
+      || ($event.encounter.current_combatant_id == id)
+      || contains(
+        haystack = map(
+          $event.encounter.combatants ?? [],
+          mapper = ($mapValue) => $mapValue.resource_record_id,
+        ),
+        needle = id,
+      ) -> sequence(
+      effects = [
+        fireEvent(event_names = ["refresh_actions"]),
+        setStat(
+          stat = "actions_remaining",
+          new_value = max_actions_per_turn,
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "reaction_available",
+          new_value = max_reactions_per_round,
+          aggregation_type = "set",
+        ),
+      ],
+    ),
+  };

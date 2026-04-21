@@ -74,6 +74,9 @@ base string selected_spellcasting_class_id(name = "Selected spellcasting class i
 base string selected_spellcasting_source_id(name = "Selected spellcasting source id") =
   "";
 
+base string selected_spellcasting_source_kind(name = "Selected spellcasting source kind") =
+  "";
+
 base string spellcasting_mode(name = "Spellcasting mode override") = "prepared";
 
 base string spellcasting_ability(name = "Spellcasting ability override") = "intelligence";
@@ -157,6 +160,70 @@ calc string full_components(name = "Full components") =
     then concat([string_components, " (", components, ")"])
     else string_components;
 
+calc bool is_monster_spell_context(name = "Is monster spell context") =
+  defined(stat = "$parent.$parent.spell_dc")
+    || defined(stat = "$parent.$parent.$parent.spell_dc");
+
+calc bool is_character_spell_context(name = "Is character spell context") =
+  defined(stat = "$character") && !is_monster_spell_context;
+
+calc bool is_effect_use_spell_free_cast(name = "Is effect use-spell free-cast context") =
+  ($parent?.type? ?? "") == "use_spell";
+
+calc integer monster_context_spell_attack_bonus(name = "Monster context spell attack bonus") =
+  when {
+    defined(stat = "$parent.$parent.spell_attack_bonus") -> $parent.$parent.spell_attack_bonus,
+    defined(stat = "$parent.$parent.$parent.spell_attack_bonus") -> $parent.$parent.$parent.spell_attack_bonus,
+    else -> spell_attack_bonus,
+  };
+
+calc integer monster_context_spell_dc(name = "Monster context spell DC") =
+  when {
+    defined(stat = "$parent.$parent.spell_dc") -> $parent.$parent.spell_dc,
+    defined(stat = "$parent.$parent.$parent.spell_dc") -> $parent.$parent.$parent.spell_dc,
+    else -> spell_save_dc,
+  };
+
+calc string monster_context_spellcasting_mode(name = "Monster context spellcasting mode") =
+  when {
+    defined(stat = "$parent.$parent.spellcasting_type") -> $parent.$parent.spellcasting_type,
+    defined(stat = "$parent.$parent.$parent.spellcasting_type") -> $parent.$parent.$parent.spellcasting_type,
+    else -> spellcasting_mode,
+  };
+
+calc integer monster_context_entry_level(name = "Monster context entry level") =
+  if ($parent?.cast_level_override? ?? 0) > 0
+    then $parent?.cast_level_override? ?? 0
+    else $parent?.level? ?? num_level;
+
+calc integer monster_context_daily_cast_max(name = "Monster context daily cast max") =
+  if defined(stat = "$parent.daily_cast_max")
+    then $parent.daily_cast_max
+    else 0;
+
+calc integer monster_context_daily_casts_remaining(name = "Monster context daily casts remaining") =
+  if defined(stat = "$parent.casts_remaining_today")
+    then $parent.casts_remaining_today
+    else if monster_context_daily_cast_max > 0
+      then monster_context_daily_cast_max
+      else -1;
+
+calc bool monster_context_has_daily_cast_limit(name = "Monster context has daily cast limit") =
+  monster_context_daily_cast_max > 0;
+
+calc bool monster_context_has_remaining_casts(name = "Monster context has remaining casts") =
+  !monster_context_has_daily_cast_limit || monster_context_daily_casts_remaining > 0;
+
+calc string monster_context_casts_remaining_text(name = "Monster context casts remaining text") =
+  concat(
+    [
+      "Casts remaining today: ",
+      monster_context_daily_casts_remaining,
+      " / ",
+      monster_context_daily_cast_max,
+    ],
+  );
+
 calc resource<class_progression>[] character_spellcasting_classes(name = "Character spellcasting classes") =
   if defined(stat = "$character")
     then filter(
@@ -211,28 +278,71 @@ calc bool spell_has_specific_ancestry_source(name = "Spell has specific ancestry
     );
 
 calc bool spell_has_specific_class_source(name = "Spell has specific class source") =
-  !spell_has_specific_ancestry_source && length(spell_matching_class_sources) == 1;
+  !spell_has_specific_ancestry_source
+    && length(spell_matching_class_sources) == 1
+    && isEmpty($character?.spellcasting_archetypes ?? []);
 
 calc resource<class_progression>[] selectable_spellcasting_class_sources(name = "Selectable spellcasting class sources") =
   if !isEmpty(spell_matching_class_sources)
     then spell_matching_class_sources
     else character_spellcasting_classes;
 
-// Resolved view-or-saved source id (supports both old selected_spellcasting_class_id and new selected_spellcasting_source_id)
-calc string view_or_saved_source_id(name = "View or saved source id") =
+calc string[] selectable_spellcasting_class_source_ids(name = "Selectable spellcasting class source ids") =
+  map(selectable_spellcasting_class_sources, mapper = ($mapValue) => $mapValue.id);
+
+calc string[] selectable_spellcasting_archetype_source_ids(name = "Selectable spellcasting archetype source ids") =
+  map($character?.spellcasting_archetypes ?? [], mapper = ($mapValue) => $mapValue.id);
+
+calc string raw_view_or_saved_source_id(name = "Raw view or saved source id") =
   if !isEmpty(selected_spellcasting_source_id)
     then selected_spellcasting_source_id
-    else if !isEmpty(selected_spellcasting_class_id)
-      then selected_spellcasting_class_id
-      else (findFirst(
+    else selected_spellcasting_class_id;
+
+calc string resolved_spellcasting_source_kind(name = "Resolved spellcasting source kind") =
+  when {
+    selected_spellcasting_source_kind == "class" || selected_spellcasting_source_kind == "archetype" -> selected_spellcasting_source_kind,
+    contains(haystack = selectable_spellcasting_archetype_source_ids, needle = raw_view_or_saved_source_id) -> "archetype",
+    contains(haystack = selectable_spellcasting_class_source_ids, needle = raw_view_or_saved_source_id) -> "class",
+    isEmpty(selectable_spellcasting_class_source_ids) && !isEmpty(selectable_spellcasting_archetype_source_ids) -> "archetype",
+    else -> "class",
+  };
+
+calc string[] selectable_spellcasting_source_kind_allowed_options(name = "Selectable spellcasting source kind allowed options") =
+  flatAppend(
+    [
+      (if !isEmpty(selectable_spellcasting_class_source_ids) then ["class"] else []),
+      (if !isEmpty(selectable_spellcasting_archetype_source_ids) then ["archetype"] else []),
+    ],
+  );
+
+// Resolved view-or-saved source id (supports both old selected_spellcasting_class_id and new selected_spellcasting_source_id)
+calc string view_or_saved_source_id(name = "View or saved source id") =
+  when {
+    resolved_spellcasting_source_kind == "archetype" && contains(haystack = selectable_spellcasting_archetype_source_ids, needle = raw_view_or_saved_source_id)
+      -> raw_view_or_saved_source_id,
+    resolved_spellcasting_source_kind == "archetype"
+      -> (findFirst(
+            selectable_spellcasting_archetype_source_ids,
+            filter = ($findFirstValue) => true,
+          ) ?? ""),
+    resolved_spellcasting_source_kind == "class" && contains(haystack = selectable_spellcasting_class_source_ids, needle = raw_view_or_saved_source_id)
+      -> raw_view_or_saved_source_id,
+    resolved_spellcasting_source_kind == "class"
+      -> (findFirst(
+            selectable_spellcasting_class_source_ids,
+            filter = ($findFirstValue) => true,
+          ) ?? ""),
+    else
+      -> (findFirst(
             flatAppend(
               [
-                map(selectable_spellcasting_class_sources, mapper = ($mapValue) => $mapValue.id),
-                map($character?.spellcasting_archetypes ?? [], mapper = ($mapValue) => $mapValue.id),
+                selectable_spellcasting_class_source_ids,
+                selectable_spellcasting_archetype_source_ids,
               ],
             ),
             filter = ($findFirstValue) => true,
-          ) ?? "");
+          ) ?? ""),
+  };
 
 calc string resolved_spellcasting_class_source_id(name = "Resolved spellcasting class source id") =
   if spell_has_specific_class_source
@@ -241,12 +351,12 @@ calc string resolved_spellcasting_class_source_id(name = "Resolved spellcasting 
         filter = ($findFirstValue) => true,
       )
     else if contains(
-      haystack = map(selectable_spellcasting_class_sources, mapper = ($mapValue) => $mapValue.id),
+      haystack = selectable_spellcasting_class_source_ids,
       needle = view_or_saved_source_id,
     )
     then view_or_saved_source_id
     else (findFirst(
-          map(selectable_spellcasting_class_sources, mapper = ($mapValue) => $mapValue.id),
+          selectable_spellcasting_class_source_ids,
           filter = ($findFirstValue) => true,
         ) ?? "");
 
@@ -291,18 +401,19 @@ calc string selected_spellcasting_source_name(name = "Selected spellcasting sour
   };
 
 calc bool should_show_spellcasting_source_select(name = "Should show spellcasting source select") =
-  defined(stat = "$character")
+  is_character_spell_context
     && !spell_has_specific_ancestry_source
     && !spell_has_specific_class_source
     && total_spellcasting_sources > 1;
 
 calc bool should_show_spellcasting_source_text(name = "Should show spellcasting source text") =
-  defined(stat = "$character")
+  is_character_spell_context
     && !isEmpty(selected_spellcasting_source_name)
     && !should_show_spellcasting_source_select;
 
 calc string selected_spellcasting_mode(name = "Selected spellcasting mode") =
   when {
+    is_monster_spell_context -> monster_context_spellcasting_mode,
     spell_has_specific_ancestry_source -> "spontaneous",
     is_archetype_spell -> selected_spellcasting_archetype_source.actual_spellcasting_mode,
     notNull(selected_spellcasting_class_source) -> selected_spellcasting_class_source.class.actual_spellcasting_mode,
@@ -647,19 +758,52 @@ calc bool has_any_unexpended_prepared_entry_for_selected_source(name = "Has any 
   selected_spell_prepared_remaining_all_ranks > 0;
 
 calc bool in_combat(name = "In combat") =
-  defined(stat = "$combatants");
+  when {
+    defined(stat = "$character.in_combat") -> $character.in_combat,
+    defined(stat = "$parent.in_combat") -> $parent.in_combat,
+    defined(stat = "$parent.$parent.in_combat") -> $parent.$parent.in_combat,
+    defined(stat = "$parent.$parent.$parent.in_combat") -> $parent.$parent.$parent.in_combat,
+    defined(stat = "$parent.$parent.$parent.$parent.in_combat") -> $parent.$parent.$parent.$parent.in_combat,
+    else -> defined(stat = "$combatants"),
+  };
+
+calc string action_spend_actions_meta_stat(name = "Action spend actions meta stat") =
+  when {
+    is_monster_spell_context && defined(stat = "$parent.actions_remaining") -> "$parent.actions_remaining",
+    is_monster_spell_context && defined(stat = "$parent.$parent.actions_remaining") -> "$parent.$parent.actions_remaining",
+    is_monster_spell_context && defined(stat = "$parent.$parent.$parent.actions_remaining") -> "$parent.$parent.$parent.actions_remaining",
+    is_monster_spell_context && defined(stat = "$parent.$parent.$parent.$parent.actions_remaining") -> "$parent.$parent.$parent.$parent.actions_remaining",
+    is_monster_spell_context && defined(stat = "$parent.$parent.$parent.$parent.$parent.actions_remaining") -> "$parent.$parent.$parent.$parent.$parent.actions_remaining",
+    !is_monster_spell_context && defined(stat = "$character.actions_remaining") -> "$character.actions_remaining",
+    !is_monster_spell_context && defined(stat = "$parent.actions_remaining") -> "$parent.actions_remaining",
+    !is_monster_spell_context && defined(stat = "$parent.$parent.actions_remaining") -> "$parent.$parent.actions_remaining",
+    !is_monster_spell_context && defined(stat = "$parent.$parent.$parent.actions_remaining") -> "$parent.$parent.$parent.actions_remaining",
+    else -> (if defined(stat = "$character.actions_remaining") then "$character.actions_remaining" else ""),
+  };
+
+calc string action_spend_reaction_meta_stat(name = "Action spend reaction meta stat") =
+  when {
+    is_monster_spell_context && defined(stat = "$parent.reaction_available") -> "$parent.reaction_available",
+    is_monster_spell_context && defined(stat = "$parent.$parent.reaction_available") -> "$parent.$parent.reaction_available",
+    is_monster_spell_context && defined(stat = "$parent.$parent.$parent.reaction_available") -> "$parent.$parent.$parent.reaction_available",
+    is_monster_spell_context && defined(stat = "$parent.$parent.$parent.$parent.reaction_available") -> "$parent.$parent.$parent.$parent.reaction_available",
+    is_monster_spell_context && defined(stat = "$parent.$parent.$parent.$parent.$parent.reaction_available") -> "$parent.$parent.$parent.$parent.$parent.reaction_available",
+    !is_monster_spell_context && defined(stat = "$character.reaction_available") -> "$character.reaction_available",
+    !is_monster_spell_context && defined(stat = "$parent.reaction_available") -> "$parent.reaction_available",
+    !is_monster_spell_context && defined(stat = "$parent.$parent.reaction_available") -> "$parent.$parent.reaction_available",
+    !is_monster_spell_context && defined(stat = "$parent.$parent.$parent.reaction_available") -> "$parent.$parent.$parent.reaction_available",
+    else -> (if defined(stat = "$character.reaction_available") then "$character.reaction_available" else ""),
+  };
 
 calc integer available_combat_actions(name = "Available combat actions") =
-  when {
-    defined(stat = "$character.actions_remaining") -> $character.actions_remaining,
-    else -> 0,
-  };
+  if isEmpty(action_spend_actions_meta_stat)
+    then 0
+    else metaStat(meta_stat = action_spend_actions_meta_stat);
 
 calc integer available_combat_reaction(name = "Available combat reaction") =
-  when {
-    defined(stat = "$character.reaction_available") -> $character.reaction_available,
-    else -> 0,
-  };
+  if isEmpty(action_spend_reaction_meta_stat)
+    then 0
+    else metaStat(meta_stat = action_spend_reaction_meta_stat);
 
 calc integer action_cost_actions_spent(name = "Action cost spent from actions pool") =
   when {
@@ -674,27 +818,31 @@ calc bool action_cost_spends_reaction(name = "Action cost spends reaction") =
 
 calc bool has_required_action_economy(name = "Has required action economy for casting") =
   !in_combat
-    || !defined(stat = "$character")
+    || (action_cost_spends_reaction && isEmpty(action_spend_reaction_meta_stat))
+    || (!action_cost_spends_reaction && isEmpty(action_spend_actions_meta_stat))
     || (if action_cost_spends_reaction
       then available_combat_reaction > 0
       else available_combat_actions >= action_cost_actions_spent);
 
 calc bool use_combat_free_casting(name = "Use combat free casting mode") =
-  in_combat && !defined(stat = "$character");
+  is_monster_spell_context || (in_combat && !defined(stat = "$character"));
 
 calc bool should_display_cast_controls(name = "Should display cast controls") =
-  defined(stat = "$character") || use_combat_free_casting;
+  is_character_spell_context
+    || (is_monster_spell_context && (in_combat || defined(stat = "$character")));
 
 calc integer requested_cast_level(name = "Requested cast rank") =
-  $view?.spell_display_cast_composite_ticker? ?? (findFirst(
+  if is_monster_spell_context
+    then monster_context_entry_level
+    else $view?.spell_display_cast_composite_ticker? ?? (findFirst(
         available_slots_for_use,
         filter = ($findFirstValue) => true,
       ) ?? max([1, num_level]));
 
 calc integer selected_cast_level(name = "Selected cast rank") =
-  if is_cantrip && defined(stat = "$character")
+  if is_cantrip && is_character_spell_context
     then min([10, divide([$character.level + 1, 2], rounding_method = "up")])
-    else if is_focus_spell && defined(stat = "$character")
+    else if is_focus_spell && is_character_spell_context
       then min([10, divide([$character.level + 1, 2], rounding_method = "up")])
     else if !isEmpty(available_slots_for_use)
       then (if contains(
@@ -744,7 +892,9 @@ calc integer selected_spell_prepared_remaining_for_selected_cast_rank(name = "Se
   };
 
 calc bool has_required_prepared_cast_requirement(name = "Has required prepared cast requirement") =
-  selected_spellcasting_mode != "prepared"
+  is_effect_use_spell_free_cast
+    || is_monster_spell_context
+    || selected_spellcasting_mode != "prepared"
     || (if is_cantrip
       then selected_spell_prepared_total_rank_0 > 0
       else selected_spell_prepared_remaining_for_selected_cast_rank > 0);
@@ -887,7 +1037,7 @@ calc string selected_spellcasting_ability(name = "Selected spellcasting ability"
   };
 
 calc integer spellcasting_modifier(name = "Spellcasting modifier") =
-  if !defined(stat = "$character")
+  if !is_character_spell_context
     then 0
     else when {
         selected_spellcasting_ability == "strength" -> $character?.strength_modifier ?? 0,
@@ -899,7 +1049,9 @@ calc integer spellcasting_modifier(name = "Spellcasting modifier") =
       };
 
 calc integer selected_spell_attack_bonus(name = "Selected spell attack bonus") =
-  if !defined(stat = "$character")
+  if is_monster_spell_context
+    then monster_context_spell_attack_bonus
+  else if !defined(stat = "$character")
     then spell_attack_bonus
     else spellcasting_modifier
       + selected_spellcasting_proficiency_bonus
@@ -910,7 +1062,9 @@ calc integer selected_spell_attack_bonus(name = "Selected spell attack bonus") =
         };
 
 calc integer selected_spell_save_dc(name = "Selected spell DC") =
-  if !defined(stat = "$character")
+  if is_monster_spell_context
+    then (if monster_context_spell_dc > 0 then monster_context_spell_dc else 10)
+  else if !defined(stat = "$character")
     then (if spell_save_dc > 0 then spell_save_dc else 10)
     else 10
       + spellcasting_modifier
@@ -928,7 +1082,8 @@ calc string spell_attack_roll_formula(name = "Spell attack roll formula") =
   concat(["1d20", toSignedString(selected_spell_attack_bonus)]);
 
 calc bool character_is_not_wearing_inproficient_armor(name = "Character is not currently wear a piece of armor its not proficient with") =
-  if defined(stat = "$character.is_not_wearing_inproficient_armor")
+  if is_character_spell_context
+    && defined(stat = "$character.is_not_wearing_inproficient_armor")
     then $character.is_not_wearing_inproficient_armor
     else true;
 
@@ -1003,7 +1158,8 @@ calc bool spell_matches_selected_cast_rank_restricted_slot_grants(name = "Spell 
     );
 
 calc bool has_restricted_slot_grant_warning(name = "Has restricted slot grant warning") =
-  selected_spellcasting_mode == "spontaneous"
+  !is_effect_use_spell_free_cast
+    && selected_spellcasting_mode == "spontaneous"
     && !is_cantrip
     && !isEmpty(selected_cast_rank_restricted_slot_grants)
     && !spell_matches_selected_cast_rank_restricted_slot_grants;
@@ -1115,8 +1271,12 @@ calc string restricted_slot_grant_warning_text(name = "Restricted slot grant war
     else "";
 
 calc bool has_required_spell_slots_to_cast(name = "Has required spell slots to cast") =
-  if !has_required_prepared_cast_requirement
+  if is_effect_use_spell_free_cast
+    then true
+  else if !has_required_prepared_cast_requirement
     then false
+  else if is_monster_spell_context
+    then monster_context_has_remaining_casts
   else if is_focus_spell
     then (when {
           defined(stat = "$character.focus_points") -> $character.focus_points,

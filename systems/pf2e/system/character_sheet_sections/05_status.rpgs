@@ -67,6 +67,47 @@ character_sheet_section status() =
         stat = "speed",
         change_amount = 5,
         min_value_allowed = 0,
+        bottom_sheet_in_edit_mode = true,
+        bottom_sheet_view = section(
+          id = "speed_section",
+          header = [],
+          show_divider = false,
+          content_item_min_width = 125,
+          collapsible = false,
+          content = [
+            stat(
+              id = "player_character_speed_bottom_sheet_stat",
+              stat = "speed",
+              change_amount = 5,
+              min_value_allowed = 0,
+            ),
+            stat(
+              id = "player_character_burrow_speed_bottom_sheet_stat",
+              stat = "burrow_speed",
+              change_amount = 5,
+              min_value_allowed = 0,
+            ),
+            stat(
+              id = "player_character_climb_speed_bottom_sheet_stat",
+              stat = "climb_speed",
+              change_amount = 5,
+              min_value_allowed = 0,
+            ),
+            stat(
+              id = "player_character_fly_speed_bottom_sheet_stat",
+              stat = "fly_speed",
+              change_amount = 5,
+              min_value_allowed = 0,
+            ),
+            stat(
+              id = "player_character_swim_speed_bottom_sheet_stat",
+              stat = "swim_speed",
+              change_amount = 5,
+              min_value_allowed = 0,
+            ),
+          ],
+        ),
+        sheet_title = "Manage speeds",
       ),
     ],
   );

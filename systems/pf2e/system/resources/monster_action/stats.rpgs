@@ -33,15 +33,21 @@ calc bool in_combat(name = "In combat") =
 
 calc string action_spend_actions_meta_stat(name = "Action spend actions meta stat") =
   when {
-    defined(stat = "$character.actions_remaining") -> "$character.actions_remaining",
     defined(stat = "$parent.actions_remaining") -> "$parent.actions_remaining",
+    defined(stat = "$parent.$parent.actions_remaining") -> "$parent.$parent.actions_remaining",
+    defined(stat = "$parent.$parent.$parent.actions_remaining") -> "$parent.$parent.$parent.actions_remaining",
+    defined(stat = "$parent.$parent.$parent.$parent.actions_remaining") -> "$parent.$parent.$parent.$parent.actions_remaining",
+    defined(stat = "$character.actions_remaining") -> "$character.actions_remaining",
     else -> "",
   };
 
 calc string action_spend_reaction_meta_stat(name = "Action spend reaction meta stat") =
   when {
-    defined(stat = "$character.reaction_available") -> "$character.reaction_available",
     defined(stat = "$parent.reaction_available") -> "$parent.reaction_available",
+    defined(stat = "$parent.$parent.reaction_available") -> "$parent.$parent.reaction_available",
+    defined(stat = "$parent.$parent.$parent.reaction_available") -> "$parent.$parent.$parent.reaction_available",
+    defined(stat = "$parent.$parent.$parent.$parent.reaction_available") -> "$parent.$parent.$parent.$parent.reaction_available",
+    defined(stat = "$character.reaction_available") -> "$character.reaction_available",
     else -> "",
   };
 

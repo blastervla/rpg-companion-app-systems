@@ -11,10 +11,12 @@ view monster_spellcasting_block_display() =
         style = "text",
         bold = true,
       ),
-      resourceSection(
+      resourceArray(
         id = "monster_spellcasting_block_display_spell_levels",
-        resource_stat = "spell_levels",
         resource_id = "levelled_spell",
+        stat = "spell_levels",
+        view_type = "list",
+        hide_line = true,
       ),
     ],
   );

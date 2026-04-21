@@ -1,0 +1,17 @@
+mechanic reset_actions_on_combatant_added(event_names = "combatantAdded") =
+  when {
+    ($event.combatant.resource_record_id == id) || ($event.combatant.id == id) -> sequence(
+      effects = [
+        setStat(
+          stat = "actions_remaining",
+          new_value = max_actions_per_turn,
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "reaction_available",
+          new_value = max_reactions_per_round,
+          aggregation_type = "set",
+        ),
+      ],
+    ),
+  };

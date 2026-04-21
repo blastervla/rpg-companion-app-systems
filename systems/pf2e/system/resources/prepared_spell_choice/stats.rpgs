@@ -391,6 +391,28 @@ calc integer owner_rank_unrestricted_prepared_quantity(name = "Owner rank unrest
 calc integer owner_rank_unrestricted_overspent(name = "Owner rank unrestricted overspent") =
   max([0, owner_rank_unrestricted_prepared_quantity - owner_rank_unrestricted_slot_capacity]);
 
+calc integer owner_rank_total_overspent(name = "Owner rank total overspent") =
+  max([0, owner_rank_total_prepared_quantity - owner_rank_total_slot_capacity]);
+
+calc bool has_owner_rank_total_capacity_warning(name = "Has owner rank total capacity warning") =
+  owner_prepared_rank > 0
+    && !isEmpty(effective_spell_id)
+    && !is_cantrip_choice
+    && owner_rank_total_overspent > 0;
+
+calc string owner_rank_total_capacity_warning_text(name = "Owner rank total capacity warning text") =
+  if has_owner_rank_total_capacity_warning
+    then concat(
+        [
+          "Prepared rank ",
+          owner_prepared_rank,
+          " spells exceed total slots by ",
+          owner_rank_total_overspent,
+          ".",
+        ],
+      )
+    else "";
+
 calc bool has_owner_rank_restricted_slot_warning(name = "Has owner rank restricted slot warning") =
   owner_prepared_rank > 0
     && !isEmpty(effective_spell_id)

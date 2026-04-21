@@ -292,11 +292,22 @@ view spell_display() =
                 margin_bottom = 4,
               ),
               select(
+                id = "spell_display_spellcasting_source_kind_select",
+                stat = "selected_spellcasting_source_kind",
+                options = "spellcasting_source_kinds",
+                allowed_options = selectable_spellcasting_source_kind_allowed_options,
+                is_visible = should_show_spellcasting_source_select
+                  && length(selectable_spellcasting_source_kind_allowed_options) > 1,
+                should_auto_save = true,
+              ),
+              select(
                 id = "spell_display_spellcasting_source_select",
                 stat = "selected_spellcasting_source_id",
                 resource_options = selectable_spellcasting_class_sources,
                 options_display_stat = "spellcasting_entry_name",
-                is_visible = should_show_spellcasting_source_select && !isEmpty(selectable_spellcasting_class_sources),
+                is_visible = should_show_spellcasting_source_select
+                  && !isEmpty(selectable_spellcasting_class_sources)
+                  && resolved_spellcasting_source_kind == "class",
                 should_auto_save = true,
               ),
               select(
@@ -304,7 +315,9 @@ view spell_display() =
                 stat = "selected_spellcasting_source_id",
                 resource_options = $character?.spellcasting_archetypes ?? [],
                 options_display_stat = "spellcasting_entry_name",
-                is_visible = should_show_spellcasting_source_select && !isEmpty($character?.spellcasting_archetypes ?? []),
+                is_visible = should_show_spellcasting_source_select
+                  && !isEmpty($character?.spellcasting_archetypes ?? [])
+                  && resolved_spellcasting_source_kind == "archetype",
                 should_auto_save = true,
               ),
             ],
@@ -317,7 +330,7 @@ view spell_display() =
                 text = "Spellcasting mode: ",
                 style = "text",
                 margin_right = 4,
-                is_visible = defined(stat = "$character"),
+                is_visible = should_display_cast_controls,
               ),
               text(
                 id = "spell_display_spellcasting_mode_text",
@@ -325,7 +338,7 @@ view spell_display() =
                 style = "text",
                 color = "accent",
                 margin_bottom = 4,
-                is_visible = defined(stat = "$character"),
+                is_visible = should_display_cast_controls,
               ),
             ],
           ),
@@ -357,7 +370,7 @@ view spell_display() =
                 color = "accent",
               ),
             ],
-            is_visible = defined(stat = "$character"),
+            is_visible = should_display_cast_controls,
           ),
           text(
             id = "spell_display_cast_explanation_not_prepared",
@@ -365,7 +378,7 @@ view spell_display() =
             color = "accent",
             bold = true,
             style = "text",
-            is_visible = defined(stat = "$character")
+            is_visible = is_character_spell_context
               && selected_spellcasting_mode == "prepared"
               && !has_required_prepared_cast_requirement,
           ),
@@ -375,7 +388,7 @@ view spell_display() =
             color = "accent",
             bold = true,
             style = "text",
-            is_visible = defined(stat = "$character") && has_restricted_slot_grant_warning,
+            is_visible = is_character_spell_context && has_restricted_slot_grant_warning,
           ),
           text(
             id = "spell_display_cast_explanation",
@@ -383,7 +396,7 @@ view spell_display() =
             color = "accent",
             bold = true,
             style = "text",
-            is_visible = defined(stat = "$character") && !character_is_not_wearing_inproficient_armor,
+            is_visible = is_character_spell_context && !character_is_not_wearing_inproficient_armor,
           ),
           text(
             id = "spell_display_cast_explanation_spell_slots",
@@ -391,9 +404,17 @@ view spell_display() =
             color = "accent",
             bold = true,
             style = "text",
-            is_visible = defined(stat = "$character")
+            is_visible = is_character_spell_context
               && !has_required_spell_slots_to_cast
               && has_required_prepared_cast_requirement,
+          ),
+          text(
+            id = "spell_display_monster_casts_remaining",
+            text = monster_context_casts_remaining_text,
+            color = "accent",
+            bold = true,
+            style = "text",
+            is_visible = is_monster_spell_context && monster_context_has_daily_cast_limit,
           ),
           text(
             id = "spell_display_cast_explanation_actions",
@@ -401,7 +422,7 @@ view spell_display() =
             color = "accent",
             bold = true,
             style = "text",
-            is_visible = defined(stat = "$character") && !has_required_action_economy,
+            is_visible = should_display_cast_controls && !has_required_action_economy,
           ),
           composite(
             id = "spell_display_cast_button_composite",
@@ -417,7 +438,7 @@ view spell_display() =
               button(
                 id = "spell_display_damage_button",
                 text = damage_or_effects_button_text,
-                enabled = can_cast,
+                enabled = should_show_damage_or_effects_button,
                 event = event(name = "damageSpell", payload = payload()),
                 is_visible = should_show_damage_or_effects_button,
                 margin_left = 4,
