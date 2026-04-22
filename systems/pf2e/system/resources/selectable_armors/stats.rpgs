@@ -13,7 +13,7 @@ calc string display_description(name = "Display description") =
 base string[] selected_options_string(name = "Selected options") = [];
 
 calc resource<armor_with_amount>[] selected_options(name = "Selected options") =
-  selectableSelectedOptions(options = options, selected_ids = selected_options_string);
+  selectableArmorsSelectedOptions();
 
 calc bool can_select_more(name = "Can select more") =
   selectableCanSelectMore(selected_options = selected_options, amount = amount);
