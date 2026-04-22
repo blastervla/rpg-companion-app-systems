@@ -17,3 +17,30 @@ define popupSelectPersist(select_id, meta_stat, options_id, title) =
     display_save_button = true,
     should_persist_on_save = true,
   );
+
+define showInfoMessage(message) =
+  showMessage(message = message, message_type = "info");
+
+define skillTapForward(edit_mode) =
+  when {
+    edit_mode -> forwardEvent(new_event_names = ["editSkillProficiency"]),
+    !edit_mode -> forwardEvent(new_event_names = ["rollStat"]),
+  };
+
+define rollStatFromEvent(advantages_values, disadvantages_values, stat_meta, stat_name) =
+  roll(
+    rolls = [
+      rollable(
+        formulas = when {
+          contains(haystack = advantages_values, needle = stat_meta) -> [
+            concat(["max(2d20) + ", metaStat(meta_stat = stat_meta)]),
+          ],
+          contains(haystack = disadvantages_values, needle = stat_meta) -> [
+            concat(["min(2d20) + ", metaStat(meta_stat = stat_meta)]),
+          ],
+          else -> [concat(["1d20 + ", metaStat(meta_stat = stat_meta)])],
+        },
+        text = stat_name,
+      ),
+    ],
+  );
