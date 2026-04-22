@@ -3,7 +3,7 @@ import "../macros/system_common.rpgs";
 mechanic edit_skill_proficiency(event_names = "editSkillProficiency") =
   popupSelectPersist(
     select_id = "edit_skill_proficiency_select",
-    meta_stat = concat([($show_pop_up_event?.stat? ?? ""), "_proficiency"]),
+    meta_stat = concat([($event?.stat? ?? ""), "_proficiency"]),
     options_id = "skill_proficiency_types",
-    title = $show_pop_up_event?.statName? ?? "",
+    title = $event?.statName? ?? "",
   );
