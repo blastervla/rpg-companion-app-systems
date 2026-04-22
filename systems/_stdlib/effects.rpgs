@@ -1,0 +1,19 @@
+define setStatValue(stat_id, value) =
+  setStat(stat = stat_id, new_value = value, aggregation_type = "set");
+
+define toggleBoolSet(stat_id, current_value) =
+  setStat(stat = stat_id, new_value = !current_value, aggregation_type = "set");
+
+define popupSelectPersist(select_id, meta_stat, options_id, title) =
+  showPopUp(
+    pop_up_view = select(
+      id = select_id,
+      meta_stat = meta_stat,
+      options = options_id,
+      style = "list",
+    ),
+    pop_up_title = title,
+    display_cancel_button = true,
+    display_save_button = true,
+    should_persist_on_save = true,
+  );

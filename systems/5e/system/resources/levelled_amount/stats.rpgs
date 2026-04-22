@@ -1,3 +1,5 @@
+import "../../macros/system_common.rpgs";
+
 base integer level(name = "Level", abbreviation = "Lvl") = 1;
 
 base integer amount(name = "Description") = 0;
@@ -8,8 +10,4 @@ calc string display_description(name = "Display description") =
 base bool is_levelled(name = "Is levelled") = true;
 
 calc bool can_be_used(name = "Can execute") =
-  when {
-    defined(stat = "$parent.level") -> $parent.level,
-    defined(stat = "$character.level") -> $character.level,
-    else -> 1,
-  } >= level;
+  levelGate(required_level = level);

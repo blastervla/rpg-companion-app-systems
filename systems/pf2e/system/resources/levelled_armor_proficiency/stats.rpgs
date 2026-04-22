@@ -1,3 +1,5 @@
+import "../../macros/system_common.rpgs";
+
 base integer level(name = "Level", abbreviation = "Lvl") = 1;
 
 base string[] options(name = "Options") = [];
@@ -12,11 +14,7 @@ calc string[] resolved_options(name = "Resolved options") =
   if isEmpty(selected_option) then options else [selected_option];
 
 calc bool can_be_used(name = "Can be used") =
-  when {
-    defined(stat = "$parent.level") -> $parent.level,
-    defined(stat = "$character.level") -> $character.level,
-    else -> 1,
-  } >= level;
+  levelGate(required_level = level);
 
 calc string description(name = "Display description") =
   concat(

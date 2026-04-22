@@ -1,30 +1,19 @@
+import "../../macros/system_common.rpgs";
+
 base integer amount(name = "Amount") = 1;
 
 base resource<weapon_with_amount>[] options(name = "Options") = [];
 
 calc string choose_label_text(name = "Choose label text") =
-  concat(["Choose ", amount, ": "]);
+  selectableChooseLabel(amount = amount);
 
 calc string display_description(name = "Display description") =
-  concat(
-    [
-      "Choose ",
-      amount,
-      " from ",
-      joinToString(
-        map(options, mapper = ($mapValue) => $mapValue.display_description),
-        separator = ", ",
-      ),
-    ],
-  );
+  selectableDisplayDescription(amount = amount, options = options);
 
 base string[] selected_options_string(name = "Selected options") = [];
 
 calc resource<weapon_with_amount>[] selected_options(name = "Selected options") =
-  filter(
-    options,
-    filter = ($filterValue) => contains(haystack = selected_options_string, needle = $filterValue.id),
-  );
+  selectableSelectedOptions(options = options, selected_ids = selected_options_string);
 
 calc bool can_select_more(name = "Can select more") =
-  length(selected_options) < amount;
+  selectableCanSelectMore(selected_options = selected_options, amount = amount);

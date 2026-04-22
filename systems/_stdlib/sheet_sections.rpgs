@@ -1,0 +1,46 @@
+define rollStatRow(id, stat_id, edit_stat_id, stat_name) =
+  stat(
+    id = id,
+    stat = stat_id,
+    edit_stat = edit_stat_id,
+    change_amount = 1,
+    on_tap_event = event(
+      name = "rollStat",
+      payload = payload(stat = stat_id, statName = stat_name),
+    ),
+  );
+
+define saveTapRow(id, stat_id, stat_name, proficiency_stat, proficiency_name) =
+  stat(
+    id = id,
+    stat = stat_id,
+    on_tap_event = event(
+      name = "saveTap",
+      payload = payload(
+        stat = stat_id,
+        statName = stat_name,
+        proficiency_stat = proficiency_stat,
+        proficiency_name = proficiency_name,
+      ),
+    ),
+    on_long_tap_event = event(
+      name = "editSaveProficiency",
+      payload = payload(
+        proficiency_stat = proficiency_stat,
+        proficiency_name = proficiency_name,
+      ),
+    ),
+  );
+
+define skillListRow(id, stat_id, stat_name, stat_color, name_color) =
+  stat(
+    id = id,
+    stat = stat_id,
+    change_amount = 0,
+    on_tap_event = event(name = "skillTap", payload = payload(stat = stat_id, statName = stat_name)),
+    on_long_tap_event = event(name = "editSkillProficiency", payload = payload(stat = stat_id, statName = stat_name)),
+    style = "list",
+    stat_color = stat_color,
+    name_color = name_color,
+    always_show_sign = true,
+  );

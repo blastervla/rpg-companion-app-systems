@@ -1,86 +1,20 @@
+import "../macros/system_common.rpgs";
+
 character_sheet_section saving_throws() =
   section(
     id = "saving_throws_section",
     show_divider = true,
     content_item_min_width = 125,
     collapsible = false,
-    header = [
-      icon(
-        id = "saving_throws_section_icon",
-        name = "ic_d20",
-        size = "medium",
-        margin_top = 8,
-        margin_right = 8,
-        margin_left = 16,
-      ),
-      text(
-        id = "saving_throws_section_title",
-        margin_right = 16,
-        margin_left = 16,
-        text = "Saving Throws",
-        style = "title",
-      ),
-    ],
+    header = defaultSectionHeader(
+      icon_id = "saving_throws_section_icon",
+      icon_name = "ic_d20",
+      title_id = "saving_throws_section_title",
+      title_text = "Saving Throws",
+    ),
     content = [
-      stat(
-        id = "fortitude",
-        stat = "fortitude",
-        on_tap_event = event(
-          name = "saveTap",
-          payload = payload(
-            stat = "fortitude",
-            statName = "Fortitude save",
-            proficiency_stat = "fortitude_proficiency",
-            proficiency_name = "Fortitude proficiency",
-          ),
-        ),
-        on_long_tap_event = event(
-          name = "editSaveProficiency",
-          payload = payload(
-            proficiency_stat = "fortitude_proficiency",
-            proficiency_name = "Fortitude proficiency",
-          ),
-        ),
-      ),
-      stat(
-        id = "reflex",
-        stat = "reflex",
-        on_tap_event = event(
-          name = "saveTap",
-          payload = payload(
-            stat = "reflex",
-            statName = "Reflex save",
-            proficiency_stat = "reflex_proficiency",
-            proficiency_name = "Reflex proficiency",
-          ),
-        ),
-        on_long_tap_event = event(
-          name = "editSaveProficiency",
-          payload = payload(
-            proficiency_stat = "reflex_proficiency",
-            proficiency_name = "Reflex proficiency",
-          ),
-        ),
-      ),
-      stat(
-        id = "will",
-        stat = "will",
-        on_tap_event = event(
-          name = "saveTap",
-          payload = payload(
-            stat = "will",
-            statName = "Will save",
-            proficiency_stat = "will_proficiency",
-            proficiency_name = "Will proficiency",
-          ),
-        ),
-        on_long_tap_event = event(
-          name = "editSaveProficiency",
-          payload = payload(
-            proficiency_stat = "will_proficiency",
-            proficiency_name = "Will proficiency",
-          ),
-        ),
-      ),
+      saveTapRow(id = "fortitude", stat_id = "fortitude", stat_name = "Fortitude save", proficiency_stat = "fortitude_proficiency", proficiency_name = "Fortitude proficiency"),
+      saveTapRow(id = "reflex", stat_id = "reflex", stat_name = "Reflex save", proficiency_stat = "reflex_proficiency", proficiency_name = "Reflex proficiency"),
+      saveTapRow(id = "will", stat_id = "will", stat_name = "Will save", proficiency_stat = "will_proficiency", proficiency_name = "Will proficiency"),
     ],
   );
