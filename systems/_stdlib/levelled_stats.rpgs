@@ -1,0 +1,53 @@
+define levelledDisplayDescription(level, value) =
+  concat(["Lvl. ", level, ": ", value]);
+
+define levelledDamageDiceDescription(damage_dice_values) =
+  joinToString(
+    (if !isEmpty(damage_dice_values)
+      then map(damage_dice_values, mapper = ($mapValue) => $mapValue.display_description)
+      else ["No damage"]),
+    separator = " + ",
+  );
+
+define levelledDamageDiceCurrentLevel() =
+  when {
+    defined(stat = "$parent.level") && !defined(stat = "$parent.school") -> $parent.level,
+    defined(stat = "$character.level") -> $character.level,
+    else -> 1,
+  };
+
+define levelledEffectCurrentLevel() =
+  when {
+    defined(stat = "$parent.level") -> $parent.level,
+    defined(stat = "$character.level") -> $character.level,
+    else -> 1,
+  };
+
+define levelledEffectExecutionLevel(level) =
+  if $parent?.is_feat? ?? false then max([level, $parent.min_level]) else level;
+
+define levelledValueCalculatorValues(calculators) =
+  map(calculators, mapper = ($mapValue) => $mapValue.calculated_value);
+
+define levelledValueCalculatorCalculatedValue(aggregation_type, calculator_values) =
+  when {
+    defined(stat = "$character") && aggregation_type == "max" -> max(calculator_values),
+    defined(stat = "$character") && aggregation_type == "min" -> min(calculator_values),
+    else -> 0,
+  };
+
+define levelledValueCalculatorDescription(level, aggregation_type, calculators) =
+  concat(
+    [
+      "Lvl. ",
+      level,
+      ": ",
+      aggregation_type,
+      "(",
+      joinToString(
+        map(calculators, mapper = ($mapValue) => $mapValue.description),
+        separator = ", ",
+      ),
+      ")",
+    ],
+  );

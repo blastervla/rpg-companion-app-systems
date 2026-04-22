@@ -46,3 +46,21 @@ When doing manual, source-vs-output review work for PF2e resources in this repo,
 - For ephemeral UI choices (like strike number), read from view-effective stats rather than auto-saving committed state.
 - For mechanics/conditions, avoid direct nullable resource dereferences in boolean expressions; compute null-safe helper flags first and use those.
 - Event-name scoping matters: on non-character resources, `event_names` gets resource-scoped/suffixed. For global/system events (`turnAdvanced`, `roundAdvanced`, etc.), use `calculated_event_names` to subscribe to the unsuffixed global event.
+
+6. RPG Script Macros, Imports, and Stdlib Conventions
+- Use `define` for repeated formulas/effect fragments/view fragments. Keep macros small, explicit, and behavior-revealing; avoid opaque "do-everything" macros.
+- Prefer stable macro signatures with named args at call sites.
+- `import` only brings in `define` declarations; imported stats/views/mechanics are ignored.
+- Local `define` declarations override imported macro names. Avoid relying on override behavior unless intentional and documented.
+- Transitive imports are allowed, but keep chains shallow (prefer at most two hops from caller to leaf macro source).
+- Apply all null-safety guardrails inside macro bodies too: no short-circuit assumptions, and every nullable path must be independently safe.
+- Stdlib placement:
+  - Put cross-system helpers in `systems/_stdlib/*.rpgs`.
+  - Put system-specific wrappers/adapters in `systems/<system>/system/macros/system_common.rpgs`.
+- Import pattern:
+  - Refactored `.rpgs` files should import system overlay macros (for example `system/macros/system_common.rpgs` via relative path).
+  - System overlay macro files should import from `systems/_stdlib`.
+- Migration policy:
+  - Treat macro/import extraction as refactor-only by default.
+  - Do not intentionally change gameplay behavior without explicit scope.
+  - Require parity checks before/after each extraction batch; if parity fails, split and rollback the chunk.

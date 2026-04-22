@@ -1,3 +1,5 @@
+import "../../macros/system_common.rpgs";
+
 base integer level(name = "Level", abbreviation = "Lvl") = 1;
 
 base string bucket(name = "Bucket") = "class_like_feat";
@@ -293,11 +295,7 @@ calc string bucket_to_feat_type(name = "Bucket to feat type") =
   };
 
 calc bool can_be_used(name = "Can execute") =
-  when {
-    defined(stat = "$parent.level") -> $parent.level,
-    defined(stat = "$character.level") -> $character.level,
-    else -> 1,
-  } >= level;
+  levelGate(required_level = level);
 
 calc string character_heritage_filter(name = "Character heritage filter") =
   if $character?.heritage?.is_versatile == true

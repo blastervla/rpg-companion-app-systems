@@ -1,0 +1,42 @@
+define defaultSectionHeader(icon_id, icon_name, title_id, title_text) = [
+  icon(
+    id = icon_id,
+    name = icon_name,
+    size = "medium",
+    margin_top = 8,
+    margin_right = 8,
+    margin_left = 16,
+  ),
+  text(
+    id = title_id,
+    margin_right = 16,
+    margin_left = 16,
+    text = title_text,
+    style = "title",
+  ),
+];
+
+define selectableChooseLabel(amount) =
+  concat(["Choose ", amount, ": "]);
+
+define selectableDisplayDescription(amount, options) =
+  concat(
+    [
+      "Choose ",
+      amount,
+      " from ",
+      joinToString(
+        map(options, mapper = ($mapValue) => $mapValue.display_description),
+        separator = ", ",
+      ),
+    ],
+  );
+
+define selectableSelectedOptions(options, selected_ids) =
+  filter(
+    options,
+    filter = ($filterValue) => contains(haystack = selected_ids, needle = $filterValue.id),
+  );
+
+define selectableCanSelectMore(selected_options, amount) =
+  length(selected_options) < amount;

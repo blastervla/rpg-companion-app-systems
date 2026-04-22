@@ -1,3 +1,5 @@
+import "../../macros/system_common.rpgs";
+
 base string name(name = "Name") = "";
 
 base photo photo(name = "Photo") = null;
@@ -158,22 +160,22 @@ calc string hit_points_formatted(name = "Formatted hit points") =
     else concat([average_hp, " (", (hit_points?.formula ?? "0"), ")"]);
 
 calc integer strength_modifier(name = "Strength", abbreviation = "STR") =
-  divide([(strength_score + -10), 2], rounding_method = "down");
+  abilityModifier(score = strength_score);
 
 calc integer dexterity_modifier(name = "Dexterity", abbreviation = "DEX") =
-  divide([(dexterity_score + -10), 2], rounding_method = "down");
+  abilityModifier(score = dexterity_score);
 
 calc integer constitution_modifier(name = "Constitution", abbreviation = "CON") =
-  divide([(constitution_score + -10), 2], rounding_method = "down");
+  abilityModifier(score = constitution_score);
 
 calc integer intelligence_modifier(name = "Intelligence", abbreviation = "INT") =
-  divide([(intelligence_score + -10), 2], rounding_method = "down");
+  abilityModifier(score = intelligence_score);
 
 calc integer wisdom_modifier(name = "Wisdom", abbreviation = "WIS") =
-  divide([(wisdom_score + -10), 2], rounding_method = "down");
+  abilityModifier(score = wisdom_score);
 
 calc integer charisma_modifier(name = "Charisma", abbreviation = "CHA") =
-  divide([(charisma_score + -10), 2], rounding_method = "down");
+  abilityModifier(score = charisma_score);
 
 calc string display_strength_with_mod(name = "Display strength with mod") =
   concat(

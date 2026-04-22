@@ -1,3 +1,5 @@
+import "macros/system_common.rpgs";
+
 calc string created_at_display(name = "Created at display") =
   concat(["Created ", date(created_at)]);
 
@@ -685,9 +687,7 @@ calc integer proficiency_bonus(name = "Proficiency Bonus", abbreviation = "PB") 
   1 + divide([level, 4], rounding_method = "up");
 
 calc string display_proficiency_bonus(name = "Display proficiency bonus") =
-  if proficiency_bonus >= 0
-    then concat(["+", proficiency_bonus])
-    else concat(["", proficiency_bonus]);
+  signedDisplay(value = proficiency_bonus);
 
 base integer strength_score(name = "Strength", abbreviation = "STR") = 8;
 
@@ -704,22 +704,22 @@ base integer wisdom_score(name = "Wisdom", abbreviation = "WIS") = 8;
 base integer charisma_score(name = "Charisma", abbreviation = "CHA") = 8;
 
 calc integer strength_modifier(name = "Strength", abbreviation = "STR") =
-  divide([(strength_score + -10), 2], rounding_method = "down");
+  abilityModifier(score = strength_score);
 
 calc integer dexterity_modifier(name = "Dexterity", abbreviation = "DEX") =
-  divide([(dexterity_score + -10), 2], rounding_method = "down");
+  abilityModifier(score = dexterity_score);
 
 calc integer constitution_modifier(name = "Constitution", abbreviation = "CON") =
-  divide([(constitution_score + -10), 2], rounding_method = "down");
+  abilityModifier(score = constitution_score);
 
 calc integer intelligence_modifier(name = "Intelligence", abbreviation = "INT") =
-  divide([(intelligence_score + -10), 2], rounding_method = "down");
+  abilityModifier(score = intelligence_score);
 
 calc integer wisdom_modifier(name = "Wisdom", abbreviation = "WIS") =
-  divide([(wisdom_score + -10), 2], rounding_method = "down");
+  abilityModifier(score = wisdom_score);
 
 calc integer charisma_modifier(name = "Charisma", abbreviation = "CHA") =
-  divide([(charisma_score + -10), 2], rounding_method = "down");
+  abilityModifier(score = charisma_score);
 
 calc integer attacks_per_action(name = "Attacks per action") =
   max(map(classes, mapper = ($class) => $class.attacks_per_action));

@@ -1,13 +1,11 @@
+import "../macros/system_common.rpgs";
+
 mechanic long_rest_when_new(event_names = "characterLoaded") =
   when {
     is_new_and_should_long_rest -> sequence(
       effects = [
-        fireEvent(event = event(name = "long_rest", payload = payload())),
-        setStat(
-          stat = "is_new_and_should_long_rest",
-          new_value = false,
-          aggregation_type = "set",
-        ),
+        fireEventName(event_name = "long_rest"),
+        setStatFalse(stat_id = "is_new_and_should_long_rest"),
       ],
     ),
   };

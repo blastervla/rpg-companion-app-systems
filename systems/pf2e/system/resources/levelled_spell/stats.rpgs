@@ -1,3 +1,5 @@
+import "../../macros/system_common.rpgs";
+
 base integer level(name = "Level", abbreviation = "Lvl") = 1;
 
 base resource<spell> spell(name = "Spell") = null;
@@ -59,11 +61,7 @@ calc integer casts_remaining_today(name = "Casts remaining today") =
     else -1;
 
 calc bool can_execute(name = "Can execute") =
-  when {
-    defined(stat = "$parent.level") -> $parent.level,
-    defined(stat = "$character.level") -> $character.level,
-    else -> 1,
-  } >= level;
+  levelGate(required_level = level);
 
 calc string description(name = "Display description") =
   if spell == null
