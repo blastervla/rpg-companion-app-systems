@@ -1,14 +1,15 @@
+import "../../macros/system_common.rpgs";
+
 base integer amount(name = "Amount") = 1;
 
 base resource<item> item(name = "Item") = null;
 
 calc string display_description(name = "Display description") =
-  concat([amount, " ", (item?.name ?? "nothing")]);
+  itemWithAmountDisplayDescription();
 
 base bool selected(name = "Is selected") = false;
 
 calc bool can_toggle_selection(name = "Can toggle selection") =
-  $parent?.can_select_more ?? true
-    || $view?.item_with_amount_display_in_character ?? false;
+  itemWithAmountCanToggleSelection();
 
 base bool should_load_effects(name = "Should load effects") = false;
