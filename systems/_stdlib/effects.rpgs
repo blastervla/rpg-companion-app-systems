@@ -1,8 +1,17 @@
 define setStatValue(stat_id, value) =
   setStat(stat = stat_id, new_value = value, aggregation_type = "set");
 
+define setStatTrue(stat_id) =
+  setStatValue(stat_id = stat_id, value = true);
+
+define setStatFalse(stat_id) =
+  setStatValue(stat_id = stat_id, value = false);
+
 define toggleBoolSet(stat_id, current_value) =
   setStat(stat = stat_id, new_value = !current_value, aggregation_type = "set");
+
+define fireEventName(event_name) =
+  fireEvent(event = event(name = event_name, payload = payload()));
 
 define popupSelectPersist(select_id, meta_stat, options_id, title) =
   showPopUp(
