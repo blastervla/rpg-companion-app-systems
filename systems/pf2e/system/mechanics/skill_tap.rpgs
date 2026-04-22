@@ -1,5 +1,4 @@
+import "../macros/system_common.rpgs";
+
 mechanic skill_tap(event_names = "skillTap") =
-  when {
-    $edit_mode -> forwardEvent(new_event_names = ["editSkillProficiency"]),
-    !$edit_mode -> forwardEvent(new_event_names = ["rollStat"]),
-  };
+  skillTapForward(edit_mode = $edit_mode);
