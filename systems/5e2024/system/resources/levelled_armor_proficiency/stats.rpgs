@@ -12,17 +12,4 @@ calc bool can_be_used(name = "Can be used") =
   levelGate(required_level = level);
 
 calc string description(name = "Display description") =
-  concat(
-    [
-      "Lvl. ",
-      level,
-      ": ",
-      joinToString(
-        map(
-          options,
-          mapper = ($mapValue) => enumeratedName(enumerated_type = "armor_types", id = $mapValue),
-        ),
-        separator = ", ",
-      ),
-    ],
-  );
+  dnd5eLevelledArmorProficiencyDescription();
