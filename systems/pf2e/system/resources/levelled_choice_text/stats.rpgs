@@ -12,4 +12,4 @@ calc bool can_be_used(name = "Can be_used") =
   levelGate(required_level = level);
 
 calc string description(name = "Display description") =
-  concat(["Lvl. ", level, ": ", options]);
+  levelledDisplayDescription(level = level, value = options);

@@ -6,18 +6,9 @@ base resource<damage_dice>[] damage_dice(name = "Damage dice", abbreviation = "D
   [];
 
 calc string description(name = "Display description") =
-  joinToString(
-    (if !isEmpty(damage_dice)
-      then map(damage_dice, mapper = ($mapValue) => $mapValue.display_description)
-      else ["No damage"]),
-    separator = " + ",
-  );
+  levelledDamageDiceDescription(damage_dice_values = damage_dice);
 
 base bool is_levelled(name = "Is levelled") = true;
 
 calc bool can_execute(name = "Can execute") =
-  when {
-    defined(stat = "$parent.level") && !defined(stat = "$parent.school") -> $parent.level,
-    defined(stat = "$character.level") -> $character.level,
-    else -> 1,
-  } >= level;
+  levelledDamageDiceCurrentLevel() >= level;

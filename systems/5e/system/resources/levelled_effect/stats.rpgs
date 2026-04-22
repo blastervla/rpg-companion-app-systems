@@ -7,14 +7,10 @@ base resource<effect> effect(name = "Effect") = null;
 base bool is_levelled(name = "Is levelled") = true;
 
 calc integer current_level(name = "Current level for character / resource this is attached to") =
-  when {
-    defined(stat = "$parent.level") -> $parent.level,
-    defined(stat = "$character.level") -> $character.level,
-    else -> 1,
-  };
+  levelledEffectCurrentLevel();
 
 calc integer execution_level(name = "Min level for execution") =
-  if $parent?.is_feat? ?? false then max([level, $parent.min_level]) else level;
+  levelledEffectExecutionLevel(level = level);
 
 calc bool can_execute(name = "Can execute") = current_level >= execution_level;
 
