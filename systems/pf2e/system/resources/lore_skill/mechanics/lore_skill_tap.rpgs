@@ -1,16 +1,12 @@
+import "../../../macros/system_common.rpgs";
+
 mechanic lore_skill_tap(event_names = "loreSkillTap") =
   when {
-    (($event.force_edit? ?? false) || ($character?.$edit_mode? ?? false)) -> showPopUp(
-      pop_up_view = select(
-        id = "edit_lore_skill_proficiency_select",
-        stat = "proficiency",
-        options = "skill_proficiency_types",
-        style = "list",
-      ),
-      pop_up_title = if isEmpty(lore_name) then "Lore" else lore_name,
-      display_cancel_button = true,
-      display_save_button = true,
-      should_persist_on_save = true,
+    (($event.force_edit? ?? false) || ($character?.$edit_mode? ?? false)) -> popupSelectPersistStat(
+      select_id = "edit_lore_skill_proficiency_select",
+      stat = "proficiency",
+      options_id = "skill_proficiency_types",
+      title = if isEmpty(lore_name) then "Lore" else lore_name,
     ),
     !(($character?.$edit_mode? ?? false) || ($event.force_edit? ?? false)) -> roll(
       rolls = [

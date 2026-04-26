@@ -1,3 +1,5 @@
+import "../../macros/system_common.rpgs";
+
 view class_progression_edit() =
   list(
     subviews = [
@@ -7,18 +9,13 @@ view class_progression_edit() =
         margin_bottom = 4,
         is_visible = defined(stat = "$character.$is_new"),
         subviews = [
-          popUpButton(
-            id = "edit_character_basics_see_class_button",
-            text = "SEE DETAILS",
-            pop_up_view = resource(
-              id = "edit_character_basics_see_class_bottom_sheet",
-              view_type = "display",
-              resource_id = "class",
-              stat = "$view.class_progression_edit_class_select",
-            ),
+          resourceDetailsOkPopUpButton(
+            button_id = "edit_character_basics_see_class_button",
+            button_text = "SEE DETAILS",
+            pop_up_view_id = "edit_character_basics_see_class_bottom_sheet",
+            resource_id = "class",
+            stat = "$view.class_progression_edit_class_select",
             pop_up_title = $view?.class_progression_edit_class_select?.name ?? "Class",
-            display_cancel_button = true,
-            cancel_text = "OK",
             is_visible = notNull($view?.class_progression_edit_class_select?),
           ),
           selectResources(
@@ -29,18 +26,13 @@ view class_progression_edit() =
             then "You have an unselected class. Select a class or remove it."
             else null,
           ),
-          popUpButton(
-            id = "class_progression_edit_see_deity_button",
-            text = "SEE DEITY",
-            pop_up_view = resource(
-              id = "class_progression_edit_see_deity_bottom_sheet",
-              view_type = "display",
-              resource_id = "deity",
-              stat = "$view.class_progression_edit_deity_select",
-            ),
+          resourceDetailsOkPopUpButton(
+            button_id = "class_progression_edit_see_deity_button",
+            button_text = "SEE DEITY",
+            pop_up_view_id = "class_progression_edit_see_deity_bottom_sheet",
+            resource_id = "deity",
+            stat = "$view.class_progression_edit_deity_select",
             pop_up_title = $view?.class_progression_edit_deity_select?.name ?? "Deity",
-            display_cancel_button = true,
-            cancel_text = "OK",
             is_visible = ($view?.class_progression_edit_class_select?.requires_deity ?? false)
             && notNull($view?.class_progression_edit_deity_select?),
           ),
@@ -127,97 +119,69 @@ view class_progression_edit() =
             color = "accent",
             is_visible = !isEmpty(prepared_capacity_warning_text),
           ),
-          resourceArray(
-            id = "class_progression_edit_prepared_spells_rank_0_array",
-            resource_id = "prepared_spell_choice",
-            stat = "prepared_spell_choices_rank_0",
-            view_type = "edit",
-            left_view = text(
-              id = "class_progression_edit_prepared_spells_rank_0_label",
-              text = "Cantrips",
-              style = "text",
-              bold = true,
-            ),
+          preparedCantripChoiceArray(
+            prefix = "class_progression_edit",
+            stat_id = "prepared_spell_choices_rank_0",
             is_visible = max_class_cantrip_quantity > 0 || !isEmpty(prepared_spell_choices_rank_0),
           ),
-          resourceArray(
-            id = "class_progression_edit_prepared_spells_rank_1_array",
-            resource_id = "prepared_spell_choice",
-            stat = "prepared_spell_choices_rank_1",
-            view_type = "edit",
-            left_view = text(id = "class_progression_edit_prepared_spells_rank_1_label", text = "Rank 1", style = "text", bold = true),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "1",
+            stat_id = "prepared_spell_choices_rank_1",
             is_visible = max_class_spell_slots_1 > 0 || !isEmpty(prepared_spell_choices_rank_1),
           ),
-          resourceArray(
-            id = "class_progression_edit_prepared_spells_rank_2_array",
-            resource_id = "prepared_spell_choice",
-            stat = "prepared_spell_choices_rank_2",
-            view_type = "edit",
-            left_view = text(id = "class_progression_edit_prepared_spells_rank_2_label", text = "Rank 2", style = "text", bold = true),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "2",
+            stat_id = "prepared_spell_choices_rank_2",
             is_visible = max_class_spell_slots_2 > 0 || !isEmpty(prepared_spell_choices_rank_2),
           ),
-          resourceArray(
-            id = "class_progression_edit_prepared_spells_rank_3_array",
-            resource_id = "prepared_spell_choice",
-            stat = "prepared_spell_choices_rank_3",
-            view_type = "edit",
-            left_view = text(id = "class_progression_edit_prepared_spells_rank_3_label", text = "Rank 3", style = "text", bold = true),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "3",
+            stat_id = "prepared_spell_choices_rank_3",
             is_visible = max_class_spell_slots_3 > 0 || !isEmpty(prepared_spell_choices_rank_3),
           ),
-          resourceArray(
-            id = "class_progression_edit_prepared_spells_rank_4_array",
-            resource_id = "prepared_spell_choice",
-            stat = "prepared_spell_choices_rank_4",
-            view_type = "edit",
-            left_view = text(id = "class_progression_edit_prepared_spells_rank_4_label", text = "Rank 4", style = "text", bold = true),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "4",
+            stat_id = "prepared_spell_choices_rank_4",
             is_visible = max_class_spell_slots_4 > 0 || !isEmpty(prepared_spell_choices_rank_4),
           ),
-          resourceArray(
-            id = "class_progression_edit_prepared_spells_rank_5_array",
-            resource_id = "prepared_spell_choice",
-            stat = "prepared_spell_choices_rank_5",
-            view_type = "edit",
-            left_view = text(id = "class_progression_edit_prepared_spells_rank_5_label", text = "Rank 5", style = "text", bold = true),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "5",
+            stat_id = "prepared_spell_choices_rank_5",
             is_visible = max_class_spell_slots_5 > 0 || !isEmpty(prepared_spell_choices_rank_5),
           ),
-          resourceArray(
-            id = "class_progression_edit_prepared_spells_rank_6_array",
-            resource_id = "prepared_spell_choice",
-            stat = "prepared_spell_choices_rank_6",
-            view_type = "edit",
-            left_view = text(id = "class_progression_edit_prepared_spells_rank_6_label", text = "Rank 6", style = "text", bold = true),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "6",
+            stat_id = "prepared_spell_choices_rank_6",
             is_visible = max_class_spell_slots_6 > 0 || !isEmpty(prepared_spell_choices_rank_6),
           ),
-          resourceArray(
-            id = "class_progression_edit_prepared_spells_rank_7_array",
-            resource_id = "prepared_spell_choice",
-            stat = "prepared_spell_choices_rank_7",
-            view_type = "edit",
-            left_view = text(id = "class_progression_edit_prepared_spells_rank_7_label", text = "Rank 7", style = "text", bold = true),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "7",
+            stat_id = "prepared_spell_choices_rank_7",
             is_visible = max_class_spell_slots_7 > 0 || !isEmpty(prepared_spell_choices_rank_7),
           ),
-          resourceArray(
-            id = "class_progression_edit_prepared_spells_rank_8_array",
-            resource_id = "prepared_spell_choice",
-            stat = "prepared_spell_choices_rank_8",
-            view_type = "edit",
-            left_view = text(id = "class_progression_edit_prepared_spells_rank_8_label", text = "Rank 8", style = "text", bold = true),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "8",
+            stat_id = "prepared_spell_choices_rank_8",
             is_visible = max_class_spell_slots_8 > 0 || !isEmpty(prepared_spell_choices_rank_8),
           ),
-          resourceArray(
-            id = "class_progression_edit_prepared_spells_rank_9_array",
-            resource_id = "prepared_spell_choice",
-            stat = "prepared_spell_choices_rank_9",
-            view_type = "edit",
-            left_view = text(id = "class_progression_edit_prepared_spells_rank_9_label", text = "Rank 9", style = "text", bold = true),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "9",
+            stat_id = "prepared_spell_choices_rank_9",
             is_visible = max_class_spell_slots_9 > 0 || !isEmpty(prepared_spell_choices_rank_9),
           ),
-          resourceArray(
-            id = "class_progression_edit_prepared_spells_rank_10_array",
-            resource_id = "prepared_spell_choice",
-            stat = "prepared_spell_choices_rank_10",
-            view_type = "edit",
-            left_view = text(id = "class_progression_edit_prepared_spells_rank_10_label", text = "Rank 10", style = "text", bold = true),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "10",
+            stat_id = "prepared_spell_choices_rank_10",
             is_visible = max_class_spell_slots_10 > 0 || !isEmpty(prepared_spell_choices_rank_10),
           ),
         ],

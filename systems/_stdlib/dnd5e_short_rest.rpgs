@@ -362,7 +362,7 @@ define dnd5eOnShortRest() =
   );
 
 define dnd5eTriggerShortRestPopup() =
-  showPopUp(
+  bottomSheetActionPopUpEditMode(
     pop_up_view = list(
       id = "short_rest_bottom_sheet",
       padding = 16,
@@ -427,12 +427,6 @@ define dnd5eTriggerShortRestPopup() =
       ],
     ),
     pop_up_title = "Short Rest ",
-    display_cancel_button = true,
-    extra_buttons = [
-      rPGViewBottomSheetExtraButton(
-        text = "REST",
-        event = event(name = "short_rest", payload = payload()),
-      ),
-    ],
-    in_edit_mode = true,
+    action_text = "REST",
+    action_event_name = "short_rest",
   );

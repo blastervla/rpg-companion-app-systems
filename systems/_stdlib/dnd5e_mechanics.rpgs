@@ -1,5 +1,5 @@
 define dnd5eTriggerLongRestPopup() =
-  showPopUp(
+  bottomSheetActionPopUp(
     pop_up_view = list(
       id = "long_rest_bottom_sheet",
       padding = 32,
@@ -13,13 +13,8 @@ define dnd5eTriggerLongRestPopup() =
       ],
     ),
     pop_up_title = "Long Rest",
-    display_cancel_button = true,
-    extra_buttons = [
-      rPGViewBottomSheetExtraButton(
-        text = "REST",
-        event = event(name = "long_rest", payload = payload()),
-      ),
-    ],
+    action_text = "REST",
+    action_event_name = "long_rest",
   );
 
 define dnd5eRemoveEmptyItems() =

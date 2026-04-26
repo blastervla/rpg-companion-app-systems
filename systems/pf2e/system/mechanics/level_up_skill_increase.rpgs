@@ -1,3 +1,5 @@
+import "../macros/system_common.rpgs";
+
 mechanic level_up_skill_increase(event_names = "level_up_skill_increase") =
   when {
     is_temp_skill_increase_selection_valid -> sequence(
@@ -24,14 +26,9 @@ mechanic level_up_skill_increase(event_names = "level_up_skill_increase") =
         ),
       ],
     ),
-    else -> showPopUp(
-      pop_up_view = text(
-        id = "level_up_skill_increase_error_text",
-        text = temp_skill_increase_validation_message,
-        style = "text",
-      ),
+    else -> showAlertTextPopUp(
       pop_up_title = "Skill Increase",
-      pop_up_type = "alert",
-      cancel_text = "OK",
+      text_id = "level_up_skill_increase_error_text",
+      message = temp_skill_increase_validation_message,
     ),
   };

@@ -1,3 +1,5 @@
+import "../macros/system_common.rpgs";
+
 mechanic level_up_asi(event_names = "level_up_asi") =
   when {
     is_temp_asi_selection_valid -> sequence(
@@ -29,14 +31,9 @@ mechanic level_up_asi(event_names = "level_up_asi") =
         ),
       ],
     ),
-    else -> showPopUp(
-      pop_up_view = text(
-        id = "level_up_asi_error_text",
-        text = temp_asi_validation_message,
-        style = "text",
-      ),
+    else -> showAlertTextPopUp(
       pop_up_title = "Ability boosts",
-      pop_up_type = "alert",
-      cancel_text = "OK",
+      text_id = "level_up_asi_error_text",
+      message = temp_asi_validation_message,
     ),
   };
