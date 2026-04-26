@@ -1,3 +1,5 @@
+import "../macros/system_common.rpgs";
+
 character_creation_page edit_basics_title() =
   characterCreationPage(
     title = displayableData(id = "edit_basics_title", name = "Character basics"),
@@ -20,42 +22,33 @@ character_creation_page edit_basics_title() =
             then "Please make sure to provide a name for your character!"
             else null,
         ),
-        composite(
-          id = "edit_character_basics_race_subrace_composite",
-          alignment = "end",
-          margin_bottom = 4,
-          subviews = [
-            popUpButton(
-              id = "edit_character_basics_see_race_button",
-              text = "SEE DETAILS",
-              pop_up_view = resource(
-                id = "edit_character_basics_see_race_bottom_sheet",
-                view_type = "display",
-                resource_id = "race",
-                stat = "$view.edit_character_basics_race_select",
-              ),
-              pop_up_title = $view?.edit_character_basics_race_select?.name ?? "Race",
-              display_cancel_button = true,
-              cancel_text = "OK",
-              is_visible = $view?.edit_character_basics_race_select? != null,
-            ),
-            selectResources(
-              id = "edit_character_basics_race_select",
-              stat = "race",
-              resource_id = "race",
-              validation_message = if !notNull($view.edit_character_basics_race_select)
-                then "Please pick a race"
-                else null,
-            ),
-            select(
-              id = "edit_character_basics_subrace_select",
-              stat = "subrace_id",
-              margin_left = 4,
-              resource_options = $view.edit_character_basics_race_select?.subraces ?? [],
-              options_display_stat = "name",
-              is_visible = !isEmpty(($view.edit_character_basics_race_select?.subraces ?? [])),
-            ),
-          ],
+        selectorWithDetailsEndAndTailComposite(
+          composite_id = "edit_character_basics_race_subrace_composite",
+          details_button = resourceDetailsOkPopUpButton(
+            button_id = "edit_character_basics_see_race_button",
+            button_text = "SEE DETAILS",
+            pop_up_view_id = "edit_character_basics_see_race_bottom_sheet",
+            resource_id = "race",
+            stat = "$view.edit_character_basics_race_select",
+            pop_up_title = $view?.edit_character_basics_race_select?.name ?? "Race",
+            is_visible = $view?.edit_character_basics_race_select? != null,
+          ),
+          selector_view = selectResources(
+            id = "edit_character_basics_race_select",
+            stat = "race",
+            resource_id = "race",
+            validation_message = if !notNull($view.edit_character_basics_race_select)
+              then "Please pick a race"
+              else null,
+          ),
+          tail_view = select(
+            id = "edit_character_basics_subrace_select",
+            stat = "subrace_id",
+            margin_left = 4,
+            resource_options = $view.edit_character_basics_race_select?.subraces ?? [],
+            options_display_stat = "name",
+            is_visible = !isEmpty(($view.edit_character_basics_race_select?.subraces ?? [])),
+          ),
         ),
         resourceArray(
           id = "edit_character_basics_classes",

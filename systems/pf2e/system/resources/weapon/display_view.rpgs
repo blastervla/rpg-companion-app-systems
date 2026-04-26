@@ -1,3 +1,5 @@
+import "../../macros/system_common.rpgs";
+
 view weapon_display() =
   list(
     id = "weapon_display",
@@ -246,9 +248,9 @@ view weapon_display() =
             id = "weapon_display_investment_composite",
             row_only = true,
             subviews = [
-              popUpButton(
-                id = "weapon_display_manage_attachments_button",
-                text = "ATTACHMENTS",
+              bottomSheetPersistPopUpButton(
+                button_id = "weapon_display_manage_attachments_button",
+                button_text = "ATTACHMENTS",
                 pop_up_view = section(
                   id = "weapon_display_manage_attachments_sheet",
                   header = [],
@@ -299,10 +301,6 @@ view weapon_display() =
                   ],
                 ),
                 pop_up_title = "Manage weapon attachments",
-                pop_up_type = "bottomSheet",
-                display_cancel_button = true,
-                display_save_button = true,
-                should_persist_on_save = true,
               ),
               button(
                 id = "weapon_display_trigger_attached_talisman_button",

@@ -1,3 +1,5 @@
+import "../../macros/system_common.rpgs";
+
 view progression_grant_edit() =
   list(
     id = "progression_grant_edit",
@@ -123,18 +125,13 @@ view progression_grant_edit() =
             alignment = "end",
             is_visible = ($view?.progression_grant_edit_slot_mode? ?? slot_mode) == "class" || bucket != "class_like_feat",
             subviews = [
-              popUpButton(
-                id = "progression_grant_edit_class_feat_see_details",
-                text = "SEE DETAILS",
-                pop_up_view = resource(
-                  id = "progression_grant_edit_class_feat_bottom_sheet",
-                  view_type = "display",
-                  resource_id = "feat",
-                  stat = "assigned_feat",
-                ),
+              resourceDetailsOkPopUpButton(
+                button_id = "progression_grant_edit_class_feat_see_details",
+                button_text = "SEE DETAILS",
+                pop_up_view_id = "progression_grant_edit_class_feat_bottom_sheet",
+                resource_id = "feat",
+                stat = "assigned_feat",
                 pop_up_title = assigned_feat?.name ?? "Feat",
-                display_cancel_button = true,
-                cancel_text = "OK",
                 is_visible = notNull(assigned_feat),
               ),
               selectResources(
@@ -198,18 +195,13 @@ view progression_grant_edit() =
             alignment = "end",
             is_visible = bucket == "class_like_feat" && ($view?.progression_grant_edit_slot_mode? ?? slot_mode) == "archetype_new",
             subviews = [
-              popUpButton(
-                id = "progression_grant_edit_archetype_new_see_details",
-                text = "SEE DETAILS",
-                pop_up_view = resource(
-                  id = "progression_grant_edit_archetype_new_bottom_sheet",
-                  view_type = "display",
-                  resource_id = "archetype",
-                  stat = "assigned_archetype",
-                ),
+              resourceDetailsOkPopUpButton(
+                button_id = "progression_grant_edit_archetype_new_see_details",
+                button_text = "SEE DETAILS",
+                pop_up_view_id = "progression_grant_edit_archetype_new_bottom_sheet",
+                resource_id = "archetype",
+                stat = "assigned_archetype",
                 pop_up_title = assigned_archetype?.name ?? "Archetype",
-                display_cancel_button = true,
-                cancel_text = "OK",
                 is_visible = notNull(assigned_archetype),
               ),
               selectResources(
@@ -234,18 +226,13 @@ view progression_grant_edit() =
                 color = "accent",
                 is_visible = isEmpty(archetype_existing_source_grants),
               ),
-              popUpButton(
-                id = "progression_grant_edit_archetype_existing_see_details",
-                text = "SEE DETAILS",
-                pop_up_view = resource(
-                  id = "progression_grant_edit_archetype_existing_bottom_sheet",
-                  view_type = "display",
-                  resource_id = "feat",
-                  stat = "assigned_feat",
-                ),
+              resourceDetailsOkPopUpButton(
+                button_id = "progression_grant_edit_archetype_existing_see_details",
+                button_text = "SEE DETAILS",
+                pop_up_view_id = "progression_grant_edit_archetype_existing_bottom_sheet",
+                resource_id = "feat",
+                stat = "assigned_feat",
                 pop_up_title = assigned_feat?.name ?? "Feat",
-                display_cancel_button = true,
-                cancel_text = "OK",
                 is_visible = notNull(assigned_feat),
               ),
               select(

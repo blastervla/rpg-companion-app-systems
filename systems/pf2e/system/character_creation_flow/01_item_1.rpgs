@@ -1,3 +1,5 @@
+import "../macros/system_common.rpgs";
+
 character_creation_page edit_basics_title() =
   characterCreationPage(
     title = displayableData(id = "edit_basics_title", name = "Character basics"),
@@ -25,81 +27,63 @@ character_creation_page edit_basics_title() =
           text = "What's your ancestry & background?",
           style = "subhead",
         ),
-        composite(
-          id = "edit_character_basics_ancestry_heritage_composite",
-          alignment = "end",
-          margin_bottom = 4,
-          subviews = [
-            popUpButton(
-              id = "edit_character_basics_see_ancestry_button",
-              text = "SEE DETAILS",
-              pop_up_view = resource(
-                id = "edit_character_basics_see_ancestry_bottom_sheet",
-                view_type = "display",
-                resource_id = "ancestry",
-                stat = "$view.edit_character_basics_ancestry_select",
+        selectorWithDetailsEndAndTailComposite(
+          composite_id = "edit_character_basics_ancestry_heritage_composite",
+          details_button = resourceDetailsOkPopUpButton(
+            button_id = "edit_character_basics_see_ancestry_button",
+            button_text = "SEE DETAILS",
+            pop_up_view_id = "edit_character_basics_see_ancestry_bottom_sheet",
+            resource_id = "ancestry",
+            stat = "$view.edit_character_basics_ancestry_select",
+            pop_up_title = $view?.edit_character_basics_ancestry_select?.name ?? "Ancestry",
+            is_visible = $view?.edit_character_basics_ancestry_select? != null,
+          ),
+          selector_view = selectResources(
+            id = "edit_character_basics_ancestry_select",
+            stat = "ancestry",
+            resource_id = "ancestry",
+            validation_message = if !notNull($view.edit_character_basics_ancestry_select)
+              then "Please pick an ancestry"
+              else null,
+          ),
+          tail_view = selectResources(
+            id = "edit_character_basics_heritage_select",
+            stat = "heritage",
+            margin_left = 4,
+            resource_id = "heritage",
+            filters = dict(
+              ancestry_filter_tags = filter(
+                [
+                  $view?.edit_character_basics_ancestry_select?.name? ?? "",
+                  "versatile",
+                ],
+                filter = ($filterValue) => $filterValue != ""
               ),
-              pop_up_title = $view?.edit_character_basics_ancestry_select?.name ?? "Ancestry",
-              display_cancel_button = true,
-              cancel_text = "OK",
-              is_visible = $view?.edit_character_basics_ancestry_select? != null,
             ),
-            selectResources(
-              id = "edit_character_basics_ancestry_select",
-              stat = "ancestry",
-              resource_id = "ancestry",
-              validation_message = if !notNull($view.edit_character_basics_ancestry_select)
-                then "Please pick an ancestry"
-                else null,
-            ),
-            selectResources(
-              id = "edit_character_basics_heritage_select",
-              stat = "heritage",
-              margin_left = 4,
-              resource_id = "heritage",
-              filters = dict(
-                ancestry_filter_tags = filter(
-                  [
-                    $view?.edit_character_basics_ancestry_select?.name? ?? "",
-                    "versatile",
-                  ],
-                  filter = ($filterValue) => $filterValue != ""
-                ),
-              ),
-              is_visible = notNull($view.edit_character_basics_ancestry_select),
-            ),
-          ],
+            is_visible = notNull($view.edit_character_basics_ancestry_select),
+          ),
         ),
-        composite(
-          id = "edit_character_basics_background_composite",
-          alignment = "end",
-          margin_bottom = 4,
-          subviews = [
-            popUpButton(
-              id = "edit_character_basics_see_background_button",
-              text = "SEE DETAILS",
-              pop_up_view = resource(
-                id = "edit_character_basics_see_background_bottom_sheet",
-                view_type = "display",
-                resource_id = "background",
-                stat = "$view.edit_character_basics_background_select",
-              ),
-              pop_up_title = $view?.edit_character_basics_background_select?.name ?? "Background",
-              display_cancel_button = true,
-              cancel_text = "OK",
-              is_visible = $view?.edit_character_basics_background_select? != null,
-            ),
-            selectResources(
-              id = "edit_character_basics_background_select",
-              stat = "background",
-              resource_id = "background",
-              margin_right = 4,
-              margin_bottom = 4,
-              validation_message = if !notNull($view.edit_character_basics_background_select)
-                then "Please pick a background"
-                else null,
-            ),
-          ],
+        selectorWithDetailsEndComposite(
+          composite_id = "edit_character_basics_background_composite",
+          details_button = resourceDetailsOkPopUpButton(
+            button_id = "edit_character_basics_see_background_button",
+            button_text = "SEE DETAILS",
+            pop_up_view_id = "edit_character_basics_see_background_bottom_sheet",
+            resource_id = "background",
+            stat = "$view.edit_character_basics_background_select",
+            pop_up_title = $view?.edit_character_basics_background_select?.name ?? "Background",
+            is_visible = $view?.edit_character_basics_background_select? != null,
+          ),
+          selector_view = selectResources(
+            id = "edit_character_basics_background_select",
+            stat = "background",
+            resource_id = "background",
+            margin_right = 4,
+            margin_bottom = 4,
+            validation_message = if !notNull($view.edit_character_basics_background_select)
+              then "Please pick a background"
+              else null,
+          ),
         ),
         text(
           id = "edit_character_basics_class_subheader",

@@ -1,5 +1,7 @@
+import "../macros/system_common.rpgs";
+
 mechanic trigger_daily_preparations(event_names = "trigger_daily_preparations") =
-  showPopUp(
+  bottomSheetActionPopUpEditMode(
     pop_up_view = list(
       id = "daily_preparations_content",
       padding = 16,
@@ -18,66 +20,42 @@ mechanic trigger_daily_preparations(event_names = "trigger_daily_preparations") 
             || (spellcasting_archetype_2?.actual_spellcasting_mode ?? "") == "prepared"
             || (spellcasting_archetype_3?.actual_spellcasting_mode ?? "") == "prepared",
         ),
-        popUpButton(
-          id = "daily_preparations_edit_primary_class_prepared",
-          text = concat(["Edit ", primary_class_progression?.class?.name ?? "Class", " prepared spells"]),
-          pop_up_view = resourceArray(
-            id = "daily_preparations_edit_primary_class_prepared_resource_array",
-            resource_id = "class_progression",
-            stat = "classes",
-            view_type = "edit",
-            allow_adds_and_removes = false,
-          ),
+        editResourceArrayPopUpButton(
+          button_id = "daily_preparations_edit_primary_class_prepared",
+          button_text = concat(["Edit ", primary_class_progression?.class?.name ?? "Class", " prepared spells"]),
+          array_id = "daily_preparations_edit_primary_class_prepared_resource_array",
+          resource_id = "class_progression",
+          stat = "classes",
           pop_up_title = concat(["Prepared Spells: ", primary_class_progression?.class?.name ?? "Class"]),
-          display_cancel_button = true,
-          display_save_button = true,
           is_visible = (primary_class_progression?.class?.actual_spellcasting_mode ?? "") == "prepared",
         ),
-        popUpButton(
-          id = "daily_preparations_edit_archetype_prepared_1",
-          text = concat(["Edit ", spellcasting_archetype_1?.name ?? "Archetype", " prepared spells"]),
-          pop_up_view = resourceArray(
-            id = "daily_preparations_edit_archetype_prepared_1_resource_array",
-            resource_id = "archetype",
-            stat = "archetypes",
-            view_type = "edit",
-            allow_adds_and_removes = false,
-          ),
+        editResourceArrayPopUpButton(
+          button_id = "daily_preparations_edit_archetype_prepared_1",
+          button_text = concat(["Edit ", spellcasting_archetype_1?.name ?? "Archetype", " prepared spells"]),
+          array_id = "daily_preparations_edit_archetype_prepared_1_resource_array",
+          resource_id = "archetype",
+          stat = "archetypes",
           pop_up_title = concat(["Prepared Spells: ", spellcasting_archetype_1?.name ?? "Archetype"]),
-          display_cancel_button = true,
-          display_save_button = true,
           is_visible = notNull(spellcasting_archetype_1)
             && (spellcasting_archetype_1?.actual_spellcasting_mode ?? "") == "prepared",
         ),
-        popUpButton(
-          id = "daily_preparations_edit_archetype_prepared_2",
-          text = concat(["Edit ", spellcasting_archetype_2?.name ?? "Archetype", " prepared spells"]),
-          pop_up_view = resourceArray(
-            id = "daily_preparations_edit_archetype_prepared_2_resource_array",
-            resource_id = "archetype",
-            stat = "archetypes",
-            view_type = "edit",
-            allow_adds_and_removes = false,
-          ),
+        editResourceArrayPopUpButton(
+          button_id = "daily_preparations_edit_archetype_prepared_2",
+          button_text = concat(["Edit ", spellcasting_archetype_2?.name ?? "Archetype", " prepared spells"]),
+          array_id = "daily_preparations_edit_archetype_prepared_2_resource_array",
+          resource_id = "archetype",
+          stat = "archetypes",
           pop_up_title = concat(["Prepared Spells: ", spellcasting_archetype_2?.name ?? "Archetype"]),
-          display_cancel_button = true,
-          display_save_button = true,
           is_visible = notNull(spellcasting_archetype_2)
             && (spellcasting_archetype_2?.actual_spellcasting_mode ?? "") == "prepared",
         ),
-        popUpButton(
-          id = "daily_preparations_edit_archetype_prepared_3",
-          text = concat(["Edit ", spellcasting_archetype_3?.name ?? "Archetype", " prepared spells"]),
-          pop_up_view = resourceArray(
-            id = "daily_preparations_edit_archetype_prepared_3_resource_array",
-            resource_id = "archetype",
-            stat = "archetypes",
-            view_type = "edit",
-            allow_adds_and_removes = false,
-          ),
+        editResourceArrayPopUpButton(
+          button_id = "daily_preparations_edit_archetype_prepared_3",
+          button_text = concat(["Edit ", spellcasting_archetype_3?.name ?? "Archetype", " prepared spells"]),
+          array_id = "daily_preparations_edit_archetype_prepared_3_resource_array",
+          resource_id = "archetype",
+          stat = "archetypes",
           pop_up_title = concat(["Prepared Spells: ", spellcasting_archetype_3?.name ?? "Archetype"]),
-          display_cancel_button = true,
-          display_save_button = true,
           is_visible = notNull(spellcasting_archetype_3)
             && (spellcasting_archetype_3?.actual_spellcasting_mode ?? "") == "prepared",
         ),
@@ -95,12 +73,6 @@ mechanic trigger_daily_preparations(event_names = "trigger_daily_preparations") 
       ],
     ),
     pop_up_title = "Daily Preparations",
-    display_cancel_button = true,
-    extra_buttons = [
-      rPGViewBottomSheetExtraButton(
-        text = "PREPARE",
-        event = event(name = "daily_preparations", payload = payload()),
-      ),
-    ],
-    in_edit_mode = true,
+    action_text = "PREPARE",
+    action_event_name = "daily_preparations",
   );

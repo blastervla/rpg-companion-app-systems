@@ -1,5 +1,7 @@
+import "../macros/system_common.rpgs";
+
 mechanic trigger_refocus(event_names = "trigger_refocus") =
-  showPopUp(
+  bottomSheetActionPopUpEditMode(
     pop_up_view = list(
       id = "refocus_content",
       padding = 16,
@@ -12,12 +14,6 @@ mechanic trigger_refocus(event_names = "trigger_refocus") =
       ],
     ),
     pop_up_title = "Refocus",
-    display_cancel_button = true,
-    extra_buttons = [
-      rPGViewBottomSheetExtraButton(
-        text = "REFOCUS",
-        event = event(name = "refocus", payload = payload()),
-      ),
-    ],
-    in_edit_mode = true,
+    action_text = "REFOCUS",
+    action_event_name = "refocus",
   );

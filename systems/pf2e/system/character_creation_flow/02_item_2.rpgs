@@ -1,3 +1,5 @@
+import "../macros/system_common.rpgs";
+
 character_creation_page edit_feats_title() =
   characterCreationPage(
     title = displayableData(id = "edit_feats_title", name = "Feats & Archetypes"),
@@ -264,32 +266,24 @@ character_creation_page edit_feats_title() =
           is_visible = ($view?.edit_character_feats_enable_optional_class_archetypes_toggle? ?? enable_optional_class_archetypes)
             && isNull($view.edit_character_feats_class_archetype_add),
         ),
-        composite(
-          id = "edit_character_feats_class_archetype_selector",
-          alignment = "end",
+        selectorWithDetailsEndVisibleComposite(
+          composite_id = "edit_character_feats_class_archetype_selector",
+          details_button = resourceDetailsOkPopUpButton(
+            button_id = "edit_character_feats_class_archetype_see_details",
+            button_text = "SEE DETAILS",
+            pop_up_view_id = "edit_character_feats_class_archetype_bottom_sheet",
+            resource_id = "archetype",
+            stat = "$view.edit_character_feats_class_archetype_add",
+            pop_up_title = $view?.edit_character_feats_class_archetype_add?.name ?? "Class archetype",
+            is_visible = notNull($view?.edit_character_feats_class_archetype_add?),
+          ),
+          selector_view = selectResources(
+            id = "edit_character_feats_class_archetype_add",
+            stat = "class_archetype",
+            resource_id = "archetype",
+            filters = dict(is_class_archetype = true),
+          ),
           is_visible = $view?.edit_character_feats_enable_optional_class_archetypes_toggle? ?? enable_optional_class_archetypes,
-          subviews = [
-            popUpButton(
-              id = "edit_character_feats_class_archetype_see_details",
-              text = "SEE DETAILS",
-              pop_up_view = resource(
-                id = "edit_character_feats_class_archetype_bottom_sheet",
-                view_type = "display",
-                resource_id = "archetype",
-                stat = "$view.edit_character_feats_class_archetype_add",
-              ),
-              pop_up_title = $view?.edit_character_feats_class_archetype_add?.name ?? "Class archetype",
-              display_cancel_button = true,
-              cancel_text = "OK",
-              is_visible = notNull($view?.edit_character_feats_class_archetype_add?),
-            ),
-            selectResources(
-              id = "edit_character_feats_class_archetype_add",
-              stat = "class_archetype",
-              resource_id = "archetype",
-              filters = dict(is_class_archetype = true),
-            ),
-          ],
         ),
         text(
           id = "edit_character_feats_class_archetype_mismatch_warning",

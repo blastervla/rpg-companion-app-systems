@@ -1,3 +1,5 @@
+import "../../macros/system_common.rpgs";
+
 view armor_display() =
   list(
     id = "armor_display",
@@ -274,9 +276,9 @@ view armor_display() =
         row_only = true,
         is_visible = defined(stat = "$character"),
         subviews = [
-          popUpButton(
-            id = "armor_display_manage_attachments_button",
-            text = "ATTACHMENTS",
+          bottomSheetPersistPopUpButton(
+            button_id = "armor_display_manage_attachments_button",
+            button_text = "ATTACHMENTS",
             pop_up_view = section(
               id = "armor_display_manage_attachments_sheet",
               header = [],
@@ -327,10 +329,6 @@ view armor_display() =
               ],
             ),
             pop_up_title = "Manage armor attachments",
-            pop_up_type = "bottomSheet",
-            display_cancel_button = true,
-            display_save_button = true,
-            should_persist_on_save = true,
           ),
           button(
             id = "armor_display_trigger_attached_talisman_button",
