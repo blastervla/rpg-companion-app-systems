@@ -230,6 +230,33 @@ character_creation_page edit_feats_title() =
           allow_adds_and_removes = false,
         ),
         text(
+          id = "edit_character_feats_selectable_features_header",
+          text = "Selectable feature choices",
+          style = "subhead",
+          is_visible = !isEmpty(selectable_features_with_pending_choices),
+        ),
+        text(
+          id = "edit_character_feats_selectable_features_help",
+          text = "Some features require extra selections. Pick options below.",
+          style = "caption",
+          is_visible = !isEmpty(selectable_features_with_pending_choices),
+        ),
+        text(
+          id = "edit_character_feats_selectable_features_warning_text",
+          text = pending_selectable_feature_choices_warning_text,
+          style = "caption",
+          color = "accent",
+          is_visible = !isEmpty(selectable_features_with_pending_choices),
+        ),
+        resourceArray(
+          id = "edit_character_feats_selectable_features_section",
+          resource_id = "feat",
+          stat = "selectable_features_with_pending_choices",
+          view_type = "list",
+          allow_adds_and_removes = false,
+          is_visible = !isEmpty(selectable_features_with_pending_choices),
+        ),
+        text(
           id = "edit_character_feats_archetypes_header",
           text = "Archetypes",
           style = "subhead",
@@ -320,14 +347,43 @@ character_creation_page edit_feats_title() =
         ),
       ],
     ),
-    on_page_open = setStat(
-      stat = "creation_feats_page_open",
-      new_value = true,
-      aggregation_type = "set",
+    on_page_open = sequence(
+      effects = [
+        setStat(
+          stat = "creation_feats_page_open",
+          new_value = true,
+          aggregation_type = "set",
+        ),
+      ],
     ),
-    on_page_close = setStat(
-      stat = "creation_feats_page_open",
-      new_value = false,
-      aggregation_type = "set",
+    on_page_close = sequence(
+      effects = [
+        forEach(
+          components = selectable_features_with_pending_choices,
+          for_each_value_key = "$feature",
+          apply = setStat(
+            stat = "selected_selectable_feature_ids",
+            new_value = flatAppend(
+              [
+                filter(
+                  selected_selectable_feature_ids,
+                  filter = ($id) => !contains(
+                    haystack = $feature.selectable_feature_ids,
+                    needle = $id,
+                  ),
+                ),
+                ($feature?.$view?.feat_list_selectable_features_select? ?? $feature.chosen_selectable_features),
+              ],
+              treat_as_set = true,
+            ),
+            aggregation_type = "set",
+          ),
+        ),
+        setStat(
+          stat = "creation_feats_page_open",
+          new_value = false,
+          aggregation_type = "set",
+        ),
+      ],
     ),
   );

@@ -2462,18 +2462,25 @@ calc resource<feat>[] selectable_features_with_pending_choices(name = "Selectabl
   filter(
     flatAppend(
       [
-        (ancestry?.current_level_traits ?? []),
+        (if creation_feats_page_open
+          then creator_selected_ancestry?.current_level_traits
+          else ancestry?.current_level_traits) ?? [],
         flatMap(
-          classes,
-          mapper = ($classProgression) => ($classProgression.class?.current_level_features ?? []),
+          (if creation_feats_page_open then creator_selected_classes else classes),
+          mapper = ($classProgression) => (if creation_feats_page_open
+              then $classProgression.class_effective?.current_level_features
+              else $classProgression.class?.current_level_features) ?? [],
         ),
-        (background?.current_level_features ?? []),
+        (if creation_feats_page_open
+          then creator_selected_background?.current_level_features
+          else background?.current_level_features) ?? [],
         all_selected_and_dedication_feats,
       ],
       treat_as_set = true,
     ),
     filter = ($feature) => ($feature.has_selectable_features
       && $feature.current_allowed_amount_of_selectable_features > 0
+      && !isEmpty($feature.available_selectable_features_for_current_level)
       && length($feature.chosen_selectable_features) < $feature.current_allowed_amount_of_selectable_features),
   );
 

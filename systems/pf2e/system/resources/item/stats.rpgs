@@ -55,12 +55,9 @@ calc bool is_attached_to_weapon(name = "Is attached to a weapon") =
         map(
           $character.all_weapons,
           mapper = ($mapValue) => contains(
-            haystack = map(
-              $mapValue.attached_runes,
-              mapper = ($rune) => $rune.id,
-            ),
+            haystack = $mapValue.attached_runes,
             needle = id,
-          ) || ($mapValue.attached_talisman?.id ?? "") == id,
+          ) || ($mapValue.attached_talisman ?? "") == id,
         ),
       )
     else false;
@@ -71,12 +68,9 @@ calc bool is_attached_to_armor(name = "Is attached to an armor") =
         map(
           $character.armors,
           mapper = ($mapValue) => contains(
-            haystack = map(
-              $mapValue.attached_runes,
-              mapper = ($rune) => $rune.id,
-            ),
+            haystack = $mapValue.attached_runes,
             needle = id,
-          ) || ($mapValue.attached_talisman?.id ?? "") == id,
+          ) || ($mapValue.attached_talisman ?? "") == id,
         ),
       )
     else false;

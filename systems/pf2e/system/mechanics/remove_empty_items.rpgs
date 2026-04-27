@@ -23,23 +23,23 @@ mechanic remove_empty_items(event_names = "remove_empty_items") =
                       filter(equipment, filter = ($item) => ($item.quantity > 0)),
                       mapper = ($mapValue) => $mapValue.id,
                     ),
-                    needle = $filterValue.id,
+                    needle = $filterValue,
                   ),
                 ),
                 aggregation_type = "set",
               ),
               setStat(
                 stat = "$weapon.attached_talisman",
-                new_value = if notNull($weapon.attached_talisman)
+                new_value = if !isEmpty($weapon.attached_talisman)
                   && contains(
                     haystack = map(
                       filter(equipment, filter = ($item) => ($item.quantity > 0)),
                       mapper = ($mapValue) => $mapValue.id,
                     ),
-                    needle = $weapon.attached_talisman.id,
+                    needle = $weapon.attached_talisman,
                   )
                   then $weapon.attached_talisman
-                  else null,
+                  else "",
                 aggregation_type = "set",
               ),
             ],
@@ -59,23 +59,23 @@ mechanic remove_empty_items(event_names = "remove_empty_items") =
                       filter(equipment, filter = ($item) => ($item.quantity > 0)),
                       mapper = ($mapValue) => $mapValue.id,
                     ),
-                    needle = $filterValue.id,
+                    needle = $filterValue,
                   ),
                 ),
                 aggregation_type = "set",
               ),
               setStat(
                 stat = "$armor.attached_talisman",
-                new_value = if notNull($armor.attached_talisman)
+                new_value = if !isEmpty($armor.attached_talisman)
                   && contains(
                     haystack = map(
                       filter(equipment, filter = ($item) => ($item.quantity > 0)),
                       mapper = ($mapValue) => $mapValue.id,
                     ),
-                    needle = $armor.attached_talisman.id,
+                    needle = $armor.attached_talisman,
                   )
                   then $armor.attached_talisman
-                  else null,
+                  else "",
                 aggregation_type = "set",
               ),
             ],

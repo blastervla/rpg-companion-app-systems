@@ -15,7 +15,9 @@ mechanic save_selectable_features_choice(event_names = "saveSelectableFeaturesCh
         ),
         aggregation_type = "set",
       ),
-      delayed(millis = 100, effect = dismissResource()),
+      when {
+        !($character?.creation_feats_page_open ?? false) -> delayed(millis = 100, effect = dismissResource()),
+      },
       when {
         $character?.daily_preparations_reselection_in_progress ?? false -> delayed(
             millis = 180,

@@ -41,9 +41,35 @@ calc bool should_load_effects(name = "Should load effects") =
 
 base resource<effect>[] effects(name = "Effects") = [];
 
-base resource<item>[] attached_runes(name = "Attached runes") = [];
+base string[] attached_runes(name = "Attached runes") = [];
 
-base resource<item> attached_talisman(name = "Attached talisman") = null;
+base string attached_talisman(name = "Attached talisman") = "";
+
+calc resource<item>[] attached_runes_effective(name = "Attached runes (effective)") =
+  filter(
+    map(
+      attached_runes,
+      mapper = ($runeId) => if defined(stat = "$character")
+        then findFirst(
+            $character.equipment,
+            filter = ($item) => $item.id == $runeId,
+          )
+        else null,
+    ),
+    filter = ($item) => notNull($item),
+  );
+
+calc string attached_talisman_id_effective(name = "Attached talisman id (effective)") =
+  attached_talisman;
+
+calc resource<item> attached_talisman_effective(name = "Attached talisman (effective)") =
+  when {
+    defined(stat = "$character") && !isEmpty(attached_talisman_id_effective) -> findFirst(
+      $character.equipment,
+      filter = ($item) => $item.id == attached_talisman_id_effective,
+    ),
+    else -> null,
+  };
 
 base bool override_is_proficient(name = "Override is proficient") = false;
 
@@ -98,10 +124,10 @@ calc resource<item>[] attachable_talismans_for_character(name = "Attachable tali
     else [];
 
 calc string[] attached_rune_ids(name = "Attached rune ids") =
-  map(attached_runes, mapper = ($mapValue) => $mapValue.id);
+  map(attached_runes_effective, mapper = ($mapValue) => $mapValue.id);
 
 calc string[] attached_talisman_ids(name = "Attached talisman ids") =
-  if notNull(attached_talisman) then [attached_talisman.id] else [];
+  if !isEmpty(attached_talisman_id_effective) then [attached_talisman_id_effective] else [];
 
 calc string[] other_host_attached_rune_ids(name = "Other hosts attached rune ids") =
   if defined(stat = "$character")
@@ -113,14 +139,14 @@ calc string[] other_host_attached_rune_ids(name = "Other hosts attached rune ids
               filter = ($filterValue) => ($filterValue.id != id),
             ),
             mapper = ($mapValue) => map(
-              $mapValue.attached_runes,
+              $mapValue.attached_runes_effective,
               mapper = ($rune) => $rune.id,
             ),
           ),
           flatMap(
             $character.all_weapons,
             mapper = ($mapValue) => map(
-              $mapValue.attached_runes,
+              $mapValue.attached_runes_effective,
               mapper = ($rune) => $rune.id,
             ),
           ),
@@ -135,29 +161,29 @@ calc string[] other_host_attached_talisman_ids(name = "Other hosts attached tali
           map(
             filter(
               $character.armors,
-              filter = ($filterValue) => ($filterValue.id != id && notNull($filterValue.attached_talisman)),
+              filter = ($filterValue) => ($filterValue.id != id && !isEmpty($filterValue.attached_talisman_id_effective)),
             ),
-            mapper = ($mapValue) => $mapValue.attached_talisman.id,
+            mapper = ($mapValue) => $mapValue.attached_talisman_id_effective,
           ),
           map(
             filter(
               $character.all_weapons,
-              filter = ($filterValue) => notNull($filterValue.attached_talisman),
+              filter = ($filterValue) => !isEmpty($filterValue.attached_talisman_id_effective),
             ),
-            mapper = ($mapValue) => $mapValue.attached_talisman.id,
+            mapper = ($mapValue) => $mapValue.attached_talisman_id_effective,
           ),
         ],
       )
     else [];
 
 calc resource<item>[] attached_potency_runes(name = "Attached potency runes") =
-  filter(attached_runes, filter = ($filterValue) => ($filterValue.rune_kind == "potency"));
+  filter(attached_runes_effective, filter = ($filterValue) => ($filterValue.rune_kind == "potency"));
 
 calc resource<item>[] attached_resilient_runes(name = "Attached resilient runes") =
-  filter(attached_runes, filter = ($filterValue) => ($filterValue.rune_kind == "resilient"));
+  filter(attached_runes_effective, filter = ($filterValue) => ($filterValue.rune_kind == "resilient"));
 
 calc resource<item>[] attached_property_runes(name = "Attached property runes") =
-  filter(attached_runes, filter = ($filterValue) => ($filterValue.rune_kind == "property"));
+  filter(attached_runes_effective, filter = ($filterValue) => ($filterValue.rune_kind == "property"));
 
 calc integer armor_potency_tier(name = "Armor potency tier") =
   max(
@@ -208,7 +234,7 @@ calc bool has_too_many_property_runes(name = "Has too many property runes") =
 calc bool has_unmet_required_potency_rune(name = "Has unmet required potency rune") =
   or(
     map(
-      attached_runes,
+      attached_runes_effective,
       mapper = ($mapValue) => ($mapValue.required_potency_tier > armor_potency_tier),
     ),
   );
@@ -237,13 +263,13 @@ calc string attachment_rules_issue_message(name = "Attachment rules issue messag
 calc integer attached_rune_ac_bonus(name = "Attached rune AC bonus") =
   add(
     map(
-      attached_runes,
+      attached_runes_effective,
       mapper = ($mapValue) => $mapValue.rune_ac_bonus,
     ),
   );
 
 calc integer attached_talisman_ac_bonus(name = "Attached talisman AC bonus") =
-  attached_talisman?.rune_ac_bonus ?? 0;
+  attached_talisman_effective?.rune_ac_bonus ?? 0;
 
 calc integer total_rune_ac_bonus(name = "Total rune AC bonus") =
   attached_rune_ac_bonus + attached_talisman_ac_bonus;
@@ -251,20 +277,20 @@ calc integer total_rune_ac_bonus(name = "Total rune AC bonus") =
 calc integer attached_rune_save_bonus(name = "Attached rune save bonus") =
   add(
     map(
-      attached_runes,
+      attached_runes_effective,
       mapper = ($mapValue) => $mapValue.rune_save_bonus,
     ),
   );
 
 calc integer attached_talisman_save_bonus(name = "Attached talisman save bonus") =
-  attached_talisman?.rune_save_bonus ?? 0;
+  attached_talisman_effective?.rune_save_bonus ?? 0;
 
 calc integer total_rune_save_bonus(name = "Total rune save bonus") =
   attached_rune_save_bonus + attached_talisman_save_bonus;
 
 calc resource<effect>[] attached_rune_active_effects(name = "Attached rune active effects") =
   flatMap(
-    attached_runes,
+    attached_runes_effective,
     mapper = ($mapValue) => filter(
       $mapValue.effects,
       filter = ($effect) => ($effect.is_active),
@@ -272,9 +298,9 @@ calc resource<effect>[] attached_rune_active_effects(name = "Attached rune activ
   );
 
 calc resource<effect>[] attached_talisman_active_effects(name = "Attached talisman active effects") =
-  if notNull(attached_talisman)
+  if notNull(attached_talisman_effective)
     then filter(
-        attached_talisman.effects,
+        attached_talisman_effective.effects,
         filter = ($effect) => ($effect.is_active),
       )
     else [];
@@ -288,16 +314,16 @@ calc resource<effect>[] attached_active_effects(name = "Attached active effects"
   );
 
 calc bool has_attached_talisman(name = "Has attached talisman") =
-  notNull(attached_talisman);
+  notNull(attached_talisman_effective);
 
 calc string attached_runes_summary(name = "Attached rune summary") =
   joinToString(
-    map(attached_runes, mapper = ($mapValue) => $mapValue.name),
+    map(attached_runes_effective, mapper = ($mapValue) => $mapValue.name),
     separator = ", ",
   );
 
 calc string attached_talisman_summary(name = "Attached talisman summary") =
-  attached_talisman?.name ?? "";
+  attached_talisman_effective?.name ?? "";
 
 calc resource<levelled_armor_proficiency>[] armor_proficiency_rows(name = "Armor proficiency rows") =
   if defined(stat = "$character")
