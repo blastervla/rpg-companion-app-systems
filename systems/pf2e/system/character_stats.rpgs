@@ -5,8 +5,10 @@ calc string created_at_display(name = "Created at display") =
     then ""
     else concat(["Created ", date(created_at)]);
 
+@party_visible
 base photo photo(name = "Photo") = null;
 
+@party_visible
 base string name(name = "Name") = "";
 
 base string alignment(name = "Alignment") = "true_neutral";
@@ -25,8 +27,10 @@ base resource<note>[] notes(name = "Notes") = [];
 
 base integer base_hp(name = "Base HP") = 1;
 
+@party_visible
 base integer current_hp(name = "Current HP") = 1;
 
+@party_visible
 calc integer max_hp(name = "Maximum HP") = base_hp + classes_hp_mods;
 
 calc integer classes_hp_mods(name = "Classes HP mods") =
@@ -746,6 +750,7 @@ calc string effective_perception_proficiency(name = "Effective perception profic
     else -> "none",
   };
 
+@party_visible
 calc integer perception(name = "Perception") =
   wisdom_modifier + when {
     effective_perception_proficiency == "trained" -> level_bonus + 2,
@@ -917,18 +922,23 @@ base string equipped_armor_id(name = "Equipped armor ID") = "";
 
 base string equipped_shield_id(name = "Equipped shield ID") = "";
 
+@party_visible
 calc integer speed(name = "Speed") =
   (ancestry?.current_speed ?? 0) + worn_armor_speed_modifier;
 
+@party_visible
 calc integer burrow_speed(name = "Burrow speed") =
   (ancestry?.current_burrow_speed ?? 0) + worn_armor_speed_modifier;
 
+@party_visible
 calc integer climb_speed(name = "Climb speed") =
   (ancestry?.current_climb_speed ?? 0) + worn_armor_speed_modifier;
 
+@party_visible
 calc integer fly_speed(name = "Fly speed") =
   (ancestry?.current_fly_speed ?? 0) + worn_armor_speed_modifier;
 
+@party_visible
 calc integer swim_speed(name = "Swim speed") =
   (ancestry?.current_swim_speed ?? 0) + worn_armor_speed_modifier;
 
@@ -944,6 +954,7 @@ calc integer level(name = "Level", abbreviation = "Lvl.") =
 
 calc string[] level_singleton(name = "Level as singleton array") = ["" + level];
 
+@party_visible
 calc integer armor_class(name = "Armor Class", abbreviation = "AC") =
   (if wearing_body_armor then equipped_armor_ac else unarmored_ac) + shield_ac_bonus + armor_class_typed_modifier_total;
 
@@ -3896,15 +3907,18 @@ calc integer class_dc_proficiency_bonus(name = "Class DC proficiency bonus") =
     else -> 0,
   };
 
+@party_visible
 calc integer class_dc(name = "Class DC") =
   10 + class_key_ability_modifier + class_dc_proficiency_bonus + class_dc_typed_modifier_total;
 
 base integer max_actions_per_turn(name = "Max Actions Per Turn") = 3;
 
+@party_visible
 base integer actions_remaining(name = "Actions Remaining") = 3;
 
 base integer max_reactions_per_round(name = "Max Reactions Per Round") = 1;
 
+@party_visible
 base integer reaction_available(name = "Reaction Available") = 1;
 
 calc string actions_remaining_display(name = "Actions remaining display") =
