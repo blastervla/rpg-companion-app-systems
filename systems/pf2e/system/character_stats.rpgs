@@ -1185,76 +1185,88 @@ calc bool creator_has_duplicate_level_1_ability_boost_selection(name = "Creator 
     || creator_step_2_level_1_charisma_boost_count > 1;
 
 calc integer creator_preview_strength_total_boosts(name = "Creator preview STR total boosts") =
-  add(
-    map(
-      filter(
-        creator_ability_score_increases,
-        filter = ($asi) => $asi.selected_modifier_effective == "strength",
-      ),
-      mapper = ($asi) => $asi.value,
-    ),
-  )
-  + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "strength"));
+  if !($character?.$is_new? ?? false)
+    then 0
+    else add(
+        map(
+          filter(
+            creator_ability_score_increases,
+            filter = ($asi) => $asi.selected_modifier_effective == "strength",
+          ),
+          mapper = ($asi) => $asi.value,
+        ),
+      )
+      + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "strength"));
 
 calc integer creator_preview_dexterity_total_boosts(name = "Creator preview DEX total boosts") =
-  add(
-    map(
-      filter(
-        creator_ability_score_increases,
-        filter = ($asi) => $asi.selected_modifier_effective == "dexterity",
-      ),
-      mapper = ($asi) => $asi.value,
-    ),
-  )
-  + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "dexterity"));
+  if !($character?.$is_new? ?? false)
+    then 0
+    else add(
+        map(
+          filter(
+            creator_ability_score_increases,
+            filter = ($asi) => $asi.selected_modifier_effective == "dexterity",
+          ),
+          mapper = ($asi) => $asi.value,
+        ),
+      )
+      + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "dexterity"));
 
 calc integer creator_preview_constitution_total_boosts(name = "Creator preview CON total boosts") =
-  add(
-    map(
-      filter(
-        creator_ability_score_increases,
-        filter = ($asi) => $asi.selected_modifier_effective == "constitution",
-      ),
-      mapper = ($asi) => $asi.value,
-    ),
-  )
-  + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "constitution"));
+  if !($character?.$is_new? ?? false)
+    then 0
+    else add(
+        map(
+          filter(
+            creator_ability_score_increases,
+            filter = ($asi) => $asi.selected_modifier_effective == "constitution",
+          ),
+          mapper = ($asi) => $asi.value,
+        ),
+      )
+      + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "constitution"));
 
 calc integer creator_preview_intelligence_total_boosts(name = "Creator preview INT total boosts") =
-  add(
-    map(
-      filter(
-        creator_ability_score_increases,
-        filter = ($asi) => $asi.selected_modifier_effective == "intelligence",
-      ),
-      mapper = ($asi) => $asi.value,
-    ),
-  )
-  + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "intelligence"));
+  if !($character?.$is_new? ?? false)
+    then 0
+    else add(
+        map(
+          filter(
+            creator_ability_score_increases,
+            filter = ($asi) => $asi.selected_modifier_effective == "intelligence",
+          ),
+          mapper = ($asi) => $asi.value,
+        ),
+      )
+      + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "intelligence"));
 
 calc integer creator_preview_wisdom_total_boosts(name = "Creator preview WIS total boosts") =
-  add(
-    map(
-      filter(
-        creator_ability_score_increases,
-        filter = ($asi) => $asi.selected_modifier_effective == "wisdom",
-      ),
-      mapper = ($asi) => $asi.value,
-    ),
-  )
-  + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "wisdom"));
+  if !($character?.$is_new? ?? false)
+    then 0
+    else add(
+        map(
+          filter(
+            creator_ability_score_increases,
+            filter = ($asi) => $asi.selected_modifier_effective == "wisdom",
+          ),
+          mapper = ($asi) => $asi.value,
+        ),
+      )
+      + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "wisdom"));
 
 calc integer creator_preview_charisma_total_boosts(name = "Creator preview CHA total boosts") =
-  add(
-    map(
-      filter(
-        creator_ability_score_increases,
-        filter = ($asi) => $asi.selected_modifier_effective == "charisma",
-      ),
-      mapper = ($asi) => $asi.value,
-    ),
-  )
-  + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "charisma"));
+  if !($character?.$is_new? ?? false)
+    then 0
+    else add(
+        map(
+          filter(
+            creator_ability_score_increases,
+            filter = ($asi) => $asi.selected_modifier_effective == "charisma",
+          ),
+          mapper = ($asi) => $asi.value,
+        ),
+      )
+      + length(filter(creator_step_2_assigned_ability_boosts, filter = ($v) => $v == "charisma"));
 
 calc integer creator_preview_strength_score(name = "Creator preview STR score") =
   strength_score + when {
@@ -1553,24 +1565,24 @@ base resource<ability_score_increase>[] old_creator_ability_score_increases(name
 calc resource<levelled_choice_text>[] creator_language_proficiency_choices(name = "Creator language proficiency choices") =
   flatAppend(
     [
-      (ancestry?.language_proficiencies_for_current_level ?? []),
+      (creator_selected_ancestry?.language_proficiencies_for_current_level ?? []),
       flatMap(
         creator_selected_classes,
         mapper = ($mapValue) => ($mapValue.class?.language_proficiencies_for_current_level ?? []),
       ),
-      (background?.language_proficiencies_for_current_level ?? []),
+      (creator_selected_background?.language_proficiencies_for_current_level ?? []),
     ],
   );
 
 calc resource<levelled_skill_proficiency>[] creator_skill_proficiency_choices(name = "Creator skill proficiency choices") =
   flatAppend(
     [
-      (ancestry?.skill_proficiencies_for_current_level ?? []),
+      (creator_selected_ancestry?.skill_proficiencies_for_current_level ?? []),
       flatMap(
         creator_selected_classes,
         mapper = ($mapValue) => ($mapValue.class?.skill_proficiencies_for_current_level ?? []),
       ),
-      (background?.skill_proficiencies_for_current_level ?? []),
+      (creator_selected_background?.skill_proficiencies_for_current_level ?? []),
       flatMap(
         all_features,
         mapper = ($mapValue) => ($mapValue.skill_proficiencies_for_current_level ?? []),
@@ -1602,14 +1614,14 @@ calc integer creator_additional_class_skill_choices_required(name = "Creator add
               [
                 0,
                 ($classProgression.class?.additional_trained_skills_base_count ?? 0)
-                  + metaStat(
-                    meta_stat = concat(
-                      [
-                        ($classProgression.class?.additional_trained_skills_ability ?? "intelligence"),
-                        "_modifier",
-                      ],
-                    ),
-                  ),
+                  + when {
+                    ($classProgression.class?.additional_trained_skills_ability ?? "intelligence") == "strength" -> creator_preview_strength_modifier,
+                    ($classProgression.class?.additional_trained_skills_ability ?? "intelligence") == "dexterity" -> creator_preview_dexterity_modifier,
+                    ($classProgression.class?.additional_trained_skills_ability ?? "intelligence") == "constitution" -> creator_preview_constitution_modifier,
+                    ($classProgression.class?.additional_trained_skills_ability ?? "intelligence") == "wisdom" -> creator_preview_wisdom_modifier,
+                    ($classProgression.class?.additional_trained_skills_ability ?? "intelligence") == "charisma" -> creator_preview_charisma_modifier,
+                    else -> creator_preview_intelligence_modifier,
+                  },
               ],
             ),
           ],
@@ -1705,12 +1717,12 @@ calc string pending_proficiency_choices_warning_text(name = "Pending proficiency
 calc resource<levelled_armor_proficiency>[] creator_armor_proficiency_choices(name = "Creator armor proficiency choices") =
   flatAppend(
     [
-      (ancestry?.armor_proficiencies_for_current_level ?? []),
+      (creator_selected_ancestry?.armor_proficiencies_for_current_level ?? []),
       flatMap(
         creator_selected_classes,
         mapper = ($mapValue) => ($mapValue.class?.armor_proficiencies_for_current_level ?? []),
       ),
-      (background?.armor_proficiencies_for_current_level ?? []),
+      (creator_selected_background?.armor_proficiencies_for_current_level ?? []),
       flatMap(
         all_features,
         mapper = ($mapValue) => ($mapValue.armor_proficiencies_for_current_level ?? []),
@@ -1721,12 +1733,12 @@ calc resource<levelled_armor_proficiency>[] creator_armor_proficiency_choices(na
 calc resource<levelled_weapon_proficiency>[] creator_weapon_proficiency_choices(name = "Creator weapon proficiency choices") =
   flatAppend(
     [
-      (ancestry?.weapon_proficiencies_for_current_level ?? []),
+      (creator_selected_ancestry?.weapon_proficiencies_for_current_level ?? []),
       flatMap(
         creator_selected_classes,
         mapper = ($mapValue) => ($mapValue.class?.weapon_proficiencies_for_current_level ?? []),
       ),
-      (background?.weapon_proficiencies_for_current_level ?? []),
+      (creator_selected_background?.weapon_proficiencies_for_current_level ?? []),
       flatMap(
         all_features,
         mapper = ($mapValue) => ($mapValue.weapon_proficiencies_for_current_level ?? []),
@@ -1737,12 +1749,12 @@ calc resource<levelled_weapon_proficiency>[] creator_weapon_proficiency_choices(
 calc resource<lore_skill>[] creator_lore_skill_choices(name = "Creator lore skill choices") =
   flatAppend(
     [
-      (ancestry?.lore_skills_for_current_level ?? []),
+      (creator_selected_ancestry?.lore_skills_for_current_level ?? []),
       flatMap(
         creator_selected_classes,
         mapper = ($mapValue) => ($mapValue.class?.lore_skills_for_current_level ?? []),
       ),
-      (background?.lore_skills_for_current_level ?? []),
+      (creator_selected_background?.lore_skills_for_current_level ?? []),
       flatMap(
         all_features,
         mapper = ($mapValue) => ($mapValue.lore_skills_for_current_level ?? []),
@@ -1850,10 +1862,12 @@ calc resource<archetype>[] slot_assigned_archetypes(name = "Archetypes assigned 
   filter(
     flatAppend([
       flatMap(
-        classes,
+        (if creation_feats_page_open then creator_selected_classes else classes),
         mapper = ($c) => map(
           filter(
-            $c.class?.progression_grants ?? [],
+            (if creation_feats_page_open
+                then ($c.class_effective?.progression_grants ?? [])
+                else ($c.class?.progression_grants ?? [])),
             filter = ($g) => $g.bucket == "class_like_feat"
               && $g.slot_mode_effective == "archetype_new"
               && notNull($g.assigned_archetype_effective),
@@ -1863,7 +1877,9 @@ calc resource<archetype>[] slot_assigned_archetypes(name = "Archetypes assigned 
       ),
       map(
         filter(
-          ancestry?.progression_grants ?? [],
+          (if creation_feats_page_open
+              then creator_selected_ancestry?.progression_grants
+              else ancestry?.progression_grants) ?? [],
           filter = ($g) => $g.bucket == "class_like_feat"
             && $g.slot_mode_effective == "archetype_new"
             && notNull($g.assigned_archetype_effective),
@@ -1872,7 +1888,9 @@ calc resource<archetype>[] slot_assigned_archetypes(name = "Archetypes assigned 
       ),
       map(
         filter(
-          heritage?.progression_grants ?? [],
+          (if creation_feats_page_open
+              then creator_selected_heritage?.progression_grants
+              else heritage?.progression_grants) ?? [],
           filter = ($g) => $g.bucket == "class_like_feat"
             && $g.slot_mode_effective == "archetype_new"
             && notNull($g.assigned_archetype_effective),
@@ -1893,10 +1911,12 @@ calc resource<feat>[] slot_assigned_feats(name = "Feats assigned to slots") =
   filter(
     flatAppend([
       flatMap(
-        classes,
+        (if creation_feats_page_open then creator_selected_classes else classes),
         mapper = ($c) => map(
           filter(
-            $c.class?.progression_grants ?? [],
+            (if creation_feats_page_open
+                then ($c.class_effective?.progression_grants ?? [])
+                else ($c.class?.progression_grants ?? [])),
             filter = ($g) => $g.is_feat_slot && notNull($g.assigned_feat_effective),
           ),
           mapper = ($g) => $g.assigned_feat_effective,
@@ -1904,14 +1924,18 @@ calc resource<feat>[] slot_assigned_feats(name = "Feats assigned to slots") =
       ),
       map(
         filter(
-          ancestry?.progression_grants ?? [],
+          (if creation_feats_page_open
+              then creator_selected_ancestry?.progression_grants
+              else ancestry?.progression_grants) ?? [],
           filter = ($g) => $g.is_feat_slot && notNull($g.assigned_feat_effective),
         ),
         mapper = ($g) => $g.assigned_feat_effective,
       ),
       map(
         filter(
-          heritage?.progression_grants ?? [],
+          (if creation_feats_page_open
+              then creator_selected_heritage?.progression_grants
+              else heritage?.progression_grants) ?? [],
           filter = ($g) => $g.is_feat_slot && notNull($g.assigned_feat_effective),
         ),
         mapper = ($g) => $g.assigned_feat_effective,
@@ -3064,6 +3088,64 @@ calc resource<lore_skill>[] level_up_lore_skill_choices(name = "Level up lore sk
           else [],
       ),
     ],
+  );
+
+calc resource<levelled_skill_proficiency>[] level_up_pending_skill_proficiency_choices(name = "Level up pending skill proficiency choices") =
+  filter(
+    level_up_skill_proficiency_choices_effective,
+    filter = ($choice) => isEmpty($choice.selected_option),
+  );
+
+calc resource<levelled_armor_proficiency>[] level_up_pending_armor_proficiency_choices(name = "Level up pending armor proficiency choices") =
+  filter(
+    level_up_armor_proficiency_choices_effective,
+    filter = ($choice) => isEmpty($choice.selected_option),
+  );
+
+calc resource<levelled_weapon_proficiency>[] level_up_pending_weapon_proficiency_choices(name = "Level up pending weapon proficiency choices") =
+  filter(
+    level_up_weapon_proficiency_choices_effective,
+    filter = ($choice) => isEmpty($choice.selected_option),
+  );
+
+calc resource<lore_skill>[] level_up_pending_lore_skill_choices(name = "Level up pending lore skill choices") =
+  filter(
+    level_up_lore_skill_choices,
+    filter = ($choice) => !isEmpty(trim($choice.options)) && isEmpty(trim($choice.selected_option)),
+  );
+
+calc bool has_pending_sheet_proficiency_choices(name = "Has pending proficiency choices for character sheet") =
+  currently_levelling_up
+    && (
+      !isEmpty(level_up_pending_skill_proficiency_choices)
+      || !isEmpty(level_up_pending_armor_proficiency_choices)
+      || !isEmpty(level_up_pending_weapon_proficiency_choices)
+      || !isEmpty(level_up_pending_lore_skill_choices)
+    );
+
+calc string pending_sheet_proficiency_choices_warning_text(name = "Pending proficiency choices warning text for character sheet") =
+  joinToString(
+    flatAppend(
+      [
+        map(
+          level_up_pending_skill_proficiency_choices,
+          mapper = ($choice) => concat(["- ", $choice.description]),
+        ),
+        map(
+          level_up_pending_armor_proficiency_choices,
+          mapper = ($choice) => concat(["- ", $choice.description]),
+        ),
+        map(
+          level_up_pending_weapon_proficiency_choices,
+          mapper = ($choice) => concat(["- ", $choice.description]),
+        ),
+        map(
+          level_up_pending_lore_skill_choices,
+          mapper = ($choice) => concat(["- ", $choice.description]),
+        ),
+      ],
+    ),
+    separator = "\n",
   );
 
 base string temp_last_level_up_class_id(name = "Last level up class ID") = null;

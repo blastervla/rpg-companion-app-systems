@@ -124,13 +124,13 @@ character_sheet_section features() =
         text = concat(
           [
             "You have unresolved skill choices from feats or features:\n",
-            pending_proficiency_choices_warning_text,
+            pending_sheet_proficiency_choices_warning_text,
             "\nVisit Pending choices to apply them.",
           ],
         ),
         style = "caption",
         color = "accent",
-        is_visible = has_pending_proficiency_choices,
+        is_visible = has_pending_sheet_proficiency_choices,
       ),
       text(
         id = "features_pending_selectable_feature_choices_warning",
