@@ -1,0 +1,22 @@
+view dice_roll_edit() =
+  composite(
+    id = "dice_roll_edit",
+    subviews = [
+      text(
+        id = "dice_roll_amount",
+        edit_stat = "dice_amount",
+        style = "text",
+        max_length = 3,
+        signed = false,
+      ),
+      select(id = "dice_roll_type", stat = "dice_type", options = "dice"),
+      text(id = "dice_roll_linker", text = " + ", style = "text"),
+      text(
+        id = "dice_roll_constant",
+        edit_stat = "constant",
+        style = "text",
+        max_length = 4,
+        signed = true,
+      ),
+    ],
+  );

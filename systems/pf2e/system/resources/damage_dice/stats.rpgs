@@ -1,0 +1,17 @@
+base resource<dice_roll>[] dices(name = "Dices") = [];
+
+base string damage_type(name = "Damage type", abbreviation = "Dmg.") = "acid";
+
+calc string display_description(name = "Display description") =
+  if !isEmpty(dices)
+    then concat(
+        [
+          joinToString(
+            map(dices, mapper = ($mapValue) => $mapValue.formula),
+            separator = " + ",
+          ),
+          " ",
+          enumeratedName(enumerated_type = "damage_types", id = damage_type),
+        ],
+      )
+    else "No damage";

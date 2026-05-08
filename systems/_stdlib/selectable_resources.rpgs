@@ -1,0 +1,147 @@
+define selectableDisplayView(display_id, out_of_character_id, in_character_id, choose_label_id, choose_select_id) =
+  list(
+    id = display_id,
+    subviews = [
+      text(
+        id = out_of_character_id,
+        margin_left = 4,
+        text = display_description,
+        style = "text",
+        is_visible = !($character?.should_show_controls_for_choices ?? false),
+      ),
+      composite(
+        id = in_character_id,
+        subviews = [
+          text(
+            id = choose_label_id,
+            text = choose_label_text,
+            style = "text",
+          ),
+          select(
+            id = choose_select_id,
+            stat = "selected_options_string",
+            resource_options = options,
+            max_selection_amount = amount,
+            options_display_stat = "display_description",
+            multi_select = true,
+          ),
+        ],
+        is_visible = $character?.should_show_controls_for_choices ?? false,
+      ),
+    ],
+  );
+
+define selectableEditView(
+  edit_id,
+  amount_composite_id,
+  amount_label_id,
+  amount_id,
+  options_id,
+  options_label_id,
+  option_resource_id,
+  validation_message,
+) =
+  list(
+    id = edit_id,
+    subviews = [
+      composite(
+        id = amount_composite_id,
+        subviews = [
+          text(
+            id = amount_label_id,
+            text = "Amount to choose: ",
+            style = "text",
+          ),
+          text(
+            id = amount_id,
+            edit_stat = "amount",
+            style = "text",
+            hint = "1",
+            max_length = 2,
+          ),
+        ],
+      ),
+      resourceArray(
+        id = options_id,
+        resource_id = option_resource_id,
+        stat = "options",
+        view_type = "edit",
+        left_view = text(
+          id = options_label_id,
+          text = "Options: ",
+          style = "text",
+        ),
+        validation_message = validation_message,
+      ),
+    ],
+  );
+
+define selectableCurrentSelectedOptions() =
+  selectableSelectedOptions(options = options, selected_ids = selected_options_string);
+
+define selectableDisplayViewByPrefix(prefix) =
+  selectableDisplayView(
+    display_id = "${prefix}_display",
+    out_of_character_id = "${prefix}_display_out_of_character",
+    in_character_id = "${prefix}_display_in_character",
+    choose_label_id = "${prefix}_display_choose_label",
+    choose_select_id = "${prefix}_display_choose",
+  );
+
+define selectableEditViewByPrefix(prefix, option_resource_id, validation_message) =
+  selectableEditView(
+    edit_id = "${prefix}_edit",
+    amount_composite_id = "${prefix}_edit_amount_composite",
+    amount_label_id = "${prefix}_edit_amount_label",
+    amount_id = "${prefix}_edit_amount",
+    options_id = "${prefix}_edit_options",
+    options_label_id = "${prefix}_edit_options_label",
+    option_resource_id = option_resource_id,
+    validation_message = validation_message,
+  );
+
+// Stable wrappers (resource-specific naming/messages stay explicit here).
+define selectableItemsDisplayView() =
+  selectableDisplayViewByPrefix(prefix = "selectable_items");
+
+define selectableItemsEditView() =
+  selectableEditViewByPrefix(
+    prefix = "selectable_items",
+    option_resource_id = "item_with_amount",
+    validation_message = if isEmpty($view.selectable_items_edit_options)
+      then "You have empty item options. Please select some items or remove it."
+      else null,
+  );
+
+define selectableItemsSelectedOptions() =
+  selectableCurrentSelectedOptions();
+
+define selectableArmorsDisplayView() =
+  selectableDisplayViewByPrefix(prefix = "selectable_armors");
+
+define selectableArmorsEditView() =
+  selectableEditViewByPrefix(
+    prefix = "selectable_armors",
+    option_resource_id = "armor_with_amount",
+    validation_message = if isEmpty($view.selectable_armors_edit_options)
+      then "You have empty armor options. Please select some armors or remove it."
+      else null,
+  );
+
+define selectableArmorsSelectedOptions() =
+  selectableCurrentSelectedOptions();
+
+define selectableWeaponsDisplayView() =
+  selectableDisplayViewByPrefix(prefix = "selectable_weapons");
+
+define selectableWeaponsEditView() =
+  selectableEditViewByPrefix(
+    prefix = "selectable_weapons",
+    option_resource_id = "weapon_with_amount",
+    validation_message = if isEmpty($view.selectable_weapons_edit_options)
+      then "You have empty weapon options. Please select some weapons or remove it."
+      else null,
+  );
+
+define selectableWeaponsSelectedOptions() =
+  selectableCurrentSelectedOptions();

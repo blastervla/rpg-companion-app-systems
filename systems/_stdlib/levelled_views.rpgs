@@ -1,0 +1,269 @@
+define levelledAmountDisplayView() =
+  text(
+    id = "levelled_amount_display",
+    margin_left = 4,
+    text = display_description,
+    style = "text",
+  );
+
+define levelledAmountEditView() =
+  composite(
+    id = "levelled_amount_edit",
+    row_only = true,
+    subviews = [
+      text(
+        id = "levelled_amount_edit_level",
+        edit_stat = "level",
+        style = "text",
+        hint = "Lvl",
+        max_length = 3,
+      ),
+      text(
+        id = "levelled_amount_edit_amount",
+        edit_stat = "amount",
+        style = "text",
+        margin_left = 4,
+        hint = "Amount",
+        max_length = 6,
+      ),
+    ],
+  );
+
+define levelledChoiceTextDisplayView() =
+  list(
+    id = "levelled_choice_text_display",
+    subviews = [
+      text(
+        id = "levelled_choice_text_display_out_of_character",
+        margin_left = 4,
+        text = description,
+        style = "text",
+        is_visible = !($character?.should_show_controls_for_choices ?? false),
+      ),
+      text(
+        id = "levelled_choice_text_display_in_character",
+        edit_stat = "selected_options",
+        style = "text",
+        max_length = 140,
+        label = "Options",
+        is_visible = $character?.should_show_controls_for_choices ?? false,
+      ),
+    ],
+  );
+
+define levelledChoiceTextEditView() =
+  composite(
+    id = "levelled_choice_text_edit",
+    row_only = true,
+    subviews = [
+      text(
+        id = "levelled_choice_text_edit_level",
+        edit_stat = "level",
+        style = "text",
+        hint = "Lvl",
+        max_length = 3,
+      ),
+      text(
+        id = "levelled_choice_text_edit_options",
+        edit_stat = "options",
+        style = "text",
+        hint = "Separate by , (e.g: option1, option2)",
+        label = "Options",
+        validation_message = if isEmpty($view.levelled_choice_text_edit_options)
+          then "You have an empty levelled options box. Please complete it or remove it"
+          else null,
+      ),
+    ],
+  );
+
+define levelledDescriptionDisplayView() =
+  text(
+    id = "levelled_description_display",
+    margin_left = 4,
+    text = display_description,
+    style = "text",
+    markdown = true,
+  );
+
+define levelledDescriptionEditView() =
+  composite(
+    id = "levelled_description_edit",
+    row_only = true,
+    subviews = [
+      text(
+        id = "levelled_description_edit_level",
+        edit_stat = "level",
+        style = "text",
+        hint = "Lvl",
+        max_length = 3,
+      ),
+      text(
+        id = "levelled_description_edit_description",
+        edit_stat = "description",
+        style = "text",
+        label = "Description",
+      ),
+    ],
+  );
+
+define levelledEffectDisplayView() =
+  text(
+    id = "levelled_effect_display",
+    margin_left = 4,
+    text = description,
+    style = "text",
+    markdown = true,
+  );
+
+define levelledEffectEditView() =
+  composite(
+    id = "levelled_effect_edit",
+    subviews = [
+      text(
+        id = "levelled_effect_edit_level",
+        edit_stat = "level",
+        style = "text",
+        hint = "Lvl",
+        max_length = 3,
+      ),
+      popUpButton(
+        id = "levelled_effect_edit_effect_bottom_sheet",
+        text = effect_only_description,
+        pop_up_view = resource(
+          id = "levelled_effect_edit_effect",
+          view_type = "edit",
+          resource_id = "effect",
+          stat = "effect",
+          create_if_empty = true,
+        ),
+        pop_up_title = "Effect",
+        display_cancel_button = true,
+        display_save_button = true,
+        should_persist_on_save = false,
+      ),
+    ],
+  );
+
+define levelledDamageDiceDisplayView() =
+  text(
+    id = "levelled_damage_dice_display",
+    text = concat(["  Lvl. ", level, ": ", description]),
+    style = "text",
+  );
+
+define levelledDamageDiceEditView() =
+  resourceArray(
+    id = "levelled_damage_dice_edit",
+    resource_id = "damage_dice",
+    stat = "damage_dice",
+    view_type = "edit",
+    pop_up_type = "bottomSheet",
+    pop_up_button_text = display_description,
+    left_view = text(
+      id = "levelled_damage_dice_level",
+      edit_stat = "level",
+      style = "text",
+      hint = "Lvl",
+      max_length = 3,
+    ),
+  );
+
+define levelledSpellDisplayView() =
+  text(
+    id = "levelled_spell_display",
+    margin_left = 4,
+    text = description,
+    style = "text",
+    markdown = true,
+  );
+
+define levelledSpellListView() =
+  popUpButton(
+    id = "levelled_spell_list",
+    text = description,
+    pop_up_view = resource(
+      id = "levelled_spell_view",
+      view_type = "display",
+      resource_id = "spell",
+      stat = "spell",
+    ),
+    pop_up_type = "bottomSheet",
+    pop_up_title = spell.name,
+  );
+
+define levelledValueCalculatorDisplayView() =
+  text(
+    id = "levelled_value_calculator_display",
+    margin_left = 4,
+    text = description,
+    style = "text",
+  );
+
+define levelledValueCalculatorEditView() =
+  resourceArray(
+    id = "levelled_value_calculator_edit",
+    resource_id = "value_calculator",
+    stat = "calculators",
+    view_type = "edit",
+    left_view = composite(
+      id = "levelled_value_calculator_edit_composite",
+      subviews = [
+        text(
+          id = "levelled_value_calculator_edit_level",
+          edit_stat = "level",
+          style = "text",
+          hint = "From lvl",
+          max_length = 6,
+        ),
+        select(
+          id = "levelled_value_calculator_edit_aggregation_type",
+          stat = "aggregation_type",
+          options = "min_max_of",
+        ),
+      ],
+    ),
+    pop_up_type = "bottomSheet",
+    pop_up_button_text = description,
+    validation_message = if isEmpty($view.levelled_value_calculator_edit)
+      then "You have an empty levelled calculator. Please add calculators to it or remove it."
+      else null,
+  );
+
+define levelledWeaponDisplayView() =
+  text(
+    id = "levelled_weapon_display",
+    margin_left = 4,
+    text = description,
+    style = "text",
+  );
+
+define levelledWeaponEditView() =
+  composite(
+    id = "levelled_weapon_edit",
+    subviews = [
+      text(
+        id = "levelled_weapon_edit_level",
+        edit_stat = "level",
+        style = "text",
+        hint = "Lvl",
+        max_length = 3,
+      ),
+      popUpButton(
+        id = "levelled_weapon_edit_weapon_button",
+        text = weapon?.damage_dice_display_description ?? "No weapon",
+        pop_up_view = resource(
+          id = "levelled_weapon_edit_weapon",
+          view_type = "edit",
+          resource_id = "weapon",
+          stat = "weapon",
+          create_if_empty = true,
+        ),
+        pop_up_title = "Edit weapon",
+        display_cancel_button = true,
+        display_save_button = true,
+        validation_message = if isNull(weapon)
+          then "You have an empty levelled weapon. Please add a weapon to it or remove it."
+          else null,
+      ),
+    ],
+  );

@@ -1,0 +1,235 @@
+import "../../macros/system_common.rpgs";
+
+view class_progression_edit() =
+  list(
+    subviews = [
+      composite(
+        id = "class_progression_edit",
+        alignment = "end",
+        margin_bottom = 4,
+        is_visible = defined(stat = "$character.$is_new"),
+        subviews = [
+          resourceDetailsOkPopUpButton(
+            button_id = "edit_character_basics_see_class_button",
+            button_text = "SEE DETAILS",
+            pop_up_view_id = "edit_character_basics_see_class_bottom_sheet",
+            resource_id = "class",
+            stat = "$view.class_progression_edit_class_select",
+            pop_up_title = $view?.class_progression_edit_class_select?.name ?? "Class",
+            is_visible = notNull($view?.class_progression_edit_class_select?),
+          ),
+          selectResources(
+            id = "class_progression_edit_class_select",
+            stat = "class",
+            resource_id = "class",
+            validation_message = if isNull($view.class_progression_edit_class_select)
+            then "You have an unselected class. Select a class or remove it."
+            else null,
+          ),
+          resourceDetailsOkPopUpButton(
+            button_id = "class_progression_edit_see_deity_button",
+            button_text = "SEE DEITY",
+            pop_up_view_id = "class_progression_edit_see_deity_bottom_sheet",
+            resource_id = "deity",
+            stat = "$view.class_progression_edit_deity_select",
+            pop_up_title = $view?.class_progression_edit_deity_select?.name ?? "Deity",
+            is_visible = ($view?.class_progression_edit_class_select?.requires_deity ?? false)
+            && notNull($view?.class_progression_edit_deity_select?),
+          ),
+          selectResources(
+            id = "class_progression_edit_deity_select",
+            stat = "selected_deity",
+            resource_id = "deity",
+            margin_left = 4,
+            validation_message = if ($view?.class_progression_edit_class_select?.requires_deity ?? false)
+            && isNull($view.class_progression_edit_deity_select)
+            then "This class requires selecting a deity."
+            else null,
+            is_visible = $view?.class_progression_edit_class_select?.requires_deity ?? false,
+          ),
+          text(
+            id = "class_progression_edit_deity_font_select_label",
+            margin_left = 4,
+            text = "Font: ",
+            style = "text",
+            is_visible = ($view?.class_progression_edit_class_select?.requires_deity ?? false)
+            && length($view?.class_progression_edit_deity_select?.font_options ?? []) > 1,
+          ),
+          select(
+            id = "class_progression_edit_deity_font_select",
+            stat = "selected_deity_font",
+            allowed_options = $view?.class_progression_edit_deity_select?.font_options ?? [],
+            options = "spell_font",
+            is_visible = ($view?.class_progression_edit_class_select?.requires_deity ?? false)
+            && length($view?.class_progression_edit_deity_select?.font_options ?? []) > 1,
+          ),
+          text(
+            id = "class_progression_edit_class_key_ability_select_label",
+            margin_left = 4,
+            text = "Key ability: ",
+            style = "text",
+            is_visible = length($view?.class_progression_edit_class_select?.actual_class_key_ability_options ?? []) > 1,
+          ),
+          select(
+            id = "class_progression_edit_class_key_ability_select",
+            stat = "selected_class_key_ability",
+            options = "ability",
+            is_visible = length($view?.class_progression_edit_class_select?.actual_class_key_ability_options ?? []) > 1,
+          ),
+          text(
+            id = "class_progression_edit_class_level",
+            edit_stat = "class_level",
+            style = "text",
+            margin_left = 4,
+            max_length = 3,
+            hint = "Lvl",
+            validation_message = if should_show_level_up_disclaimer
+            then "To level up, please use the EXP / LEVEL UP button at the top-center of the character sheet"
+            else null,
+            is_visible = defined(stat = "$parent.$is_new"),
+          ),
+          text(
+            id = "class_progression_edit_class_level_too_low_error_label",
+            text = "To level up, please use the EXP / LEVEL UP button at the top-center of the character sheet.",
+            style = "text",
+            bold = true,
+            color = "#F44336",
+            is_visible = should_show_level_up_disclaimer,
+          ),
+        ],
+      ),
+      list(
+        id = "class_progression_edit_prepared_spellcasting",
+        margin_left = 4,
+        margin_top = 8,
+        alignment = "start",
+        is_visible = !defined(stat = "$character.$is_new")
+        && (class?.actual_spellcasting_mode ?? "") == "prepared",
+        subviews = [
+          text(
+            id = "class_progression_edit_prepared_spellcasting_title",
+            text = "Prepared spells by rank:",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "class_progression_edit_prepared_spellcasting_warning",
+            text = prepared_capacity_warning_text,
+            style = "caption",
+            color = "accent",
+            is_visible = !isEmpty(prepared_capacity_warning_text),
+          ),
+          preparedCantripChoiceArray(
+            prefix = "class_progression_edit",
+            stat_id = "prepared_spell_choices_rank_0",
+            is_visible = max_class_cantrip_quantity > 0 || !isEmpty(prepared_spell_choices_rank_0),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "1",
+            stat_id = "prepared_spell_choices_rank_1",
+            is_visible = max_class_spell_slots_1 > 0 || !isEmpty(prepared_spell_choices_rank_1),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "2",
+            stat_id = "prepared_spell_choices_rank_2",
+            is_visible = max_class_spell_slots_2 > 0 || !isEmpty(prepared_spell_choices_rank_2),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "3",
+            stat_id = "prepared_spell_choices_rank_3",
+            is_visible = max_class_spell_slots_3 > 0 || !isEmpty(prepared_spell_choices_rank_3),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "4",
+            stat_id = "prepared_spell_choices_rank_4",
+            is_visible = max_class_spell_slots_4 > 0 || !isEmpty(prepared_spell_choices_rank_4),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "5",
+            stat_id = "prepared_spell_choices_rank_5",
+            is_visible = max_class_spell_slots_5 > 0 || !isEmpty(prepared_spell_choices_rank_5),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "6",
+            stat_id = "prepared_spell_choices_rank_6",
+            is_visible = max_class_spell_slots_6 > 0 || !isEmpty(prepared_spell_choices_rank_6),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "7",
+            stat_id = "prepared_spell_choices_rank_7",
+            is_visible = max_class_spell_slots_7 > 0 || !isEmpty(prepared_spell_choices_rank_7),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "8",
+            stat_id = "prepared_spell_choices_rank_8",
+            is_visible = max_class_spell_slots_8 > 0 || !isEmpty(prepared_spell_choices_rank_8),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "9",
+            stat_id = "prepared_spell_choices_rank_9",
+            is_visible = max_class_spell_slots_9 > 0 || !isEmpty(prepared_spell_choices_rank_9),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "class_progression_edit",
+            rank = "10",
+            stat_id = "prepared_spell_choices_rank_10",
+            is_visible = max_class_spell_slots_10 > 0 || !isEmpty(prepared_spell_choices_rank_10),
+          ),
+        ],
+      ),
+      list(
+        id = "class_progression_edit_choice_bound_rank_10_slots",
+        margin_left = 4,
+        margin_top = 8,
+        alignment = "start",
+        is_visible = !defined(stat = "$character.$is_new")
+        && required_choice_bound_rank_10_slot_spell_count > 0,
+        subviews = [
+          text(
+            id = "class_progression_edit_choice_bound_rank_10_slots_title",
+            text = "Choice-bound bonus rank 10 slots",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "class_progression_edit_choice_bound_rank_10_slots_help",
+            text = concat(
+              [
+                "Choose ",
+                required_choice_bound_rank_10_slot_spell_count,
+                " rank-10 spell(s) to associate with this bonus slot capacity.",
+              ],
+            ),
+            style = "caption",
+          ),
+          text(
+            id = "class_progression_edit_choice_bound_rank_10_slots_warning",
+            text = choice_bound_rank_10_slot_selection_warning_text,
+            style = "caption",
+            color = "accent",
+            is_visible = has_choice_bound_rank_10_slot_selection_warning,
+          ),
+          select(
+            id = "class_progression_edit_choice_bound_rank_10_slots_select",
+            stat = "selected_choice_bound_slot_spell_ids_rank_10",
+            options = "spell",
+            options_display_stat = "name",
+            allowed_options = choice_bound_rank_10_spell_id_options,
+            multi_select = true,
+            validation_message = if has_choice_bound_rank_10_slot_selection_warning
+            then choice_bound_rank_10_slot_selection_warning_text
+            else null,
+          ),
+        ],
+      ),
+    ],
+  );

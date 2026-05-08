@@ -1,0 +1,33 @@
+mechanic save_selectable_features_choice(event_names = "saveSelectableFeaturesChoice") =
+  sequence(
+    effects = [
+      setStat(
+        meta_stat = selected_selectable_feature_ids_stat_path,
+        new_value = flatAppend(
+          [
+            filter(
+              metaStat(meta_stat = selected_selectable_feature_ids_stat_path),
+              filter = ($filterValue) => (!contains(haystack = selectable_feature_ids, needle = $filterValue)),
+            ),
+            $view.feat_display_selectable_features_select,
+          ],
+          treat_as_set = true,
+        ),
+        aggregation_type = "set",
+      ),
+      when {
+        !($character?.creation_feats_page_open ?? false) -> delayed(millis = 100, effect = dismissResource()),
+      },
+      when {
+        $character?.daily_preparations_reselection_in_progress ?? false -> delayed(
+            millis = 180,
+            effect = fireEvent(
+              event = event(
+                name = "show_next_daily_preparations_selectable_feature",
+                payload = payload(),
+              ),
+            ),
+          ),
+      },
+    ],
+  );

@@ -1,0 +1,258 @@
+define defaultSectionHeader(icon_id, icon_name, title_id, title_text) = [
+  icon(
+    id = icon_id,
+    name = icon_name,
+    size = "medium",
+    margin_top = 8,
+    margin_right = 8,
+    margin_left = 16,
+  ),
+  text(
+    id = title_id,
+    margin_right = 16,
+    margin_left = 16,
+    text = title_text,
+    style = "title",
+  ),
+];
+
+define selectableChooseLabel(amount) =
+  concat(["Choose ", amount, ": "]);
+
+define selectableDisplayDescription(amount, options) =
+  concat(
+    [
+      "Choose ",
+      amount,
+      " from ",
+      joinToString(
+        map(options, mapper = ($mapValue) => $mapValue.display_description),
+        separator = ", ",
+      ),
+    ],
+  );
+
+define selectableSelectedOptions(options, selected_ids) =
+  filter(
+    options,
+    filter = ($filterValue) => contains(haystack = selected_ids, needle = $filterValue.id),
+  );
+
+define selectableCanSelectMore(selected_options, amount) =
+  length(selected_options) < amount;
+
+define levelledAmountPopUpButton(id_prefix, stat_id, button_text, pop_up_title, left_view_text) =
+  popUpButton(
+    id = "${id_prefix}_bottom_sheet_button",
+    text = button_text,
+    pop_up_view = resourceArray(
+      id = id_prefix,
+      resource_id = "levelled_amount",
+      stat = stat_id,
+      view_type = "edit",
+      left_view = text(
+        id = "${id_prefix}_label",
+        text = left_view_text,
+        style = "text",
+      ),
+    ),
+    pop_up_title = pop_up_title,
+    display_cancel_button = true,
+    display_save_button = true,
+  );
+
+define classSpellSlotsPerLevelPopUpButton(slot_level, slot_label) =
+  levelledAmountPopUpButton(
+    id_prefix = "class_edit_spell_slots_level_${slot_level}_per_level",
+    stat_id = "spell_slots_level_${slot_level}_per_level",
+    button_text = "${slot_label} ${slot_level}",
+    pop_up_title = "Edit ${slot_label} ${slot_level} Slots",
+    left_view_text = "Max. amount per level: ",
+  );
+
+define bottomSheetPopUpButton(button_id, button_text, pop_up_view, pop_up_title) =
+  popUpButton(
+    id = button_id,
+    text = button_text,
+    pop_up_view = pop_up_view,
+    pop_up_type = "bottomSheet",
+    pop_up_title = pop_up_title,
+  );
+
+define bottomSheetPersistPopUpButton(button_id, button_text, pop_up_view, pop_up_title) =
+  popUpButton(
+    id = button_id,
+    text = button_text,
+    pop_up_view = pop_up_view,
+    pop_up_type = "bottomSheet",
+    pop_up_title = pop_up_title,
+    display_cancel_button = true,
+    display_save_button = true,
+    should_persist_on_save = true,
+  );
+
+define bottomSheetOkPopUpButton(button_id, button_text, pop_up_view, pop_up_title, is_visible) =
+  popUpButton(
+    id = button_id,
+    text = button_text,
+    pop_up_view = pop_up_view,
+    pop_up_title = pop_up_title,
+    display_cancel_button = true,
+    cancel_text = "OK",
+    is_visible = is_visible,
+  );
+
+define resourceDetailsOkPopUpButton(button_id, button_text, pop_up_view_id, resource_id, stat, pop_up_title, is_visible) =
+  bottomSheetOkPopUpButton(
+    button_id = button_id,
+    button_text = button_text,
+    pop_up_view = resource(
+      id = pop_up_view_id,
+      view_type = "display",
+      resource_id = resource_id,
+      stat = stat,
+    ),
+    pop_up_title = pop_up_title,
+    is_visible = is_visible,
+  );
+
+define persistentEditIconPopUpButton(button_id, icon_id, pop_up_view, pop_up_title) =
+  popUpButton(
+    id = button_id,
+    margin_right = 8,
+    icon = icon(
+      id = icon_id,
+      name = "ic_edit",
+      size = "small",
+      color = "text",
+    ),
+    pop_up_view = pop_up_view,
+    pop_up_title = pop_up_title,
+    display_cancel_button = true,
+    display_save_button = true,
+    should_persist_on_save = true,
+  );
+
+define removableConditionChip(chip_id, chip_text, condition_id, is_visible) =
+  chip(
+    id = chip_id,
+    text = chip_text,
+    on_tap_event = event(name = "remove_condition", payload = payload(condition = condition_id)),
+    background_color = "buttonSurface",
+    is_visible = is_visible,
+  );
+
+define removableConditionChipPadded(chip_id, chip_text, condition_id, is_visible) =
+  chip(
+    id = chip_id,
+    margin_top = 6,
+    margin_bottom = 6,
+    margin_left = 4,
+    margin_right = 4,
+    text = chip_text,
+    on_tap_event = event(name = "remove_condition", payload = payload(condition = condition_id)),
+    background_color = "buttonSurface",
+    is_visible = is_visible,
+  );
+
+define selectorWithDetailsInlineComposite(composite_id, selector_view, details_button) =
+  composite(id = composite_id, subviews = [selector_view, details_button]);
+
+define selectorWithDetailsEndComposite(composite_id, selector_view, details_button) =
+  composite(
+    id = composite_id,
+    alignment = "end",
+    margin_bottom = 4,
+    subviews = [details_button, selector_view],
+  );
+
+define selectorWithDetailsEndVisibleComposite(composite_id, selector_view, details_button, is_visible) =
+  composite(
+    id = composite_id,
+    alignment = "end",
+    is_visible = is_visible,
+    subviews = [details_button, selector_view],
+  );
+
+define selectorWithDetailsEndAndTailComposite(composite_id, selector_view, details_button, tail_view) =
+  composite(
+    id = composite_id,
+    alignment = "end",
+    margin_bottom = 4,
+    subviews = [details_button, selector_view, tail_view],
+  );
+
+define editResourceArrayPopUpButton(button_id, button_text, array_id, resource_id, stat, pop_up_title, is_visible) =
+  popUpButton(
+    id = button_id,
+    text = button_text,
+    pop_up_view = resourceArray(
+      id = array_id,
+      resource_id = resource_id,
+      stat = stat,
+      view_type = "edit",
+      allow_adds_and_removes = false,
+    ),
+    pop_up_title = pop_up_title,
+    display_cancel_button = true,
+    display_save_button = true,
+    is_visible = is_visible,
+  );
+
+define editResourcePopUpButton(
+  button_id,
+  margin_top,
+  button_text,
+  pop_up_view_id,
+  resource_id,
+  stat,
+  pop_up_title,
+  create_if_empty,
+  should_persist_on_save,
+) =
+  popUpButton(
+    id = button_id,
+    margin_top = margin_top,
+    text = button_text,
+    pop_up_view = resource(
+      id = pop_up_view_id,
+      view_type = "edit",
+      resource_id = resource_id,
+      stat = stat,
+      create_if_empty = create_if_empty,
+    ),
+    pop_up_title = pop_up_title,
+    display_cancel_button = true,
+    display_save_button = true,
+    should_persist_on_save = should_persist_on_save,
+  );
+
+define preparedCantripChoiceArray(prefix, stat_id, is_visible) =
+  resourceArray(
+    id = "${prefix}_prepared_spells_rank_0_array",
+    resource_id = "prepared_spell_choice",
+    stat = stat_id,
+    view_type = "edit",
+    left_view = text(
+      id = "${prefix}_prepared_spells_rank_0_label",
+      text = "Cantrips",
+      style = "text",
+      bold = true,
+    ),
+    is_visible = is_visible,
+  );
+
+define preparedSpellChoiceArrayByRank(prefix, rank, stat_id, is_visible) =
+  resourceArray(
+    id = "${prefix}_prepared_spells_rank_${rank}_array",
+    resource_id = "prepared_spell_choice",
+    stat = stat_id,
+    view_type = "edit",
+    left_view = text(
+      id = "${prefix}_prepared_spells_rank_${rank}_label",
+      text = "Rank ${rank}",
+      style = "text",
+      bold = true,
+    ),
+    is_visible = is_visible,
+  );

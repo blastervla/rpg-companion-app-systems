@@ -1,0 +1,173 @@
+mechanic consume_prepared_spell(event_names = "consume_prepared_spell") =
+  when {
+    $character.temp_spell_cast_rank == 1 && notNull(
+      findFirst(
+        prepared_spell_choices_rank_1,
+        filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+          && $choice.used_quantity < $choice.effective_slot_quantity),
+      ),
+    ) -> forEach(
+        components = [
+          findFirst(
+            prepared_spell_choices_rank_1,
+            filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+              && $choice.used_quantity < $choice.effective_slot_quantity),
+          ),
+        ],
+        for_each_value_key = "$choice",
+        apply = addToStat(stat = "$choice.used_quantity", value = 1, aggregation_type = "set"),
+      ),
+    $character.temp_spell_cast_rank == 2 && notNull(
+      findFirst(
+        prepared_spell_choices_rank_2,
+        filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+          && $choice.used_quantity < $choice.effective_slot_quantity),
+      ),
+    ) -> forEach(
+        components = [
+          findFirst(
+            prepared_spell_choices_rank_2,
+            filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+              && $choice.used_quantity < $choice.effective_slot_quantity),
+          ),
+        ],
+        for_each_value_key = "$choice",
+        apply = addToStat(stat = "$choice.used_quantity", value = 1, aggregation_type = "set"),
+      ),
+    $character.temp_spell_cast_rank == 3 && notNull(
+      findFirst(
+        prepared_spell_choices_rank_3,
+        filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+          && $choice.used_quantity < $choice.effective_slot_quantity),
+      ),
+    ) -> forEach(
+        components = [
+          findFirst(
+            prepared_spell_choices_rank_3,
+            filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+              && $choice.used_quantity < $choice.effective_slot_quantity),
+          ),
+        ],
+        for_each_value_key = "$choice",
+        apply = addToStat(stat = "$choice.used_quantity", value = 1, aggregation_type = "set"),
+      ),
+    $character.temp_spell_cast_rank == 4 && notNull(
+      findFirst(
+        prepared_spell_choices_rank_4,
+        filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+          && $choice.used_quantity < $choice.effective_slot_quantity),
+      ),
+    ) -> forEach(
+        components = [
+          findFirst(
+            prepared_spell_choices_rank_4,
+            filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+              && $choice.used_quantity < $choice.effective_slot_quantity),
+          ),
+        ],
+        for_each_value_key = "$choice",
+        apply = addToStat(stat = "$choice.used_quantity", value = 1, aggregation_type = "set"),
+      ),
+    $character.temp_spell_cast_rank == 5 && notNull(
+      findFirst(
+        prepared_spell_choices_rank_5,
+        filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+          && $choice.used_quantity < $choice.effective_slot_quantity),
+      ),
+    ) -> forEach(
+        components = [
+          findFirst(
+            prepared_spell_choices_rank_5,
+            filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+              && $choice.used_quantity < $choice.effective_slot_quantity),
+          ),
+        ],
+        for_each_value_key = "$choice",
+        apply = addToStat(stat = "$choice.used_quantity", value = 1, aggregation_type = "set"),
+      ),
+    $character.temp_spell_cast_rank == 6 && notNull(
+      findFirst(
+        prepared_spell_choices_rank_6,
+        filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+          && $choice.used_quantity < $choice.effective_slot_quantity),
+      ),
+    ) -> forEach(
+        components = [
+          findFirst(
+            prepared_spell_choices_rank_6,
+            filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+              && $choice.used_quantity < $choice.effective_slot_quantity),
+          ),
+        ],
+        for_each_value_key = "$choice",
+        apply = addToStat(stat = "$choice.used_quantity", value = 1, aggregation_type = "set"),
+      ),
+    $character.temp_spell_cast_rank == 7 && notNull(
+      findFirst(
+        prepared_spell_choices_rank_7,
+        filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+          && $choice.used_quantity < $choice.effective_slot_quantity),
+      ),
+    ) -> forEach(
+        components = [
+          findFirst(
+            prepared_spell_choices_rank_7,
+            filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+              && $choice.used_quantity < $choice.effective_slot_quantity),
+          ),
+        ],
+        for_each_value_key = "$choice",
+        apply = addToStat(stat = "$choice.used_quantity", value = 1, aggregation_type = "set"),
+      ),
+    $character.temp_spell_cast_rank == 8 && notNull(
+      findFirst(
+        prepared_spell_choices_rank_8,
+        filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+          && $choice.used_quantity < $choice.effective_slot_quantity),
+      ),
+    ) -> forEach(
+        components = [
+          findFirst(
+            prepared_spell_choices_rank_8,
+            filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+              && $choice.used_quantity < $choice.effective_slot_quantity),
+          ),
+        ],
+        for_each_value_key = "$choice",
+        apply = addToStat(stat = "$choice.used_quantity", value = 1, aggregation_type = "set"),
+      ),
+    $character.temp_spell_cast_rank == 9 && notNull(
+      findFirst(
+        prepared_spell_choices_rank_9,
+        filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+          && $choice.used_quantity < $choice.effective_slot_quantity),
+      ),
+    ) -> forEach(
+        components = [
+          findFirst(
+            prepared_spell_choices_rank_9,
+            filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+              && $choice.used_quantity < $choice.effective_slot_quantity),
+          ),
+        ],
+        for_each_value_key = "$choice",
+        apply = addToStat(stat = "$choice.used_quantity", value = 1, aggregation_type = "set"),
+      ),
+    $character.temp_spell_cast_rank == 10 && notNull(
+      findFirst(
+        prepared_spell_choices_rank_10,
+        filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+          && $choice.used_quantity < $choice.effective_slot_quantity),
+      ),
+    ) -> forEach(
+        components = [
+          findFirst(
+            prepared_spell_choices_rank_10,
+            filter = ($choice) => ($choice.spell_id == ($character.temp_spell_cast_spell_id ?? "")
+              && $choice.used_quantity < $choice.effective_slot_quantity),
+          ),
+        ],
+        for_each_value_key = "$choice",
+        apply = addToStat(stat = "$choice.used_quantity", value = 1, aggregation_type = "set"),
+      ),
+  };

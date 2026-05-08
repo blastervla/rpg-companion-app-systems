@@ -1,0 +1,97 @@
+calc resource<monster>[] enemies(name = "Enemies") =
+  filter(
+    $combatants,
+    filter = ($combatant) => defined(stat = "$combatant.tag_number"),
+  );
+
+calc resource<player>[] players(name = "Players") =
+  filter(
+    $combatants,
+    filter = ($combatant) => !defined(stat = "$combatant.tag_number"),
+  );
+
+calc bool encounter_finished(name = "Encounter finished") =
+  isEmpty(
+    filter(
+      enemies,
+      filter = ($combatant) => $combatant.current_hp > 0,
+    ),
+  );
+
+calc integer party_size(name = "Party size") = max([1, length(players)]);
+
+calc integer party_level(name = "Party level") =
+  if isEmpty(players)
+    then 1
+    else divide(
+      [
+        add(map(players, mapper = ($player) => ($player.level ?? 1))),
+        length(players),
+      ],
+      rounding_method = "down",
+    );
+
+calc integer xp_pool(name = "XP Pool") =
+  add(
+    map(
+      enemies,
+      mapper = ($enemy) => when {
+        (($enemy.level ?? party_level) - party_level) <= -4 -> 10,
+        (($enemy.level ?? party_level) - party_level) == -3 -> 15,
+        (($enemy.level ?? party_level) - party_level) == -2 -> 20,
+        (($enemy.level ?? party_level) - party_level) == -1 -> 30,
+        (($enemy.level ?? party_level) - party_level) == 0 -> 40,
+        (($enemy.level ?? party_level) - party_level) == 1 -> 60,
+        (($enemy.level ?? party_level) - party_level) == 2 -> 80,
+        (($enemy.level ?? party_level) - party_level) == 3 -> 120,
+        (($enemy.level ?? party_level) - party_level) == 4 -> 160,
+        else -> 240,
+      },
+    ),
+  );
+
+calc integer xp_to_deal(name = "XP to deal") =
+  if party_size > 0
+    then divide([xp_pool, party_size], rounding_method = "down")
+    else xp_pool;
+
+calc integer encounter_low_budget_xp(name = "Encounter low budget XP") =
+  party_size * 15;
+
+calc integer encounter_moderate_budget_xp(name = "Encounter moderate budget XP") =
+  party_size * 20;
+
+calc integer encounter_severe_budget_xp(name = "Encounter severe budget XP") =
+  party_size * 30;
+
+calc integer encounter_extreme_budget_xp(name = "Encounter extreme budget XP") =
+  party_size * 40;
+
+calc string selected_encounter_budget_tier(name = "Selected encounter budget tier") =
+  when {
+    $combat_difficulty == "low" -> "low",
+    $combat_difficulty == "moderate" -> "moderate",
+    $combat_difficulty == "severe" -> "severe",
+    $combat_difficulty == "extreme" -> "extreme",
+    else -> "moderate",
+  };
+
+calc integer desired_encounter_budget_xp(name = "Desired encounter budget XP") =
+  when {
+    selected_encounter_budget_tier == "low" -> encounter_low_budget_xp,
+    selected_encounter_budget_tier == "moderate" -> encounter_moderate_budget_xp,
+    selected_encounter_budget_tier == "severe" -> encounter_severe_budget_xp,
+    else -> encounter_extreme_budget_xp,
+  };
+
+calc string encounter_budget_tier(name = "Encounter budget tier") =
+  when {
+    xp_pool <= encounter_low_budget_xp -> "low",
+    xp_pool <= encounter_moderate_budget_xp -> "moderate",
+    xp_pool <= encounter_severe_budget_xp -> "severe",
+    xp_pool <= encounter_extreme_budget_xp -> "extreme",
+    else -> "over_extreme",
+  };
+
+calc bool encounter_within_desired_difficulty(name = "Encounter within desired difficulty") =
+  xp_pool <= desired_encounter_budget_xp;

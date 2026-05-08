@@ -1,0 +1,432 @@
+define dnd5eOnShortRest() =
+  sequence(
+    effects = [
+      showMessage(
+        message = "You've rested for a bit. Your HP and Hit Dice have been updated accordingly",
+        message_type = "info",
+      ),
+      when {
+        $view.short_rest_hit_dice_d4_stat > 0
+        || $view.short_rest_hit_dice_d6_stat > 0
+        || $view.short_rest_hit_dice_d8_stat > 0
+        || $view.short_rest_hit_dice_d10_stat > 0
+        || $view.short_rest_hit_dice_d12_stat > 0
+        || $view.short_rest_hit_dice_d20_stat > 0 -> roll(
+          rolls = [
+            rollable(
+              formulas = flatAppend(
+                [
+                  (if $view.short_rest_hit_dice_d4_stat != 0
+                    then [concat([$view.short_rest_hit_dice_d4_stat, "d4"])]
+                    else []),
+                  (if $view.short_rest_hit_dice_d6_stat != 0
+                    then [concat([$view.short_rest_hit_dice_d6_stat, "d6"])]
+                    else []),
+                  (if $view.short_rest_hit_dice_d8_stat != 0
+                    then [concat([$view.short_rest_hit_dice_d8_stat, "d8"])]
+                    else []),
+                  (if $view.short_rest_hit_dice_d10_stat != 0
+                    then [concat([$view.short_rest_hit_dice_d10_stat, "d10"])]
+                    else []),
+                  (if $view.short_rest_hit_dice_d12_stat != 0
+                    then [concat([$view.short_rest_hit_dice_d12_stat, "d12"])]
+                    else []),
+                  (if $view.short_rest_hit_dice_d20_stat != 0
+                    then [concat([$view.short_rest_hit_dice_d20_stat, "d20"])]
+                    else []),
+                ],
+              ),
+              text = "hit dice rolls",
+            ),
+          ],
+          on_result_effect = setStat(
+            stat = "current_hp",
+            new_value = min([max_hp, ($event.result + current_hp)]),
+            aggregation_type = "set",
+          ),
+        ),
+      },
+      setStat(
+        stat = "current_d4_hit_dice",
+        new_value = max(
+          [
+            (current_d4_hit_dice - $view.short_rest_hit_dice_d4_stat),
+            0,
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "current_d6_hit_dice",
+        new_value = max(
+          [
+            (current_d6_hit_dice - $view.short_rest_hit_dice_d6_stat),
+            0,
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "current_d8_hit_dice",
+        new_value = max(
+          [
+            (current_d8_hit_dice - $view.short_rest_hit_dice_d8_stat),
+            0,
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "current_d10_hit_dice",
+        new_value = max(
+          [
+            (current_d10_hit_dice - $view.short_rest_hit_dice_d10_stat),
+            0,
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "current_d12_hit_dice",
+        new_value = max(
+          [
+            (current_d12_hit_dice - $view.short_rest_hit_dice_d12_stat),
+            0,
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "current_d20_hit_dice",
+        new_value = max(
+          [
+            (current_d20_hit_dice - $view.short_rest_hit_dice_d20_stat),
+            0,
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_1",
+        new_value = max(
+          [
+            spell_slots_1,
+            add(
+              map(
+                map(
+                  filter(
+                    custom_spell_slot_classes,
+                    filter = ($filterValue) => $filterValue.class.actual_recharge_slots_on_short_rest,
+                  ),
+                  mapper = ($class) => findFirst(
+                    sortBy(
+                      $class.class.actual_spell_slots_level_1_per_level,
+                      order = "desc",
+                      sort_by_selector = ($sortByValue) => $sortByValue.level,
+                    ),
+                    filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                  ),
+                ),
+                mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+              ),
+            ),
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_2",
+        new_value = max(
+          [
+            spell_slots_2,
+            add(
+              map(
+                map(
+                  filter(
+                    custom_spell_slot_classes,
+                    filter = ($filterValue) => $filterValue.class.actual_recharge_slots_on_short_rest,
+                  ),
+                  mapper = ($class) => findFirst(
+                    sortBy(
+                      $class.class.actual_spell_slots_level_2_per_level,
+                      order = "desc",
+                      sort_by_selector = ($sortByValue) => $sortByValue.level,
+                    ),
+                    filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                  ),
+                ),
+                mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+              ),
+            ),
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_3",
+        new_value = max(
+          [
+            spell_slots_3,
+            add(
+              map(
+                map(
+                  filter(
+                    custom_spell_slot_classes,
+                    filter = ($filterValue) => $filterValue.class.actual_recharge_slots_on_short_rest,
+                  ),
+                  mapper = ($class) => findFirst(
+                    sortBy(
+                      $class.class.actual_spell_slots_level_3_per_level,
+                      order = "desc",
+                      sort_by_selector = ($sortByValue) => $sortByValue.level,
+                    ),
+                    filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                  ),
+                ),
+                mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+              ),
+            ),
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_4",
+        new_value = max(
+          [
+            spell_slots_4,
+            add(
+              map(
+                map(
+                  filter(
+                    custom_spell_slot_classes,
+                    filter = ($filterValue) => $filterValue.class.actual_recharge_slots_on_short_rest,
+                  ),
+                  mapper = ($class) => findFirst(
+                    sortBy(
+                      $class.class.actual_spell_slots_level_4_per_level,
+                      order = "desc",
+                      sort_by_selector = ($sortByValue) => $sortByValue.level,
+                    ),
+                    filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                  ),
+                ),
+                mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+              ),
+            ),
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_5",
+        new_value = max(
+          [
+            spell_slots_5,
+            add(
+              map(
+                map(
+                  filter(
+                    custom_spell_slot_classes,
+                    filter = ($filterValue) => $filterValue.class.actual_recharge_slots_on_short_rest,
+                  ),
+                  mapper = ($class) => findFirst(
+                    sortBy(
+                      $class.class.actual_spell_slots_level_5_per_level,
+                      order = "desc",
+                      sort_by_selector = ($sortByValue) => $sortByValue.level,
+                    ),
+                    filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                  ),
+                ),
+                mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+              ),
+            ),
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_6",
+        new_value = max(
+          [
+            spell_slots_6,
+            add(
+              map(
+                map(
+                  filter(
+                    custom_spell_slot_classes,
+                    filter = ($filterValue) => $filterValue.class.actual_recharge_slots_on_short_rest,
+                  ),
+                  mapper = ($class) => findFirst(
+                    sortBy(
+                      $class.class.actual_spell_slots_level_6_per_level,
+                      order = "desc",
+                      sort_by_selector = ($sortByValue) => $sortByValue.level,
+                    ),
+                    filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                  ),
+                ),
+                mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+              ),
+            ),
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_7",
+        new_value = max(
+          [
+            spell_slots_7,
+            add(
+              map(
+                map(
+                  filter(
+                    custom_spell_slot_classes,
+                    filter = ($filterValue) => $filterValue.class.actual_recharge_slots_on_short_rest,
+                  ),
+                  mapper = ($class) => findFirst(
+                    sortBy(
+                      $class.class.actual_spell_slots_level_7_per_level,
+                      order = "desc",
+                      sort_by_selector = ($sortByValue) => $sortByValue.level,
+                    ),
+                    filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                  ),
+                ),
+                mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+              ),
+            ),
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_8",
+        new_value = max(
+          [
+            spell_slots_8,
+            add(
+              map(
+                map(
+                  filter(
+                    custom_spell_slot_classes,
+                    filter = ($filterValue) => $filterValue.class.actual_recharge_slots_on_short_rest,
+                  ),
+                  mapper = ($class) => findFirst(
+                    sortBy(
+                      $class.class.actual_spell_slots_level_8_per_level,
+                      order = "desc",
+                      sort_by_selector = ($sortByValue) => $sortByValue.level,
+                    ),
+                    filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                  ),
+                ),
+                mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+              ),
+            ),
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_9",
+        new_value = max(
+          [
+            spell_slots_9,
+            add(
+              map(
+                map(
+                  filter(
+                    custom_spell_slot_classes,
+                    filter = ($filterValue) => $filterValue.class.actual_recharge_slots_on_short_rest,
+                  ),
+                  mapper = ($class) => findFirst(
+                    sortBy(
+                      $class.class.actual_spell_slots_level_9_per_level,
+                      order = "desc",
+                      sort_by_selector = ($sortByValue) => $sortByValue.level,
+                    ),
+                    filter = ($findFirstValue) => ($findFirstValue.level <= $class.class_level),
+                  ),
+                ),
+                mapper = ($mapValue) => ($mapValue?.amount ?? 0),
+              ),
+            ),
+          ],
+        ),
+        aggregation_type = "set",
+      ),
+    ],
+  );
+
+define dnd5eTriggerShortRestPopup() =
+  bottomSheetActionPopUpEditMode(
+    pop_up_view = list(
+      id = "short_rest_bottom_sheet",
+      padding = 16,
+      subviews = [
+        text(
+          id = "bottom_sheet_short_rest_label",
+          margin_top = 16,
+          text = "Select how many Hit Dice you want to spend",
+          style = "text",
+        ),
+        section(
+          id = "short_rest_hit_dice_section",
+          header = [],
+          show_divider = false,
+          content_item_min_width = 100,
+          collapsible = false,
+          content = [
+            stat(
+              id = "short_rest_hit_dice_d4_stat",
+              stat = "temp_short_rest_hit_dice_d4",
+              change_amount = 1,
+              min_value_allowed = 0,
+              calculated_max_value_allowed = current_d4_hit_dice,
+            ),
+            stat(
+              id = "short_rest_hit_dice_d6_stat",
+              stat = "temp_short_rest_hit_dice_d6",
+              change_amount = 1,
+              min_value_allowed = 0,
+              calculated_max_value_allowed = current_d6_hit_dice,
+            ),
+            stat(
+              id = "short_rest_hit_dice_d8_stat",
+              stat = "temp_short_rest_hit_dice_d8",
+              change_amount = 1,
+              min_value_allowed = 0,
+              calculated_max_value_allowed = current_d8_hit_dice,
+            ),
+            stat(
+              id = "short_rest_hit_dice_d10_stat",
+              stat = "temp_short_rest_hit_dice_d10",
+              change_amount = 1,
+              min_value_allowed = 0,
+              calculated_max_value_allowed = current_d10_hit_dice,
+            ),
+            stat(
+              id = "short_rest_hit_dice_d12_stat",
+              stat = "temp_short_rest_hit_dice_d12",
+              change_amount = 1,
+              min_value_allowed = 0,
+              calculated_max_value_allowed = current_d12_hit_dice,
+            ),
+            stat(
+              id = "short_rest_hit_dice_d20_stat",
+              stat = "temp_short_rest_hit_dice_d20",
+              change_amount = 1,
+              min_value_allowed = 0,
+              calculated_max_value_allowed = current_d20_hit_dice,
+            ),
+          ],
+        ),
+      ],
+    ),
+    pop_up_title = "Short Rest ",
+    action_text = "REST",
+    action_event_name = "short_rest",
+  );

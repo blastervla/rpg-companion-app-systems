@@ -1,0 +1,41 @@
+view lore_skill_display() =
+  list(
+    id = "lore_skill_display",
+    subviews = [
+      text(
+        id = "lore_skill_display_out_of_character",
+        margin_left = 4,
+        text = description,
+        style = "text",
+        is_visible = !($character?.should_show_controls_for_choices ?? false),
+      ),
+      text(
+        id = "lore_skill_display_in_character_name",
+        edit_stat = "selected_option",
+        style = "text",
+        max_length = 80,
+        label = "Lore",
+        hint = "Enter lore skill",
+        is_visible = $character?.should_show_controls_for_choices ?? false,
+      ),
+      text(
+        id = "lore_skill_display_in_character_options",
+        margin_left = 4,
+        text = concat(["Choices: ", options]),
+        style = "caption",
+        is_visible = ($character?.should_show_controls_for_choices ?? false) && !isEmpty(options),
+      ),
+      text(
+        id = "lore_skill_display_in_character_rank",
+        margin_left = 4,
+        text = concat(
+          [
+            "Proficiency: ",
+            enumeratedName(enumerated_type = "skill_proficiency_types", id = proficiency),
+          ],
+        ),
+        style = "caption",
+        is_visible = $character?.should_show_controls_for_choices ?? false,
+      ),
+    ],
+  );

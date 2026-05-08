@@ -1,0 +1,378 @@
+view monster_instance_display() =
+  list(
+    id = "monster_instance_display",
+    padding = 16,
+    alignment = "start",
+    subviews = [
+      composite(
+        id = "monster_instance_display_source_type_info",
+        subviews = [
+          text(
+            id = "monster_instance_display_source",
+            style = "caption",
+            margin_left = 16,
+            margin_right = 4,
+            resource_id = "source",
+            resource_instance_ids_stat = "$resource.source",
+            resource_display_stat = "abbreviation",
+          ),
+          text(id = "monster_instance_display_type_info", text = $resource.type_info, style = "caption"),
+        ],
+      ),
+      composite(
+        id = "monster_instance_display_photo_comp",
+        alignment = "end",
+        subviews = [
+          avatar(
+            id = "monster_instance_display_photo",
+            photo_stat = "photo",
+            name_stat = "name",
+            size = "medium",
+            interactable = false,
+            preview_enabled = true,
+          ),
+        ],
+      ),
+      section(
+        id = "monster_instance_display_ac_hp_speed",
+        show_divider = false,
+        content_item_min_width = 125,
+        margin_left = 8,
+        margin_right = 8,
+        collapsible = false,
+        header = [],
+        content = [
+         stat(
+            id = "monster_instance_instance_edit_armor_class",
+            stat = "armor_class",
+            change_amount = 1,
+            min_value_allowed = 0,
+          ),
+          stat(
+            id = "monster_instance_instance_edit_current_hp",
+            stat = "current_hp",
+            change_amount = 1,
+            min_value_allowed = 0,
+          ),
+        ],
+      ),
+      composite(
+        id = "monster_instance_display_initiative",
+        subviews = [
+          text(
+            id = "monster_instance_display_initiative_label",
+            text = "Initiative: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "monster_instance_display_initiative",
+            text = toSignedString($resource.initiative),
+            style = "text",
+            margin_right = 16,
+          ),
+          text(
+            id = "monster_instance_display_perception_label",
+            text = "Perception: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "monster_instance_display_perception",
+            text = toSignedString($resource.perception),
+            style = "text",
+            margin_right = 16,
+          ),
+          text(
+            id = "monster_instance_display_actions_remaining_label",
+            text = "Actions: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "monster_instance_display_actions_remaining",
+            text = actions_remaining,
+            style = "text",
+            margin_right = 8,
+          ),
+          text(
+            id = "monster_instance_display_reaction_available_label",
+            text = "Reactions: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "monster_instance_display_reaction_available",
+            text = reaction_available,
+            style = "text",
+          ),
+        ],
+      ),
+      text(
+        id = "monster_instance_display_ability_scores_label",
+        text = "Abilities:",
+        style = "text",
+        bold = true,
+        margin_top = 4,
+      ),
+      composite(
+        id = "monster_instance_display_ability_scores_1",
+        alignment = "center",
+        subviews = [
+          text(
+            id = "monster_instance_display_strength_score",
+            text = $resource.display_strength_with_mod,
+            style = "text",
+            margin_right = 16,
+          ),
+          text(
+            id = "monster_instance_display_dexterity_score",
+            text = $resource.display_dexterity_with_mod,
+            style = "text",
+            margin_right = 16,
+          ),
+          text(
+            id = "monster_instance_display_constitution_score",
+            text = $resource.display_constitution_with_mod,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "monster_instance_display_ability_scores_2",
+        alignment = "center",
+        margin_top = 8,
+        subviews = [
+          text(
+            id = "monster_instance_display_intelligence_score",
+            text = $resource.display_intelligence_with_mod,
+            style = "text",
+            margin_right = 16,
+          ),
+          text(
+            id = "monster_instance_display_wisdom_score",
+            text = $resource.display_wisdom_with_mod,
+            style = "text",
+            margin_right = 16,
+          ),
+          text(
+            id = "monster_instance_display_charisma_score",
+            text = $resource.display_charisma_with_mod,
+            style = "text",
+          ),
+        ],
+      ),
+      text(
+        id = "monster_instance_display_saves_label",
+        text = "Saves:",
+        style = "text",
+        bold = true,
+      ),
+      composite(
+        id = "monster_instance_display_saves",
+        alignment = "center",
+        subviews = [
+          text(
+            id = "monster_instance_display_fortitude",
+            text = $resource.display_fortitude,
+            style = "text",
+            margin_right = 8,
+          ),
+          text(
+            id = "monster_instance_display_reflex",
+            text = $resource.display_reflex,
+            style = "text",
+            margin_right = 8,
+          ),
+          text(
+            id = "monster_instance_display_will",
+            text = $resource.display_will,
+            style = "text",
+          ),
+        ],
+      ),
+      divider(id = "monster_instance_display_stats_senses_divider", margin_bottom = 8),
+      composite(
+        id = "monster_instance_display_skills_comp",
+        is_visible = !isEmpty($resource.skills),
+        subviews = [
+          text(
+            id = "monster_instance_display_skills_label",
+            text = "Skills: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "monster_instance_display_skills", text = $resource.skills, style = "text"),
+        ],
+      ),
+      composite(
+        id = "monster_instance_display_gear_comp",
+        is_visible = !isEmpty($resource.gear),
+        subviews = [
+          text(
+            id = "monster_instance_display_gear_label",
+            text = "Gear: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "monster_instance_display_gear", text = $resource.gear, style = "text"),
+        ],
+      ),
+      composite(
+        id = "monster_instance_display_weaknesses_comp",
+        is_visible = !isEmpty($resource.effective_weaknesses),
+        subviews = [
+          text(
+            id = "monster_instance_display_weaknesses_label",
+            text = "Weaknesses: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "monster_instance_display_weaknesses",
+            text = $resource.effective_weaknesses,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "monster_instance_display_immunities_comp",
+        is_visible = !isEmpty($resource.immunities),
+        subviews = [
+          text(
+            id = "monster_instance_display_immunities_label",
+            text = "Immunities: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "monster_instance_display_immunities", text = $resource.immunities, style = "text"),
+        ],
+      ),
+      composite(
+        id = "monster_instance_display_resistances_comp",
+        is_visible = !isEmpty($resource.resistances),
+        subviews = [
+          text(
+            id = "monster_instance_display_resistances_label",
+            text = "Resistances: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "monster_instance_display_resistances", text = $resource.resistances, style = "text"),
+        ],
+      ),
+      composite(
+        id = "monster_instance_display_senses_comp",
+        is_visible = !isEmpty($resource.senses),
+        subviews = [
+          text(
+            id = "monster_instance_display_senses_label",
+            text = "Senses: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "monster_instance_display_senses", text = $resource.senses, style = "text"),
+        ],
+      ),
+      composite(
+        id = "monster_instance_display_languages_comp",
+        is_visible = !isEmpty($resource.languages),
+        subviews = [
+          text(
+            id = "monster_instance_display_languages_label",
+            text = "Languages: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "monster_instance_display_languages", text = $resource.languages, style = "text"),
+        ],
+      ),
+      composite(
+        id = "monster_instance_display_level_xp",
+        subviews = [
+          text(
+            id = "monster_instance_display_level_xp_label",
+            text = "Level: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "monster_instance_display_level_xp", text = $resource.level_xp, style = "text"),
+        ],
+      ),
+      divider(id = "monster_instance_display_traits_divider"),
+      collapsible(
+        id = "monster_instance_display_spells_collapsible",
+        title = "Spells",
+        start_expanded = false,
+        subviews = [
+          resourceArray(
+            id = "monster_instance_display_spells",
+            resource_id = "monster_spellcasting_block",
+            stat = "$resource.spellcasting_blocks",
+            view_type = "display",
+            hide_line = true,
+          ),
+        ],
+        is_visible = !isEmpty($resource.spellcasting_blocks?),
+      ),
+      resourceArray(
+        id = "monster_instance_display_traits",
+        resource_id = "monster_trait",
+        stat = "$resource.traits",
+        view_type = "list",
+        hide_line = true,
+        is_visible = !isEmpty($resource.traits),
+      ),
+      divider(id = "monster_instance_display_actions_divider", is_visible = !isEmpty($resource.traits)),
+      resourceArray(
+        id = "monster_instance_display_actions",
+        resource_id = "monster_action",
+        stat = "$resource.actions",
+        view_type = "display",
+        hide_line = true,
+        left_view = text(
+          id = "monster_instance_display_actions_label",
+          text = "Actions",
+          style = "text",
+          bold = true,
+        ),
+        is_visible = !isEmpty($resource.actions),
+      ),
+      divider(
+        id = "monster_instance_display_free_actions_divider",
+        is_visible = !isEmpty($resource.actions),
+      ),
+      resourceArray(
+        id = "monster_instance_display_free_actions",
+        resource_id = "monster_action",
+        stat = "$resource.free_actions",
+        view_type = "display",
+        hide_line = true,
+        left_view = text(
+          id = "monster_instance_display_actions_label",
+          text = "Free actions",
+          style = "text",
+          bold = true,
+        ),
+        is_visible = !isEmpty($resource.free_actions),
+      ),
+      divider(
+        id = "monster_instance_display_reactions_divider",
+        is_visible = !isEmpty($resource.free_actions),
+      ),
+      resourceArray(
+        id = "monster_instance_display_reactions",
+        resource_id = "monster_action",
+        stat = "$resource.reactions",
+        view_type = "display",
+        hide_line = true,
+        left_view = text(
+          id = "monster_instance_display_reactions_label",
+          text = "Reactions",
+          style = "text",
+          bold = true,
+        ),
+        is_visible = !isEmpty($resource.reactions),
+      ),
+    ],
+  );

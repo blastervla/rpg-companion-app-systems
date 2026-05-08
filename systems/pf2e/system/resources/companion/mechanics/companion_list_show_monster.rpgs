@@ -1,0 +1,8 @@
+mechanic companion_list_show_monster(name = "Show monster", event_names = "companion_list_show_monster") =
+  when {
+    notNull(monster) -> showResource(resource = monster, edit_stat = "monster"),
+    else -> showMessage(
+        message = "No monster template selected for this companion.",
+        message_type = "info",
+      ),
+  };

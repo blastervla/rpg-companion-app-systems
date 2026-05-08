@@ -1,0 +1,600 @@
+base string name(name = "Name") = "";
+
+base resource<levelled_description>[] description(name = "Description") = [];
+
+base string trigger_type(name = "Trigger type") = "passive";
+
+base resource<trigger_condition_or> trigger_condition(name = "Trigger condition") =
+  null;
+
+base bool has_charges(name = "Has charges") = false;
+
+base string charge_type(name = "Charge type") = "constant";
+
+base string recharge_type(name = "Recharge type") = "all";
+
+base string recharge_event(name = "Recharge event") = "daily_preparations";
+
+base integer max_charges_constant(name = "Max charges") = 0;
+
+base resource<levelled_value_calculator>[] max_charges_levelled_formulas(name = "Max charges levelled formulas") =
+  [];
+
+calc integer current_charges(name = "Charges") = max_charges_constant;
+
+base resource<dice_roll> recharges(name = "Max charges") = null;
+
+base string type(name = "Type") = "none";
+
+base bool clear_on_remove(name = "Clear on remove") = true;
+
+base string events(name = "Trigger events") = "";
+
+base string revert_events(name = "Revert events") = "";
+
+base string stat(name = "Stat") = "$character.strength_score";
+
+base string aggregation_type(name = "Aggregation type") = "max";
+
+base resource<dice_roll> dice_roll(name = "Dice") = null;
+
+base bool roll_scales_with_level(name = "Roll scales with level") = false;
+
+base integer roll_scale_start_level(name = "Roll scaling start level") = 1;
+
+base integer roll_scale_interval_levels(name = "Roll scaling interval levels") = 1;
+
+base integer roll_scale_dice_amount_per_step(name = "Roll scaling dice amount per step") =
+  0;
+
+base integer roll_scale_constant_per_step(name = "Roll scaling constant per step") =
+  0;
+
+base integer constant(name = "Constant") = 0;
+
+base resource<spell> spell(name = "Spell") = null;
+
+base string typed_modifier_type(name = "Typed modifier type") = "untyped";
+
+base string typed_modifier_polarity(name = "Typed modifier polarity") = "bonus";
+
+base string action_stat(name = "Action stat") = "$character.actions_remaining";
+
+base string action_operation(name = "Action operation") = "add";
+
+base string proficiency_stat(name = "Proficiency stat") =
+  "$character.acrobatics_proficiency";
+
+base string proficiency_rank(name = "Proficiency rank") = "trained";
+
+base string condition_stat(name = "Condition stat") = "$character.frightened_value";
+
+base bool has_duration(name = "Has duration") = false;
+
+base integer duration_rounds(name = "Duration rounds") = 1;
+
+calc integer remaining_duration(name = "Remaining duration rounds") = 0;
+
+base string duration_tick_events(name = "Duration tick events") = "roundAdvanced";
+
+base bool auto_revert_on_duration_end(name = "Auto revert when duration ends") =
+  true;
+
+base string chained_events(name = "Chained events") = "";
+
+base string roll_text(name = "Roll text") = "effect roll";
+
+calc string edit_display_name(name = "Edit display name") =
+  if isEmpty(name) then display_subtitle else name;
+
+calc string[] parsed_events(name = "Parsed trigger events") =
+  filter(
+    map(
+      split(events, separator = "\\s*,\\s*"),
+      mapper = ($mapValue) => trim($mapValue),
+    ),
+    filter = ($filterValue) => !isEmpty($filterValue),
+  );
+
+calc string[] parsed_revert_events(name = "Parsed revert events") =
+  filter(
+    map(
+      split(revert_events, separator = "\\s*,\\s*"),
+      mapper = ($mapValue) => trim($mapValue),
+    ),
+    filter = ($filterValue) => !isEmpty($filterValue),
+  );
+
+calc string[] parsed_duration_tick_events(name = "Parsed duration tick events") =
+  filter(
+    map(
+      split(duration_tick_events, separator = "\\s*,\\s*"),
+      mapper = ($mapValue) => trim($mapValue),
+    ),
+    filter = ($filterValue) => !isEmpty($filterValue),
+  );
+
+calc string[] parsed_chained_events(name = "Parsed chained events") =
+  filter(
+    map(
+      split(chained_events, separator = "\\s*,\\s*"),
+      mapper = ($mapValue) => trim($mapValue),
+    ),
+    filter = ($filterValue) => !isEmpty($filterValue),
+  );
+
+calc string[] calculated_chained_event_names(name = "Calculated chained event names") =
+  parsed_chained_events;
+
+calc bool has_chained_events(name = "Has chained events") =
+  !isEmpty(calculated_chained_event_names);
+
+calc string typed_modifier_aggregation_type(name = "Typed modifier aggregation type") =
+  when {
+    typed_modifier_type == "untyped" -> "sum",
+    typed_modifier_polarity == "penalty" -> "min",
+    else -> "max",
+  };
+
+calc string typed_modifier_target_stat_id(name = "Typed modifier target stat id") =
+  trim(replace(string = stat, occurrence = "$character.", replace = ""));
+
+calc bool typed_modifier_uses_bucketed_stacking(name = "Typed modifier uses bucketed stacking") =
+  contains(
+    haystack = [
+      "acrobatics",
+      "arcana",
+      "athletics",
+      "deception",
+      "intimidation",
+      "crafting",
+      "medicine",
+      "nature",
+      "perception",
+      "performance",
+      "diplomacy",
+      "religion",
+      "occultism",
+      "society",
+      "thievery",
+      "stealth",
+      "survival",
+      "armor_class",
+      "perception_dc",
+      "initiative",
+      "fortitude",
+      "reflex",
+      "will",
+      "class_dc",
+      "spell_attack_extra_bonus",
+      "spell_dc_extra_bonus"
+    ],
+    needle = typed_modifier_target_stat_id,
+  );
+
+calc string typed_modifier_target_stat_prefix(name = "Typed modifier target stat prefix") =
+  when {
+    typed_modifier_target_stat_id == "spell_attack_extra_bonus" -> "spell_attack",
+    typed_modifier_target_stat_id == "spell_dc_extra_bonus" -> "spell_dc",
+    else -> typed_modifier_target_stat_id,
+  };
+
+calc string typed_modifier_bucket_suffix(name = "Typed modifier bucket suffix") =
+  when {
+    typed_modifier_type == "untyped" && typed_modifier_target_stat_id == "spell_attack_extra_bonus" -> "_extra_bonus",
+    typed_modifier_type == "untyped" && typed_modifier_target_stat_id == "spell_dc_extra_bonus" -> "_extra_bonus",
+    typed_modifier_type == "untyped" -> "_untyped_modifier",
+    typed_modifier_type == "status" && typed_modifier_polarity == "bonus" -> "_status_bonus",
+    typed_modifier_type == "status" && typed_modifier_polarity == "penalty" -> "_status_penalty",
+    typed_modifier_type == "circumstance" && typed_modifier_polarity == "bonus" -> "_circumstance_bonus",
+    typed_modifier_type == "circumstance" && typed_modifier_polarity == "penalty" -> "_circumstance_penalty",
+    typed_modifier_type == "item" && typed_modifier_polarity == "bonus" -> "_item_bonus",
+    typed_modifier_type == "item" && typed_modifier_polarity == "penalty" -> "_item_penalty",
+    else -> "",
+  };
+
+calc string typed_modifier_target_meta_stat(name = "Typed modifier target meta stat") =
+  if typed_modifier_uses_bucketed_stacking
+    then concat(["$character.", typed_modifier_target_stat_prefix, typed_modifier_bucket_suffix])
+    else stat;
+
+
+calc integer action_amount(name = "Action amount") =
+  when {
+    action_operation == "set" -> constant,
+    action_operation == "spend" || action_operation == "regain" -> if constant == 0
+      then 1
+      else max([0, constant]),
+    else -> constant,
+  };
+
+calc integer action_current_value(name = "Current value of targeted action stat") =
+  metaStat(meta_stat = action_stat);
+
+calc integer action_cap(name = "Cap for targeted action stat") =
+  when {
+    action_stat == "$character.actions_remaining" -> $character?.max_actions_per_turn
+      ?? $parent?.max_actions_per_turn
+      ?? 3,
+    action_stat == "$character.reaction_available" -> $character?.max_reactions_per_round
+      ?? $parent?.max_reactions_per_round
+      ?? 1,
+    else -> -1,
+  };
+
+calc integer action_unbounded_new_value(name = "Action unbounded new value") =
+  when {
+    action_operation == "set" -> action_amount,
+    action_operation == "spend" -> action_current_value + (action_amount * -1),
+    action_operation == "regain" -> action_current_value + action_amount,
+    else -> action_current_value + action_amount,
+  };
+
+calc integer action_new_value(name = "Action final new value") =
+  if action_cap >= 0
+    then min([action_cap, max([0, action_unbounded_new_value])])
+    else max([0, action_unbounded_new_value]);
+
+calc integer proficiency_rank_value(name = "Requested proficiency rank value") =
+  when {
+    proficiency_rank == "trained" -> 1,
+    proficiency_rank == "expert" -> 2,
+    proficiency_rank == "master" -> 3,
+    proficiency_rank == "legendary" -> 4,
+    else -> 0,
+  };
+
+calc integer current_proficiency_rank_value(name = "Current proficiency rank value") =
+  when {
+    metaStat(meta_stat = proficiency_stat) == "trained" -> 1,
+    metaStat(meta_stat = proficiency_stat) == "expert" -> 2,
+    metaStat(meta_stat = proficiency_stat) == "master" -> 3,
+    metaStat(meta_stat = proficiency_stat) == "legendary" -> 4,
+    else -> 0,
+  };
+
+calc integer applied_proficiency_rank_value(name = "Applied proficiency rank value") =
+  max([proficiency_rank_value, current_proficiency_rank_value]);
+
+calc string applied_proficiency_rank(name = "Applied proficiency rank") =
+  when {
+    applied_proficiency_rank_value == 4 -> "legendary",
+    applied_proficiency_rank_value == 3 -> "master",
+    applied_proficiency_rank_value == 2 -> "expert",
+    applied_proficiency_rank_value == 1 -> "trained",
+    else -> "none",
+  };
+
+calc bool condition_is_valued(name = "Condition is valued") =
+  contains(
+    haystack = [
+      "$character.frightened_value",
+      "$character.sickened_value",
+      "$character.clumsy_value",
+      "$character.enfeebled_value",
+      "$character.stupefied_value",
+      "$character.drained_value",
+      "$character.slowed_value",
+      "$character.stunned_value",
+    ],
+    needle = condition_stat,
+  );
+
+calc integer condition_amount(name = "Condition amount") =
+  if constant == 0 then 1 else max([0, constant]);
+
+calc bool condition_set_bool_value(name = "Condition set bool value") =
+  if constant == 0 then true else constant > 0;
+
+calc integer effect_description_amount(name = "Effect description amount") =
+  if is_passive then constant else 0;
+
+calc integer roll_scaling_steps(name = "Roll scaling steps") =
+  if roll_scales_with_level && current_level >= roll_scale_start_level
+    then 1 + divide(
+        [current_level - roll_scale_start_level, max([1, roll_scale_interval_levels])],
+        rounding_method = "down",
+      )
+    else 0;
+
+calc string effective_roll_dice_type(name = "Effective roll dice type") =
+  dice_roll?.dice_type ?? "d4";
+
+calc integer effective_roll_dice_amount(name = "Effective roll dice amount") =
+  max(
+    [
+      0,
+      (dice_roll?.dice_amount ?? 0) + (roll_scaling_steps * roll_scale_dice_amount_per_step),
+    ],
+  );
+
+calc integer effective_roll_constant(name = "Effective roll constant") =
+  (dice_roll?.constant ?? 0) + (roll_scaling_steps * roll_scale_constant_per_step);
+
+calc string effect_roll_formula(name = "Effect roll formula") =
+  trim(
+    concat(
+      flatAppend(
+        [
+          (if effective_roll_dice_amount != 0
+            then [effective_roll_dice_amount, effective_roll_dice_type]
+            else []),
+          (if effective_roll_constant <= 0 then [" "] else [" + "]),
+          (if effective_roll_constant != 0 || effective_roll_dice_amount == 0
+            then [effective_roll_constant]
+            else []),
+        ],
+      ),
+    ),
+  );
+
+calc string effect_amount_for_apply(name = "Effect amount for apply") =
+  if is_passive || isEmpty(effect_roll_formula) then concat(["", constant]) else effect_roll_formula;
+
+calc string effect_description(name = "Effect description") =
+  when {
+    type == "none" -> if defined(stat = "$character")
+      then ""
+      else enumeratedName(enumerated_type = "effect_types", id = "none"),
+    type == "add_to_stat" -> concat(
+      [
+        "Add ",
+        effect_amount_for_apply,
+        " to ",
+        enumeratedName(enumerated_type = "effect_character_stats", id = stat),
+      ],
+    ),
+    type == "typed_add_to_stat" -> concat(
+      [
+        "Apply ",
+        enumeratedName(
+          enumerated_type = "effect_typed_modifier_types",
+          id = typed_modifier_type,
+        ),
+        " ",
+        enumeratedName(
+          enumerated_type = "effect_modifier_polarities",
+          id = typed_modifier_polarity,
+        ),
+        " ",
+        constant,
+        " to ",
+        enumeratedName(enumerated_type = "effect_character_stats", id = stat),
+      ],
+    ),
+    type == "set_stat" -> concat(
+      [
+        "Set ",
+        enumeratedName(enumerated_type = "effect_character_stats", id = stat),
+        " to ",
+        effect_amount_for_apply,
+      ],
+    ),
+    type == "grant_proficiency" -> concat(
+      [
+        "Grant ",
+        enumeratedName(enumerated_type = "skill_proficiency_types", id = proficiency_rank),
+        " in ",
+        enumeratedName(enumerated_type = "effect_proficiency_stats", id = proficiency_stat),
+      ],
+    ),
+    type == "set_condition" -> concat(
+      [
+        "Set ",
+        enumeratedName(enumerated_type = "effect_condition_stats", id = condition_stat),
+        " to ",
+        (if condition_is_valued
+          then condition_amount
+          else if condition_set_bool_value
+            then "true"
+            else "false"),
+      ],
+    ),
+    type == "add_condition" -> concat(
+      [
+        "Add ",
+        condition_amount,
+        " to ",
+        enumeratedName(enumerated_type = "effect_condition_stats", id = condition_stat),
+      ],
+    ),
+    type == "remove_condition" -> concat(
+      [
+        "Remove ",
+        enumeratedName(enumerated_type = "effect_condition_stats", id = condition_stat),
+      ],
+    ),
+    type == "adjust_action_economy" -> concat(
+      [
+        enumeratedName(enumerated_type = "effect_action_operations", id = action_operation),
+        " ",
+        action_amount,
+        " on ",
+        enumeratedName(enumerated_type = "effect_action_stats", id = action_stat),
+      ],
+    ),
+    type == "roll" -> concat(
+      [
+        "Roll ",
+        (if !isEmpty(effect_roll_formula) then effect_roll_formula else "dice"),
+      ],
+    ),
+    type == "add_spell" -> concat(
+      [
+        "Add ",
+        (if defined(stat = "spell.name") then spell.name else "no spell"),
+        " to known spells",
+      ],
+    ),
+    type == "use_spell" -> concat(
+      [
+        "Use ",
+        (if defined(stat = "spell.name") then spell.name else "no spell"),
+      ],
+    ),
+  };
+
+calc string recharges_amount_text(name = "Recharges amount text") =
+  concat(
+    [
+      "Recharges ",
+      (if recharge_type == "all" then "all" else recharges?.formula? ?? "0"),
+    ],
+  );
+
+calc bool tracks_duration(name = "Tracks duration") =
+  has_duration && trigger_type != "passive" && type != "none";
+
+calc string duration_text(name = "Duration text") =
+  concat(
+    [
+      "Duration ",
+      duration_rounds,
+      " ticks at ",
+      joinToString(parsed_duration_tick_events, separator = ", "),
+    ],
+  );
+
+calc string display_subtitle(name = "Display subtitle") =
+  joinToString(
+    flatAppend(
+      [
+        (if isEmpty(effect_description) then [] else [effect_description]),
+        (if "active" == trigger_type
+          && ("none" != type || has_charges && "active" != trigger_type)
+          then [
+              enumeratedName(enumerated_type = "effect_trigger_types", id = trigger_type),
+            ]
+          else []),
+        (if has_charges
+          then [
+              (if recharge_event != "manual"
+                then concat(
+                    [
+                      recharges_amount_text,
+                      " at ",
+                      enumeratedName(enumerated_type = "lifecycle_events", id = recharge_event),
+                    ],
+                  )
+                else concat([recharges_amount_text, " manually"])),
+            ]
+          else []),
+        (if tracks_duration then [duration_text] else []),
+        (if has_chained_events
+          then [concat(["Chains ", joinToString(calculated_chained_event_names, separator = ", ")])]
+          else []),
+      ],
+    ),
+    separator = ", ",
+  );
+
+calc bool is_passive(name = "Is passive trigger_type") =
+  trigger_type == "passive" && type != "use_spell";
+
+calc bool is_active(name = "Is active trigger_type") = trigger_type == "active";
+
+calc string[] recharge_event_names(name = "Recharge events") =
+  if recharge_event == "manual"
+    then [eventName(event_name = "recharge")]
+    else [recharge_event];
+
+calc string[] trigger_events(name = "Trigger events") =
+  when {
+    is_passive && type != "none" -> ["rpg_onUpdate"],
+    trigger_type == "event" -> parsed_events,
+    else -> [eventName(event_name = "use")],
+  };
+
+calc string[] trigger_revert_events(name = "Revert events") =
+  when {
+    is_passive -> [],
+    trigger_type == "event" -> parsed_revert_events,
+    else -> [eventName(event_name = "revert")],
+  };
+
+calc bool can_execute(name = "Trigger condition allows execution") =
+  $parent?.should_load_effects? ?? true && (if defined(stat = "$parent.is_invested")
+    then $parent.is_invested || !$parent.requires_investment
+    else true) && (if defined(stat = "$parent.is_equipped")
+    then $parent.is_equipped || !$parent.requires_equipping
+    else true) && (if defined(stat = "$parent.is_levelled")
+    then (if $parent.is_levelled then $parent.can_execute else true)
+    else true) && (if has_charges then current_charges > 0 else true)
+    && (if trigger_condition == null then true else trigger_condition.evaluated_value);
+
+calc bool is_add_to_stat(name = "Is add to stat") =
+  "add_to_stat" == $view?.edit_effect_type_select?;
+
+calc bool is_typed_add_to_stat(name = "Is typed add to stat") =
+  "typed_add_to_stat" == $view?.edit_effect_type_select?;
+
+calc bool is_set_stat(name = "Is set stat") =
+  "set_stat" == $view?.edit_effect_type_select?;
+
+calc bool is_set_or_add_to_stat(name = "Is setStat or addToStat type") =
+  is_add_to_stat || is_set_stat;
+
+calc bool is_grant_proficiency(name = "Is grant proficiency type") =
+  "grant_proficiency" == $view?.edit_effect_type_select?;
+
+calc bool is_adjust_action_economy(name = "Is adjust action economy type") =
+  "adjust_action_economy" == $view?.edit_effect_type_select?;
+
+calc bool is_roll_type(name = "Is roll type") =
+  "roll" == $view?.edit_effect_type_select?;
+
+calc bool is_set_condition(name = "Is set condition type") =
+  "set_condition" == $view?.edit_effect_type_select?;
+
+calc bool is_add_condition(name = "Is add condition type") =
+  "add_condition" == $view?.edit_effect_type_select?;
+
+calc bool is_remove_condition(name = "Is remove condition type") =
+  "remove_condition" == $view?.edit_effect_type_select?;
+
+calc bool is_condition_type(name = "Is condition effect type") =
+  is_set_condition || is_add_condition || is_remove_condition;
+
+calc bool is_spell_type(name = "Is addSpell or useSpell type") =
+  "add_spell" == $view?.edit_effect_type_select?
+    || "use_spell" == $view?.edit_effect_type_select?;
+
+calc string max_charges_display_text(name = "Max charges display text") =
+  if charge_type == "constant"
+    then concat([max_charges_constant, " charges"])
+    else "Special amnt of charges";
+
+calc integer max_charges(name = "Max charges") =
+  if charge_type == "constant"
+    then max_charges_constant
+    else current_level_max_charges_formula?.calculated_value ?? 0;
+
+calc resource<levelled_value_calculator> current_level_max_charges_formula(name = "Max charges formula for the current level") =
+  findFirst(
+    sortBy(
+      max_charges_levelled_formulas,
+      order = "desc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
+    filter = ($findFirstValue) => ($findFirstValue.level <= current_level),
+  );
+
+calc integer current_level(name = "Current level") =
+  when {
+    defined(stat = "$parent.current_level") -> $parent.current_level,
+    defined(stat = "$character.level") -> $character.level,
+    else -> 1,
+  };
+
+calc resource<levelled_description> current_level_levelled_description(name = "Current level levelled_description") =
+  findFirst(
+    sortBy(
+      description,
+      order = "desc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
+    filter = ($findFirstValue) => ($findFirstValue.level <= current_level),
+  );
+
+calc string current_level_description(name = "Current level description") =
+  current_level_levelled_description?.description ?? "";

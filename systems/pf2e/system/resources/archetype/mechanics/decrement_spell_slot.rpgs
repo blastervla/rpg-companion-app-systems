@@ -1,0 +1,15 @@
+mechanic decrement_spell_slot(event_names = "decrement_spell_slot") =
+  when {
+    grants_spellcasting -> when {
+      $character.temp_spell_cast_rank == 1 -> addToStat(stat = "spell_slots_1", value = -1, aggregation_type = "set"),
+      $character.temp_spell_cast_rank == 2 -> addToStat(stat = "spell_slots_2", value = -1, aggregation_type = "set"),
+      $character.temp_spell_cast_rank == 3 -> addToStat(stat = "spell_slots_3", value = -1, aggregation_type = "set"),
+      $character.temp_spell_cast_rank == 4 -> addToStat(stat = "spell_slots_4", value = -1, aggregation_type = "set"),
+      $character.temp_spell_cast_rank == 5 -> addToStat(stat = "spell_slots_5", value = -1, aggregation_type = "set"),
+      $character.temp_spell_cast_rank == 6 -> addToStat(stat = "spell_slots_6", value = -1, aggregation_type = "set"),
+      $character.temp_spell_cast_rank == 7 -> addToStat(stat = "spell_slots_7", value = -1, aggregation_type = "set"),
+      $character.temp_spell_cast_rank == 8 -> addToStat(stat = "spell_slots_8", value = -1, aggregation_type = "set"),
+      $character.temp_spell_cast_rank == 9 -> addToStat(stat = "spell_slots_9", value = -1, aggregation_type = "set"),
+      $character.temp_spell_cast_rank == 10 -> addToStat(stat = "spell_slots_10", value = -1, aggregation_type = "set"),
+    },
+  };

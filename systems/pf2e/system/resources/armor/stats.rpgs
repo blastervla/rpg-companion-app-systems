@@ -1,0 +1,443 @@
+base string name(name = "Name") = "";
+
+base string source(name = "Source") = "";
+
+base bool is_core(name = "Core") = false;
+
+base string description(name = "Description") = "";
+
+base resource<cost> cost(name = "Cost") = null;
+
+base resource<weight> weight(name = "Weight") = null;
+
+base string type(name = "Type") = "light";
+
+base string rarity(name = "Rarity") = "common";
+
+base integer check_penalty(name = "Check penalty") = 0;
+
+base integer base_ac(name = "Base AC") = 0;
+
+base string modifier(name = "Modifier") = "none";
+
+base bool has_max_bonus(name = "Has max bonus") = false;
+
+base integer max_bonus(name = "Max bonus") = 0;
+
+base integer required_strength(name = "Required strength") = 0;
+
+base integer speed_penalty(name = "Speed penalty") = 0;
+
+base integer shield_hardness(name = "Shield hardness") = 0;
+
+base integer shield_hp(name = "Shield HP") = 0;
+
+base integer shield_broken_threshold(name = "Shield broken threshold") = 0;
+
+base bool requires_investment(name = "Requires investment") = false;
+
+calc bool should_load_effects(name = "Should load effects") =
+  $parent?.should_load_effects? ?? true;
+
+base resource<effect>[] effects(name = "Effects") = [];
+
+base string[] attached_runes(name = "Attached runes") = [];
+
+base string attached_talisman(name = "Attached talisman") = "";
+
+calc resource<item>[] attached_runes_effective(name = "Attached runes (effective)") =
+  filter(
+    map(
+      attached_runes,
+      mapper = ($runeId) => if defined(stat = "$character")
+        then findFirst(
+            $character.equipment,
+            filter = ($item) => $item.id == $runeId,
+          )
+        else null,
+    ),
+    filter = ($item) => notNull($item),
+  );
+
+calc string attached_talisman_id_effective(name = "Attached talisman id (effective)") =
+  attached_talisman;
+
+calc resource<item> attached_talisman_effective(name = "Attached talisman (effective)") =
+  when {
+    defined(stat = "$character") && !isEmpty(attached_talisman_id_effective) -> findFirst(
+      $character.equipment,
+      filter = ($item) => $item.id == attached_talisman_id_effective,
+    ),
+    else -> null,
+  };
+
+base bool override_is_proficient(name = "Override is proficient") = false;
+
+base bool is_invested(name = "Is invested") = false;
+
+calc string equip_stat_name(name = "Equip stat name") =
+  if type == "shield"
+    then "$character.equipped_shield_id"
+    else "$character.equipped_armor_id";
+
+base bool requires_equipping(name = "Requires equipping to activate effects") =
+  true;
+
+calc bool is_equipped(name = "Is equipped") =
+  if defined(stat = "$character")
+    then metaStat(meta_stat = equip_stat_name) == id
+    else false;
+
+calc resource<item>[] attachable_runes_for_character(name = "Attachable runes for this armor") =
+  if defined(stat = "$character")
+    then filter(
+        $character.equipment,
+        filter = ($filterValue) => ($filterValue.type == "rune"
+          && ($filterValue.attachment_target == "armor"
+            || $filterValue.attachment_target == "any"
+            || $filterValue.attachment_target == "shield"
+              && type == "shield")
+          && ($filterValue.quantity > 0)
+          && !contains(haystack = other_host_attached_rune_ids, needle = $filterValue.id)
+          && (contains(haystack = attached_rune_ids, needle = $filterValue.id)
+            || (($filterValue.rune_kind != "potency" || isEmpty(attached_potency_runes))
+              && ($filterValue.rune_kind != "resilient" || isEmpty(attached_resilient_runes))
+              && ($filterValue.rune_kind != "property"
+                || armor_property_slots_used + max([1, $filterValue.property_slots_used]) <= armor_property_slots_max)
+              && ($filterValue.required_potency_tier <= armor_potency_tier || $filterValue.rune_kind == "potency")))),
+      )
+    else [];
+
+calc resource<item>[] attachable_talismans_for_character(name = "Attachable talismans for this armor") =
+  if defined(stat = "$character")
+    then filter(
+        $character.equipment,
+        filter = ($filterValue) => ($filterValue.type == "talisman"
+          && ($filterValue.attachment_target == "armor"
+            || $filterValue.attachment_target == "any"
+            || $filterValue.attachment_target == "shield"
+              && type == "shield")
+          && ($filterValue.quantity > 0)
+          && (contains(haystack = attached_talisman_ids, needle = $filterValue.id)
+            || !contains(haystack = other_host_attached_talisman_ids, needle = $filterValue.id))),
+      )
+    else [];
+
+calc string[] attached_rune_ids(name = "Attached rune ids") =
+  map(attached_runes_effective, mapper = ($mapValue) => $mapValue.id);
+
+calc string[] attached_talisman_ids(name = "Attached talisman ids") =
+  if !isEmpty(attached_talisman_id_effective) then [attached_talisman_id_effective] else [];
+
+calc string[] other_host_attached_rune_ids(name = "Other hosts attached rune ids") =
+  if defined(stat = "$character")
+    then flatAppend(
+        [
+          flatMap(
+            filter(
+              $character.armors,
+              filter = ($filterValue) => ($filterValue.id != id),
+            ),
+            mapper = ($mapValue) => map(
+              $mapValue.attached_runes_effective,
+              mapper = ($rune) => $rune.id,
+            ),
+          ),
+          flatMap(
+            $character.all_weapons,
+            mapper = ($mapValue) => map(
+              $mapValue.attached_runes_effective,
+              mapper = ($rune) => $rune.id,
+            ),
+          ),
+        ],
+      )
+    else [];
+
+calc string[] other_host_attached_talisman_ids(name = "Other hosts attached talisman ids") =
+  if defined(stat = "$character")
+    then flatAppend(
+        [
+          map(
+            filter(
+              $character.armors,
+              filter = ($filterValue) => ($filterValue.id != id && !isEmpty($filterValue.attached_talisman_id_effective)),
+            ),
+            mapper = ($mapValue) => $mapValue.attached_talisman_id_effective,
+          ),
+          map(
+            filter(
+              $character.all_weapons,
+              filter = ($filterValue) => !isEmpty($filterValue.attached_talisman_id_effective),
+            ),
+            mapper = ($mapValue) => $mapValue.attached_talisman_id_effective,
+          ),
+        ],
+      )
+    else [];
+
+calc resource<item>[] attached_potency_runes(name = "Attached potency runes") =
+  filter(attached_runes_effective, filter = ($filterValue) => ($filterValue.rune_kind == "potency"));
+
+calc resource<item>[] attached_resilient_runes(name = "Attached resilient runes") =
+  filter(attached_runes_effective, filter = ($filterValue) => ($filterValue.rune_kind == "resilient"));
+
+calc resource<item>[] attached_property_runes(name = "Attached property runes") =
+  filter(attached_runes_effective, filter = ($filterValue) => ($filterValue.rune_kind == "property"));
+
+calc integer armor_potency_tier(name = "Armor potency tier") =
+  max(
+    flatAppend(
+      [
+        [0],
+        map(
+          attached_potency_runes,
+          mapper = ($mapValue) => max([$mapValue.rune_tier, $mapValue.rune_ac_bonus]),
+        ),
+      ],
+    ),
+  );
+
+calc integer armor_resilient_tier(name = "Armor resilient tier") =
+  max(
+    flatAppend(
+      [
+        [0],
+        map(
+          attached_resilient_runes,
+          mapper = ($mapValue) => max([$mapValue.rune_tier, $mapValue.rune_save_bonus]),
+        ),
+      ],
+    ),
+  );
+
+calc integer armor_property_slots_max(name = "Armor property slots max") =
+  min([3, armor_potency_tier]);
+
+calc integer armor_property_slots_used(name = "Armor property slots used") =
+  add(
+    map(
+      attached_property_runes,
+      mapper = ($mapValue) => max([1, $mapValue.property_slots_used]),
+    ),
+  );
+
+calc bool has_multiple_potency_runes(name = "Has multiple potency runes") =
+  length(attached_potency_runes) > 1;
+
+calc bool has_multiple_resilient_runes(name = "Has multiple resilient runes") =
+  length(attached_resilient_runes) > 1;
+
+calc bool has_too_many_property_runes(name = "Has too many property runes") =
+  armor_property_slots_used > armor_property_slots_max;
+
+calc bool has_unmet_required_potency_rune(name = "Has unmet required potency rune") =
+  or(
+    map(
+      attached_runes_effective,
+      mapper = ($mapValue) => ($mapValue.required_potency_tier > armor_potency_tier),
+    ),
+  );
+
+calc bool attachment_rules_valid(name = "Attachment rules valid") =
+  !has_multiple_potency_runes
+    && !has_multiple_resilient_runes
+    && !has_too_many_property_runes
+    && !has_unmet_required_potency_rune;
+
+calc string attachment_rules_issue_message(name = "Attachment rules issue message") =
+  joinToString(
+    flatAppend(
+      [
+        (if has_multiple_potency_runes then ["Only one potency rune can be attached"] else []),
+        (if has_multiple_resilient_runes then ["Only one resilient rune can be attached"] else []),
+        (if has_too_many_property_runes
+          then [concat(["Property rune slots exceeded (", armor_property_slots_used, "/", armor_property_slots_max, ")"])]
+          else []),
+        (if has_unmet_required_potency_rune then ["A rune requires a higher potency tier"] else []),
+      ],
+    ),
+    separator = " | ",
+  );
+
+calc integer attached_rune_ac_bonus(name = "Attached rune AC bonus") =
+  add(
+    map(
+      attached_runes_effective,
+      mapper = ($mapValue) => $mapValue.rune_ac_bonus,
+    ),
+  );
+
+calc integer attached_talisman_ac_bonus(name = "Attached talisman AC bonus") =
+  attached_talisman_effective?.rune_ac_bonus ?? 0;
+
+calc integer total_rune_ac_bonus(name = "Total rune AC bonus") =
+  attached_rune_ac_bonus + attached_talisman_ac_bonus;
+
+calc integer attached_rune_save_bonus(name = "Attached rune save bonus") =
+  add(
+    map(
+      attached_runes_effective,
+      mapper = ($mapValue) => $mapValue.rune_save_bonus,
+    ),
+  );
+
+calc integer attached_talisman_save_bonus(name = "Attached talisman save bonus") =
+  attached_talisman_effective?.rune_save_bonus ?? 0;
+
+calc integer total_rune_save_bonus(name = "Total rune save bonus") =
+  attached_rune_save_bonus + attached_talisman_save_bonus;
+
+calc resource<effect>[] attached_rune_active_effects(name = "Attached rune active effects") =
+  flatMap(
+    attached_runes_effective,
+    mapper = ($mapValue) => filter(
+      $mapValue.effects,
+      filter = ($effect) => ($effect.is_active),
+    ),
+  );
+
+calc resource<effect>[] attached_talisman_active_effects(name = "Attached talisman active effects") =
+  if notNull(attached_talisman_effective)
+    then filter(
+        attached_talisman_effective.effects,
+        filter = ($effect) => ($effect.is_active),
+      )
+    else [];
+
+calc resource<effect>[] attached_active_effects(name = "Attached active effects") =
+  flatAppend(
+    [
+      attached_rune_active_effects,
+      attached_talisman_active_effects,
+    ],
+  );
+
+calc bool has_attached_talisman(name = "Has attached talisman") =
+  notNull(attached_talisman_effective);
+
+calc string attached_runes_summary(name = "Attached rune summary") =
+  joinToString(
+    map(attached_runes_effective, mapper = ($mapValue) => $mapValue.name),
+    separator = ", ",
+  );
+
+calc string attached_talisman_summary(name = "Attached talisman summary") =
+  attached_talisman_effective?.name ?? "";
+
+calc resource<levelled_armor_proficiency>[] armor_proficiency_rows(name = "Armor proficiency rows") =
+  if defined(stat = "$character")
+    then flatAppend(
+        [
+          ($character.ancestry?.armor_proficiencies_for_current_level ?? []),
+          ($character.background?.armor_proficiencies_for_current_level ?? []),
+          flatMap(
+            $character.classes,
+            mapper = ($mapValue) => ($mapValue.class?.armor_proficiencies_for_current_level ?? []),
+          ),
+          flatMap(
+            $character.all_features,
+            mapper = ($feature) => ($feature.armor_proficiencies_for_current_level ?? []),
+          ),
+        ],
+      )
+    else [];
+
+calc integer armor_proficiency_rank_from_rows(name = "Armor proficiency rank from rows") =
+  max(
+    flatAppend(
+      [
+        [0],
+        map(
+          filter(
+            armor_proficiency_rows,
+            filter = ($filterValue) => contains(
+              haystack = $filterValue.resolved_options,
+              needle = type,
+            ),
+          ),
+          mapper = ($mapValue) => when {
+            $mapValue.proficiency == "legendary" -> 4,
+            $mapValue.proficiency == "master" -> 3,
+            $mapValue.proficiency == "expert" -> 2,
+            $mapValue.proficiency == "trained" -> 1,
+            else -> 0,
+          },
+        ),
+      ],
+    ),
+  );
+
+calc integer armor_proficiency_rank_from_legacy(name = "Armor proficiency rank from legacy fields") =
+  if defined(stat = "$character")
+    then (if contains(haystack = $character.armor_proficiencies, needle = type) then 1 else 0)
+    else 0;
+
+calc integer armor_proficiency_rank(name = "Armor proficiency rank") =
+  max(
+    [
+      armor_proficiency_rank_from_rows,
+      armor_proficiency_rank_from_legacy,
+      (if override_is_proficient then 1 else 0),
+    ],
+  );
+
+calc bool is_proficient(name = "Is proficient") =
+  armor_proficiency_rank > 0;
+
+calc string armor_proficiency(name = "Armor proficiency rank name") =
+  when {
+    armor_proficiency_rank >= 4 -> "legendary",
+    armor_proficiency_rank == 3 -> "master",
+    armor_proficiency_rank == 2 -> "expert",
+    armor_proficiency_rank == 1 -> "trained",
+    else -> "none",
+  };
+
+calc integer armor_proficiency_bonus(name = "Armor proficiency bonus") =
+  if defined(stat = "$character")
+    then when {
+        armor_proficiency == "trained" -> $character.level_bonus + 2,
+        armor_proficiency == "expert" -> $character.level_bonus + 4,
+        armor_proficiency == "master" -> $character.level_bonus + 6,
+        armor_proficiency == "legendary" -> $character.level_bonus + 8,
+        else -> 0,
+      }
+    else 0;
+
+calc string properties(name = "Properties") =
+  joinToString(
+    flatAppend(
+      [
+        (if rarity != "none"
+          then [
+              enumeratedName(enumerated_type = "item_rarity", id = rarity),
+            ]
+          else []),
+        (if requires_investment then ["Req. investment"] else []),
+        (if (cost?.value ?? 0) != 0 then [cost.description] else []),
+        (if (weight?.value ?? 0) != 0 then [weight.description] else []),
+      ],
+    ),
+    separator = ", ",
+  );
+
+calc string armor_class(name = "Armor class") =
+  concat(
+    [
+      (if type == "shield" then "+" else ""),
+      (base_ac + total_rune_ac_bonus),
+      (if modifier != "none"
+        then concat(
+            [
+              " + ",
+              enumeratedName(enumerated_type = "ability_plus_none", id = modifier),
+              (if has_max_bonus then concat([" (max ", max_bonus, ")"]) else ""),
+            ],
+          )
+        else ""),
+    ],
+  );
+
+calc string required_strength_summary(name = "Required strength summary") =
+  if required_strength > 0 then concat(["STR ", required_strength]) else "";

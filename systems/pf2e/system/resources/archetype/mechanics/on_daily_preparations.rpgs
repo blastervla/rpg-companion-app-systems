@@ -1,0 +1,116 @@
+mechanic on_daily_preparations(event_names = "daily_preparations") =
+  when {
+    grants_spellcasting -> sequence(
+      effects = [
+        setStat(stat = "spell_slots_1", new_value = max_spell_slots_1_total, aggregation_type = "set"),
+        setStat(stat = "spell_slots_2", new_value = max_spell_slots_2_total, aggregation_type = "set"),
+        setStat(stat = "spell_slots_3", new_value = max_spell_slots_3_total, aggregation_type = "set"),
+        setStat(stat = "spell_slots_4", new_value = max_spell_slots_4_total, aggregation_type = "set"),
+        setStat(stat = "spell_slots_5", new_value = max_spell_slots_5_total, aggregation_type = "set"),
+        setStat(stat = "spell_slots_6", new_value = max_spell_slots_6_total, aggregation_type = "set"),
+        setStat(stat = "spell_slots_7", new_value = max_spell_slots_7_total, aggregation_type = "set"),
+        setStat(stat = "spell_slots_8", new_value = max_spell_slots_8_total, aggregation_type = "set"),
+        setStat(stat = "spell_slots_9", new_value = max_spell_slots_9_total, aggregation_type = "set"),
+        setStat(stat = "spell_slots_10", new_value = max_spell_slots_10_total, aggregation_type = "set"),
+        forEach(
+          components = prepared_spell_choices_rank_0,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_1,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_2,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_3,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_4,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_5,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_6,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_7,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_8,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_9,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          components = prepared_spell_choices_rank_10,
+          for_each_value_key = "$choice",
+          apply = setStat(
+            stat = "$choice.used_quantity",
+            new_value = 0,
+            aggregation_type = "set",
+          ),
+        ),
+      ],
+    ),
+  };

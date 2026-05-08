@@ -1,0 +1,19 @@
+import "../../../macros/system_common.rpgs";
+
+mechanic lore_skill_tap(event_names = "loreSkillTap") =
+  when {
+    (($event.force_edit? ?? false) || ($character?.$edit_mode? ?? false)) -> popupSelectPersistStat(
+      select_id = "edit_lore_skill_proficiency_select",
+      stat = "proficiency",
+      options_id = "skill_proficiency_types",
+      title = if isEmpty(lore_name) then "Lore" else lore_name,
+    ),
+    !(($character?.$edit_mode? ?? false) || ($event.force_edit? ?? false)) -> roll(
+      rolls = [
+        rollable(
+          formulas = [concat(["1d20 + ", total_bonus])],
+          text = if isEmpty(lore_name) then "Lore" else lore_name,
+        ),
+      ],
+    ),
+  };

@@ -1,0 +1,17 @@
+mechanic daily_preparations_when_new(event_names = "characterLoaded") =
+  sequence(
+    effects = [
+      when {
+        is_new_and_should_daily_preparations && !isEmpty(classes) -> sequence(
+          effects = [
+            fireEvent(event = event(name = "daily_preparations", payload = payload())),
+            setStat(
+              stat = "is_new_and_should_daily_preparations",
+              new_value = false,
+              aggregation_type = "set",
+            ),
+          ],
+        ),
+      },
+    ],
+  );

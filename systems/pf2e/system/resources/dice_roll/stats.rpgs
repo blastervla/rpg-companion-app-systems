@@ -1,0 +1,35 @@
+base integer dice_amount(name = "Dice amount", abbreviation = "Amnt.") = 0;
+
+base string dice_type(name = "Dice type", abbreviation = "Dice") = "d4";
+
+base integer constant(name = "Constant", abbreviation = "Const") = 0;
+
+calc string formula(name = "Formula") =
+  trim(
+    concat(
+      flatAppend(
+        [
+          (if dice_amount != 0 then [dice_amount, dice_type] else []),
+          (if constant <= 0 then [" "] else [" + "]),
+          (if constant != 0 || dice_amount == 0 then [constant] else []),
+        ],
+      ),
+    ),
+  );
+
+calc integer average(name = "Average") =
+  divide(
+    [
+      (dice_amount * when {
+        dice_type == "d4" -> 2.5,
+        dice_type == "d6" -> 3.5,
+        dice_type == "d8" -> 4.5,
+        dice_type == "d10" -> 5.5,
+        dice_type == "d12" -> 6.5,
+        dice_type == "d20" -> 10.5,
+        else -> 1,
+      }),
+      1,
+    ],
+    rounding_method = "down",
+  ) + constant;

@@ -1,0 +1,18 @@
+view monster_search_item() =
+  listItem(
+    id = "monster_search_item",
+    title = name,
+    first_line_extra = $resource.formatted_level,
+    subtitle = $resource.formatted_type,
+    second_line_extra = $resource.formatted_xp,
+    chips = [
+      createChip(
+        id = "monster_search_item_source_chip",
+        background_color = "hint",
+        style = "compact",
+        resource_id = "source",
+        resource_instance_ids_stat = "$resource.source",
+        resource_display_stat = "abbreviation",
+      ),
+    ],
+  );

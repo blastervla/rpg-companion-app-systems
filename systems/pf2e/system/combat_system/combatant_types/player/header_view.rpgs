@@ -1,0 +1,47 @@
+view player_header() =
+  section(
+    id = "player_status_section",
+    show_divider = true,
+    content_item_min_width = 125,
+    collapsible = false,
+    header = [
+      avatar(
+        id = "avatar_view",
+        margin_top = 8,
+        margin_right = 8,
+        margin_left = 16,
+        name_stat = "name",
+        size = "small",
+        interactable = false,
+        preview_enabled = true,
+      ),
+      text(
+        id = "player_status_name",
+        text = name,
+        style = "subhead",
+      )
+    ],
+    content = [
+      stat(
+        id = "player_armor_class",
+        stat = "armor_class",
+        change_amount = 1,
+        min_value_allowed = 0,
+      ),
+      stat(
+        id = "player_initiative",
+        stat = "initiative",
+        change_amount = 1,
+        on_tap_event = event(
+          name = "rollStat",
+          payload = payload(stat = "initiative", statName = "Initiative"),
+        ),
+      ),
+      stat(
+        id = "player_perception",
+        stat = "perception",
+        change_amount = 1,
+        min_value_allowed = 0,
+      ),
+    ],
+  );

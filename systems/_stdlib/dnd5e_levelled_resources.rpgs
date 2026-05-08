@@ -1,0 +1,200 @@
+define dnd5eLevelledResourceSelectEditView(prefix, resource_type, validation_message) =
+  composite(
+    id = "${prefix}_edit",
+    subviews = [
+      text(
+        id = "${prefix}_edit_level",
+        edit_stat = "level",
+        style = "text",
+        hint = "Lvl",
+        max_length = 3,
+      ),
+      selectResources(
+        id = "${prefix}_edit_${resource_type}_select",
+        stat = resource_type,
+        resource_id = resource_type,
+        validation_message = validation_message,
+      ),
+    ],
+  );
+
+define dnd5eLevelledSimpleProficiencyDisplayView(prefix, options_enum) =
+  list(
+    id = "${prefix}_display",
+    subviews = [
+      text(
+        id = "${prefix}_display_out_of_character",
+        margin_left = 4,
+        text = description,
+        style = "text",
+        is_visible = !($character?.should_show_controls_for_choices ?? false),
+      ),
+      select(
+        id = "${prefix}_display_in_character",
+        stat = "selected_option",
+        options = options_enum,
+        allowed_options = options,
+        is_visible = $character?.should_show_controls_for_choices ?? false,
+      ),
+    ],
+  );
+
+define dnd5eLevelledSimpleProficiencyEditView(prefix, options_enum, validation_message) =
+  composite(
+    id = "${prefix}_edit",
+    subviews = [
+      text(
+        id = "${prefix}_edit_level",
+        edit_stat = "level",
+        style = "text",
+        hint = "Lvl",
+        max_length = 3,
+      ),
+      select(
+        id = "${prefix}_edit_options",
+        stat = "options",
+        options = options_enum,
+        multi_select = true,
+        validation_message = validation_message,
+      ),
+    ],
+  );
+
+define dnd5eLevelledSimpleProficiencyDescription(options_enum) =
+  concat(
+    [
+      "Lvl. ",
+      level,
+      ": ",
+      joinToString(
+        map(
+          options,
+          mapper = ($mapValue) => enumeratedName(enumerated_type = options_enum, id = $mapValue),
+        ),
+        separator = ", ",
+      ),
+    ],
+  );
+
+// Stable wrappers for spell and simple proficiency resources.
+define dnd5eLevelledSpellEditView() =
+  dnd5eLevelledResourceSelectEditView(
+    prefix = "levelled_spell",
+    resource_type = "spell",
+    validation_message = if !notNull($view.levelled_spell_edit_spell_select)
+      then "There's an empty levelled spell. Please select a spell or remove it"
+      else null,
+  );
+
+define dnd5eLevelledSpellDescription() =
+  if spell != null then concat(["Lvl. ", level, ": ", spell.name]) else "Empty";
+
+define dnd5eLevelledArmorProficiencyDisplayView() =
+  dnd5eLevelledSimpleProficiencyDisplayView(
+    prefix = "levelled_armor_proficiency",
+    options_enum = "armor_types",
+  );
+
+define dnd5eLevelledArmorProficiencyEditView() =
+  dnd5eLevelledSimpleProficiencyEditView(
+    prefix = "levelled_armor_proficiency",
+    options_enum = "armor_types",
+    validation_message = if isEmpty($view.levelled_armor_proficiency_edit_options)
+      then "You have a box with empty armor proficiency options. Please add options to it or remove it"
+      else null,
+  );
+
+define dnd5eLevelledArmorProficiencyDescription() =
+  dnd5eLevelledSimpleProficiencyDescription(options_enum = "armor_types");
+
+// Skill proficiency keeps custom in-character filtering and expertise toggles.
+define dnd5eLevelledSkillProficiencyDisplayView() =
+  list(
+    id = "levelled_skill_proficiency_display",
+    subviews = [
+      text(
+        id = "levelled_skill_proficiency_display_out_of_character",
+        margin_left = 4,
+        text = description,
+        style = "text",
+        is_visible = !($character?.should_show_controls_for_choices ?? false),
+      ),
+      select(
+        id = "levelled_skill_proficiency_display_in_character",
+        stat = "selected_option",
+        options = "skill_types",
+        allowed_options = if $character?.currently_levelling_up? ?? false
+          then filter(
+              options,
+              filter = ($filterValue) => (metaStat(meta_stat = concat(["$character.", $filterValue, "_proficiency"])) == "none"),
+            )
+          else options,
+        is_visible = $character?.should_show_controls_for_choices ?? false,
+      ),
+    ],
+  );
+
+define dnd5eLevelledSkillProficiencyEditView() =
+  composite(
+    id = "levelled_skill_proficiency_edit",
+    subviews = [
+      text(
+        id = "levelled_skill_proficiency_edit_level",
+        edit_stat = "level",
+        style = "text",
+        hint = "Lvl",
+        max_length = 3,
+      ),
+      select(
+        id = "levelled_skill_proficiency_edit_options",
+        stat = "options",
+        options = "skill_types",
+        multi_select = true,
+        validation_message = if isEmpty($view.levelled_skill_proficiency_edit_options)
+          then "You have a box with empty skill proficiency options. Please add options to it or remove it"
+          else null,
+      ),
+      checkbox(
+        id = "levelled_skill_proficiency_is_expertise",
+        stat = "is_expertise",
+        label = if $view.levelled_skill_proficiency_is_expertise then "Expert" else "Regular",
+        label_alignment = "right",
+        style = "switcher",
+      ),
+    ],
+  );
+
+define dnd5eLevelledSkillProficiencyDescription() =
+  concat(
+    [
+      "Lvl. ",
+      level,
+      ": ",
+      (if is_expertise then "(expert) " else ""),
+      joinToString(
+        map(
+          options,
+          mapper = ($mapValue) => enumeratedName(enumerated_type = "skill_types", id = $mapValue),
+        ),
+        separator = ", ",
+      ),
+    ],
+  );
+
+define dnd5eLevelledWeaponProficiencyDisplayView() =
+  dnd5eLevelledSimpleProficiencyDisplayView(
+    prefix = "levelled_weapon_proficiency",
+    options_enum = "weapon_types_plus_all_types",
+  );
+
+define dnd5eLevelledWeaponProficiencyEditView() =
+  dnd5eLevelledSimpleProficiencyEditView(
+    prefix = "levelled_weapon_proficiency",
+    options_enum = "weapon_types_plus_all_types",
+    validation_message = if isEmpty($view.levelled_weapon_proficiency_edit_options)
+      then "You have a box with empty weapon proficiency options. Please add options to it or remove it"
+      else null,
+  );
+
+define dnd5eLevelledWeaponProficiencyDescription() =
+  dnd5eLevelledSimpleProficiencyDescription(options_enum = "weapon_types_plus_all_types");

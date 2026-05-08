@@ -1,0 +1,389 @@
+import "../macros/system_common.rpgs";
+
+character_creation_page edit_feats_title() =
+  characterCreationPage(
+    title = displayableData(id = "edit_feats_title", name = "Feats & Archetypes"),
+    post_edit = sequence(
+      effects = [
+        forEach(
+          components = filter(
+            all_interactive_progression_grants_for_current_level,
+            filter = ($g) => $g.bucket == "ability_boost",
+          ),
+          for_each_value_key = "$grant",
+          apply = sequence(
+            effects = [
+              setStat(
+                stat = "strength_score",
+                new_value = strength_score + (length(filter($grant.assigned_ability_boosts_effective, filter = ($a) => $a == "strength")) - length(filter($grant.committed_ability_boosts, filter = ($a) => $a == "strength"))) * 2,
+                aggregation_type = "set",
+              ),
+              setStat(
+                stat = "dexterity_score",
+                new_value = dexterity_score + (length(filter($grant.assigned_ability_boosts_effective, filter = ($a) => $a == "dexterity")) - length(filter($grant.committed_ability_boosts, filter = ($a) => $a == "dexterity"))) * 2,
+                aggregation_type = "set",
+              ),
+              setStat(
+                stat = "constitution_score",
+                new_value = constitution_score + (length(filter($grant.assigned_ability_boosts_effective, filter = ($a) => $a == "constitution")) - length(filter($grant.committed_ability_boosts, filter = ($a) => $a == "constitution"))) * 2,
+                aggregation_type = "set",
+              ),
+              setStat(
+                stat = "intelligence_score",
+                new_value = intelligence_score + (length(filter($grant.assigned_ability_boosts_effective, filter = ($a) => $a == "intelligence")) - length(filter($grant.committed_ability_boosts, filter = ($a) => $a == "intelligence"))) * 2,
+                aggregation_type = "set",
+              ),
+              setStat(
+                stat = "wisdom_score",
+                new_value = wisdom_score + (length(filter($grant.assigned_ability_boosts_effective, filter = ($a) => $a == "wisdom")) - length(filter($grant.committed_ability_boosts, filter = ($a) => $a == "wisdom"))) * 2,
+                aggregation_type = "set",
+              ),
+              setStat(
+                stat = "charisma_score",
+                new_value = charisma_score + (length(filter($grant.assigned_ability_boosts_effective, filter = ($a) => $a == "charisma")) - length(filter($grant.committed_ability_boosts, filter = ($a) => $a == "charisma"))) * 2,
+                aggregation_type = "set",
+              ),
+              setStat(
+                stat = "$grant.committed_ability_boosts",
+                new_value = $grant.assigned_ability_boosts_effective,
+                aggregation_type = "set",
+              ),
+            ],
+          ),
+        ),
+        forEach(
+          components = filter(
+            all_interactive_progression_grants_for_current_level,
+            filter = ($g) => $g.bucket == "skill_increase"
+              && !isEmpty($g.assigned_skill_increase_skill_effective)
+              && !isEmpty($g.assigned_skill_increase_target_rank_auto),
+          ),
+          for_each_value_key = "$grant",
+          apply = sequence(
+            effects = [
+              setStat(
+                meta_stat = concat([$grant.assigned_skill_increase_skill_effective, "_proficiency"]),
+                new_value = $grant.assigned_skill_increase_target_rank_auto,
+                aggregation_type = "set",
+              ),
+              setStat(
+                stat = "$grant.committed_skill_increase_skill",
+                new_value = $grant.assigned_skill_increase_skill_effective,
+                aggregation_type = "set",
+              ),
+            ],
+          ),
+        ),
+        forEach(
+          components = filter(
+            all_interactive_progression_grants_for_current_level,
+            filter = ($g) => $g.is_feat_slot,
+          ),
+          for_each_value_key = "$grant",
+          apply = sequence(
+            effects = [
+              setStat(
+                stat = "$grant.slot_mode",
+                new_value = $grant.slot_mode_effective,
+                aggregation_type = "set",
+              ),
+              setStat(
+                stat = "$grant.assigned_archetype",
+                new_value = $grant.assigned_archetype_effective,
+                aggregation_type = "set",
+              ),
+              setStat(
+                stat = "$grant.assigned_feat",
+                new_value = $grant.assigned_feat_effective,
+                aggregation_type = "set",
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+    view = list(
+      id = "edit_character_feats",
+      padding = 32,
+      subviews = [
+        text(
+          id = "edit_character_feats_subheader",
+          text = "Select your feats and archetypes",
+          style = "subhead",
+        ),
+        text(
+          id = "edit_character_feats_modifiers_header",
+          text = "Current ability modifiers (from your selections so far):",
+          style = "subhead",
+        ),
+        text(
+          id = "edit_character_feats_modifiers_row_1",
+          text = creator_ability_modifiers_row_1,
+          style = "text",
+          bold = true,
+        ),
+        text(
+          id = "edit_character_feats_modifiers_row_2",
+          text = creator_ability_modifiers_row_2,
+          style = "text",
+          bold = true,
+          margin_bottom = 8,
+        ),
+        text(
+          id = "edit_character_feats_pending_summary",
+          text = joinToString(
+            flatAppend([
+              (if length(filter(
+                  filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "class_like_feat"),
+                  filter = ($g) => isNull(when {
+                    ($g?.$view?.progression_grant_edit_slot_mode? ?? $g.slot_mode) == "archetype_new"
+                      -> ($g?.$view?.progression_grant_edit_archetype_new_select? ?? $g.assigned_archetype),
+                    ($g?.$view?.progression_grant_edit_slot_mode? ?? $g.slot_mode) == "archetype_existing"
+                      -> $g.assigned_feat_effective,
+                    else
+                      -> ($g?.$view?.progression_grant_edit_class_feat_select_non_ancestry? ?? $g.assigned_feat),
+                  }),
+                )) > 0
+                then [concat(["Class-like feat slots pending: ", length(filter(
+                    filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "class_like_feat"),
+                    filter = ($g) => isNull(when {
+                      ($g?.$view?.progression_grant_edit_slot_mode? ?? $g.slot_mode) == "archetype_new"
+                        -> ($g?.$view?.progression_grant_edit_archetype_new_select? ?? $g.assigned_archetype),
+                      ($g?.$view?.progression_grant_edit_slot_mode? ?? $g.slot_mode) == "archetype_existing"
+                        -> $g.assigned_feat_effective,
+                      else
+                        -> ($g?.$view?.progression_grant_edit_class_feat_select_non_ancestry? ?? $g.assigned_feat),
+                    }),
+                  ))])]
+                else []),
+              (if length(filter(
+                  filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "skill_feat"),
+                  filter = ($g) => isNull($g?.$view?.progression_grant_edit_skill_feat_select? ?? $g.assigned_feat),
+                )) > 0
+                then [concat(["Skill feat slots pending: ", length(filter(
+                    filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "skill_feat"),
+                    filter = ($g) => isNull($g?.$view?.progression_grant_edit_skill_feat_select? ?? $g.assigned_feat),
+                  ))])]
+                else []),
+              (if length(filter(
+                  filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "general_feat"),
+                  filter = ($g) => isNull($g?.$view?.progression_grant_edit_general_feat_select? ?? $g.assigned_feat),
+                )) > 0
+                then [concat(["General feat slots pending: ", length(filter(
+                    filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "general_feat"),
+                    filter = ($g) => isNull($g?.$view?.progression_grant_edit_general_feat_select? ?? $g.assigned_feat),
+                  ))])]
+                else []),
+              (if length(filter(
+                  filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "ancestry_feat"),
+                  filter = ($g) => isNull($g?.$view?.progression_grant_edit_class_feat_select? ?? $g.assigned_feat),
+                )) > 0
+                then [concat(["Ancestry feat slots pending: ", length(filter(
+                    filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "ancestry_feat"),
+                    filter = ($g) => isNull($g?.$view?.progression_grant_edit_class_feat_select? ?? $g.assigned_feat),
+                  ))])]
+                else []),
+              (if length(filter(
+                  filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "ability_boost"),
+                  filter = ($g) => length($g?.$view?.progression_grant_edit_ability_boost_select? ?? $g.assigned_ability_boosts) < $g.amount,
+                )) > 0
+                then [concat(["Ability boost slots pending: ", length(filter(
+                    filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "ability_boost"),
+                    filter = ($g) => length($g?.$view?.progression_grant_edit_ability_boost_select? ?? $g.assigned_ability_boosts) < $g.amount,
+                  ))])]
+                else []),
+              (if length(filter(
+                  filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "skill_increase"),
+                  filter = ($g) => isEmpty($g?.$view?.progression_grant_edit_skill_increase_skill_select? ?? $g.assigned_skill_increase_skill),
+                )) > 0
+                then [concat(["Skill increase slots pending: ", length(filter(
+                    filter(all_interactive_progression_grants_for_current_level, filter = ($g) => $g.bucket == "skill_increase"),
+                    filter = ($g) => isEmpty($g?.$view?.progression_grant_edit_skill_increase_skill_select? ?? $g.assigned_skill_increase_skill),
+                  ))])]
+                else []),
+            ]),
+            separator = "\n",
+          ),
+          style = "caption",
+          color = "accent",
+          is_visible = has_pending_interactive_slots,
+        ),
+        text(
+          id = "edit_character_feats_level_restriction_warning",
+          text = class_like_feats_level_restriction_warning_text,
+          style = "caption",
+          color = "accent",
+          is_visible = class_like_feats_violate_level_restrictions,
+        ),
+        text(
+          id = "edit_character_feats_level_1_ability_boost_duplicate_warning",
+          text = "You're tipically not allowed to choose multiple ability boosts to the same ability in level 1",
+          style = "caption",
+          color = "accent",
+          is_visible = creator_has_duplicate_level_1_ability_boost_selection,
+        ),
+        resourceArray(
+          id = "edit_character_feats_slots",
+          resource_id = "progression_grant",
+          stat = "all_interactive_progression_grants_for_current_level",
+          view_type = "edit",
+          allow_adds_and_removes = false,
+        ),
+        text(
+          id = "edit_character_feats_selectable_features_header",
+          text = "Selectable feature choices",
+          style = "subhead",
+          is_visible = !isEmpty(selectable_features_with_pending_choices),
+        ),
+        text(
+          id = "edit_character_feats_selectable_features_help",
+          text = "Some features require extra selections. Pick options below.",
+          style = "caption",
+          is_visible = !isEmpty(selectable_features_with_pending_choices),
+        ),
+        text(
+          id = "edit_character_feats_selectable_features_warning_text",
+          text = pending_selectable_feature_choices_warning_text,
+          style = "caption",
+          color = "accent",
+          is_visible = !isEmpty(selectable_features_with_pending_choices),
+        ),
+        resourceArray(
+          id = "edit_character_feats_selectable_features_section",
+          resource_id = "feat",
+          stat = "selectable_features_with_pending_choices",
+          view_type = "list",
+          allow_adds_and_removes = false,
+          is_visible = !isEmpty(selectable_features_with_pending_choices),
+        ),
+        text(
+          id = "edit_character_feats_archetypes_header",
+          text = "Archetypes",
+          style = "subhead",
+        ),
+        checkbox(
+          id = "edit_character_feats_enable_optional_class_archetypes_toggle",
+          stat = "enable_optional_class_archetypes",
+          label = "Enable optional class archetypes",
+          style = "switcher",
+        ),
+        text(
+          id = "edit_character_feats_class_archetype_disabled_hint",
+          text = "Optional class archetypes are disabled.",
+          style = "caption",
+          is_visible = !($view?.edit_character_feats_enable_optional_class_archetypes_toggle? ?? enable_optional_class_archetypes),
+        ),
+        text(
+          id = "edit_character_feats_class_archetype_subheader",
+          text = "Class archetype",
+          style = "caption",
+          bold = true,
+          is_visible = $view?.edit_character_feats_enable_optional_class_archetypes_toggle? ?? enable_optional_class_archetypes,
+        ),
+        text(
+          id = "edit_character_feats_class_archetype_help",
+          text = "Optional. Select up to one class archetype.",
+          style = "caption",
+          is_visible = $view?.edit_character_feats_enable_optional_class_archetypes_toggle? ?? enable_optional_class_archetypes,
+        ),
+        text(
+          id = "edit_character_feats_class_archetype_hint",
+          text = "No class archetypes selected.",
+          style = "caption",
+          is_visible = ($view?.edit_character_feats_enable_optional_class_archetypes_toggle? ?? enable_optional_class_archetypes)
+            && isNull($view.edit_character_feats_class_archetype_add),
+        ),
+        selectorWithDetailsEndVisibleComposite(
+          composite_id = "edit_character_feats_class_archetype_selector",
+          details_button = resourceDetailsOkPopUpButton(
+            button_id = "edit_character_feats_class_archetype_see_details",
+            button_text = "SEE DETAILS",
+            pop_up_view_id = "edit_character_feats_class_archetype_bottom_sheet",
+            resource_id = "archetype",
+            stat = "$view.edit_character_feats_class_archetype_add",
+            pop_up_title = $view?.edit_character_feats_class_archetype_add?.name ?? "Class archetype",
+            is_visible = notNull($view?.edit_character_feats_class_archetype_add?),
+          ),
+          selector_view = selectResources(
+            id = "edit_character_feats_class_archetype_add",
+            stat = "class_archetype",
+            resource_id = "archetype",
+            filters = dict(is_class_archetype = true),
+          ),
+          is_visible = $view?.edit_character_feats_enable_optional_class_archetypes_toggle? ?? enable_optional_class_archetypes,
+        ),
+        text(
+          id = "edit_character_feats_class_archetype_mismatch_warning",
+          text = concat([
+            "Class archetype/class mismatch: ",
+            $view.edit_character_feats_class_archetype_add?.name ?? "",
+            ". Keeping this is a GM override.",
+          ]),
+          style = "caption",
+          color = "accent",
+          is_visible = ($view?.edit_character_feats_enable_optional_class_archetypes_toggle? ?? enable_optional_class_archetypes)
+            && notNull($view.edit_character_feats_class_archetype_add)
+            && !isEmpty($view.edit_character_feats_class_archetype_add?.required_class_id ?? "")
+            && !contains(
+                haystack = map(classes, mapper = ($c) => $c.class?.id ?? ""),
+                needle = $view.edit_character_feats_class_archetype_add?.required_class_id ?? "",
+              ),
+        ),
+        text(
+          id = "edit_character_feats_class_auto_feats_header",
+          text = "Class archetype feats (auto-granted)",
+          style = "caption",
+          bold = true,
+          is_visible = ($view?.edit_character_feats_enable_optional_class_archetypes_toggle? ?? enable_optional_class_archetypes)
+            && notNull($view.edit_character_feats_class_archetype_add),
+        ),
+        resourceSection(
+          id = "edit_character_feats_class_auto_feats_list",
+          resource_stat = "class_archetype_auto_feats",
+          read_only = true,
+          resource_id = "feat",
+          is_visible = ($view?.edit_character_feats_enable_optional_class_archetypes_toggle? ?? enable_optional_class_archetypes)
+            && notNull($view.edit_character_feats_class_archetype_add),
+        ),
+      ],
+    ),
+    on_page_open = sequence(
+      effects = [
+        setStat(
+          stat = "creation_feats_page_open",
+          new_value = true,
+          aggregation_type = "set",
+        ),
+      ],
+    ),
+    on_page_close = sequence(
+      effects = [
+        forEach(
+          components = selectable_features_with_pending_choices,
+          for_each_value_key = "$feature",
+          apply = setStat(
+            stat = "selected_selectable_feature_ids",
+            new_value = flatAppend(
+              [
+                filter(
+                  selected_selectable_feature_ids,
+                  filter = ($id) => !contains(
+                    haystack = $feature.selectable_feature_ids,
+                    needle = $id,
+                  ),
+                ),
+                ($feature?.$view?.feat_list_selectable_features_select? ?? $feature.chosen_selectable_features),
+              ],
+              treat_as_set = true,
+            ),
+            aggregation_type = "set",
+          ),
+        ),
+        setStat(
+          stat = "creation_feats_page_open",
+          new_value = false,
+          aggregation_type = "set",
+        ),
+      ],
+    ),
+  );

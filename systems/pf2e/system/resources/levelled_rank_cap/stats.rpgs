@@ -1,0 +1,23 @@
+import "../../macros/system_common.rpgs";
+
+base integer level(name = "Level", abbreviation = "Lvl") = 1;
+
+base string proficiency(name = "Proficiency cap") = "trained";
+
+calc string display_description(name = "Display description") =
+  concat(
+    [
+      "Lvl. ",
+      level,
+      ": max ",
+      enumeratedName(
+        enumerated_type = "skill_proficiency_types",
+        id = proficiency,
+      ),
+    ],
+  );
+
+base bool is_levelled(name = "Is levelled") = true;
+
+calc bool can_be_used(name = "Can execute") =
+  levelGate(required_level = level);

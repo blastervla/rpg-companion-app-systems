@@ -1,0 +1,87 @@
+character_sheet_section turn() =
+  section(
+    id = "turn_section",
+    show_divider = true,
+    content_item_min_width = 0.5,
+    collapsible = false,
+    header = [
+      icon(
+        id = "turn_section_icon",
+        name = "ic_action",
+        size = "medium",
+        color = "accent",
+        margin_top = 8,
+        margin_right = 8,
+        margin_left = 16,
+      ),
+      text(
+        id = "turn_section_title",
+        margin_right = 16,
+        margin_left = 16,
+        text = "Turn",
+        style = "title",
+      ),
+    ],
+    content = [
+      stat(
+        id = "turn_actions_remaining",
+        stat = "actions_remaining",
+        override_label = concat(["Actions Remaining (max ", max_actions_per_turn, ")"]),
+        change_amount = 1,
+        min_value_allowed = 0,
+        should_auto_save = true,
+        always_in_edit_mode = true,
+      ),
+      stat(
+        id = "turn_reaction_available",
+        stat = "reaction_available",
+        override_label = concat(["Reaction (", reaction_available_display, ")"]),
+        change_amount = 1,
+        min_value_allowed = 0,
+        should_auto_save = true,
+        always_in_edit_mode = true,
+      ),
+      button(
+        id = "turn_reset_actions",
+        text = "RESET ACTIONS",
+        event = event(name = "refresh_actions", payload = payload()),
+      ),
+      popUpButton(
+        id = "turn_roll_initiative_button",
+        text = "ROLL INITIATIVE",
+        pop_up_view = list(
+          id = "turn_roll_initiative_sheet",
+          padding = 8,
+          subviews = [
+            text(
+              id = "turn_roll_initiative_source_help_text",
+              text = "What skill are you rolling initiative with?",
+              style = "text",
+            ),
+            select(
+              id = "turn_roll_initiative_source_select",
+              stat = "initiative_stat",
+              options = "initiative_sources",
+              should_auto_save = true,
+            ),
+            composite(
+              id = "turn_roll_initiative_composite",
+              alignment = "end",
+              subviews = [
+                button(
+                  id = "turn_roll_initiative_sheet_roll_button",
+                  text = "ROLL INITIATIVE",
+                  event = event(
+                    name = "rollStat",
+                    payload = payload(stat = "initiative", statName = "Initiative"),
+                  ),
+                ),
+              ]
+            )
+          ],
+        ),
+        pop_up_title = "Roll initiative",
+        display_cancel_button = false,
+      ),
+    ],
+  );

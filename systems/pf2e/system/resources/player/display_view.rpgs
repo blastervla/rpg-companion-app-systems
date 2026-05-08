@@ -1,0 +1,33 @@
+view player_display() =
+  section(
+    id = "player_status_section",
+    show_divider = false,
+    content_item_min_width = 125,
+    margin_left = 8,
+    margin_right = 8,
+    collapsible = false,
+    header = [],
+    content = [
+      stat(
+        id = "armor_class",
+        stat = "armor_class",
+        change_amount = 1,
+        min_value_allowed = 0,
+      ),
+      stat(
+        id = "initiative",
+        stat = "initiative",
+        change_amount = 1,
+        on_tap_event = event(
+          name = "rollStat",
+          payload = payload(stat = "initiative", statName = "Initiative"),
+        ),
+      ),
+      stat(
+        id = "perception",
+        stat = "perception",
+        change_amount = 1,
+        min_value_allowed = 0,
+      ),
+    ],
+  );

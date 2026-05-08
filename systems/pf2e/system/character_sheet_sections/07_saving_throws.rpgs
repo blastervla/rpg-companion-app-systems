@@ -1,0 +1,20 @@
+import "../macros/system_common.rpgs";
+
+character_sheet_section saving_throws() =
+  section(
+    id = "saving_throws_section",
+    show_divider = true,
+    content_item_min_width = 125,
+    collapsible = false,
+    header = defaultSectionHeader(
+      icon_id = "saving_throws_section_icon",
+      icon_name = "ic_d20",
+      title_id = "saving_throws_section_title",
+      title_text = "Saving Throws",
+    ),
+    content = [
+      saveTapRow(id = "fortitude", stat_id = "fortitude", stat_name = "Fortitude save", proficiency_stat = "fortitude_proficiency", proficiency_name = "Fortitude proficiency"),
+      saveTapRow(id = "reflex", stat_id = "reflex", stat_name = "Reflex save", proficiency_stat = "reflex_proficiency", proficiency_name = "Reflex proficiency"),
+      saveTapRow(id = "will", stat_id = "will", stat_name = "Will save", proficiency_stat = "will_proficiency", proficiency_name = "Will proficiency"),
+    ],
+  );

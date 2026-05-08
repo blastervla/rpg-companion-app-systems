@@ -1,0 +1,1012 @@
+base string name(name = "Name") = "";
+
+base string source(name = "Source") = "";
+
+base bool is_core(name = "Core") = false;
+
+base string traits(name = "Traits") = "";
+
+base string description(name = "Description") = "";
+
+base resource<cost> cost(name = "Cost") = null;
+
+base resource<weight> weight(name = "Weight") = null;
+
+base string type(name = "Type") = "club";
+
+base string attack_ability(name = "Attack ability") = "strength";
+
+base bool add_attack_ability_to_damage(name = "Add attack ability to damage") =
+  true;
+
+base string rarity(name = "Rarity") = "common";
+
+base string weapon_group(name = "Weapon group") = "none";
+
+calc bool has_weapon_group(name = "Has weapon group") =
+  weapon_group != "none";
+
+calc string weapon_group_display_name(name = "Weapon group display name") =
+  enumeratedName(enumerated_type = "weapon_groups", id = weapon_group);
+
+calc string display_type(name = "Display type") =
+  when {
+    is_firearm && is_simple -> "simple_firearms",
+    is_firearm && !is_simple && !is_advanced -> "martial_firearms",
+    is_crossbow && is_simple -> "simple_crossbows",
+    is_crossbow && !is_simple && !is_advanced -> "martial_crossbows",
+    is_simple && is_range -> "simple_ranged",
+    is_simple && !is_range -> "simple_melee",
+    !is_simple && !is_advanced && is_range -> "martial_ranged",
+    !is_simple && !is_advanced && !is_range -> "martial_melee",
+    is_advanced && is_range -> "advanced_ranged",
+    is_advanced && !is_range -> "advanced_melee",
+  };
+
+calc string type_display_name(name = "Type display name") =
+  replace(string = type, occurrence = "_", replace = " ");
+
+base bool is_simple(name = "Is simple") = true;
+
+base bool is_advanced(name = "Is advanced") = false;
+
+calc bool is_firearm(name = "Is firearm") =
+  type == "firearm" || type == "musket" || type == "pistol" || type == "blowgun";
+
+calc bool is_crossbow(name = "Is crossbow") =
+  type == "crossbow_light" || type == "crossbow_hand" || type == "crossbow_heavy";
+
+base bool is_two_handed(name = "Is two-handed") = false;
+
+base bool is_finesse(name = "Is finesse") = false;
+
+base bool is_silver(name = "Is silver") = false;
+
+base bool is_thrown(name = "Is thrown") = false;
+
+base string thrown_range(name = "Thrown range") = "20 ft.";
+
+base bool is_loading(name = "Is loading") = false;
+
+base bool is_reach(name = "Is reach") = false;
+
+base integer reach_range(name = "Reach range") = 5;
+
+base bool is_improvised(name = "Is improvised") = false;
+
+base bool is_range(name = "Is range") = false;
+
+base string range(name = "Range") = "30 ft.";
+
+base string ammunition_type(name = "Ammunition type") = "none";
+
+base integer extra_attack_bonus(name = "Extra attack bonus") = 0;
+
+base integer attack_status_bonus(name = "Attack status bonus") = 0;
+
+base integer attack_status_penalty(name = "Attack status penalty") = 0;
+
+base integer attack_circumstance_bonus(name = "Attack circumstance bonus") = 0;
+
+base integer attack_circumstance_penalty(name = "Attack circumstance penalty") = 0;
+
+base integer attack_item_bonus(name = "Attack item bonus") = 0;
+
+base integer attack_item_penalty(name = "Attack item penalty") = 0;
+
+base resource<damage_dice>[] damage_dice(name = "Damage dice") = [];
+
+base bool has_two_hand_trait(name = "Has two-hand trait") = false;
+
+base resource<damage_dice>[] two_hand_trait_damage_dice(name = "Two-hand trait damage dice") =
+  [];
+
+base bool has_versatile_trait(name = "Has versatile trait") = false;
+
+base string versatile_damage_type(name = "Versatile damage type") = "piercing";
+
+calc bool should_load_effects(name = "Should not load effects") =
+  $parent?.should_load_effects? ?? true;
+
+base resource<effect>[] effects(name = "Effects") = [];
+
+base string[] attached_runes(name = "Attached runes") = [];
+
+base string attached_talisman(name = "Attached talisman") = "";
+
+calc resource<item>[] attached_runes_effective(name = "Attached runes (effective)") =
+  filter(
+    map(
+      attached_runes,
+      mapper = ($runeId) => if defined(stat = "$character")
+        then findFirst(
+            $character.equipment,
+            filter = ($item) => $item.id == $runeId,
+          )
+        else null,
+    ),
+    filter = ($item) => notNull($item),
+  );
+
+calc string attached_talisman_id_effective(name = "Attached talisman id (effective)") =
+  attached_talisman;
+
+calc resource<item> attached_talisman_effective(name = "Attached talisman (effective)") =
+  when {
+    defined(stat = "$character") && !isEmpty(attached_talisman_id_effective) -> findFirst(
+      $character.equipment,
+      filter = ($item) => $item.id == attached_talisman_id_effective,
+    ),
+    else -> null,
+  };
+
+base bool override_is_proficient(name = "Override is proficient") = false;
+
+base bool currently_using_two_hand_trait(name = "Currently using two-hand trait") =
+  false;
+
+base bool currently_using_versatile_trait(name = "Currently using versatile damage type") =
+  false;
+
+base bool has_agile_trait(name = "Has agile trait") = false;
+
+base string selected_strike_number(name = "Selected strike number") = "first";
+
+calc string selected_strike_number_effective(name = "Selected strike number (effective)") =
+  $view?.weapon_display_strike_number_select? ?? selected_strike_number;
+
+calc resource<item>[] attachable_runes_for_character(name = "Attachable runes for this weapon") =
+  if defined(stat = "$character")
+    then filter(
+        $character.equipment,
+        filter = ($filterValue) => ($filterValue.type == "rune"
+          && ($filterValue.attachment_target == "weapon" || $filterValue.attachment_target == "any")
+          && ($filterValue.quantity > 0)
+          && !contains(haystack = other_host_attached_rune_ids, needle = $filterValue.id)
+          && (contains(haystack = attached_rune_ids, needle = $filterValue.id)
+            || (($filterValue.rune_kind != "potency" || isEmpty(attached_potency_runes))
+              && ($filterValue.rune_kind != "striking" || isEmpty(attached_striking_runes))
+              && ($filterValue.rune_kind != "property"
+                || weapon_property_slots_used + max([1, $filterValue.property_slots_used]) <= weapon_property_slots_max)
+              && ($filterValue.required_potency_tier <= weapon_potency_tier || $filterValue.rune_kind == "potency")))),
+      )
+    else [];
+
+calc resource<item>[] attachable_talismans_for_character(name = "Attachable talismans for this weapon") =
+  if defined(stat = "$character")
+    then filter(
+        $character.equipment,
+        filter = ($filterValue) => ($filterValue.type == "talisman"
+          && ($filterValue.attachment_target == "weapon" || $filterValue.attachment_target == "any")
+          && ($filterValue.quantity > 0)
+          && (contains(haystack = attached_talisman_ids, needle = $filterValue.id)
+            || !contains(haystack = other_host_attached_talisman_ids, needle = $filterValue.id))),
+      )
+    else [];
+
+calc string[] attached_rune_ids(name = "Attached rune ids") =
+  map(attached_runes_effective, mapper = ($mapValue) => $mapValue.id);
+
+calc string[] attached_talisman_ids(name = "Attached talisman ids") =
+  if !isEmpty(attached_talisman_id_effective) then [attached_talisman_id_effective] else [];
+
+calc string[] other_host_attached_rune_ids(name = "Other hosts attached rune ids") =
+  if defined(stat = "$character")
+    then flatAppend(
+        [
+          flatMap(
+            filter(
+              $character.all_weapons,
+              filter = ($filterValue) => ($filterValue.id != id),
+            ),
+            mapper = ($mapValue) => map(
+              $mapValue.attached_runes_effective,
+              mapper = ($rune) => $rune.id,
+            ),
+          ),
+          flatMap(
+            $character.armors,
+            mapper = ($mapValue) => map(
+              $mapValue.attached_runes_effective,
+              mapper = ($rune) => $rune.id,
+            ),
+          ),
+        ],
+      )
+    else [];
+
+calc string[] other_host_attached_talisman_ids(name = "Other hosts attached talisman ids") =
+  if defined(stat = "$character")
+    then flatAppend(
+        [
+          map(
+            filter(
+              $character.all_weapons,
+              filter = ($filterValue) => ($filterValue.id != id && !isEmpty($filterValue.attached_talisman_id_effective)),
+            ),
+            mapper = ($mapValue) => $mapValue.attached_talisman_id_effective,
+          ),
+          map(
+            filter(
+              $character.armors,
+              filter = ($filterValue) => !isEmpty($filterValue.attached_talisman_id_effective),
+            ),
+            mapper = ($mapValue) => $mapValue.attached_talisman_id_effective,
+          ),
+        ],
+      )
+    else [];
+
+calc resource<item>[] attached_potency_runes(name = "Attached potency runes") =
+  filter(attached_runes_effective, filter = ($filterValue) => ($filterValue.rune_kind == "potency"));
+
+calc resource<item>[] attached_striking_runes(name = "Attached striking runes") =
+  filter(attached_runes_effective, filter = ($filterValue) => ($filterValue.rune_kind == "striking"));
+
+calc resource<item>[] attached_property_runes(name = "Attached property runes") =
+  filter(attached_runes_effective, filter = ($filterValue) => ($filterValue.rune_kind == "property"));
+
+calc integer weapon_potency_tier(name = "Weapon potency tier") =
+  max(
+    flatAppend(
+      [
+        [0],
+        map(
+          attached_potency_runes,
+          mapper = ($mapValue) => max([$mapValue.rune_tier, $mapValue.rune_attack_bonus]),
+        ),
+      ],
+    ),
+  );
+
+calc integer weapon_striking_tier(name = "Weapon striking tier") =
+  max(
+    flatAppend(
+      [
+        [0],
+        map(
+          attached_striking_runes,
+          mapper = ($mapValue) => $mapValue.rune_tier,
+        ),
+      ],
+    ),
+  );
+
+calc integer weapon_property_slots_max(name = "Weapon property slots max") =
+  min([3, weapon_potency_tier]);
+
+calc integer weapon_property_slots_used(name = "Weapon property slots used") =
+  add(
+    map(
+      attached_property_runes,
+      mapper = ($mapValue) => max([1, $mapValue.property_slots_used]),
+    ),
+  );
+
+calc bool has_multiple_potency_runes(name = "Has multiple potency runes") =
+  length(attached_potency_runes) > 1;
+
+calc bool has_multiple_striking_runes(name = "Has multiple striking runes") =
+  length(attached_striking_runes) > 1;
+
+calc bool has_too_many_property_runes(name = "Has too many property runes") =
+  weapon_property_slots_used > weapon_property_slots_max;
+
+calc bool has_unmet_required_potency_rune(name = "Has unmet required potency rune") =
+  or(
+    map(
+      attached_runes_effective,
+      mapper = ($mapValue) => ($mapValue.required_potency_tier > weapon_potency_tier),
+    ),
+  );
+
+calc bool attachment_rules_valid(name = "Attachment rules valid") =
+  !has_multiple_potency_runes
+    && !has_multiple_striking_runes
+    && !has_too_many_property_runes
+    && !has_unmet_required_potency_rune;
+
+calc string attachment_rules_issue_message(name = "Attachment rules issue message") =
+  joinToString(
+    flatAppend(
+      [
+        (if has_multiple_potency_runes then ["Only one potency rune can be attached"] else []),
+        (if has_multiple_striking_runes then ["Only one striking rune can be attached"] else []),
+        (if has_too_many_property_runes
+          then [concat(["Property rune slots exceeded (", weapon_property_slots_used, "/", weapon_property_slots_max, ")"])]
+          else []),
+        (if has_unmet_required_potency_rune then ["A rune requires a higher potency tier"] else []),
+      ],
+    ),
+    separator = " | ",
+  );
+
+calc integer attached_rune_attack_bonus(name = "Attached rune attack bonus") =
+  add(
+    map(
+      attached_runes_effective,
+      mapper = ($mapValue) => $mapValue.rune_attack_bonus,
+    ),
+  );
+
+calc integer attached_talisman_attack_bonus(name = "Attached talisman attack bonus") =
+  attached_talisman_effective?.rune_attack_bonus ?? 0;
+
+calc integer total_attachment_attack_bonus(name = "Total attachment attack bonus") =
+  attached_rune_attack_bonus + attached_talisman_attack_bonus;
+
+calc integer attack_item_bonus_total(name = "Attack item bonus total") =
+  max([total_attachment_attack_bonus, attack_item_bonus]);
+
+calc integer attack_typed_modifier_total(name = "Attack typed modifier total") =
+  extra_attack_bonus
+    + attack_status_bonus
+    + attack_status_penalty
+    + attack_circumstance_bonus
+    + attack_circumstance_penalty
+    + attack_item_bonus_total
+    + attack_item_penalty;
+
+calc integer attached_rune_damage_bonus(name = "Attached rune damage bonus") =
+  add(
+    map(
+      attached_runes_effective,
+      mapper = ($mapValue) => $mapValue.rune_damage_bonus,
+    ),
+  );
+
+calc integer attached_talisman_damage_bonus(name = "Attached talisman damage bonus") =
+  attached_talisman_effective?.rune_damage_bonus ?? 0;
+
+calc integer total_attachment_damage_bonus(name = "Total attachment damage bonus") =
+  attached_rune_damage_bonus + attached_talisman_damage_bonus;
+
+calc resource<damage_dice>[] attached_rune_bonus_damage_dice(name = "Attached rune bonus damage dice") =
+  flatMap(
+    attached_runes_effective,
+    mapper = ($mapValue) => ($mapValue.rune_bonus_damage_dice ?? []),
+  );
+
+calc resource<damage_dice>[] attached_talisman_bonus_damage_dice(name = "Attached talisman bonus damage dice") =
+  attached_talisman_effective?.rune_bonus_damage_dice ?? [];
+
+calc resource<damage_dice>[] all_attachment_bonus_damage_dice(name = "All attachment bonus damage dice") =
+  flatAppend(
+    [
+      attached_rune_bonus_damage_dice,
+      attached_talisman_bonus_damage_dice,
+    ],
+  );
+
+calc resource<effect>[] attached_rune_active_effects(name = "Attached rune active effects") =
+  flatMap(
+    attached_runes_effective,
+    mapper = ($mapValue) => filter(
+      $mapValue.effects,
+      filter = ($effect) => ($effect.is_active),
+    ),
+  );
+
+calc resource<effect>[] attached_talisman_active_effects(name = "Attached talisman active effects") =
+  if notNull(attached_talisman_effective)
+    then filter(
+        attached_talisman_effective.effects,
+        filter = ($effect) => ($effect.is_active),
+      )
+    else [];
+
+calc resource<effect>[] attached_active_effects(name = "Attached active effects") =
+  flatAppend(
+    [
+      attached_rune_active_effects,
+      attached_talisman_active_effects,
+    ],
+  );
+
+calc bool has_attached_talisman(name = "Has attached talisman") =
+  notNull(attached_talisman_effective);
+
+calc bool attached_talisman_consumed_on_activation(name = "Attached talisman consumed on activation") =
+  attached_talisman_effective?.consumed_on_activation ?? false;
+
+calc string attached_runes_summary(name = "Attached rune summary") =
+  joinToString(
+    map(attached_runes_effective, mapper = ($mapValue) => $mapValue.name),
+    separator = ", ",
+  );
+
+calc string attached_talisman_summary(name = "Attached talisman summary") =
+  attached_talisman_effective?.name ?? "";
+
+calc string attachment_bonus_damage_dice_display_description(name = "Attachment bonus damage dice text") =
+  joinToString(
+    map(
+      all_attachment_bonus_damage_dice,
+      mapper = ($mapValue) => $mapValue.display_description,
+    ),
+    separator = " + ",
+  );
+
+calc bool has_ammunition(name = "Has ammunition") =
+  is_range && ammunition_type != "none";
+
+calc string weapon_group_simple_martial_unarmed_option_id(name = "Weapon group option id (simple/martial/unarmed)") =
+  concat(["group_", weapon_group, "_simple_martial_unarmed"]);
+
+calc string weapon_group_advanced_option_id(name = "Weapon group option id (advanced)") =
+  concat(["group_", weapon_group, "_advanced"]);
+
+calc resource<levelled_weapon_proficiency>[] weapon_proficiency_rows(name = "Weapon proficiency rows") =
+  if defined(stat = "$character")
+    then flatAppend(
+        [
+          ($character.ancestry?.weapon_proficiencies_for_current_level ?? []),
+          ($character.background?.weapon_proficiencies_for_current_level ?? []),
+          flatMap(
+            $character.classes,
+            mapper = ($mapValue) => ($mapValue.class?.weapon_proficiencies_for_current_level ?? []),
+          ),
+          flatMap(
+            $character.all_features,
+            mapper = ($feature) => ($feature.weapon_proficiencies_for_current_level ?? []),
+          ),
+        ],
+      )
+    else [];
+
+calc integer weapon_proficiency_rank_from_rows(name = "Weapon proficiency rank from rows") =
+  max(
+    flatAppend(
+      [
+        [0],
+        map(
+          filter(
+            weapon_proficiency_rows,
+            filter = ($filterValue) => or(
+              map(
+                $filterValue.resolved_options,
+                mapper = ($option) => ($option == type
+                  || $option == "all_simple"
+                    && is_simple
+                  || $option == "all_martial"
+                    && !is_simple
+                    && !is_advanced
+                  || $option == "all_advanced"
+                    && is_advanced
+                  || $option == "simple_melee"
+                    && is_simple
+                    && !is_range
+                  || $option == "simple_ranged"
+                    && is_simple
+                    && is_range
+                  || $option == "martial_melee"
+                    && !is_simple
+                    && !is_advanced
+                    && !is_range
+                  || $option == "martial_ranged"
+                    && !is_simple
+                    && !is_advanced
+                    && is_range
+                  || $option == "advanced_melee"
+                    && is_advanced
+                    && !is_range
+                  || $option == "advanced_ranged"
+                    && is_advanced
+                    && is_range
+                  || $option == "all_firearms"
+                    && is_firearm
+                  || $option == "simple_firearms"
+                    && is_firearm
+                    && is_simple
+                  || $option == "martial_firearms"
+                    && is_firearm
+                    && !is_simple
+                    && !is_advanced
+                  || $option == "all_crossbows"
+                    && is_crossbow
+                  || $option == "simple_crossbows"
+                    && is_crossbow
+                    && is_simple
+                  || $option == "martial_crossbows"
+                    && is_crossbow
+                    && !is_simple
+                    && !is_advanced
+                  || has_weapon_group
+                    && $option == weapon_group_simple_martial_unarmed_option_id
+                    && !isEmpty($filterValue.selected_option)
+                    && $filterValue.selected_option == $option
+                    && (!is_advanced || type == "unarmed_strike")
+                  || has_weapon_group
+                    && $option == weapon_group_advanced_option_id
+                    && !isEmpty($filterValue.selected_option)
+                    && $filterValue.selected_option == $option
+                    && is_advanced),
+              ),
+            ),
+          ),
+          mapper = ($mapValue) => when {
+            $mapValue.proficiency == "legendary" -> 4,
+            $mapValue.proficiency == "master" -> 3,
+            $mapValue.proficiency == "expert" -> 2,
+            $mapValue.proficiency == "trained" -> 1,
+            else -> 1,
+          },
+        ),
+      ],
+    ),
+  );
+
+calc integer weapon_proficiency_rank_from_legacy(name = "Weapon proficiency rank from legacy fields") =
+  if defined(stat = "$character")
+    then (if contains(haystack = $character.weapon_proficiencies, needle = type)
+          || contains(haystack = $character.weapon_proficiencies, needle = "all_simple")
+            && is_simple
+          || contains(haystack = $character.weapon_proficiencies, needle = "all_martial")
+            && !is_simple
+            && !is_advanced
+          || contains(haystack = $character.weapon_proficiencies, needle = "all_advanced")
+            && is_advanced
+          || contains(haystack = $character.weapon_proficiencies, needle = "all_firearms")
+            && is_firearm
+          || contains(haystack = $character.weapon_proficiencies, needle = "simple_firearms")
+            && is_firearm
+            && is_simple
+          || contains(haystack = $character.weapon_proficiencies, needle = "martial_firearms")
+            && is_firearm
+            && !is_simple
+            && !is_advanced
+          || contains(haystack = $character.weapon_proficiencies, needle = "all_crossbows")
+            && is_crossbow
+          || contains(haystack = $character.weapon_proficiencies, needle = "simple_crossbows")
+            && is_crossbow
+            && is_simple
+          || contains(haystack = $character.weapon_proficiencies, needle = "martial_crossbows")
+            && is_crossbow
+            && !is_simple
+            && !is_advanced
+        then 1
+        else 0)
+    else 0;
+
+calc integer weapon_proficiency_rank_from_deity(name = "Weapon proficiency rank from deity favored weapon") =
+  if defined(stat = "$character")
+      && (contains(
+          haystack = ($character.primary_class_progression?.active_selected_deity?.favored_weapons? ?? []),
+          needle = type,
+        )
+        || contains(
+          haystack = ($character.primary_class_progression?.active_selected_deity?.favored_weapon_ids? ?? []),
+          needle = id,
+        ))
+    then 1
+    else 0;
+
+calc string[] primary_class_feature_names(name = "Primary class feature names") =
+  if !defined(stat = "$character")
+    then []
+    else map(
+        ($character.primary_class_progression?.class.current_level_features ?? []),
+        mapper = ($mapValue) => $mapValue.name,
+      );
+
+calc integer weapon_proficiency_rank_from_cleric_doctrine(name = "Weapon proficiency rank from Cleric doctrine favored-weapon progression") =
+  if !defined(stat = "$character")
+      || isEmpty($character.primary_class_progression?.class?.id ?? "")
+      || ($character.primary_class_progression?.class?.id ?? "") != "cleric__pc1_"
+      || (weapon_proficiency_rank_from_deity <= 0)
+    then 0
+    else when {
+        contains(
+          haystack = primary_class_feature_names,
+          needle = "Warpriest: Final Doctrine",
+        ) -> 3,
+        contains(
+          haystack = primary_class_feature_names,
+          needle = "Warpriest: Third Doctrine",
+        )
+          || contains(
+            haystack = primary_class_feature_names,
+            needle = "Cloistered: Fourth Doctrine",
+          ) -> 2,
+        else -> 0,
+      };
+
+calc integer weapon_proficiency_rank(name = "Weapon proficiency rank") =
+  max(
+    [
+      weapon_proficiency_rank_from_rows,
+      weapon_proficiency_rank_from_legacy,
+      weapon_proficiency_rank_from_deity,
+      weapon_proficiency_rank_from_cleric_doctrine,
+      (if override_is_proficient then 1 else 0),
+    ],
+  );
+
+calc integer weapon_specialization_stage_from_features(name = "Weapon specialization stage from features") =
+  if !defined(stat = "$character")
+    then 0
+    else max(
+        flatAppend(
+          [
+            [0],
+            map(
+              $character.all_features,
+              mapper = ($feature) => when {
+                $feature.grants_greater_weapon_specialization -> 2,
+                $feature.grants_weapon_specialization -> 1,
+                else -> 0,
+              },
+            ),
+          ],
+        ),
+      );
+
+calc integer weapon_specialization_damage_bonus(name = "Weapon specialization damage bonus") =
+  when {
+    weapon_proficiency_rank < 2 -> 0,
+    weapon_specialization_stage_from_features >= 2 -> when {
+      weapon_proficiency_rank >= 4 -> 8,
+      weapon_proficiency_rank == 3 -> 6,
+      else -> 4,
+    },
+    weapon_specialization_stage_from_features == 1 -> when {
+      weapon_proficiency_rank >= 4 -> 4,
+      weapon_proficiency_rank == 3 -> 3,
+      else -> 2,
+    },
+    else -> 0,
+  };
+
+calc bool is_proficient(name = "Is proficient") =
+  weapon_proficiency_rank > 0;
+
+calc string weapon_proficiency(name = "Weapon proficiency rank name") =
+  when {
+    weapon_proficiency_rank >= 4 -> "legendary",
+    weapon_proficiency_rank == 3 -> "master",
+    weapon_proficiency_rank == 2 -> "expert",
+    weapon_proficiency_rank == 1 -> "trained",
+    else -> "none",
+  };
+
+calc integer weapon_proficiency_bonus(name = "Weapon proficiency bonus") =
+  if defined(stat = "$character")
+    then when {
+        weapon_proficiency == "trained" -> $character.level_bonus + 2,
+        weapon_proficiency == "expert" -> $character.level_bonus + 4,
+        weapon_proficiency == "master" -> $character.level_bonus + 6,
+        weapon_proficiency == "legendary" -> $character.level_bonus + 8,
+        else -> 0,
+      }
+    else 0;
+
+calc integer map_penalty(name = "Multiple attack penalty") =
+  when {
+    selected_strike_number_effective == "second" && has_agile_trait -> -4,
+    selected_strike_number_effective == "third" && has_agile_trait -> -8,
+    selected_strike_number_effective == "second" -> -5,
+    selected_strike_number_effective == "third" -> -10,
+    else -> 0,
+  };
+
+calc string map_penalty_display(name = "Display MAP") =
+  when {
+    map_penalty == 0 -> "none",
+    map_penalty > 0 -> concat(["+", map_penalty]),
+    else -> concat([map_penalty]),
+  };
+
+calc bool in_combat(name = "In combat") =
+  ($parent?.in_combat? ?? false) || defined(stat = "$combatants");
+
+calc bool has_required_action_for_attack(name = "Has required action for attack") =
+  !in_combat
+    || (!defined(stat = "$character.actions_remaining")
+      && !defined(stat = "$parent.actions_remaining"))
+    || (($character?.actions_remaining ?? $parent?.actions_remaining ?? 0) > 0);
+
+calc bool can_attack(name = "Can attack") =
+  has_required_action_for_attack;
+
+calc bool use_two_hand_trait(name = "Use two-hand trait") =
+  has_two_hand_trait && currently_using_two_hand_trait;
+
+calc bool use_versatile_damage_type(name = "Use versatile damage type") =
+  has_versatile_trait && currently_using_versatile_trait;
+
+calc resource<damage_dice>[] active_damage_dice(name = "Active damage dice") =
+  if use_two_hand_trait then two_hand_trait_damage_dice else damage_dice;
+
+calc resource<damage_dice> active_primary_damage_dice(name = "Active primary damage die") =
+  findFirst(active_damage_dice, filter = ($findFirstValue) => true);
+
+calc string active_primary_damage_dice_id(name = "Active primary damage die id") =
+  active_primary_damage_dice?.id ?? "";
+
+calc resource<dice_roll>[] active_primary_damage_rolls(name = "Active primary damage rolls") =
+  active_primary_damage_dice?.dices ?? [];
+
+calc resource<dice_roll> active_primary_damage_roll(name = "Active primary damage roll") =
+  findFirst(
+    active_primary_damage_rolls,
+    filter = ($findFirstValue) => true,
+  );
+
+calc string active_primary_damage_formula(name = "Active primary damage formula") =
+  active_primary_damage_roll?.formula ?? "";
+
+calc bool has_deadly_simplicity_feat(name = "Has Deadly Simplicity feat") =
+  if !defined(stat = "$character")
+    then false
+    else contains(
+        haystack = map(
+          $character.all_features,
+          mapper = ($mapValue) => $mapValue.id,
+        ),
+        needle = "feat_deadly_simplicity__pc1_",
+      );
+
+calc bool is_deadly_simplicity_enabled(name = "Is Deadly Simplicity enabled") =
+  has_deadly_simplicity_feat
+    && (weapon_proficiency_rank_from_deity > 0)
+    && (is_simple || type == "unarmed_strike");
+
+calc string deadly_simplicity_primary_damage_formula(name = "Deadly Simplicity primary damage formula") =
+  if !is_deadly_simplicity_enabled
+    then active_primary_damage_formula
+    else when {
+        type == "unarmed_strike"
+          && (active_primary_damage_formula == "1d2"
+            || active_primary_damage_formula == "1d3"
+            || active_primary_damage_formula == "1d4") -> "1d6",
+        active_primary_damage_formula == "1d2" -> "1d3",
+        active_primary_damage_formula == "1d3" -> "1d4",
+        active_primary_damage_formula == "1d4" -> "1d6",
+        active_primary_damage_formula == "1d6" -> "1d8",
+        active_primary_damage_formula == "1d8" -> "1d10",
+        active_primary_damage_formula == "1d10" -> "1d12",
+        else -> active_primary_damage_formula,
+      };
+
+calc string active_damage_type(name = "Active primary damage type") =
+  if use_versatile_damage_type
+    then versatile_damage_type
+    else (active_primary_damage_dice?.damage_type ?? "untyped");
+
+calc resource<damage_dice> two_hand_trait_primary_damage_dice(name = "Two-hand trait primary damage die") =
+  findFirst(two_hand_trait_damage_dice, filter = ($findFirstValue) => true);
+
+calc string two_hand_trait_primary_damage_dice_id(name = "Two-hand trait primary damage die id") =
+  two_hand_trait_primary_damage_dice?.id ?? "";
+
+calc string two_hand_trait_damage_dice_formulas(name = "Two-hand trait damage dice formulas") =
+  joinToString(
+    map(
+      two_hand_trait_damage_dice,
+      mapper = ($mapValue) => joinToString(
+        map($mapValue.dices, mapper = ($dice) => $dice.formula),
+        separator = " + ",
+      ),
+    ),
+    separator = " + ",
+  );
+
+calc string two_hand_trait_property(name = "Two-hand trait property") =
+  if !has_two_hand_trait
+    then ""
+    else if isEmpty(two_hand_trait_damage_dice_formulas)
+      then "two-hand"
+      else concat(["two-hand (", two_hand_trait_damage_dice_formulas, ")"]);
+
+calc string versatile_trait_property(name = "Versatile trait property") =
+  if !has_versatile_trait
+    then ""
+    else concat(
+        [
+          "versatile ",
+          enumeratedName(
+            enumerated_type = "damage_types",
+            id = versatile_damage_type,
+          ),
+        ],
+      );
+
+calc string two_hand_trait_damage_dice_display_description(name = "Display two-hand trait damage dice") =
+  if isEmpty(two_hand_trait_damage_dice)
+    then "no damage"
+    else concat(
+        flatAppend(
+          [
+            [
+              joinToString(
+                map(
+                  two_hand_trait_damage_dice,
+                  mapper = ($mapValue) => concat(
+                    [
+                      joinToString(
+                        map(
+                          $mapValue.dices,
+                          mapper = ($dice) => if is_deadly_simplicity_enabled
+                              && $mapValue.id == active_primary_damage_dice_id
+                            then deadly_simplicity_primary_damage_formula
+                            else $dice.formula,
+                        ),
+                        separator = " + ",
+                      ),
+                      " ",
+                      enumeratedName(
+                        enumerated_type = "damage_types",
+                        id = if use_versatile_damage_type
+                          && $mapValue.id == two_hand_trait_primary_damage_dice_id
+                          then versatile_damage_type
+                          else $mapValue.damage_type,
+                      ),
+                    ],
+                  ),
+                ),
+                separator = " + ",
+              ),
+            ],
+            flatAppend(
+              [
+                when {
+                  damage_bonus > 0 -> [" + ", damage_bonus],
+                  damage_bonus < 0 -> [" - ", (damage_bonus * -1)],
+                  else -> [],
+                },
+                (if !isEmpty(attachment_bonus_damage_dice_display_description)
+                  then [" + ", attachment_bonus_damage_dice_display_description]
+                  else []),
+              ],
+            ),
+          ],
+        ),
+      );
+
+calc string properties(name = "Properties") =
+  joinToString(
+    flatAppend(
+      [
+        (if rarity != "none"
+          then [
+              enumeratedName(enumerated_type = "item_rarity", id = rarity),
+            ]
+          else []),
+        (if has_weapon_group then [concat(["group ", weapon_group_display_name])] else []),
+        (if !isEmpty(traits) then [traits] else []),
+        (if is_firearm then ["firearm"] else []),
+        (if is_crossbow then ["crossbow"] else []),
+        (if is_two_handed then ["two-handed"] else []),
+        (if !isEmpty(two_hand_trait_property) then [two_hand_trait_property] else []),
+        (if !isEmpty(versatile_trait_property) then [versatile_trait_property] else []),
+        (if is_silver then ["silver"] else []),
+        (if is_finesse then ["finesse"] else []),
+        (if is_thrown then [concat(["thrown (", thrown_range, ")"])] else []),
+        (if is_loading then ["loading"] else []),
+        (if is_improvised then ["improvised"] else []),
+        (if is_range then [concat(["range (", range, ")"])] else []),
+        (if is_reach then [concat(["reach ", reach_range, " ft."])] else []),
+        (if !isEmpty(attached_runes_summary)
+          then [concat(["runes: ", attached_runes_summary])]
+          else []),
+        (if !isEmpty(attached_talisman_summary)
+          then [concat(["talisman: ", attached_talisman_summary])]
+          else []),
+        (if (cost?.value ?? 0) != 0 then [cost.description] else []),
+        (if (weight?.value ?? 0) != 0 then [weight.description] else []),
+      ],
+    ),
+    separator = ", ",
+  );
+
+calc string attack_modifier_stat_id(name = "Attack modifier stat id") =
+  concat(["$character.", attack_ability, "_modifier"]);
+
+calc integer attack_bonus(name = "Attack bonus") =
+  (if defined(stat = "$character")
+    then max(
+        flatAppend(
+          [
+            [metaStat(meta_stat = attack_modifier_stat_id)],
+            (if is_finesse then [$character.dexterity_modifier] else []),
+          ],
+        ),
+      )
+    else 0) + weapon_proficiency_bonus + attack_typed_modifier_total + (if defined(stat = "$character") then $character.strike_attack_typed_modifier_total else 0) + map_penalty;
+
+calc integer damage_bonus(name = "Damage bonus") =
+  if defined(stat = "$character") && add_attack_ability_to_damage
+    then max(
+        flatAppend(
+          [
+            [metaStat(meta_stat = attack_modifier_stat_id)],
+            (if is_finesse then [$character.dexterity_modifier] else []),
+          ],
+        ),
+      )
+    else 0
+  ) + total_attachment_damage_bonus + weapon_specialization_damage_bonus + (if defined(stat = "$character") then $character.strike_damage_typed_modifier_total else 0);
+
+calc string display_attack_bonus(name = "Display attack bonus") =
+  if defined(stat = "$character")
+    then concat([(if attack_bonus >= 0 then "+" else ""), attack_bonus])
+    else "";
+
+calc string damage_dice_display_description(name = "Display damage dice") =
+  if isEmpty(active_damage_dice)
+    then "no damage"
+    else concat(
+        flatAppend(
+          [
+            [
+              joinToString(
+                map(
+                  active_damage_dice,
+                  mapper = ($mapValue) => concat(
+                    [
+                      joinToString(
+                        map($mapValue.dices, mapper = ($dice) => $dice.formula),
+                        separator = " + ",
+                      ),
+                      " ",
+                      enumeratedName(
+                        enumerated_type = "damage_types",
+                        id = if use_versatile_damage_type && $mapValue.id == active_primary_damage_dice_id
+                          then versatile_damage_type
+                          else $mapValue.damage_type,
+                      ),
+                    ],
+                  ),
+                ),
+                separator = " + ",
+              ),
+            ],
+            flatAppend(
+              [
+                when {
+                  !defined(stat = "$character") -> [],
+                  damage_bonus > 0 -> [" + ", damage_bonus],
+                  damage_bonus < 0 -> [" - ", (damage_bonus * -1)],
+                  else -> [],
+                },
+                (if !isEmpty(attachment_bonus_damage_dice_display_description)
+                  then [" + ", attachment_bonus_damage_dice_display_description]
+                  else []),
+              ],
+            ),
+          ],
+        ),
+      );
+
+calc string display_first_line_extra(name = "Display first line extra") =
+  if defined(stat = "$character")
+    then display_attack_bonus
+    else damage_dice_display_description;
+
+calc string display_second_line_extra(name = "Display second line extra") =
+  when {
+    defined(stat = "$character") -> damage_dice_display_description,
+    !isEmpty(effects) -> "Magic",
+    !isEmpty(attached_rune_ids) || !isEmpty(attached_talisman_id_effective) -> "Attached runes",
+    else -> "",
+  };
+
+calc string second_line_extra_color(name = "Second line extra color") =
+  if !isEmpty(effects) then "accent" else "text";
+
+base string temp_shoot_ammo(name = "Temp ammo item being shot") = "";
+
+calc resource<item>[] ammunition_items(name = "Items that can be used as ammunition for this weapon") =
+  if defined(stat = "$character")
+    then filter(
+        $character.equipment,
+        filter = ($filterValue) => ($filterValue.type == "ammunition"
+          && $filterValue.ammunition_type == ammunition_type),
+      )
+    else [];
+
+calc resource<item> selected_item_to_shoot(name = "Selected item to shoot") =
+  findFirst(
+    ammunition_items,
+    filter = ($findFirstValue) => ($findFirstValue.id == $view?.weapon_display_ammunition_select?),
+  );

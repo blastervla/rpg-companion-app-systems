@@ -1,0 +1,10 @@
+define abilityModifier(score) = divide([(score + -10), 2], rounding_method = "down");
+
+define signedDisplay(value) = if value >= 0 then concat(["+", value]) else concat(["", value]);
+
+define levelGate(required_level) =
+  when {
+    defined(stat = "$parent.level") -> $parent.level,
+    defined(stat = "$character.level") -> $character.level,
+    else -> 1,
+  } >= required_level;

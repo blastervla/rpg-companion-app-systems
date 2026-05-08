@@ -1,0 +1,202 @@
+view item_display() =
+  list(
+    id = "item_display",
+    padding = 16,
+    subviews = [
+      composite(
+        id = "item_display_current_quantity_composite",
+        alignment = "end",
+        is_visible = defined(stat = "$character"),
+        subviews = [
+          ticker(
+            id = "item_display_current_quantity_ticker",
+            stat = "quantity",
+            style = "title",
+          ),
+        ],
+      ),
+      composite(
+        id = "item_display_info",
+        subviews = [
+          text(
+            id = "item_display_source",
+            margin_left = 16,
+            style = "caption",
+            resource_id = "source",
+            resource_instance_ids_stat = "source",
+            resource_display_stat = "abbreviation",
+          ),
+          text(
+            id = "item_display_source_separator",
+            text = ", ",
+            style = "caption",
+            is_visible = !isEmpty(properties),
+          ),
+          text(
+            id = "item_display_properties",
+            text = properties,
+            style = "caption",
+            is_visible = !isEmpty(properties),
+          ),
+        ],
+      ),
+      composite(
+        id = "item_display_attachment_info",
+        subviews = [
+          text(
+            id = "item_display_attachment_target_label",
+            margin_left = 16,
+            text = "Attach to: ",
+            style = "caption",
+            bold = true,
+          ),
+          text(
+            id = "item_display_attachment_target",
+            text = attachment_target_name,
+            style = "caption",
+          ),
+          text(
+            id = "item_display_attachment_consumed_separator",
+            text = ", ",
+            style = "caption",
+            is_visible = consumed_on_activation,
+          ),
+          text(
+            id = "item_display_attachment_consumed",
+            text = "consumed on activation",
+            style = "caption",
+            color = "accent",
+            is_visible = consumed_on_activation,
+          ),
+        ],
+        is_visible = is_attachment_item,
+      ),
+      text(
+        id = "item_display_rune_bonus_summary",
+        margin_left = 16,
+        text = rune_bonus_summary,
+        style = "caption",
+        color = "accent",
+        is_visible = is_attachment_item && !isEmpty(rune_bonus_summary),
+      ),
+      text(
+        id = "item_display_attachment_state",
+        margin_left = 16,
+        text = if is_attached then "Attached" else "Not attached",
+        style = "caption",
+        color = if is_attached then "#4CAF50" else "accent",
+        is_visible = defined(stat = "$character") && is_attachment_item,
+      ),
+      composite(
+        id = "item_display_character_properties",
+        subviews = [
+          text(
+            id = "item_display_equipped",
+            margin_left = 16,
+            text = "Equipped",
+            style = "caption",
+            color = "#4CAF50",
+            is_visible = is_equipped,
+          ),
+          text(
+            id = "item_display_invested",
+            margin_left = 16,
+            text = "Invested",
+            style = "caption",
+            color = "#4CAF50",
+            is_visible = is_invested,
+          ),
+        ],
+        is_visible = defined(stat = "$character"),
+      ),
+      text(
+        id = "item_display_price_and_weight",
+        margin_left = 16,
+        text = price_and_weight,
+        style = "caption",
+        is_visible = !isEmpty(price_and_weight),
+      ),
+      text(
+        id = "item_display_description",
+        margin_top = 16,
+        text = description,
+        style = "text",
+        markdown = true,
+        is_visible = !isEmpty(description),
+      ),
+      collapsible(
+        id = "item_display_effects_collapsible",
+        margin_top = 8,
+        title = "Magic effects",
+        is_visible = !isEmpty(effects),
+        subviews = [
+          resourceArray(
+            id = "item_display_effects",
+            resource_id = "effect",
+            stat = "effects",
+            view_type = "display",
+          ),
+        ],
+      ),
+      collapsible(
+        id = "item_display_rune_bonus_damage_dice_collapsible",
+        margin_top = 8,
+        title = "Rune bonus damage dice",
+        is_visible = !isEmpty(rune_bonus_damage_dice),
+        subviews = [
+          resourceArray(
+            id = "item_display_rune_bonus_damage_dice",
+            resource_id = "damage_dice",
+            stat = "rune_bonus_damage_dice",
+            view_type = "display",
+          ),
+        ],
+      ),
+      composite(
+        id = "item_quantity_composite",
+        row_only = true,
+        alignment = "end",
+        is_visible = defined(stat = "$character"),
+        subviews = [
+          spacer(id = "item_quantity_spacer"),
+          text(
+            id = "item_quantity",
+            edit_stat = "edit_quantity",
+            style = "text",
+            max_length = 12,
+            hint = "Amount (default = 1)",
+          ),
+        ],
+      ),
+      composite(
+        id = "item_display_invest_equip_add_remove_composite",
+        row_only = true,
+        is_visible = defined(stat = "$character"),
+        subviews = [
+          button(
+            id = "item_display_invest_button",
+            text = if is_invested then "UNINVEST" else "INVEST",
+            event = event(name = "toggle_investment"),
+            is_visible = requires_investment,
+          ),
+          button(
+            id = "item_display_equip_button",
+            text = if is_equipped then "UNEQUIP" else "EQUIP",
+            event = event(name = "toggle_equip"),
+            is_visible = requires_equipping,
+          ),
+          spacer(id = "item_display_invest_equip_add_remove_spacer"),
+          button(
+            id = "item_display_add_button",
+            text = "+ ADD",
+            event = event(name = "add_quantity"),
+          ),
+          button(
+            id = "item_display_remove_button",
+            text = "+ REMOVE",
+            event = event(name = "subtract_quantity"),
+          ),
+        ],
+      ),
+    ],
+  );

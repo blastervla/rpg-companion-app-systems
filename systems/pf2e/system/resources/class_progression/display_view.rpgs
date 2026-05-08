@@ -1,0 +1,53 @@
+view class_progression_subsection() =
+  section(
+    id = "class_progression_subsection",
+    header = [
+      text(
+        id = "class_progression_label",
+        margin_left = 24,
+        text = class_name_with_archetype_and_deity,
+        style = "section",
+      ),
+    ],
+    content = [
+      text(
+        id = "class_progression_deity_name",
+        margin_left = 24,
+        text = concat(["Deity: ", selected_deity_name]),
+        style = "caption",
+        is_visible = class_requires_deity && !isEmpty(selected_deity_name),
+      ),
+      text(
+        id = "class_progression_deity_font",
+        margin_left = 24,
+        text = concat(["Divine font: ", selected_deity_font_text]),
+        style = "caption",
+        is_visible = class_requires_deity && !isEmpty(selected_deity_font_text),
+      ),
+      text(
+        id = "class_progression_deity_skill",
+        margin_left = 24,
+        text = concat(["Associated skill: ", selected_deity_associated_skill_text]),
+        style = "caption",
+        is_visible = class_requires_deity && !isEmpty(selected_deity_associated_skill_text),
+      ),
+      text(
+        id = "class_progression_deity_favored_weapon",
+        margin_left = 24,
+        text = concat(["Favored weapon: ", selected_deity_favored_weapon_text]),
+        style = "caption",
+        is_visible = class_requires_deity && !isEmpty(selected_deity_favored_weapon_text),
+      ),
+      resourceSection(
+        id = "class_progression_list",
+        resource_stat = "features",
+        read_only = true,
+        resource_id = "feat",
+      ),
+    ],
+    show_divider = false,
+    content_item_min_width = 1,
+    collapsible = true,
+    start_collapsed = true,
+    always_show_collapse_icon = true,
+  );

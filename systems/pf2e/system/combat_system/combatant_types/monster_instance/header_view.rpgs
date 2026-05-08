@@ -1,0 +1,178 @@
+view monster_instance_header() =
+  list(
+    subviews = [
+      section(
+        id = "monster_instance_status_section",
+        show_divider = true,
+        content_item_min_width = 125,
+        collapsible = false,
+        header = [
+          avatar(
+            id = "monster_instance_avatar_view",
+            margin_top = 8,
+            margin_right = 8,
+            margin_left = 16,
+            photo_stat = "photo",
+            name_stat = "name",
+            size = "small",
+            interactable = false,
+            preview_enabled = true,
+          ),
+          text(
+            id = "monster_instance_status_name",
+            text = name,
+            style = "subhead",
+            color = name_color,
+          )
+        ],
+        content = [
+          stat(
+            id = "armor_class",
+            stat = "armor_class",
+            edit_stat = "armor_class",
+            change_amount = 1,
+            min_value_allowed = 0,
+          ),
+          list(
+            id = "monster_instance_status_hp_list",
+            alignment = "center",
+            subviews = [
+              ticker(
+                id = "monster_instance_status_hp",
+                stat = "current_hp",
+                style = "title",
+                button_location = "sideToSide",
+                button_look = "plusMinus",
+                should_auto_save = true,
+                change_amount = 1,
+                min_value_allowed = 0,
+                edit_bottom_sheet_title = "Hit points",
+              ),
+              text(
+                id = "monster_instance_status_hp_label",
+                text = concat(["/ ", max_hp, "HP"]),
+                style = "text",
+              ),
+            ],
+          ),
+          stat(
+            id = "speed",
+            stat = "speed",
+            edit_stat = "speed",
+            change_amount = 5,
+            min_value_allowed = 0,
+            bottom_sheet_in_edit_mode = true,
+            bottom_sheet_view = section(
+              id = "speed_section",
+              header = [],
+              show_divider = false,
+              content_item_min_width = 125,
+              collapsible = false,
+              content = [
+                stat(
+                  id = "speed_bottom_sheet_stat",
+                  stat = "speed",
+                  edit_stat = "speed",
+                  change_amount = 5,
+                  min_value_allowed = 0,
+                ),
+                stat(
+                  id = "burrow_speed_bottom_sheet_stat",
+                  stat = "burrow_speed",
+                  edit_stat = "burrow_speed",
+                  change_amount = 5,
+                  min_value_allowed = 0,
+                ),
+                stat(
+                  id = "climb_speed_bottom_sheet_stat",
+                  stat = "climb_speed",
+                  edit_stat = "climb_speed",
+                  change_amount = 5,
+                  min_value_allowed = 0,
+                ),
+                stat(
+                  id = "fly_speed_bottom_sheet_stat",
+                  stat = "fly_speed",
+                  edit_stat = "fly_speed",
+                  change_amount = 5,
+                  min_value_allowed = 0,
+                ),
+                stat(
+                  id = "swim_speed_bottom_sheet_stat",
+                  stat = "swim_speed",
+                  edit_stat = "swim_speed",
+                  change_amount = 5,
+                  min_value_allowed = 0,
+                ),
+              ],
+            ),
+            sheet_title = "Manage speeds",
+          ),
+        ],
+      ),
+      composite(
+        id = "monster_instance_display_ability_scores_1",
+        alignment = "center",
+        subviews = [
+          text(
+            id = "monster_instance_display_strength_score",
+            text = $resource.display_strength_with_mod,
+            style = "text",
+            margin_right = 16,
+          ),
+          text(
+            id = "monster_instance_display_dexterity_score",
+            text = $resource.display_dexterity_with_mod,
+            style = "text",
+            margin_right = 16,
+          ),
+          text(
+            id = "monster_instance_display_constitution_score",
+            text = $resource.display_constitution_with_mod,
+            style = "text",
+          ),
+          ticker(
+            id = "monster_instance_actions_remaining",
+            stat = "actions_remaining",
+            button_location = "sideToSide",
+            button_look = "plusMinus",
+            min_value_allowed = 0,
+            label = "actions",
+            margin_left = 4,
+          )
+        ],
+      ),
+      composite(
+        id = "monster_instance_display_ability_scores_2",
+        alignment = "center",
+        subviews = [
+          text(
+            id = "monster_instance_display_intelligence_score",
+            text = $resource.display_intelligence_with_mod,
+            style = "text",
+            margin_right = 16,
+          ),
+          text(
+            id = "monster_instance_display_wisdom_score",
+            text = $resource.display_wisdom_with_mod,
+            style = "text",
+            margin_right = 16,
+          ),
+          text(
+            id = "monster_instance_display_charisma_score",
+            text = $resource.display_charisma_with_mod,
+            style = "text",
+          ),
+          ticker(
+            id = "monster_instance_reaction_available",
+            stat = "reaction_available",
+            button_location = "sideToSide",
+            button_look = "plusMinus",
+            min_value_allowed = 0,
+            label = "reactions",
+            margin_left = 4,
+          ),
+        ],
+      ),
+    ]
+  );

@@ -1,0 +1,10 @@
+mechanic recharge(calculated_event_names = recharge_event_names) =
+  when {
+    has_charges -> setStat(
+      stat = "current_charges",
+      new_value = if recharge_type == "all"
+        then max_charges
+        else roll(formula = recharges.formula),
+      aggregation_type = "set",
+    ),
+  };

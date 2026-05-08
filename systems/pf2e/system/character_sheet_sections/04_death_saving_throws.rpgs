@@ -1,0 +1,82 @@
+character_sheet_section dying_and_recovery() =
+  section(
+    id = "dying_section",
+    show_divider = true,
+    content_item_min_width = 0.5,
+    collapsible = true,
+    is_visible = current_hp <= 0 || dying > 0 || wounded > 0 || doomed > 0,
+    header = [
+      icon(
+        id = "dying_section_icon",
+        name = "ic_conditions",
+        size = "medium",
+        color = "accent",
+        margin_top = 8,
+        margin_right = 8,
+        margin_left = 16,
+      ),
+      text(
+        id = "dying_section_title",
+        margin_right = 16,
+        margin_left = 16,
+        text = "Dying & Recovery",
+        style = "title",
+      ),
+    ],
+    content = [
+      stat(
+        id = "dying_value",
+        stat = "dying",
+        override_label = "Dying",
+        change_amount = 1,
+        min_value_allowed = 0,
+        should_auto_save = true,
+        always_in_edit_mode = true,
+      ),
+      stat(
+        id = "wounded_value",
+        stat = "wounded",
+        override_label = "Wounded",
+        change_amount = 1,
+        min_value_allowed = 0,
+        should_auto_save = true,
+        always_in_edit_mode = true,
+      ),
+      stat(
+        id = "doomed_value",
+        stat = "doomed",
+        override_label = "Doomed",
+        change_amount = 1,
+        min_value_allowed = 0,
+        should_auto_save = true,
+        always_in_edit_mode = true,
+      ),
+      stat(
+        id = "recovery_check_bonus",
+        stat = "recovery_check_bonus",
+        override_label = "Recovery Check Bonus",
+        change_amount = 1,
+        should_auto_save = true,
+        always_in_edit_mode = true,
+      ),
+      button(
+        id = "recovery_check_button",
+        text = "ROLL RECOVERY CHECK",
+        event = event(name = "recovery_check", payload = payload()),
+      ),
+      button(
+        id = "hero_point_stabilize_button",
+        text = "SPEND ALL HERO POINTS",
+        event = event(name = "spend_hero_point_stabilize", payload = payload()),
+      ),
+      text(
+        id = "dying_status_text",
+        text = if is_dead
+          then "Character is dead (dying reached limit)."
+          else if dying > 0
+            then "Character is dying. Use recovery checks each turn."
+            else "Character is stable.",
+        style = "caption",
+      ),
+    ],
+  );

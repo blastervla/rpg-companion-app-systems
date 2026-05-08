@@ -1,0 +1,28 @@
+mechanic execute_effect(calculated_event_names = trigger_events) =
+  when {
+    can_execute -> sequence(
+      effects = [
+        when {
+          has_charges && current_charges > 0 -> addToStat(
+            stat = "current_charges",
+            value = -1,
+            aggregation_type = "set",
+          ),
+        },
+        when {
+          tracks_duration -> setStat(
+            stat = "remaining_duration",
+            new_value = max([0, duration_rounds]),
+            aggregation_type = "set",
+          ),
+        },
+        fireEvent(event = event(name = "do_execute_effect", payload = payload())),
+        when {
+          has_chained_events -> fireEvent(event_names = calculated_chained_event_names),
+        },
+      ],
+    ),
+    is_passive && ($parent?.should_load_effects? ?? true) -> fireEvent(
+      event = event(name = "revert_effect_execution", payload = payload()),
+    ),
+  };

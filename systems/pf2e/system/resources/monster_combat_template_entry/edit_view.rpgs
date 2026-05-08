@@ -1,0 +1,52 @@
+view monster_combat_template_entry_edit() =
+  composite(
+    subviews = [
+      selectResources(
+        id = "monster_combat_template_entry_edit_monster_select",
+        stat = "combatant",
+        resource_id = "monster",
+        preserve_ids = true,
+        validation_message = if ($view.monster_combat_template_entry_edit_monster_select == null)
+          then "There's an empty monster. Please select a monster or remove it"
+          else null,
+        margin_right = 8,
+      ),
+      text(
+        id = "monster_combat_template_entry_edit_min",
+        edit_stat = "min",
+        style = "text",
+        hint = "Min",
+        max_length = 2,
+        margin_right = 8,
+        validation_message = if !isEmpty($view.monster_combat_template_entry_edit_max)
+          && !isEmpty($view.monster_combat_template_entry_edit_min)
+          && $view.monster_combat_template_entry_edit_min > $view.monster_combat_template_entry_edit_max
+          then "Min cannot be greater than Max"
+          else null,
+      ),
+      text(
+        id = "monster_combat_template_entry_edit_max",
+        edit_stat = "max",
+        style = "text",
+        hint = "Max",
+        max_length = 3,
+        margin_right = 8,
+        validation_message = if !isEmpty($view.monster_combat_template_entry_edit_max)
+          && !isEmpty($view.monster_combat_template_entry_edit_min)
+          && $view.monster_combat_template_entry_edit_max < $view.monster_combat_template_entry_edit_min
+          then "Max cannot be lower than Min"
+          else null,
+      ),
+      text(
+        id = "monster_combat_template_entry_edit_weight",
+        edit_stat = "weight",
+        style = "text",
+        hint = "Weight",
+        max_length = 3,
+        validation_message = if !isEmpty($view.monster_combat_template_entry_edit_weight)
+          && $view.monster_combat_template_entry_edit_weight <= 0
+          then "Weight must be greater than 0"
+          else null,
+      ),
+    ],
+  );

@@ -1,0 +1,361 @@
+import "../macros/system_common.rpgs";
+
+character_creation_page edit_basics_title() =
+  characterCreationPage(
+    title = displayableData(id = "edit_basics_title", name = "Character basics"),
+    view = list(
+      id = "edit_character_basics",
+      padding = 32,
+      subviews = [
+        text(
+          id = "edit_character_basics_subheader",
+          text = "What's your name, ancestry, background and class?",
+          style = "subhead",
+        ),
+        text(
+          id = "edit_character_basics_name",
+          edit_stat = "name",
+          style = "title",
+          max_length = 80,
+          label = "Character name",
+          validation_message = if isEmpty($view.edit_character_basics_name)
+            then "Please make sure to provide a name for your character!"
+            else null,
+        ),
+        text(
+          id = "edit_character_basics_origin_subheader",
+          text = "What's your ancestry & background?",
+          style = "subhead",
+        ),
+        selectorWithDetailsEndAndTailComposite(
+          composite_id = "edit_character_basics_ancestry_heritage_composite",
+          details_button = resourceDetailsOkPopUpButton(
+            button_id = "edit_character_basics_see_ancestry_button",
+            button_text = "SEE DETAILS",
+            pop_up_view_id = "edit_character_basics_see_ancestry_bottom_sheet",
+            resource_id = "ancestry",
+            stat = "$view.edit_character_basics_ancestry_select",
+            pop_up_title = $view?.edit_character_basics_ancestry_select?.name ?? "Ancestry",
+            is_visible = $view?.edit_character_basics_ancestry_select? != null,
+          ),
+          selector_view = selectResources(
+            id = "edit_character_basics_ancestry_select",
+            stat = "ancestry",
+            resource_id = "ancestry",
+            validation_message = if !notNull($view.edit_character_basics_ancestry_select)
+              then "Please pick an ancestry"
+              else null,
+          ),
+          tail_view = selectResources(
+            id = "edit_character_basics_heritage_select",
+            stat = "heritage",
+            margin_left = 4,
+            resource_id = "heritage",
+            filters = dict(
+              ancestry_filter_tags = filter(
+                [
+                  $view?.edit_character_basics_ancestry_select?.name? ?? "",
+                  "versatile",
+                ],
+                filter = ($filterValue) => $filterValue != ""
+              ),
+            ),
+            is_visible = notNull($view.edit_character_basics_ancestry_select),
+          ),
+        ),
+        selectorWithDetailsEndComposite(
+          composite_id = "edit_character_basics_background_composite",
+          details_button = resourceDetailsOkPopUpButton(
+            button_id = "edit_character_basics_see_background_button",
+            button_text = "SEE DETAILS",
+            pop_up_view_id = "edit_character_basics_see_background_bottom_sheet",
+            resource_id = "background",
+            stat = "$view.edit_character_basics_background_select",
+            pop_up_title = $view?.edit_character_basics_background_select?.name ?? "Background",
+            is_visible = $view?.edit_character_basics_background_select? != null,
+          ),
+          selector_view = selectResources(
+            id = "edit_character_basics_background_select",
+            stat = "background",
+            resource_id = "background",
+            margin_right = 4,
+            margin_bottom = 4,
+            validation_message = if !notNull($view.edit_character_basics_background_select)
+              then "Please pick a background"
+              else null,
+          ),
+        ),
+        text(
+          id = "edit_character_basics_class_subheader",
+          text = "What's your class?",
+          style = "subhead",
+        ),
+        resourceArray(
+          id = "edit_character_basics_classes",
+          resource_id = "class_progression",
+          stat = "classes",
+          view_type = "edit",
+          auto_add_first = true,
+          allow_adds_and_removes = false,
+          left_view = text(
+            id = "edit_character_basics_classes_label",
+            text = "Class: ",
+            style = "text",
+          ),
+          validation_message = when {
+            isEmpty($view.edit_character_basics_classes) -> "Please pick at least one class",
+            length($view.edit_character_basics_classes) != 1 -> "Pathfinder 2e uses a single class progression. Please select exactly one class.",
+            or(
+            map(
+              $view.edit_character_basics_classes,
+              mapper = ($class) => (length(
+                filter(
+                  $view.edit_character_basics_classes,
+                  filter = ($filterValue) => ($class?.$view?.class_progression_edit_class_select.name == $filterValue?.$view?.class_progression_edit_class_select.name),
+                ),
+              ) != 1),
+            ),
+          ) -> "It looks like you have selected the same class multiple times. Please remove one of the duplicates.",
+            else -> null,
+          },
+        ),
+        composite(
+          id = "edit_character_basics_hit_point_composite",
+          margin_bottom = 4,
+          subviews = [
+            text(
+              id = "edit_character_basics_hit_points_label",
+              text = "HP progression: ",
+              style = "text",
+              bold = true,
+            ),
+            text(
+              id = "edit_character_basics_hit_points_mode_text",
+              text = "Ancestry HP + class HP/level + modifiers",
+              style = "text",
+            ),
+          ],
+        ),
+        composite(
+          id = "edit_character_basics_edit_ability_scores_warning_comp",
+          alignment = "center",
+          is_visible = !$is_new,
+          subviews = [
+            text(
+              id = "edit_character_basics_edit_ability_scores_warning_label",
+              text = "To edit ability scores, please long-press on them in the character sheet",
+              style = "text",
+              bold = true,
+            ),
+          ],
+        ),
+        composite(
+          id = "edit_character_basics_ability_score_composite",
+          margin_bottom = 4,
+          subviews = [
+            text(
+              id = "edit_character_basics_ability_scores_label",
+              text = "Ability boosts:",
+              style = "text",
+              bold = true,
+            ),
+            text(
+              id = "edit_character_basics_ability_scores_help",
+              text = "Assign boosts from ancestry, heritage, background, and class below.",
+              style = "text",
+            ),
+          ],
+          is_visible = $is_new,
+        ),
+        resourceArray(
+          id = "edit_character_basics_select_ability_score_increases",
+          resource_id = "ability_score_increase",
+          stat = "creator_ability_score_increases",
+          view_type = "display",
+          is_visible = $is_new,
+        ),
+        collapsible(
+          id = "edit_character_basics_ability_scores_custom_collapsible",
+          title = "Manual overrides",
+          subtitle = "Ability boosts will be added on top of these",
+          subviews = [
+            composite(
+              id = "edit_character_basics_ability_scores_custom_composite",
+              alignment = "center",
+              is_visible = $is_new,
+              subviews = [
+                text(
+                  id = "edit_character_basics_ability_scores_custom_str",
+                  edit_stat = "strength_score",
+                  style = "text",
+                  max_length = 2,
+                  margin_right = 4,
+                  signed = false,
+                  hint = "8",
+                  label = "STR",
+                ),
+                text(
+                  id = "edit_character_basics_ability_scores_custom_dex",
+                  edit_stat = "dexterity_score",
+                  style = "text",
+                  max_length = 2,
+                  margin_right = 4,
+                  signed = false,
+                  hint = "8",
+                  label = "DEX",
+                ),
+                text(
+                  id = "edit_character_basics_ability_scores_custom_con",
+                  edit_stat = "constitution_score",
+                  style = "text",
+                  max_length = 2,
+                  margin_right = 4,
+                  signed = false,
+                  hint = "8",
+                  label = "CON",
+                ),
+                text(
+                  id = "edit_character_basics_ability_scores_custom_int",
+                  edit_stat = "intelligence_score",
+                  style = "text",
+                  max_length = 2,
+                  margin_right = 4,
+                  signed = false,
+                  hint = "8",
+                  label = "INT",
+                ),
+                text(
+                  id = "edit_character_basics_ability_scores_custom_wis",
+                  edit_stat = "wisdom_score",
+                  style = "text",
+                  max_length = 2,
+                  margin_right = 4,
+                  signed = false,
+                  hint = "8",
+                  label = "WIS",
+                ),
+                text(
+                  id = "edit_character_basics_ability_scores_custom_cha",
+                  edit_stat = "charisma_score",
+                  style = "text",
+                  max_length = 2,
+                  margin_right = 4,
+                  signed = false,
+                  hint = "8",
+                  label = "CHA",
+                ),
+              ],
+            ),
+          ],
+          start_expanded = false,
+        )
+      ],
+    ),
+    on_page_open = when {
+      $is_new -> forEach(
+          creator_ability_score_increases,
+          for_each_value_key = "$asi",
+          apply = when {
+            (isEmpty($asi.temp_selected_modifier)
+                  || !contains(haystack = $asi.modifier_options, needle = $asi.temp_selected_modifier))
+              && !isEmpty($asi.selected_modifier_effective) -> setStat(
+              stat = "$asi.temp_selected_modifier",
+              new_value = $asi.selected_modifier_effective,
+              aggregation_type = "set",
+            ),
+          },
+        ),
+    },
+    post_edit = sequence(
+      effects = [
+        when {
+          $is_new -> forEach(
+            creator_ability_score_increases,
+            apply = addToStat(
+              meta_stat = concat([$forEachValue.selected_modifier_effective, "_score"]),
+              value = if metaStat(
+                  meta_stat = concat([$forEachValue.selected_modifier_effective, "_score"]),
+                )
+                >= 18
+                then $forEachValue.value
+                else if $forEachValue.value
+                    <= divide(
+                        [
+                          18
+                            - metaStat(
+                              meta_stat = concat([$forEachValue.selected_modifier_effective, "_score"]),
+                            ),
+                          2,
+                        ],
+                        rounding_method = "up",
+                      )
+                  then ($forEachValue.value * 2)
+                  else divide(
+                      [
+                        18
+                          - metaStat(
+                            meta_stat = concat([$forEachValue.selected_modifier_effective, "_score"]),
+                          ),
+                        2,
+                      ],
+                      rounding_method = "up",
+                    ) * 2
+                  + ($forEachValue.value
+                      - divide(
+                          [
+                            18
+                              - metaStat(
+                                meta_stat = concat([$forEachValue.selected_modifier_effective, "_score"]),
+                              ),
+                            2,
+                          ],
+                          rounding_method = "up",
+                        )),
+              aggregation_type = "set",
+            ),
+          ),
+        },
+        when {
+          $is_new -> forEach(
+            components = creator_ability_score_increases,
+            for_each_value_key = "$asiRow",
+            apply = when {
+              $asiRow.is_class_key_ability_boost
+                && !isEmpty($asiRow.selected_modifier_effective) -> forEach(
+                  components = classes,
+                  for_each_value_key = "$classProgression",
+                  apply = when {
+                    contains(
+                      haystack = map(
+                        ($classProgression.class?.ability_score_increases ?? []),
+                        mapper = ($classAsi) => $classAsi.id,
+                      ),
+                      needle = $asiRow.id,
+                    ) -> setStat(
+                      stat = "$classProgression.selected_class_key_ability",
+                      new_value = $asiRow.selected_modifier_effective,
+                      aggregation_type = "set",
+                    ),
+                  },
+                ),
+            },
+          ),
+        },
+        when {
+          $is_new -> setStat(
+            stat = "old_creator_ability_score_increases",
+            new_value = creator_ability_score_increases,
+            aggregation_type = "set",
+          ),
+        },
+        setStat(
+          stat = "base_hp",
+          new_value = if notNull(ancestry) then ancestry.actual_hit_points else base_hp,
+          aggregation_type = "set",
+        ),
+        when {
+          $is_new -> setStat(stat = "current_hp", new_value = max_hp, aggregation_type = "set"),
+        },
+      ],
+    ),
+  );

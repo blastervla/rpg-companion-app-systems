@@ -1,12 +1,14 @@
+import "../../macros/system_common.rpgs";
+
 view class_details_edit() =
   composite(
     id = "class_details_edit",
     alignment = "end",
     margin_bottom = 4,
     subviews = [
-      popUpButton(
-        id = "edit_character_basics_see_class_button",
-        text = "SEE DETAILS",
+      bottomSheetOkPopUpButton(
+        button_id = "edit_character_basics_see_class_button",
+        button_text = "SEE DETAILS",
         pop_up_view = resource(
           id = "edit_character_basics_see_class_bottom_sheet",
           view_type = "display",
@@ -14,8 +16,6 @@ view class_details_edit() =
           stat = "$view.class_details_edit_class_select",
         ),
         pop_up_title = $view?.class_details_edit_class_select?.name ?? "Class",
-        display_cancel_button = true,
-        cancel_text = "OK",
         is_visible = notNull($view?.class_details_edit_class_select?),
       ),
       selectResources(

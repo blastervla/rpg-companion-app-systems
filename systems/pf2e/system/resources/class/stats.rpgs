@@ -1,0 +1,707 @@
+base string name(name = "Name") = "";
+
+base string source(name = "Source") = "";
+
+base string description(name = "Description") = "";
+
+base integer class_hp_per_level(name = "Class HP per level") = 8;
+
+base string[] hp_modifiers(name = "HP Modifiers") = ["constitution"];
+
+calc integer actual_class_hp_per_level(name = "Actual class HP per level") =
+  class_hp_per_level;
+
+calc string[] actual_hp_modifiers(name = "Actual HP modifiers") =
+  hp_modifiers;
+
+base integer base_ac(name = "Base AC") = 10;
+
+base string[] ac_modifiers(name = "AC Modifiers") = ["dexterity"];
+
+calc integer actual_base_ac(name = "Actual base AC") = base_ac;
+
+calc string[] actual_ac_modifiers(name = "Actual AC modifiers") = ac_modifiers;
+
+base string fortitude_proficiency(name = "Fortitude proficiency (none, trained, expert, master, legendary)") =
+  "trained";
+
+base string reflex_proficiency(name = "Reflex proficiency (none, trained, expert, master, legendary)") =
+  "trained";
+
+base string will_proficiency(name = "Will proficiency (none, trained, expert, master, legendary)") =
+  "trained";
+
+base string perception_proficiency(name = "Perception proficiency (none, trained, expert, master, legendary)") =
+  "trained";
+
+base resource<levelled_save_proficiency>[] fortitude_proficiency_per_level(name = "Fortitude proficiency by level") =
+  [];
+
+base resource<levelled_save_proficiency>[] reflex_proficiency_per_level(name = "Reflex proficiency by level") =
+  [];
+
+base resource<levelled_save_proficiency>[] will_proficiency_per_level(name = "Will proficiency by level") =
+  [];
+
+base resource<levelled_save_proficiency>[] perception_proficiency_per_level(name = "Perception proficiency by level") =
+  [];
+
+base string class_key_ability(name = "Class key ability") = "strength";
+
+base string[] class_key_ability_options(name = "Class key ability options") = [];
+
+base resource<ability_score_increase>[] ability_score_increases(name = "Ability boosts") =
+  [];
+
+base integer additional_trained_skills_base_count(name = "Additional trained skills (base)") =
+  0;
+
+base string additional_trained_skills_ability(name = "Additional trained skills ability") =
+  "intelligence";
+
+base string class_dc_proficiency(name = "Class DC proficiency (none, trained, expert, master, legendary)") =
+  "trained";
+
+base resource<levelled_save_proficiency>[] class_dc_proficiency_per_level(name = "Class DC proficiency by level") =
+  [];
+
+base resource<feat>[] features(name = "Features") = [];
+
+base bool requires_deity(name = "Requires deity") = false;
+
+base resource<progression_grant>[] progression_grants(name = "Progression grants") =
+  [];
+
+base resource<levelled_rank_cap>[] skill_increase_rank_caps(name = "Skill increase rank caps") =
+  [];
+
+base string spellcasting_ability(name = "Spellcasting ability") =
+  "intelligence";
+
+base string spellcasting_tradition(name = "Spellcasting tradition") =
+  "arcane";
+
+base string spellcasting_mode(name = "Spellcasting mode") = "prepared";
+
+base string spellcasting_progression_kind(name = "Spellcasting progression") = "none";
+
+calc string actual_spellcasting_ability(name = "Actual spellcasting ability") =
+  spellcasting_ability;
+
+calc resource<feat> bloodline_tradition_feat(name = "Bloodline tradition feat") =
+  findFirst(
+    current_class_progression?.features ?? [],
+    filter = ($f) => ($f.is_selected_selectable_feature ?? false) && !isEmpty($f.spellcasting_tradition ?? ""),
+  );
+
+calc string actual_spellcasting_tradition(name = "Actual spellcasting tradition") =
+  bloodline_tradition_feat?.spellcasting_tradition ?? spellcasting_tradition;
+
+calc string actual_spellcasting_mode(name = "Actual spellcasting mode") =
+  spellcasting_mode;
+
+base string spellcasting_proficiency(name = "Spellcasting proficiency (none, trained, expert, master, legendary)") =
+  "trained";
+
+base resource<levelled_save_proficiency>[] spellcasting_proficiency_per_level(name = "Spellcasting proficiency by level") =
+  [];
+
+calc string actual_spellcasting_proficiency(name = "Actual spellcasting proficiency") =
+  spellcasting_proficiency;
+
+calc resource<levelled_save_proficiency>[] actual_spellcasting_proficiency_per_level(name = "Actual spellcasting proficiency by level") =
+  spellcasting_proficiency_per_level;
+
+base string effective_caster_level(name = "Spellcasting progression (legacy)") = "zero";
+
+calc string actual_spellcasting_progression_kind(name = "Actual spellcasting progression kind") =
+  when {
+    !isEmpty(spellcasting_progression_kind) -> spellcasting_progression_kind,
+    effective_caster_level == "full" -> "full",
+    effective_caster_level == "half" -> "bounded",
+    effective_caster_level == "third" -> "bounded",
+    effective_caster_level == "custom" -> "custom",
+    else -> "none",
+  };
+
+calc string actual_effective_caster_level(name = "Actual spellcasting progression") =
+  when {
+    actual_spellcasting_progression_kind == "full" -> "full",
+    actual_spellcasting_progression_kind == "bounded" -> "half",
+    actual_spellcasting_progression_kind == "custom" -> "custom",
+    else -> "zero",
+  };
+
+base resource<levelled_spell>[] spells(name = "Spells") = [];
+
+calc resource<levelled_spell>[] all_spells(name = "All spells") =
+  flatAppend(
+    [
+      spells,
+      (if requires_deity then (selected_deity?.granted_spells_for_current_level ?? []) else []),
+    ],
+  );
+
+base bool recharge_slots_on_refocus(name = "Recharge spell ranks on refocus") =
+  false;
+
+base resource<levelled_amount>[] cantrip_quantity_per_level(name = "Cantrip quantity per level") =
+  [];
+
+base resource<spell_capacity_grant>[] spell_capacity_grants(name = "Spell capacity grants") =
+  [];
+
+base resource<levelled_amount>[] spell_slots_level_1_per_level(name = "Spell ranks level 1 (per level)") =
+  [];
+
+base resource<levelled_amount>[] spell_slots_level_2_per_level(name = "Spell ranks level 2 (per level)") =
+  [];
+
+base resource<levelled_amount>[] spell_slots_level_3_per_level(name = "Spell ranks level 3 (per level)") =
+  [];
+
+base resource<levelled_amount>[] spell_slots_level_4_per_level(name = "Spell ranks level 4 (per level)") =
+  [];
+
+base resource<levelled_amount>[] spell_slots_level_5_per_level(name = "Spell ranks level 5 (per level)") =
+  [];
+
+base resource<levelled_amount>[] spell_slots_level_6_per_level(name = "Spell ranks level 6 (per level)") =
+  [];
+
+base resource<levelled_amount>[] spell_slots_level_7_per_level(name = "Spell ranks level 7 (per level)") =
+  [];
+
+base resource<levelled_amount>[] spell_slots_level_8_per_level(name = "Spell ranks level 8 (per level)") =
+  [];
+
+base resource<levelled_amount>[] spell_slots_level_9_per_level(name = "Spell ranks level 9 (per level)") =
+  [];
+
+calc bool actual_recharge_slots_on_refocus(name = "Actual recharge spell ranks on refocus") =
+  recharge_slots_on_refocus;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_1_per_level(name = "Actual spell ranks level 1 (per level)") =
+  spell_slots_level_1_per_level;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_2_per_level(name = "Actual spell ranks level 2 (per level)") =
+  spell_slots_level_2_per_level;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_3_per_level(name = "Actual spell ranks level 3 (per level)") =
+  spell_slots_level_3_per_level;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_4_per_level(name = "Actual spell ranks level 4 (per level)") =
+  spell_slots_level_4_per_level;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_5_per_level(name = "Actual spell ranks level 5 (per level)") =
+  spell_slots_level_5_per_level;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_6_per_level(name = "Actual spell ranks level 6 (per level)") =
+  spell_slots_level_6_per_level;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_7_per_level(name = "Actual spell ranks level 7 (per level)") =
+  spell_slots_level_7_per_level;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_8_per_level(name = "Actual spell ranks level 8 (per level)") =
+  spell_slots_level_8_per_level;
+
+calc resource<levelled_amount>[] actual_spell_slots_level_9_per_level(name = "Actual spell ranks level 9 (per level)") =
+  spell_slots_level_9_per_level;
+
+calc resource<levelled_amount>[] actual_cantrip_quantity_per_level(name = "Actual cantrip quantity per level") =
+  cantrip_quantity_per_level;
+
+calc resource<spell_capacity_grant>[] actual_spell_capacity_grants(name = "Actual spell capacity grants") =
+  spell_capacity_grants;
+
+base resource<levelled_weapon>[] weapon(name = "Weapon") = [];
+
+base resource<levelled_choice_text>[] language_proficiencies(name = "Language proficiencies") =
+  [];
+
+base resource<levelled_skill_proficiency>[] skill_proficiencies(name = "Skill proficiencies") =
+  [];
+
+base resource<levelled_armor_proficiency>[] armor_proficiencies(name = "Armor proficiencies") =
+  [];
+
+base resource<levelled_weapon_proficiency>[] weapon_proficiencies(name = "Weapon proficiencies") =
+  [];
+
+base resource<lore_skill>[] lore_skills(name = "Lore skills") =
+  [];
+
+base resource<selectable_items>[] selectable_equipments(name = "Selectable equipment") =
+  [];
+
+base resource<selectable_armors>[] selectable_armors(name = "Selectable armor") =
+  [];
+
+base resource<selectable_weapons>[] selectable_weapons(name = "Selectable weapons") =
+  [];
+
+calc resource<class_progression> current_class_progression(name = "Current class details") =
+  $parent?;
+
+calc resource<deity> selected_deity(name = "Selected deity") =
+  current_class_progression?.active_selected_deity;
+
+calc string selected_deity_name(name = "Selected deity name") =
+  selected_deity?.name ?? "";
+
+calc string[] selected_deity_divine_skill_options(name = "Selected deity divine skill options") =
+  selected_deity?.divine_skill_options ?? [];
+
+calc string[] selected_deity_font_options(name = "Selected deity font options") =
+  selected_deity?.font_options ?? [];
+
+calc string selected_deity_font(name = "Selected deity font") =
+  current_class_progression?.active_selected_deity_font ?? "";
+
+calc resource<levelled_weapon> current_level_weapon(name = "Current level weapon") =
+  findFirst(
+    sortBy(
+      weapon,
+      order = "desc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
+    filter = ($findFirstValue) => ($findFirstValue.level <= level),
+  );
+
+calc bool should_load_effects(name = "Should load effects") = true;
+
+calc resource<weapon>[] weapons(name = "Weapons") =
+  if notNull(current_level_weapon) then [current_level_weapon.weapon] else [];
+
+calc bool should_fill_custom_spell_slots(name = "Should fill custom spell slots") =
+  actual_spellcasting_progression_kind == "custom";
+
+calc integer level(name = "Current class level") =
+  current_class_progression?.class_level? ?? 1;
+
+calc string actual_fortitude_proficiency(name = "Actual fortitude proficiency") =
+  fortitude_proficiency;
+
+calc string actual_reflex_proficiency(name = "Actual reflex proficiency") =
+  reflex_proficiency;
+
+calc string actual_will_proficiency(name = "Actual will proficiency") =
+  will_proficiency;
+
+calc string actual_perception_proficiency(name = "Actual perception proficiency") =
+  perception_proficiency;
+
+calc resource<levelled_save_proficiency>[] actual_fortitude_proficiency_per_level(name = "Actual fortitude proficiency by level") =
+  fortitude_proficiency_per_level;
+
+calc resource<levelled_save_proficiency>[] actual_reflex_proficiency_per_level(name = "Actual reflex proficiency by level") =
+  reflex_proficiency_per_level;
+
+calc resource<levelled_save_proficiency>[] actual_will_proficiency_per_level(name = "Actual will proficiency by level") =
+  will_proficiency_per_level;
+
+calc resource<levelled_save_proficiency>[] actual_perception_proficiency_per_level(name = "Actual perception proficiency by level") =
+  perception_proficiency_per_level;
+
+calc resource<levelled_save_proficiency>[] fortitude_proficiency_for_current_level(name = "Fortitude proficiency rows for current level") =
+  filter(
+    actual_fortitude_proficiency_per_level,
+    filter = ($filterValue) => ($filterValue.level <= level),
+  );
+
+calc resource<levelled_save_proficiency>[] reflex_proficiency_for_current_level(name = "Reflex proficiency rows for current level") =
+  filter(
+    actual_reflex_proficiency_per_level,
+    filter = ($filterValue) => ($filterValue.level <= level),
+  );
+
+calc resource<levelled_save_proficiency>[] will_proficiency_for_current_level(name = "Will proficiency rows for current level") =
+  filter(
+    actual_will_proficiency_per_level,
+    filter = ($filterValue) => ($filterValue.level <= level),
+  );
+
+calc resource<levelled_save_proficiency>[] perception_proficiency_for_current_level(name = "Perception proficiency rows for current level") =
+  filter(
+    actual_perception_proficiency_per_level,
+    filter = ($filterValue) => ($filterValue.level <= level),
+  );
+
+calc resource<levelled_save_proficiency> current_level_fortitude_proficiency_resource(name = "Current level fortitude proficiency") =
+  findFirst(
+    sortBy(
+      fortitude_proficiency_for_current_level,
+      order = "desc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
+    filter = ($findFirstValue) => true,
+  );
+
+calc resource<levelled_save_proficiency> current_level_reflex_proficiency_resource(name = "Current level reflex proficiency") =
+  findFirst(
+    sortBy(
+      reflex_proficiency_for_current_level,
+      order = "desc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
+    filter = ($findFirstValue) => true,
+  );
+
+calc resource<levelled_save_proficiency> current_level_will_proficiency_resource(name = "Current level will proficiency") =
+  findFirst(
+    sortBy(
+      will_proficiency_for_current_level,
+      order = "desc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
+    filter = ($findFirstValue) => true,
+  );
+
+calc resource<levelled_save_proficiency> current_level_perception_proficiency_resource(name = "Current level perception proficiency") =
+  findFirst(
+    sortBy(
+      perception_proficiency_for_current_level,
+      order = "desc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
+    filter = ($findFirstValue) => true,
+  );
+
+calc string current_level_fortitude_proficiency(name = "Current level fortitude proficiency rank") =
+  current_level_fortitude_proficiency_resource?.proficiency ?? actual_fortitude_proficiency;
+
+calc string current_level_reflex_proficiency(name = "Current level reflex proficiency rank") =
+  current_level_reflex_proficiency_resource?.proficiency ?? actual_reflex_proficiency;
+
+calc string current_level_will_proficiency(name = "Current level will proficiency rank") =
+  current_level_will_proficiency_resource?.proficiency ?? actual_will_proficiency;
+
+calc string current_level_perception_proficiency(name = "Current level perception proficiency rank") =
+  current_level_perception_proficiency_resource?.proficiency ?? actual_perception_proficiency;
+
+calc string actual_class_key_ability(name = "Actual class key ability") =
+  if contains(
+      haystack = actual_class_key_ability_options,
+      needle = (current_class_progression?.selected_class_key_ability? ?? ""),
+    )
+    then (current_class_progression?.selected_class_key_ability? ?? class_key_ability)
+    else class_key_ability;
+
+calc string[] actual_class_key_ability_options(name = "Actual class key ability options") =
+  if isEmpty(class_key_ability_options)
+    then [class_key_ability]
+    else class_key_ability_options;
+
+calc string actual_class_dc_proficiency(name = "Actual class DC proficiency") =
+  class_dc_proficiency;
+
+calc resource<levelled_save_proficiency>[] actual_class_dc_proficiency_per_level(name = "Actual class DC proficiency by level") =
+  class_dc_proficiency_per_level;
+
+calc resource<levelled_save_proficiency>[] class_dc_proficiency_for_current_level(name = "Class DC proficiency rows for current level") =
+  filter(
+    actual_class_dc_proficiency_per_level,
+    filter = ($filterValue) => ($filterValue.level <= level),
+  );
+
+calc resource<levelled_save_proficiency> current_level_class_dc_proficiency_resource(name = "Current level class DC proficiency") =
+  findFirst(
+    sortBy(
+      class_dc_proficiency_for_current_level,
+      order = "desc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
+    filter = ($findFirstValue) => true,
+  );
+
+calc string current_level_class_dc_proficiency(name = "Current level class DC proficiency rank") =
+  current_level_class_dc_proficiency_resource?.proficiency ?? actual_class_dc_proficiency;
+
+calc resource<levelled_save_proficiency>[] spellcasting_proficiency_for_current_level(name = "Spellcasting proficiency rows for current level") =
+  filter(
+    actual_spellcasting_proficiency_per_level,
+    filter = ($filterValue) => ($filterValue.level <= level),
+  );
+
+calc resource<levelled_save_proficiency> current_level_spellcasting_proficiency_resource(name = "Current level spellcasting proficiency") =
+  findFirst(
+    sortBy(
+      spellcasting_proficiency_for_current_level,
+      order = "desc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
+    filter = ($findFirstValue) => true,
+  );
+
+calc string current_level_spellcasting_proficiency(name = "Current level spellcasting proficiency rank") =
+  current_level_spellcasting_proficiency_resource?.proficiency ?? actual_spellcasting_proficiency;
+
+calc resource<levelled_choice_text>[] language_proficiencies_for_current_level(name = "Language proficiencies for current level") =
+  filter(
+    language_proficiencies,
+    filter = ($filterValue) => ($filterValue.level <= level),
+  );
+
+calc resource<levelled_skill_proficiency>[] skill_proficiencies_for_current_level(name = "Skill proficiencies for current level") =
+  flatAppend(
+    [
+      filter(
+        skill_proficiencies,
+        filter = ($filterValue) => ($filterValue.level <= level),
+      ),
+      (if requires_deity
+        then filter(
+            selected_deity?.skill_proficiencies ?? [],
+            filter = ($filterValue) => ($filterValue.level <= level),
+          )
+        else []),
+    ],
+  );
+
+calc resource<levelled_armor_proficiency>[] armor_proficiencies_for_current_level(name = "Armor proficiencies for current level") =
+  filter(
+    armor_proficiencies,
+    filter = ($filterValue) => ($filterValue.level <= level),
+  );
+
+calc resource<levelled_weapon_proficiency>[] weapon_proficiencies_for_current_level(name = "Weapon proficiencies for current level") =
+  filter(
+    weapon_proficiencies,
+    filter = ($filterValue) => ($filterValue.level <= level),
+  );
+
+calc resource<lore_skill>[] lore_skills_for_current_level(name = "Lore skills for current level") =
+  filter(
+    lore_skills,
+    filter = ($filterValue) => ($filterValue.level <= level),
+  );
+
+calc bool is_primary_class(name = "Is primary class") =
+  if defined(stat = "$character")
+    then findFirst(
+        map($character.classes, mapper = ($mapValue) => $mapValue.class.id),
+        filter = ($findFirstValue) => true,
+      ) == id
+    else false;
+
+calc resource<levelled_choice_text>[] language_proficiencies_choices_in_current_level(name = "Language proficiencies choices in current level") =
+  filter(
+    language_proficiencies,
+    filter = ($filterValue) => ($filterValue.level == level),
+  );
+
+calc resource<levelled_skill_proficiency>[] skill_proficiencies_choices_in_current_level(name = "Skill proficiencies choices in current level") =
+  flatAppend(
+    [
+      filter(
+        skill_proficiencies,
+        filter = ($filterValue) => ($filterValue.level == level),
+      ),
+      (if requires_deity
+        then filter(
+            selected_deity?.skill_proficiencies ?? [],
+            filter = ($filterValue) => ($filterValue.level == level),
+          )
+        else []),
+    ],
+  );
+
+calc resource<levelled_armor_proficiency>[] armor_proficiencies_choices_in_current_level(name = "Armor proficiencies choices in current level") =
+  filter(
+    armor_proficiencies,
+    filter = ($filterValue) => ($filterValue.level == level),
+  );
+
+calc resource<levelled_weapon_proficiency>[] weapon_proficiencies_choices_in_current_level(name = "Weapon proficiencies choices in current level") =
+  filter(
+    weapon_proficiencies,
+    filter = ($filterValue) => ($filterValue.level == level),
+  );
+
+calc resource<lore_skill>[] lore_skills_choices_in_current_level(name = "Lore skills choices in current level") =
+  filter(
+    lore_skills,
+    filter = ($filterValue) => ($filterValue.level == level),
+  );
+
+calc string[] selected_selectable_feature_ids(name = "Selected selectable feature ids") =
+  flatAppend(
+    [
+      (current_class_progression?.selected_selectable_feature_ids? ?? []),
+      ($character?.selected_selectable_feature_ids? ?? []),
+    ],
+    treat_as_set = true,
+  );
+
+calc resource<feat>[] all_features(name = "All features") =
+  flatMap(
+    features,
+    mapper = ($mapValue) => flatAppend(
+      [
+        [$mapValue],
+        $mapValue.granted_linked_features,
+      ],
+      treat_as_set = true,
+    ),
+  );
+
+calc resource<feat>[] current_level_features(name = "Current level features") =
+  filter(
+    all_features,
+    filter = ($filterValue) => ($filterValue.min_level <= level),
+  );
+
+calc resource<feat>[] features_with_updates_in_current_level(name = "Features with updates in current level") =
+  filter(
+    all_features,
+    filter = ($feat) => (!isEmpty(
+      filter(
+        $feat.descriptions,
+        filter = ($filterValue) => ($filterValue.level == level),
+      ),
+    )),
+  );
+
+calc resource<progression_grant>[] progression_grants_for_current_level(name = "Progression grants for current level") =
+  filter(
+    progression_grants,
+    filter = ($filterValue) => ($filterValue.level <= level),
+  );
+
+calc resource<progression_grant>[] progression_grants_in_current_level(name = "Progression grants in current level") =
+  filter(
+    progression_grants,
+    filter = ($filterValue) => ($filterValue.level == level),
+  );
+
+calc resource<levelled_rank_cap>[] skill_increase_rank_caps_for_current_level(name = "Skill increase rank caps for current level") =
+  filter(
+    skill_increase_rank_caps,
+    filter = ($filterValue) => ($filterValue.level <= level),
+  );
+
+calc string display_hp(name = "Display hp") =
+  joinToString(
+    flatAppend([[concat(["", actual_class_hp_per_level])], actual_hp_modifiers]),
+    separator = " + ",
+  );
+
+calc string display_armor_class(name = "Display armor class") =
+  joinToString(flatAppend([["" + base_ac], ac_modifiers]), separator = " + ");
+
+calc string display_saving_throws(name = "Display saving throws") =
+  joinToString(
+    [
+      concat(
+        [
+          "fortitude (",
+          enumeratedName(
+            enumerated_type = "skill_proficiency_types",
+            id = current_level_fortitude_proficiency,
+          ),
+          ")",
+        ],
+      ),
+      concat(
+        [
+          "reflex (",
+          enumeratedName(
+            enumerated_type = "skill_proficiency_types",
+            id = current_level_reflex_proficiency,
+          ),
+          ")",
+        ],
+      ),
+      concat(
+        [
+          "will (",
+          enumeratedName(
+            enumerated_type = "skill_proficiency_types",
+            id = current_level_will_proficiency,
+          ),
+          ")",
+        ],
+      ),
+    ],
+    separator = ", ",
+  );
+
+calc string display_perception_proficiency(name = "Display perception proficiency") =
+  enumeratedName(
+    enumerated_type = "skill_proficiency_types",
+    id = current_level_perception_proficiency,
+  );
+
+calc string display_class_key_ability(name = "Display class key ability") =
+  enumeratedName(
+    enumerated_type = "ability",
+    id = actual_class_key_ability,
+  );
+
+calc string display_additional_trained_skills_rule(name = "Display additional trained skills rule") =
+  concat(
+    [
+      additional_trained_skills_base_count,
+      " + ",
+      enumeratedName(
+        enumerated_type = "ability",
+        id = additional_trained_skills_ability,
+      ),
+      " modifier",
+    ],
+  );
+
+calc string display_class_dc_proficiency(name = "Display class DC proficiency") =
+  enumeratedName(
+    enumerated_type = "skill_proficiency_types",
+    id = current_level_class_dc_proficiency,
+  );
+
+calc string display_spellcasting_ability(name = "Display spellcasting ability") =
+  actual_spellcasting_ability;
+
+calc string display_spellcasting_proficiency(name = "Display spellcasting proficiency") =
+  enumeratedName(
+    enumerated_type = "skill_proficiency_types",
+    id = current_level_spellcasting_proficiency,
+  );
+
+calc string display_spellcasting_mode(name = "Display spellcasting mode") =
+  if actual_spellcasting_mode == "none" || isEmpty(actual_spellcasting_mode)
+    then "None"
+    else enumeratedName(
+        enumerated_type = "spellcasting_modes",
+        id = actual_spellcasting_mode,
+      );
+
+calc string display_caster_level(name = "Display caster level") =
+  enumeratedName(
+    enumerated_type = "spellcasting_progression_kinds",
+    id = actual_spellcasting_progression_kind,
+  );
+
+calc resource<levelled_weapon> lowest_level_weapon(name = "Lowest level weapon") =
+  findFirst(
+    sortBy(
+      weapon,
+      order = "asc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
+    filter = ($findFirstValue) => true,
+  );
+
+calc string display_weapon(name = "Display weapon") =
+  if isEmpty(weapon)
+    then "None"
+    else concat(
+        [
+          lowest_level_weapon.weapon.name,
+          ", ",
+          lowest_level_weapon.weapon.damage_dice_display_description,
+          " + ",
+          lowest_level_weapon.weapon.attack_ability,
+        ],
+      );
+
+calc bool feat_show_level(name = "Show feat level") =
+  !defined(stat = "$character") || defined(stat = "$character.$is_new");

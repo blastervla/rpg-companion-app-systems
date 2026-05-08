@@ -1,0 +1,34 @@
+import "../macros/system_common.rpgs";
+
+mechanic level_up_skill_increase(event_names = "level_up_skill_increase") =
+  when {
+    is_temp_skill_increase_selection_valid -> sequence(
+      effects = [
+        setStat(
+          meta_stat = concat([temp_skill_increase_skill_effective, "_proficiency"]),
+          new_value = temp_skill_increase_target_rank_auto,
+          aggregation_type = "set",
+        ),
+        addToStat(
+          stat = "spent_skill_increase_grants_level_up",
+          value = 1,
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "temp_skill_increase_skill",
+          new_value = "",
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "temp_skill_increase_target_rank",
+          new_value = "",
+          aggregation_type = "set",
+        ),
+      ],
+    ),
+    else -> showAlertTextPopUp(
+      pop_up_title = "Skill Increase",
+      text_id = "level_up_skill_increase_error_text",
+      message = temp_skill_increase_validation_message,
+    ),
+  };

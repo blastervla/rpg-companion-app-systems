@@ -1,0 +1,22 @@
+view monster_spellcasting_block_display() =
+  list(
+    id = "monster_spellcasting_block_display",
+    padding_left = 8,
+    padding_right = 8,
+    padding_bottom = 4,
+    subviews = [
+      text(
+        id = "monster_spellcasting_block_display_header",
+        text = display_full_header,
+        style = "text",
+        bold = true,
+      ),
+      resourceArray(
+        id = "monster_spellcasting_block_display_spell_levels",
+        resource_id = "levelled_spell",
+        stat = "spell_levels",
+        view_type = "list",
+        hide_line = true,
+      ),
+    ],
+  );

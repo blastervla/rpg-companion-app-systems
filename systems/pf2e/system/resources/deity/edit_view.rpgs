@@ -1,0 +1,215 @@
+view deity_edit() =
+  viewPager(
+    id = "deity_edit",
+    names = ["Basic Information", "Doctrine", "Granted Magic"],
+    color = "#6A4C93",
+    subviews = [
+      list(
+        id = "deity_edit_basics",
+        padding = 16,
+        alignment = "start",
+        subviews = [
+          text(
+            id = "deity_edit_name",
+            edit_stat = "name",
+            style = "text",
+            label = "Name",
+            max_length = 140,
+            validation_message = if isEmpty($view.deity_edit_name)
+              then "Please add a deity name"
+              else null,
+          ),
+          composite(
+            id = "deity_edit_source_composite",
+            subviews = [
+              text(id = "deity_edit_source_label", text = "Source: ", style = "text"),
+              select(
+                id = "deity_edit_source_select",
+                options = "source",
+                options_display_stat = "abbreviation",
+                stat = "source",
+              ),
+            ],
+          ),
+          text(
+            id = "deity_edit_category",
+            edit_stat = "category",
+            style = "text",
+            label = "Category",
+            max_length = 64,
+          ),
+          text(
+            id = "deity_edit_description",
+            edit_stat = "description",
+            style = "text",
+            label = "Description",
+          ),
+          text(
+            id = "deity_edit_areas_of_concern",
+            edit_stat = "areas_of_concern",
+            style = "text",
+            label = "Areas of concern",
+          ),
+          text(
+            id = "deity_edit_edicts",
+            edit_stat = "edicts",
+            style = "text",
+            label = "Edicts",
+          ),
+          text(
+            id = "deity_edit_anathema",
+            edit_stat = "anathema",
+            style = "text",
+            label = "Anathema",
+          ),
+        ],
+      ),
+      list(
+        id = "deity_edit_doctrine",
+        padding = 16,
+        alignment = "start",
+        subviews = [
+          text(
+            id = "deity_edit_domains",
+            edit_stat = "domains",
+            style = "text",
+            label = "Domains",
+          ),
+          text(
+            id = "deity_edit_alternate_domains",
+            edit_stat = "alternate_domains",
+            style = "text",
+            label = "Alternate domains",
+          ),
+          composite(
+            id = "deity_edit_font_options",
+            margin_top = 4,
+            subviews = [
+              text(
+                id = "deity_edit_font_options_label",
+                text = "Divine font options: ",
+                style = "text",
+              ),
+              select(
+                id = "deity_edit_font_options_select",
+                stat = "font_options",
+                options = "spell_font",
+                multi_select = true,
+              ),
+            ],
+          ),
+          composite(
+            id = "deity_edit_divine_skill_options",
+            margin_top = 4,
+            subviews = [
+              text(
+                id = "deity_edit_divine_skill_options_label",
+                text = "Divine skill options: ",
+                style = "text",
+              ),
+              select(
+                id = "deity_edit_divine_skill_options_select",
+                stat = "divine_skill_options",
+                options = "skill_types",
+                multi_select = true,
+              ),
+            ],
+          ),
+          composite(
+            id = "deity_edit_divine_ability_options",
+            margin_top = 4,
+            subviews = [
+              text(
+                id = "deity_edit_divine_ability_options_label",
+                text = "Divine ability options: ",
+                style = "text",
+              ),
+              select(
+                id = "deity_edit_divine_ability_options_select",
+                stat = "divine_ability_options",
+                options = "ability",
+                multi_select = true,
+              ),
+            ],
+          ),
+          composite(
+            id = "deity_edit_favored_weapons",
+            margin_top = 4,
+            subviews = [
+              text(
+                id = "deity_edit_favored_weapons_label",
+                text = "Favored weapons: ",
+                style = "text",
+              ),
+              select(
+                id = "deity_edit_favored_weapons_select",
+                stat = "favored_weapons",
+                options = "weapon_types",
+                multi_select = true,
+              ),
+            ],
+          ),
+          composite(
+            id = "deity_edit_alignment_options",
+            margin_top = 4,
+            subviews = [
+              text(
+                id = "deity_edit_alignment_options_label",
+                text = "Alignment options: ",
+                style = "text",
+              ),
+              select(
+                id = "deity_edit_alignment_options_select",
+                stat = "alignment_options",
+                options = "alignments",
+                multi_select = true,
+              ),
+            ],
+          ),
+          composite(
+            id = "deity_edit_follower_alignment_options",
+            margin_top = 4,
+            subviews = [
+              text(
+                id = "deity_edit_follower_alignment_options_label",
+                text = "Follower alignment options: ",
+                style = "text",
+              ),
+              select(
+                id = "deity_edit_follower_alignment_options_select",
+                stat = "follower_alignment_options",
+                options = "alignments",
+                multi_select = true,
+              ),
+            ],
+          ),
+          text(
+            id = "deity_edit_sanctification_options",
+            edit_stat = "sanctification_options",
+            style = "text",
+            label = "Sanctification options",
+          ),
+        ],
+      ),
+      list(
+        id = "deity_edit_magic",
+        padding = 16,
+        alignment = "start",
+        subviews = [
+          resourceArray(
+            id = "deity_edit_granted_spells",
+            resource_id = "levelled_spell",
+            stat = "granted_spells",
+            view_type = "edit",
+            left_view = text(
+              id = "deity_edit_granted_spells_label",
+              text = "Granted spells (per rank): ",
+              style = "text",
+            ),
+            pop_up_type = "bottomSheet",
+            pop_up_button_text = description,
+          ),
+        ],
+      ),
+    ],
+  );

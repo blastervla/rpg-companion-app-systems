@@ -1,0 +1,451 @@
+view spell_display() =
+  list(
+    id = "spell_display",
+    padding = 16,
+    subviews = [
+      composite(
+        id = "spell_display_info",
+        subviews = [
+          text(
+            id = "spell_display_source",
+            margin_left = 16,
+            style = "caption",
+            resource_id = "source",
+            resource_instance_ids_stat = "source",
+            resource_display_stat = "abbreviation",
+          ),
+          text(id = "spell_display_source_separator", text = ", ", style = "caption"),
+          text(
+            id = "spell_display_classes",
+            resource_id = "class",
+            resource_instance_ids_stat = "classes",
+            resource_display_stat = "name",
+            style = "caption",
+          ),
+        ],
+      ),
+      text(
+        id = "spell_display_type",
+        margin_left = 16,
+        text = display_type,
+        style = "caption",
+      ),
+      text(
+        id = "spell_display_traits",
+        margin_left = 16,
+        resource_id = "spell_traits",
+        resource_instance_ids_stat = "spell_traits",
+        resource_display_stat = "name",
+        style = "caption",
+        is_visible = !isEmpty(spell_traits),
+      ),
+      composite(
+        id = "spell_display_casting_time_composite",
+        margin_top = 16,
+        subviews = [
+          text(
+            id = "spell_display_casting_time_subtitle",
+            text = "Casting Time: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "spell_display_casting_time_label",
+            text = display_casting_time,
+            style = "text",
+          ),
+          icon(
+            id = "spell_display_action_cost_icon_one",
+            name = "ic_action",
+            size = "small",
+            color = "accent",
+            margin_left = 4,
+            is_visible = action_cost == "one_action",
+          ),
+          icon(
+            id = "spell_display_action_cost_icon_two",
+            name = "ic_two_actions",
+            size = "small",
+            color = "accent",
+            margin_left = 4,
+            is_visible = action_cost == "two_actions",
+          ),
+          icon(
+            id = "spell_display_action_cost_icon_three",
+            name = "ic_three_actions",
+            size = "small",
+            color = "accent",
+            margin_left = 4,
+            is_visible = action_cost == "three_actions",
+          ),
+          icon(
+            id = "spell_display_action_cost_icon_reaction",
+            name = "ic_reaction",
+            size = "small",
+            color = "accent",
+            margin_left = 4,
+            is_visible = action_cost == "reaction",
+          ),
+          icon(
+            id = "spell_display_action_cost_icon_free",
+            name = "ic_free_action",
+            size = "small",
+            color = "accent",
+            margin_left = 4,
+            is_visible = action_cost == "free_action",
+          ),
+          text(
+            id = "spell_display_action_cost_label",
+            text = concat([" (", action_cost_name, ")"]),
+            style = "text",
+            color = "accent",
+            is_visible = action_cost == "passive" || action_cost == "activity",
+          ),
+        ],
+      ),
+      composite(
+        id = "spell_display_range_composite",
+        subviews = [
+          text(
+            id = "spell_display_range_subtitle",
+            text = "Range: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "spell_display_range_label", text = range, style = "text"),
+        ],
+      ),
+      composite(
+        id = "spell_display_components_composite",
+        subviews = [
+          text(
+            id = "spell_display_components_subtitle",
+            text = "Components: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "spell_display_components_label",
+            text = full_components,
+            style = "text",
+          ),
+        ],
+        is_visible = has_components,
+      ),
+      composite(
+        id = "spell_display_duration_composite",
+        subviews = [
+          text(
+            id = "spell_display_duration_subtitle",
+            text = "Duration: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "spell_display_duration_label", text = duration, style = "text"),
+        ],
+      ),
+      composite(
+        id = "spell_display_area_composite",
+        is_visible = has_area,
+        subviews = [
+          text(
+            id = "spell_display_area_subtitle",
+            text = "Area: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "spell_display_area_label", text = area, style = "text"),
+        ],
+      ),
+      composite(
+        id = "spell_display_targets_composite",
+        is_visible = has_targets,
+        subviews = [
+          text(
+            id = "spell_display_targets_subtitle",
+            text = "Targets: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "spell_display_targets_label", text = targets, style = "text"),
+        ],
+      ),
+      composite(
+        id = "spell_display_saving_throw_composite",
+        is_visible = has_saving_throw,
+        subviews = [
+          text(
+            id = "spell_display_saving_throw_subtitle",
+            text = "Saving throw: ",
+            style = "text",
+            bold = true,
+          ),
+          text(id = "spell_display_saving_throw_label", text = saving_throw, style = "text"),
+        ],
+      ),
+      text(
+        id = "spell_display_description_label",
+        margin_top = 16,
+        text = description,
+        is_visible = !isEmpty(description),
+        style = "text",
+        markdown = true,
+      ),
+      text(
+        id = "spell_display_higher_level_description_subtitle",
+        margin_top = 16,
+        text = "At Higher Ranks: ",
+        style = "text",
+        bold = true,
+        is_visible = has_higher_level_description,
+      ),
+      text(
+        id = "spell_display_higher_level_description_label",
+        text = higher_level_description,
+        style = "text",
+        markdown = true,
+        is_visible = has_higher_level_description,
+      ),
+      collapsible(
+        id = "spell_display_dice_collapsible",
+        margin_top = 8,
+        title = "Damage dice",
+        is_visible = !isEmpty(dice),
+        subviews = [
+          resourceArray(
+            id = "spell_display_levelled_dice",
+            resource_id = "levelled_damage_dice",
+            stat = "dice",
+            view_type = "display",
+          ),
+        ],
+      ),
+      collapsible(
+        id = "spell_display_effects_collapsible",
+        margin_top = 8,
+        start_expanded = true,
+        title = "Magic effects",
+        is_visible = !isEmpty(effects),
+        subviews = [
+          resourceArray(
+            id = "spell_display_effects",
+            resource_id = "effect",
+            stat = "effects",
+            view_type = "display",
+          ),
+        ],
+      ),
+      composite(
+        id = "spell_display_cast_composite",
+        margin_top = 16,
+        is_visible = should_select_spell_slot_to_cast,
+        subviews = [
+          text(
+            id = "spell_display_cast_composite_level_label",
+            text = "Rank: ",
+            style = "text",
+          ),
+          ticker(
+            id = "spell_display_cast_composite_ticker",
+            stat = "cast_level",
+            style = "headline",
+            button_location = "sideToSide",
+            button_look = "upDown",
+            allowed_values = available_slots_for_use,
+          ),
+          text(
+            id = "spell_display_cast_composite_slots_remaining_label",
+            text = available_selected_slots_label,
+            style = "text",
+            is_visible = character_spell_slots_defined,
+          ),
+          ticker(
+            id = "spell_display_slots_remaining_composite_ticker",
+            stat = "available_selected_slots",
+            style = "headline",
+            is_visible = character_spell_slots_defined
+              && defined(stat = "$view.spell_display_cast_composite_ticker"),
+          ),
+        ],
+      ),
+      list(
+        id = "spell_display_cast_section_list",
+        is_visible = should_display_cast_controls,
+        margin_top = 8,
+        subviews = [
+          composite(
+            id = "spell_display_spellcasting_source_text_composite",
+            subviews = [
+              text(
+                id = "spell_display_spellcasting_source_text_label",
+                text = "Spellcasting source: ",
+                style = "text",
+                margin_right = 4,
+                is_visible = should_show_spellcasting_source_text || should_show_spellcasting_source_select,
+              ),
+              text(
+                id = "spell_display_spellcasting_source_text",
+                text = selected_spellcasting_source_name,
+                style = "text",
+                color = "accent",
+                is_visible = should_show_spellcasting_source_text,
+                margin_bottom = 4,
+              ),
+              select(
+                id = "spell_display_spellcasting_source_kind_select",
+                stat = "selected_spellcasting_source_kind",
+                options = "spellcasting_source_kinds",
+                allowed_options = selectable_spellcasting_source_kind_allowed_options,
+                is_visible = should_show_spellcasting_source_select
+                  && length(selectable_spellcasting_source_kind_allowed_options) > 1,
+                should_auto_save = true,
+              ),
+              select(
+                id = "spell_display_spellcasting_source_select",
+                stat = "selected_spellcasting_source_id",
+                resource_options = selectable_spellcasting_class_sources,
+                options_display_stat = "spellcasting_entry_name",
+                is_visible = should_show_spellcasting_source_select
+                  && !isEmpty(selectable_spellcasting_class_sources)
+                  && resolved_spellcasting_source_kind == "class",
+                should_auto_save = true,
+              ),
+              select(
+                id = "spell_display_spellcasting_archetype_source_select",
+                stat = "selected_spellcasting_source_id",
+                resource_options = $character?.spellcasting_archetypes ?? [],
+                options_display_stat = "spellcasting_entry_name",
+                is_visible = should_show_spellcasting_source_select
+                  && !isEmpty($character?.spellcasting_archetypes ?? [])
+                  && resolved_spellcasting_source_kind == "archetype",
+                should_auto_save = true,
+              ),
+            ],
+          ),
+          composite(
+            id = "spell_display_spellcasting_mode_text_composite",
+            subviews = [
+              text(
+                id = "spell_display_spellcasting_mode_text_label",
+                text = "Spellcasting mode: ",
+                style = "text",
+                margin_right = 4,
+                is_visible = should_display_cast_controls,
+              ),
+              text(
+                id = "spell_display_spellcasting_mode_text",
+                text = selected_spellcasting_mode_name,
+                style = "text",
+                color = "accent",
+                margin_bottom = 4,
+                is_visible = should_display_cast_controls,
+              ),
+            ],
+          ),
+          composite(
+            id = "spell_display_spellcasting_math_composite",
+            subviews = [
+              text(
+                id = "spell_display_spell_attack_bonus_label",
+                text = "Spell attack: ",
+                style = "text",
+                margin_right = 4,
+              ),
+              text(
+                id = "spell_display_spell_attack_bonus",
+                text = selected_spell_attack_bonus_text,
+                style = "text",
+                color = "accent",
+              ),
+              text(
+                id = "spell_display_spell_dc_label",
+                text = " | DC ",
+                style = "text",
+                margin_left = 4,
+              ),
+              text(
+                id = "spell_display_spell_dc",
+                text = selected_spell_save_dc,
+                style = "text",
+                color = "accent",
+              ),
+            ],
+            is_visible = should_display_cast_controls,
+          ),
+          text(
+            id = "spell_display_cast_explanation_not_prepared",
+            text = "This spell is not prepared at the selected rank",
+            color = "accent",
+            bold = true,
+            style = "text",
+            is_visible = is_character_spell_context
+              && selected_spellcasting_mode == "prepared"
+              && !has_required_prepared_cast_requirement,
+          ),
+          text(
+            id = "spell_display_cast_explanation_restricted_grants",
+            text = restricted_slot_grant_warning_text,
+            color = "accent",
+            bold = true,
+            style = "text",
+            is_visible = is_character_spell_context && has_restricted_slot_grant_warning,
+          ),
+          text(
+            id = "spell_display_cast_explanation",
+            text = "Can't cast when wearing armor you are not proficient with",
+            color = "accent",
+            bold = true,
+            style = "text",
+            is_visible = is_character_spell_context && !character_is_not_wearing_inproficient_armor,
+          ),
+          text(
+            id = "spell_display_cast_explanation_spell_slots",
+            text = "You don't have the required spell ranks to cast this spell right now",
+            color = "accent",
+            bold = true,
+            style = "text",
+            is_visible = is_character_spell_context
+              && !has_required_spell_slots_to_cast
+              && has_required_prepared_cast_requirement,
+          ),
+          text(
+            id = "spell_display_monster_casts_remaining",
+            text = monster_context_casts_remaining_text,
+            color = "accent",
+            bold = true,
+            style = "text",
+            is_visible = is_monster_spell_context && monster_context_has_daily_cast_limit,
+          ),
+          text(
+            id = "spell_display_cast_explanation_actions",
+            text = "Not enough actions/reaction available for this spell",
+            color = "accent",
+            bold = true,
+            style = "text",
+            is_visible = should_display_cast_controls && !has_required_action_economy,
+          ),
+          composite(
+            id = "spell_display_cast_button_composite",
+            row_only = true,
+            alignment = "end",
+            subviews = [
+              button(
+                id = "spell_display_cast_button",
+                text = "CAST",
+                enabled = can_cast,
+                event = event(name = "castSpell", payload = payload()),
+              ),
+              button(
+                id = "spell_display_damage_button",
+                text = damage_or_effects_button_text,
+                enabled = should_show_damage_or_effects_button,
+                event = event(name = "damageSpell", payload = payload()),
+                is_visible = should_show_damage_or_effects_button,
+                margin_left = 4,
+              ),
+            ],
+          ),
+        ],
+      ),
+    ],
+  );

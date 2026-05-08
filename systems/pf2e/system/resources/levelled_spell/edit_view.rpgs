@@ -1,0 +1,52 @@
+view levelled_spell_edit() =
+  composite(
+    id = "levelled_spell_edit",
+    subviews = [
+      composite(
+        id = "levelled_spell_edit_lvl_label_composite",
+        row_only = true,
+        subviews = [
+          text(
+            id = "levelled_spell_edit_level",
+            edit_stat = "level",
+            style = "text",
+            hint = "Lvl",
+            max_length = 3,
+            margin_right = 4,
+          ),
+          text(
+            id = "levelled_spell_edit_label",
+            edit_stat = "label",
+            style = "text",
+            hint = "Label (optional, e.g. at will)",
+          ),
+        ],
+      ),
+      text(
+        id = "levelled_spell_edit_daily_cast_max_override",
+        edit_stat = "daily_cast_max_override",
+        style = "text",
+        hint = "Daily casts",
+        max_length = 2,
+        signed = true,
+        is_visible = defined(stat = "$parent.spellcasting_type"),
+      ),
+      text(
+        id = "levelled_spell_edit_cast_level_override",
+        edit_stat = "cast_level_override",
+        style = "text",
+        hint = "Cast rank override",
+        max_length = 3,
+        signed = false,
+        is_visible = defined(stat = "$parent.spellcasting_type"),
+      ),
+      selectResources(
+        id = "levelled_spell_edit_spell_select",
+        stat = "spell",
+        resource_id = "spell",
+        validation_message = if !notNull($view.levelled_spell_edit_spell_select)
+        then "There's an empty levelled spell. Please select a spell or remove it"
+        else null,
+      ),
+    ],
+  );

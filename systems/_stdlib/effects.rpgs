@@ -1,0 +1,244 @@
+define setStatValue(stat_id, value) =
+  setStat(stat = stat_id, new_value = value, aggregation_type = "set");
+
+define setStatTrue(stat_id) =
+  setStatValue(stat_id = stat_id, value = true);
+
+define setStatFalse(stat_id) =
+  setStatValue(stat_id = stat_id, value = false);
+
+define toggleBoolSet(stat_id, current_value) =
+  setStat(stat = stat_id, new_value = !current_value, aggregation_type = "set");
+
+define fireEventName(event_name) =
+  fireEvent(event = event(name = event_name, payload = payload()));
+
+define popupSelectPersist(select_id, meta_stat, options_id, title) =
+  showPopUp(
+    pop_up_view = select(
+      id = select_id,
+      meta_stat = meta_stat,
+      options = options_id,
+      style = "list",
+    ),
+    pop_up_title = title,
+    display_cancel_button = true,
+    display_save_button = true,
+    should_persist_on_save = true,
+  );
+
+define popupSelectPersistStat(select_id, stat, options_id, title) =
+  showPopUp(
+    pop_up_view = select(
+      id = select_id,
+      stat = stat,
+      options = options_id,
+      style = "list",
+    ),
+    pop_up_title = title,
+    display_cancel_button = true,
+    display_save_button = true,
+    should_persist_on_save = true,
+  );
+
+define showInfoMessage(message) =
+  showMessage(message = message, message_type = "info");
+
+define showAlertTextPopUp(pop_up_title, text_id, message) =
+  showPopUp(
+    pop_up_view = text(
+      id = text_id,
+      text = message,
+      style = "text",
+    ),
+    pop_up_title = pop_up_title,
+    pop_up_type = "alert",
+    cancel_text = "OK",
+  );
+
+define bottomSheetActionPopUp(pop_up_view, pop_up_title, action_text, action_event_name) =
+  showPopUp(
+    pop_up_view = pop_up_view,
+    pop_up_title = pop_up_title,
+    display_cancel_button = true,
+    extra_buttons = [
+      rPGViewBottomSheetExtraButton(
+        text = action_text,
+        event = event(name = action_event_name, payload = payload()),
+      ),
+    ],
+  );
+
+define bottomSheetActionPopUpEditMode(pop_up_view, pop_up_title, action_text, action_event_name) =
+  showPopUp(
+    pop_up_view = pop_up_view,
+    pop_up_title = pop_up_title,
+    display_cancel_button = true,
+    extra_buttons = [
+      rPGViewBottomSheetExtraButton(
+        text = action_text,
+        event = event(name = action_event_name, payload = payload()),
+      ),
+    ],
+    in_edit_mode = true,
+  );
+
+define showCharacterInformationPopUp(extra_label_id, extra_label_text, extra_value_id, extra_value_text) =
+  showPopUp(
+    pop_up_view = list(
+      id = "information_bottom_sheet",
+      padding = 16,
+      subviews = [
+        composite(
+          id = "information_background_comp",
+          subviews = [
+            text(
+              id = "information_background_label",
+              text = "Background: ",
+              style = "text",
+              bold = true,
+            ),
+            text(id = "information_background", text = background.name, style = "text"),
+          ],
+        ),
+        composite(
+          id = "information_alignment_comp",
+          margin_top = 4,
+          subviews = [
+            text(
+              id = "information_alignment_label",
+              text = "Alignment: ",
+              style = "text",
+              bold = true,
+            ),
+            text(
+              id = "information_alignment",
+              text = enumeratedName(enumerated_type = "alignments", id = alignment),
+              style = "text",
+            ),
+          ],
+        ),
+        text(
+          id = "information_personality_traits",
+          margin_top = 16,
+          text = personality_traits,
+          style = "text",
+          is_visible = !isEmpty(personality_traits),
+        ),
+        text(
+          id = "information_ideals",
+          margin_top = 5,
+          text = ideals,
+          style = "text",
+          is_visible = !isEmpty(ideals),
+        ),
+        text(
+          id = "information_bonds",
+          margin_top = 5,
+          text = bonds,
+          style = "text",
+          is_visible = !isEmpty(bonds),
+        ),
+        text(
+          id = "information_flaws",
+          margin_top = 5,
+          text = flaws,
+          style = "text",
+          is_visible = !isEmpty(flaws),
+        ),
+        text(
+          id = "information_about",
+          margin_top = 5,
+          text = about,
+          style = "text",
+          is_visible = !isEmpty(about),
+        ),
+        text(
+          id = "information_language_proficiencies_label",
+          text = "Languages:",
+          margin_top = 16,
+          style = "text",
+          bold = true,
+        ),
+        text(
+          id = "information_language_proficiencies",
+          text = joinToString(language_proficiencies, separator = ", "),
+          style = "text",
+        ),
+        text(
+          id = "information_armor_proficiencies_label",
+          margin_top = 16,
+          text = "Armor proficiencies:",
+          style = "text",
+          bold = true,
+        ),
+        text(
+          id = "information_armor_proficiencies",
+          text = joinToString(
+            map(
+              armor_proficiencies,
+              mapper = ($mapValue) => enumeratedName(enumerated_type = "armor_types", id = $mapValue),
+            ),
+            separator = ", ",
+          ),
+          style = "text",
+        ),
+        text(
+          id = "information_weapon_proficiencies_label",
+          margin_top = 16,
+          text = "Weapon proficiencies:",
+          style = "text",
+          bold = true,
+        ),
+        text(
+          id = "information_weapon_proficiencies",
+          text = joinToString(
+            map(
+              weapon_proficiencies,
+              mapper = ($mapValue) => enumeratedName(enumerated_type = "weapon_types_plus_all_types", id = $mapValue),
+            ),
+            separator = ", ",
+          ),
+          style = "text",
+        ),
+        text(
+          id = extra_label_id,
+          margin_top = 16,
+          text = extra_label_text,
+          style = "text",
+          bold = true,
+        ),
+        text(
+          id = extra_value_id,
+          text = extra_value_text,
+          style = "text",
+        ),
+      ],
+    ),
+    pop_up_title = concat(["About ", name]),
+    display_cancel_button = false,
+  );
+
+define skillTapForward(edit_mode) =
+  when {
+    edit_mode -> forwardEvent(new_event_names = ["editSkillProficiency"]),
+    !edit_mode -> forwardEvent(new_event_names = ["rollStat"]),
+  };
+
+define rollStatFromEvent(advantages_values, disadvantages_values, stat_meta, stat_name) =
+  roll(
+    rolls = [
+      rollable(
+        formulas = when {
+          contains(haystack = advantages_values, needle = stat_meta) -> [
+            concat(["max(2d20) + ", metaStat(meta_stat = stat_meta)]),
+          ],
+          contains(haystack = disadvantages_values, needle = stat_meta) -> [
+            concat(["min(2d20) + ", metaStat(meta_stat = stat_meta)]),
+          ],
+          else -> [concat(["1d20 + ", metaStat(meta_stat = stat_meta)])],
+        },
+        text = stat_name,
+      ),
+    ],
+  );

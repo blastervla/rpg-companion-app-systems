@@ -1,0 +1,39 @@
+import "../../macros/system_common.rpgs";
+
+view conditional_linked_feat_edit() =
+  composite(
+    id = "conditional_linked_feat_edit",
+    subviews = [
+      text(
+        id = "conditional_linked_feat_edit_level",
+        edit_stat = "level",
+        style = "text",
+        hint = "Lvl",
+        max_length = 3,
+        signed = false,
+      ),
+      selectResources(
+        id = "conditional_linked_feat_edit_feat_select",
+        resource_id = "feat",
+        stat = "feat",
+      ),
+      editResourcePopUpButton(
+        button_id = "conditional_linked_feat_edit_trigger_condition_button",
+        margin_top = 8,
+        button_text = if trigger_condition == null then "ADD TRIGGER CONDITION" else "EDIT TRIGGER CONDITION",
+        pop_up_view_id = "conditional_linked_feat_edit_trigger_condition_resource",
+        resource_id = "trigger_condition_or",
+        stat = "trigger_condition",
+        pop_up_title = "Trigger condition",
+        create_if_empty = true,
+        should_persist_on_save = false,
+      ),
+      text(
+        id = "conditional_linked_feat_edit_notes",
+        margin_top = 8,
+        edit_stat = "notes",
+        style = "text",
+        label = "Notes",
+      ),
+    ],
+  );

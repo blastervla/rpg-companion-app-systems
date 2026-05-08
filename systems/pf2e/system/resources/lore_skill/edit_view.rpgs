@@ -1,0 +1,72 @@
+view lore_skill_edit() =
+  composite(
+    id = "lore_skill_edit",
+    subviews = [
+      composite(
+        id = "lore_skill_edit_level_options_composite",
+        row_only = true,
+        is_visible = !($character?.should_show_controls_for_choices ?? false),
+        subviews = [
+          text(
+            id = "lore_skill_edit_level",
+            edit_stat = "level",
+            style = "text",
+            hint = "Lvl",
+            max_length = 3,
+          ),
+          text(
+            id = "lore_skill_edit_options",
+            edit_stat = "options",
+            style = "text",
+            label = "Options",
+          ),
+        ],
+      ),
+      text(
+        id = "lore_skill_edit_selected_option",
+        edit_stat = "selected_option",
+        style = "text",
+        label = "Selected option",
+        hint = "Enter lore skill",
+        max_length = 80,
+        is_visible = $character?.should_show_controls_for_choices ?? false,
+      ),
+      text(
+        id = "lore_skill_edit_options_readonly",
+        text = concat(["Options: ", options]),
+        style = "caption",
+        is_visible = ($character?.should_show_controls_for_choices ?? false) && !isEmpty(options),
+      ),
+      select(
+        id = "lore_skill_edit_proficiency",
+        stat = "proficiency",
+        options = "skill_proficiency_types",
+        is_visible = !($character?.should_show_controls_for_choices ?? false),
+      ),
+      text(
+        id = "lore_skill_edit_proficiency_readonly",
+        text = concat(
+          [
+            "Proficiency: ",
+            enumeratedName(enumerated_type = "skill_proficiency_types", id = proficiency),
+          ],
+        ),
+        style = "caption",
+        is_visible = $character?.should_show_controls_for_choices ?? false,
+      ),
+      select(
+        id = "lore_skill_edit_ability",
+        stat = "ability",
+        options = "ability",
+        is_visible = !($character?.should_show_controls_for_choices ?? false),
+      ),
+      text(
+        id = "lore_skill_edit_untyped_modifier",
+        edit_stat = "untyped_modifier",
+        style = "text",
+        label = "Mod",
+        max_length = 4,
+        is_visible = !($character?.should_show_controls_for_choices ?? false),
+      ),
+    ],
+  );

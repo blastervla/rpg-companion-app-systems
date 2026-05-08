@@ -1,0 +1,25 @@
+view monster_combat_template_entry_display() =
+  list(
+    margin_left = 4,
+    subviews = [
+      text(
+        id = "monster_combat_template_entry_display_text",
+        text = description,
+        style = "text",
+      ),
+      text(
+        id = "monster_combat_template_entry_display_issue_min_max",
+        text = "Invalid range: min is greater than max",
+        style = "caption",
+        color = "accent",
+        is_visible = has_min_max_conflict,
+      ),
+      text(
+        id = "monster_combat_template_entry_display_issue_weight",
+        text = "Invalid weight: must be greater than 0",
+        style = "caption",
+        color = "accent",
+        is_visible = has_invalid_weight,
+      ),
+    ],
+  );

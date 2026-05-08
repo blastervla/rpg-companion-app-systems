@@ -1,0 +1,9 @@
+import "../macros/system_common.rpgs";
+
+mechanic edit_save_proficiency(event_names = "editSaveProficiency") =
+  popupSelectPersist(
+    select_id = "edit_save_proficiency_select",
+    meta_stat = $event?.proficiency_stat? ?? "",
+    options_id = "skill_proficiency_types",
+    title = $event?.proficiency_name? ?? "Save proficiency",
+  );

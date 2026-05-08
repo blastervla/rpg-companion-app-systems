@@ -1,0 +1,110 @@
+view monster_action_display() =
+  list(
+    id = "monster_action_display",
+    padding_left = 8,
+    padding_right = 8,
+    padding_bottom = 4,
+    subviews = [
+      composite(
+        id = "monster_action_display_name_cost",
+        subviews = [
+          text(
+            id = "monster_action_display_name",
+            text = action_name,
+            style = "text",
+            bold = true,
+            margin_right = 8,
+          ),
+          icon(
+            id = "monster_action_display_action_cost_icon_one",
+            name = "ic_action",
+            size = "small",
+            color = "accent",
+            is_visible = action_cost == "one_action",
+          ),
+          icon(
+            id = "monster_action_display_action_cost_icon_two",
+            name = "ic_two_actions",
+            size = "small",
+            color = "accent",
+            is_visible = action_cost == "two_actions",
+          ),
+          icon(
+            id = "monster_action_display_action_cost_icon_three",
+            name = "ic_three_actions",
+            size = "small",
+            color = "accent",
+            is_visible = action_cost == "three_actions",
+          ),
+          icon(
+            id = "monster_action_display_action_cost_icon_reaction",
+            name = "ic_reaction",
+            size = "small",
+            color = "accent",
+            is_visible = action_cost == "reaction",
+          ),
+          icon(
+            id = "monster_action_display_action_cost_icon_free",
+            name = "ic_free_action",
+            size = "small",
+            color = "accent",
+            is_visible = action_cost == "free_action",
+          ),
+          text(
+            id = "monster_action_display_action_cost_label",
+            text = action_cost_name,
+            style = "caption",
+            color = "accent",
+            is_visible = action_cost == "passive" || action_cost == "activity",
+          ),
+        ],
+      ),
+      text(
+        id = "monster_action_display_description",
+        text = action_display_description,
+        style = "text",
+        markdown = true,
+      ),
+      text(
+        id = "monster_action_display_action_cost_warning",
+        margin_top = 4,
+        text = "Not enough actions/reaction available",
+        style = "caption",
+        color = "accent",
+        is_visible = in_combat && !can_use_action,
+      ),
+      composite(
+        id = "monster_action_display_controls",
+        alignment = "end",
+        margin_top = 2,
+        subviews = [
+          select(
+            id = "monster_action_display_damage_variant_select",
+            stat = "default_selected_damage_variant_id",
+            resource_options = action_damage_variants,
+            options_display_stat = "variant_description",
+            margin_right = 6,
+            is_visible = !isEmpty(action_damage_variants),
+          ),
+          button(
+            id = "monster_action_display_use_button",
+            text = "USE",
+            event = event(name = "use"),
+            is_visible = !has_attack_roll,
+          ),
+          button(
+            id = "monster_action_display_attack_button",
+            text = "ATTACK",
+            event = event(name = "attack"),
+            is_visible = has_attack_roll,
+          ),
+          button(
+            id = "monster_action_display_damage_button",
+            text = "DAMAGE",
+            event = event(name = "damage"),
+            is_visible = !isEmpty(action_damage_variants),
+          ),
+        ],
+      ),
+    ],
+  );

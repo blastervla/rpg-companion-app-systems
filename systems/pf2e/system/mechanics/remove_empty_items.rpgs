@@ -1,0 +1,86 @@
+mechanic remove_empty_items(event_names = "remove_empty_items") =
+  when {
+    !isEmpty(
+    filter(equipment, filter = ($filterValue) => ($filterValue.quantity <= 0)),
+  ) -> sequence(
+      effects = [
+        setStat(
+          stat = "equipment",
+          new_value = filter(equipment, filter = ($filterValue) => ($filterValue.quantity > 0)),
+          aggregation_type = "set",
+        ),
+        forEach(
+          components = weapons,
+          for_each_value_key = "$weapon",
+          apply = sequence(
+            effects = [
+              setStat(
+                stat = "$weapon.attached_runes",
+                new_value = filter(
+                  $weapon.attached_runes,
+                  filter = ($filterValue) => contains(
+                    haystack = map(
+                      filter(equipment, filter = ($item) => ($item.quantity > 0)),
+                      mapper = ($mapValue) => $mapValue.id,
+                    ),
+                    needle = $filterValue,
+                  ),
+                ),
+                aggregation_type = "set",
+              ),
+              setStat(
+                stat = "$weapon.attached_talisman",
+                new_value = if !isEmpty($weapon.attached_talisman)
+                  && contains(
+                    haystack = map(
+                      filter(equipment, filter = ($item) => ($item.quantity > 0)),
+                      mapper = ($mapValue) => $mapValue.id,
+                    ),
+                    needle = $weapon.attached_talisman,
+                  )
+                  then $weapon.attached_talisman
+                  else "",
+                aggregation_type = "set",
+              ),
+            ],
+          ),
+        ),
+        forEach(
+          components = armors,
+          for_each_value_key = "$armor",
+          apply = sequence(
+            effects = [
+              setStat(
+                stat = "$armor.attached_runes",
+                new_value = filter(
+                  $armor.attached_runes,
+                  filter = ($filterValue) => contains(
+                    haystack = map(
+                      filter(equipment, filter = ($item) => ($item.quantity > 0)),
+                      mapper = ($mapValue) => $mapValue.id,
+                    ),
+                    needle = $filterValue,
+                  ),
+                ),
+                aggregation_type = "set",
+              ),
+              setStat(
+                stat = "$armor.attached_talisman",
+                new_value = if !isEmpty($armor.attached_talisman)
+                  && contains(
+                    haystack = map(
+                      filter(equipment, filter = ($item) => ($item.quantity > 0)),
+                      mapper = ($mapValue) => $mapValue.id,
+                    ),
+                    needle = $armor.attached_talisman,
+                  )
+                  then $armor.attached_talisman
+                  else "",
+                aggregation_type = "set",
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  };

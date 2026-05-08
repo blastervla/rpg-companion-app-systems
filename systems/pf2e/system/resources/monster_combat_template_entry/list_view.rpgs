@@ -1,0 +1,14 @@
+import "../../macros/system_common.rpgs";
+
+view monster_combat_template_entry_list() =
+  bottomSheetPopUpButton(
+    button_id = "monster_combat_template_entry_list",
+    button_text = description,
+    pop_up_view = resource(
+      id = "monster_combat_template_entry_view",
+      view_type = "display",
+      resource_id = "monster",
+      stat = "combatant",
+    ),
+    pop_up_title = combatant?.name ?? "Monster",
+  );

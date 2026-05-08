@@ -1,0 +1,611 @@
+base string spell_id(name = "Spell ID") = "";
+
+base integer slot_quantity(name = "Prepared quantity") = 1;
+
+base integer used_quantity(name = "Used quantity") = 0;
+
+calc resource<class_progression> owner_class_source(name = "Owner class source") =
+  if defined(stat = "$parent.class") then $parent else null;
+
+calc resource<archetype> owner_archetype_source(name = "Owner archetype source") =
+  if defined(stat = "$parent.grants_spellcasting") then $parent else null;
+
+calc string[] character_known_spell_ids(name = "Character known spell ids") =
+  map($character?.spells ?? [], mapper = ($mapValue) => $mapValue.id);
+
+calc resource<spell>[] owner_source_levelled_spells(name = "Owner source spells (level-filtered)") =
+  when {
+    notNull(owner_class_source) && notNull(owner_class_source.class) -> map(
+      filter(
+        owner_class_source.class.all_spells,
+        filter = ($filterValue) => ($filterValue.level <= ($character?.level ?? 1)),
+      ),
+      mapper = ($mapValue) => $mapValue.spell,
+    ),
+    notNull(owner_archetype_source) -> map(
+      filter(
+        owner_archetype_source.all_spells,
+        filter = ($filterValue) => ($filterValue.level <= ($character?.level ?? 1)),
+      ),
+      mapper = ($mapValue) => $mapValue.spell,
+    ),
+    else -> [],
+  };
+
+calc string owner_tradition(name = "Owner spellcasting tradition") =
+  when {
+    notNull(owner_class_source) && notNull(owner_class_source.class) -> owner_class_source.class.actual_spellcasting_tradition,
+    notNull(owner_archetype_source) -> owner_archetype_source.actual_spellcasting_tradition,
+    else -> "",
+  };
+
+calc resource<spell>[] tradition_matching_spells(name = "Tradition matching spells") =
+  if isEmpty(owner_tradition)
+    then []
+    else filter(
+      $character?.sorted_spells ?? [],
+      filter = ($spell) => contains(haystack = $spell.traditions, needle = owner_tradition),
+    );
+
+calc integer owner_prepared_rank_from_parent_view(name = "Owner prepared rank (parent view)") =
+  when {
+    contains(
+      haystack = map($parent.$view?.class_progression_edit_prepared_spells_rank_0_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) || contains(
+      haystack = map($parent.$view?.archetype_edit_prepared_spells_rank_0_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 0,
+    contains(
+      haystack = map($parent.$view?.class_progression_edit_prepared_spells_rank_1_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) || contains(
+      haystack = map($parent.$view?.archetype_edit_prepared_spells_rank_1_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 1,
+    contains(
+      haystack = map($parent.$view?.class_progression_edit_prepared_spells_rank_2_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) || contains(
+      haystack = map($parent.$view?.archetype_edit_prepared_spells_rank_2_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 2,
+    contains(
+      haystack = map($parent.$view?.class_progression_edit_prepared_spells_rank_3_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) || contains(
+      haystack = map($parent.$view?.archetype_edit_prepared_spells_rank_3_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 3,
+    contains(
+      haystack = map($parent.$view?.class_progression_edit_prepared_spells_rank_4_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) || contains(
+      haystack = map($parent.$view?.archetype_edit_prepared_spells_rank_4_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 4,
+    contains(
+      haystack = map($parent.$view?.class_progression_edit_prepared_spells_rank_5_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) || contains(
+      haystack = map($parent.$view?.archetype_edit_prepared_spells_rank_5_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 5,
+    contains(
+      haystack = map($parent.$view?.class_progression_edit_prepared_spells_rank_6_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) || contains(
+      haystack = map($parent.$view?.archetype_edit_prepared_spells_rank_6_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 6,
+    contains(
+      haystack = map($parent.$view?.class_progression_edit_prepared_spells_rank_7_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) || contains(
+      haystack = map($parent.$view?.archetype_edit_prepared_spells_rank_7_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 7,
+    contains(
+      haystack = map($parent.$view?.class_progression_edit_prepared_spells_rank_8_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) || contains(
+      haystack = map($parent.$view?.archetype_edit_prepared_spells_rank_8_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 8,
+    contains(
+      haystack = map($parent.$view?.class_progression_edit_prepared_spells_rank_9_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) || contains(
+      haystack = map($parent.$view?.archetype_edit_prepared_spells_rank_9_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 9,
+    contains(
+      haystack = map($parent.$view?.class_progression_edit_prepared_spells_rank_10_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) || contains(
+      haystack = map($parent.$view?.archetype_edit_prepared_spells_rank_10_array? ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 10,
+    else -> -1,
+  };
+
+calc integer owner_prepared_rank(name = "Owner prepared rank") =
+  when {
+    owner_prepared_rank_from_parent_view >= 0 -> owner_prepared_rank_from_parent_view,
+    contains(
+      haystack = map($parent?.prepared_spell_choices_rank_0 ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 0,
+    contains(
+      haystack = map($parent?.prepared_spell_choices_rank_1 ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 1,
+    contains(
+      haystack = map($parent?.prepared_spell_choices_rank_2 ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 2,
+    contains(
+      haystack = map($parent?.prepared_spell_choices_rank_3 ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 3,
+    contains(
+      haystack = map($parent?.prepared_spell_choices_rank_4 ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 4,
+    contains(
+      haystack = map($parent?.prepared_spell_choices_rank_5 ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 5,
+    contains(
+      haystack = map($parent?.prepared_spell_choices_rank_6 ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 6,
+    contains(
+      haystack = map($parent?.prepared_spell_choices_rank_7 ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 7,
+    contains(
+      haystack = map($parent?.prepared_spell_choices_rank_8 ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 8,
+    contains(
+      haystack = map($parent?.prepared_spell_choices_rank_9 ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 9,
+    contains(
+      haystack = map($parent?.prepared_spell_choices_rank_10 ?? [], mapper = ($mapValue) => $mapValue.id),
+      needle = id,
+    ) -> 10,
+    else -> -1,
+  };
+
+calc resource<spell_capacity_grant>[] owner_active_spell_capacity_grants(name = "Owner active spell capacity grants") =
+  when {
+    notNull(owner_class_source) -> owner_class_source.active_spell_capacity_grants,
+    notNull(owner_archetype_source) -> owner_archetype_source.active_spell_capacity_grants,
+    else -> [],
+  };
+
+calc integer owner_highest_base_spell_slot_rank(name = "Owner highest base spell slot rank") =
+  when {
+    notNull(owner_class_source) -> owner_class_source.highest_base_spell_slot_rank,
+    notNull(owner_archetype_source) -> owner_archetype_source.highest_base_spell_slot_rank,
+    else -> 0,
+  };
+
+calc string[] owner_selected_choice_bound_slot_spell_names(name = "Owner selected choice-bound slot spell names") =
+  when {
+    notNull(owner_class_source) -> owner_class_source.selected_choice_bound_slot_spell_names,
+    else -> [],
+  };
+
+calc resource<spell_capacity_grant>[] owner_rank_slot_capacity_grants(name = "Owner rank slot capacity grants") =
+  filter(
+    owner_active_spell_capacity_grants,
+    filter = ($grant) => ($grant.capacity_type == "slot"
+      && (
+          ($grant.target_rank_mode == "specific" && $grant.target_rank == owner_prepared_rank)
+            || ($grant.target_rank_mode == "highest_available" && owner_highest_base_spell_slot_rank == owner_prepared_rank)
+        )),
+  );
+
+calc resource<spell_capacity_grant>[] owner_rank_restricted_slot_grants(name = "Owner rank restricted slot grants") =
+  filter(
+    owner_rank_slot_capacity_grants,
+    filter = ($grant) => (
+      $grant.restriction_mode != "none"
+        || ($grant.requires_spell_choice && $grant.choice_rank == owner_prepared_rank)
+    ),
+  );
+
+calc bool owner_rank_has_parent_view_array(name = "Owner rank has parent view array") =
+  when {
+    notNull(owner_class_source) && owner_prepared_rank == 0 -> defined(stat = "$parent.$view.class_progression_edit_prepared_spells_rank_0_array"),
+    notNull(owner_class_source) && owner_prepared_rank == 1 -> defined(stat = "$parent.$view.class_progression_edit_prepared_spells_rank_1_array"),
+    notNull(owner_class_source) && owner_prepared_rank == 2 -> defined(stat = "$parent.$view.class_progression_edit_prepared_spells_rank_2_array"),
+    notNull(owner_class_source) && owner_prepared_rank == 3 -> defined(stat = "$parent.$view.class_progression_edit_prepared_spells_rank_3_array"),
+    notNull(owner_class_source) && owner_prepared_rank == 4 -> defined(stat = "$parent.$view.class_progression_edit_prepared_spells_rank_4_array"),
+    notNull(owner_class_source) && owner_prepared_rank == 5 -> defined(stat = "$parent.$view.class_progression_edit_prepared_spells_rank_5_array"),
+    notNull(owner_class_source) && owner_prepared_rank == 6 -> defined(stat = "$parent.$view.class_progression_edit_prepared_spells_rank_6_array"),
+    notNull(owner_class_source) && owner_prepared_rank == 7 -> defined(stat = "$parent.$view.class_progression_edit_prepared_spells_rank_7_array"),
+    notNull(owner_class_source) && owner_prepared_rank == 8 -> defined(stat = "$parent.$view.class_progression_edit_prepared_spells_rank_8_array"),
+    notNull(owner_class_source) && owner_prepared_rank == 9 -> defined(stat = "$parent.$view.class_progression_edit_prepared_spells_rank_9_array"),
+    notNull(owner_class_source) && owner_prepared_rank == 10 -> defined(stat = "$parent.$view.class_progression_edit_prepared_spells_rank_10_array"),
+    notNull(owner_archetype_source) && owner_prepared_rank == 0 -> defined(stat = "$parent.$view.archetype_edit_prepared_spells_rank_0_array"),
+    notNull(owner_archetype_source) && owner_prepared_rank == 1 -> defined(stat = "$parent.$view.archetype_edit_prepared_spells_rank_1_array"),
+    notNull(owner_archetype_source) && owner_prepared_rank == 2 -> defined(stat = "$parent.$view.archetype_edit_prepared_spells_rank_2_array"),
+    notNull(owner_archetype_source) && owner_prepared_rank == 3 -> defined(stat = "$parent.$view.archetype_edit_prepared_spells_rank_3_array"),
+    notNull(owner_archetype_source) && owner_prepared_rank == 4 -> defined(stat = "$parent.$view.archetype_edit_prepared_spells_rank_4_array"),
+    notNull(owner_archetype_source) && owner_prepared_rank == 5 -> defined(stat = "$parent.$view.archetype_edit_prepared_spells_rank_5_array"),
+    notNull(owner_archetype_source) && owner_prepared_rank == 6 -> defined(stat = "$parent.$view.archetype_edit_prepared_spells_rank_6_array"),
+    notNull(owner_archetype_source) && owner_prepared_rank == 7 -> defined(stat = "$parent.$view.archetype_edit_prepared_spells_rank_7_array"),
+    notNull(owner_archetype_source) && owner_prepared_rank == 8 -> defined(stat = "$parent.$view.archetype_edit_prepared_spells_rank_8_array"),
+    notNull(owner_archetype_source) && owner_prepared_rank == 9 -> defined(stat = "$parent.$view.archetype_edit_prepared_spells_rank_9_array"),
+    notNull(owner_archetype_source) && owner_prepared_rank == 10 -> defined(stat = "$parent.$view.archetype_edit_prepared_spells_rank_10_array"),
+    else -> false,
+  };
+
+calc resource<prepared_spell_choice>[] owner_rank_parent_view_choices(name = "Owner rank parent view choices") =
+  when {
+    notNull(owner_class_source) && owner_prepared_rank == 0 -> $parent.$view?.class_progression_edit_prepared_spells_rank_0_array ?? [],
+    notNull(owner_class_source) && owner_prepared_rank == 1 -> $parent.$view?.class_progression_edit_prepared_spells_rank_1_array ?? [],
+    notNull(owner_class_source) && owner_prepared_rank == 2 -> $parent.$view?.class_progression_edit_prepared_spells_rank_2_array ?? [],
+    notNull(owner_class_source) && owner_prepared_rank == 3 -> $parent.$view?.class_progression_edit_prepared_spells_rank_3_array ?? [],
+    notNull(owner_class_source) && owner_prepared_rank == 4 -> $parent.$view?.class_progression_edit_prepared_spells_rank_4_array ?? [],
+    notNull(owner_class_source) && owner_prepared_rank == 5 -> $parent.$view?.class_progression_edit_prepared_spells_rank_5_array ?? [],
+    notNull(owner_class_source) && owner_prepared_rank == 6 -> $parent.$view?.class_progression_edit_prepared_spells_rank_6_array ?? [],
+    notNull(owner_class_source) && owner_prepared_rank == 7 -> $parent.$view?.class_progression_edit_prepared_spells_rank_7_array ?? [],
+    notNull(owner_class_source) && owner_prepared_rank == 8 -> $parent.$view?.class_progression_edit_prepared_spells_rank_8_array ?? [],
+    notNull(owner_class_source) && owner_prepared_rank == 9 -> $parent.$view?.class_progression_edit_prepared_spells_rank_9_array ?? [],
+    notNull(owner_class_source) && owner_prepared_rank == 10 -> $parent.$view?.class_progression_edit_prepared_spells_rank_10_array ?? [],
+    notNull(owner_archetype_source) && owner_prepared_rank == 0 -> $parent.$view?.archetype_edit_prepared_spells_rank_0_array ?? [],
+    notNull(owner_archetype_source) && owner_prepared_rank == 1 -> $parent.$view?.archetype_edit_prepared_spells_rank_1_array ?? [],
+    notNull(owner_archetype_source) && owner_prepared_rank == 2 -> $parent.$view?.archetype_edit_prepared_spells_rank_2_array ?? [],
+    notNull(owner_archetype_source) && owner_prepared_rank == 3 -> $parent.$view?.archetype_edit_prepared_spells_rank_3_array ?? [],
+    notNull(owner_archetype_source) && owner_prepared_rank == 4 -> $parent.$view?.archetype_edit_prepared_spells_rank_4_array ?? [],
+    notNull(owner_archetype_source) && owner_prepared_rank == 5 -> $parent.$view?.archetype_edit_prepared_spells_rank_5_array ?? [],
+    notNull(owner_archetype_source) && owner_prepared_rank == 6 -> $parent.$view?.archetype_edit_prepared_spells_rank_6_array ?? [],
+    notNull(owner_archetype_source) && owner_prepared_rank == 7 -> $parent.$view?.archetype_edit_prepared_spells_rank_7_array ?? [],
+    notNull(owner_archetype_source) && owner_prepared_rank == 8 -> $parent.$view?.archetype_edit_prepared_spells_rank_8_array ?? [],
+    notNull(owner_archetype_source) && owner_prepared_rank == 9 -> $parent.$view?.archetype_edit_prepared_spells_rank_9_array ?? [],
+    notNull(owner_archetype_source) && owner_prepared_rank == 10 -> $parent.$view?.archetype_edit_prepared_spells_rank_10_array ?? [],
+    else -> [],
+  };
+
+calc resource<prepared_spell_choice>[] owner_rank_saved_choices(name = "Owner rank saved choices") =
+  when {
+    owner_prepared_rank == 0 -> $parent?.prepared_spell_choices_rank_0 ?? [],
+    owner_prepared_rank == 1 -> $parent?.prepared_spell_choices_rank_1 ?? [],
+    owner_prepared_rank == 2 -> $parent?.prepared_spell_choices_rank_2 ?? [],
+    owner_prepared_rank == 3 -> $parent?.prepared_spell_choices_rank_3 ?? [],
+    owner_prepared_rank == 4 -> $parent?.prepared_spell_choices_rank_4 ?? [],
+    owner_prepared_rank == 5 -> $parent?.prepared_spell_choices_rank_5 ?? [],
+    owner_prepared_rank == 6 -> $parent?.prepared_spell_choices_rank_6 ?? [],
+    owner_prepared_rank == 7 -> $parent?.prepared_spell_choices_rank_7 ?? [],
+    owner_prepared_rank == 8 -> $parent?.prepared_spell_choices_rank_8 ?? [],
+    owner_prepared_rank == 9 -> $parent?.prepared_spell_choices_rank_9 ?? [],
+    owner_prepared_rank == 10 -> $parent?.prepared_spell_choices_rank_10 ?? [],
+    else -> [],
+  };
+
+calc resource<prepared_spell_choice>[] owner_rank_prepared_choices_effective(name = "Owner rank prepared choices (effective)") =
+  if owner_rank_has_parent_view_array
+    then owner_rank_parent_view_choices
+    else owner_rank_saved_choices;
+
+calc integer owner_rank_total_slot_capacity(name = "Owner rank total slot capacity") =
+  when {
+    notNull(owner_class_source) && owner_prepared_rank == 1 -> owner_class_source.max_class_spell_slots_1,
+    notNull(owner_class_source) && owner_prepared_rank == 2 -> owner_class_source.max_class_spell_slots_2,
+    notNull(owner_class_source) && owner_prepared_rank == 3 -> owner_class_source.max_class_spell_slots_3,
+    notNull(owner_class_source) && owner_prepared_rank == 4 -> owner_class_source.max_class_spell_slots_4,
+    notNull(owner_class_source) && owner_prepared_rank == 5 -> owner_class_source.max_class_spell_slots_5,
+    notNull(owner_class_source) && owner_prepared_rank == 6 -> owner_class_source.max_class_spell_slots_6,
+    notNull(owner_class_source) && owner_prepared_rank == 7 -> owner_class_source.max_class_spell_slots_7,
+    notNull(owner_class_source) && owner_prepared_rank == 8 -> owner_class_source.max_class_spell_slots_8,
+    notNull(owner_class_source) && owner_prepared_rank == 9 -> owner_class_source.max_class_spell_slots_9,
+    notNull(owner_class_source) && owner_prepared_rank == 10 -> owner_class_source.max_class_spell_slots_10,
+    notNull(owner_archetype_source) && owner_prepared_rank == 1 -> owner_archetype_source.max_spell_slots_1_total,
+    notNull(owner_archetype_source) && owner_prepared_rank == 2 -> owner_archetype_source.max_spell_slots_2_total,
+    notNull(owner_archetype_source) && owner_prepared_rank == 3 -> owner_archetype_source.max_spell_slots_3_total,
+    notNull(owner_archetype_source) && owner_prepared_rank == 4 -> owner_archetype_source.max_spell_slots_4_total,
+    notNull(owner_archetype_source) && owner_prepared_rank == 5 -> owner_archetype_source.max_spell_slots_5_total,
+    notNull(owner_archetype_source) && owner_prepared_rank == 6 -> owner_archetype_source.max_spell_slots_6_total,
+    notNull(owner_archetype_source) && owner_prepared_rank == 7 -> owner_archetype_source.max_spell_slots_7_total,
+    notNull(owner_archetype_source) && owner_prepared_rank == 8 -> owner_archetype_source.max_spell_slots_8_total,
+    notNull(owner_archetype_source) && owner_prepared_rank == 9 -> owner_archetype_source.max_spell_slots_9_total,
+    notNull(owner_archetype_source) && owner_prepared_rank == 10 -> owner_archetype_source.max_spell_slots_10_total,
+    else -> 0,
+  };
+
+calc integer owner_rank_restricted_slot_capacity(name = "Owner rank restricted slot capacity") =
+  add(
+    map(
+      owner_rank_restricted_slot_grants,
+      mapper = ($grant) => $grant.current_quantity,
+    ),
+  );
+
+calc integer owner_rank_unrestricted_slot_capacity(name = "Owner rank unrestricted slot capacity") =
+  max([0, owner_rank_total_slot_capacity - owner_rank_restricted_slot_capacity]);
+
+calc bool choice_matches_owner_rank_restricted_slot_grants(name = "Choice matches owner rank restricted slot grants") =
+  isEmpty(owner_rank_restricted_slot_grants)
+    || !isEmpty(
+      filter(
+        owner_rank_restricted_slot_grants,
+        filter = ($grant) => (
+            ($grant.restriction_mode == "spell_name_allowlist" && contains(
+                haystack = map($grant.actual_restricted_spell_names, mapper = ($n) => toLowerCase($n)),
+                needle = toLowerCase(spell_name),
+              ))
+              || ($grant.requires_spell_choice
+                && $grant.choice_rank == owner_prepared_rank
+                && contains(
+                  haystack = map(owner_selected_choice_bound_slot_spell_names, mapper = ($n) => toLowerCase($n)),
+                  needle = toLowerCase(spell_name),
+                ))
+              || ($grant.restriction_mode == "trait_allowlist"
+                && !isEmpty(
+                  filter(
+                    spell?.spell_traits ?? [],
+                    filter = ($trait) => contains(
+                        haystack = map($grant.restricted_spell_traits, mapper = ($gTrait) => toLowerCase($gTrait)),
+                        needle = toLowerCase($trait),
+                      ),
+                  ),
+                ))
+          ),
+      ),
+    );
+
+calc integer owner_rank_total_prepared_quantity(name = "Owner rank total prepared quantity") =
+  add(
+    map(
+      owner_rank_prepared_choices_effective,
+      mapper = ($choice) => if $choice.id == id
+        then effective_slot_quantity
+        else $choice.effective_slot_quantity,
+    ),
+  );
+
+calc integer owner_rank_restricted_prepared_quantity(name = "Owner rank restricted prepared quantity") =
+  add(
+    map(
+      owner_rank_prepared_choices_effective,
+      mapper = ($choice) => if (
+          if $choice.id == id
+            then choice_matches_owner_rank_restricted_slot_grants
+            else $choice.choice_matches_owner_rank_restricted_slot_grants
+        )
+        then (if $choice.id == id
+          then effective_slot_quantity
+          else $choice.effective_slot_quantity)
+        else 0,
+    ),
+  );
+
+calc integer owner_rank_unrestricted_prepared_quantity(name = "Owner rank unrestricted prepared quantity") =
+  max([0, owner_rank_total_prepared_quantity - owner_rank_restricted_prepared_quantity]);
+
+calc integer owner_rank_unrestricted_overspent(name = "Owner rank unrestricted overspent") =
+  max([0, owner_rank_unrestricted_prepared_quantity - owner_rank_unrestricted_slot_capacity]);
+
+calc integer owner_rank_total_overspent(name = "Owner rank total overspent") =
+  max([0, owner_rank_total_prepared_quantity - owner_rank_total_slot_capacity]);
+
+calc bool has_owner_rank_total_capacity_warning(name = "Has owner rank total capacity warning") =
+  owner_prepared_rank > 0
+    && !isEmpty(effective_spell_id)
+    && !is_cantrip_choice
+    && owner_rank_total_overspent > 0;
+
+calc string owner_rank_total_capacity_warning_text(name = "Owner rank total capacity warning text") =
+  if has_owner_rank_total_capacity_warning
+    then concat(
+        [
+          "Prepared rank ",
+          owner_prepared_rank,
+          " spells exceed total slots by ",
+          owner_rank_total_overspent,
+          ".",
+        ],
+      )
+    else "";
+
+calc bool has_owner_rank_restricted_slot_warning(name = "Has owner rank restricted slot warning") =
+  owner_prepared_rank > 0
+    && !isEmpty(effective_spell_id)
+    && !is_cantrip_choice
+    && !isEmpty(owner_rank_restricted_slot_grants)
+    && !choice_matches_owner_rank_restricted_slot_grants
+    && owner_rank_unrestricted_overspent > 0;
+
+calc resource<spell_capacity_grant> owner_first_rank_restricted_slot_grant(name = "Owner first rank restricted slot grant") =
+  findFirst(
+    owner_rank_restricted_slot_grants,
+    filter = ($findFirstValue) => true,
+  );
+
+calc string[] owner_first_rank_restricted_spell_names(name = "Owner first rank restricted spell names") =
+  owner_first_rank_restricted_slot_grant?.actual_restricted_spell_names ?? [];
+
+calc string owner_first_rank_restricted_spell_name_example(name = "Owner first rank restricted spell name example") =
+  findFirst(
+    owner_first_rank_restricted_spell_names,
+    filter = ($findFirstValue) => true,
+  )
+    ?? "";
+
+calc integer owner_first_rank_restricted_spell_name_count(name = "Owner first rank restricted spell name count") =
+  length(owner_first_rank_restricted_spell_names);
+
+calc string owner_first_rank_restricted_spell_names_lines(name = "Owner first rank restricted spell names lines") =
+  concat(
+    map(
+      sortBy(
+        owner_first_rank_restricted_spell_names,
+        sort_by_selector = ($sortByValue) => $sortByValue,
+      ),
+      mapper = ($n) => concat(["\n- ", $n]),
+    ),
+  );
+
+calc string[] owner_first_rank_restricted_spell_traits(name = "Owner first rank restricted spell traits") =
+  owner_first_rank_restricted_slot_grant?.restricted_spell_traits ?? [];
+
+calc string owner_first_rank_restricted_spell_trait_example(name = "Owner first rank restricted spell trait example") =
+  findFirst(
+    owner_first_rank_restricted_spell_traits,
+    filter = ($findFirstValue) => true,
+  )
+    ?? "";
+
+calc integer owner_first_rank_restricted_spell_trait_count(name = "Owner first rank restricted spell trait count") =
+  length(owner_first_rank_restricted_spell_traits);
+
+calc string owner_first_rank_restricted_spell_traits_lines(name = "Owner first rank restricted spell traits lines") =
+  concat(
+    map(
+      sortBy(
+        owner_first_rank_restricted_spell_traits,
+        sort_by_selector = ($sortByValue) => $sortByValue,
+      ),
+      mapper = ($t) => concat(["\n- ", $t]),
+    ),
+  );
+
+calc string owner_choice_bound_slot_spell_name_example(name = "Owner choice-bound slot spell name example") =
+  findFirst(
+    owner_selected_choice_bound_slot_spell_names,
+    filter = ($findFirstValue) => true,
+  )
+    ?? "";
+
+calc integer owner_choice_bound_slot_spell_name_count(name = "Owner choice-bound slot spell name count") =
+  length(owner_selected_choice_bound_slot_spell_names);
+
+calc string owner_choice_bound_slot_spell_names_lines(name = "Owner choice-bound slot spell names lines") =
+  concat(
+    map(
+      sortBy(
+        owner_selected_choice_bound_slot_spell_names,
+        sort_by_selector = ($sortByValue) => $sortByValue,
+      ),
+      mapper = ($n) => concat(["\n- ", $n]),
+    ),
+  );
+
+calc string owner_rank_restricted_slot_warning_text(name = "Owner rank restricted slot warning text") =
+  if has_owner_rank_restricted_slot_warning
+    then when {
+        owner_first_rank_restricted_slot_grant?.requires_spell_choice ?? false -> concat(
+          [
+            "Non-restricted preparations exceed unrestricted slots by ",
+            owner_rank_unrestricted_overspent,
+            ". This rank includes choice-bound bonus slots; use one of your chosen spell(s):",
+            (if owner_choice_bound_slot_spell_name_count > 0
+              then owner_choice_bound_slot_spell_names_lines
+              else "\n- (none selected yet)"),
+          ],
+        ),
+        owner_first_rank_restricted_slot_grant?.restriction_mode == "spell_name_allowlist" -> concat(
+          [
+            "Non-restricted preparations exceed unrestricted slots by ",
+            owner_rank_unrestricted_overspent,
+            ". This rank includes name-restricted bonus slots.",
+            (if owner_first_rank_restricted_spell_name_count > 0
+              then concat([" Allowed names:", owner_first_rank_restricted_spell_names_lines])
+              else ""),
+          ],
+        ),
+        owner_first_rank_restricted_slot_grant?.restriction_mode == "trait_allowlist" -> concat(
+          [
+            "Non-restricted preparations exceed unrestricted slots by ",
+            owner_rank_unrestricted_overspent,
+            ". This rank includes trait-restricted bonus slots.",
+            (if owner_first_rank_restricted_spell_trait_count > 0
+              then concat([" Required traits:", owner_first_rank_restricted_spell_traits_lines])
+              else ""),
+          ],
+        ),
+        else -> concat(
+          [
+            "Non-restricted preparations exceed unrestricted slots by ",
+            owner_rank_unrestricted_overspent,
+            ". This rank includes restricted bonus slots and this spell does not match those restrictions.",
+          ],
+        ),
+      }
+    else "";
+
+calc resource<spell>[] selectable_spells_unfiltered(name = "Selectable spells (unfiltered)") =
+  if !defined(stat = "$character")
+    then []
+    else sortBy(
+      flatAppend(
+        [
+          owner_source_levelled_spells,
+          filter(
+            $character.sorted_spells ?? [],
+            filter = ($spell) => contains(haystack = character_known_spell_ids, needle = $spell.id),
+          ),
+          tradition_matching_spells,
+        ],
+        treat_as_set = true,
+      ),
+      sort_by_selector = ($sortByValue) => $sortByValue.name,
+    );
+
+calc resource<spell>[] selectable_spells(name = "Selectable spells") =
+  filter(
+    selectable_spells_unfiltered,
+    filter = ($spell) => when {
+      owner_prepared_rank == 0 -> ($spell.is_cantrip ?? false),
+      owner_prepared_rank > 0 -> (($spell.num_level ?? -1) == owner_prepared_rank),
+      else -> true,
+    },
+  );
+
+calc string[] selectable_spell_ids(name = "Selectable spell IDs") =
+  map(selectable_spells, mapper = ($mapValue) => $mapValue.id);
+
+calc string effective_spell_id(name = "Effective spell ID") =
+  when {
+    defined(stat = "$view.prepared_spell_choice_edit_spell") -> if isEmpty($view.prepared_spell_choice_edit_spell)
+        then spell_id
+        else $view.prepared_spell_choice_edit_spell,
+    else -> spell_id,
+  };
+
+calc resource<spell> spell(name = "Selected spell") =
+  findFirst(
+    $character?.sorted_spells ?? [],
+    filter = ($findFirstValue) => ($findFirstValue.id == effective_spell_id),
+  );
+
+calc string spell_name(name = "Spell name") =
+  if !isEmpty(spell?.name ?? "") then spell.name else effective_spell_id;
+
+calc bool is_cantrip_choice(name = "Is cantrip choice") =
+  spell?.is_cantrip ?? false;
+
+calc integer effective_slot_quantity_input(name = "Effective slot quantity input") =
+  when {
+    defined(stat = "$view.prepared_spell_choice_edit_quantity") -> $view.prepared_spell_choice_edit_quantity,
+    else -> slot_quantity,
+  };
+
+calc integer effective_slot_quantity(name = "Effective slot quantity") =
+  if is_cantrip_choice then 1 else max([1, effective_slot_quantity_input]);
+
+calc integer remaining_quantity(name = "Remaining quantity") =
+  max([0, effective_slot_quantity - used_quantity]);
+
+calc bool is_fully_expended(name = "Is fully expended") =
+  effective_slot_quantity > 0 && remaining_quantity <= 0;
+
+calc string display_description(name = "Display description") =
+  if is_cantrip_choice
+    then concat([spell_name, " (prepared)"])
+    else concat([spell_name, " ", remaining_quantity, " / ", effective_slot_quantity]);

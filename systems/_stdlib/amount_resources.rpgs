@@ -1,0 +1,101 @@
+define amountResourceDisplayView(display_id, out_of_character_id, in_character_id) =
+  list(
+    id = display_id,
+    subviews = [
+      text(
+        id = out_of_character_id,
+        margin_left = 4,
+        text = display_description,
+        style = "text",
+        is_visible = !defined(stat = "$character"),
+      ),
+      checkbox(
+        id = in_character_id,
+        stat = "selected",
+        label = display_description,
+        enabled = can_toggle_selection,
+        label_alignment = "right",
+        style = "checkbox",
+        is_visible = defined(stat = "$character"),
+      ),
+    ],
+  );
+
+define amountResourceEditView(edit_id, amount_id, select_id, resource_type, validation_message) =
+  composite(
+    id = edit_id,
+    subviews = [
+      text(
+        id = amount_id,
+        edit_stat = "amount",
+        style = "text",
+        hint = "Amnt.",
+        max_length = 6,
+      ),
+      selectResources(
+        id = select_id,
+        stat = resource_type,
+        resource_id = resource_type,
+        validation_message = validation_message,
+      ),
+    ],
+  );
+
+define amountResourceDisplayDescription(resource_name) =
+  concat([amount, " ", (resource_name ?? "nothing")]);
+
+define amountResourceCanToggleSelection(checked_value) =
+  $parent?.can_select_more ?? true || checked_value;
+
+define amountResourceDisplayViewByPrefix(prefix) =
+  amountResourceDisplayView(
+    display_id = "${prefix}_display",
+    out_of_character_id = "${prefix}_display_out_of_character",
+    in_character_id = "${prefix}_display_in_character",
+  );
+
+define amountResourceEditViewByPrefix(prefix, resource_type, validation_message) =
+  amountResourceEditView(
+    edit_id = "${prefix}_edit",
+    amount_id = "${prefix}_edit_amount",
+    select_id = "${prefix}_edit_${resource_type}",
+    resource_type = resource_type,
+    validation_message = validation_message,
+  );
+
+// Stable wrappers (keep call sites simple and override-friendly).
+define itemWithAmountDisplayView() =
+  amountResourceDisplayViewByPrefix(prefix = "item_with_amount");
+
+define itemWithAmountEditView() =
+  amountResourceEditViewByPrefix(
+    prefix = "item_with_amount",
+    resource_type = "item",
+    validation_message = if !notNull($view.item_with_amount_edit_item)
+      then "You have an empty item. Please select an item or remove it."
+      else null,
+  );
+
+define itemWithAmountDisplayDescription() =
+  amountResourceDisplayDescription(resource_name = item?.name);
+
+define itemWithAmountCanToggleSelection() =
+  amountResourceCanToggleSelection(checked_value = $view?.item_with_amount_display_in_character ?? false);
+
+define armorWithAmountDisplayView() =
+  amountResourceDisplayViewByPrefix(prefix = "armor_with_amount");
+
+define armorWithAmountEditView() =
+  amountResourceEditViewByPrefix(
+    prefix = "armor_with_amount",
+    resource_type = "armor",
+    validation_message = if !notNull($view.armor_with_amount_edit_armor)
+      then "You have an empty armor. Please select an armor or remove it."
+      else null,
+  );
+
+define armorWithAmountDisplayDescription() =
+  amountResourceDisplayDescription(resource_name = armor?.name);
+
+define armorWithAmountCanToggleSelection() =
+  amountResourceCanToggleSelection(checked_value = selected);

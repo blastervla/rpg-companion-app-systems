@@ -1,0 +1,78 @@
+import "../macros/system_common.rpgs";
+
+mechanic trigger_daily_preparations(event_names = "trigger_daily_preparations") =
+  bottomSheetActionPopUpEditMode(
+    pop_up_view = list(
+      id = "daily_preparations_content",
+      padding = 16,
+      subviews = [
+        text(
+          id = "daily_preparations_description",
+          text = "Run daily preparations to reset core daily resources, refresh temporary daily feature choices, and clear prepared spell usage counters.",
+          style = "text",
+        ),
+        text(
+          id = "daily_preparations_prepared_help",
+          text = "Adjust prepared spell choices before pressing PREPARE.",
+          style = "caption",
+          is_visible = (primary_class_progression?.class?.actual_spellcasting_mode ?? "") == "prepared"
+            || (spellcasting_archetype_1?.actual_spellcasting_mode ?? "") == "prepared"
+            || (spellcasting_archetype_2?.actual_spellcasting_mode ?? "") == "prepared"
+            || (spellcasting_archetype_3?.actual_spellcasting_mode ?? "") == "prepared",
+        ),
+        editResourceArrayPopUpButton(
+          button_id = "daily_preparations_edit_primary_class_prepared",
+          button_text = concat(["Edit ", primary_class_progression?.class?.name ?? "Class", " prepared spells"]),
+          array_id = "daily_preparations_edit_primary_class_prepared_resource_array",
+          resource_id = "class_progression",
+          stat = "classes",
+          pop_up_title = concat(["Prepared Spells: ", primary_class_progression?.class?.name ?? "Class"]),
+          is_visible = (primary_class_progression?.class?.actual_spellcasting_mode ?? "") == "prepared",
+        ),
+        editResourceArrayPopUpButton(
+          button_id = "daily_preparations_edit_archetype_prepared_1",
+          button_text = concat(["Edit ", spellcasting_archetype_1?.name ?? "Archetype", " prepared spells"]),
+          array_id = "daily_preparations_edit_archetype_prepared_1_resource_array",
+          resource_id = "archetype",
+          stat = "archetypes",
+          pop_up_title = concat(["Prepared Spells: ", spellcasting_archetype_1?.name ?? "Archetype"]),
+          is_visible = notNull(spellcasting_archetype_1)
+            && (spellcasting_archetype_1?.actual_spellcasting_mode ?? "") == "prepared",
+        ),
+        editResourceArrayPopUpButton(
+          button_id = "daily_preparations_edit_archetype_prepared_2",
+          button_text = concat(["Edit ", spellcasting_archetype_2?.name ?? "Archetype", " prepared spells"]),
+          array_id = "daily_preparations_edit_archetype_prepared_2_resource_array",
+          resource_id = "archetype",
+          stat = "archetypes",
+          pop_up_title = concat(["Prepared Spells: ", spellcasting_archetype_2?.name ?? "Archetype"]),
+          is_visible = notNull(spellcasting_archetype_2)
+            && (spellcasting_archetype_2?.actual_spellcasting_mode ?? "") == "prepared",
+        ),
+        editResourceArrayPopUpButton(
+          button_id = "daily_preparations_edit_archetype_prepared_3",
+          button_text = concat(["Edit ", spellcasting_archetype_3?.name ?? "Archetype", " prepared spells"]),
+          array_id = "daily_preparations_edit_archetype_prepared_3_resource_array",
+          resource_id = "archetype",
+          stat = "archetypes",
+          pop_up_title = concat(["Prepared Spells: ", spellcasting_archetype_3?.name ?? "Archetype"]),
+          is_visible = notNull(spellcasting_archetype_3)
+            && (spellcasting_archetype_3?.actual_spellcasting_mode ?? "") == "prepared",
+        ),
+        text(
+          id = "daily_preparations_reselection_count",
+          text = concat(
+            [
+              "Features that will require re-selection after preparing: ",
+              daily_preparations_reselectable_features_count,
+            ],
+          ),
+          style = "caption",
+          is_visible = daily_preparations_reselectable_features_count > 0,
+        ),
+      ],
+    ),
+    pop_up_title = "Daily Preparations",
+    action_text = "PREPARE",
+    action_event_name = "daily_preparations",
+  );

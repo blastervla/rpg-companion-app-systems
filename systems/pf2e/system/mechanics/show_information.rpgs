@@ -1,0 +1,9 @@
+import "../macros/system_common.rpgs";
+
+mechanic show_information(event_names = "show_information") =
+  showCharacterInformationPopUp(
+    extra_label_id = "information_lore_skills_label",
+    extra_label_text = "Lore skills:",
+    extra_value_id = "information_lore_skills",
+    extra_value_text = joinToString(lore_skill_names, separator = ", "),
+  );

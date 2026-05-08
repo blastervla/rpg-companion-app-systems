@@ -1,0 +1,28 @@
+mechanic use_feat(event_names = "useFeat") =
+  sequence(
+    effects = [
+      when {
+        can_use_active_effects && in_combat && action_cost_spends_reaction && defined(stat = "$character.reaction_available") -> setStat(
+          stat = "$character.reaction_available",
+          new_value = 0,
+          aggregation_type = "set",
+        ),
+        can_use_active_effects && in_combat && action_cost_actions_spent > 0 && defined(stat = "$character.actions_remaining") -> addToStat(
+          stat = "$character.actions_remaining",
+          value = action_cost_actions_spent * -1,
+          aggregation_type = "set",
+        ),
+      },
+      when {
+        can_use_active_effects -> fireEvent(
+          event_names = map(
+            active_or_charge_effects_for_current_level,
+            mapper = ($mapValue) => eventName(event_name = "use", for_resource = $mapValue),
+          ),
+        ),
+      },
+      when {
+        can_use_active_effects -> delayed(millis = 100, effect = dismissResource()),
+      },
+    ],
+  );

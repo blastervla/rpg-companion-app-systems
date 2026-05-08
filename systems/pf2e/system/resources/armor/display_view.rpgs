@@ -1,0 +1,354 @@
+import "../../macros/system_common.rpgs";
+
+view armor_display() =
+  list(
+    id = "armor_display",
+    padding = 16,
+    subviews = [
+      composite(
+        id = "armor_display_info",
+        subviews = [
+          text(
+            id = "armor_display_source",
+            margin_left = 16,
+            style = "caption",
+            resource_id = "source",
+            resource_instance_ids_stat = "source",
+            resource_display_stat = "abbreviation",
+          ),
+          text(
+            id = "armor_display_source_separator",
+            text = ", ",
+            style = "caption",
+            is_visible = !isEmpty(properties),
+          ),
+          text(
+            id = "armor_display_properties",
+            text = properties,
+            style = "caption",
+            is_visible = !isEmpty(properties),
+          ),
+        ],
+      ),
+      composite(
+        id = "armor_display_character_properties",
+        subviews = [
+          text(
+            id = "armor_display_proficient",
+            margin_left = 16,
+            text = concat(
+              [
+                "Proficient (",
+                enumeratedName(enumerated_type = "skill_proficiency_types", id = armor_proficiency),
+                ")",
+              ],
+            ),
+            style = "caption",
+            color = "accent",
+            is_visible = is_proficient,
+          ),
+          text(
+            id = "armor_display_equipped",
+            margin_left = 16,
+            text = "Equipped",
+            style = "caption",
+            color = "#4CAF50",
+            is_visible = is_equipped,
+          ),
+          text(
+            id = "armor_display_invested",
+            margin_left = 16,
+            text = "Invested",
+            style = "caption",
+            color = "#4CAF50",
+            is_visible = is_invested,
+          ),
+        ],
+        is_visible = defined(stat = "$character"),
+      ),
+      text(
+        id = "armor_display_attached_runes",
+        margin_left = 16,
+        text = concat(["Runes: ", attached_runes_summary]),
+        style = "caption",
+        color = "accent",
+        is_visible = defined(stat = "$character") && !isEmpty(attached_runes_summary),
+      ),
+      text(
+        id = "armor_display_attached_talisman",
+        margin_left = 16,
+        text = concat(["Talisman: ", attached_talisman_summary]),
+        style = "caption",
+        color = "accent",
+        is_visible = defined(stat = "$character") && !isEmpty(attached_talisman_summary),
+      ),
+      text(
+        id = "armor_display_attachment_slot_usage",
+        margin_left = 16,
+        text = concat(["Property slots: ", armor_property_slots_used, "/", armor_property_slots_max]),
+        style = "caption",
+        color = if has_too_many_property_runes then "accent" else "hint",
+        is_visible = defined(stat = "$character") && armor_property_slots_max > 0,
+      ),
+      text(
+        id = "armor_display_attachment_issue",
+        margin_left = 16,
+        text = attachment_rules_issue_message,
+        style = "caption",
+        color = "accent",
+        is_visible = defined(stat = "$character") && !attachment_rules_valid,
+      ),
+      composite(
+        id = "armor_display_type_composite",
+        margin_top = 16,
+        subviews = [
+          text(
+            id = "armor_display_type_label",
+            text = "Type: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "armor_display_type_label",
+            text = enumeratedName(enumerated_type = "armor_types", id = type),
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "armor_display_armor_class_composite",
+        margin_top = 8,
+        subviews = [
+          text(
+            id = "armor_display_armor_class_label",
+            text = "Armor class: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "armor_display_armor_class_label",
+            text = armor_class,
+            style = "text",
+            color = if is_proficient then "accent" else "hint",
+          ),
+        ],
+      ),
+      composite(
+        id = "armor_display_rune_save_bonus_composite",
+        subviews = [
+          text(
+            id = "armor_display_rune_save_bonus_label",
+            text = "Rune save bonus: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "armor_display_rune_save_bonus",
+            text = toSignedString(total_rune_save_bonus),
+            style = "text",
+            color = "accent",
+          ),
+        ],
+        is_visible = total_rune_save_bonus != 0,
+      ),
+      composite(
+        id = "armor_display_required_strength_composite",
+        is_visible = required_strength > 0,
+        subviews = [
+          text(
+            id = "armor_display_required_strength_label",
+            text = "Required strength: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "armor_display_required_strength_label",
+            text = required_strength,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "armor_display_check_penalty_composite",
+        is_visible = check_penalty != 0,
+        subviews = [
+          text(
+            id = "armor_display_check_penalty_label",
+            text = "Check penalty: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "armor_display_check_penalty",
+            text = check_penalty,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "armor_display_speed_penalty_composite",
+        is_visible = speed_penalty > 0,
+        subviews = [
+          text(
+            id = "armor_display_speed_penalty_label",
+            text = "Speed penalty: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "armor_display_speed_penalty",
+            text = concat([speed_penalty, " ft."]),
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "armor_display_shield_hardness_composite",
+        is_visible = type == "shield" && shield_hardness > 0,
+        subviews = [
+          text(
+            id = "armor_display_shield_hardness_label",
+            text = "Hardness: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "armor_display_shield_hardness",
+            text = shield_hardness,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "armor_display_shield_hp_composite",
+        is_visible = type == "shield" && shield_hp > 0,
+        subviews = [
+          text(
+            id = "armor_display_shield_hp_label",
+            text = "Shield HP: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "armor_display_shield_hp",
+            text = shield_hp,
+            style = "text",
+          ),
+          text(
+            id = "armor_display_shield_bt_label",
+            text = " (BT ",
+            style = "text",
+            bold = true,
+            is_visible = shield_broken_threshold > 0,
+          ),
+          text(
+            id = "armor_display_shield_bt",
+            text = concat([shield_broken_threshold, ")"]),
+            style = "text",
+            is_visible = shield_broken_threshold > 0,
+          ),
+        ],
+      ),
+      text(
+        id = "armor_display_description",
+        margin_top = 16,
+        text = description,
+        style = "text",
+        markdown = true,
+        is_visible = !isEmpty(description),
+      ),
+      collapsible(
+        id = "armor_display_effects_collapsible",
+        margin_top = 8,
+        title = "Magic effects",
+        is_visible = !isEmpty(effects),
+        subviews = [
+          resourceArray(
+            id = "armor_display_effects",
+            resource_id = "effect",
+            stat = "effects",
+            view_type = "display",
+          ),
+        ],
+      ),
+      composite(
+        id = "armor_display_investment_and_equip_composite",
+        row_only = true,
+        is_visible = defined(stat = "$character"),
+        subviews = [
+          bottomSheetPersistPopUpButton(
+            button_id = "armor_display_manage_attachments_button",
+            button_text = "ATTACHMENTS",
+            pop_up_view = section(
+              id = "armor_display_manage_attachments_sheet",
+              header = [],
+              show_divider = false,
+              collapsible = false,
+              content_item_min_width = 1,
+              content = [
+                text(
+                  id = "armor_display_manage_attachments_rules_summary",
+                  text = concat(["Property slots: ", armor_property_slots_used, "/", armor_property_slots_max]),
+                  style = "text",
+                ),
+                text(
+                  id = "armor_display_manage_attachments_rules_error",
+                  text = attachment_rules_issue_message,
+                  style = "text",
+                  color = "accent",
+                  is_visible = !attachment_rules_valid,
+                ),
+                text(
+                  id = "armor_display_manage_attachments_runes_label",
+                  text = "Runes",
+                  style = "text",
+                  bold = true,
+                ),
+                select(
+                  id = "armor_display_manage_attachments_runes_select",
+                  stat = "attached_runes",
+                  resource_options = attachable_runes_for_character,
+                  options_display_stat = "name",
+                  multi_select = true,
+                  style = "list",
+                  should_auto_save = true,
+                ),
+                text(
+                  id = "armor_display_manage_attachments_talisman_label",
+                  text = "Talisman",
+                  style = "text",
+                  bold = true,
+                ),
+                select(
+                  id = "armor_display_manage_attachments_talisman_select",
+                  stat = "attached_talisman",
+                  resource_options = attachable_talismans_for_character,
+                  options_display_stat = "name",
+                  should_auto_save = true,
+                ),
+              ],
+            ),
+            pop_up_title = "Manage armor attachments",
+          ),
+          button(
+            id = "armor_display_trigger_attached_talisman_button",
+            text = "TRIGGER ATTACHMENT",
+            event = event(name = "trigger_attached_talisman"),
+            is_visible = !isEmpty(attached_active_effects),
+          ),
+          button(
+            id = "armor_display_invest_button",
+            text = if is_invested then "UNINVEST" else "INVEST",
+            event = event(name = "toggle_investment"),
+            is_visible = requires_investment,
+          ),
+          spacer(id = "armor_display_investment_and_equip_spacer"),
+          button(
+            id = "armor_display_equip_button",
+            text = if is_equipped then "UNEQUIP" else "EQUIP",
+            event = event(name = "toggle_equip"),
+          ),
+        ],
+      ),
+    ],
+  );

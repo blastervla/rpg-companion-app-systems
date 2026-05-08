@@ -1,0 +1,8 @@
+mechanic clear_effect_duration_on_revert(event_names = "revert_effect_execution") =
+  when {
+    tracks_duration && remaining_duration > 0 -> setStat(
+      stat = "remaining_duration",
+      new_value = 0,
+      aggregation_type = "set",
+    ),
+  };

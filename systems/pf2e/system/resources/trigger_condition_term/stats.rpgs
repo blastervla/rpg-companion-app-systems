@@ -1,0 +1,27 @@
+base string stat(name = "Stat") = "$character.strength_score";
+
+base string condition(name = "Condition") = "lower_than_equal";
+
+base decimal value(name = "Value") = 0;
+
+base string value_text(name = "Value (text)") = "";
+
+calc bool text_match(name = "Text contains match") =
+  if isEmpty(stat) || isEmpty(value_text)
+    then false
+    else contains(
+        haystack = metaStat(meta_stat = stat),
+        needle = value_text,
+      );
+
+calc bool evaluated_value(name = "Evaluated") =
+  when {
+    condition == "contains" -> text_match,
+    condition == "not_contains" -> !text_match,
+    condition == "lower_than" -> metaStat(meta_stat = stat) < value,
+    condition == "lower_than_equal" -> metaStat(meta_stat = stat) <= value,
+    condition == "equal" -> metaStat(meta_stat = stat) == value,
+    condition == "not_equal" -> metaStat(meta_stat = stat) != value,
+    condition == "higher_than" -> metaStat(meta_stat = stat) > value,
+    condition == "higher_than_equal" -> metaStat(meta_stat = stat) >= value,
+  };

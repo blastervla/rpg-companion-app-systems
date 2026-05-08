@@ -1,0 +1,34 @@
+mechanic spend_hero_point_stabilize(event_names = "spend_hero_point_stabilize") =
+  when {
+    hero_points > 0 && dying > 0 && !is_dead -> sequence(
+      effects = [
+        setStat(
+          stat = "hero_points",
+          new_value = 0,
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "dying",
+          new_value = 0,
+          aggregation_type = "set",
+        ),
+        addToStat(
+          stat = "wounded",
+          value = 1,
+          aggregation_type = "set",
+        ),
+      ],
+    ),
+    is_dead -> showMessage(
+      message = "Character is dead and can't stabilize with Hero Points.",
+      message_type = "info",
+    ),
+    hero_points <= 0 && dying > 0 && !is_dead -> showMessage(
+      message = "You don't have any Hero Points to spend.",
+      message_type = "info",
+    ),
+    dying <= 0 && !is_dead -> showMessage(
+      message = "Your character isn't dying.",
+      message_type = "info",
+    ),
+  };

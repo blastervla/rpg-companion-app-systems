@@ -1,0 +1,11 @@
+view edit_trigger_condition_and() =
+  resourceArray(
+    id = "edit_trigger_condition_and",
+    resource_id = "trigger_condition_term",
+    view_type = "edit",
+    left_view = text(id = "edit_trigger_condition_label", text = "and", style = "text"),
+    stat = "terms",
+    validation_message = if isEmpty($view.edit_trigger_condition_and)
+      then "You have empty 'and' trigger condition terms. Please add at least one or remove the 'and' condition"
+      else null,
+  );

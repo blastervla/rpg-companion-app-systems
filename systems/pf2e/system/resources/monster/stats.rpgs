@@ -1,0 +1,174 @@
+base string name(name = "Name") = "";
+
+base photo photo(name = "Photo") = null;
+
+base string source(name = "Source") = "";
+
+base string tag(name = "Tag") = "";
+
+base integer armor_class(name = "Armor Class", abbreviation = "AC") = 10;
+
+base integer hit_points(name = "Hit Points", abbreviation = "HP") = 0;
+
+base integer level(name = "Level") = 1;
+
+base integer xp(name = "Experience") = 0;
+
+calc string level_xp(name = "Level (XP)") =
+  concat(
+    [
+      concat(["Level ", level]),
+      " (",
+      xp,
+      ")",
+    ],
+  );
+
+base integer initiative(name = "Initiative") = 0;
+
+base integer perception(name = "Perception") = 0;
+
+base integer max_actions_per_turn(name = "Actions per turn") = 3;
+
+base integer max_reactions_per_round(name = "Reactions per round") = 1;
+
+base integer speed(name = "Speed") = 30;
+
+base integer burrow_speed(name = "Burrow") = 0;
+
+base integer climb_speed(name = "Climb") = 0;
+
+base integer fly_speed(name = "Fly") = 0;
+
+base integer swim_speed(name = "Swim") = 0;
+
+calc string display_speeds(name = "Display speeds") =
+  joinToString(
+    flatAppend(
+      [
+        [concat(["Speed ", speed, " ft."])],
+        (if burrow_speed > 0 then [concat(["Burrow ", burrow_speed, " ft."])] else []),
+        (if climb_speed > 0 then [concat(["Climb ", climb_speed, " ft."])] else []),
+        (if fly_speed > 0 then [concat(["Fly ", fly_speed, " ft."])] else []),
+        (if swim_speed > 0 then [concat(["Swim ", swim_speed, " ft."])] else []),
+      ],
+    ),
+    separator = "\n",
+  );
+
+base integer strength_modifier(name = "Strength", abbreviation = "STR") = 0;
+
+base integer dexterity_modifier(name = "Dexterity", abbreviation = "DEX") = 0;
+
+base integer constitution_modifier(name = "Constitution", abbreviation = "CON") = 0;
+
+base integer intelligence_modifier(name = "Intelligence", abbreviation = "INT") = 0;
+
+base integer wisdom_modifier(name = "Wisdom", abbreviation = "WIS") = 0;
+
+base integer charisma_modifier(name = "Charisma", abbreviation = "CHA") = 0;
+
+base integer fortitude(name = "Fortitude", abbreviation = "Fort") = 0;
+
+base integer reflex(name = "Reflex", abbreviation = "Ref") = 0;
+
+base integer will(name = "Will", abbreviation = "Will") = 0;
+
+base string skills(name = "Skills") = "";
+
+base string gear(name = "Gear") = "";
+
+base string vulnerabilities(name = "Vulnerabilities") = "";
+
+base string weaknesses(name = "Weaknesses") = "";
+
+calc string effective_weaknesses(name = "Effective weaknesses") =
+  if !isEmpty(weaknesses) then weaknesses else vulnerabilities;
+
+base string immunities(name = "Immunities") = "";
+
+base string resistances(name = "Resistances") = "";
+
+base string senses(name = "Senses") = "";
+
+base string languages(name = "Languages") = "";
+
+base string size(name = "Size") = "medium";
+
+base string type(name = "Type") = "aberration";
+
+base string alignment(name = "Alignment") = "true_neutral";
+
+base resource<monster_trait>[] traits(name = "Traits") = [];
+
+base resource<monster_action>[] actions(name = "Actions") = [];
+
+base resource<monster_action>[] free_actions(name = "Free actions") = [];
+
+base resource<monster_action>[] reactions(name = "Reactions") = [];
+
+base integer focus_points(name = "Focus points") = 0;
+
+base resource<monster_spellcasting_block>[] spellcasting_blocks(name = "Spellcasting blocks") = [];
+
+calc bool in_combat(name = "In combat") = $parent?.in_combat? ?? false;
+
+calc string formatted_type(name = "Formatted type") =
+  enumeratedName(enumerated_type = "monster_types", id = type);
+
+calc string formatted_level(name = "Formatted level") =
+  concat(["Level ", level]);
+
+calc string formatted_xp(name = "Formatted xp") = concat([xp, " XP"]);
+
+calc string type_info(name = "Type info") =
+  concat(
+    flatAppend(
+      [
+        [
+          enumeratedName(enumerated_type = "monster_sizes", id = size),
+          " ",
+          enumeratedName(enumerated_type = "monster_types", id = type),
+        ],
+        (if isEmpty(tag) then [] else [concat([" (", tag, ")"])]),
+        [
+          ", ",
+          enumeratedName(enumerated_type = "monster_alignments", id = alignment),
+        ],
+      ],
+    ),
+  );
+
+calc string hit_points_formatted(name = "Formatted hit points") =
+  if defined(stat = "$parent.max_hp") && defined(stat = "$parent.hp")
+    then concat([$parent.hp, " / ", $parent.max_hp])
+    else concat([hit_points]);
+
+calc string display_strength_with_mod(name = "Display strength with mod") =
+  concat(["STR: ", toSignedString(strength_modifier)]);
+
+calc string display_dexterity_with_mod(name = "Display dexterity with mod") =
+  concat(["DEX: ", toSignedString(dexterity_modifier)]);
+
+calc string display_constitution_with_mod(name = "Display constitution with mod") =
+  concat(["CON: ", toSignedString(constitution_modifier)]);
+
+calc string display_intelligence_with_mod(name = "Display intelligence with mod") =
+  concat(["INT: ", toSignedString(intelligence_modifier)]);
+
+calc string display_wisdom_with_mod(name = "Display wisdom with mod") =
+  concat(["WIS: ", toSignedString(wisdom_modifier)]);
+
+calc string display_charisma_with_mod(name = "Display charisma with mod") =
+  concat(["CHA: ", toSignedString(charisma_modifier)]);
+
+calc string display_fortitude(name = "Display fortitude") =
+  concat(["Fort: ", toSignedString(fortitude)]);
+
+calc string display_reflex(name = "Display reflex") =
+  concat(["Ref: ", toSignedString(reflex)]);
+
+calc string display_will(name = "Display will") =
+  concat(["Will: ", toSignedString(will)]);
+
+

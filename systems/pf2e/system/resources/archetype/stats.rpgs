@@ -1,0 +1,596 @@
+base string name(name = "Name") = "";
+
+base string source(name = "Source") = "";
+
+base string description(name = "Description") = "";
+
+base bool is_class_archetype(name = "Is class archetype") = false;
+
+base string required_class_id(name = "Required class ID") = "";
+
+base resource<feat> dedication_feat(name = "Dedication feat") = null;
+
+base resource<feat>[] feats(name = "Feats") = [];
+
+base resource<progression_grant>[] progression_grants(name = "Progression grants") =
+  [];
+
+base resource<levelled_amount>[] cantrip_quantity_per_level(name = "Cantrip quantity per level") =
+  [];
+
+base resource<spell_capacity_grant>[] spell_capacity_grants(name = "Spell capacity grants") =
+  [];
+
+base resource<prepared_spell_choice>[] prepared_spell_choices_rank_0(name = "Prepared cantrips") =
+  [];
+
+base resource<prepared_spell_choice>[] prepared_spell_choices_rank_1(name = "Prepared rank 1 spells") =
+  [];
+
+base resource<prepared_spell_choice>[] prepared_spell_choices_rank_2(name = "Prepared rank 2 spells") =
+  [];
+
+base resource<prepared_spell_choice>[] prepared_spell_choices_rank_3(name = "Prepared rank 3 spells") =
+  [];
+
+base resource<prepared_spell_choice>[] prepared_spell_choices_rank_4(name = "Prepared rank 4 spells") =
+  [];
+
+base resource<prepared_spell_choice>[] prepared_spell_choices_rank_5(name = "Prepared rank 5 spells") =
+  [];
+
+base resource<prepared_spell_choice>[] prepared_spell_choices_rank_6(name = "Prepared rank 6 spells") =
+  [];
+
+base resource<prepared_spell_choice>[] prepared_spell_choices_rank_7(name = "Prepared rank 7 spells") =
+  [];
+
+base resource<prepared_spell_choice>[] prepared_spell_choices_rank_8(name = "Prepared rank 8 spells") =
+  [];
+
+base resource<prepared_spell_choice>[] prepared_spell_choices_rank_9(name = "Prepared rank 9 spells") =
+  [];
+
+base resource<prepared_spell_choice>[] prepared_spell_choices_rank_10(name = "Prepared rank 10 spells") =
+  [];
+
+calc resource<feat>[] dedication_feat_array(name = "Dedication feat array") =
+  if notNull(dedication_feat) then [dedication_feat] else [];
+
+calc resource<feat>[] sorted_feats(name = "Sorted feats") =
+  sortBy(
+    feats,
+    order = "asc",
+    sort_by_selector = ($sortByValue) => $sortByValue.min_level,
+  );
+
+calc resource<progression_grant>[] progression_grants_for_current_level(name = "Progression grants for current level") =
+  filter(
+    progression_grants,
+    filter = ($filterValue) => ($filterValue.level <= ($character?.level ?? 1)),
+  );
+
+calc resource<feat>[] auto_feats_for_current_level(name = "Auto-granted feats for current level") =
+  if !is_class_archetype
+    then []
+    else filter(feats, filter = ($f) => $f.min_level <= ($character?.level ?? 1));
+
+calc string list_view_description(name = "List view description") = description;
+
+base bool grants_spellcasting(name = "Grants spellcasting") = false;
+
+base string spellcasting_tradition(name = "Spellcasting tradition") = "arcane";
+
+base string spellcasting_ability(name = "Spellcasting ability") = "intelligence";
+
+base string spellcasting_mode(name = "Spellcasting mode") = "prepared";
+
+base string spellcasting_proficiency(name = "Spellcasting proficiency (none, trained, expert, master, legendary)") = "trained";
+
+base integer spell_slots_1(name = "Rank 1 spell slots remaining") = 0;
+
+base integer spell_slots_2(name = "Rank 2 spell slots remaining") = 0;
+
+base integer spell_slots_3(name = "Rank 3 spell slots remaining") = 0;
+
+base integer spell_slots_4(name = "Rank 4 spell slots remaining") = 0;
+
+base integer spell_slots_5(name = "Rank 5 spell slots remaining") = 0;
+
+base integer spell_slots_6(name = "Rank 6 spell slots remaining") = 0;
+
+base integer spell_slots_7(name = "Rank 7 spell slots remaining") = 0;
+
+base integer spell_slots_8(name = "Rank 8 spell slots remaining") = 0;
+
+base integer spell_slots_9(name = "Rank 9 spell slots remaining") = 0;
+
+base integer spell_slots_10(name = "Rank 10 spell slots remaining") = 0;
+
+calc bool has_basic_spellcasting(name = "Has basic spellcasting feat") =
+  !isEmpty(
+    filter(
+      $character?.all_feats ?? [],
+      filter = ($f) => contains(
+        haystack = map(feats, mapper = ($fv) => $fv.id),
+        needle = $f.id,
+      ) && ($f.is_basic_spellcasting_feat ?? false),
+    ),
+  );
+
+calc bool has_expert_spellcasting(name = "Has expert spellcasting feat") =
+  !isEmpty(
+    filter(
+      $character?.all_feats ?? [],
+      filter = ($f) => contains(
+        haystack = map(feats, mapper = ($fv) => $fv.id),
+        needle = $f.id,
+      ) && ($f.is_expert_spellcasting_feat ?? false),
+    ),
+  );
+
+calc bool has_master_spellcasting(name = "Has master spellcasting feat") =
+  !isEmpty(
+    filter(
+      $character?.all_feats ?? [],
+      filter = ($f) => contains(
+        haystack = map(feats, mapper = ($fv) => $fv.id),
+        needle = $f.id,
+      ) && ($f.is_master_spellcasting_feat ?? false),
+    ),
+  );
+
+calc bool has_dedication_feat_selected(name = "Has dedication feat selected") =
+  notNull(dedication_feat)
+    && !isEmpty(
+      filter(
+        $character?.all_feats ?? [],
+        filter = ($f) => $f.id == dedication_feat.id,
+      ),
+    );
+
+calc integer max_spell_slots_1(name = "Max rank 1 spell slots") =
+  if has_basic_spellcasting && ($character?.level ?? 0) >= 4 then 1 else 0;
+
+calc integer max_spell_slots_2(name = "Max rank 2 spell slots") =
+  if has_basic_spellcasting && ($character?.level ?? 0) >= 6 then 1 else 0;
+
+calc integer max_spell_slots_3(name = "Max rank 3 spell slots") =
+  if has_basic_spellcasting && ($character?.level ?? 0) >= 8 then 1 else 0;
+
+calc integer max_spell_slots_4(name = "Max rank 4 spell slots") =
+  if has_expert_spellcasting && ($character?.level ?? 0) >= 12 then 1 else 0;
+
+calc integer max_spell_slots_5(name = "Max rank 5 spell slots") =
+  if has_expert_spellcasting && ($character?.level ?? 0) >= 14 then 1 else 0;
+
+calc integer max_spell_slots_6(name = "Max rank 6 spell slots") =
+  if has_expert_spellcasting && ($character?.level ?? 0) >= 16 then 1 else 0;
+
+calc integer max_spell_slots_7(name = "Max rank 7 spell slots") =
+  if has_master_spellcasting && ($character?.level ?? 0) >= 18 then 1 else 0;
+
+calc integer max_spell_slots_8(name = "Max rank 8 spell slots") =
+  if has_master_spellcasting && ($character?.level ?? 0) >= 20 then 1 else 0;
+
+calc integer max_spell_slots_9(name = "Max rank 9 spell slots") = 0;
+
+calc integer max_spell_slots_10(name = "Max rank 10 spell slots") = 0;
+
+calc resource<spell_capacity_grant>[] active_spell_capacity_grants(name = "Active spell capacity grants") =
+  filter(
+    spell_capacity_grants,
+    filter = ($filterValue) => ($filterValue.level <= ($character?.level ?? 1)),
+  );
+
+calc resource<levelled_amount> cantrip_quantity_lookup(name = "Cantrip quantity lookup row") =
+  findFirst(
+    sortBy(
+      cantrip_quantity_per_level,
+      order = "desc",
+      sort_by_selector = ($sortByValue) => $sortByValue.level,
+    ),
+    filter = ($findFirstValue) => ($findFirstValue.level <= ($character?.level ?? 1)),
+  );
+
+calc integer max_archetype_cantrip_quantity_base(name = "Max archetype cantrip quantity (base)") =
+  cantrip_quantity_lookup?.amount ?? 0;
+
+calc integer max_archetype_cantrip_quantity_grants(name = "Max archetype cantrip quantity (grants)") =
+  add(
+    map(
+      filter(
+        active_spell_capacity_grants,
+        filter = ($filterValue) => ($filterValue.capacity_type == "cantrip"),
+      ),
+      mapper = ($mapValue) => $mapValue.current_quantity,
+    ),
+  );
+
+calc integer max_archetype_cantrip_quantity(name = "Max archetype cantrip quantity") =
+  max_archetype_cantrip_quantity_base + max_archetype_cantrip_quantity_grants;
+
+calc integer highest_base_spell_slot_rank(name = "Highest base spell slot rank") =
+  when {
+    max_spell_slots_9 > 0 -> 9,
+    max_spell_slots_8 > 0 -> 8,
+    max_spell_slots_7 > 0 -> 7,
+    max_spell_slots_6 > 0 -> 6,
+    max_spell_slots_5 > 0 -> 5,
+    max_spell_slots_4 > 0 -> 4,
+    max_spell_slots_3 > 0 -> 3,
+    max_spell_slots_2 > 0 -> 2,
+    max_spell_slots_1 > 0 -> 1,
+    else -> 0,
+  };
+
+calc integer max_spell_slots_1_grants(name = "Max rank 1 spell slots (grants)") =
+  add(
+    map(
+      filter(
+        active_spell_capacity_grants,
+        filter = ($g) => $g.capacity_type == "slot"
+          && (
+              ($g.target_rank_mode == "specific" && $g.target_rank == 1)
+                || ($g.target_rank_mode == "highest_available" && highest_base_spell_slot_rank == 1)
+            ),
+      ),
+      mapper = ($g) => $g.current_quantity,
+    ),
+  );
+
+calc integer max_spell_slots_2_grants(name = "Max rank 2 spell slots (grants)") =
+  add(
+    map(
+      filter(
+        active_spell_capacity_grants,
+        filter = ($g) => $g.capacity_type == "slot"
+          && (
+              ($g.target_rank_mode == "specific" && $g.target_rank == 2)
+                || ($g.target_rank_mode == "highest_available" && highest_base_spell_slot_rank == 2)
+            ),
+      ),
+      mapper = ($g) => $g.current_quantity,
+    ),
+  );
+
+calc integer max_spell_slots_3_grants(name = "Max rank 3 spell slots (grants)") =
+  add(
+    map(
+      filter(
+        active_spell_capacity_grants,
+        filter = ($g) => $g.capacity_type == "slot"
+          && (
+              ($g.target_rank_mode == "specific" && $g.target_rank == 3)
+                || ($g.target_rank_mode == "highest_available" && highest_base_spell_slot_rank == 3)
+            ),
+      ),
+      mapper = ($g) => $g.current_quantity,
+    ),
+  );
+
+calc integer max_spell_slots_4_grants(name = "Max rank 4 spell slots (grants)") =
+  add(
+    map(
+      filter(
+        active_spell_capacity_grants,
+        filter = ($g) => $g.capacity_type == "slot"
+          && (
+              ($g.target_rank_mode == "specific" && $g.target_rank == 4)
+                || ($g.target_rank_mode == "highest_available" && highest_base_spell_slot_rank == 4)
+            ),
+      ),
+      mapper = ($g) => $g.current_quantity,
+    ),
+  );
+
+calc integer max_spell_slots_5_grants(name = "Max rank 5 spell slots (grants)") =
+  add(
+    map(
+      filter(
+        active_spell_capacity_grants,
+        filter = ($g) => $g.capacity_type == "slot"
+          && (
+              ($g.target_rank_mode == "specific" && $g.target_rank == 5)
+                || ($g.target_rank_mode == "highest_available" && highest_base_spell_slot_rank == 5)
+            ),
+      ),
+      mapper = ($g) => $g.current_quantity,
+    ),
+  );
+
+calc integer max_spell_slots_6_grants(name = "Max rank 6 spell slots (grants)") =
+  add(
+    map(
+      filter(
+        active_spell_capacity_grants,
+        filter = ($g) => $g.capacity_type == "slot"
+          && (
+              ($g.target_rank_mode == "specific" && $g.target_rank == 6)
+                || ($g.target_rank_mode == "highest_available" && highest_base_spell_slot_rank == 6)
+            ),
+      ),
+      mapper = ($g) => $g.current_quantity,
+    ),
+  );
+
+calc integer max_spell_slots_7_grants(name = "Max rank 7 spell slots (grants)") =
+  add(
+    map(
+      filter(
+        active_spell_capacity_grants,
+        filter = ($g) => $g.capacity_type == "slot"
+          && (
+              ($g.target_rank_mode == "specific" && $g.target_rank == 7)
+                || ($g.target_rank_mode == "highest_available" && highest_base_spell_slot_rank == 7)
+            ),
+      ),
+      mapper = ($g) => $g.current_quantity,
+    ),
+  );
+
+calc integer max_spell_slots_8_grants(name = "Max rank 8 spell slots (grants)") =
+  add(
+    map(
+      filter(
+        active_spell_capacity_grants,
+        filter = ($g) => $g.capacity_type == "slot"
+          && (
+              ($g.target_rank_mode == "specific" && $g.target_rank == 8)
+                || ($g.target_rank_mode == "highest_available" && highest_base_spell_slot_rank == 8)
+            ),
+      ),
+      mapper = ($g) => $g.current_quantity,
+    ),
+  );
+
+calc integer max_spell_slots_9_grants(name = "Max rank 9 spell slots (grants)") =
+  add(
+    map(
+      filter(
+        active_spell_capacity_grants,
+        filter = ($g) => $g.capacity_type == "slot"
+          && (
+              ($g.target_rank_mode == "specific" && $g.target_rank == 9)
+                || ($g.target_rank_mode == "highest_available" && highest_base_spell_slot_rank == 9)
+            ),
+      ),
+      mapper = ($g) => $g.current_quantity,
+    ),
+  );
+
+calc integer max_spell_slots_10_grants(name = "Max rank 10 spell slots (grants)") =
+  add(
+    map(
+      filter(
+        active_spell_capacity_grants,
+        filter = ($g) => $g.capacity_type == "slot"
+          && ($g.target_rank_mode == "specific" && $g.target_rank == 10),
+      ),
+      mapper = ($g) => $g.current_quantity,
+    ),
+  );
+
+calc integer max_spell_slots_1_total(name = "Max rank 1 spell slots total") =
+  max_spell_slots_1 + max_spell_slots_1_grants;
+
+calc integer max_spell_slots_2_total(name = "Max rank 2 spell slots total") =
+  max_spell_slots_2 + max_spell_slots_2_grants;
+
+calc integer max_spell_slots_3_total(name = "Max rank 3 spell slots total") =
+  max_spell_slots_3 + max_spell_slots_3_grants;
+
+calc integer max_spell_slots_4_total(name = "Max rank 4 spell slots total") =
+  max_spell_slots_4 + max_spell_slots_4_grants;
+
+calc integer max_spell_slots_5_total(name = "Max rank 5 spell slots total") =
+  max_spell_slots_5 + max_spell_slots_5_grants;
+
+calc integer max_spell_slots_6_total(name = "Max rank 6 spell slots total") =
+  max_spell_slots_6 + max_spell_slots_6_grants;
+
+calc integer max_spell_slots_7_total(name = "Max rank 7 spell slots total") =
+  max_spell_slots_7 + max_spell_slots_7_grants;
+
+calc integer max_spell_slots_8_total(name = "Max rank 8 spell slots total") =
+  max_spell_slots_8 + max_spell_slots_8_grants;
+
+calc integer max_spell_slots_9_total(name = "Max rank 9 spell slots total") =
+  max_spell_slots_9 + max_spell_slots_9_grants;
+
+calc integer max_spell_slots_10_total(name = "Max rank 10 spell slots total") =
+  max_spell_slots_10 + max_spell_slots_10_grants;
+
+calc resource<feat> selected_spellcasting_tradition_feat(name = "Selected spellcasting tradition feat") =
+  findFirst(
+    $character?.all_feats ?? [],
+    filter = ($f) => contains(
+      haystack = map(feats, mapper = ($fv) => $fv.id),
+      needle = $f.id,
+    ) && ($f.is_selected_selectable_feature ?? false) && !isEmpty($f.spellcasting_tradition ?? ""),
+  );
+
+calc string actual_spellcasting_tradition(name = "Actual spellcasting tradition") =
+  selected_spellcasting_tradition_feat?.spellcasting_tradition
+    ?? (if !isEmpty(spellcasting_tradition) then spellcasting_tradition else "arcane");
+
+calc string actual_spellcasting_ability(name = "Actual spellcasting ability") =
+  if !isEmpty(spellcasting_ability) then spellcasting_ability else "intelligence";
+
+calc string actual_spellcasting_mode(name = "Actual spellcasting mode") =
+  if !isEmpty(spellcasting_mode) then spellcasting_mode else "prepared";
+
+calc string actual_spellcasting_proficiency(name = "Actual spellcasting proficiency") =
+  when {
+    has_master_spellcasting -> "master",
+    has_expert_spellcasting -> "expert",
+    has_basic_spellcasting || has_dedication_feat_selected -> spellcasting_proficiency,
+    else -> "none",
+  };
+
+calc integer spellcasting_proficiency_bonus(name = "Spellcasting proficiency bonus") =
+  when {
+    actual_spellcasting_proficiency == "trained" -> ($character?.level_bonus ?? 0) + 2,
+    actual_spellcasting_proficiency == "expert" -> ($character?.level_bonus ?? 0) + 4,
+    actual_spellcasting_proficiency == "master" -> ($character?.level_bonus ?? 0) + 6,
+    actual_spellcasting_proficiency == "legendary" -> ($character?.level_bonus ?? 0) + 8,
+    else -> 0,
+  };
+
+calc integer spellcasting_modifier(name = "Spellcasting modifier") =
+  when {
+    actual_spellcasting_ability == "strength" -> $character?.strength_modifier ?? 0,
+    actual_spellcasting_ability == "dexterity" -> $character?.dexterity_modifier ?? 0,
+    actual_spellcasting_ability == "constitution" -> $character?.constitution_modifier ?? 0,
+    actual_spellcasting_ability == "wisdom" -> $character?.wisdom_modifier ?? 0,
+    actual_spellcasting_ability == "charisma" -> $character?.charisma_modifier ?? 0,
+    actual_spellcasting_ability == "intelligence" -> $character?.intelligence_modifier ?? 0,
+    else -> 0,
+  };
+
+calc integer spell_attack_bonus(name = "Spell attack bonus") =
+  spellcasting_modifier + spellcasting_proficiency_bonus;
+
+calc integer spell_save_dc(name = "Spell save DC") =
+  10 + spellcasting_modifier + spellcasting_proficiency_bonus;
+
+calc string spellcasting_entry_name(name = "Spellcasting entry name") =
+  when {
+    actual_spellcasting_ability == "strength" -> concat([name, " (STR)"]),
+    actual_spellcasting_ability == "dexterity" -> concat([name, " (DEX)"]),
+    actual_spellcasting_ability == "constitution" -> concat([name, " (CON)"]),
+    actual_spellcasting_ability == "intelligence" -> concat([name, " (INT)"]),
+    actual_spellcasting_ability == "wisdom" -> concat([name, " (WIS)"]),
+    actual_spellcasting_ability == "charisma" -> concat([name, " (CHA)"]),
+    else -> name,
+  };
+
+calc resource<prepared_spell_choice>[] all_prepared_spell_choices(name = "All prepared spell choices") =
+  flatAppend(
+    [
+      prepared_spell_choices_rank_0,
+      prepared_spell_choices_rank_1,
+      prepared_spell_choices_rank_2,
+      prepared_spell_choices_rank_3,
+      prepared_spell_choices_rank_4,
+      prepared_spell_choices_rank_5,
+      prepared_spell_choices_rank_6,
+      prepared_spell_choices_rank_7,
+      prepared_spell_choices_rank_8,
+      prepared_spell_choices_rank_9,
+      prepared_spell_choices_rank_10,
+    ],
+  );
+
+calc integer prepared_cantrip_quantity(name = "Prepared cantrip quantity") =
+  add(
+    map(
+      prepared_spell_choices_rank_0,
+      mapper = ($mapValue) => $mapValue.effective_slot_quantity,
+    ),
+  );
+
+calc integer prepared_rank_1_quantity(name = "Prepared rank 1 quantity") =
+  add(map(prepared_spell_choices_rank_1, mapper = ($mapValue) => $mapValue.effective_slot_quantity));
+
+calc integer prepared_rank_2_quantity(name = "Prepared rank 2 quantity") =
+  add(map(prepared_spell_choices_rank_2, mapper = ($mapValue) => $mapValue.effective_slot_quantity));
+
+calc integer prepared_rank_3_quantity(name = "Prepared rank 3 quantity") =
+  add(map(prepared_spell_choices_rank_3, mapper = ($mapValue) => $mapValue.effective_slot_quantity));
+
+calc integer prepared_rank_4_quantity(name = "Prepared rank 4 quantity") =
+  add(map(prepared_spell_choices_rank_4, mapper = ($mapValue) => $mapValue.effective_slot_quantity));
+
+calc integer prepared_rank_5_quantity(name = "Prepared rank 5 quantity") =
+  add(map(prepared_spell_choices_rank_5, mapper = ($mapValue) => $mapValue.effective_slot_quantity));
+
+calc integer prepared_rank_6_quantity(name = "Prepared rank 6 quantity") =
+  add(map(prepared_spell_choices_rank_6, mapper = ($mapValue) => $mapValue.effective_slot_quantity));
+
+calc integer prepared_rank_7_quantity(name = "Prepared rank 7 quantity") =
+  add(map(prepared_spell_choices_rank_7, mapper = ($mapValue) => $mapValue.effective_slot_quantity));
+
+calc integer prepared_rank_8_quantity(name = "Prepared rank 8 quantity") =
+  add(map(prepared_spell_choices_rank_8, mapper = ($mapValue) => $mapValue.effective_slot_quantity));
+
+calc integer prepared_rank_9_quantity(name = "Prepared rank 9 quantity") =
+  add(map(prepared_spell_choices_rank_9, mapper = ($mapValue) => $mapValue.effective_slot_quantity));
+
+calc integer prepared_rank_10_quantity(name = "Prepared rank 10 quantity") =
+  add(map(prepared_spell_choices_rank_10, mapper = ($mapValue) => $mapValue.effective_slot_quantity));
+
+calc integer prepared_cantrip_overspent(name = "Prepared cantrip overspent amount") =
+  max([0, prepared_cantrip_quantity - max_archetype_cantrip_quantity]);
+
+calc integer prepared_rank_1_overspent(name = "Prepared rank 1 overspent amount") =
+  max([0, prepared_rank_1_quantity - max_spell_slots_1_total]);
+
+calc integer prepared_rank_2_overspent(name = "Prepared rank 2 overspent amount") =
+  max([0, prepared_rank_2_quantity - max_spell_slots_2_total]);
+
+calc integer prepared_rank_3_overspent(name = "Prepared rank 3 overspent amount") =
+  max([0, prepared_rank_3_quantity - max_spell_slots_3_total]);
+
+calc integer prepared_rank_4_overspent(name = "Prepared rank 4 overspent amount") =
+  max([0, prepared_rank_4_quantity - max_spell_slots_4_total]);
+
+calc integer prepared_rank_5_overspent(name = "Prepared rank 5 overspent amount") =
+  max([0, prepared_rank_5_quantity - max_spell_slots_5_total]);
+
+calc integer prepared_rank_6_overspent(name = "Prepared rank 6 overspent amount") =
+  max([0, prepared_rank_6_quantity - max_spell_slots_6_total]);
+
+calc integer prepared_rank_7_overspent(name = "Prepared rank 7 overspent amount") =
+  max([0, prepared_rank_7_quantity - max_spell_slots_7_total]);
+
+calc integer prepared_rank_8_overspent(name = "Prepared rank 8 overspent amount") =
+  max([0, prepared_rank_8_quantity - max_spell_slots_8_total]);
+
+calc integer prepared_rank_9_overspent(name = "Prepared rank 9 overspent amount") =
+  max([0, prepared_rank_9_quantity - max_spell_slots_9_total]);
+
+calc integer prepared_rank_10_overspent(name = "Prepared rank 10 overspent amount") =
+  max([0, prepared_rank_10_quantity - max_spell_slots_10_total]);
+
+calc string prepared_capacity_warning_text(name = "Prepared capacity warning text") =
+  joinToString(
+    flatAppend(
+      [
+        (if actual_spellcasting_mode == "prepared" && prepared_cantrip_overspent > 0
+          then [concat(["Prepared cantrips exceed archetype cap by ", prepared_cantrip_overspent, "."])]
+          else []),
+        (if actual_spellcasting_mode == "prepared" && prepared_rank_1_overspent > 0
+          then [concat(["Prepared rank 1 spells exceed slots by ", prepared_rank_1_overspent, "."])]
+          else []),
+        (if actual_spellcasting_mode == "prepared" && prepared_rank_2_overspent > 0
+          then [concat(["Prepared rank 2 spells exceed slots by ", prepared_rank_2_overspent, "."])]
+          else []),
+        (if actual_spellcasting_mode == "prepared" && prepared_rank_3_overspent > 0
+          then [concat(["Prepared rank 3 spells exceed slots by ", prepared_rank_3_overspent, "."])]
+          else []),
+        (if actual_spellcasting_mode == "prepared" && prepared_rank_4_overspent > 0
+          then [concat(["Prepared rank 4 spells exceed slots by ", prepared_rank_4_overspent, "."])]
+          else []),
+        (if actual_spellcasting_mode == "prepared" && prepared_rank_5_overspent > 0
+          then [concat(["Prepared rank 5 spells exceed slots by ", prepared_rank_5_overspent, "."])]
+          else []),
+        (if actual_spellcasting_mode == "prepared" && prepared_rank_6_overspent > 0
+          then [concat(["Prepared rank 6 spells exceed slots by ", prepared_rank_6_overspent, "."])]
+          else []),
+        (if actual_spellcasting_mode == "prepared" && prepared_rank_7_overspent > 0
+          then [concat(["Prepared rank 7 spells exceed slots by ", prepared_rank_7_overspent, "."])]
+          else []),
+        (if actual_spellcasting_mode == "prepared" && prepared_rank_8_overspent > 0
+          then [concat(["Prepared rank 8 spells exceed slots by ", prepared_rank_8_overspent, "."])]
+          else []),
+        (if actual_spellcasting_mode == "prepared" && prepared_rank_9_overspent > 0
+          then [concat(["Prepared rank 9 spells exceed slots by ", prepared_rank_9_overspent, "."])]
+          else []),
+        (if actual_spellcasting_mode == "prepared" && prepared_rank_10_overspent > 0
+          then [concat(["Prepared rank 10 spells exceed slots by ", prepared_rank_10_overspent, "."])]
+          else []),
+      ],
+    ),
+    separator = "\n",
+  );

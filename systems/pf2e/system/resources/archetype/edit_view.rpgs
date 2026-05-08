@@ -1,0 +1,256 @@
+import "../../macros/system_common.rpgs";
+
+view archetype_edit() =
+  list(
+    id = "archetype_edit",
+    padding = 16,
+    subviews = [
+      text(
+        id = "archetype_edit_name",
+        edit_stat = "name",
+        style = "text",
+        label = "Name",
+        max_length = 140,
+        validation_message = if isEmpty($view.archetype_edit_name)
+        then "Please add a name to your archetype"
+        else null,
+      ),
+      composite(
+        id = "archetype_edit_source",
+        margin_top = 4,
+        subviews = [
+          text(id = "archetype_edit_source_label", text = "Source: ", style = "text"),
+          select(
+            id = "archetype_edit_source_select",
+            options = "source",
+            options_display_stat = "abbreviation",
+            stat = "source",
+          ),
+        ],
+      ),
+      text(
+        id = "archetype_edit_description",
+        edit_stat = "description",
+        style = "text",
+        label = "Description",
+        margin_top = 4,
+      ),
+      checkbox(
+        id = "archetype_edit_is_class_archetype",
+        stat = "is_class_archetype",
+        label = "Is class archetype",
+        label_alignment = "right",
+        margin_top = 4,
+        style = "checkbox",
+      ),
+      composite(
+        id = "archetype_edit_required_class_id",
+        margin_top = 4,
+        subviews = [
+          text(
+            id = "archetype_edit_required_class_id_label",
+            text = "Required class: ",
+            style = "text",
+          ),
+          select(
+            id = "archetype_edit_required_class_id_select",
+            options = "class",
+            options_display_stat = "name",
+            stat = "required_class_id",
+          ),
+        ],
+        is_visible = $view.archetype_edit_is_class_archetype,
+      ),
+      composite(
+        id = "archetype_edit_dedication_feat_composite",
+        margin_top = 8,
+        subviews = [
+          text(
+            id = "archetype_edit_dedication_feat_label",
+            text = "Dedication feat: ",
+            style = "text",
+          ),
+          selectResources(
+            id = "archetype_edit_dedication_feat_select",
+            stat = "dedication_feat",
+            resource_id = "feat",
+          ),
+        ],
+      ),
+      resourceArray(
+        id = "archetype_edit_feats",
+        resource_id = "feat",
+        stat = "feats",
+        view_type = "edit",
+        left_view = text(
+          id = "archetype_edit_feats_label",
+          text = "Archetype feats: ",
+          style = "text",
+        ),
+        margin_top = 8,
+        pop_up_type = "bottomSheet",
+        pop_up_button_text = name,
+      ),
+      checkbox(
+        id = "archetype_edit_grants_spellcasting",
+        stat = "grants_spellcasting",
+        label = "Grants spellcasting",
+        label_alignment = "right",
+        margin_top = 8,
+        style = "checkbox",
+      ),
+      list(
+        id = "archetype_edit_spellcasting_details",
+        margin_top = 4,
+        is_visible = $view.archetype_edit_grants_spellcasting,
+        subviews = [
+          composite(
+            id = "archetype_edit_spellcasting_details_composite",
+            subviews = [
+              select(
+                id = "archetype_edit_spellcasting_tradition",
+                stat = "spellcasting_tradition",
+                options = "spell_traditions",
+                margin_right = 4,
+              ),
+              select(
+                id = "archetype_edit_spellcasting_mode",
+                stat = "spellcasting_mode",
+                options = "spellcasting_modes",
+                margin_right = 4,
+              ),
+              select(
+                id = "archetype_edit_spellcasting_proficiency",
+                stat = "spellcasting_proficiency",
+                options = "skill_proficiency_types",
+              ),
+            ],
+          ),
+          composite(
+            id = "archetype_edit_spellcasting_details_ability_composite",
+            margin_top = 4,
+            subviews = [
+              text(
+                id = "archetype_edit_spellcasting_ability_label",
+                text = "Ability: ",
+                style = "text"
+              ),
+              select(
+                id = "archetype_edit_spellcasting_ability",
+                stat = "spellcasting_ability",
+                options = "ability",
+              ),
+            ]
+          ),
+          resourceArray(
+            id = "archetype_edit_cantrip_quantity_per_level",
+            resource_id = "levelled_amount",
+            stat = "cantrip_quantity_per_level",
+            view_type = "edit",
+            left_view = text(
+              id = "archetype_edit_cantrip_quantity_per_level_label",
+              text = "Cantrip quantity by level:",
+              style = "text",
+              bold = true,
+            ),
+          ),
+          resourceArray(
+            id = "archetype_edit_spell_capacity_grants",
+            resource_id = "spell_capacity_grant",
+            stat = "spell_capacity_grants",
+            view_type = "edit",
+            left_view = text(
+              id = "archetype_edit_spell_capacity_grants_label",
+              text = "Capacity grants:",
+              style = "text",
+              bold = true,
+            ),
+          ),
+          text(
+            id = "archetype_edit_prepared_warning",
+            text = prepared_capacity_warning_text,
+            style = "caption",
+            color = "accent",
+            is_visible = !isEmpty(prepared_capacity_warning_text)
+            && $view.archetype_edit_spellcasting_mode == "prepared",
+          ),
+          preparedCantripChoiceArray(
+            prefix = "archetype_edit",
+            stat_id = "prepared_spell_choices_rank_0",
+            is_visible = $view.archetype_edit_spellcasting_mode == "prepared"
+            && (max_archetype_cantrip_quantity > 0 || !isEmpty(prepared_spell_choices_rank_0)),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "archetype_edit",
+            rank = "1",
+            stat_id = "prepared_spell_choices_rank_1",
+            is_visible = $view.archetype_edit_spellcasting_mode == "prepared"
+            && (max_spell_slots_1_total > 0 || !isEmpty(prepared_spell_choices_rank_1)),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "archetype_edit",
+            rank = "2",
+            stat_id = "prepared_spell_choices_rank_2",
+            is_visible = $view.archetype_edit_spellcasting_mode == "prepared"
+            && (max_spell_slots_2_total > 0 || !isEmpty(prepared_spell_choices_rank_2)),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "archetype_edit",
+            rank = "3",
+            stat_id = "prepared_spell_choices_rank_3",
+            is_visible = $view.archetype_edit_spellcasting_mode == "prepared"
+            && (max_spell_slots_3_total > 0 || !isEmpty(prepared_spell_choices_rank_3)),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "archetype_edit",
+            rank = "4",
+            stat_id = "prepared_spell_choices_rank_4",
+            is_visible = $view.archetype_edit_spellcasting_mode == "prepared"
+            && (max_spell_slots_4_total > 0 || !isEmpty(prepared_spell_choices_rank_4)),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "archetype_edit",
+            rank = "5",
+            stat_id = "prepared_spell_choices_rank_5",
+            is_visible = $view.archetype_edit_spellcasting_mode == "prepared"
+            && (max_spell_slots_5_total > 0 || !isEmpty(prepared_spell_choices_rank_5)),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "archetype_edit",
+            rank = "6",
+            stat_id = "prepared_spell_choices_rank_6",
+            is_visible = $view.archetype_edit_spellcasting_mode == "prepared"
+            && (max_spell_slots_6_total > 0 || !isEmpty(prepared_spell_choices_rank_6)),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "archetype_edit",
+            rank = "7",
+            stat_id = "prepared_spell_choices_rank_7",
+            is_visible = $view.archetype_edit_spellcasting_mode == "prepared"
+            && (max_spell_slots_7_total > 0 || !isEmpty(prepared_spell_choices_rank_7)),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "archetype_edit",
+            rank = "8",
+            stat_id = "prepared_spell_choices_rank_8",
+            is_visible = $view.archetype_edit_spellcasting_mode == "prepared"
+            && (max_spell_slots_8_total > 0 || !isEmpty(prepared_spell_choices_rank_8)),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "archetype_edit",
+            rank = "9",
+            stat_id = "prepared_spell_choices_rank_9",
+            is_visible = $view.archetype_edit_spellcasting_mode == "prepared"
+            && (max_spell_slots_9_total > 0 || !isEmpty(prepared_spell_choices_rank_9)),
+          ),
+          preparedSpellChoiceArrayByRank(
+            prefix = "archetype_edit",
+            rank = "10",
+            stat_id = "prepared_spell_choices_rank_10",
+            is_visible = $view.archetype_edit_spellcasting_mode == "prepared"
+            && (max_spell_slots_10_total > 0 || !isEmpty(prepared_spell_choices_rank_10)),
+          ),
+        ],
+      ),
+    ],
+  );

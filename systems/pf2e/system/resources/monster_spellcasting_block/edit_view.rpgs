@@ -1,0 +1,77 @@
+view monster_spellcasting_block_edit() =
+  list(
+    id = "monster_spellcasting_block_edit",
+    padding = 8,
+    subviews = [
+      text(
+        id = "monster_spellcasting_block_edit_name",
+        edit_stat = "block_name",
+        style = "text",
+        label = "Block name (optional)",
+        max_length = 80,
+      ),
+      composite(
+        id = "monster_spellcasting_block_edit_tradition_type",
+        margin_top = 4,
+        subviews = [
+          select(
+            id = "monster_spellcasting_block_edit_tradition",
+            stat = "tradition",
+            options = "spell_traditions",
+          ),
+          select(
+            id = "monster_spellcasting_block_edit_type",
+            stat = "spellcasting_type",
+            options = "spellcasting_modes",
+          ),
+        ],
+      ),
+      composite(
+        id = "monster_spellcasting_block_edit_dc_attack",
+        margin_top = 4,
+        subviews = [
+          text(
+            id = "monster_spellcasting_block_edit_dc_label",
+            text = "DC: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "monster_spellcasting_block_edit_dc",
+            edit_stat = "spell_dc",
+            style = "text",
+            max_length = 2,
+            signed = false,
+            margin_right = 12,
+          ),
+          text(
+            id = "monster_spellcasting_block_edit_attack_label",
+            text = "Attack: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "monster_spellcasting_block_edit_attack",
+            edit_stat = "spell_attack_bonus",
+            style = "text",
+            max_length = 3,
+            signed = true,
+          ),
+        ],
+      ),
+      resourceArray(
+        id = "monster_spellcasting_block_edit_spell_levels",
+        stat = "spell_levels",
+        resource_id = "levelled_spell",
+        view_type = "edit",
+        pop_up_type = "bottomSheet",
+        pop_up_button_text = description,
+        left_view = text(
+          id = "monster_spellcasting_block_edit_spell_levels_label",
+          text = "Spell levels: ",
+          style = "text",
+          bold = true,
+        ),
+      ),
+    ],
+  );

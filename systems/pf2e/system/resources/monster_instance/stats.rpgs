@@ -1,0 +1,82 @@
+base string name(name = "Name") = "";
+
+base integer armor_class(name = "Armor Class", abbreviation = "AC") = 10;
+
+base integer current_hp(name = "Current HP", abbreviation = "HP") = 1;
+
+base integer max_hp(name = "Max HP", abbreviation = "Max HP") = 1;
+
+calc string name_color(name = "Name color") =
+  if current_hp <= 0 then "#f44336" else "text";
+
+base integer tag_number(name = "Tag number") = 0;
+
+calc photo photo(name = "Photo") = $resource.photo;
+
+calc resource<monster_instance>[] all_monster_instance_combatants(name = "Monster instance combatants") =
+  filter(
+    filter(
+      $combatants? ?? [], filter = ($combatant) => defined(stat = "$combatant.tag_number")
+    ),
+    filter = ($combatant) => $combatant.$resource.name == $resource.name
+  );
+
+calc bool in_combat(name = "In combat") = defined(stat = "$combatants?");
+
+base integer actions_remaining(name = "Actions Remaining") = 3;
+
+base integer reaction_available(name = "Reaction Available") = 1;
+
+calc integer max_actions_per_turn(name = "Max actions per turn") =
+  $resource.max_actions_per_turn ?? 3;
+
+calc integer max_reactions_per_round(name = "Max reactions per round") =
+  $resource.max_reactions_per_round ?? 1;
+
+calc integer tag_order(name = "Tag order") =
+  length(
+    filter(
+      all_monster_instance_combatants, filter = ($combatant) => $combatant.tag_number < tag_number
+    )
+  ) + 1;
+
+calc integer strength_score(name = "Strength", abbreviation = "STR") = $resource.strength_score;
+
+calc integer dexterity_score(name = "Dexterity", abbreviation = "DEX") = $resource.dexterity_score;
+
+calc integer constitution_score(name = "Constitution", abbreviation = "CON") = $resource.constitution_score;
+
+calc integer intelligence_score(name = "Intelligence", abbreviation = "INT") = $resource.intelligence_score;
+
+calc integer wisdom_score(name = "Wisdom", abbreviation = "WIS") = $resource.wisdom_score;
+
+calc integer charisma_score(name = "Charisma", abbreviation = "CHA") = $resource.charisma_score;
+
+calc integer fortitude(name = "Fortitude", abbreviation = "Fort") = $resource.fortitude;
+
+calc integer reflex(name = "Reflex", abbreviation = "Ref") = $resource.reflex;
+
+calc integer will(name = "Will", abbreviation = "Will") = $resource.will;
+
+calc integer initiative(name = "Initiative", abbreviation = "Ini.") = $resource.initiative;
+
+calc integer perception(name = "Perception") = $resource.perception;
+
+calc integer level(name = "Level") = $resource.level;
+
+calc integer speed(name = "Speed") = $resource.speed;
+
+calc integer burrow_speed(name = "Burrow") = $resource.burrow_speed;
+
+calc integer climb_speed(name = "Climb") = $resource.climb_speed;
+
+calc integer fly_speed(name = "Fly") = $resource.fly_speed;
+
+calc integer swim_speed(name = "Swim") = $resource.swim_speed;
+
+calc integer xp(name = "Experience") = $resource.xp;
+
+calc string effective_weaknesses(name = "Effective weaknesses") =
+  $resource.effective_weaknesses;
+
+base string[] next_turn_event_name(name = "Next turn event") = ["turnAdvanced"];

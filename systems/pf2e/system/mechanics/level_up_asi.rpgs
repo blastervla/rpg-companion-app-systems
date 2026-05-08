@@ -1,0 +1,39 @@
+import "../macros/system_common.rpgs";
+
+mechanic level_up_asi(event_names = "level_up_asi") =
+  when {
+    is_temp_asi_selection_valid -> sequence(
+      effects = [
+        forEach(
+          components = filter(
+            [
+              temp_asi_selection_1,
+              temp_asi_selection_2,
+              temp_asi_selection_3,
+              temp_asi_selection_4,
+            ],
+            filter = ($filterValue) => !isEmpty($filterValue),
+          ),
+          apply = addToStat(
+            meta_stat = concat([$forEachValue, "_score"]),
+            value = if metaStat(meta_stat = concat([$forEachValue, "_score"])) >= 18 then 1 else 2,
+            aggregation_type = "set",
+          ),
+        ),
+        setStat(stat = "temp_asi_selection_1", new_value = null, aggregation_type = "set"),
+        setStat(stat = "temp_asi_selection_2", new_value = null, aggregation_type = "set"),
+        setStat(stat = "temp_asi_selection_3", new_value = null, aggregation_type = "set"),
+        setStat(stat = "temp_asi_selection_4", new_value = null, aggregation_type = "set"),
+        addToStat(
+          stat = "spent_ability_boost_grants_level_up",
+          value = asi_selection_count_required,
+          aggregation_type = "set",
+        ),
+      ],
+    ),
+    else -> showAlertTextPopUp(
+      pop_up_title = "Ability boosts",
+      text_id = "level_up_asi_error_text",
+      message = temp_asi_validation_message,
+    ),
+  };

@@ -1,0 +1,189 @@
+mechanic on_daily_preparations(event_names = "daily_preparations") =
+  sequence(
+    effects = [
+      setStat(stat = "current_hp", new_value = max_hp, aggregation_type = "set"),
+      setStat(
+        stat = "focus_points",
+        new_value = effective_max_focus_points,
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "actions_remaining",
+        new_value = 3,
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "reaction_available",
+        new_value = 1,
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "hero_points",
+        new_value = max([1, hero_points]),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_1",
+        new_value = (primary_class_progression?.max_class_spell_slots_1 ?? 0)
+          + (max_spell_slots_1_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_2",
+        new_value = (primary_class_progression?.max_class_spell_slots_2 ?? 0)
+          + (max_spell_slots_2_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_3",
+        new_value = (primary_class_progression?.max_class_spell_slots_3 ?? 0)
+          + (max_spell_slots_3_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_4",
+        new_value = (primary_class_progression?.max_class_spell_slots_4 ?? 0)
+          + (max_spell_slots_4_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_5",
+        new_value = (primary_class_progression?.max_class_spell_slots_5 ?? 0)
+          + (max_spell_slots_5_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_6",
+        new_value = (primary_class_progression?.max_class_spell_slots_6 ?? 0)
+          + (max_spell_slots_6_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_7",
+        new_value = (primary_class_progression?.max_class_spell_slots_7 ?? 0)
+          + (max_spell_slots_7_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_8",
+        new_value = (primary_class_progression?.max_class_spell_slots_8 ?? 0)
+          + (max_spell_slots_8_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_9",
+        new_value = (primary_class_progression?.max_class_spell_slots_9 ?? 0)
+          + (max_spell_slots_9_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "spell_slots_10",
+        new_value = (primary_class_progression?.max_class_spell_slots_10 ?? 0)
+          + (max_spell_slots_10_bonus ?? 0),
+        aggregation_type = "set",
+      ),
+      forEach(
+        components = classes,
+        for_each_value_key = "$class_progression",
+        apply = fireEvent(
+          event_names = [
+            eventName(
+              event_name = "resource_daily_preparations",
+              for_resource = $class_progression,
+            ),
+          ],
+        ),
+      ),
+      forEach(
+        components = all_selected_archetypes,
+        for_each_value_key = "$archetype",
+        apply = fireEvent(
+          event_names = [
+            eventName(
+              event_name = "resource_daily_preparations",
+              for_resource = $archetype,
+            ),
+          ],
+        ),
+      ),
+      forEach(
+        components = companions,
+        for_each_value_key = "$companion",
+        apply = forEach(
+          components = ($companion.monster?.spellcasting_blocks ?? []),
+          for_each_value_key = "$block",
+          apply = forEach(
+            components = ($block.spell_levels ?? []),
+            for_each_value_key = "$levelled_spell",
+            apply = setStat(
+              stat = "$levelled_spell.casts_used_today",
+              new_value = 0,
+              aggregation_type = "set",
+            ),
+          ),
+        ),
+      ),
+      // Also refresh archetypes assigned through progression-grant slots directly.
+      // This avoids missing embedded slot-assigned archetype instances.
+      forEach(
+        components = filter(
+          all_progression_grants_for_current_level,
+          filter = ($g) => ($g.slot_mode == "archetype_new") && notNull($g.assigned_archetype),
+        ),
+        for_each_value_key = "$grant",
+        apply = fireEvent(
+          event_names = [
+            eventName(
+              event_name = "resource_daily_preparations",
+              for_resource = $grant.assigned_archetype,
+            ),
+          ],
+        ),
+      ),
+      setStat(
+        stat = "selected_selectable_feature_ids",
+        new_value = filter(
+          selected_selectable_feature_ids,
+          filter = ($id) => !contains(
+            haystack = daily_preparations_reselectable_option_ids,
+            needle = $id,
+          ),
+        ),
+        aggregation_type = "set",
+      ),
+      setStat(
+        stat = "daily_preparations_reselection_in_progress",
+        new_value = daily_preparations_reselectable_features_count > 0,
+        aggregation_type = "set",
+      ),
+      when {
+        daily_preparations_reselectable_features_count > 0 -> sequence(
+            effects = [
+              showMessage(
+                message = concat(
+                  [
+                    "Daily preparations complete. Core resources were refreshed. Re-select temporary daily features (",
+                    daily_preparations_reselectable_features_count,
+                    ").",
+                  ],
+                ),
+                message_type = "info",
+              ),
+              delayed(
+                millis = 100,
+                effect = fireEvent(
+                  event = event(
+                    name = "show_next_daily_preparations_selectable_feature",
+                    payload = payload(),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        else -> showMessage(
+            message = "Daily preparations complete. HP, spell ranks, focus points and action economy were refreshed.",
+            message_type = "info",
+          ),
+      },
+    ],
+  );

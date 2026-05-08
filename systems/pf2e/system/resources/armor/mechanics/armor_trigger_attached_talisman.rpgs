@@ -1,0 +1,30 @@
+mechanic armor_trigger_attached_talisman(event_names = "trigger_attached_talisman") =
+  when {
+    !isEmpty(attached_active_effects) -> sequence(
+      effects = [
+        fireEvent(
+          event_names = map(
+            attached_active_effects,
+            mapper = ($mapValue) => eventName(event_name = "use", for_resource = $mapValue),
+          ),
+        ),
+        when {
+          has_attached_talisman && (attached_talisman_effective?.consumed_on_activation ?? false) -> sequence(
+            effects = [
+              addToStat(
+                stat = "attached_talisman_effective.quantity",
+                value = -1,
+                aggregation_type = "set",
+              ),
+              setStat(
+                stat = "attached_talisman",
+                new_value = "",
+                aggregation_type = "set",
+              ),
+              fireEvent(event_names = ["remove_empty_items"]),
+            ],
+          ),
+        },
+      ],
+    ),
+  };

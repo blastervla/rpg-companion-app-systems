@@ -1,0 +1,50 @@
+base integer level(name = "Level", abbreviation = "Lvl") = 1;
+
+base resource<feat> feat(name = "Feat") = null;
+
+base resource<trigger_condition_or> trigger_condition(name = "Trigger condition") = null;
+
+base string notes(name = "Notes") = "";
+
+calc integer current_level(name = "Current level for parent/character context") =
+  when {
+    defined(stat = "$parent.level") -> $parent.level,
+    defined(stat = "$character.level") -> $character.level,
+    else -> 1,
+  };
+
+calc bool level_requirement_met(name = "Level requirement met") =
+  current_level >= level;
+
+calc bool trigger_condition_met(name = "Trigger condition met") =
+  if trigger_condition == null
+    then true
+    else trigger_condition.evaluated_value;
+
+calc bool should_grant(name = "Should grant linked feat") =
+  level_requirement_met && trigger_condition_met && notNull(feat)
+    && ((feat?.min_level ?? 1) <= current_level);
+
+calc string trigger_state_text(name = "Trigger state text") =
+  if trigger_condition == null
+    then "Always"
+    else (if trigger_condition_met then "Condition met" else "Condition not met");
+
+calc string level_text(name = "Level text") =
+  concat(["Lvl. ", level]);
+
+calc string feat_name(name = "Feat name") =
+  feat?.name ?? "No feat selected";
+
+calc string description(name = "Description") =
+  joinToString(
+    flatAppend(
+      [
+        [feat_name],
+        [concat(["(", level_text, ")"])],
+        (if trigger_condition == null then [] else [concat(["- ", trigger_state_text])]),
+        (if isEmpty(notes) then [] else [concat(["- ", notes])]),
+      ],
+    ),
+    separator = " ",
+  );

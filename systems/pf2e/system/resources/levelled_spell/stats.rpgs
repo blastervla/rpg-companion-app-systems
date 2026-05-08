@@ -1,0 +1,76 @@
+import "../../macros/system_common.rpgs";
+
+base integer level(name = "Level", abbreviation = "Lvl") = 1;
+
+base resource<spell> spell(name = "Spell") = null;
+
+base bool is_levelled(name = "Is levelled") = true;
+
+base string label(name = "Label") = "";
+
+base integer casts_used_today(name = "Casts used today") = 0;
+
+base integer cast_level_override(name = "Cast level override") = 0;
+
+base integer daily_cast_max_override(name = "Daily cast max override") = 1;
+
+calc string label_lower(name = "Label lower") = toLowerCase(label);
+
+calc bool parent_is_prepared(name = "Parent is prepared") =
+  ($parent?.spellcasting_type? ?? "") == "prepared";
+
+calc integer inferred_daily_cast_max(name = "Inferred daily cast max") =
+  when {
+    (spell?.is_cantrip? ?? false) -> 0,
+    contains(haystack = label_lower, needle = "at will") -> 0,
+    contains(haystack = label_lower, needle = "x10")
+      || contains(haystack = label_lower, needle = "10/day") -> 10,
+    contains(haystack = label_lower, needle = "x9")
+      || contains(haystack = label_lower, needle = "9/day") -> 9,
+    contains(haystack = label_lower, needle = "x8")
+      || contains(haystack = label_lower, needle = "8/day") -> 8,
+    contains(haystack = label_lower, needle = "x7")
+      || contains(haystack = label_lower, needle = "7/day") -> 7,
+    contains(haystack = label_lower, needle = "x6")
+      || contains(haystack = label_lower, needle = "6/day") -> 6,
+    contains(haystack = label_lower, needle = "x5")
+      || contains(haystack = label_lower, needle = "5/day") -> 5,
+    contains(haystack = label_lower, needle = "x4")
+      || contains(haystack = label_lower, needle = "4/day") -> 4,
+    contains(haystack = label_lower, needle = "x3")
+      || contains(haystack = label_lower, needle = "3/day") -> 3,
+    contains(haystack = label_lower, needle = "x2")
+      || contains(haystack = label_lower, needle = "2/day") -> 2,
+    contains(haystack = label_lower, needle = "x1")
+      || contains(haystack = label_lower, needle = "1/day") -> 1,
+    parent_is_prepared -> 1,
+    else -> 0,
+  };
+
+calc integer daily_cast_max(name = "Daily cast max") =
+  if daily_cast_max_override != 999
+    then daily_cast_max_override
+    else inferred_daily_cast_max;
+
+calc bool has_limited_daily_casts(name = "Has limited daily casts") =
+  daily_cast_max > 0;
+
+calc integer casts_remaining_today(name = "Casts remaining today") =
+  if has_limited_daily_casts
+    then max([0, daily_cast_max - casts_used_today])
+    else -1;
+
+calc bool can_execute(name = "Can execute") =
+  levelGate(required_level = level);
+
+calc string description(name = "Display description") =
+  if spell == null
+    then "Empty"
+    else if !isEmpty(label)
+      then concat([label, ": ", spell.name])
+      else concat(["Lvl. ", level, ": ", spell.name]);
+
+calc string name(name = "Name") =
+  if spell == null
+    then concat(["Rank ", level])
+    else spell.name;

@@ -1,0 +1,41 @@
+base string block_name(name = "Name") = "";
+
+base string tradition(name = "Tradition") = "arcane";
+
+base string spellcasting_type(name = "Type") = "innate";
+
+base integer spell_dc(name = "Spell DC") = 0;
+
+base integer spell_attack_bonus(name = "Spell attack bonus") = 0;
+
+base resource<levelled_spell>[] spell_levels(name = "Spell levels") = [];
+
+calc string display_header(name = "Display header") =
+  if !isEmpty(block_name)
+    then block_name
+    else concat(
+      [
+        enumeratedName(enumerated_type = "spell_traditions", id = tradition),
+        " ",
+        enumeratedName(enumerated_type = "spellcasting_modes", id = spellcasting_type),
+        " Spells",
+      ],
+    );
+
+calc string display_dc_attack(name = "Display DC and attack") =
+  joinToString(
+    flatAppend(
+      [
+        (if spell_dc > 0 then [concat(["DC ", spell_dc])] else []),
+        (if spell_attack_bonus != 0 then [concat(["attack ", toSignedString(spell_attack_bonus)])] else []),
+      ],
+    ),
+    separator = ", ",
+  );
+
+calc string display_full_header(name = "Display full header") =
+  if isEmpty(display_dc_attack)
+    then display_header
+    else concat([display_header, " (", display_dc_attack, ")"]);
+
+calc string name(name = "Name") = display_header;

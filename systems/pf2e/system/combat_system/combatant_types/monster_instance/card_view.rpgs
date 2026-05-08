@@ -1,0 +1,65 @@
+view monster_combat_card() =
+  list(
+    padding = 4,
+    id = "monster_combat_card_list",
+    subviews = [
+      composite(
+        id = "monster_combat_card_avatar_name_row",
+        subviews = [
+          avatar(
+            id = "avatar_view",
+            margin_top = 8,
+            margin_right = 8,
+            margin_left = 8,
+            photo_stat = "photo",
+            name_stat = "name",
+            size = "small",
+          ),
+          text(
+            id = "monster_combat_card_name",
+            text = name,
+            style = "subhead",
+            bold = true,
+            color = name_color,
+          ),
+        ],
+      ),
+      composite(
+        id = "monster_combat_card_ac_pp_speed",
+        alignment = "center",
+        subviews = [
+          ticker(
+            id = "monster_combat_card_status_hp",
+            margin_left = 8,
+            margin_right = 12,
+            stat = "current_hp",
+            style = "subhead",
+            change_amount = 0,
+            label = concat(["/ ", max_hp, " HP"]),
+          ),
+          text(
+            id = "monster_combat_card_ac_label",
+            text = "AC: ",
+            style = "subhead",
+            bold = true,
+          ),
+          text(
+            id = "monster_combat_card_ac",
+            text = armor_class,
+            style = "text",
+          ),
+          text(
+            id = "monster_combat_card_reaction_label",
+            text = "  R: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "monster_combat_card_reaction_value",
+            text = reaction_available,
+            style = "text",
+          ),
+        ],
+      ),
+    ]
+  );

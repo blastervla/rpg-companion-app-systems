@@ -1,0 +1,17 @@
+mechanic monster_instance_reset_actions_on_turn_advanced(calculated_event_names = next_turn_event_name) =
+  when {
+    $event.combatant.id == id -> sequence(
+      effects = [
+        setStat(
+          stat = "actions_remaining",
+          new_value = max_actions_per_turn,
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "reaction_available",
+          new_value = max_reactions_per_round,
+          aggregation_type = "set",
+        ),
+      ],
+    ),
+  };

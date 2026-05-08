@@ -1,0 +1,44 @@
+view prepared_spell_choice_edit() =
+  list(
+    id = "prepared_spell_choice_edit",
+    subviews = [
+      composite(
+        id = "prepared_spell_choice_edit_row",
+        row_only = true,
+        subviews = [
+          select(
+            id = "prepared_spell_choice_edit_spell",
+            stat = "spell_id",
+            resource_options = selectable_spells,
+          ),
+          ticker(
+            id = "prepared_spell_choice_edit_quantity",
+            stat = "slot_quantity",
+            style = "text",
+            margin_left = 4,
+            button_location = "sideToSide",
+            button_look = "plusMinus",
+            min_value_allowed = 1,
+            should_auto_save = true,
+            is_visible = !isEmpty($view?.prepared_spell_choice_edit_spell? ?? "") && !is_cantrip_choice,
+          ),
+        ],
+      ),
+      text(
+        id = "prepared_spell_choice_edit_total_capacity_warning",
+        text = owner_rank_total_capacity_warning_text,
+        style = "caption",
+        color = "accent",
+        margin_left = 4,
+        is_visible = has_owner_rank_total_capacity_warning,
+      ),
+      text(
+        id = "prepared_spell_choice_edit_restricted_slot_warning",
+        text = owner_rank_restricted_slot_warning_text,
+        style = "caption",
+        color = "accent",
+        margin_left = 4,
+        is_visible = has_owner_rank_restricted_slot_warning,
+      ),
+    ],
+  );

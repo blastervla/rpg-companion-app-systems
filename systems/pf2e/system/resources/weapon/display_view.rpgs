@@ -1,0 +1,359 @@
+import "../../macros/system_common.rpgs";
+
+view weapon_display() =
+  list(
+    id = "weapon_display",
+    padding = 16,
+    subviews = [
+      composite(
+        id = "weapon_display_info",
+        subviews = [
+          text(
+            id = "weapon_display_source",
+            margin_left = 16,
+            style = "caption",
+            resource_id = "source",
+            resource_instance_ids_stat = "source",
+            resource_display_stat = "abbreviation",
+          ),
+          text(
+            id = "weapon_display_source_separator",
+            text = ", ",
+            style = "caption",
+            is_visible = !isEmpty(properties),
+          ),
+          text(
+            id = "weapon_display_properties",
+            text = properties,
+            style = "caption",
+            is_visible = !isEmpty(properties),
+          ),
+        ],
+      ),
+      composite(
+        id = "weapon_display_character_properties",
+        subviews = [
+          text(
+            id = "weapon_display_proficient",
+            margin_left = 16,
+            text = concat(
+              [
+                "Proficient (",
+                enumeratedName(enumerated_type = "skill_proficiency_types", id = weapon_proficiency),
+                ")",
+              ],
+            ),
+            style = "caption",
+            color = "accent",
+            is_visible = is_proficient,
+          ),
+        ],
+        is_visible = defined(stat = "$character"),
+      ),
+      text(
+        id = "weapon_display_attached_runes",
+        margin_left = 16,
+        text = concat(["Runes: ", attached_runes_summary]),
+        style = "caption",
+        color = "accent",
+        is_visible = defined(stat = "$character") && !isEmpty(attached_runes_summary),
+      ),
+      text(
+        id = "weapon_display_attached_talisman",
+        margin_left = 16,
+        text = concat(["Talisman: ", attached_talisman_summary]),
+        style = "caption",
+        color = "accent",
+        is_visible = defined(stat = "$character") && !isEmpty(attached_talisman_summary),
+      ),
+      text(
+        id = "weapon_display_attachment_slot_usage",
+        margin_left = 16,
+        text = concat(["Property slots: ", weapon_property_slots_used, "/", weapon_property_slots_max]),
+        style = "caption",
+        color = if has_too_many_property_runes then "accent" else "hint",
+        is_visible = defined(stat = "$character") && weapon_property_slots_max > 0,
+      ),
+      text(
+        id = "weapon_display_attachment_issue",
+        margin_left = 16,
+        text = attachment_rules_issue_message,
+        style = "caption",
+        color = "accent",
+        is_visible = defined(stat = "$character") && !attachment_rules_valid,
+      ),
+      composite(
+        id = "weapon_display_type_composite",
+        margin_top = 16,
+        subviews = [
+          text(
+            id = "weapon_display_type_label",
+            text = "Type: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "weapon_display_type_label",
+            text = type_display_name,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "weapon_display_traits_composite",
+        margin_top = 16,
+        is_visible = !isEmpty(traits),
+        subviews = [
+          text(
+            id = "weapon_display_traits_label",
+            text = "Traits: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "weapon_display_traits",
+            text = traits,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "weapon_display_attack_bonus_composite",
+        margin_top = 8,
+        is_visible = defined(stat = "$character"),
+        subviews = [
+          text(
+            id = "weapon_display_attack_bonus_label",
+            text = "Attack Bonus: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "weapon_display_attack_bonus_label",
+            text = display_attack_bonus,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "weapon_display_damage_composite",
+        subviews = [
+          text(
+            id = "weapon_display_damage_label",
+            text = "Damage: ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "weapon_display_damage_label",
+            text = damage_dice_display_description,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "weapon_display_two_hand_trait_damage_composite",
+        is_visible = has_two_hand_trait,
+        subviews = [
+          text(
+            id = "weapon_display_damage_label",
+            text = "Damage (two-hand): ",
+            style = "text",
+            bold = true,
+          ),
+          text(
+            id = "weapon_display_damage_label",
+            text = two_hand_trait_damage_dice_display_description,
+            style = "text",
+          ),
+        ],
+      ),
+      composite(
+        id = "weapon_display_active_damage_type_composite",
+        margin_top = 4,
+        is_visible = defined(stat = "$character") && has_versatile_trait,
+        subviews = [
+          text(
+            id = "weapon_display_active_damage_type_label",
+            text = "Active damage type: ",
+            style = "caption",
+            bold = true,
+          ),
+          text(
+            id = "weapon_display_active_damage_type_value",
+            text = enumeratedName(enumerated_type = "damage_types", id = active_damage_type),
+            style = "caption",
+          ),
+        ],
+      ),
+      text(
+        id = "weapon_display_description",
+        margin_top = 16,
+        text = description,
+        style = "text",
+        markdown = true,
+        is_visible = !isEmpty(description),
+      ),
+      collapsible(
+        id = "weapon_display_effects_collapsible",
+        margin_top = 8,
+        title = "Magic effects",
+        is_visible = !isEmpty(effects),
+        subviews = [
+          resourceArray(
+            id = "weapon_display_effects",
+            resource_id = "effect",
+            stat = "effects",
+            view_type = "display",
+          ),
+        ],
+      ),
+      list(
+        id = "weapon_display_in_character_controls",
+        is_visible = defined(stat = "$character"),
+        subviews = [
+          composite(
+            id = "weapon_two_hand_trait_toggle_composite",
+            alignment = "end",
+            subviews = [
+              checkbox(
+                id = "weapon_two_hand_trait_toggle",
+                stat = "currently_using_two_hand_trait",
+                label = if $view?.weapon_two_hand_trait_toggle? ?? false
+                  then "Using two-hand"
+                  else "Using base grip",
+                label_alignment = "right",
+                style = "switcher",
+                is_visible = has_two_hand_trait,
+              ),
+              checkbox(
+                id = "weapon_versatile_trait_toggle",
+                stat = "currently_using_versatile_trait",
+                label = if $view?.weapon_versatile_trait_toggle? ?? false
+                  then concat(
+                      [
+                        "Using ",
+                        enumeratedName(enumerated_type = "damage_types", id = versatile_damage_type),
+                        " damage",
+                      ],
+                    )
+                  else "Using base damage type",
+                label_alignment = "right",
+                style = "switcher",
+                is_visible = has_versatile_trait,
+              ),
+            ],
+          ),
+          composite(
+            id = "weapon_display_investment_composite",
+            row_only = true,
+            subviews = [
+              bottomSheetPersistPopUpButton(
+                button_id = "weapon_display_manage_attachments_button",
+                button_text = "ATTACHMENTS",
+                pop_up_view = section(
+                  id = "weapon_display_manage_attachments_sheet",
+                  header = [],
+                  show_divider = false,
+                  collapsible = false,
+                  content_item_min_width = 1,
+                  content = [
+                    text(
+                      id = "weapon_display_manage_attachments_rules_summary",
+                      text = concat(["Property slots: ", weapon_property_slots_used, "/", weapon_property_slots_max]),
+                      style = "text",
+                    ),
+                    text(
+                      id = "weapon_display_manage_attachments_rules_error",
+                      text = attachment_rules_issue_message,
+                      style = "text",
+                      color = "accent",
+                      is_visible = !attachment_rules_valid,
+                    ),
+                    text(
+                      id = "weapon_display_manage_attachments_runes_label",
+                      text = "Runes",
+                      style = "text",
+                      bold = true,
+                    ),
+                    select(
+                      id = "weapon_display_manage_attachments_runes_select",
+                      stat = "attached_runes",
+                      resource_options = attachable_runes_for_character,
+                      options_display_stat = "name",
+                      multi_select = true,
+                      style = "list",
+                      should_auto_save = true,
+                    ),
+                    text(
+                      id = "weapon_display_manage_attachments_talisman_label",
+                      text = "Talisman",
+                      style = "text",
+                      bold = true,
+                    ),
+                    select(
+                      id = "weapon_display_manage_attachments_talisman_select",
+                      stat = "attached_talisman",
+                      resource_options = attachable_talismans_for_character,
+                      options_display_stat = "name",
+                      should_auto_save = true,
+                    ),
+                  ],
+                ),
+                pop_up_title = "Manage weapon attachments",
+              ),
+              button(
+                id = "weapon_display_trigger_attached_talisman_button",
+                text = "TRIGGER ATTACHMENT",
+                event = event(name = "trigger_attached_talisman"),
+                is_visible = !isEmpty(attached_active_effects),
+              ),
+              spacer(id = "weapon_display_investment_spacer"),
+            ],
+          ),
+          composite(
+            id = "weapon_display_ammunition_use_composite",
+            alignment = "end",
+            subviews = [
+              text(
+                id = "weapon_display_map",
+                text = "MAP: ",
+                style = "text",
+              ),
+              select(
+                id = "weapon_display_strike_number_select",
+                stat = "selected_strike_number",
+                options = "strike_numbers",
+              ),
+              select(
+                id = "weapon_display_ammunition_select",
+                stat = "temp_shoot_ammo",
+                resource_options = ammunition_items,
+                options_display_stat = "name_with_amount",
+                is_visible = has_ammunition,
+              ),
+              button(
+                id = "weapon_display_attack_button",
+                text = if has_ammunition then "SHOOT" else "ATTACK",
+                event = event(name = "attack"),
+                enabled = can_attack,
+              ),
+              button(
+                id = "weapon_display_damage_button",
+                text = "DAMAGE",
+                event = event(name = "damage"),
+              ),
+            ],
+          ),
+          text(
+            id = "weapon_display_action_warning",
+            margin_top = 4,
+            text = "No actions remaining for this turn",
+            style = "caption",
+            color = "accent",
+            is_visible = !can_attack && in_combat,
+          ),
+        ],
+      ),
+    ],
+  );

@@ -1,0 +1,83 @@
+base integer value(name = "Value") = 1;
+
+base string[] modifier_options(name = "Modifier options") = [];
+
+base bool is_class_key_ability_boost(name = "Is class key ability boost") = false;
+
+calc string description(name = "Display description") =
+  if isEmpty(modifier_options)
+    then "Nothing to assign"
+    else when {
+      is_class_key_ability_boost
+        && length(modifier_options) == 1 -> concat(
+          [
+            "Class key ability: ",
+            enumeratedName(
+              enumerated_type = "ability",
+              id = findFirst(modifier_options, filter = ($findFirstValue) => true),
+            ),
+          ],
+        ),
+      is_class_key_ability_boost -> concat(
+        [
+          "Choose class key ability: ",
+          joinToString(
+            map(
+              modifier_options,
+              mapper = ($mapValue) => enumeratedName(enumerated_type = "ability", id = $mapValue),
+            ),
+            separator = ", ",
+          ),
+        ],
+      ),
+      else -> concat(
+        [
+          "Assign ",
+          value,
+          (if length(modifier_options) == 1
+            then concat(
+                [
+                  " to ",
+                  enumeratedName(
+                    enumerated_type = "ability",
+                    id = findFirst(modifier_options, filter = ($findFirstValue) => true),
+                  ),
+                ],
+              )
+            else concat(
+                [
+                  " to one of ",
+                  joinToString(
+                    map(
+                      modifier_options,
+                      mapper = ($mapValue) => enumeratedName(enumerated_type = "ability", id = $mapValue),
+                    ),
+                    separator = ", ",
+                  ),
+                ],
+              )),
+        ],
+      ),
+    };
+
+calc string assign_label_text(name = "Assign label text") =
+  when {
+    is_class_key_ability_boost -> "Choose class key ability: ",
+    else -> concat(["Assign ", value, " to: "]),
+  };
+
+base string temp_selected_modifier(name = "Temporal variable to hold the selected modifier") =
+  "";
+
+calc string selected_modifier_from_view(name = "Selected modifier from view") =
+  $view?.ability_score_increase_select? ?? "";
+
+calc string selected_modifier_effective(name = "Selected modifier (effective)") =
+  when {
+    !isEmpty(selected_modifier_from_view)
+      && contains(haystack = modifier_options, needle = selected_modifier_from_view) -> selected_modifier_from_view,
+    !isEmpty(temp_selected_modifier)
+      && contains(haystack = modifier_options, needle = temp_selected_modifier) -> temp_selected_modifier,
+    !isEmpty(modifier_options) -> findFirst(modifier_options, filter = ($findFirstValue) => true) ?? "",
+    else -> "",
+  };

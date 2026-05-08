@@ -1,0 +1,14 @@
+view edit_cost_composite() =
+  composite(
+    id = "edit_cost_composite",
+    subviews = [
+      text(
+        id = "edit_cost_value",
+        edit_stat = "value",
+        style = "text",
+        max_length = 5,
+        hint = "0",
+      ),
+      select(id = "edit_cost_unit_select", stat = "unit", options = "currencies"),
+    ],
+  );

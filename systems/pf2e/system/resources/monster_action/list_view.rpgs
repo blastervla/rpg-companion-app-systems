@@ -1,0 +1,69 @@
+view monster_action_list() =
+  list(
+    id = "monster_action_list",
+    padding_left = 8,
+    padding_right = 8,
+    padding_bottom = 4,
+    subviews = [
+      composite(
+        id = "monster_action_list_name_cost",
+        subviews = [
+          text(
+            id = "monster_action_list_name",
+            text = action_name,
+            style = "text",
+            bold = true,
+            margin_right = 8,
+          ),
+          icon(
+            id = "monster_action_list_action_cost_icon_one",
+            name = "ic_action",
+            size = "small",
+            color = "accent",
+            is_visible = action_cost == "one_action",
+          ),
+          icon(
+            id = "monster_action_list_action_cost_icon_two",
+            name = "ic_two_actions",
+            size = "small",
+            color = "accent",
+            is_visible = action_cost == "two_actions",
+          ),
+          icon(
+            id = "monster_action_list_action_cost_icon_three",
+            name = "ic_three_actions",
+            size = "small",
+            color = "accent",
+            is_visible = action_cost == "three_actions",
+          ),
+          icon(
+            id = "monster_action_list_action_cost_icon_reaction",
+            name = "ic_reaction",
+            size = "small",
+            color = "accent",
+            is_visible = action_cost == "reaction",
+          ),
+          icon(
+            id = "monster_action_list_action_cost_icon_free",
+            name = "ic_free_action",
+            size = "small",
+            color = "accent",
+            is_visible = action_cost == "free_action",
+          ),
+          text(
+            id = "monster_action_list_action_cost_label",
+            text = action_cost_name,
+            style = "caption",
+            color = "accent",
+            is_visible = action_cost == "passive" || action_cost == "activity",
+          ),
+        ],
+      ),
+      text(
+        id = "monster_action_list_description",
+        text = action_display_description,
+        style = "text",
+        markdown = true,
+      ),
+    ],
+  );

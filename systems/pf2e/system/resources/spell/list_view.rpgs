@@ -1,0 +1,124 @@
+view spell_list() =
+  listItem(
+    id = "spell_list",
+    title = name,
+    subtitle = display_type,
+    first_line_extra = display_requirements,
+    second_line_extra = range,
+    leading_icon = action_cost_icon_name,
+    leading_icon_color = "accent",
+    chips = flatAppend(
+      [
+        (if selected_spell_prepared_total_rank_1 > 0
+          then [
+              createChip(
+                id = "prepared_rank_1_chip",
+                text = concat(["R1 ", selected_spell_prepared_remaining_rank_1, "/", selected_spell_prepared_total_rank_1]),
+                background_color = "#4caf50",
+                style = "compact",
+              ),
+            ]
+          else []),
+        (if selected_spell_prepared_total_rank_2 > 0
+          then [
+              createChip(
+                id = "prepared_rank_2_chip",
+                text = concat(["R2 ", selected_spell_prepared_remaining_rank_2, "/", selected_spell_prepared_total_rank_2]),
+                background_color = "#4caf50",
+                style = "compact",
+              ),
+            ]
+          else []),
+        (if selected_spell_prepared_total_rank_3 > 0
+          then [
+              createChip(
+                id = "prepared_rank_3_chip",
+                text = concat(["R3 ", selected_spell_prepared_remaining_rank_3, "/", selected_spell_prepared_total_rank_3]),
+                background_color = "#4caf50",
+                style = "compact",
+              ),
+            ]
+          else []),
+        (if selected_spell_prepared_total_rank_4 > 0
+          then [
+              createChip(
+                id = "prepared_rank_4_chip",
+                text = concat(["R4 ", selected_spell_prepared_remaining_rank_4, "/", selected_spell_prepared_total_rank_4]),
+                background_color = "#4caf50",
+                style = "compact",
+              ),
+            ]
+          else []),
+        (if selected_spell_prepared_total_rank_5 > 0
+          then [
+              createChip(
+                id = "prepared_rank_5_chip",
+                text = concat(["R5 ", selected_spell_prepared_remaining_rank_5, "/", selected_spell_prepared_total_rank_5]),
+                background_color = "#4caf50",
+                style = "compact",
+              ),
+            ]
+          else []),
+        (if selected_spell_prepared_total_rank_6 > 0
+          then [
+              createChip(
+                id = "prepared_rank_6_chip",
+                text = concat(["R6 ", selected_spell_prepared_remaining_rank_6, "/", selected_spell_prepared_total_rank_6]),
+                background_color = "#4caf50",
+                style = "compact",
+              ),
+            ]
+          else []),
+        (if selected_spell_prepared_total_rank_7 > 0
+          then [
+              createChip(
+                id = "prepared_rank_7_chip",
+                text = concat(["R7 ", selected_spell_prepared_remaining_rank_7, "/", selected_spell_prepared_total_rank_7]),
+                background_color = "#4caf50",
+                style = "compact",
+              ),
+            ]
+          else []),
+        (if selected_spell_prepared_total_rank_8 > 0
+          then [
+              createChip(
+                id = "prepared_rank_8_chip",
+                text = concat(["R8 ", selected_spell_prepared_remaining_rank_8, "/", selected_spell_prepared_total_rank_8]),
+                background_color = "#4caf50",
+                style = "compact",
+              ),
+            ]
+          else []),
+        (if selected_spell_prepared_total_rank_9 > 0
+          then [
+              createChip(
+                id = "prepared_rank_9_chip",
+                text = concat(["R9 ", selected_spell_prepared_remaining_rank_9, "/", selected_spell_prepared_total_rank_9]),
+                background_color = "#4caf50",
+                style = "compact",
+              ),
+            ]
+          else []),
+        (if selected_spell_prepared_total_rank_10 > 0
+          then [
+              createChip(
+                id = "prepared_rank_10_chip",
+                text = concat(["R10 ", selected_spell_prepared_remaining_rank_10, "/", selected_spell_prepared_total_rank_10]),
+                background_color = "#4caf50",
+                style = "compact",
+              ),
+            ]
+          else []),
+        (if should_show_spellcasting_source_text && !isEmpty(selected_spellcasting_source_name)
+          then [
+              createChip(
+                id = "source_chip",
+                text = selected_spellcasting_source_name,
+                background_color = "hint",
+                style = "compact",
+              ),
+            ]
+          else []),
+      ],
+    ),
+  );

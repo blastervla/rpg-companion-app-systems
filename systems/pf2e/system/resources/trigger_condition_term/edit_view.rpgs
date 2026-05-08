@@ -1,0 +1,32 @@
+view edit_trigger_condition_term() =
+  composite(
+    id = "edit_trigger_condition_term",
+    subviews = [
+      select(
+        id = "edit_trigger_condition_term_stat",
+        options = "effect_character_stats",
+        stat = "stat",
+      ),
+      select(
+        id = "edit_trigger_condition_term_condition",
+        options = "conditions",
+        stat = "condition",
+      ),
+      text(
+        id = "edit_trigger_condition_term_value",
+        edit_stat = "value",
+        style = "text",
+        max_length = 4,
+        signed = true,
+        hint = "0",
+        is_visible = condition != "contains" && condition != "not_contains",
+      ),
+      text(
+        id = "edit_trigger_condition_term_value_text",
+        edit_stat = "value_text",
+        style = "text",
+        hint = "text to match",
+        is_visible = condition == "contains" || condition == "not_contains",
+      ),
+    ],
+  );

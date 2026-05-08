@@ -1,0 +1,213 @@
+character_sheet_section spell_slots() =
+  section(
+    id = "spell_slots_section",
+    show_divider = true,
+    content_item_min_width = 1,
+    collapsible = true,
+    header = [
+      icon(
+        id = "spell_slots_section_icon",
+        name = "ic_whatshot",
+        color = "#7b1fa2",
+        size = "medium",
+        margin_top = 8,
+        margin_right = 8,
+        margin_left = 16,
+      ),
+      text(
+        id = "spell_slots_section_title",
+        margin_right = 16,
+        margin_left = 16,
+        text = "Spell Ranks",
+        style = "title",
+      ),
+    ],
+    content = [
+      section(
+        id = "spell_slots_class_section",
+        content_item_min_width = 75,
+        show_divider = false,
+        header = [],
+        content = [
+          stat(
+            id = "spell_slots_1",
+            stat = "spell_slots_1",
+            min_value_allowed = 0,
+            max_value_allowed = 99,
+          ),
+          stat(
+            id = "spell_slots_2",
+            stat = "spell_slots_2",
+            min_value_allowed = 0,
+            max_value_allowed = 99,
+          ),
+          stat(
+            id = "spell_slots_3",
+            stat = "spell_slots_3",
+            min_value_allowed = 0,
+            max_value_allowed = 99,
+          ),
+          stat(
+            id = "spell_slots_4",
+            stat = "spell_slots_4",
+            min_value_allowed = 0,
+            max_value_allowed = 99,
+          ),
+          stat(
+            id = "spell_slots_5",
+            stat = "spell_slots_5",
+            min_value_allowed = 0,
+            max_value_allowed = 99,
+          ),
+          stat(
+            id = "spell_slots_6",
+            stat = "spell_slots_6",
+            min_value_allowed = 0,
+            max_value_allowed = 99,
+          ),
+          stat(
+            id = "spell_slots_7",
+            stat = "spell_slots_7",
+            min_value_allowed = 0,
+            max_value_allowed = 99,
+          ),
+          stat(
+            id = "spell_slots_8",
+            stat = "spell_slots_8",
+            min_value_allowed = 0,
+            max_value_allowed = 99,
+          ),
+          stat(
+            id = "spell_slots_9",
+            stat = "spell_slots_9",
+            min_value_allowed = 0,
+            max_value_allowed = 99,
+          ),
+          stat(
+            id = "spell_slots_10",
+            stat = "spell_slots_10",
+            min_value_allowed = 0,
+            max_value_allowed = 99,
+          ),
+        ]
+      ),
+      // Archetype spellcasting blocks (read-only, up to 3 archetypes)
+      section(
+        id = "spell_slots_archetype_1_section",
+        content_item_min_width = 1,
+        show_divider = false,
+        header = [],
+        is_visible = notNull(spellcasting_archetype_1),
+        content = [
+          list(
+            id = "archetype_spell_slots_1_block",
+            subviews = [
+              text(
+                id = "archetype_spell_slots_1_title",
+                margin_top = 8,
+                margin_left = 16,
+                text = spellcasting_archetype_1?.spellcasting_entry_name ?? "",
+                style = "section",
+              ),
+              text(
+                id = "archetype_1_slots_display",
+                margin_bottom = 8,
+                margin_left = 16,
+                style = "text",
+                text = concat(
+                  [
+                    (if (spellcasting_archetype_1?.max_archetype_cantrip_quantity ?? 0) > 0 then concat(["Cantrips: ", spellcasting_archetype_1?.max_archetype_cantrip_quantity ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_1?.max_spell_slots_1_total ?? 0) > 0 then concat(["Rank 1: ", spellcasting_archetype_1?.spell_slots_1 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_1?.max_spell_slots_2_total ?? 0) > 0 then concat(["Rank 2: ", spellcasting_archetype_1?.spell_slots_2 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_1?.max_spell_slots_3_total ?? 0) > 0 then concat(["Rank 3: ", spellcasting_archetype_1?.spell_slots_3 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_1?.max_spell_slots_4_total ?? 0) > 0 then concat(["Rank 4: ", spellcasting_archetype_1?.spell_slots_4 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_1?.max_spell_slots_5_total ?? 0) > 0 then concat(["Rank 5: ", spellcasting_archetype_1?.spell_slots_5 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_1?.max_spell_slots_6_total ?? 0) > 0 then concat(["Rank 6: ", spellcasting_archetype_1?.spell_slots_6 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_1?.max_spell_slots_7_total ?? 0) > 0 then concat(["Rank 7: ", spellcasting_archetype_1?.spell_slots_7 ?? 0]) else ""),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      section(
+        id = "spell_slots_archetype_2_section",
+        content_item_min_width = 1,
+        show_divider = false,
+        header = [],
+        is_visible = notNull(spellcasting_archetype_2),
+        content = [
+          list(
+            id = "archetype_spell_slots_2_block",
+            subviews = [
+              text(
+                id = "archetype_spell_slots_2_title",
+                margin_left = 16,
+                margin_top = 8,
+                text = spellcasting_archetype_2?.spellcasting_entry_name ?? "",
+                style = "section",
+              ),
+              text(
+                id = "archetype_2_slots_display",
+                margin_left = 16,
+                margin_bottom = 8,
+                style = "text",
+                text = concat(
+                  [
+                    (if (spellcasting_archetype_2?.max_archetype_cantrip_quantity ?? 0) > 0 then concat(["Cantrips: ", spellcasting_archetype_2?.max_archetype_cantrip_quantity ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_2?.max_spell_slots_1_total ?? 0) > 0 then concat(["Rank 1: ", spellcasting_archetype_2?.spell_slots_1 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_2?.max_spell_slots_2_total ?? 0) > 0 then concat(["Rank 2: ", spellcasting_archetype_2?.spell_slots_2 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_2?.max_spell_slots_3_total ?? 0) > 0 then concat(["Rank 3: ", spellcasting_archetype_2?.spell_slots_3 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_2?.max_spell_slots_4_total ?? 0) > 0 then concat(["Rank 4: ", spellcasting_archetype_2?.spell_slots_4 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_2?.max_spell_slots_5_total ?? 0) > 0 then concat(["Rank 5: ", spellcasting_archetype_2?.spell_slots_5 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_2?.max_spell_slots_6_total ?? 0) > 0 then concat(["Rank 6: ", spellcasting_archetype_2?.spell_slots_6 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_2?.max_spell_slots_7_total ?? 0) > 0 then concat(["Rank 7: ", spellcasting_archetype_2?.spell_slots_7 ?? 0]) else ""),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      section(
+        id = "spell_slots_archetype_3_section",
+        content_item_min_width = 1,
+        show_divider = false,
+        header = [],
+        is_visible = notNull(spellcasting_archetype_3),
+        content = [
+          list(
+            id = "archetype_spell_slots_3_block",
+            subviews = [
+              text(
+                id = "archetype_spell_slots_3_title",
+                margin_left = 16,
+                margin_top = 8,
+                text = spellcasting_archetype_3?.spellcasting_entry_name ?? "",
+                style = "section",
+              ),
+              text(
+                id = "archetype_3_slots_display",
+                margin_left = 16,
+                margin_bottom = 8,
+                style = "text",
+                text = concat(
+                  [
+                    (if (spellcasting_archetype_3?.max_archetype_cantrip_quantity ?? 0) > 0 then concat(["Cantrips: ", spellcasting_archetype_3?.max_archetype_cantrip_quantity ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_3?.max_spell_slots_1_total ?? 0) > 0 then concat(["Rank 1: ", spellcasting_archetype_3?.spell_slots_1 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_3?.max_spell_slots_2_total ?? 0) > 0 then concat(["Rank 2: ", spellcasting_archetype_3?.spell_slots_2 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_3?.max_spell_slots_3_total ?? 0) > 0 then concat(["Rank 3: ", spellcasting_archetype_3?.spell_slots_3 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_3?.max_spell_slots_4_total ?? 0) > 0 then concat(["Rank 4: ", spellcasting_archetype_3?.spell_slots_4 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_3?.max_spell_slots_5_total ?? 0) > 0 then concat(["Rank 5: ", spellcasting_archetype_3?.spell_slots_5 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_3?.max_spell_slots_6_total ?? 0) > 0 then concat(["Rank 6: ", spellcasting_archetype_3?.spell_slots_6 ?? 0, "  "]) else ""),
+                    (if (spellcasting_archetype_3?.max_spell_slots_7_total ?? 0) > 0 then concat(["Rank 7: ", spellcasting_archetype_3?.spell_slots_7 ?? 0]) else ""),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ],
+  );

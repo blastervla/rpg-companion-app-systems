@@ -1,0 +1,113 @@
+base string name(name = "Name") = "";
+
+base string description(name = "Description") = "";
+
+base string source(name = "Source") = "";
+
+base resource<monster_combat_template_entry>[] combatant_pool(name = "Monsters") = [];
+
+base integer expected_party_level(name = "Expected party level") = 1;
+
+base integer expected_party_size(name = "Expected party size") = 4;
+
+base string desired_difficulty(name = "Desired difficulty") = "moderate";
+
+calc integer expected_party_level_effective(name = "Expected party level (effective)") =
+  $view?.encounter_template_edit_budget_party_level? ?? expected_party_level;
+
+calc integer expected_party_size_effective(name = "Expected party size (effective)") =
+  $view?.encounter_template_edit_budget_party_size? ?? expected_party_size;
+
+calc string desired_difficulty_effective(name = "Desired difficulty (effective)") =
+  $view?.encounter_template_edit_budget_target_select? ?? desired_difficulty;
+
+calc resource<monster_combat_template_entry>[] combatant_pool_effective(name = "Monsters (effective)") =
+  $view?.encounter_template_edit_combatants_array? ?? combatant_pool;
+
+calc integer safe_party_level(name = "Safe party level") = max([1, expected_party_level]);
+
+calc integer safe_party_size(name = "Safe party size") = max([1, expected_party_size]);
+
+calc resource<monster_combat_template_entry>[] populated_combatant_pool(name = "Populated combatant pool") =
+  filter(combatant_pool_effective, filter = ($entry) => $entry.combatant != null);
+
+calc integer combatant_count_min(name = "Combatant count (min)") =
+  add(map(populated_combatant_pool, mapper = ($entry) => $entry.minimum_count));
+
+calc integer combatant_count_max(name = "Combatant count (max)") =
+  add(map(populated_combatant_pool, mapper = ($entry) => $entry.maximum_count));
+
+calc integer combatant_count_expected(name = "Combatant count (expected)") =
+  add(map(populated_combatant_pool, mapper = ($entry) => $entry.expected_count));
+
+calc integer expected_xp_pool(name = "Expected XP pool") =
+  add(map(populated_combatant_pool, mapper = ($entry) => $entry.expected_xp_contribution));
+
+calc integer low_budget_xp(name = "Low budget XP") =
+  max([1, expected_party_size_effective]) * 15;
+
+calc integer moderate_budget_xp(name = "Moderate budget XP") =
+  max([1, expected_party_size_effective]) * 20;
+
+calc integer severe_budget_xp(name = "Severe budget XP") =
+  max([1, expected_party_size_effective]) * 30;
+
+calc integer extreme_budget_xp(name = "Extreme budget XP") =
+  max([1, expected_party_size_effective]) * 40;
+
+calc integer desired_budget_xp(name = "Desired budget XP") =
+  when {
+    desired_difficulty_effective == "low" -> low_budget_xp,
+    desired_difficulty_effective == "moderate" -> moderate_budget_xp,
+    desired_difficulty_effective == "severe" -> severe_budget_xp,
+    else -> extreme_budget_xp,
+  };
+
+calc string expected_difficulty(name = "Expected difficulty") =
+  when {
+    expected_xp_pool <= low_budget_xp -> "low",
+    expected_xp_pool <= moderate_budget_xp -> "moderate",
+    expected_xp_pool <= severe_budget_xp -> "severe",
+    expected_xp_pool <= extreme_budget_xp -> "extreme",
+    else -> "over_extreme",
+  };
+
+calc string expected_difficulty_name(name = "Expected difficulty name") =
+  when {
+    expected_difficulty == "over_extreme" -> "Over Extreme",
+    else -> enumeratedName(enumerated_type = "encounter_difficulty_tiers", id = expected_difficulty),
+  };
+
+calc string desired_difficulty_name(name = "Desired difficulty name") =
+  enumeratedName(enumerated_type = "encounter_difficulty_tiers", id = desired_difficulty_effective);
+
+calc bool within_desired_difficulty(name = "Within desired difficulty") =
+  expected_xp_pool <= desired_budget_xp;
+
+calc integer xp_delta_vs_desired(name = "XP delta vs desired") =
+  expected_xp_pool - desired_budget_xp;
+
+calc string combatant_count_summary(name = "Combatant count summary") =
+  concat(
+    [
+      combatant_count_min,
+      "-",
+      combatant_count_max,
+      " (expected ",
+      combatant_count_expected,
+      ")",
+    ],
+  );
+
+calc string pf2e_budget_summary(name = "PF2e budget summary") =
+  concat(
+    [
+      "XP ",
+      expected_xp_pool,
+      " vs ",
+      desired_budget_xp,
+      " (",
+      desired_difficulty_name,
+      ")",
+    ],
+  );

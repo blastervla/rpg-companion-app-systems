@@ -1,0 +1,123 @@
+view spell_capacity_grant_edit() =
+  list(
+    id = "spell_capacity_grant_edit",
+    subviews = [
+      composite(
+        id = "spell_capacity_grant_edit_level_capacity_type_composite",
+        subviews = [
+          text(
+            id = "spell_capacity_grant_edit_level",
+            edit_stat = "level",
+            hint = "Lvl",
+            style = "text",
+            max_length = 3,
+          ),
+          select(
+            id = "spell_capacity_grant_edit_capacity_type",
+            stat = "capacity_type",
+            options = "spell_capacity_types",
+          ),
+        ],
+      ),
+      composite(
+        id = "spell_capacity_grant_edit_target_rank_composite",
+        subviews = [
+          select(
+            id = "spell_capacity_grant_edit_target_rank_mode",
+            stat = "target_rank_mode",
+            options = "spell_capacity_target_rank_modes",
+          ),
+          text(
+            id = "spell_capacity_grant_edit_target_rank",
+            edit_stat = "target_rank",
+            label = "Rank",
+            style = "text",
+            max_length = 2,
+            signed = false,
+            is_visible = $view.spell_capacity_grant_edit_target_rank_mode == "specific",
+          ),
+        ],
+      ),
+      resourceArray(
+        id = "spell_capacity_grant_edit_quantity_per_level",
+        resource_id = "levelled_amount",
+        stat = "quantity_per_level",
+        view_type = "edit",
+        left_view = text(
+          id = "spell_capacity_grant_edit_quantity_per_level_label",
+          text = "Quantity per level:",
+          style = "text",
+          bold = true,
+        ),
+      ),
+      checkbox(
+        id = "spell_capacity_grant_edit_requires_spell_choice",
+        stat = "requires_spell_choice",
+        label = "Requires spell choice",
+      ),
+      composite(
+        id = "spell_capacity_grant_edit_required_choice_composite",
+        is_visible = $view.spell_capacity_grant_edit_requires_spell_choice,
+        subviews = [
+          text(
+            id = "spell_capacity_grant_edit_required_choice_count_label",
+            text = "Req. choices: ",
+            style = "text",
+          ),
+          text(
+            id = "spell_capacity_grant_edit_required_choice_count",
+            edit_stat = "required_choice_count",
+            hint = "",
+            style = "text",
+            max_length = 2,
+            signed = false,
+          ),
+          text(
+            id = "spell_capacity_grant_edit_required_choice_rank_label",
+            text = "Choice rank: ",
+            style = "text",
+          ),
+          text(
+            id = "spell_capacity_grant_edit_choice_rank",
+            edit_stat = "choice_rank",
+            hint = "",
+            style = "text",
+            max_length = 2,
+            signed = false,
+          ),
+        ]
+      ),
+      composite(
+        id = "spell_capacity_grant_edit_restriction_mode_composite",
+        subviews = [
+          select(
+            id = "spell_capacity_grant_edit_restriction_mode",
+            stat = "restriction_mode",
+            options = "spell_capacity_restriction_modes",
+            margin_right = 4,
+          ),
+          select(
+            id = "spell_capacity_grant_edit_restricted_spells",
+            stat = "restricted_spell_names",
+            options = "spell",
+            resource_saved_stat = "name",
+            multi_select = true,
+            is_visible = $view.spell_capacity_grant_edit_restriction_mode == "spell_name_allowlist",
+          ),
+          select(
+            id = "spell_capacity_grant_edit_restricted_spell_traits",
+            stat = "restricted_spell_traits",
+            options = "spell_traits",
+            multi_select = true,
+            is_visible = $view.spell_capacity_grant_edit_restriction_mode == "trait_allowlist",
+          ),
+        ],
+      ),
+      text(
+        id = "spell_capacity_grant_edit_notes",
+        edit_stat = "notes",
+        style = "text",
+        label = "Notes",
+      ),
+    ],
+  );

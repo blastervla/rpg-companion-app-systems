@@ -1,0 +1,97 @@
+base string action_name(name = "Name") = "";
+
+base string action_description(name = "Description") = "";
+
+base string action_type(name = "Type") = "none";
+
+base string action_cost(name = "Action cost") = "one_action";
+
+base integer action_attack_bonus(name = "Attack bonus") = 0;
+
+base resource<damage_variant>[] action_damage_variants(name = "Damage variants") =
+  [];
+
+calc string action_cost_name(name = "Action cost name") =
+  enumeratedName(enumerated_type = "feat_action_costs", id = action_cost);
+
+calc bool has_attack_roll(name = "Has attack roll") =
+  action_attack_bonus != 0 || action_type != "none";
+
+calc integer action_cost_actions_spent(name = "Action cost spent from actions pool") =
+  when {
+    action_cost == "one_action" -> 1,
+    action_cost == "two_actions" -> 2,
+    action_cost == "three_actions" -> 3,
+    else -> 0,
+  };
+
+calc bool action_cost_spends_reaction(name = "Action cost spends reaction") =
+  action_cost == "reaction";
+
+calc bool in_combat(name = "In combat") =
+  ($parent?.in_combat? ?? false) || defined(stat = "$combatants");
+
+calc string action_spend_actions_meta_stat(name = "Action spend actions meta stat") =
+  when {
+    defined(stat = "$parent.actions_remaining") -> "$parent.actions_remaining",
+    defined(stat = "$parent.$parent.actions_remaining") -> "$parent.$parent.actions_remaining",
+    defined(stat = "$parent.$parent.$parent.actions_remaining") -> "$parent.$parent.$parent.actions_remaining",
+    defined(stat = "$parent.$parent.$parent.$parent.actions_remaining") -> "$parent.$parent.$parent.$parent.actions_remaining",
+    defined(stat = "$character.actions_remaining") -> "$character.actions_remaining",
+    else -> "",
+  };
+
+calc string action_spend_reaction_meta_stat(name = "Action spend reaction meta stat") =
+  when {
+    defined(stat = "$parent.reaction_available") -> "$parent.reaction_available",
+    defined(stat = "$parent.$parent.reaction_available") -> "$parent.$parent.reaction_available",
+    defined(stat = "$parent.$parent.$parent.reaction_available") -> "$parent.$parent.$parent.reaction_available",
+    defined(stat = "$parent.$parent.$parent.$parent.reaction_available") -> "$parent.$parent.$parent.$parent.reaction_available",
+    defined(stat = "$character.reaction_available") -> "$character.reaction_available",
+    else -> "",
+  };
+
+calc bool has_required_action_economy(name = "Has required action economy to use this action") =
+  when {
+    !in_combat -> true,
+    action_cost_spends_reaction && isEmpty(action_spend_reaction_meta_stat) -> true,
+    !action_cost_spends_reaction && isEmpty(action_spend_actions_meta_stat) -> true,
+    action_cost_spends_reaction -> metaStat(meta_stat = action_spend_reaction_meta_stat) > 0,
+    else -> metaStat(meta_stat = action_spend_actions_meta_stat) >= action_cost_actions_spent,
+  };
+
+calc bool can_use_action(name = "Can use action") =
+  has_required_action_economy;
+
+calc string action_display_description(name = "Display description") =
+  concat(
+    flatAppend(
+      [
+        (if action_type == "none"
+          then []
+          else [
+              enumeratedName(enumerated_type = "monster_action_types", id = action_type),
+              ". ",
+            ]),
+        (if has_attack_roll
+          then [concat(["Attack ", toSignedString(action_attack_bonus), ". "])]
+          else []),
+        (if isEmpty(trim(action_description)) then [] else [trim(action_description)]),
+      ],
+    ),
+  );
+
+calc string default_selected_damage_variant_id(name = "Default selected damage variant id") =
+  if isEmpty(action_damage_variants)
+    then ""
+    else findFirst(
+        map(action_damage_variants, mapper = ($mapValue) => $mapValue.id),
+        filter = ($findFirstValue) => true,
+      );
+
+calc resource<damage_variant> selected_damage_variant(name = "Selected damage variant") =
+  findFirst(
+    action_damage_variants,
+    filter = ($findFirstValue) => ($findFirstValue.id
+      == ($view?.monster_action_display_damage_variant_select? ?? default_selected_damage_variant_id)),
+  );

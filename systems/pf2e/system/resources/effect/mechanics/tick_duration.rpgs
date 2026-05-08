@@ -1,0 +1,17 @@
+mechanic tick_effect_duration(calculated_event_names = parsed_duration_tick_events) =
+  when {
+    tracks_duration && remaining_duration > 0 -> sequence(
+      effects = [
+        addToStat(
+          stat = "remaining_duration",
+          value = -1,
+          aggregation_type = "set",
+        ),
+        when {
+          auto_revert_on_duration_end && remaining_duration <= 1 -> fireEvent(
+            event = event(name = "revert_effect_execution", payload = payload()),
+          ),
+        },
+      ],
+    ),
+  };

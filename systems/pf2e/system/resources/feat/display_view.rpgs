@@ -1,0 +1,450 @@
+view feat_display() =
+  list(
+    id = "feat_display",
+    padding = 16,
+    alignment = "start",
+    subviews = [
+      list(
+        id = "feat_display_non_level_up",
+        is_visible = !($character?.currently_levelling_up ?? false),
+        subviews = [
+          list(
+            id = "feat_display_info",
+            margin_left = 16,
+            alignment = "start",
+            subviews = [
+              composite(
+                id = "feat_display_type_and_action",
+                subviews = [
+                  icon(
+                    id = "feat_display_action_cost_icon_one",
+                    name = "ic_action",
+                    size = "small",
+                    color = "accent",
+                    is_visible = action_cost == "one_action",
+                  ),
+                  icon(
+                    id = "feat_display_action_cost_icon_two",
+                    name = "ic_two_actions",
+                    size = "small",
+                    color = "accent",
+                    is_visible = action_cost == "two_actions",
+                  ),
+                  icon(
+                    id = "feat_display_action_cost_icon_three",
+                    name = "ic_three_actions",
+                    size = "small",
+                    color = "accent",
+                    is_visible = action_cost == "three_actions",
+                  ),
+                  icon(
+                    id = "feat_display_action_cost_icon_reaction",
+                    name = "ic_reaction",
+                    size = "small",
+                    color = "accent",
+                    is_visible = action_cost == "reaction",
+                  ),
+                  icon(
+                    id = "feat_display_action_cost_icon_free",
+                    name = "ic_free_action",
+                    size = "small",
+                    color = "accent",
+                    is_visible = action_cost == "free_action",
+                  ),
+                  text(
+                    id = "feat_display_type",
+                    style = "caption",
+                    text = display_header_type_line,
+                    margin_left = 4,
+                  ),
+                ],
+              ),
+              composite(
+                id = "feat_display_source_row",
+                is_visible = !isEmpty(source),
+                subviews = [
+                  text(
+                    id = "feat_display_source_label",
+                    style = "caption",
+                    bold = true,
+                    text = "Source: ",
+                  ),
+                  text(
+                    id = "feat_display_source",
+                    style = "caption",
+                    resource_id = "source",
+                    resource_instance_ids_stat = "source",
+                    resource_display_stat = "abbreviation",
+                  ),
+                ],
+              ),
+              composite(
+                id = "feat_display_prerequisites_row",
+                is_visible = !isEmpty(prerequisites),
+                subviews = [
+                  text(
+                    id = "feat_display_prerequisites_label",
+                    style = "caption",
+                    bold = true,
+                    text = "Prerequisites: ",
+                  ),
+                  text(
+                    id = "feat_display_prerequisites",
+                    style = "caption",
+                    text = prerequisites,
+                  ),
+                ],
+              ),
+              composite(
+                id = "feat_display_classes_row",
+                is_visible = !isEmpty(classes),
+                subviews = [
+                  text(
+                    id = "feat_display_classes_label",
+                    style = "caption",
+                    bold = true,
+                    text = "Classes: ",
+                  ),
+                  text(
+                    id = "feat_display_classes",
+                    resource_id = "class",
+                    resource_instance_ids_stat = "classes",
+                    resource_display_stat = "name",
+                    style = "caption",
+                  ),
+                ],
+              ),
+              composite(
+                id = "feat_display_ancestries_row",
+                is_visible = !isEmpty(ancestries),
+                subviews = [
+                  text(
+                    id = "feat_display_ancestries_label",
+                    style = "caption",
+                    bold = true,
+                    text = "Ancestries: ",
+                  ),
+                  text(
+                    id = "feat_display_ancestries",
+                    resource_id = "ancestry",
+                    resource_instance_ids_stat = "ancestries",
+                    resource_display_stat = "name",
+                    style = "caption",
+                  ),
+                ],
+              ),
+              composite(
+                id = "feat_display_heritages_row",
+                is_visible = !isEmpty(heritages),
+                subviews = [
+                  text(
+                    id = "feat_display_heritages_label",
+                    style = "caption",
+                    bold = true,
+                    text = "Heritages: ",
+                  ),
+                  text(
+                    id = "feat_display_heritages",
+                    resource_id = "heritage",
+                    resource_instance_ids_stat = "heritages",
+                    resource_display_stat = "name",
+                    style = "caption",
+                  ),
+                ],
+              ),
+              composite(
+                id = "feat_display_archetypes_row",
+                is_visible = !isEmpty(archetypes),
+                subviews = [
+                  text(
+                    id = "feat_display_archetypes_label",
+                    style = "caption",
+                    bold = true,
+                    text = "Archetypes: ",
+                  ),
+                  text(
+                    id = "feat_display_archetypes",
+                    resource_id = "archetype",
+                    resource_instance_ids_stat = "archetypes",
+                    resource_display_stat = "name",
+                    style = "caption",
+                  ),
+                ],
+              ),
+            ],
+          ),
+          text(
+            id = "feat_display_traits",
+            margin_top = 6,
+            text = concat(["Traits: ", traits]),
+            style = "caption",
+            is_visible = !isEmpty(traits),
+          ),
+          text(
+            id = "feat_display_trigger",
+            margin_top = 2,
+            text = concat(["Trigger: ", trigger]),
+            style = "caption",
+            is_visible = !isEmpty(trigger),
+          ),
+          text(
+            id = "feat_display_requirements",
+            margin_top = 2,
+            text = concat(["Requirements: ", requirements]),
+            style = "caption",
+            is_visible = !isEmpty(requirements),
+          ),
+          text(
+            id = "feat_display_frequency",
+            margin_top = 2,
+            text = concat(["Frequency: ", frequency]),
+            style = "caption",
+            is_visible = !isEmpty(frequency),
+          ),
+          text(
+            id = "feat_display_access",
+            margin_top = 2,
+            text = concat(["Access: ", access]),
+            style = "caption",
+            is_visible = !isEmpty(access),
+          ),
+          text(
+            id = "feat_display_special",
+            margin_top = 2,
+            text = concat(["Special: ", special]),
+            style = "caption",
+            is_visible = !isEmpty(special),
+          ),
+          text(
+            id = "feat_display_archetype_spellcasting_flags",
+            margin_top = 2,
+            text = concat(
+              [
+                "Archetype spellcasting progression: ",
+                archetype_spellcasting_flags_text,
+              ],
+            ),
+            style = "caption",
+            is_visible = has_any_archetype_spellcasting_flag,
+          ),
+          text(
+            id = "feat_display_daily_reselection",
+            margin_top = 2,
+            text = "Selectable features refresh on daily preparations.",
+            style = "caption",
+            is_visible = has_selectable_features && refresh_selectable_features_on_daily_preparations,
+          ),
+          text(
+            id = "feat_display_current_level_description",
+            text = current_level_description,
+            style = "text",
+            markdown = true,
+          ),
+          collapsible(
+            id = "feat_display_all_descriptions_collapsible",
+            margin_top = 8,
+            title = "All descriptions (by level)",
+            is_visible = (!defined(stat = "$character") || ($character?.$is_new? ?? false))
+              && length(sorted_descriptions) > 1,
+            subviews = [
+              resourceArray(
+                id = "feat_display_descriptions",
+                resource_id = "levelled_description",
+                stat = "sorted_descriptions",
+                view_type = "display",
+              ),
+            ],
+          ),
+          collapsible(
+            id = "feat_display_available_effects_collapsible",
+            margin_top = 8,
+            title = "Magic effects",
+            is_visible = !isEmpty(available_effects_for_current_level)
+              && defined(stat = "$character")
+              && !($character?.$is_new? ?? false),
+            subviews = [
+              resourceArray(
+                id = "feat_display_effects",
+                resource_id = "effect",
+                stat = "available_effects_for_current_level",
+                view_type = "display",
+              ),
+            ],
+          ),
+          collapsible(
+            id = "feat_display_effects_collapsible",
+            margin_top = 8,
+            title = "Magic effects",
+            is_visible = !isEmpty(sorted_effects)
+              && (!defined(stat = "$character") || ($character?.$is_new? ?? false)),
+            subviews = [
+              resourceArray(
+                id = "feat_display_effects",
+                resource_id = "effect",
+                stat = "sorted_effects",
+                view_type = "display",
+              ),
+            ],
+          ),
+          collapsible(
+            id = "feat_display_active_conditional_linked_feats_collapsible",
+            margin_top = 8,
+            title = "Conditional linked feats",
+            is_visible = defined(stat = "$character")
+              && !($character?.$is_new? ?? false)
+              && !isEmpty(active_conditional_linked_feat_rows),
+            subviews = [
+              resourceArray(
+                id = "feat_display_active_conditional_linked_feats",
+                resource_id = "conditional_linked_feat",
+                stat = "active_conditional_linked_feat_rows",
+                view_type = "display",
+              ),
+            ],
+          ),
+          collapsible(
+            id = "feat_display_conditional_linked_feats_collapsible",
+            margin_top = 8,
+            title = "Conditional linked feats",
+            is_visible = (!defined(stat = "$character") || ($character?.$is_new? ?? false))
+              && !isEmpty(conditional_linked_feats),
+            subviews = [
+              resourceArray(
+                id = "feat_display_conditional_linked_feats",
+                resource_id = "conditional_linked_feat",
+                stat = "conditional_linked_feats",
+                view_type = "display",
+              ),
+            ],
+          ),
+          collapsible(
+            id = "feat_display_proficiency_grants_collapsible",
+            margin_top = 8,
+            title = "Proficiency grants",
+            is_visible = !isEmpty(armor_proficiencies)
+              || !isEmpty(skill_proficiencies)
+              || !isEmpty(weapon_proficiencies)
+              || !isEmpty(lore_skills),
+            subviews = [
+              resourceArray(
+                id = "feat_display_armor_proficiencies",
+                resource_id = "levelled_armor_proficiency",
+                stat = "armor_proficiencies",
+                view_type = "display",
+                is_visible = !isEmpty(armor_proficiencies),
+              ),
+              resourceArray(
+                id = "feat_display_skill_proficiencies",
+                resource_id = "levelled_skill_proficiency",
+                stat = "skill_proficiencies",
+                view_type = "display",
+                is_visible = !isEmpty(skill_proficiencies),
+              ),
+              resourceArray(
+                id = "feat_display_weapon_proficiencies",
+                resource_id = "levelled_weapon_proficiency",
+                stat = "weapon_proficiencies",
+                view_type = "display",
+                is_visible = !isEmpty(weapon_proficiencies),
+              ),
+              resourceArray(
+                id = "feat_display_lore_skills",
+                resource_id = "lore_skill",
+                stat = "lore_skills",
+                view_type = "display",
+                is_visible = !isEmpty(lore_skills),
+              ),
+            ],
+          ),
+          collapsible(
+            id = "feat_display_selectable_features_collapsible",
+            margin_top = 8,
+            title = "All selectable features (by level)",
+            is_visible = has_selectable_features
+              && !isEmpty(sorted_selectable_features)
+              && (!defined(stat = "$character") || ($character?.$is_new? ?? false)),
+            subviews = [
+              resourceArray(
+                id = "feat_display_selectable_feature_amount_per_level",
+                resource_id = "levelled_amount",
+                stat = "sorted_selectable_feature_amount_per_level",
+                view_type = "display",
+              ),
+              resourceSection(
+                id = "feat_display_selectable_features",
+                resource_id = "feat",
+                resource_stat = "sorted_selectable_features",
+                content_item_min_width = 1,
+                read_only = true,
+              ),
+            ],
+          ),
+          text(
+            id = "feat_display_action_cost_warning",
+            margin_top = 8,
+            text = "Not enough actions/reaction available for this feat",
+            style = "caption",
+            color = "accent",
+            is_visible = defined(stat = "$character")
+              && !($character?.$is_new? ?? false)
+              && !isEmpty(active_or_charge_effects_for_current_level)
+              && in_combat
+              && !has_required_action_economy,
+          ),
+          composite(
+            id = "feat_display_use_button_composite",
+            margin_top = 4,
+            alignment = "end",
+            subviews = [
+              button(
+                id = "feat_display_use_button",
+                text = concat(["USE (", action_cost_name, ")"]),
+                event = event(name = "useFeat", payload = payload()),
+                enabled = can_use_active_effects,
+              ),
+            ],
+            is_visible = defined(stat = "$character")
+              && !($character?.$is_new? ?? false)
+              && !isEmpty(active_or_charge_effects_for_current_level),
+          ),
+        ],
+      ),
+      text(
+        id = "feat_display_level_up_selectable_feature",
+        text = "Your level up allowed you to select some additional features:",
+        style = "text",
+        is_visible = $character?.currently_levelling_up ?? false,
+      ),
+      collapsible(
+        id = "feat_display_selectable_features_select_collapsible",
+        margin_top = 8,
+        title = "Chosen selectable features",
+        is_visible = has_selectable_features
+          && current_allowed_amount_of_selectable_features > 0
+          && !isEmpty(available_selectable_features_for_current_level)
+          && defined(stat = "$character")
+          && !($character?.$is_new? ?? false),
+        subviews = [
+          text(
+            id = "feat_display_allowed_amount_of_selectable_features",
+            text = current_allowed_amount_of_selectable_features_label_text,
+            style = "text",
+          ),
+          select(
+            id = "feat_display_selectable_features_select",
+            stat = "chosen_selectable_features",
+            resource_options = available_selectable_features_for_current_level,
+            max_selection_amount = current_allowed_amount_of_selectable_features,
+            options_display_stat = "name",
+            multi_select = true,
+            style = "list",
+          ),
+          button(
+            id = "feat_display_selectable_features_save_button",
+            text = "SAVE",
+            event = event(name = "saveSelectableFeaturesChoice", payload = payload()),
+          ),
+        ],
+      ),
+    ],
+  );

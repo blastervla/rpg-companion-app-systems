@@ -1,0 +1,261 @@
+import "../../macros/system_common.rpgs";
+
+view progression_grant_edit() =
+  list(
+    id = "progression_grant_edit",
+    subviews = [
+
+      // ── Compendium mode (no character context) ─────────────────────────────
+      composite(
+        id = "progression_grant_edit_compendium",
+        is_visible = !defined(stat = "$character"),
+        subviews = [
+          text(
+            id = "progression_grant_edit_level",
+            edit_stat = "level",
+            hint = "Lvl",
+            style = "text",
+            max_length = 3,
+          ),
+          select(
+            id = "progression_grant_edit_bucket",
+            stat = "bucket",
+            options = "progression_bucket",
+            margin_left = 4,
+            margin_right = 4,
+          ),
+          text(
+            id = "progression_grant_edit_amount",
+            edit_stat = "amount",
+            label = "Amount",
+            style = "text",
+            max_length = 3,
+            signed = false,
+            is_visible = !is_feat_slot,
+          ),
+          text(
+            id = "progression_grant_edit_notes",
+            edit_stat = "notes",
+            label = "Notes",
+            style = "text",
+          ),
+        ],
+      ),
+
+      // ── Character mode (ability boost slot) ────────────────────────────────
+      list(
+        id = "progression_grant_edit_ability_boost",
+        is_visible = defined(stat = "$character") && bucket == "ability_boost",
+        subviews = [
+          text(
+            id = "progression_grant_edit_ability_boost_label",
+            text = concat(["Level ", level, " · Ability boost"]),
+            style = "caption",
+            bold = true,
+          ),
+          select(
+            id = "progression_grant_edit_ability_boost_select",
+            stat = "assigned_ability_boosts",
+            options = "ability",
+            multi_select = true,
+            max_selection_amount = amount,
+          ),
+        ],
+      ),
+
+      // ── Character mode (skill increase slot) ───────────────────────────────
+      list(
+        id = "progression_grant_edit_skill_increase",
+        is_visible = defined(stat = "$character") && bucket == "skill_increase",
+        subviews = [
+          text(
+            id = "progression_grant_edit_skill_increase_label",
+            text = concat(["Level ", level, " · Skill increase"]),
+            style = "caption",
+            bold = true,
+          ),
+          text(
+            id = "progression_grant_edit_skill_increase_sheet_warning",
+            text = "To edit skill proficiencies please do so directly from the character sheet by long-pressing on them.",
+            style = "caption",
+            color = "accent",
+            is_visible = !defined(stat = "$character.$is_new"),
+          ),
+          select(
+            id = "progression_grant_edit_skill_increase_skill_select",
+            stat = "assigned_skill_increase_skill",
+            options = "skill_types",
+            allowed_options = assigned_skill_increase_skill_options,
+            is_visible = defined(stat = "$character.$is_new"),
+          ),
+          text(
+            id = "progression_grant_edit_skill_increase_summary",
+            text = assigned_skill_increase_summary_text,
+            style = "caption",
+            is_visible = defined(stat = "$character.$is_new"),
+          ),
+        ],
+      ),
+
+      // ── Character mode (feat slot) ──────────────────────────────────────────
+      list(
+        id = "progression_grant_edit_character",
+        is_visible = defined(stat = "$character") && is_feat_slot,
+        subviews = [
+
+          // Slot header label
+          text(
+            id = "progression_grant_edit_slot_label",
+            text = concat(["Level ", level, " · ", bucket_name]),
+            style = "caption",
+            bold = true,
+          ),
+
+          // Mode toggle — only for class_like_feat slots
+          select(
+            id = "progression_grant_edit_slot_mode",
+            stat = "slot_mode",
+            options = "feat_slot_mode",
+            is_visible = bucket == "class_like_feat",
+          ),
+
+          // ── Class feat picker ───────────────────────────────────────────────
+          composite(
+            id = "progression_grant_edit_class_feat_composite",
+            alignment = "end",
+            is_visible = ($view?.progression_grant_edit_slot_mode? ?? slot_mode) == "class" || bucket != "class_like_feat",
+            subviews = [
+              resourceDetailsOkPopUpButton(
+                button_id = "progression_grant_edit_class_feat_see_details",
+                button_text = "SEE DETAILS",
+                pop_up_view_id = "progression_grant_edit_class_feat_bottom_sheet",
+                resource_id = "feat",
+                stat = "assigned_feat",
+                pop_up_title = assigned_feat?.name ?? "Feat",
+                is_visible = notNull(assigned_feat),
+              ),
+              selectResources(
+                id = "progression_grant_edit_class_feat_select",
+                stat = "assigned_feat",
+                resource_id = "feat",
+                filters = dict(
+                  type = bucket_to_feat_type,
+                  available_at_character_levels = level_singleton,
+                  ancestry_filter_tags = filter(
+                    [$character?.ancestry?.name ?? ""],
+                    filter = ($v) => !isEmpty($v),
+                  ),
+                  // heritage_filter_tags = filter(
+                  //   [character_heritage_filter ?? ""],
+                  //   filter = ($v) => !isEmpty($v),
+                  // ),
+                ),
+                is_visible = bucket == "ancestry_feat",
+              ),
+              selectResources(
+                id = "progression_grant_edit_class_feat_select_non_ancestry",
+                stat = "assigned_feat",
+                resource_id = "feat",
+                filters = dict(
+                  type = bucket_to_feat_type,
+                  available_at_character_levels = level_singleton,
+                  classes = filter(
+                    map($character?.classes ?? [], mapper = ($c) => $c.class?.name ?? ""),
+                    filter = ($v) => !isEmpty($v),
+                  ),
+                ),
+                is_visible = bucket == "class_like_feat",
+              ),
+              selectResources(
+                id = "progression_grant_edit_skill_feat_select",
+                stat = "assigned_feat",
+                resource_id = "feat",
+                filters = dict(
+                  type = bucket_to_feat_type,
+                  available_at_character_levels = level_singleton,
+                ),
+                is_visible = bucket == "skill_feat",
+              ),
+              selectResources(
+                id = "progression_grant_edit_general_feat_select",
+                stat = "assigned_feat",
+                resource_id = "feat",
+                filters = dict(
+                  type = bucket_to_feat_type,
+                  available_at_character_levels = level_singleton,
+                ),
+                is_visible = bucket == "general_feat",
+              ),
+            ],
+          ),
+
+          // ── Archetype new: add a multiclass archetype ───────────────────────
+          composite(
+            id = "progression_grant_edit_archetype_new_composite",
+            alignment = "end",
+            is_visible = bucket == "class_like_feat" && ($view?.progression_grant_edit_slot_mode? ?? slot_mode) == "archetype_new",
+            subviews = [
+              resourceDetailsOkPopUpButton(
+                button_id = "progression_grant_edit_archetype_new_see_details",
+                button_text = "SEE DETAILS",
+                pop_up_view_id = "progression_grant_edit_archetype_new_bottom_sheet",
+                resource_id = "archetype",
+                stat = "assigned_archetype",
+                pop_up_title = assigned_archetype?.name ?? "Archetype",
+                is_visible = notNull(assigned_archetype),
+              ),
+              selectResources(
+                id = "progression_grant_edit_archetype_new_select",
+                stat = "assigned_archetype",
+                resource_id = "archetype",
+                filters = dict(is_class_archetype = false),
+              ),
+            ],
+          ),
+
+          // ── Archetype existing: pick feat from a selected archetype ──────────
+          composite(
+            id = "progression_grant_edit_archetype_existing_composite",
+            alignment = "end",
+            is_visible = bucket == "class_like_feat" && ($view?.progression_grant_edit_slot_mode? ?? slot_mode) == "archetype_existing",
+            subviews = [
+              text(
+                id = "progression_grant_edit_archetype_existing_no_archetype_hint",
+                text = "You haven't chosen any archetype yet. Switch a class feat slot to 'Archetype (new)' and select one before picking an archetype feat here.",
+                style = "caption",
+                color = "accent",
+                is_visible = isEmpty(archetype_existing_source_grants),
+              ),
+              resourceDetailsOkPopUpButton(
+                button_id = "progression_grant_edit_archetype_existing_see_details",
+                button_text = "SEE DETAILS",
+                pop_up_view_id = "progression_grant_edit_archetype_existing_bottom_sheet",
+                resource_id = "feat",
+                stat = "assigned_feat",
+                pop_up_title = assigned_feat?.name ?? "Feat",
+                is_visible = notNull(assigned_feat),
+              ),
+              select(
+                id = "progression_grant_edit_archetype_existing_select",
+                stat = "assigned_archetype_existing_feat_id",
+                resource_options = archetype_existing_available_feats,
+                options_display_stat = "name",
+                is_visible = !isEmpty(archetype_existing_source_grants),
+                validation_message = if notNull(assigned_feat)
+                  && isEmpty(filter(
+                      assigned_feat?.archetypes ?? [],
+                      filter = ($arcId) => contains(
+                        haystack = archetype_existing_selected_archetype_ids,
+                        needle = $arcId,
+                      ),
+                    ))
+                  then "The selected feat no longer belongs to any of your selected archetypes. Please update this selection."
+                  else null,
+              ),
+            ],
+          ),
+
+        ],
+      ),
+    ],
+  );

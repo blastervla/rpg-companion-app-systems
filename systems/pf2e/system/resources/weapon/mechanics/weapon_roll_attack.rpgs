@@ -1,0 +1,55 @@
+mechanic weapon_roll_attack(event_names = "attack") =
+  sequence(
+    effects = [
+      when {
+        can_attack && has_ammunition -> fireEvent(event = event(name = "shoot_ammo")),
+      },
+      when {
+        can_attack -> roll(
+          rolls = [
+            rollable(
+              formulas = [
+                concat(["1d20 + ", attack_bonus]),
+              ],
+              text = "to hit",
+            ),
+          ],
+        ),
+      },
+      when {
+        can_attack && !isEmpty(attached_active_effects) -> fireEvent(
+          event_names = map(
+            attached_active_effects,
+            mapper = ($mapValue) => eventName(event_name = "use", for_resource = $mapValue),
+          ),
+        ),
+      },
+      when {
+        can_attack && has_attached_talisman && attached_talisman_consumed_on_activation -> sequence(
+          effects = [
+            addToStat(
+              stat = "attached_talisman_effective.quantity",
+              value = -1,
+              aggregation_type = "set",
+            ),
+            setStat(
+              stat = "attached_talisman",
+              new_value = "",
+              aggregation_type = "set",
+            ),
+            fireEvent(event_names = ["remove_empty_items"]),
+          ],
+        ),
+      },
+      when {
+        can_attack && in_combat && defined(stat = "$character.actions_remaining") -> addToStat(
+          stat = "$character.actions_remaining",
+          value = -1,
+          aggregation_type = "set",
+        ),
+      },
+      when {
+        can_attack -> delayed(millis = 500, effect = dismissResource()),
+      },
+    ],
+  );

@@ -1,0 +1,33 @@
+mechanic weapon_roll_damage(event_names = "damage") =
+  sequence(
+    effects = [
+      roll(
+        rolls = map(
+          flatAppend(
+            [
+              active_damage_dice,
+              all_attachment_bonus_damage_dice,
+            ],
+          ),
+          mapper = ($mapValue) => rollable(
+            formulas = flatAppend(
+              [
+                map(
+                  $mapValue.dices,
+                  mapper = ($dice) => if is_deadly_simplicity_enabled
+                      && $mapValue.id == active_primary_damage_dice_id
+                    then deadly_simplicity_primary_damage_formula
+                    else $dice.formula,
+                ),
+                (if damage_bonus != 0 then [toSignedString(damage_bonus)] else []),
+              ],
+            ),
+            text = if use_versatile_damage_type && $mapValue.id == active_primary_damage_dice_id
+              then versatile_damage_type
+              else $mapValue.damage_type,
+          ),
+        ),
+      ),
+      delayed(millis = 500, effect = dismissResource()),
+    ],
+  );

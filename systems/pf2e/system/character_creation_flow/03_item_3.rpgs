@@ -1,0 +1,225 @@
+character_creation_page edit_pending_choices_title() =
+  characterCreationPage(
+    title = displayableData(id = "edit_pending_choices_title", name = "Pending choices"),
+    view = list(
+      id = "edit_character_pending_choices",
+      padding = 32,
+      subviews = [
+        text(
+          id = "edit_character_pending_choices_modifiers_header",
+          text = "Current ability modifiers (from your selections so far):",
+          style = "subhead",
+        ),
+        text(
+          id = "edit_character_pending_choices_modifiers_row_1",
+          text = creator_ability_modifiers_row_1,
+          style = "text",
+          bold = true,
+        ),
+        text(
+          id = "edit_character_pending_choices_modifiers_row_2",
+          text = creator_ability_modifiers_row_2,
+          style = "text",
+          bold = true,
+          margin_bottom = 8,
+        ),
+        resourceArray(
+          id = "edit_character_proficiencies_languages",
+          resource_id = "levelled_choice_text",
+          stat = "creator_language_proficiency_choices",
+          view_type = "display",
+          left_view = text(
+            id = "edit_character_proficiencies_languages_label",
+            text = "Languages:",
+            style = "text",
+            bold = true,
+          ),
+        ),
+        resourceArray(
+          id = "edit_character_proficiencies_skills",
+          resource_id = "levelled_skill_proficiency",
+          stat = "creator_skill_proficiency_choices",
+          view_type = "display",
+          left_view = text(
+            id = "edit_character_proficiencies_skills_label",
+            text = "Skill training:",
+            style = "text",
+            bold = true,
+          ),
+        ),
+        text(
+          id = "edit_character_proficiencies_additional_class_skills_help",
+          text = creator_additional_class_skill_choices_help_text,
+          style = "text",
+          bold = true,
+          is_visible = creator_additional_class_skill_choices_required > 0,
+        ),
+        select(
+          id = "edit_character_proficiencies_additional_class_skills",
+          stat = "creator_additional_class_skill_choices",
+          options = "skill_types",
+          allowed_options = creator_additional_class_skill_choices_allowed_options,
+          multi_select = true,
+          max_selection_amount = creator_additional_class_skill_choices_required,
+          validation_message = if length($view.edit_character_proficiencies_additional_class_skills)
+              != creator_additional_class_skill_choices_required
+            then concat(
+                [
+                  "Select exactly ",
+                  creator_additional_class_skill_choices_required,
+                  " additional class skills.",
+                ],
+              )
+            else null,
+          is_visible = creator_additional_class_skill_choices_required > 0,
+        ),
+        resourceArray(
+          id = "edit_character_proficiencies_armors",
+          resource_id = "levelled_armor_proficiency",
+          stat = "creator_armor_proficiency_choices",
+          view_type = "display",
+          left_view = text(
+            id = "edit_character_proficiencies_armors_label",
+            text = "Armor training:",
+            style = "text",
+            bold = true,
+          ),
+        ),
+        resourceArray(
+          id = "edit_character_proficiencies_weapons",
+          resource_id = "levelled_weapon_proficiency",
+          stat = "creator_weapon_proficiency_choices",
+          view_type = "display",
+          left_view = text(
+            id = "edit_character_proficiencies_weapons_label",
+            text = "Weapon training:",
+            style = "text",
+            bold = true,
+          ),
+        ),
+        resourceArray(
+          id = "edit_character_proficiencies_lore_skills",
+          resource_id = "lore_skill",
+          stat = "creator_lore_skill_choices",
+          view_type = "display",
+          left_view = text(
+            id = "edit_character_proficiencies_lore_skills_label",
+            text = "Lore skills:",
+            style = "text",
+            bold = true,
+          ),
+        ),
+      ],
+    ),
+    on_page_open = sequence(
+      effects = [
+        setStat(stat = "selecting", new_value = true, aggregation_type = "set"),
+        forEach(
+          components = creator_lore_skill_choices,
+          for_each_value_key = "$loreSkill",
+          apply = when {
+            isEmpty($loreSkill.selected_option)
+              && !isEmpty($loreSkill.options) -> setStat(
+              stat = "$loreSkill.selected_option",
+              new_value = trim($loreSkill.options),
+              aggregation_type = "set",
+            ),
+          },
+        ),
+      ],
+    ),
+    on_page_close = setStat(stat = "selecting", new_value = false, aggregation_type = "set"),
+    post_edit = sequence(
+      effects = [
+        setStat(
+          stat = "language_proficiencies",
+          new_value = flatAppend(
+            [
+              language_proficiencies,
+              map(
+                flatMap(
+                  creator_language_proficiency_choices,
+                  mapper = ($mapValue) => split($mapValue.selected_options, separator = "\\\\s*,\\\\s*"),
+                ),
+                mapper = ($mapValue) => trim($mapValue),
+              ),
+            ],
+            treat_as_set = true,
+          ),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "armor_proficiencies",
+          new_value = flatAppend(
+            [
+              armor_proficiencies,
+              map(
+                creator_armor_proficiency_choices,
+                mapper = ($mapValue) => if isEmpty($mapValue.selected_option)
+                  then (findFirst($mapValue.options, filter = ($findFirstValue) => true) ?? "")
+                  else $mapValue.selected_option,
+              ),
+            ],
+            treat_as_set = true,
+          ),
+          aggregation_type = "set",
+        ),
+        forEach(
+          creator_skill_proficiency_choices,
+          apply = setStat(
+            meta_stat = concat([$forEachValue.selected_option, "_proficiency"]),
+            new_value = $forEachValue.effective_proficiency,
+            aggregation_type = "set",
+          ),
+        ),
+        forEach(
+          creator_additional_class_skill_choices,
+          apply = setStat(
+            meta_stat = concat([$forEachValue, "_proficiency"]),
+            new_value = "trained",
+            aggregation_type = "set",
+          ),
+        ),
+        setStat(
+          stat = "weapon_proficiencies",
+          new_value = flatAppend(
+            [
+              weapon_proficiencies,
+              ["unarmed_strike"],
+              map(
+                creator_weapon_proficiency_choices,
+                mapper = ($mapValue) => if isEmpty($mapValue.selected_option)
+                  then (findFirst($mapValue.options, filter = ($findFirstValue) => true) ?? "")
+                  else $mapValue.selected_option,
+              ),
+            ],
+            treat_as_set = true,
+          ),
+          aggregation_type = "set",
+        ),
+        setStat(
+          stat = "lore_skills",
+          new_value = map(
+            filter(
+              creator_lore_skill_choices,
+              filter = ($filterValue) => !isEmpty($filterValue.lore_name),
+            ),
+            mapper = ($mapValue) => copyResource($mapValue, preserve_ids = false),
+          ),
+          aggregation_type = "set",
+        ),
+        when {
+          is_new_and_should_daily_preparations && !isEmpty(classes) -> sequence(
+              effects = [
+                fireEvent(event = event(name = "daily_preparations", payload = payload())),
+                setStat(
+                  stat = "is_new_and_should_daily_preparations",
+                  new_value = false,
+                  aggregation_type = "set",
+                ),
+              ],
+            ),
+        },
+      ],
+    ),
+  );

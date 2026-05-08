@@ -1,0 +1,19 @@
+view feat_search_item() =
+  listItem(
+    id = "feat_search_item",
+    title = name,
+    subtitle = list_view_description,
+    first_line_extra = type_name,
+    leading_icon = action_cost_icon_name,
+    leading_icon_color = "accent",
+    chips = [
+      createChip(
+        id = "feat_search_item_source_chip",
+        background_color = "hint",
+        style = "compact",
+        resource_id = "source",
+        resource_instance_ids_stat = "source",
+        resource_display_stat = "abbreviation",
+      ),
+    ],
+  );

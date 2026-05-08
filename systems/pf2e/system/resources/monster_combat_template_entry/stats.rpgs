@@ -1,0 +1,70 @@
+base integer min(name = "Minimum", abbreviation = "Min") = null;
+
+base integer max(name = "Maximum", abbreviation = "Max") = null;
+
+base decimal weight(name = "Weight", abbreviation = "Weight") = 1;
+
+base resource<monster> combatant(name = "Monster") = null;
+
+calc integer minimum_count(name = "Minimum count") = max([0, min ?? 0]);
+
+calc integer maximum_count(name = "Maximum count") =
+  max([minimum_count, max ?? minimum_count]);
+
+calc integer expected_count(name = "Expected count") =
+  when {
+    min != null && max != null -> divide([minimum_count + maximum_count, 2], rounding_method = "down"),
+    min != null -> minimum_count,
+    max != null -> divide([maximum_count, 2], rounding_method = "up"),
+    else -> 1,
+  };
+
+calc integer party_level_for_budgeting(name = "Party level for budgeting") =
+  $parent?.expected_party_level_effective ?? $parent?.expected_party_level ?? 1;
+
+calc integer level_delta(name = "Level delta") =
+  (combatant?.level ?? party_level_for_budgeting) - party_level_for_budgeting;
+
+calc integer xp_per_creature(name = "XP per creature (PF2e budget)") =
+  when {
+    level_delta <= -4 -> 10,
+    level_delta == -3 -> 15,
+    level_delta == -2 -> 20,
+    level_delta == -1 -> 30,
+    level_delta == 0 -> 40,
+    level_delta == 1 -> 60,
+    level_delta == 2 -> 80,
+    level_delta == 3 -> 120,
+    level_delta == 4 -> 160,
+    else -> 240,
+  };
+
+calc integer expected_xp_contribution(name = "Expected XP contribution") =
+  expected_count * xp_per_creature;
+
+calc bool has_min_max_conflict(name = "Has min max conflict") =
+  min != null && max != null && min > max;
+
+calc bool has_invalid_weight(name = "Has invalid weight") =
+  weight <= 0;
+
+calc string min_max_weight_description(name = "Min/Max") =
+  joinToString(
+    filter(
+      [
+        if min != null then "min = " + min else null,
+        if max != null then "max = " + max else null,
+        "weight = " + weight,
+        "lvl = " + (combatant?.level ?? 1),
+        "xp = " + expected_xp_contribution,
+      ],
+      filter = ($e) => $e != null,
+    ),
+    separator = ", "
+  );
+
+calc string min_max_weight_par(name = "(Min/Max)") =
+  if (isEmpty(min_max_weight_description)) then "" else " (" + min_max_weight_description + ")";
+
+calc string description(name = "Display description") =
+  if combatant != null then concat([combatant.name, min_max_weight_par]) else "Empty";

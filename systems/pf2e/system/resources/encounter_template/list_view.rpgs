@@ -1,0 +1,18 @@
+view encounter_template_list() =
+  listItem(
+    id = "encounter_template_list",
+    title = name,
+    first_line_extra = expected_difficulty_name,
+    subtitle = pf2e_budget_summary,
+    second_line_extra = description,
+    chips = [
+      createChip(
+        id = "encounter_template_search_item_source_chip",
+        background_color = "hint",
+        style = "compact",
+        resource_id = "source",
+        resource_instance_ids_stat = "source",
+        resource_display_stat = "abbreviation",
+      ),
+    ],
+  );

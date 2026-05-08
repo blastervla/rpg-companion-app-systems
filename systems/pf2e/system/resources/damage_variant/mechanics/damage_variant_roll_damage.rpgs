@@ -1,0 +1,12 @@
+mechanic damage_variant_roll_damage(event_names = "damage") =
+  when {
+    !isEmpty(variant_damage_dice) -> roll(
+      rolls = map(
+        variant_damage_dice,
+        mapper = ($mapValue) => rollable(
+          formulas = map($mapValue.dices, mapper = ($mapValue) => $mapValue.formula),
+          text = $mapValue.damage_type,
+        ),
+      ),
+    ),
+  };

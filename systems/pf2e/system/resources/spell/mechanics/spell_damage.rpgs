@@ -1,0 +1,46 @@
+mechanic spell_damage(name = "Spell damage", event_names = "damageSpell") =
+  sequence(
+    effects = [
+      when {
+        has_damage_dice -> roll(
+          rolls = findFirst(
+            map(
+              [
+                findFirst(
+                  sortBy(
+                    dice,
+                    sort_by_selector = ($sortByValue) => $sortByValue.level,
+                    order = "desc",
+                  ),
+                  filter = ($findFirstValue) => ($findFirstValue.level <= selected_cast_level),
+                ),
+              ],
+              mapper = ($mapValue) => (if defined(stat = "$mapValue.damage_dice")
+                then map(
+                    $mapValue.damage_dice,
+                    mapper = ($mapValue) => rollable(
+                      formulas = map($mapValue.dices, mapper = ($mapValue) => $mapValue.formula),
+                      text = $mapValue.damage_type,
+                    ),
+                  )
+                else []),
+            ),
+            filter = ($findFirstValue) => true,
+          ),
+        ),
+      },
+      when {
+        has_active_effects -> fireEvent(
+          event_names = map(
+            filter(
+              effects,
+              filter = ($filterValue) => $filterValue.is_active
+                && $filterValue.type != "roll"
+                && $filterValue.type != "roll_dice",
+            ),
+            mapper = ($mapValue) => eventName(event_name = "use", for_resource = $mapValue),
+          ),
+        ),
+      },
+    ],
+  );

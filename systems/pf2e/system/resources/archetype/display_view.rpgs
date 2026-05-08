@@ -1,0 +1,87 @@
+view archetype_display() =
+  list(
+    id = "archetype_display",
+    padding = 16,
+    alignment = "start",
+    subviews = [
+      composite(
+        id = "archetype_display_info",
+        margin_left = 16,
+        subviews = [
+          text(
+            id = "archetype_display_source",
+            style = "caption",
+            resource_id = "source",
+            resource_instance_ids_stat = "source",
+            resource_display_stat = "abbreviation",
+            is_visible = !isEmpty(source),
+          ),
+          text(
+            id = "archetype_display_class_archetype_separator",
+            text = " | ",
+            style = "caption",
+            is_visible = is_class_archetype,
+          ),
+          text(
+            id = "archetype_display_class_archetype",
+            text = "Class Archetype",
+            style = "caption",
+            is_visible = is_class_archetype,
+          ),
+          text(
+            id = "archetype_display_required_class_separator",
+            text = " | ",
+            style = "caption",
+            is_visible = is_class_archetype && !isEmpty(required_class_id),
+          ),
+          text(
+            id = "archetype_display_required_class",
+            style = "caption",
+            resource_id = "class",
+            resource_instance_ids_stat = "required_class_id",
+            resource_display_stat = "name",
+            is_visible = is_class_archetype && !isEmpty(required_class_id),
+          ),
+        ],
+      ),
+      text(
+        id = "archetype_display_description",
+        margin_top = 8,
+        text = description,
+        style = "text",
+        markdown = true,
+        is_visible = !isEmpty(description),
+      ),
+      collapsible(
+        id = "archetype_display_dedication_feat_collapsible",
+        margin_top = 8,
+        title = "Dedication feat",
+        is_visible = notNull(dedication_feat),
+        start_expanded = true,
+        subviews = [
+          resourceSection(
+            id = "archetype_display_dedication_feat",
+            resource_id = "feat",
+            resource_stat = "dedication_feat_array",
+            content_item_min_width = 1,
+            read_only = true,
+          ),
+        ],
+      ),
+      collapsible(
+        id = "archetype_display_feats_collapsible",
+        margin_top = 8,
+        title = "Archetype feats",
+        is_visible = !isEmpty(feats),
+        subviews = [
+          resourceSection(
+            id = "archetype_display_feats",
+            resource_id = "feat",
+            resource_stat = "sorted_feats",
+            content_item_min_width = 1,
+            read_only = true,
+          ),
+        ],
+      ),
+    ],
+  );

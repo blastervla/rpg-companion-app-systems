@@ -1,0 +1,303 @@
+import "../../macros/system_common.rpgs";
+
+base integer level(name = "Level", abbreviation = "Lvl") = 1;
+
+base string bucket(name = "Bucket") = "class_like_feat";
+
+base integer amount(name = "Amount") = 1;
+
+base string notes(name = "Notes") = "";
+
+calc string bucket_name(name = "Bucket name") =
+  enumeratedName(
+    enumerated_type = "progression_bucket",
+    id = bucket,
+  );
+
+calc string display_description(name = "Display description") =
+  concat(
+    [
+      "Lvl. ",
+      level,
+      ": ",
+      bucket_name,
+      " x",
+      amount,
+      (if isEmpty(notes) then "" else concat([" (", notes, ")"])),
+    ],
+  );
+
+base bool is_levelled(name = "Is levelled") = true;
+
+calc bool is_feat_slot(name = "Is feat slot") =
+  bucket == "class_like_feat"
+    || bucket == "skill_feat"
+    || bucket == "ancestry_feat"
+    || bucket == "general_feat";
+
+calc bool is_interactive_slot(name = "Is interactive slot") =
+  is_feat_slot || bucket == "ability_boost" || bucket == "skill_increase";
+
+base string[] assigned_ability_boosts(name = "Assigned ability boosts") = [];
+
+calc string[] assigned_ability_boosts_effective(name = "Assigned ability boosts (effective)") =
+  if defined(stat = "$view.progression_grant_edit_ability_boost_select")
+    then ($view.progression_grant_edit_ability_boost_select ?? assigned_ability_boosts)
+    else assigned_ability_boosts;
+
+base string[] committed_ability_boosts(name = "Committed ability boosts") = [];
+
+base string assigned_skill_increase_skill(name = "Assigned skill increase skill") = "";
+
+base string assigned_skill_increase_rank(name = "Assigned skill increase rank") = "";
+
+base string committed_skill_increase_skill(name = "Committed skill increase skill") = "";
+
+calc string assigned_skill_increase_skill_effective(name = "Assigned skill increase skill (effective)") =
+  when {
+    defined(stat = "$view.progression_grant_edit_skill_increase_skill_select") -> if isEmpty($view.progression_grant_edit_skill_increase_skill_select)
+        then assigned_skill_increase_skill
+        else $view.progression_grant_edit_skill_increase_skill_select,
+    else -> assigned_skill_increase_skill,
+  };
+
+calc bool has_skill_proficiency_context(name = "Has skill proficiency context") =
+  defined(stat = "$character.acrobatics_proficiency");
+
+calc string assigned_skill_increase_current_rank(name = "Assigned skill increase current rank") =
+  if !has_skill_proficiency_context || isEmpty(assigned_skill_increase_skill_effective)
+    then "none"
+    else (metaStat(meta_stat = concat(["$character.", assigned_skill_increase_skill_effective, "_proficiency"])) ?? "none");
+
+calc integer assigned_skill_increase_current_rank_value(name = "Assigned skill increase current rank value") =
+  when {
+    assigned_skill_increase_current_rank == "trained" -> 1,
+    assigned_skill_increase_current_rank == "expert" -> 2,
+    assigned_skill_increase_current_rank == "master" -> 3,
+    assigned_skill_increase_current_rank == "legendary" -> 4,
+    else -> 0,
+  };
+
+calc integer assigned_skill_increase_rank_cap_value(name = "Assigned skill increase rank cap value") =
+  $character?.current_skill_increase_rank_cap_value ?? 4;
+
+calc string assigned_skill_increase_next_rank(name = "Assigned skill increase next rank") =
+  when {
+    assigned_skill_increase_current_rank == "none" -> "trained",
+    assigned_skill_increase_current_rank == "trained" -> "expert",
+    assigned_skill_increase_current_rank == "expert" -> "master",
+    assigned_skill_increase_current_rank == "master" -> "legendary",
+    else -> "",
+  };
+
+calc string assigned_skill_increase_target_rank_auto(name = "Assigned skill increase target rank (auto)") =
+  if isEmpty(assigned_skill_increase_skill_effective)
+    then ""
+    else if assigned_skill_increase_current_rank_value >= assigned_skill_increase_rank_cap_value
+      then ""
+      else assigned_skill_increase_next_rank;
+
+calc string[] assigned_skill_increase_skill_options(name = "Assigned skill increase eligible skills") =
+  when {
+    !has_skill_proficiency_context -> [
+      "acrobatics",
+      "arcana",
+      "athletics",
+      "crafting",
+      "deception",
+      "diplomacy",
+      "intimidation",
+      "medicine",
+      "nature",
+      "occultism",
+      "performance",
+      "religion",
+      "society",
+      "stealth",
+      "survival",
+      "thievery",
+    ],
+    else -> filter(
+      [
+        "acrobatics",
+        "arcana",
+        "athletics",
+        "crafting",
+        "deception",
+        "diplomacy",
+        "intimidation",
+        "medicine",
+        "nature",
+        "occultism",
+        "performance",
+        "religion",
+        "society",
+        "stealth",
+        "survival",
+        "thievery",
+      ],
+      filter = ($filterValue) => when {
+        (metaStat(meta_stat = concat(["$character.", $filterValue, "_proficiency"])) ?? "none") == "trained" -> 1,
+        (metaStat(meta_stat = concat(["$character.", $filterValue, "_proficiency"])) ?? "none") == "expert" -> 2,
+        (metaStat(meta_stat = concat(["$character.", $filterValue, "_proficiency"])) ?? "none") == "master" -> 3,
+        (metaStat(meta_stat = concat(["$character.", $filterValue, "_proficiency"])) ?? "none") == "legendary" -> 4,
+        else -> 0,
+      } < assigned_skill_increase_rank_cap_value
+        || $filterValue == assigned_skill_increase_skill_effective,
+    ),
+  };
+
+calc string assigned_skill_increase_summary_text(name = "Assigned skill increase summary text") =
+  if isEmpty(assigned_skill_increase_skill_effective)
+    then concat(
+        [
+          "Select a skill to preview rank increase. Cap: ",
+          enumeratedName(
+            enumerated_type = "skill_proficiency_types",
+            id = ($character?.current_skill_increase_rank_cap ?? "legendary"),
+          ),
+          ".",
+        ],
+      )
+    else concat(
+        [
+          "Current: ",
+          enumeratedName(
+            enumerated_type = "skill_proficiency_types",
+            id = assigned_skill_increase_current_rank,
+          ),
+          " -> ",
+          (if isEmpty(assigned_skill_increase_target_rank_auto)
+            then "No increase available"
+            else enumeratedName(
+                enumerated_type = "skill_proficiency_types",
+                id = assigned_skill_increase_target_rank_auto,
+              )),
+          " | Cap: ",
+          enumeratedName(
+            enumerated_type = "skill_proficiency_types",
+            id = ($character?.current_skill_increase_rank_cap ?? "legendary"),
+          ),
+        ],
+      );
+
+base string slot_mode(name = "Slot mode") = "class";
+
+base resource<feat> assigned_feat(name = "Assigned feat") = null;
+
+base resource<archetype> assigned_archetype(name = "Assigned archetype") = null;
+
+base string assigned_archetype_existing_feat_id(name = "Assigned archetype-existing feat id") = "";
+
+calc string slot_mode_effective(name = "Slot mode (effective)") =
+  $view?.progression_grant_edit_slot_mode? ?? slot_mode;
+
+calc resource<archetype> assigned_archetype_effective(name = "Assigned archetype (effective)") =
+  if slot_mode_effective == "archetype_new"
+    then ($view?.progression_grant_edit_archetype_new_select? ?? assigned_archetype)
+    else assigned_archetype;
+
+calc bool archetype_existing_use_view_only(name = "Archetype-existing use view-only selection context") =
+  $character?.creation_feats_page_open ?? false;
+
+calc resource<progression_grant>[] archetype_existing_source_grants(name = "Archetype-existing source grants") =
+  when {
+    archetype_existing_use_view_only -> filter(
+      flatAppend(
+        [
+          flatMap(
+            $character?.classes ?? [],
+            mapper = ($c) => $c.class?.progression_grants ?? [],
+          ),
+          $character?.ancestry?.progression_grants ?? [],
+          $character?.heritage?.progression_grants ?? [],
+        ],
+      ),
+      filter = ($g) => ($g?.$view?.progression_grant_edit_slot_mode? ?? "") == "archetype_new"
+        && notNull($g?.$view?.progression_grant_edit_archetype_new_select?)
+        && $g.level <= level,
+    ),
+    else -> filter(
+      flatAppend(
+        [
+          flatMap(
+            $character?.classes ?? [],
+            mapper = ($c) => $c.class?.progression_grants ?? [],
+          ),
+          $character?.ancestry?.progression_grants ?? [],
+          $character?.heritage?.progression_grants ?? [],
+        ],
+      ),
+      filter = ($g) => ($g.slot_mode == "archetype_new")
+        && notNull($g.assigned_archetype)
+        && $g.level <= level,
+    ),
+  };
+
+calc resource<archetype>[] archetype_existing_selected_archetypes(name = "Archetype-existing selected archetypes") =
+  filter(
+    map(
+      archetype_existing_source_grants,
+      mapper = ($g) => when {
+        archetype_existing_use_view_only -> $g?.$view?.progression_grant_edit_archetype_new_select?,
+        else -> $g.assigned_archetype,
+      },
+    ),
+    filter = ($a) => notNull($a),
+  );
+
+calc string[] archetype_existing_selected_archetype_ids(name = "Archetype-existing selected archetype ids") =
+  map(
+    archetype_existing_selected_archetypes,
+    mapper = ($a) => $a.id ?? "",
+  );
+
+calc resource<feat>[] archetype_existing_available_feats(name = "Archetype-existing available feats") =
+  filter(
+    flatMap(
+      archetype_existing_selected_archetypes,
+      mapper = ($a) => $a?.feats ?? [],
+    ),
+    filter = ($f) => $f.min_level <= level,
+  );
+
+calc string archetype_existing_selected_feat_id_from_view(name = "Archetype-existing selected feat id from view") =
+  when {
+    defined(stat = "$view.progression_grant_edit_archetype_existing_select") -> ($view?.progression_grant_edit_archetype_existing_select ?? assigned_archetype_existing_feat_id),
+    else -> assigned_archetype_existing_feat_id,
+  };
+
+calc resource<feat> archetype_existing_selected_feat_from_view(name = "Archetype-existing selected feat from view") =
+  findFirst(
+    archetype_existing_available_feats,
+    filter = ($f) => $f.id == archetype_existing_selected_feat_id_from_view,
+  );
+
+calc resource<feat> assigned_feat_effective(name = "Assigned feat (effective)") =
+  when {
+    bucket == "skill_feat" -> ($view?.progression_grant_edit_skill_feat_select? ?? assigned_feat),
+    bucket == "general_feat" -> ($view?.progression_grant_edit_general_feat_select? ?? assigned_feat),
+    bucket == "ancestry_feat" -> ($view?.progression_grant_edit_class_feat_select? ?? assigned_feat),
+    bucket == "class_like_feat" && slot_mode_effective == "class" -> ($view?.progression_grant_edit_class_feat_select_non_ancestry? ?? assigned_feat),
+    bucket == "class_like_feat" && slot_mode_effective == "archetype_existing" -> (archetype_existing_selected_feat_from_view ?? assigned_feat),
+    else -> assigned_feat,
+  };
+
+calc string[] level_singleton(name = "Level as singleton") = ["" + level];
+
+calc string bucket_to_feat_type(name = "Bucket to feat type") =
+  when {
+    bucket == "class_like_feat" -> "class",
+    bucket == "skill_feat" -> "skill",
+    bucket == "ancestry_feat" -> "ancestry",
+    bucket == "general_feat" -> "general",
+    else -> "class",
+  };
+
+calc bool can_be_used(name = "Can execute") =
+  levelGate(required_level = level);
+
+calc string character_heritage_filter(name = "Character heritage filter") =
+  if $character?.heritage?.is_versatile == true
+    then null
+    else $character?.heritage?.name;
