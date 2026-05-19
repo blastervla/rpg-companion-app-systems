@@ -42,7 +42,7 @@ Create or edit resource instance files for the RPG Companion App using the syste
   - the top-level resource in the file, and
   - any leaf resource objects you modified (for example `resource_id: "damage_dice"`).
 - Use an ISO timestamp with microseconds, e.g. `2026-02-03T10:19:37.096744`.
-- When removing entries from resource-array stats, add their ids to `remove_ids` so merges can delete them.
+- **CRITICAL — removing array entries**: When you delete a resource from a resource-array stat (e.g. removing a `damage_dice` from `variant_damage_dice`, or a `monster_action` from `actions`), you MUST add the deleted resource's `stats.id` to a `remove_ids` list on that stat object. Without this, the client merge will never delete the entry — it will keep the old data even after the parent's `updated_at` is updated. Also update `updated_at` on the containing resource (e.g. the `damage_variant`) after adding `remove_ids`.
 - If a resource object is missing `stats.id`, add one before relying on updated_at or merge behavior.
 
 6) Validate then format (required)
@@ -71,39 +71,30 @@ Create or edit resource instance files for the RPG Companion App using the syste
 ## Notes and gotchas
 - Missing `stats.updated_at` on nested resources (e.g., `monster_action`) prevents app updates; add `stats.id` (string) + updated_at on those leaves.
 - When backfilling updated_at across commits, use the precise git range that includes the real changes and excludes format-only commits.
-- If you delete entries from resource arrays, use `remove_ids` so the merge logic can actually remove them.
-- `remove_ids` lives inside the stat object for a resource-array stat and is a list of resource ids (`stats.id` strings) to delete. The resource type is implied by the stat schema, so `remove_ids` items are just ids (no resource_id field inside the list). Example:
+- **`remove_ids` is mandatory when deleting array entries** — omitting it causes the client to silently keep the deleted resource even after a sync, because the merge logic only adds/updates entries, never removes them unless explicitly told to. Symptom: the app shows stale data (e.g. a deleted `damage_dice` still appears in the variant). `remove_ids` lives inside the stat object (sibling of `value`) and is a list of `stats.id` strings. After adding `remove_ids`, also update `updated_at` on the containing resource so the client re-processes it. Example — removing a `damage_dice` from a `damage_variant`:
 ```json
 {
-  "resource_id": "trigger_condition_or",
+  "resource_id": "damage_variant",
   "stats": {
-    "terms": {
+    "variant_name": { "value": "Enlarged" },
+    "variant_damage_dice": {
       "value": [
         {
-          "resource_id": "trigger_condition_and",
+          "resource_id": "damage_dice",
           "stats": {
-            "terms": {
-              "value": []
-            },
-            "id": "356a0ba2-f020-463b-a59b-9868ca2faa62",
-            "updated_at": {
-              "value": "2026-02-07T11:05:12.123456"
-            }
+            "damage_type": { "value": "force" },
+            "dices": { "value": [ ... ] },
+            "id": "6bba12f0-ba63-4b2c-8226-2823355cc957",
+            "updated_at": { "value": "2026-02-07T10:53:53.727929" }
           }
         }
       ],
       "remove_ids": [
-        "356a0ba2-f020-463b-a59b-9868ca2faa62"
-      ],
-      "id": "03055e68-342c-4d36-a1e1-cf012f3d7ee7",
-      "updated_at": {
-        "value": "2026-02-07T11:05:12.123456"
-      }
+        "7d4e9fd7-82dd-4822-b1c0-9779e01c4279"
+      ]
     },
-    "id": "....",
-    "updated_at": {
-      "value": "2026-02-07T11:05:12.123456"
-    }
+    "id": "b3233896-58c0-4451-ab96-72b79e8ba01d",
+    "updated_at": { "value": "2026-05-19T10:33:30.768561" }
   }
 }
 ```
