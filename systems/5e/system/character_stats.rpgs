@@ -750,12 +750,15 @@ calc resource<spell>[] sorted_spells(name = "Sorted spells") =
           ),
           mapper = ($mapValue) => $mapValue.spell,
         ),
-        map(
-          filter(
-            flatMap(classes, mapper = ($class) => $class.class.all_spells),
-            filter = ($filterValue) => ($filterValue.level <= level),
+        flatMap(
+          classes,
+          mapper = ($class) => map(
+            filter(
+              $class.class.all_spells,
+              filter = ($filterValue) => ($filterValue.level <= $class.class_level),
+            ),
+            mapper = ($mapValue) => $mapValue.spell,
           ),
-          mapper = ($mapValue) => $mapValue.spell,
         ),
         spells,
       ],
@@ -1015,7 +1018,8 @@ calc resource<levelled_choice_text>[] creator_skill_proficiency_choices(name = "
     [
       race.skill_proficiencies_for_current_level,
       flatMap(
-        classes,
+        filter(classes, filter = ($filterValue) => ($filterValue.class.is_primary_class
+            || $filterValue.class.account_for_skill_proficiencies_on_multiclass)),
         mapper = ($mapValue) => $mapValue.class.skill_proficiencies_for_current_level,
       ),
       background.skill_proficiencies_for_current_level,
@@ -1027,7 +1031,8 @@ calc resource<levelled_choice_text>[] creator_armor_proficiency_choices(name = "
     [
       race.armor_proficiencies_for_current_level,
       flatMap(
-        classes,
+        filter(classes, filter = ($filterValue) => ($filterValue.class.is_primary_class
+            || $filterValue.class.account_for_armor_proficiencies_on_multiclass)),
         mapper = ($mapValue) => $mapValue.class.armor_proficiencies_for_current_level,
       ),
       background.armor_proficiencies_for_current_level,
@@ -1039,7 +1044,8 @@ calc resource<levelled_choice_text>[] creator_weapon_proficiency_choices(name = 
     [
       race.weapon_proficiencies_for_current_level,
       flatMap(
-        classes,
+        filter(classes, filter = ($filterValue) => ($filterValue.class.is_primary_class
+            || $filterValue.class.account_for_weapon_proficiencies_on_multiclass)),
         mapper = ($mapValue) => $mapValue.class.weapon_proficiencies_for_current_level,
       ),
       background.weapon_proficiencies_for_current_level,
@@ -1051,7 +1057,8 @@ calc resource<levelled_choice_text>[] creator_tool_proficiency_choices(name = "C
     [
       race.tool_proficiencies_for_current_level,
       flatMap(
-        classes,
+        filter(classes, filter = ($filterValue) => ($filterValue.class.is_primary_class
+            || $filterValue.class.account_for_tool_proficiencies_on_multiclass)),
         mapper = ($mapValue) => $mapValue.class.tool_proficiencies_for_current_level,
       ),
       background.tool_proficiencies_for_current_level,
@@ -1061,7 +1068,10 @@ calc resource<levelled_choice_text>[] creator_tool_proficiency_choices(name = "C
 calc resource<selectable_items>[] creator_starting_equipment_choices(name = "Creator starting equipment choices") =
   flatAppend(
     [
-      flatMap(classes, mapper = ($mapValue) => $mapValue.class.selectable_equipments),
+      flatMap(
+        filter(classes, filter = ($filterValue) => $filterValue.class.is_primary_class),
+        mapper = ($mapValue) => $mapValue.class.selectable_equipments,
+      ),
       background.selectable_equipments,
     ],
   );
@@ -1069,7 +1079,10 @@ calc resource<selectable_items>[] creator_starting_equipment_choices(name = "Cre
 calc resource<selectable_armors>[] creator_starting_armor_choices(name = "Creator starting armor choices") =
   flatAppend(
     [
-      flatMap(classes, mapper = ($mapValue) => $mapValue.class.selectable_armors),
+      flatMap(
+        filter(classes, filter = ($filterValue) => $filterValue.class.is_primary_class),
+        mapper = ($mapValue) => $mapValue.class.selectable_armors,
+      ),
       background.selectable_armors,
     ],
   );
@@ -1077,7 +1090,10 @@ calc resource<selectable_armors>[] creator_starting_armor_choices(name = "Creato
 calc resource<selectable_weapons>[] creator_starting_weapon_choices(name = "Creator starting weapon choices") =
   flatAppend(
     [
-      flatMap(classes, mapper = ($mapValue) => $mapValue.class.selectable_weapons),
+      flatMap(
+        filter(classes, filter = ($filterValue) => $filterValue.class.is_primary_class),
+        mapper = ($mapValue) => $mapValue.class.selectable_weapons,
+      ),
       background.selectable_weapons,
     ],
   );
