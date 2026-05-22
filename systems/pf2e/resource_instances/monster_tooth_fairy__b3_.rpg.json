@@ -1,0 +1,535 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "tooth_fairy__b3_",
+    "name": {
+      "value": "Tooth Fairy"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b3"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 15
+    },
+    "hit_points": {
+      "value": 8
+    },
+    "level": {
+      "value": -1
+    },
+    "xp": {
+      "value": 10
+    },
+    "initiative": {
+      "value": 6
+    },
+    "perception": {
+      "value": 6
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 10
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 25
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": -2
+    },
+    "dexterity_modifier": {
+      "value": 3
+    },
+    "constitution_modifier": {
+      "value": 0
+    },
+    "intelligence_modifier": {
+      "value": -1
+    },
+    "wisdom_modifier": {
+      "value": 2
+    },
+    "charisma_modifier": {
+      "value": 1
+    },
+    "fortitude": {
+      "value": 2
+    },
+    "reflex": {
+      "value": 7
+    },
+    "will": {
+      "value": 4
+    },
+    "skills": {
+      "value": "Acrobatics +5, Stealth +5, Thievery +6"
+    },
+    "gear": {
+      "value": "pliers"
+    },
+    "weaknesses": {
+      "value": "Cold Iron 2"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "darkvision"
+    },
+    "languages": {
+      "value": "Sylvan"
+    },
+    "size": {
+      "value": "tiny"
+    },
+    "type": {
+      "value": "fey"
+    },
+    "alignment": {
+      "value": "chaotic_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Plaque Burst"
+            },
+            "trait_description": {
+              "value": "When killed, a tooth fairy bursts into sticky, foul-smelling white dust. Each creature with 5 feet must succeed at a 16 Fortitude save or become sickened 1 (sickened 2 on a critical failure)."
+            },
+            "id": "93c1eee1-b0c9-492e-a8ed-40d4d92d5423",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.886886"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Pliers"
+            },
+            "action_description": {
+              "value": "(disarm, finesse) 1d6 bludgeoning plus Tooth Tug\nEffects: Tooth Tug"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 7
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "867773d7-d002-402c-844b-5f8ff9196984",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:01.886886"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "e06aea62-adad-4e5f-97e6-d0855db81ef2",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:01.886886"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "4d1700c7-6674-4778-ad44-359f17cc1481",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.886886"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "029cb11f-ba72-4231-a945-fb2f2eab17f7",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.886886"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Tooth Tug"
+            },
+            "action_description": {
+              "value": "(manipulate)\n\nRequirements: The tooth fairy's last action was a successful pliers Strike against a creature with teeth\n\nThe tooth fairy tugs on the creature's teeth, dealing 2 persistent bleed damage to the creature."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "878dd51d-86ae-413e-b6f5-962a032db162",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.886886"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": [
+        {
+          "resource_id": "monster_spellcasting_block",
+          "stats": {
+            "block_name": {
+              "value": ""
+            },
+            "tradition": {
+              "value": "primal"
+            },
+            "spellcasting_type": {
+              "value": "innate"
+            },
+            "spell_dc": {
+              "value": 13
+            },
+            "spell_attack_bonus": {
+              "value": 0
+            },
+            "spell_levels": {
+              "value": [
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 0
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "mage_hand__crb_",
+                          "name": {
+                            "value": "Mage Hand"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_0"
+                          },
+                          "school": {
+                            "value": "spell_school_evocation"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": "Sustained (unlimited)"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 unattended object of light Bulk or less"
+                          },
+                          "description": {
+                            "value": "You create a single magical hand, either invisible or ghostlike, that grasps the target object and moves it slowly up to 20 feet. Because you're levitating the object, you can move it in any direction. When you Sustain the Spell, you can move the object an additional 20 feet. If the object is in the air when the spell ends, the object falls."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (3rd): You can target an unattended object with a Bulk of 1 or less.\n\nHeightened (5th): The range increases to 60 feet, and you can target an unattended object with a Bulk of 1 or less.\n\nHeightened (7th): The range increases to 60 feet, and you can target an unattended object with a Bulk of 2 or less."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "cantrip"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-04-15T14:12:41.689945"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 13
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "5416badf-0da6-481c-b064-5320bef590f2",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.886886"
+                    },
+                    "daily_cast_max_override": {
+                      "value": 0
+                    },
+                    "cast_level_override": {
+                      "value": 1
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 1
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "sleep__pc1_",
+                          "name": {
+                            "value": "Sleep"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_1"
+                          },
+                          "school": {
+                            "value": "none"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": ""
+                          },
+                          "saving_throw": {
+                            "value": "Will"
+                          },
+                          "area": {
+                            "value": "5-foot burst"
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "Each creature in the area becomes drowsy, possibly nodding off. A creature that falls unconscious from this spell doesn't fall prone or release what it's holding. This spell doesn't prevent creatures from waking up due to a successful Perception check, limiting its utility in combat.\n\n- **Critical Success:** The creature is unaffected.\n- **Success:** The creature takes a \u20131 status penalty to Perception checks for 1 round.\n- **Failure:** The creature falls unconscious. If it's still unconscious after 1 minute, it wakes up automatically.\n- **Critical Failure:** The creature falls unconscious. If it's still unconscious after 1 hour, it wakes up automatically."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (4th): The creatures fall unconscious for 1 round on a failure or 1 minute on a critical failure. They fall prone and release what they're holding, and they can't attempt Perception checks to wake up. When the duration ends, the creature is sleeping normally instead of automatically waking up."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "concentrate",
+                              "incapacitation",
+                              "manipulate",
+                              "mental",
+                              "sleep"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-04-15T14:12:41.689945"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 13
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "8821e4e8-a691-4087-9443-539d2272b1c9",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.886886"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "fb632094-c016-4a24-9a05-7d5d85e365a0",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.886886"
+            }
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2026-04-15T14:13:01.886886"
+    }
+  }
+}

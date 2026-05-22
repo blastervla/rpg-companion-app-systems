@@ -1,0 +1,423 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "rust_monster__b1_",
+    "name": {
+      "value": "Rust Monster"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b1"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 19
+    },
+    "hit_points": {
+      "value": 40
+    },
+    "level": {
+      "value": 3
+    },
+    "xp": {
+      "value": 30
+    },
+    "initiative": {
+      "value": 8
+    },
+    "perception": {
+      "value": 8
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 35
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 10
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 0
+    },
+    "dexterity_modifier": {
+      "value": 3
+    },
+    "constitution_modifier": {
+      "value": 1
+    },
+    "intelligence_modifier": {
+      "value": -4
+    },
+    "wisdom_modifier": {
+      "value": 1
+    },
+    "charisma_modifier": {
+      "value": 0
+    },
+    "fortitude": {
+      "value": 8
+    },
+    "reflex": {
+      "value": 10
+    },
+    "will": {
+      "value": 6
+    },
+    "skills": {
+      "value": "Athletics +7"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "darkvision, metal scent 30 ft."
+    },
+    "languages": {
+      "value": ""
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "aberration"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Metal Scent"
+            },
+            "trait_description": {
+              "value": "A rust monster can smell metal as a precise sense."
+            },
+            "id": "49e52e17-69cc-445a-a8df-6d46ebe9f5a8",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Rust"
+            },
+            "trait_description": {
+              "value": "A rust monster's antenna causes metal to rapidly rust and corrode. If it succeeds at an antenna Strike or Disarm attempt with its antenna, the rust monster deals 2d6 damage (doubled on a critical hit) to a metal item the target is wearing or holding, ignoring its."
+            },
+            "id": "e3df4fe9-d782-406b-a4e2-79ffecf4789e",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Hardness."
+            },
+            "trait_description": {
+              "value": "If the rust monster hits an unattended metal item, the item takes this damage automatically. If a creature uses the Shield Block reaction with a metal shield against an antenna attack, the shield is automatically broken, but no other item is rusted on that attack."
+            },
+            "id": "4f1c4550-2d24-4f0f-8f01-26965049fd43",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Antenna"
+            },
+            "action_description": {
+              "value": "(finesse)\nEffects: rust"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 10
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "547b9216-e2c6-4368-b126-0e2fdef94d11",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Mandibles"
+            },
+            "action_description": {
+              "value": "(finesse) 1d10+4 piercing"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 8
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 4
+                                    },
+                                    "id": "781f008b-afcb-427d-8c2c-2f87785bb9a8",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "552f7836-ee2e-4a38-a362-eec225cbd3c6",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "2348afad-30c0-4772-aab3-eea77f819a56",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:00.984060"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "7b658701-3f9c-43b6-a8d2-f736658ae7d1",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Tail"
+            },
+            "action_description": {
+              "value": "(finesse) 1d4+2 bludgeoning plus Improved Knockdown\nEffects: Improved Knockdown"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 8
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 2
+                                    },
+                                    "id": "b023b10e-2827-449f-aa60-15f6aadc7a51",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "8a5ce182-80ad-462e-b030-dd99695d4ac5",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "216c55ad-9864-4602-9663-90547284c988",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:00.984060"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "cb50971b-39fa-4289-93c9-5609b3f8cff4",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Antenna Disarm"
+            },
+            "action_description": {
+              "value": "The rust monster attempts to Disarm a metal item a creature is holding using its antenna (with the same modifier as an antenna Strike). On a success, the item is subject to the rust monster's rust ability (see below) in addition to the effects of the Disarm, and if the check to Disarm is a critical success, the rust monster drops the item on the ground in its own space."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "6319ba86-7b40-4189-b5c6-817dd9e02326",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Tail Trip"
+            },
+            "action_description": {
+              "value": "Trigger: A creature carrying a metal item attempts to move out of a square within reach of the rust monster's tail.\n\nThe rust monster makes a tail Strike against the triggering creature."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "3769bc48-a2e5-4f51-a3e8-f437954007c2",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        }
+      ]
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-04-15T14:13:00.984060"
+    }
+  }
+}

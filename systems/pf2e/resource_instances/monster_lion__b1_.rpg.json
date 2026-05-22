@@ -1,0 +1,689 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "lion__b1_",
+    "name": {
+      "value": "Lion"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b1"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 19
+    },
+    "hit_points": {
+      "value": 45
+    },
+    "level": {
+      "value": 3
+    },
+    "xp": {
+      "value": 30
+    },
+    "initiative": {
+      "value": 9
+    },
+    "perception": {
+      "value": 9
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 4
+    },
+    "dexterity_modifier": {
+      "value": 3
+    },
+    "constitution_modifier": {
+      "value": 2
+    },
+    "intelligence_modifier": {
+      "value": -4
+    },
+    "wisdom_modifier": {
+      "value": 2
+    },
+    "charisma_modifier": {
+      "value": -2
+    },
+    "fortitude": {
+      "value": 9
+    },
+    "reflex": {
+      "value": 10
+    },
+    "will": {
+      "value": 7
+    },
+    "skills": {
+      "value": "Acrobatics +8, Athletics +11, Stealth +10"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "low-light vision, imprecise scent 30 ft."
+    },
+    "languages": {
+      "value": ""
+    },
+    "size": {
+      "value": "large"
+    },
+    "type": {
+      "value": "animal"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Pack Attack"
+            },
+            "trait_description": {
+              "value": "The lion deals 1d4 extra damage to any creature that's within reach of at least two of the lion's allies."
+            },
+            "id": "9453af74-429d-480b-8890-d5b0f306a353",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Sneak Attack"
+            },
+            "trait_description": {
+              "value": "The lion deals 1d6 extra precision damage to flat-footed creatures."
+            },
+            "id": "0da21181-c844-4fa5-b53f-ebc19269201e",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Jaws"
+            },
+            "action_description": {
+              "value": "1d10+6 piercing plus Grab\nEffects: Grab"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 11
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 6
+                                    },
+                                    "id": "8f9030cb-a1db-4368-b72f-fde73c107ac8",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "ec8f7d40-77e9-48ed-9629-6aca06d354ab",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "886ec9c9-4e31-4c82-bb47-7701072476cc",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:00.984060"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Any target"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 6
+                                    },
+                                    "id": "f6e2b694-14f4-4ef3-b643-54ac3776a94b",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "f7703643-9d00-41b1-9554-67acf901f18a",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "untyped"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "29b8a292-c48c-481c-a46e-ad5d42624d39",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "48fda568-9009-47a5-9e70-54862a2b7344",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "5e1e0c17-69bc-4a74-8ba8-ad8732a06523",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:00.984060"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Flat-footed target"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 6
+                                    },
+                                    "id": "eff87844-3c4e-443a-a6da-9c6b27ebefea",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "78a81aa4-01f8-4939-a0b6-0923556b6c12",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "precision"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "13f72554-108a-4c1c-8711-21db786396ca",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "1dec1cf1-f52d-4966-a263-4a23243e688f",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "d36b79ca-5c17-46c3-b8fc-7815390137cc",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:00.984060"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "588e03c8-b9e5-41bc-a979-f499d06a2cc5",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Claw"
+            },
+            "action_description": {
+              "value": "(agile) 1d8+6 slashing"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 11
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 6
+                                    },
+                                    "id": "377b5fd7-e545-4f36-96a8-003aed22d13f",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "40ee9d09-53ac-42dd-906b-4b6c303b9f83",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "6f268635-30b5-4e0f-84a6-043b8df21636",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:00.984060"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Any target"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 6
+                                    },
+                                    "id": "38a11a0a-5283-4df2-bb45-0840a0d879cd",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "ae6d7c8e-f740-428a-9aef-c547847e921f",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "untyped"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "ef2fbeef-ce88-4856-9163-32fcc93f93b5",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "4eee491e-5c81-4030-b7b7-b927c997c7cb",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "1e29c063-6e3e-4439-b0e2-fa4dfd620690",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:00.984060"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Flat-footed target"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "slashing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 6
+                                    },
+                                    "id": "fc02c95a-0b15-414c-bf20-7d3d84c850c1",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "aefaa48f-17fc-45a5-b573-b6114a6a5c49",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "precision"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "755a54ae-5652-47f5-b0f4-c72afaf664fc",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "5d0477dc-2b4a-48b0-8c03-4164586fd4d1",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "ff0daac2-f4b5-4a3e-9f60-a873ea3ab88e",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:00.984060"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "a7285abc-0c3e-4afe-9bb9-7b8baf13d79e",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Pounce"
+            },
+            "action_description": {
+              "value": "The lion Strides and makes a Strike at the end of that movement. If the lion began this action hidden, it remains hidden until after the ability's Strike."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "34a92559-36e0-410a-9a16-ac8e468c8b54",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-04-15T14:13:00.984060"
+    }
+  }
+}

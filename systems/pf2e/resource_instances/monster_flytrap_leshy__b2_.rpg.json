@@ -1,0 +1,905 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "flytrap_leshy__b2_",
+    "name": {
+      "value": "Flytrap Leshy"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b2"
+    },
+    "tag": {
+      "value": "Leshy"
+    },
+    "armor_class": {
+      "value": 20
+    },
+    "hit_points": {
+      "value": 72
+    },
+    "level": {
+      "value": 4
+    },
+    "xp": {
+      "value": 40
+    },
+    "initiative": {
+      "value": 11
+    },
+    "perception": {
+      "value": 11
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 25
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 4
+    },
+    "dexterity_modifier": {
+      "value": 2
+    },
+    "constitution_modifier": {
+      "value": 1
+    },
+    "intelligence_modifier": {
+      "value": 0
+    },
+    "wisdom_modifier": {
+      "value": 3
+    },
+    "charisma_modifier": {
+      "value": 2
+    },
+    "fortitude": {
+      "value": 9
+    },
+    "reflex": {
+      "value": 12
+    },
+    "will": {
+      "value": 13
+    },
+    "skills": {
+      "value": "Athletics +12, Nature +10, Stealth +12"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": "Acid 5"
+    },
+    "senses": {
+      "value": "darkvision"
+    },
+    "languages": {
+      "value": "Common, Druidic, Sylvan; speak with plants (carnivorous plants only)"
+    },
+    "size": {
+      "value": "small"
+    },
+    "type": {
+      "value": "plant"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Verdant Burst"
+            },
+            "trait_description": {
+              "value": "(healing)\n\nAs sunflower leshy, except plants regain 3d6 Hit Points and the area sprouts flytraps instead of sunflowers."
+            },
+            "id": "b9c0759d-4da4-4d82-b1ff-dc62089f08dd",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Flytrap Toxin"
+            },
+            "trait_description": {
+              "value": "**Flytrap Toxin**\nDC: 19\nSaving Throw: Fortitude\nMaximum Duration: 6 rounds\n- Stage 1: sickened 1 (1 round)\n- Stage 2: sickened 2 (1 round)"
+            },
+            "id": "abb4b0bb-8bc7-4e04-b689-ef5a33177f83",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Flytrap Mouth"
+            },
+            "action_description": {
+              "value": "(versatile S) 1d8+6 piercing plus 1d6 acid and flytrap toxin\nEffects: flytrap toxin"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 13
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 6
+                                    },
+                                    "id": "3cf60915-b121-48b3-b84a-9a9ffeadc19d",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:01.456335"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "6416d091-b588-46a9-9be2-fe17919fad4b",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:01.456335"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "acid"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "dfba857c-435f-43ee-9159-f3759cd43cb6",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:01.456335"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "bd5d3c7b-8da6-4ee0-a01b-7407b59fde2a",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:01.456335"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "1d4253b5-76bf-4a82-a654-31dedcd9fa23",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.456335"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "b953c9f3-ab27-4a42-b34d-3af5b21263b5",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Flytrap Hand"
+            },
+            "action_description": {
+              "value": "(agile, versatile S) 1d6+6 piercing plus 1d6 acid and flytrap toxin\nEffects: flytrap toxin"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 13
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 6
+                                    },
+                                    "id": "6357f2ca-6b26-4d8a-a6be-593b9aa8488f",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:01.456335"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "bb4306b6-038a-49c8-85dc-60683b94ce64",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:01.456335"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "acid"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "2c32d212-4f1b-4168-b250-ac7fc8b5697d",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:01.456335"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "152fe83c-14a6-4075-b8e3-d351124b8636",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:01.456335"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "93a2d232-d58e-41d0-8b16-ba1358958c46",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.456335"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "af6c1b91-dc3f-46e0-b0f8-82979c37380f",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Spittle"
+            },
+            "action_description": {
+              "value": "(acid, range increment 10 feet) 1d6+6 acid plus flytrap toxin\nEffects: flytrap toxin"
+            },
+            "action_type": {
+              "value": "ranged"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 11
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "acid"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 6
+                                    },
+                                    "id": "fc8a0185-d28c-4dc6-a386-d48a174dc7b1",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:01.456335"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "796078d9-a497-47d4-9274-454eed9bd6bc",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:01.456335"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "022730d8-6aa1-4fae-89af-93d709bab5aa",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.456335"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "9f0f87ac-cc38-4323-9a99-f5e2f5e5f9c1",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Amalgam"
+            },
+            "action_description": {
+              "value": "(polymorph, primal, transmutation)\n\nA flytrap leshy can combine itself with an adjacent and willing flytrap leshy that is not currently affected by Amalgam. The leshy using Amalgam physically merges with the target, restoring 3d8 Hit Points to the target. The leshy can Sustain a Spell to continue Amalgam, but once they stop, the target leshy takes 3d8 damage. If the target leshy dies, Amalgam ends at once and the original leshy gains the dying condition or increases their dying condition value by 1 if they were already dying. As long as Amalgam is sustained, the target leshy gains a +1 status bonus to attack rolls and saving throws, its AC increases to 21, and it gains an additional reaction at the start of each turn."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "untyped"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 3
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "2d64f446-070a-481b-859f-f7ae4545b7a7",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:01.456335"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "d8fdc2d3-298e-4038-acec-3d4c2d4134c3",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:01.456335"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "untyped"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 3
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "ad770107-3730-4304-be91-ed9078de1a89",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:01.456335"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "e3363645-04ef-4f21-b7e3-12427124fa20",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:01.456335"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "b6aa2b23-69ad-446c-bd2e-bd5a719ccc02",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.456335"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "9b5ccdb8-f430-4f18-b667-595f201382c6",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Change Shape"
+            },
+            "action_description": {
+              "value": "(concentrate, polymorph, primal, transmutation)\n\nThe flytrap leshy transforms into a Small flytrap. This ability otherwise uses the effects of tree shape."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "5dd4f80c-dce2-4d78-ad6c-4441daf6274a",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Attack Of Opportunity"
+            },
+            "action_description": {
+              "value": ""
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "e42ec6d9-fdf9-45b7-bc38-b7299dfc6da5",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        }
+      ]
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": [
+        {
+          "resource_id": "monster_spellcasting_block",
+          "stats": {
+            "block_name": {
+              "value": ""
+            },
+            "tradition": {
+              "value": "primal"
+            },
+            "spellcasting_type": {
+              "value": "innate"
+            },
+            "spell_dc": {
+              "value": 21
+            },
+            "spell_attack_bonus": {
+              "value": 0
+            },
+            "spell_levels": {
+              "value": [
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 2
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "pass_without_trace__crb_",
+                          "name": {
+                            "value": "Pass Without Trace"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_1"
+                          },
+                          "school": {
+                            "value": "spell_school_abjuration"
+                          },
+                          "traditions": {
+                            "value": [
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": ""
+                          },
+                          "duration": {
+                            "value": "1 hour"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "You obscure the tracks you leave behind and make it harder for others to find you. The DC of checks to Track you gains a +4 status bonus or is equal to your spell DC, whichever results in a higher DC. You can benefit from only one pass without trace spell at a time."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (2nd): The duration increases to 8 hours.\n\nHeightened (4th): The duration increases to 8 hours. The spell has a range of 20 feet and an area of a 20-foot-emanation, affecting up to 10 creatures of your choice within that area."
+                          },
+                          "spell_traits": {
+                            "value": []
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-04-15T14:12:41.689945"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 21
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "10c3b6db-6f9e-49c8-a583-0c887db1cf50",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.456335"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 4
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "speak_with_plants__pc1_",
+                          "name": {
+                            "value": "Speak with Plants"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_3"
+                          },
+                          "school": {
+                            "value": "none"
+                          },
+                          "traditions": {
+                            "value": [
+                              "divine",
+                              "occult",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": ""
+                          },
+                          "duration": {
+                            "value": "1 hour"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "You can ask questions of and receive answers from plants and fungi, but the spell doesn't make them more friendly or intelligent than normal. Most normal plants and fungi have a distinctive view of the world around them, so they don't recognize details about creatures or know anything about the world beyond their immediate vicinity. Cunning plant monsters are likely to be terse and evasive, while less intelligent ones often make inane comments."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (4th): The duration is 8 hours."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "concentrate",
+                              "manipulate",
+                              "plant",
+                              "wood"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-04-15T14:12:41.689945"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 21
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "6df346eb-95e8-49e7-bc3a-f370f50b1979",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.456335"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "faed4fa3-9938-41ab-862c-9b436a497a48",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2026-04-15T14:13:01.456335"
+    }
+  }
+}

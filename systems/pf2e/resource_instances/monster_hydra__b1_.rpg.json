@@ -1,0 +1,411 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "hydra__b1_",
+    "name": {
+      "value": "Hydra"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b1"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 23
+    },
+    "hit_points": {
+      "value": 90
+    },
+    "level": {
+      "value": 6
+    },
+    "xp": {
+      "value": 80
+    },
+    "initiative": {
+      "value": 17
+    },
+    "perception": {
+      "value": 17
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 25
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 25
+    },
+    "strength_modifier": {
+      "value": 7
+    },
+    "dexterity_modifier": {
+      "value": 4
+    },
+    "constitution_modifier": {
+      "value": 5
+    },
+    "intelligence_modifier": {
+      "value": -3
+    },
+    "wisdom_modifier": {
+      "value": 2
+    },
+    "charisma_modifier": {
+      "value": -1
+    },
+    "fortitude": {
+      "value": 15
+    },
+    "reflex": {
+      "value": 12
+    },
+    "will": {
+      "value": 10
+    },
+    "skills": {
+      "value": "Athletics +17, Stealth +12"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": "Slashing 5"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Area Damage"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "low-light vision, imprecise scent 30 ft."
+    },
+    "languages": {
+      "value": ""
+    },
+    "size": {
+      "value": "huge"
+    },
+    "type": {
+      "value": "beast"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Conditional AC"
+            },
+            "trait_description": {
+              "value": "AC all-around vision abilities"
+            },
+            "id": "692e6f4c-8306-4b9d-a45b-c1797ef73596",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Head Regrowth"
+            },
+            "trait_description": {
+              "value": "A hydra ordinarily has five heads. A creature can attempt to sever one of the hydra's heads by specifically targeting it and dealing damage equal to the head's Hit Points. A head that is not completely severed returns to full Hit Points at the end of any creature's turn.\n\nA hydra can regrow a severed head using Hydra Regeneration. A creature can prevent this regrowth by dealing acid or fire damage to the stump, cauterizing it. Single-target acid or fire effects need to be targeted at a specific stump, but effects that deal splash damage or affect areas covering the hydra's whole space cauterize all stumps if they deal acid or fire damage. If the attack that severs a head deals any acid or fire damage, the stump is cauterized instantly. If all five heads are cauterized, the hydra dies."
+            },
+            "id": "f6c80ed9-6ee2-4215-a483-1ec7260eb57e",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Hydra Regeneration"
+            },
+            "trait_description": {
+              "value": "The hydra has regeneration equal to 3 \u00d7 the number of heads it has. If a hydra's body is missing any heads and the remaining stumps have not been cauterized, the hydra attempts a 25 Fortitude save after it regains Hit Points from regeneration. On a success, one uncauterized stump regrows two heads; on a critical success, two uncauterized stumps regrow into two heads each. The hydra can never grow more than double the number of heads it ordinarily has. The hydra's regeneration only fully deactivates if all its heads are severed and all stumps are cauterized, at which point it dies."
+            },
+            "id": "97803085-8361-40c2-b2ac-9d8814e58ba2",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Multiple Opportunities"
+            },
+            "trait_description": {
+              "value": "A hydra gains an extra reaction per round for each of its heads beyond the first, which it can use only to make Attacks of Opportunity. It can't use more than 1 reaction on the same triggering action, even if a creature leaves several squares within its reach, and the hydra must use a different head for each Attack of Opportunity it makes. Whenever one of the hydra's heads is severed, the hydra loses 1 of its extra reactions per round."
+            },
+            "id": "d7bb3a30-fa89-4fbc-9021-c75106dbee14",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Fangs"
+            },
+            "action_description": {
+              "value": "(reach 10 feet) 2d6+7 piercing"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 16
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 7
+                                    },
+                                    "id": "bdaed783-a5d9-4d55-941c-14c4db6f93a8",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "e15ea9d8-d300-4833-828f-42a39af44c46",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "0e9bba82-443d-45d4-98cb-9ac694dfda8b",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:00.984060"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "cc044775-9a6d-4911-b0a3-fe818aed9d44",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Focused Assault"
+            },
+            "action_description": {
+              "value": "The hydra attacks a single target with its heads, overwhelming its foe with multiple attacks and leaving almost nowhere to dodge. The hydra Strikes with its fangs. On a successful attack, the hydra deals damage from its fangs Strike to the target, plus an additional 1d6 damage for every head it has beyond the first. Even on a failed attack, the hydra deals the damage from one fangs Strike to the target creature, though it still misses completely on a critical failure. This counts toward the hydra's multiple attack penalty as a number of attacks equal to the number of heads the hydra has."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "untyped"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "6921f4ed-35c0-46bb-8ad2-d3739f7569f2",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "2db72b50-4817-4c31-b24f-13799ebb55f0",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "b4dd49ac-c311-4452-a110-c9c50a161349",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:00.984060"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "fcda1f4c-65f3-49e7-9242-e64fdaf0c7f3",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Storm Of Jaws"
+            },
+            "action_description": {
+              "value": "The hydra makes a number of Strikes up to its number of heads, each against a different target. These attacks count toward the hydra's multiple attack penalty, but the multiple attack penalty doesn't increase until after the hydra makes all its attacks."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "44cf3f73-2fed-44af-b53d-2db0d7627557",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Attack Of Opportunity"
+            },
+            "action_description": {
+              "value": ""
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "d9980e37-111c-4026-b085-2d7058a83377",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        }
+      ]
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-04-15T14:13:00.984060"
+    }
+  }
+}

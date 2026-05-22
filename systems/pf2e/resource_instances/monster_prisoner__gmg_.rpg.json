@@ -1,0 +1,522 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "prisoner__gmg_",
+    "name": {
+      "value": "Prisoner"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "gmg"
+    },
+    "tag": {
+      "value": "Human"
+    },
+    "armor_class": {
+      "value": 17
+    },
+    "hit_points": {
+      "value": 17
+    },
+    "level": {
+      "value": 1
+    },
+    "xp": {
+      "value": 15
+    },
+    "initiative": {
+      "value": 6
+    },
+    "perception": {
+      "value": 6
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 25
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 3
+    },
+    "dexterity_modifier": {
+      "value": 4
+    },
+    "constitution_modifier": {
+      "value": 1
+    },
+    "intelligence_modifier": {
+      "value": 0
+    },
+    "wisdom_modifier": {
+      "value": 1
+    },
+    "charisma_modifier": {
+      "value": 0
+    },
+    "fortitude": {
+      "value": 4
+    },
+    "reflex": {
+      "value": 9
+    },
+    "will": {
+      "value": 6
+    },
+    "skills": {
+      "value": "Acrobatics +7, Athletics +6, Intimidation +3, Stealth +7, Thievery +7"
+    },
+    "gear": {
+      "value": "shiv"
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": ""
+    },
+    "languages": {
+      "value": "Common"
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Sneak Attack"
+            },
+            "trait_description": {
+              "value": "The prisoner deals an extra 1d6 precision damage to flat-footed creatures."
+            },
+            "id": "d208927d-3897-4dbd-9c2f-b2be67798a5f",
+            "updated_at": {
+              "value": "2026-04-15T14:13:05.348277"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Surprise Attack"
+            },
+            "trait_description": {
+              "value": "On the first round of combat, creatures that haven't acted yet are flat-footed to the prisoner."
+            },
+            "id": "b9cd009f-236d-4680-857b-baca03f18134",
+            "updated_at": {
+              "value": "2026-04-15T14:13:05.348277"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Shiv"
+            },
+            "action_description": {
+              "value": "(agile) 1d4+3 piercing"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 7
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 3
+                                    },
+                                    "id": "87f1c649-1ae1-4180-9795-98b5dae96a66",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:05.348277"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "c74eada4-98b2-4273-a441-9756c3d598ce",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:05.348277"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "674fb63e-a1e5-4767-8fc1-0959c5261f73",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:05.348277"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Flat-footed target"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 3
+                                    },
+                                    "id": "a63eb8e9-b762-4b89-b1a3-d18b983a9b67",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:05.348277"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "cc8f2697-e89d-4973-ab35-ef013197c4df",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:05.348277"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "precision"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "8a0a1cb2-dee4-4de3-98e5-743026b19248",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:05.348277"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "f3d5355a-21fb-4a9f-bae0-daf5dfdccb34",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:05.348277"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "fc504b3b-cb77-478d-86b0-67906d787dcd",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:05.348277"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "865d8abc-cc30-4e48-82f2-0cb055bd7050",
+            "updated_at": {
+              "value": "2026-04-15T14:13:05.348277"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Fist"
+            },
+            "action_description": {
+              "value": "(agile, nonlethal) 1d4+3 piercing"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 7
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 3
+                                    },
+                                    "id": "b13db7ac-6562-4fe1-8593-0187aa926dd2",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:05.348277"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "c0a61511-5c26-46d3-bc6d-e636080e1c17",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:05.348277"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "0d6fd07a-7a00-439f-b0fb-7bc4d4279658",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:05.348277"
+                    }
+                  }
+                },
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Flat-footed target"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 3
+                                    },
+                                    "id": "be8d76c9-9ac2-466e-a956-775d49666a60",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:05.348277"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "bacae883-8524-4168-b338-3e207c61698b",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:05.348277"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "precision"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "7c4a8f80-db64-479d-9475-1b2440c7ed7b",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:05.348277"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "ed17f2d9-1851-41ce-ad87-64b1b567de96",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:05.348277"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "5f10087b-904b-4a99-b3d7-1cedc72e8c29",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:05.348277"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "b4655f23-60d6-4b04-8572-f84714087ee5",
+            "updated_at": {
+              "value": "2026-04-15T14:13:05.348277"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "You're Next"
+            },
+            "action_description": {
+              "value": "(emotion, fear, mental)\n\nTrigger: The prisoner reduces a creature to 0 Hit Points\n\nThe prisoner attempts an Intimidation check with a +2 circumstance bonus to Demoralize a single creature it can see and that can see them."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "7e2ffa96-eaa2-4439-96a0-7c786e883b86",
+            "updated_at": {
+              "value": "2026-04-15T14:13:05.348277"
+            }
+          }
+        }
+      ]
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-04-15T14:13:05.348277"
+    }
+  }
+}

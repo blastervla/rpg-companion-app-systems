@@ -1,0 +1,384 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "dread_wraith__b2_",
+    "name": {
+      "value": "Dread Wraith"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b2"
+    },
+    "tag": {
+      "value": "Incorporeal, Wraith"
+    },
+    "armor_class": {
+      "value": 28
+    },
+    "hit_points": {
+      "value": 130
+    },
+    "level": {
+      "value": 9
+    },
+    "xp": {
+      "value": 240
+    },
+    "initiative": {
+      "value": 19
+    },
+    "perception": {
+      "value": 19
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 25
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 60
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": -5
+    },
+    "dexterity_modifier": {
+      "value": 6
+    },
+    "constitution_modifier": {
+      "value": 3
+    },
+    "intelligence_modifier": {
+      "value": 3
+    },
+    "wisdom_modifier": {
+      "value": 4
+    },
+    "charisma_modifier": {
+      "value": 6
+    },
+    "fortitude": {
+      "value": 16
+    },
+    "reflex": {
+      "value": 19
+    },
+    "will": {
+      "value": 21
+    },
+    "skills": {
+      "value": "Acrobatics +19, Intimidation +21, Stealth +19"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Poison, Precision, Death Effects, Disease, Paralyzed, Unconscious"
+    },
+    "resistances": {
+      "value": "All 10 (except force, ghost touch, or positive; double resistance vs. non-magical)"
+    },
+    "senses": {
+      "value": "darkvision, lifesense 60 ft."
+    },
+    "languages": {
+      "value": "Common, Necril"
+    },
+    "size": {
+      "value": "large"
+    },
+    "type": {
+      "value": "undead"
+    },
+    "alignment": {
+      "value": "lawful_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Draining Presence"
+            },
+            "trait_description": {
+              "value": "(aura, negative)\n\n10 feet. A creature entering the aura must succeed at a 26 Fortitude save or become drained 1. It recovers after it has been out of the aura for 1 minute. This drained condition value is cumulative with the drained value caused by drain life, but not with multiple draining presence auras. A creature that succeeds at its save is temporarily immune to draining presence for 24 hours."
+            },
+            "id": "2f46d422-954e-487c-91b7-8f0c68578a96",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Sunlight Powerlessness"
+            },
+            "trait_description": {
+              "value": "A dread wraith caught in sunlight is stunned 2 and clumsy 2."
+            },
+            "id": "0130154c-3493-4168-9f4c-b7abb5da539f",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Drain Life"
+            },
+            "trait_description": {
+              "value": "(divine, necromancy)\n\nWhen the dread wraith damages a living creature with its spectral hand Strike, the wraith gains 10 temporary Hit Points and the target must succeed at a 28 Fortitude save or become drained 1. Further damage dealt by the wraith increases the drained condition value by 1 on a failed save, to a maximum of drained 4."
+            },
+            "id": "3ef7b64e-67bc-4b2a-9d3d-6cbb9ea5f5ef",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Wraith Spawn"
+            },
+            "trait_description": {
+              "value": "(divine, necromancy)\n\nA living humanoid slain by a wraith's spectral hand Strike rises as a wraith spawn after 1d4 rounds. This wraith spawn is under the command of the dread wraith that killed it. It doesn't have drain life or wraith spawn. If the creator of the wraith spawn dies, the wraith spawn becomes a full-fledged, autonomous wraith; it regains its free will and gains drain life and wraith spawn."
+            },
+            "id": "999f11e9-5040-4b16-9a9e-2d40ca463a2a",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Spectral Hand"
+            },
+            "action_description": {
+              "value": "(finesse, reach 10 feet) 2d10+7 negative plus drain life\nEffects: drain life"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 21
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "negative"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 7
+                                    },
+                                    "id": "689fe5b6-1b6e-42c0-88b9-ea5569f30abe",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:01.456335"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "1a1322a3-e503-48a1-9be6-fa4211800d90",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:01.456335"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "c168e19d-4ecd-4eb2-919d-4f96f0410aa6",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.456335"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "87d16be4-9610-4725-be1c-2f93a6ba47b9",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Absorb Wraith"
+            },
+            "action_description": {
+              "value": "The dread wraith extends its hand toward another wraith creature within 100 feet. The target wraith dissolves and streaks toward the dread wraith in a straight line, dealing 6d10 negative damage to each creature along the line (28 basic Fortitude save). The dread wraith absorbs the essence of the target wraith, becoming quickened and gaining a +10-foot status bonus to its fly Speed for a number of rounds equal to the level of the absorbed wraith. It can use its extra action only to Fly or Strike. An unwilling target can attempt a 28 Will save to resist being absorbed."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "negative"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 6
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "db330685-d50f-4db0-896e-97a095d933d6",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:01.456335"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "0c42de5e-0175-467f-92d2-731f509866e8",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:01.456335"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "1e7f38b0-2333-44b9-bd41-67f4977bfddf",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.456335"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "2fa4657e-f8e6-4bd6-9131-829a92ca7562",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Attack Of Opportunity"
+            },
+            "action_description": {
+              "value": ""
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "a45b969b-7476-4c2e-a4b6-14f50f689b97",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        }
+      ]
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-04-15T14:13:01.456335"
+    }
+  }
+}

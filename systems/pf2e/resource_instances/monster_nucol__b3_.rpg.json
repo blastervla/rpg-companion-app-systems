@@ -1,0 +1,979 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "nucol__b3_",
+    "name": {
+      "value": "Nucol"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b3"
+    },
+    "tag": {
+      "value": "Sahkil"
+    },
+    "armor_class": {
+      "value": 20
+    },
+    "hit_points": {
+      "value": 75
+    },
+    "level": {
+      "value": 4
+    },
+    "xp": {
+      "value": 40
+    },
+    "initiative": {
+      "value": 11
+    },
+    "perception": {
+      "value": 11
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 30
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": 4
+    },
+    "dexterity_modifier": {
+      "value": 2
+    },
+    "constitution_modifier": {
+      "value": 3
+    },
+    "intelligence_modifier": {
+      "value": 0
+    },
+    "wisdom_modifier": {
+      "value": 3
+    },
+    "charisma_modifier": {
+      "value": 2
+    },
+    "fortitude": {
+      "value": 13
+    },
+    "reflex": {
+      "value": 10
+    },
+    "will": {
+      "value": 11
+    },
+    "skills": {
+      "value": "Athletics +12, Deception +10, Intimidation +12, Stealth +10"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": "Good 5"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": "Disease, Fear"
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "darkvision, imprecise scent 100 ft."
+    },
+    "languages": {
+      "value": "Abyssal, Celestial, Infernal, Requian; telepathy 60 feet"
+    },
+    "size": {
+      "value": "medium"
+    },
+    "type": {
+      "value": "fiend"
+    },
+    "alignment": {
+      "value": "neutral_evil"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Easy to Call"
+            },
+            "trait_description": {
+              "value": "A sahkil's level is considered 2 lower for the purpose of being conjured by the planar binding ritual (and potentially other rituals, at the GM's discretion), but it is always free to attack or leave instead of negotiate unless the primary caster's check is a critical success."
+            },
+            "id": "0cbddaf9-6ae8-4432-9078-b455a6f1a109",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.886886"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Nervous Consumption"
+            },
+            "trait_description": {
+              "value": "**Nervous Consumption**\nDC: 21\nSaving Throw: Fortitude\nOnset: 1 minute\n- Stage 1: sickened 1 and stupefied 1 (1 day)\n- Stage 2: clumsy 1 and stupefied 2 (1 day)\n- Stage 3: clumsy 2 and stupefied 3 (1 day)"
+            },
+            "id": "0ff2cdee-2fb7-47db-a1c3-bd08f0a933f4",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.886886"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Tusk"
+            },
+            "action_description": {
+              "value": "(deadly d10) 2d8+6 piercing plus 1d4 evil and nervous consumption\nEffects: nervous consumption"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 12
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d8"
+                                    },
+                                    "constant": {
+                                      "value": 6
+                                    },
+                                    "id": "f80a45b8-8e39-4c8b-89a3-f2656ff71c09",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:01.886886"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "c3018d59-7866-4aae-adf0-9312cd7bbcb2",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:01.886886"
+                            }
+                          }
+                        },
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "evil"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "c4ddebda-06b8-4061-b4a5-f63c80aaa6c4",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:01.886886"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "5010bb9c-7dff-44cc-8545-d902e40a15e2",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:01.886886"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "85cf7caa-bea6-4ef8-afe6-1e149924da4f",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.886886"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "39783c4d-6e9d-4706-a261-e5893a564434",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.886886"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Skip Between"
+            },
+            "action_description": {
+              "value": "(conjuration, divine, teleportation)\n\nThe sahkil moves from the Material Plane to the Ethereal Plane or vice-versa, with the effects of ethereal jaunt except that the effect has an unlimited duration and can be Dismissed. A summoned sahkil can't use Skip Between."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "bba338a4-b9d2-4333-8b27-72441af44b60",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.886886"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Spray Pus"
+            },
+            "action_description": {
+              "value": "The nucol flexes one of its infected wounds, releasing a spray of pus in a 15-foot cone or targeting an individual creature within 30 feet. A creature targeted or in the area is exposed to nervous consumption."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "ff218c39-665d-4f28-9b3a-41469896fc40",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.886886"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": [
+        {
+          "resource_id": "monster_spellcasting_block",
+          "stats": {
+            "block_name": {
+              "value": ""
+            },
+            "tradition": {
+              "value": "divine"
+            },
+            "spellcasting_type": {
+              "value": "innate"
+            },
+            "spell_dc": {
+              "value": 20
+            },
+            "spell_attack_bonus": {
+              "value": 0
+            },
+            "spell_levels": {
+              "value": [
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 0
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "detect_magic__pc1_",
+                          "name": {
+                            "value": "Detect Magic"
+                          },
+                          "source": {
+                            "value": "pc1"
+                          },
+                          "level": {
+                            "value": "spell_level_0"
+                          },
+                          "school": {
+                            "value": "none"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "divine",
+                              "occult",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": false
+                          },
+                          "somatic": {
+                            "value": false
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": ""
+                          },
+                          "duration": {
+                            "value": ""
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": "30-foot emanation"
+                          },
+                          "targets": {
+                            "value": ""
+                          },
+                          "description": {
+                            "value": "You send out a pulse that registers the presence of magic. You receive no information beyond the presence or absence of magic. You can choose to ignore magic you're fully aware of, such as the magic items and ongoing spells of you and your allies.\n\nYou detect illusion magic only if that magic's effect has a lower rank than the rank of your detect magic spell. However, items that have an illusion aura but aren't deceptive in appearance (such as an invisibility potion) typically are detected normally."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (3rd): You learn the rank or level of the most powerful magical effect the spell detects, as determined by the GM.\n\nHeightened (4th): As 3rd level, but you also pinpoint the source of the highest-level magic. Like for an imprecise sense, you don't learn the exact location, but can narrow down the source to within a 5-foot cube (or the nearest if larger than that)."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "cantrip",
+                              "concentrate",
+                              "detection"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-04-15T14:12:41.689945"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 20
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "6d7388ab-0b34-47c5-8d8c-1966ecee7502",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.886886"
+                    },
+                    "daily_cast_max_override": {
+                      "value": 0
+                    },
+                    "cast_level_override": {
+                      "value": 2
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 0
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "mage_hand__crb_",
+                          "name": {
+                            "value": "Mage Hand"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_0"
+                          },
+                          "school": {
+                            "value": "spell_school_evocation"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "occult"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": "Sustained (unlimited)"
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 unattended object of light Bulk or less"
+                          },
+                          "description": {
+                            "value": "You create a single magical hand, either invisible or ghostlike, that grasps the target object and moves it slowly up to 20 feet. Because you're levitating the object, you can move it in any direction. When you Sustain the Spell, you can move the object an additional 20 feet. If the object is in the air when the spell ends, the object falls."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (3rd): You can target an unattended object with a Bulk of 1 or less.\n\nHeightened (5th): The range increases to 60 feet, and you can target an unattended object with a Bulk of 1 or less.\n\nHeightened (7th): The range increases to 60 feet, and you can target an unattended object with a Bulk of 2 or less."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "cantrip"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-04-15T14:12:41.689945"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 20
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "499ed01a-acca-4e06-aff0-fb1cde6c3387",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.886886"
+                    },
+                    "daily_cast_max_override": {
+                      "value": 0
+                    },
+                    "cast_level_override": {
+                      "value": 2
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 1
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "grease__crb_",
+                          "name": {
+                            "value": "Grease"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_1"
+                          },
+                          "school": {
+                            "value": "spell_school_conjuration"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": "1 minute"
+                          },
+                          "saving_throw": {
+                            "value": "Reflex"
+                          },
+                          "area": {
+                            "value": "4 contiguous 5-foot squares or"
+                          },
+                          "targets": {
+                            "value": "1 object of 1 Bulk or less"
+                          },
+                          "description": {
+                            "value": "You conjure grease, with effects based on choosing area or target.\n\n- **Area** All solid ground in the area is covered with grease. Each creature standing on the greasy surface must succeed at a Reflex save or an Acrobatics check against your spell DC or fall prone. Creatures using an action to move onto the greasy surface during the spell's duration must attempt either a Reflex save or an Acrobatics check to Balance. A creature that Steps or Crawls doesn't have to attempt a check or save.\n- **Target** If you cast the spell on an unattended object, anyone trying to pick up the object must succeed at an Acrobatics check or Reflex save against your spell DC to do so. If you target an attended object, the creature that has the object must attempt an Acrobatics check or Reflex save. On a failure, the holder or wielder takes a \u20132 circumstance penalty to all checks that involve using the object; on a critical failure, the holder or wielder releases the item. The object lands in an adjacent square of the GM's choice\n\nIf you cast this spell on a worn object, the wearer gains a +2 circumstance bonus to Fortitude saves against attempts to grapple them."
+                          },
+                          "higher_level_description": {
+                            "value": ""
+                          },
+                          "spell_traits": {
+                            "value": []
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-04-15T14:12:41.689945"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 20
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": "3"
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "ee0e5166-ab37-405b-9301-3ae57534bce5",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.886886"
+                    },
+                    "daily_cast_max_override": {
+                      "value": 3
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 3
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "fear__crb_",
+                          "name": {
+                            "value": "Fear"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_1"
+                          },
+                          "school": {
+                            "value": "spell_school_enchantment"
+                          },
+                          "traditions": {
+                            "value": [
+                              "arcane",
+                              "divine",
+                              "occult",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "two_actions"
+                          },
+                          "casting_time": {
+                            "value": ""
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": false
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "30 feet"
+                          },
+                          "duration": {
+                            "value": "varies"
+                          },
+                          "saving_throw": {
+                            "value": "Will"
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 creature"
+                          },
+                          "description": {
+                            "value": "You plant fear in the target; it must attempt a Will save.\n\n- **Critical Success:** The target is unaffected.\n- **Success:** The target is frightened 1.\n- **Failure:** The target is frightened 2.\n- **Critical Failure:** The target is frightened 3 and fleeing for 1 round."
+                          },
+                          "higher_level_description": {
+                            "value": "Heightened (3rd): You can target up to five creatures."
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "emotion",
+                              "fear",
+                              "mental"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-04-15T14:12:41.689945"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 20
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": "at will"
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "cf46abe8-05ed-41a4-8e25-be75355f2af6",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.886886"
+                    },
+                    "daily_cast_max_override": {
+                      "value": 0
+                    }
+                  }
+                },
+                {
+                  "resource_id": "levelled_spell",
+                  "stats": {
+                    "level": {
+                      "value": 3
+                    },
+                    "spell": {
+                      "value": {
+                        "resource_id": "spell",
+                        "stats": {
+                          "id": "remove_disease__crb_",
+                          "name": {
+                            "value": "Remove Disease"
+                          },
+                          "source": {
+                            "value": "crb"
+                          },
+                          "level": {
+                            "value": "spell_level_3"
+                          },
+                          "school": {
+                            "value": "spell_school_necromancy"
+                          },
+                          "traditions": {
+                            "value": [
+                              "divine",
+                              "primal"
+                            ]
+                          },
+                          "is_focus_spell": {
+                            "value": false
+                          },
+                          "focus_point_cost": {
+                            "value": 0
+                          },
+                          "ritual": {
+                            "value": false
+                          },
+                          "action_cost": {
+                            "value": "activity"
+                          },
+                          "casting_time": {
+                            "value": "10 minutes"
+                          },
+                          "verbal": {
+                            "value": true
+                          },
+                          "somatic": {
+                            "value": true
+                          },
+                          "material": {
+                            "value": true
+                          },
+                          "components": {
+                            "value": ""
+                          },
+                          "range": {
+                            "value": "1 touch"
+                          },
+                          "duration": {
+                            "value": ""
+                          },
+                          "saving_throw": {
+                            "value": ""
+                          },
+                          "area": {
+                            "value": ""
+                          },
+                          "targets": {
+                            "value": "1 creature"
+                          },
+                          "description": {
+                            "value": "Healing magic purges disease from a creature's body. You attempt to counteract one disease afflicting the target."
+                          },
+                          "higher_level_description": {
+                            "value": ""
+                          },
+                          "spell_traits": {
+                            "value": [
+                              "healing"
+                            ]
+                          },
+                          "classes": {
+                            "value": []
+                          },
+                          "dice": {
+                            "value": []
+                          },
+                          "effects": {
+                            "value": []
+                          },
+                          "updated_at": {
+                            "value": "2026-04-15T14:12:41.689945"
+                          },
+                          "spellcasting_mode": {
+                            "value": "innate"
+                          },
+                          "spell_attack_bonus": {
+                            "value": 0
+                          },
+                          "spell_save_dc": {
+                            "value": 20
+                          }
+                        }
+                      }
+                    },
+                    "label": {
+                      "value": ""
+                    },
+                    "is_levelled": {
+                      "value": true
+                    },
+                    "id": "7ed35937-87ef-4adb-8250-2dd0f342c687",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.886886"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "e3c542f7-e2c6-49c4-b084-40941c88b31c",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.886886"
+            }
+          }
+        }
+      ]
+    },
+    "updated_at": {
+      "value": "2026-04-15T14:13:01.886886"
+    }
+  }
+}

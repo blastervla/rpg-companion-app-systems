@@ -1,0 +1,260 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "bloodseeker__b1_",
+    "name": {
+      "value": "Bloodseeker"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b1"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 16
+    },
+    "hit_points": {
+      "value": 6
+    },
+    "level": {
+      "value": -1
+    },
+    "xp": {
+      "value": 10
+    },
+    "initiative": {
+      "value": 6
+    },
+    "perception": {
+      "value": 6
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 10
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 30
+    },
+    "swim_speed": {
+      "value": 0
+    },
+    "strength_modifier": {
+      "value": -4
+    },
+    "dexterity_modifier": {
+      "value": 3
+    },
+    "constitution_modifier": {
+      "value": 0
+    },
+    "intelligence_modifier": {
+      "value": -5
+    },
+    "wisdom_modifier": {
+      "value": 1
+    },
+    "charisma_modifier": {
+      "value": -2
+    },
+    "fortitude": {
+      "value": 5
+    },
+    "reflex": {
+      "value": 8
+    },
+    "will": {
+      "value": 4
+    },
+    "skills": {
+      "value": "Acrobatics +6, Stealth +6"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "darkvision, imprecise scent 60 ft."
+    },
+    "languages": {
+      "value": ""
+    },
+    "size": {
+      "value": "tiny"
+    },
+    "type": {
+      "value": "animal"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Attach"
+            },
+            "trait_description": {
+              "value": "When a bloodseeker hits a target larger than itself, its barbed legs attach it to that creature. This is similar to grabbing the creature, but the bloodseeker moves with that creature rather than holding it in place. The bloodseeker is flatfooted while attached. If the bloodseeker is killed or pushed away while attached to a creature it has drained blood from, that creature takes 1 persistent bleed damage. Escaping the attach or removing the bloodseeker in other ways doesn't cause bleed damage."
+            },
+            "id": "88eb30e1-15bf-469e-bb1d-26787785c988",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Barbed Leg"
+            },
+            "action_description": {
+              "value": "(finesse)\nEffects: attach"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 8
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "9402ded0-bfa4-45db-8dc4-25f44a6e2bd1",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Blood Drain"
+            },
+            "action_description": {
+              "value": "Requirements: The bloodseeker is attached to a creature.\n\nThe bloodseeker uses its proboscis to drain blood from the creature it's attached to. This deals 1d4 damage, and the bloodseeker gains temporary Hit Points equal to the damage dealt. A creature that has its blood drained by a bloodseeker is drained 1 until it receives healing (of any kind or amount)."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "untyped"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d4"
+                                    },
+                                    "constant": {
+                                      "value": 0
+                                    },
+                                    "id": "a2c07da0-4aee-4720-a34c-87caa2261563",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "fe6c1af3-e435-4f52-9899-1e0e829a7c72",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "42d47cd1-0705-44ec-bb92-e0926ed54c8a",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:00.984060"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "77a92c38-b9d7-4efc-abb9-0a8b09bfbce9",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-04-15T14:13:00.984060"
+    }
+  }
+}

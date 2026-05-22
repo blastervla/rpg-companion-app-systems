@@ -1,0 +1,271 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "kelpie__b2_",
+    "name": {
+      "value": "Kelpie"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b2"
+    },
+    "tag": {
+      "value": "Amphibious"
+    },
+    "armor_class": {
+      "value": 21
+    },
+    "hit_points": {
+      "value": 60
+    },
+    "level": {
+      "value": 4
+    },
+    "xp": {
+      "value": 40
+    },
+    "initiative": {
+      "value": 11
+    },
+    "perception": {
+      "value": 11
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 35
+    },
+    "burrow_speed": {
+      "value": 0
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 35
+    },
+    "strength_modifier": {
+      "value": 5
+    },
+    "dexterity_modifier": {
+      "value": 2
+    },
+    "constitution_modifier": {
+      "value": 3
+    },
+    "intelligence_modifier": {
+      "value": -1
+    },
+    "wisdom_modifier": {
+      "value": 3
+    },
+    "charisma_modifier": {
+      "value": 4
+    },
+    "fortitude": {
+      "value": 11
+    },
+    "reflex": {
+      "value": 12
+    },
+    "will": {
+      "value": 14
+    },
+    "skills": {
+      "value": "Athletics +11, Deception +14, Stealth +10"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": "Cold Iron 5"
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "low-light vision"
+    },
+    "languages": {
+      "value": "Aquan, Common, Sylvan"
+    },
+    "size": {
+      "value": "large"
+    },
+    "type": {
+      "value": "fey"
+    },
+    "alignment": {
+      "value": "neutral_evil"
+    },
+    "traits": {
+      "value": []
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Jaws"
+            },
+            "action_description": {
+              "value": "2d6+7 bludgeoning plus Grab\nEffects: Grab"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 13
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 7
+                                    },
+                                    "id": "2eac0cbf-cb09-42cc-a235-51c2784de491",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:01.456335"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "82a53e66-1cce-40f3-befa-e5b8cac9dd1e",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:01.456335"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "aaacfca9-6088-4f2f-aea3-2b0d68313450",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:01.456335"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "645f0553-7ae7-43cc-be6d-4a7964de5683",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Captivating Lure"
+            },
+            "action_description": {
+              "value": "(concentrate, emotion, enchantment, incapacitation, mental, primal)\n\nThe kelpie instills an overwhelming attraction to itself within the mind of a single creature within 60 feet. The target perceives the kelpie as a desirable person (if the kelpie is in humanoid form) or a valuable steed (if the kelpie is in equine form) and must attempt a 23 Will saving throw.\n\n- **Critical Success:** The creature is unaffected and is temporarily immune to Captivating Lure for 24 hours.\n- **Success:** The creature is stupefied 1 for 1 round and is then temporarily immune to Captivating Lure for 24 hours.\n- **Failure:** The creature is fascinated, and it must spend each of its actions to move closer to the kelpie as expediently as possible while avoiding obvious dangers. If a captivated creature is adjacent to the kelpie, it either attempts to mount the kelpie (if the kelpie is in equine form) or stays still and doesn't act. If the creature is attacked by the kelpie, or if it can't breathe water and enters an area of water, the creature is freed from captivation at the end of the kelpie's turn.\n- **Critical Failure:** As failure, but the target doesn't consider water a danger and will enter an area of water even if it can't swim or breathe water. If it is attacked by the kelpie or starts to drown, it can attempt a new save at the start of its next turn, but it isn't freed automatically."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "77ddc19f-ec2b-41e4-a4c5-888cb6dc6607",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Change Shape"
+            },
+            "action_description": {
+              "value": "(concentrate, polymorph, primal, transmutation)\n\nThe kelpie can take on the appearance of any Medium or Large animal of an equine nature (such as a horse, hippocampus, or pony), or any Small or Medium humanoid. This doesn't change its Speeds or its attack and damage modifiers with its Strikes."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "cbf2af0e-4689-40ad-9cce-d133182c8b86",
+            "updated_at": {
+              "value": "2026-04-15T14:13:01.456335"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": []
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-04-15T14:13:01.456335"
+    }
+  }
+}

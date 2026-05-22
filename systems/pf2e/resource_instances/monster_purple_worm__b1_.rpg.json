@@ -1,0 +1,621 @@
+{
+  "resource_id": "monster",
+  "stats": {
+    "id": "purple_worm__b1_",
+    "name": {
+      "value": "Purple Worm"
+    },
+    "photo": {
+      "value": null
+    },
+    "source": {
+      "value": "b1"
+    },
+    "tag": {
+      "value": ""
+    },
+    "armor_class": {
+      "value": 32
+    },
+    "hit_points": {
+      "value": 270
+    },
+    "level": {
+      "value": 13
+    },
+    "xp": {
+      "value": 960
+    },
+    "initiative": {
+      "value": 20
+    },
+    "perception": {
+      "value": 20
+    },
+    "max_actions_per_turn": {
+      "value": 3
+    },
+    "max_reactions_per_round": {
+      "value": 1
+    },
+    "speed": {
+      "value": 40
+    },
+    "burrow_speed": {
+      "value": 40
+    },
+    "climb_speed": {
+      "value": 0
+    },
+    "fly_speed": {
+      "value": 0
+    },
+    "swim_speed": {
+      "value": 20
+    },
+    "strength_modifier": {
+      "value": 9
+    },
+    "dexterity_modifier": {
+      "value": -1
+    },
+    "constitution_modifier": {
+      "value": 7
+    },
+    "intelligence_modifier": {
+      "value": -5
+    },
+    "wisdom_modifier": {
+      "value": -1
+    },
+    "charisma_modifier": {
+      "value": -1
+    },
+    "fortitude": {
+      "value": 28
+    },
+    "reflex": {
+      "value": 21
+    },
+    "will": {
+      "value": 21
+    },
+    "skills": {
+      "value": "Athletics +30"
+    },
+    "gear": {
+      "value": ""
+    },
+    "weaknesses": {
+      "value": ""
+    },
+    "vulnerabilities": {
+      "value": ""
+    },
+    "immunities": {
+      "value": ""
+    },
+    "resistances": {
+      "value": ""
+    },
+    "senses": {
+      "value": "darkvision, imprecise tremorsense 100 ft."
+    },
+    "languages": {
+      "value": ""
+    },
+    "size": {
+      "value": "gargantuan"
+    },
+    "type": {
+      "value": "animal"
+    },
+    "alignment": {
+      "value": "true_neutral"
+    },
+    "traits": {
+      "value": [
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Inexorable"
+            },
+            "trait_description": {
+              "value": "The purple worm recovers from the paralyzed, slowed, and stunned conditions at the end of its turn. It's also immune to penalties to its Speeds and the immobilized condition, and it ignores difficult terrain and greater difficult terrain."
+            },
+            "id": "7cc2044a-290b-41c0-99a6-16fc7e027980",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Purple Worm Venom"
+            },
+            "trait_description": {
+              "value": "**Purple Worm Venom**\nDC: 32\nSaving Throw: Fortitude\nMaximum Duration: 6 rounds\n- Stage 1: 5d6 poison damage and enfeebled 2 , (1 round)\n- Stage 2: 6d6 poison damage, and enfeebled 2 (1 round)\n- Stage 3: 8d6 poison damage and enfeebled 2. (1 round)"
+            },
+            "id": "393beec7-0034-45ce-858d-6bc37c6c559d",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Regurgitate"
+            },
+            "trait_description": {
+              "value": "The purple worm can violently regurgitate a creature or boulder it has swallowed to make a ranged Strike. The Strike deals bludgeoning damage depending on the size of the projectile: Tiny deals 2d6+13, Small 3d6+13, Medium 4d6+13, Large 5d6+13, and Huge 6d6+13. A regurgitated creature takes falling damage from the height of the target or from 20 feet, whichever is greater.\n\nBoulders occupy space in the worm's stomach as a creature of equivalent size, and purple worms often have several boulders swallowed. A purple worm can use a single action to swallow a new boulder."
+            },
+            "id": "f7a116e8-b990-4804-8398-2bbba8bd8499",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_trait",
+          "stats": {
+            "trait_name": {
+              "value": "Rock Tunneler"
+            },
+            "trait_description": {
+              "value": "A purple worm can burrow through solid stone at a Speed of 20 feet. It can leave a tunnel if it desires, and it usually does."
+            },
+            "id": "99104068-42ce-437b-b749-bc7d5c751a5e",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Jaws"
+            },
+            "action_description": {
+              "value": "(deadly 2d10, reach 15 feet) 3d10+15 piercing plus Improved Grab\nEffects: Improved Grab"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 28
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 3
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 15
+                                    },
+                                    "id": "aae67662-1193-4131-820c-b24579ff60c6",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "474fbc82-6d97-4a0a-baaf-0fb204fd238d",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "2711f3c0-94b1-4f86-871b-3c1e7ea3d94f",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:00.984060"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "b7d629ec-7b07-4a07-aa46-1cbc3ffa2aa7",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Stinger"
+            },
+            "action_description": {
+              "value": "(agile, poison, reach 15 feet) 2d12+15 piercing plus purple worm venom\nEffects: purple worm venom"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 28
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "piercing"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 2
+                                    },
+                                    "dice_type": {
+                                      "value": "d12"
+                                    },
+                                    "constant": {
+                                      "value": 15
+                                    },
+                                    "id": "55dbbf01-a11e-4ccb-8dfd-fe973e416290",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "d3a52b4d-5c41-42c9-9171-6819f547e2cc",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "81d99980-e9b9-43ac-9d6d-eb97bc4c9473",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:00.984060"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "605465ac-5d25-4d04-a54d-a9a185bd1f65",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Body"
+            },
+            "action_description": {
+              "value": "(reach 15 feet) 1d10+13 bludgeoning"
+            },
+            "action_type": {
+              "value": "melee"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 26
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 1
+                                    },
+                                    "dice_type": {
+                                      "value": "d10"
+                                    },
+                                    "constant": {
+                                      "value": 13
+                                    },
+                                    "id": "19926d0e-a115-4642-8126-4fdc7f858d99",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "d2fb64b2-1820-4b9e-a8e4-e7a6141f808e",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "540f51f2-1e17-43e1-8f2f-cc7eb9cb8b4d",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:00.984060"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "fa9dda8b-4988-426d-b1df-742aef40d3a4",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Regurgitate"
+            },
+            "action_description": {
+              "value": "(brutal, range increment 60 feet)\nEffects: varies (see ability)"
+            },
+            "action_type": {
+              "value": "ranged"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 26
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "00a6502b-97c9-4981-9fe0-cbedeb5dd1b0",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Swallow Whole"
+            },
+            "action_description": {
+              "value": "Huge, 3d6+9 bludgeoning, Rupture 24."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "one_action"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": [
+                {
+                  "resource_id": "damage_variant",
+                  "stats": {
+                    "variant_name": {
+                      "value": "Default"
+                    },
+                    "variant_damage_dice": {
+                      "value": [
+                        {
+                          "resource_id": "damage_dice",
+                          "stats": {
+                            "damage_type": {
+                              "value": "bludgeoning"
+                            },
+                            "dices": {
+                              "value": [
+                                {
+                                  "resource_id": "dice_roll",
+                                  "stats": {
+                                    "dice_amount": {
+                                      "value": 3
+                                    },
+                                    "dice_type": {
+                                      "value": "d6"
+                                    },
+                                    "constant": {
+                                      "value": 9
+                                    },
+                                    "id": "ca05bf8a-13a0-4bc7-a20b-f811188b9656",
+                                    "updated_at": {
+                                      "value": "2026-04-15T14:13:00.984060"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "id": "6208081f-d77e-4abb-b1a4-06976c264ba9",
+                            "updated_at": {
+                              "value": "2026-04-15T14:13:00.984060"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "id": "d2ccc401-7cfa-4e2f-a9d4-934313bf213f",
+                    "updated_at": {
+                      "value": "2026-04-15T14:13:00.984060"
+                    }
+                  }
+                }
+              ]
+            },
+            "id": "a91dfd2a-2560-488f-b577-ac863f72187d",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Thrash"
+            },
+            "action_description": {
+              "value": "The worm makes a Strike once against each creature in its reach. It can Strike up to once with its jaws, up to once with its stinger, and any number of times with its body. Each attack counts toward the worm's multiple attack penalty, but the multiple attack penalty doesn't increase until after it makes all the attacks."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "two_actions"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "390be03c-dc28-474a-8b6b-6ce66a70fa69",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        }
+      ]
+    },
+    "free_actions": {
+      "value": []
+    },
+    "reactions": {
+      "value": [
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Shake It Off"
+            },
+            "action_description": {
+              "value": "Trigger: The purple worm would be affected by a condition or adverse effect (such as baleful polymorph).\n\nFrequency: 1/day\n\nThe purple worm negates the triggering condition or effect. s from artifacts, deities, or a similarly powerful source can't be avoided in this way."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "5e621ae9-8d25-47c6-8d6f-0ec28f9619ca",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        },
+        {
+          "resource_id": "monster_action",
+          "stats": {
+            "action_name": {
+              "value": "Fast Swallow"
+            },
+            "action_description": {
+              "value": "Trigger: The purple worm Grabs a creature.\n\nThe worm uses Swallow Whole."
+            },
+            "action_type": {
+              "value": "none"
+            },
+            "action_cost": {
+              "value": "reaction"
+            },
+            "action_attack_bonus": {
+              "value": 0
+            },
+            "action_damage_variants": {
+              "value": []
+            },
+            "id": "4f95711e-5095-49df-967c-b0e222a02924",
+            "updated_at": {
+              "value": "2026-04-15T14:13:00.984060"
+            }
+          }
+        }
+      ]
+    },
+    "focus_points": {
+      "value": 0
+    },
+    "spellcasting_blocks": {
+      "value": []
+    },
+    "updated_at": {
+      "value": "2026-04-15T14:13:00.984060"
+    }
+  }
+}
