@@ -12,27 +12,39 @@ character_creation_page edit_about_title() =
           text = "Choose a background and an alignment",
           style = "subhead",
         ),
-        selectorWithDetailsInlineComposite(
-          composite_id = "edit_character_about_background_composite",
-          selector_view = selectResources(
-            id = "edit_character_about_background_select",
-            stat = "background",
-            resource_id = "background",
-            margin_right = 4,
-            margin_bottom = 4,
-            validation_message = if !notNull($view.edit_character_about_background_select)
-              then "Please pick a background"
-              else null,
-          ),
-          details_button = resourceDetailsOkPopUpButton(
-            button_id = "edit_character_about_see_background_button",
-            button_text = "SEE DETAILS",
-            pop_up_view_id = "edit_character_about_see_background_bottom_sheet",
-            resource_id = "background",
-            stat = "$view.edit_character_about_background_select",
-            pop_up_title = $view?.edit_character_about_background_select?.name ?? "Background",
-            is_visible = $view?.edit_character_about_background_select? != null,
-          ),
+        composite(
+          id = "edit_character_about_background_randomize_row",
+          subviews = [
+            selectorWithDetailsInlineComposite(
+              composite_id = "edit_character_about_background_composite",
+              selector_view = selectResources(
+                id = "edit_character_about_background_select",
+                stat = "background",
+                resource_id = "background",
+                margin_right = 4,
+                margin_bottom = 4,
+                validation_message = if !notNull($view.edit_character_about_background_select)
+                  then "Please pick a background"
+                  else null,
+              ),
+              details_button = resourceDetailsOkPopUpButton(
+                button_id = "edit_character_about_see_background_button",
+                button_text = "SEE DETAILS",
+                pop_up_view_id = "edit_character_about_see_background_bottom_sheet",
+                resource_id = "background",
+                stat = "$view.edit_character_about_background_select",
+                pop_up_title = $view?.edit_character_about_background_select?.name ?? "Background",
+                is_visible = $view?.edit_character_about_background_select? != null,
+              ),
+            ),
+            imageButton(
+              id = "edit_character_about_randomize_button",
+              icon = "ic_d20",
+              size = "small",
+              margin_left = 16,
+              event_names = ["randomize_about"],
+            ),
+          ],
         ),
         select(
           id = "edit_character_about_alignment",
@@ -41,7 +53,7 @@ character_creation_page edit_about_title() =
           margin_bottom = 4,
         ),
         text(
-          id = "edit_character_about_subheader",
+          id = "edit_character_about_subheader_2",
           text = "Write a bit about your character",
           style = "subhead",
         ),
