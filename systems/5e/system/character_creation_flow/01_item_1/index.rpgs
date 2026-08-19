@@ -41,13 +41,25 @@ character_creation_page edit_basics_title() =
               then "Please pick a race"
               else null,
           ),
-          tail_view = select(
-            id = "edit_character_basics_subrace_select",
-            stat = "subrace_id",
-            margin_left = 4,
-            resource_options = $view.edit_character_basics_race_select?.subraces ?? [],
-            options_display_stat = "name",
-            is_visible = !isEmpty(($view.edit_character_basics_race_select?.subraces ?? [])),
+          tail_view = composite(
+            id = "edit_character_basics_subrace_randomize_row",
+            subviews = [
+              select(
+                id = "edit_character_basics_subrace_select",
+                stat = "subrace_id",
+                margin_left = 4,
+                resource_options = $view.edit_character_basics_race_select?.subraces ?? [],
+                options_display_stat = "name",
+                is_visible = !isEmpty(($view.edit_character_basics_race_select?.subraces ?? [])),
+              ),
+              imageButton(
+                id = "edit_character_basics_randomize_button",
+                icon = "ic_d20",
+                size = "small",
+                margin_left = 16,
+                event_names = ["randomize_basics"],
+              ),
+            ],
           ),
         ),
         resourceArray(
